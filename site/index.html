@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alliance Travel — Voyages Guidés · Bordj Bou Arreridj · 2026</title>
+  <meta name="description"
+    content="Alliance Travel, agence de voyage à Bordj Bou Arreridj. Voyages guidés vers l'Égypte, l'Azerbaïdjan, Istanbul, la Malaisie et Sharm El Sheikh. Plus de 1.200 voyageurs satisfaits depuis 2019." />
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Alliance Travel — Voyages Guidés depuis Bordj Bou Arreridj" />
+  <meta property="og:description"
+    content="Vol, hôtel, excursions, transferts — tout est inclus. 5 destinations 2026 : Égypte, Azerbaïdjan, Istanbul, Malaisie, Sharm El Sheikh. Plus de 1.200 voyageurs satisfaits." />
+  <meta property="og:url" content="https://alliance-travel.dz/" />
+  <meta property="og:site_name" content="Alliance Travel" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Alliance Travel — Voyages Guidés depuis Bordj Bou Arreridj" />
+  <meta name="twitter:description"
+    content="5 destinations 2026 · Vol + hôtel + excursions inclus · 1.200+ voyageurs satisfaits" />
+  <meta name="theme-color" content="#0C0E12" />
+  <link rel="canonical" href="https://alliance-travel.dz/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Alliance Travel",
+    "url": "https://alliance-travel.dz/",
+    "telephone": "+213561616266",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cité 5 Juillet, Bd. de l'ALN",
+      "addressLocality": "Bordj Bou Arreridj",
+      "addressCountry": "DZ"
+    },
+    "openingHours": "Sa-Th 09:00-18:00",
+    "priceRange": "$$",
+    "image": "https://alliance-travel.dz/og-default.jpg",
+    "description": "Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.",
+    "areaServed": ["DZ"],
+    "knowsAbout": ["Voyage guidé", "Égypte", "Azerbaïdjan", "Istanbul", "Malaisie", "Sharm El Sheikh"]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    :root {
+      --accent: #B2E89C;
+      --accent-dim: rgba(178,232,156,.13);
+      --accent-glow: rgba(178,232,156,.18);
+    }
+
+    /* Homepage-specific */
+    .home-hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .home-hero__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 60% at 60% 40%, rgba(200, 133, 74, .12) 0%, transparent 70%),
+        linear-gradient(145deg, #0a0805 0%, #0c0e12 60%, #080a10 100%);
+    }
+
+    .home-hero__noise {
+      position: absolute;
+      inset: 0;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .home-hero__faded {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: clamp(80px, 18vw, 280px);
+      font-weight: 300;
+      letter-spacing: -.04em;
+      color: var(--txt-1);
+      opacity: .025;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .home-hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin-inline: auto;
+      padding: 140px clamp(20px, 5vw, 80px) var(--s12);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s10);
+      align-items: center;
+      width: 100%;
+    }
+
+    .home-hero__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s5);
+    }
+
+    .home-hero__globe {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Trip cards grid */
+    .trips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: var(--s5);
+    }
+
+    .trip-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .trip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--elev-2);
+      border-color: var(--border-hi);
+    }
+
+    .trip-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .trip-card__hero {
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trip-card__art {
+      width: 100%;
+      height: 100%;
+      transition: transform var(--t);
+    }
+
+    .trip-card:hover .trip-card__art {
+      transform: scale(1.04);
+    }
+
+    .trip-card__flag {
+      position: absolute;
+      top: var(--s3);
+      left: var(--s3);
+      font-size: .6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 3px var(--s3);
+      border-radius: var(--r1);
+      background: rgba(12, 14, 18, .75);
+      backdrop-filter: blur(8px);
+      color: var(--txt-2);
+      border: 1px solid var(--border);
+    }
+
+    .trip-card__from {
+      position: absolute;
+      bottom: var(--s3);
+      right: var(--s3);
+      background: rgba(12, 14, 18, .8);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-hi);
+      border-radius: var(--r2);
+      padding: var(--s2) var(--s3);
+      font-size: .8125rem;
+      color: var(--txt-2);
+    }
+
+    .trip-card__from strong {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--txt-1);
+      font-variant-numeric: tabular-nums;
+      display: block;
+      line-height: 1;
+    }
+
+    .trip-card__body {
+      padding: var(--s5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      flex: 1;
+    }
+
+    .trip-card__meta {
+      display: flex;
+      gap: var(--s4);
+      flex-wrap: wrap;
+    }
+
+    .trip-card__meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: .75rem;
+      color: var(--txt-3);
+    }
+
+    .trip-card__meta-item svg {
+      color: var(--accent);
+    }
+
+    .trip-card__title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 400;
+      color: var(--txt-1);
+    }
+
+    .trip-card__subtitle {
+      font-size: .875rem;
+      color: var(--txt-2);
+      line-height: 1.55;
+    }
+
+    .trip-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+      margin-top: auto;
+      padding-top: var(--s3);
+    }
+
+    .trip-tag {
+      font-size: .625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      padding: 3px var(--s2);
+      border-radius: 4px;
+      background: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .trip-card__cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--s4) var(--s5);
+      border-top: 1px solid var(--border);
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--accent);
+      transition: background var(--t-fast);
+    }
+
+    .trip-card:hover .trip-card__cta {
+      background: var(--accent-dim);
+    }
+
+    /* Agency values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--s5);
+    }
+
+    .value-card {
+      padding: var(--s6);
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      background: var(--bg-card);
+    }
+
+    .value-card__num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--txt-1);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .value-card__label {
+      font-size: .875rem;
+      color: var(--txt-3);
+      margin-top: var(--s1);
+    }
+
+    /* Contact section */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s9);
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .home-hero__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .home-hero__globe {
+        display: none;
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .trips-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo" aria-label="Alliance Travel"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 426 148.499996" height="40" aria-label="Alliance Travel" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="6f5dac3367"><path d="M 23.808594 0 L 65.683594 0 L 65.683594 35.996094 L 23.808594 35.996094 Z M 23.808594 0 " clip-rule="nonzero"/></clipPath><clipPath id="22fe911202"><path d="M 46.292969 35.855469 C 45.75 29.660156 45.214844 23.53125 44.671875 17.34375 C 44.460938 17.421875 44.316406 17.464844 44.179688 17.53125 C 40.558594 19.191406 36.9375 20.863281 33.308594 22.511719 C 32.941406 22.675781 32.796875 22.894531 32.742188 23.28125 C 32.519531 24.832031 32.269531 26.378906 32.011719 27.921875 C 31.984375 28.085938 31.878906 28.292969 31.742188 28.375 C 31.140625 28.757812 30.519531 29.097656 29.839844 29.492188 C 29.777344 29.273438 29.722656 29.136719 29.695312 28.992188 C 29.351562 27.25 29.023438 25.507812 28.652344 23.769531 C 28.589844 23.472656 28.414062 23.152344 28.195312 22.945312 C 26.898438 21.707031 25.574219 20.5 24.261719 19.277344 C 24.175781 19.195312 24.09375 19.105469 23.949219 18.953125 C 24.660156 18.558594 25.332031 18.171875 26.023438 17.820312 C 26.128906 17.765625 26.324219 17.847656 26.460938 17.902344 C 27.890625 18.5 29.324219 19.089844 30.738281 19.714844 C 31.125 19.886719 31.394531 19.84375 31.738281 19.613281 C 35.03125 17.402344 38.339844 15.207031 41.640625 13.007812 C 41.769531 12.921875 41.890625 12.828125 42.078125 12.6875 C 37.097656 8.972656 32.160156 5.289062 27.171875 1.570312 C 28.128906 1.03125 29.015625 0.519531 29.917969 0.0390625 C 30.042969 -0.0273438 30.261719 0 30.402344 0.0625 C 36.523438 2.738281 42.644531 5.414062 48.753906 8.113281 C 49.226562 8.324219 49.566406 8.28125 50.003906 8.039062 C 53.269531 6.210938 56.574219 4.453125 60.085938 3.121094 C 60.847656 2.832031 61.636719 2.601562 62.421875 2.378906 C 62.820312 2.265625 63.238281 2.191406 63.652344 2.164062 C 64.3125 2.117188 65.054688 2.019531 65.429688 2.71875 C 65.804688 3.414062 65.339844 3.996094 64.941406 4.519531 C 64.628906 4.933594 64.28125 5.34375 63.878906 5.667969 C 62.664062 6.652344 61.472656 7.683594 60.164062 8.53125 C 57.726562 10.113281 55.21875 11.582031 52.722656 13.070312 C 52.34375 13.296875 52.144531 13.523438 52.082031 13.976562 C 51.164062 20.613281 50.222656 27.246094 49.277344 33.875 C 49.253906 34.042969 49.152344 34.261719 49.019531 34.339844 C 48.152344 34.847656 47.261719 35.320312 46.292969 35.855469 Z M 46.292969 35.855469 " clip-rule="nonzero"/></clipPath><clipPath id="bc60a13e81"><path d="M 0.917969 0 L 42.683594 0 L 42.683594 35.878906 L 0.917969 35.878906 Z M 0.917969 0 " clip-rule="nonzero"/></clipPath><clipPath id="1a1fe097b1"><path d="M 23.292969 35.855469 C 22.75 29.660156 22.214844 23.53125 21.671875 17.34375 C 21.460938 17.421875 21.316406 17.464844 21.179688 17.53125 C 17.558594 19.191406 13.9375 20.863281 10.308594 22.511719 C 9.941406 22.675781 9.796875 22.894531 9.742188 23.28125 C 9.519531 24.832031 9.269531 26.378906 9.011719 27.921875 C 8.984375 28.085938 8.878906 28.292969 8.742188 28.375 C 8.140625 28.757812 7.519531 29.097656 6.839844 29.492188 C 6.777344 29.273438 6.722656 29.136719 6.695312 28.992188 C 6.351562 27.25 6.023438 25.507812 5.652344 23.769531 C 5.589844 23.472656 5.414062 23.152344 5.195312 22.945312 C 3.898438 21.707031 2.574219 20.5 1.261719 19.277344 C 1.175781 19.195312 1.09375 19.105469 0.949219 18.953125 C 1.660156 18.558594 2.332031 18.171875 3.023438 17.820312 C 3.128906 17.765625 3.324219 17.847656 3.460938 17.902344 C 4.890625 18.5 6.324219 19.089844 7.738281 19.714844 C 8.125 19.886719 8.394531 19.84375 8.738281 19.613281 C 12.03125 17.402344 15.339844 15.207031 18.640625 13.007812 C 18.769531 12.921875 18.890625 12.828125 19.078125 12.6875 C 14.097656 8.972656 9.160156 5.289062 4.171875 1.570312 C 5.128906 1.03125 6.015625 0.519531 6.917969 0.0390625 C 7.042969 -0.0273438 7.261719 0 7.402344 0.0625 C 13.523438 2.738281 19.644531 5.414062 25.753906 8.113281 C 26.226562 8.324219 26.566406 8.28125 27.003906 8.039062 C 30.269531 6.210938 33.574219 4.453125 37.085938 3.121094 C 37.847656 2.832031 38.636719 2.601562 39.421875 2.378906 C 39.820312 2.265625 40.238281 2.191406 40.652344 2.164062 C 41.3125 2.117188 42.054688 2.019531 42.429688 2.71875 C 42.804688 3.414062 42.339844 3.996094 41.941406 4.519531 C 41.628906 4.933594 41.28125 5.34375 40.878906 5.667969 C 39.664062 6.652344 38.472656 7.683594 37.164062 8.53125 C 34.726562 10.113281 32.21875 11.582031 29.722656 13.070312 C 29.34375 13.296875 29.144531 13.523438 29.082031 13.976562 C 28.164062 20.613281 27.222656 27.246094 26.277344 33.875 C 26.253906 34.042969 26.152344 34.261719 26.019531 34.339844 C 25.152344 34.847656 24.261719 35.320312 23.292969 35.855469 Z M 23.292969 35.855469 " clip-rule="nonzero"/></clipPath><clipPath id="dc38495a75"><rect x="0" width="43" y="0" height="36"/></clipPath><clipPath id="ad75c4b4fc"><path d="M 285.808594 130.515625 L 299.566406 130.515625 L 299.566406 131.847656 L 285.808594 131.847656 Z M 292.027344 131.847656 L 293.347656 131.847656 L 293.347656 147.378906 L 292.027344 147.378906 Z M 292.027344 131.847656 " clip-rule="nonzero"/></clipPath><clipPath id="0e3106f3ca"><path d="M 0.808594 0.515625 L 14.566406 0.515625 L 14.566406 1.847656 L 0.808594 1.847656 Z M 7.027344 1.847656 L 8.347656 1.847656 L 8.347656 17.378906 L 7.027344 17.378906 Z M 7.027344 1.847656 " clip-rule="nonzero"/></clipPath><clipPath id="bfc8f113ba"><rect x="0" width="15" y="0" height="18"/></clipPath><clipPath id="c4f571a3d5"><path d="M 312.644531 130.515625 L 323.855469 130.515625 L 323.855469 147.710938 L 312.644531 147.710938 Z M 312.644531 130.515625 " clip-rule="nonzero"/></clipPath><clipPath id="c6b329dff5"><path d="M 336.964844 130.515625 L 352.664062 130.515625 L 352.664062 147.710938 L 336.964844 147.710938 Z M 336.964844 130.515625 " clip-rule="nonzero"/></clipPath><clipPath id="e0b06f2b52"><path d="M 362.347656 130.515625 L 377.789062 130.515625 L 377.789062 147.402344 L 362.347656 147.402344 Z M 362.347656 130.515625 " clip-rule="nonzero"/></clipPath><clipPath id="0cabbca291"><path d="M 370.804688 147.378906 L 369.378906 147.378906 L 362.40625 130.515625 L 363.828125 130.515625 L 370.097656 145.652344 L 376.351562 130.515625 L 377.789062 130.515625 Z M 370.804688 147.378906 " clip-rule="nonzero"/></clipPath><clipPath id="dd3a24775a"><path d="M 0.378906 0.515625 L 15.789062 0.515625 L 15.789062 17.402344 L 0.378906 17.402344 Z M 0.378906 0.515625 " clip-rule="nonzero"/></clipPath><clipPath id="53f36033ce"><path d="M 8.804688 17.378906 L 7.378906 17.378906 L 0.40625 0.515625 L 1.828125 0.515625 L 8.097656 15.652344 L 14.351562 0.515625 L 15.789062 0.515625 Z M 8.804688 17.378906 " clip-rule="nonzero"/></clipPath><clipPath id="a239c7dbf9"><rect x="0" width="16" y="0" height="18"/></clipPath><clipPath id="4aa9e00c49"><path d="M 390.847656 130.515625 L 400.714844 130.515625 L 400.714844 131.84375 L 390.847656 131.84375 Z M 390.847656 131.84375 L 392.175781 131.84375 L 392.175781 137.976562 L 390.847656 137.976562 Z M 390.847656 137.976562 L 399.390625 137.976562 L 399.390625 139.246094 L 390.847656 139.246094 Z M 390.847656 139.246094 L 392.175781 139.246094 L 392.175781 146.046875 L 390.847656 146.046875 Z M 390.847656 146.046875 L 400.714844 146.046875 L 400.714844 147.363281 L 390.847656 147.363281 Z M 390.847656 146.046875 " clip-rule="nonzero"/></clipPath><clipPath id="4700ad0c56"><path d="M 0.847656 0.515625 L 10.714844 0.515625 L 10.714844 1.84375 L 0.847656 1.84375 Z M 0.847656 1.84375 L 2.175781 1.84375 L 2.175781 7.976562 L 0.847656 7.976562 Z M 0.847656 7.976562 L 9.390625 7.976562 L 9.390625 9.246094 L 0.847656 9.246094 Z M 0.847656 9.246094 L 2.175781 9.246094 L 2.175781 16.046875 L 0.847656 16.046875 Z M 0.847656 16.046875 L 10.714844 16.046875 L 10.714844 17.363281 L 0.847656 17.363281 Z M 0.847656 16.046875 " clip-rule="nonzero"/></clipPath><clipPath id="41f3651b0b"><rect x="0" width="11" y="0" height="18"/></clipPath><clipPath id="6e60c38031"><path d="M 413.800781 130.515625 L 415.128906 130.515625 L 415.128906 146.0625 L 413.800781 146.0625 Z M 413.800781 146.0625 L 424.84375 146.0625 L 424.84375 147.378906 L 413.800781 147.378906 Z M 413.800781 146.0625 " clip-rule="nonzero"/></clipPath><clipPath id="de1ffa27ec"><path d="M 0.800781 0.515625 L 2.128906 0.515625 L 2.128906 16.0625 L 0.800781 16.0625 Z M 0.800781 16.0625 L 11.84375 16.0625 L 11.84375 17.378906 L 0.800781 17.378906 Z M 0.800781 16.0625 " clip-rule="nonzero"/></clipPath><clipPath id="31cf2a680e"><rect x="0" width="12" y="0" height="18"/></clipPath><clipPath id="155b22a741"><path d="M 99.792969 40.042969 L 114.074219 40.042969 L 114.074219 115.207031 L 99.792969 115.207031 Z M 99.792969 40.042969 " clip-rule="nonzero"/></clipPath><clipPath id="4c70b551bb"><path d="M 0.792969 0.0429688 L 15.074219 0.0429688 L 15.074219 75.207031 L 0.792969 75.207031 Z M 0.792969 0.0429688 " clip-rule="nonzero"/></clipPath><clipPath id="edfb46498a"><rect x="0" width="16" y="0" height="76"/></clipPath><clipPath id="6b2d92cfe6"><path d="M 127.757812 40.042969 L 142.039062 40.042969 L 142.039062 115.207031 L 127.757812 115.207031 Z M 127.757812 40.042969 " clip-rule="nonzero"/></clipPath><clipPath id="bbf96f04a3"><path d="M 0.757812 0.0429688 L 15.039062 0.0429688 L 15.039062 75.207031 L 0.757812 75.207031 Z M 0.757812 0.0429688 " clip-rule="nonzero"/></clipPath><clipPath id="3b14f3e239"><rect x="0" width="16" y="0" height="76"/></clipPath><clipPath id="a17f906130"><path d="M 154.214844 38.96875 L 172.15625 38.96875 L 172.15625 115.210938 L 154.214844 115.210938 Z M 154.214844 38.96875 " clip-rule="nonzero"/></clipPath><clipPath id="2b1d768afb"><path d="M 180.480469 60.945312 L 238 60.945312 L 238 116.257812 L 180.480469 116.257812 Z M 180.480469 60.945312 " clip-rule="nonzero"/></clipPath><clipPath id="90d071fd48"><path d="M 251.335938 61.039062 L 304.542969 61.039062 L 304.542969 115.320312 L 251.335938 115.320312 Z M 251.335938 61.039062 " clip-rule="nonzero"/></clipPath><clipPath id="52c8be3069"><path d="M 251.515625 62.109375 L 263.859375 62.109375 L 264.824219 68.230469 C 266.898438 65.9375 269.441406 64.167969 272.445312 62.914062 C 275.453125 61.664062 278.707031 61.039062 282.214844 61.039062 C 289.011719 61.039062 294.414062 63.238281 298.425781 67.636719 C 302.429688 72.039062 304.4375 77.996094 304.4375 85.511719 L 304.4375 115.140625 L 290.160156 115.140625 L 290.160156 86.371094 C 290.160156 82.292969 289.140625 79.125 287.097656 76.871094 C 285.058594 74.617188 282.25 73.488281 278.671875 73.488281 C 274.808594 73.488281 271.695312 74.777344 269.332031 77.351562 C 266.972656 79.929688 265.792969 83.257812 265.792969 87.335938 L 265.792969 115.140625 L 251.515625 115.140625 Z M 251.515625 62.109375 " clip-rule="nonzero"/></clipPath><clipPath id="0b92d48cc6"><path d="M 0.390625 0.0390625 L 53.492188 0.0390625 L 53.492188 54.292969 L 0.390625 54.292969 Z M 0.390625 0.0390625 " clip-rule="nonzero"/></clipPath><clipPath id="6ff1ed3015"><path d="M 0.515625 1.109375 L 12.859375 1.109375 L 13.824219 7.230469 C 15.898438 4.9375 18.441406 3.167969 21.445312 1.914062 C 24.453125 0.664062 27.707031 0.0390625 31.214844 0.0390625 C 38.011719 0.0390625 43.414062 2.238281 47.425781 6.636719 C 51.429688 11.039062 53.4375 16.996094 53.4375 24.511719 L 53.4375 54.140625 L 39.160156 54.140625 L 39.160156 25.371094 C 39.160156 21.292969 38.140625 18.125 36.097656 15.871094 C 34.058594 13.617188 31.25 12.488281 27.671875 12.488281 C 23.808594 12.488281 20.695312 13.777344 18.332031 16.351562 C 15.972656 18.929688 14.792969 22.257812 14.792969 26.335938 L 14.792969 54.140625 L 0.515625 54.140625 Z M 0.515625 1.109375 " clip-rule="nonzero"/></clipPath><clipPath id="81b7480e77"><rect x="0" width="54" y="0" height="55"/></clipPath><clipPath id="d775c81624"><path d="M 314 60.945312 L 363.921875 60.945312 L 363.921875 116.328125 L 314 116.328125 Z M 314 60.945312 " clip-rule="nonzero"/></clipPath><clipPath id="e4e38b35b2"><path d="M 327.671875 112.945312 C 323.34375 110.691406 320 107.472656 317.636719 103.285156 C 315.277344 99.101562 314.097656 94.21875 314.097656 88.636719 C 314.097656 83.199219 315.292969 78.386719 317.691406 74.199219 C 320.089844 70.015625 323.433594 66.761719 327.726562 64.433594 C 332.019531 62.109375 336.992188 60.945312 342.644531 60.945312 C 350.515625 60.945312 357.3125 63.699219 363.039062 69.210938 L 354.773438 78.117188 C 353.269531 76.617188 351.515625 75.453125 349.515625 74.628906 C 347.511719 73.808594 345.398438 73.394531 343.183594 73.394531 C 338.746094 73.394531 335.148438 74.808594 332.394531 77.636719 C 329.640625 80.460938 328.265625 84.128906 328.265625 88.636719 C 328.265625 93.144531 329.640625 96.8125 332.394531 99.636719 C 335.148438 102.464844 338.746094 103.875 343.183594 103.875 C 348.046875 103.875 352.125 102.160156 355.417969 98.726562 L 363.789062 107.742188 C 357.847656 113.464844 350.871094 116.328125 342.859375 116.328125 C 337.0625 116.328125 332.003906 115.199219 327.671875 112.945312 Z M 327.671875 112.945312 " clip-rule="nonzero"/></clipPath><clipPath id="df2143a0f0"><path d="M 0.0585938 0.945312 L 49.8125 0.945312 L 49.8125 56.328125 L 0.0585938 56.328125 Z M 0.0585938 0.945312 " clip-rule="nonzero"/></clipPath><clipPath id="e7624dd84c"><path d="M 13.671875 52.945312 C 9.34375 50.691406 6 47.472656 3.636719 43.285156 C 1.277344 39.101562 0.0976562 34.21875 0.0976562 28.636719 C 0.0976562 23.199219 1.292969 18.386719 3.691406 14.199219 C 6.089844 10.015625 9.433594 6.761719 13.726562 4.433594 C 18.019531 2.109375 22.992188 0.945312 28.644531 0.945312 C 36.515625 0.945312 43.3125 3.699219 49.039062 9.210938 L 40.773438 18.117188 C 39.269531 16.617188 37.515625 15.453125 35.515625 14.628906 C 33.511719 13.808594 31.398438 13.394531 29.183594 13.394531 C 24.746094 13.394531 21.148438 14.808594 18.394531 17.636719 C 15.640625 20.460938 14.265625 24.128906 14.265625 28.636719 C 14.265625 33.144531 15.640625 36.8125 18.394531 39.636719 C 21.148438 42.464844 24.746094 43.875 29.183594 43.875 C 34.046875 43.875 38.125 42.160156 41.417969 38.726562 L 49.789062 47.742188 C 43.847656 53.464844 36.871094 56.328125 28.859375 56.328125 C 23.0625 56.328125 18.003906 55.199219 13.671875 52.945312 Z M 13.671875 52.945312 " clip-rule="nonzero"/></clipPath><clipPath id="4c7c7a3221"><rect x="0" width="50" y="0" height="57"/></clipPath><clipPath id="2ebf84af89"><path d="M 368.140625 61.105469 L 423.453125 61.105469 L 423.453125 116.417969 L 368.140625 116.417969 Z M 368.140625 61.105469 " clip-rule="nonzero"/></clipPath><clipPath id="b6e5db2c0d"><path d="M 0.714844 28.292969 L 92.65625 28.292969 L 92.65625 116.496094 L 0.714844 116.496094 Z M 0.714844 28.292969 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#6f5dac3367)"><g clip-path="url(#22fe911202)"><g transform="matrix(1, 0, 0, 1, 23, 0)"><g clip-path="url(#dc38495a75)"><g clip-path="url(#bc60a13e81)"><g clip-path="url(#1a1fe097b1)"><path fill="#9ce8b2" d="M 0.949219 0 L 42.546875 0 L 42.546875 35.855469 L 0.949219 35.855469 Z M 0.949219 0 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#ad75c4b4fc)"><g transform="matrix(1, 0, 0, 1, 285, 130)"><g clip-path="url(#bfc8f113ba)"><g clip-path="url(#0e3106f3ca)"><path fill="#efe8df" d="M 0.808594 0.515625 L 14.566406 0.515625 L 14.566406 17.394531 L 0.808594 17.394531 Z M 0.808594 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#c4f571a3d5)"><path fill="#efe8df" d="M 313.941406 131.730469 L 313.941406 138.707031 L 318.746094 138.707031 C 318.949219 138.707031 319.148438 138.6875 319.351562 138.648438 C 320.167969 138.496094 320.851562 138.105469 321.398438 137.46875 C 321.941406 136.816406 322.214844 136.074219 322.222656 135.230469 C 322.214844 134.382812 321.945312 133.632812 321.410156 132.980469 C 320.863281 132.347656 320.179688 131.949219 319.363281 131.792969 C 319.160156 131.761719 318.960938 131.742188 318.757812 131.730469 Z M 322.1875 147.585938 L 317.101562 139.910156 L 313.941406 139.910156 L 313.941406 147.585938 L 312.644531 147.585938 L 312.644531 130.519531 L 313.941406 130.519531 L 313.941406 130.53125 L 318.769531 130.53125 C 319.03125 130.539062 319.296875 130.566406 319.558594 130.613281 C 320.648438 130.820312 321.558594 131.347656 322.292969 132.195312 C 322.648438 132.617188 322.921875 133.089844 323.113281 133.613281 C 323.300781 134.136719 323.390625 134.675781 323.390625 135.230469 C 323.375 136.382812 323.007812 137.390625 322.28125 138.253906 C 321.546875 139.101562 320.636719 139.628906 319.546875 139.835938 C 319.285156 139.882812 319.023438 139.910156 318.757812 139.910156 L 318.726562 139.910156 L 323.808594 147.585938 Z M 322.1875 147.585938 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#c6b329dff5)"><path fill="#efe8df" d="M 341.195312 140.859375 L 348.273438 140.859375 L 344.734375 132.269531 Z M 351.054688 147.585938 L 348.832031 142.191406 L 340.636719 142.191406 L 338.414062 147.585938 L 336.964844 147.585938 L 344.011719 130.519531 L 345.460938 130.519531 L 352.503906 147.585938 Z M 351.054688 147.585938 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#e0b06f2b52)"><g clip-path="url(#0cabbca291)"><g transform="matrix(1, 0, 0, 1, 362, 130)"><g clip-path="url(#a239c7dbf9)"><g clip-path="url(#dd3a24775a)"><g clip-path="url(#53f36033ce)"><path fill="#efe8df" d="M 0.40625 0.515625 L 15.789062 0.515625 L 15.789062 17.402344 L 0.40625 17.402344 Z M 0.40625 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#4aa9e00c49)"><g transform="matrix(1, 0, 0, 1, 390, 130)"><g clip-path="url(#41f3651b0b)"><g clip-path="url(#4700ad0c56)"><path fill="#efe8df" d="M 0.847656 0.515625 L 10.714844 0.515625 L 10.714844 17.359375 L 0.847656 17.359375 Z M 0.847656 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#6e60c38031)"><g transform="matrix(1, 0, 0, 1, 413, 130)"><g clip-path="url(#31cf2a680e)"><g clip-path="url(#de1ffa27ec)"><path fill="#efe8df" d="M 0.800781 0.515625 L 11.84375 0.515625 L 11.84375 17.382812 L 0.800781 17.382812 Z M 0.800781 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#155b22a741)"><g transform="matrix(1, 0, 0, 1, 99, 40)"><g clip-path="url(#edfb46498a)"><g clip-path="url(#4c70b551bb)"><path fill="#efe8df" d="M 0.792969 0.0429688 L 15.074219 0.0429688 L 15.074219 75.1875 L 0.792969 75.1875 Z M 0.792969 0.0429688 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#6b2d92cfe6)"><g transform="matrix(1, 0, 0, 1, 127, 40)"><g clip-path="url(#3b14f3e239)"><g clip-path="url(#bbf96f04a3)"><path fill="#efe8df" d="M 0.757812 0.0429688 L 15.039062 0.0429688 L 15.039062 75.1875 L 0.757812 75.1875 Z M 0.757812 0.0429688 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#a17f906130)"><path fill="#efe8df" d="M 155.746094 62.113281 L 170.289062 62.113281 L 170.289062 115.035156 L 155.746094 115.035156 Z M 156.730469 41.332031 C 158.40625 39.761719 160.519531 38.976562 163.070312 38.976562 C 165.621094 38.976562 167.753906 39.761719 169.46875 41.332031 C 171.179688 42.902344 172.035156 44.902344 172.035156 47.332031 C 172.035156 49.6875 171.179688 51.636719 169.46875 53.167969 C 167.753906 54.707031 165.621094 55.472656 163.070312 55.472656 C 160.519531 55.472656 158.40625 54.707031 156.730469 53.167969 C 155.050781 51.636719 154.214844 49.6875 154.214844 47.332031 C 154.214844 44.902344 155.050781 42.902344 156.730469 41.332031 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#2b1d768afb)"><path fill="#efe8df" d="M 198.746094 99.433594 C 201.464844 102.285156 204.9375 103.710938 209.164062 103.710938 C 213.460938 103.710938 216.96875 102.285156 219.691406 99.433594 C 222.414062 96.585938 223.777344 92.949219 223.777344 88.53125 C 223.777344 84.109375 222.414062 80.476562 219.691406 77.625 C 216.96875 74.773438 213.460938 73.347656 209.164062 73.347656 C 204.9375 73.347656 201.464844 74.773438 198.746094 77.625 C 196.023438 80.476562 194.664062 84.109375 194.664062 88.53125 C 194.664062 92.949219 196.023438 96.585938 198.746094 99.433594 M 192.890625 112.640625 C 188.984375 110.324219 185.941406 107.0625 183.757812 102.855469 C 181.574219 98.652344 180.484375 93.875 180.484375 88.53125 C 180.484375 83.183594 181.574219 78.410156 183.757812 74.203125 C 185.941406 69.996094 188.984375 66.738281 192.890625 64.417969 C 196.792969 62.105469 201.25 60.945312 206.265625 60.945312 C 209.988281 60.945312 213.445312 61.585938 216.632812 62.867188 C 219.816406 64.152344 222.484375 66.007812 224.632812 68.429688 L 225.601562 62.121094 L 237.957031 62.121094 L 237.957031 114.9375 L 225.601562 114.9375 L 224.632812 108.523438 C 222.414062 111.019531 219.726562 112.90625 216.578125 114.191406 C 213.425781 115.472656 209.988281 116.113281 206.265625 116.113281 C 201.25 116.113281 196.792969 114.957031 192.890625 112.640625 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#90d071fd48)"><g clip-path="url(#52c8be3069)"><g transform="matrix(1, 0, 0, 1, 251, 61)"><g clip-path="url(#81b7480e77)"><g clip-path="url(#0b92d48cc6)"><g clip-path="url(#6ff1ed3015)"><path fill="#efe8df" d="M 0.515625 0.0390625 L 53.363281 0.0390625 L 53.363281 54.140625 L 0.515625 54.140625 Z M 0.515625 0.0390625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#d775c81624)"><g clip-path="url(#e4e38b35b2)"><g transform="matrix(1, 0, 0, 1, 314, 60)"><g clip-path="url(#4c7c7a3221)"><g clip-path="url(#df2143a0f0)"><g clip-path="url(#e7624dd84c)"><path fill="#efe8df" d="M 0.0976562 0.945312 L 49.742188 0.945312 L 49.742188 56.328125 L 0.0976562 56.328125 Z M 0.0976562 0.945312 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#2ebf84af89)"><path fill="#efe8df" d="M 409.808594 83.878906 C 409.523438 80.457031 408.175781 77.75 405.761719 75.753906 C 403.34375 73.757812 400.179688 72.761719 396.273438 72.761719 C 392.507812 72.761719 389.4375 73.742188 387.058594 75.699219 C 384.675781 77.660156 383.238281 80.386719 382.742188 83.878906 Z M 381.832031 112.957031 C 377.464844 110.679688 374.089844 107.453125 371.710938 103.28125 C 369.328125 99.113281 368.140625 94.25 368.140625 88.691406 C 368.140625 83.273438 369.292969 78.480469 371.601562 74.308594 C 373.910156 70.140625 377.160156 66.898438 381.355469 64.582031 C 385.546875 62.265625 390.378906 61.105469 395.847656 61.105469 C 404.445312 61.105469 411.195312 63.511719 416.097656 68.324219 C 421 73.136719 423.449219 79.710938 423.449219 88.046875 C 423.449219 89.6875 423.34375 91.433594 423.132812 93.285156 L 382.527344 93.285156 C 383.023438 96.636719 384.640625 99.3125 387.375 101.304688 C 390.109375 103.300781 393.574219 104.300781 397.765625 104.300781 C 400.609375 104.300781 403.34375 103.855469 405.972656 102.960938 C 408.601562 102.070312 410.769531 100.84375 412.472656 99.273438 L 420.359375 107.398438 C 417.589844 110.25 414.179688 112.460938 410.128906 114.027344 C 406.078125 115.59375 401.78125 116.378906 397.234375 116.378906 C 391.335938 116.378906 386.203125 115.238281 381.832031 112.957031 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#b6e5db2c0d)"><path fill="#efe8df" d="M 65.113281 98.660156 C 59.664062 96.8125 54.28125 94.8125 49.019531 92.625 C 44.707031 90.832031 40.476562 88.914062 36.375 86.84375 L 49.988281 55.023438 L 64.214844 88.28125 L 69.015625 99.949219 C 67.710938 99.527344 66.410156 99.101562 65.113281 98.660156 M 58.304688 40.082031 L 41.777344 40.082031 L 23.929688 79.714844 C 22.488281 78.761719 21.082031 77.777344 19.714844 76.753906 C 15.433594 73.539062 11.597656 69.914062 8.871094 65.804688 C 7.515625 63.75 6.460938 61.574219 5.847656 59.304688 C 5.230469 57.035156 5.0625 54.679688 5.398438 52.328125 C 5.726562 49.976562 6.554688 47.644531 7.753906 45.417969 C 8.957031 43.195312 10.488281 41.0625 12.261719 39.054688 C 15.84375 35.054688 20.226562 31.511719 24.910156 28.296875 C 19.835938 31.054688 14.976562 34.179688 10.730469 37.957031 C 8.625 39.859375 6.710938 41.945312 5.09375 44.234375 C 3.480469 46.523438 2.195312 49.039062 1.457031 51.722656 C 0.707031 54.402344 0.527344 57.226562 0.90625 60 C 1.28125 62.773438 2.195312 65.476562 3.460938 68.023438 C 4.722656 70.570312 6.332031 72.960938 8.128906 75.210938 C 9.929688 77.464844 11.933594 79.574219 14.054688 81.566406 C 16.136719 83.515625 18.324219 85.367188 20.589844 87.136719 L 7.40625 116.421875 L 23.824219 116.421875 L 30.171875 101.589844 L 32.726562 95.503906 C 36.125 97.609375 39.597656 99.609375 43.132812 101.515625 C 48.363281 104.339844 53.726562 106.96875 59.1875 109.445312 C 61.914062 110.683594 64.671875 111.878906 67.460938 113.039062 C 68.855469 113.621094 70.253906 114.191406 71.667969 114.75 L 73.808594 115.585938 L 74.894531 115.996094 L 76.039062 116.417969 L 76.039062 116.421875 L 92.566406 116.421875 Z M 58.304688 40.082031 " fill-opacity="1" fill-rule="nonzero"/></g></svg></a>
+    <ul class="nav-links">
+      <li><a href="#voyages">Nos voyages</a></li>
+      <li><a href="#agence">L'agence</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" type="button" aria-label="Changer de thème" title="Changer de thème">
+    <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <a href="https://wa.me/213561616266" class="nav-cta" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+      WhatsApp
+    </a>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────── -->
+  <main id="main">
+  <section class="home-hero" aria-label="Bienvenue chez Alliance Travel">
+    <!-- Photographic backdrop: 5 destination photos as horizontal collage -->
+    <div class="home-hero__photos" aria-hidden="true">
+      <img src="assets/images/heroes/hero__cairo-sharm.jpg"       alt="" loading="eager" fetchpriority="high"/>
+      <img src="assets/images/heroes/hero__azerbaidjan.jpg"        alt="" loading="eager"/>
+      <img src="assets/images/heroes/hero__istanbul.jpg"           alt="" loading="eager"/>
+      <img src="assets/images/heroes/hero__kuala-lumpur.jpg"       alt="" loading="eager"/>
+      <img src="assets/images/heroes/hero__sharm-constantine.jpg" alt="" loading="eager"/>
+    </div>
+    <div class="home-hero__bg"></div>
+    <div class="home-hero__noise" aria-hidden="true"></div>
+    <div class="home-hero__faded" aria-hidden="true">TRAVEL</div>
+
+    <div class="home-hero__inner">
+      <div class="home-hero__content">
+        <span class="hero__eyebrow fade-up">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="10" r="3" />
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+          </svg>
+          Agence de voyage · Bordj Bou Arreridj · Algérie
+        </span>
+        <h1 class="hero__title fade-up fade-up--d1" style="font-size:clamp(48px,6.5vw,96px)">
+          Le monde,<br><em>guidé et organisé</em>
+        </h1>
+        <p class="hero__lede fade-up fade-up--d2">
+          Alliance Travel organise des voyages guidés depuis Bordj Bou Arreridj vers les plus belles destinations. Vol, hôtel,
+          excursions, transferts — tout est inclus. Vous n'avez qu'à profiter.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--s4);margin-top:var(--s3)" class="fade-up fade-up--d3">
+          <a href="#voyages" class="btn btn--primary" style="font-size:1rem;padding:var(--s4) var(--s7)">Voir nos
+            voyages</a>
+          <a href="https://wa.me/213561616266" class="btn btn--ghost" target="_blank" rel="noopener"
+            style="font-size:1rem;padding:var(--s4) var(--s7)">Nous contacter</a>
+        </div>
+        <!-- Stats inline -->
+        <div
+          style="display:flex;flex-wrap:wrap;gap:var(--s7);margin-top:var(--s6);padding-top:var(--s6);border-top:1px solid var(--border)"
+          class="fade-up">
+          <div>
+            <p style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--txt-1)"
+              data-counter="1.2" data-counter-format="{n}K+">1.2K+</p>
+            <p style="font-size:.8125rem;color:var(--txt-3)">Voyageurs guidés</p>
+          </div>
+          <div>
+            <p style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--txt-1)"
+              data-counter="98" data-counter-format="{n}%">98%</p>
+            <p style="font-size:.8125rem;color:var(--txt-3)">Taux de satisfaction</p>
+          </div>
+          <div>
+            <p style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--txt-1)"
+              data-counter="5" data-counter-format="{n}">5</p>
+            <p style="font-size:.8125rem;color:var(--txt-3)">Destinations 2026</p>
+          </div>
+          <div>
+            <p style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--txt-1)"
+              data-counter="7" data-counter-format="{n}+">7+</p>
+            <p style="font-size:.8125rem;color:var(--txt-3)">Ans d'expérience</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive 3D globe (cobe-powered, drag to spin) -->
+      <div class="home-hero__globe">
+        <div class="globe-stage" id="globe-stage" aria-label="Carte interactive de nos destinations 2026">
+          <canvas id="alliance-globe" aria-hidden="true"></canvas>
+          <!-- Polaroid markers (positioned by JS via CSS Anchor Positioning) -->
+          <div class="globe-polaroid globe-polaroid--home" data-marker="bba" aria-hidden="true">
+            <div class="globe-polaroid__chip">★ Bordj Bou Arreridj</div>
+          </div>
+          <div class="globe-polaroid" data-marker="egypt" aria-hidden="true">
+            <img src="assets/images/heroes/hero__cairo-sharm.jpg" alt="" loading="lazy"/>
+            <span class="globe-polaroid__caption">Le Caire · Sharm</span>
+          </div>
+          <div class="globe-polaroid" data-marker="aze" aria-hidden="true">
+            <img src="assets/images/heroes/hero__azerbaidjan.jpg" alt="" loading="lazy"/>
+            <span class="globe-polaroid__caption">Bakou</span>
+          </div>
+          <div class="globe-polaroid" data-marker="ist" aria-hidden="true">
+            <img src="assets/images/heroes/hero__istanbul.jpg" alt="" loading="lazy"/>
+            <span class="globe-polaroid__caption">Istanbul</span>
+          </div>
+          <div class="globe-polaroid" data-marker="kl" aria-hidden="true">
+            <img src="assets/images/heroes/hero__kuala-lumpur.jpg" alt="" loading="lazy"/>
+            <span class="globe-polaroid__caption">Kuala Lumpur</span>
+          </div>
+          <!-- First-visit drag hint, dismissed on first pointer interaction -->
+          <div class="globe-hint" id="globe-hint" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 11V6a2 2 0 0 1 4 0v5"/>
+              <path d="M13 9v-1a2 2 0 0 1 4 0v6"/>
+              <path d="M17 11V9a2 2 0 0 1 4 0v8a7 7 0 0 1-7 7h-1a8 8 0 0 1-8-8 4 4 0 0 1 8 0v1"/>
+            </svg>
+            <span>Glissez pour explorer le monde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRIPS ──────────────────────────────────────────────────── -->
+  <section class="section" id="voyages" style="background:var(--bg-2)">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-head__eyebrow">Programmes 2026</p>
+        <h2 class="section-head__title">Nos <em>destinations</em></h2>
+        <p class="section-head__sub">5 voyages guidés, vol + hôtel + excursions inclus. Chaque page voyage a un
+          calculateur de prix live — obtenez votre devis en 30 secondes.</p>
+      </div>
+
+      <div class="trips-grid">
+
+        <!-- Cairo + Sharm -->
+        <a href="cairo-sharm/index.html" class="trip-card"
+          aria-label="Voyage Le Caire et Sharm El Sheikh, à partir de 190.000 DA">
+          <div class="trip-card__hero">
+            <div class="trip-card__art" style="background:linear-gradient(145deg,#1a0e00 0%,#0d0a05 50%,#060810 100%)">
+              <img class="trip-card__img" src="assets/images/trips/card__home__cairo-sharm.jpg" alt="" loading="lazy"
+                width="1280" height="720" />
+            </div>
+            <span class="trip-card__flag">Égypte · Juin 2026</span>
+            <div class="trip-card__from">À partir de<strong>190.000 DA</strong></div>
+          </div>
+          <div class="trip-card__body">
+            <div class="trip-card__meta">
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>12, 19, 26 Juin</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>9 jours · 7 nuits</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                </svg>Départ Alger</div>
+            </div>
+            <h3 class="trip-card__title">Le Caire &amp; Sharm El Sheikh</h3>
+            <p class="trip-card__subtitle">2 expériences en 1 voyage. Pyramides de Guizeh + croisière sur le Nil, puis 5
+              nuits All Inclusive en Mer Rouge.</p>
+            <div class="trip-card__tags">
+              <span class="trip-tag" style="--accent:#C9872E;--accent-dim:rgba(201,135,46,.13)">EgyptAir inclus</span>
+              <span class="trip-tag" style="--accent:#C9872E;--accent-dim:rgba(201,135,46,.13)">All Inclusive
+                Soft</span>
+              <span class="trip-tag" style="--accent:#C9872E;--accent-dim:rgba(201,135,46,.13)">7 hôtels au choix</span>
+            </div>
+          </div>
+          <div class="trip-card__cta" style="color:#C9872E">
+            <span>Voir ce voyage</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Azerbaijan -->
+        <a href="azerbaidjan/index.html" class="trip-card" aria-label="Voyage Azerbaïdjan, à partir de 227.000 DA">
+          <div class="trip-card__hero">
+            <div class="trip-card__art" style="background:#060a16">
+              <img class="trip-card__img" src="assets/images/trips/card__home__azerbaidjan.jpg" alt="" loading="lazy"
+                width="1280" height="720" />
+            </div>
+            <span class="trip-card__flag">Azerbaïdjan · 2026</span>
+            <div class="trip-card__from">À partir de<strong>219.000 DA</strong></div>
+          </div>
+          <div class="trip-card__body">
+            <div class="trip-card__meta">
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>Avr · Mai · Juin · Juil</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>8 jours · 7 nuits</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                </svg>Départ Alger</div>
+            </div>
+            <h3 class="trip-card__title">Azerbaïdjan · Bakou &amp; Gabala</h3>
+            <p class="trip-card__subtitle">La Cité du Feu et les montagnes du Caucase. 5N Bakou + 2N Gabala, visa
+              inclus, téléphérique Shahdag.</p>
+            <div class="trip-card__tags">
+              <span class="trip-tag" style="--accent:#3AAFAF;--accent-dim:rgba(58,175,175,.13)">Turkish Airlines</span>
+              <span class="trip-tag" style="--accent:#3AAFAF;--accent-dim:rgba(58,175,175,.13)">Visa inclus</span>
+              <span class="trip-tag" style="--accent:#3AAFAF;--accent-dim:rgba(58,175,175,.13)">4 départs</span>
+            </div>
+          </div>
+          <div class="trip-card__cta" style="color:#3AAFAF">
+            <span>Voir ce voyage</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Istanbul -->
+        <a href="istanbul/index.html" class="trip-card" aria-label="Voyage Istanbul, à partir de 123.000 DA">
+          <div class="trip-card__hero">
+            <div class="trip-card__art" style="background:#080610">
+              <img class="trip-card__img" src="assets/images/trips/card__home__istanbul.jpg" alt="" loading="lazy"
+                width="1280" height="720" />
+            </div>
+            <span class="trip-card__flag">Istanbul · Mars–Mai 2026</span>
+            <div class="trip-card__from">À partir de<strong>123.000 DA</strong></div>
+          </div>
+          <div class="trip-card__body">
+            <div class="trip-card__meta">
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>10 dates · Mars à Mai</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>8 jours · 7 nuits</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                </svg>Départ Constantine</div>
+            </div>
+            <h3 class="trip-card__title">Istanbul · Entre deux continents</h3>
+            <p class="trip-card__subtitle">Aya Sofya, Grand Bazar, îles des Princes, côté asiatique. 4 jours guidés + 2
+              jours libres pour le shopping.</p>
+            <div class="trip-card__tags">
+              <span class="trip-tag" style="--accent:#5B9EC9;--accent-dim:rgba(91,158,201,.13)">Turkish Airlines
+                CZL</span>
+              <span class="trip-tag" style="--accent:#5B9EC9;--accent-dim:rgba(91,158,201,.13)">4 hôtels au choix</span>
+              <span class="trip-tag" style="--accent:#5B9EC9;--accent-dim:rgba(91,158,201,.13)">Hebdomadaire</span>
+            </div>
+          </div>
+          <div class="trip-card__cta" style="color:#5B9EC9">
+            <span>Voir ce voyage</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Kuala Lumpur -->
+        <a href="kuala-lumpur/index.html" class="trip-card"
+          aria-label="Voyage Kuala Lumpur Malaisie, à partir de 211.000 DA">
+          <div class="trip-card__hero">
+            <div class="trip-card__art" style="background:#040d08">
+              <img class="trip-card__img" src="assets/images/trips/card__home__kuala-lumpur.jpg" alt="" loading="lazy"
+                width="1280" height="720" />
+            </div>
+            <span class="trip-card__flag">Malaisie · Mars–Mai 2026</span>
+            <div class="trip-card__from">À partir de<strong>211.000 DA</strong></div>
+          </div>
+          <div class="trip-card__body">
+            <div class="trip-card__meta">
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>3 départs disponibles</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>8 jours · 7 nuits</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                </svg>Départ Alger · Vol direct</div>
+            </div>
+            <h3 class="trip-card__title">Kuala Lumpur · Malaisie</h3>
+            <p class="trip-card__subtitle">Tours Petronas, Batu Caves, téléphérique Genting. Grand Mercure 5★. Vol
+              direct Air Algérie — une rareté.</p>
+            <div class="trip-card__tags">
+              <span class="trip-tag" style="--accent:#4CAF82;--accent-dim:rgba(76,175,130,.13)">Air Algérie
+                direct</span>
+              <span class="trip-tag" style="--accent:#4CAF82;--accent-dim:rgba(76,175,130,.13)">Grand Mercure 5★</span>
+              <span class="trip-tag" style="--accent:#4CAF82;--accent-dim:rgba(76,175,130,.13)">Genting inclus</span>
+            </div>
+          </div>
+          <div class="trip-card__cta" style="color:#4CAF82">
+            <span>Voir ce voyage</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Sharm Constantine -->
+        <a href="sharm-constantine/index.html" class="trip-card"
+          aria-label="Voyage Sharm El Sheikh depuis Constantine, à partir de 155.000 DA">
+          <div class="trip-card__hero">
+            <div class="trip-card__art" style="background:#020c12">
+              <img class="trip-card__img" src="assets/images/trips/card__home__sharm-constantine.jpg" alt=""
+                loading="lazy" width="1280" height="720" />
+            </div>
+            <span class="trip-card__flag">Sharm · Avr–Juin 2026</span>
+            <div class="trip-card__from">À partir de<strong>155.000 DA</strong></div>
+          </div>
+          <div class="trip-card__body">
+            <div class="trip-card__meta">
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>5 départs disponibles</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>10 jours · 8 nuits</div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                </svg>Départ Constantine</div>
+            </div>
+            <h3 class="trip-card__title">Sharm El Sheikh · depuis Constantine</h3>
+            <p class="trip-card__subtitle">10 jours de Mer Rouge All Inclusive Soft depuis l'aéroport de Constantine.
+              Tivoli, Rehana ou Rehana Royal Beach.</p>
+            <div class="trip-card__tags">
+              <span class="trip-tag" style="--accent:#28B4D4;--accent-dim:rgba(40,180,212,.13)">TK · CZL–IST–SSH</span>
+              <span class="trip-tag" style="--accent:#28B4D4;--accent-dim:rgba(40,180,212,.13)">All Inclusive
+                Soft</span>
+              <span class="trip-tag" style="--accent:#28B4D4;--accent-dim:rgba(40,180,212,.13)">3 hôtels · Aqua
+                Park</span>
+            </div>
+          </div>
+          <div class="trip-card__cta" style="color:#28B4D4">
+            <span>Voir ce voyage</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AGENCY ─────────────────────────────────────────────────── -->
+  <section class="section" id="agence" style="background:var(--bg)">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s10);align-items:center" class="about-grid">
+        <div>
+          <p class="section-head__eyebrow" style="margin-bottom:var(--s3)">Notre histoire</p>
+          <h2
+            style="font-family:var(--font-display);font-size:clamp(28px,4vw,48px);font-weight:400;color:var(--txt-1);line-height:1.1;margin-bottom:var(--s5)">
+            Alliance Travel,<br><em style="font-style:italic;color:var(--bronze)">depuis Bordj Bou Arreridj</em></h2>
+          <p style="font-size:1rem;color:var(--txt-2);line-height:1.7;margin-bottom:var(--s4)">Fondée au cœur de
+            <strong style="color:var(--txt-1);font-weight:600">Bordj Bou Arreridj</strong> — la ville-charnière entre
+            les Hauts-Plateaux et l'Est algérien — Alliance Travel s'est bâtie sur une promesse simple : organiser
+            des voyages guidés où le client n'a qu'à faire sa valise. Vol, hôtel, excursions, transferts, accompagnateur
+            sur place — tout est pensé, rien n'est improvisé.</p>
+          <p style="font-size:1rem;color:var(--txt-2);line-height:1.7;margin-bottom:var(--s4)">Depuis 2019, plus de
+            <strong style="color:var(--txt-1);font-weight:600">1 200 voyageurs algériens</strong> nous ont fait
+            confiance pour découvrir l'Égypte, l'Azerbaïdjan, Istanbul, la Malaisie et bien plus encore. Notre taux de
+            satisfaction de 98% n'est pas un chiffre marketing — c'est le résultat d'un service sérieux, de prix
+            transparents et d'un accompagnement humain.</p>
+          <p style="font-size:1rem;color:var(--txt-2);line-height:1.7;margin-bottom:var(--s7)">Du siège de
+            <strong style="color:var(--txt-1);font-weight:600">Bordj Bou Arreridj</strong>, notre réseau s'étend
+            aujourd'hui sur <strong style="color:var(--mint);font-weight:600">six wilayas</strong> — Alger, Sétif,
+            Constantine, Oran, Annaba, Ouargla — pour vous accueillir près de chez vous, en arabe ou en français,
+            avec la même rigueur partout.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--s4)">
+            <a href="https://wa.me/213561616266" class="btn btn--primary" target="_blank" rel="noopener">Nous
+              contacter</a>
+            <a href="#voyages" class="btn btn--ghost">Voir les voyages</a>
+          </div>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-card__num" data-counter="1.2" data-counter-format="{n}K+">1.2K+</div>
+            <p class="value-card__label">Voyageurs guidés</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card__num" data-counter="98" data-counter-format="{n}%">98%</div>
+            <p class="value-card__label">Satisfaction client</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card__num" data-counter="5" data-counter-format="{n}">5</div>
+            <p class="value-card__label">Destinations 2026</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card__num" data-counter="7" data-counter-format="{n}+">7+</div>
+            <p class="value-card__label">Ans d'expérience</p>
+          </div>
+        </div>
+      </div>
+      <style>
+        @media(max-width:768px) {
+          .about-grid {
+            grid-template-columns: 1fr !important
+          }
+        }
+      </style>
+    </div>
+  </section>
+
+  <!-- ── ALGERIA MAP — agency network ─────────────────────────── -->
+  <section class="section algeria-section" id="agences" aria-label="Nos agences en Algérie">
+    <div class="container">
+      <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
+        <p class="section-head__eyebrow">Réseau Alliance Travel · Algérie</p>
+        <h2 class="section-head__title">Trouvez-nous <em>près de chez vous</em></h2>
+        <p class="section-head__sub">Siège social à Bordj Bou Arreridj · Représentations partenaires dans les principales villes du nord algérien.</p>
+      </div>
+
+      <div class="algeria-map-wrap">
+        <!-- Decorative frame: grid + compass + legend -->
+        <div class="algeria-map-grid" aria-hidden="true"></div>
+        <div class="algeria-compass" aria-hidden="true">
+          <svg viewBox="0 0 80 80" width="64" height="64">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="1"/>
+            <circle cx="40" cy="40" r="22" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="1" stroke-dasharray="2 4"/>
+            <text x="40" y="14" text-anchor="middle" font-size="9" fill="currentColor" font-weight="600">N</text>
+            <text x="40" y="72" text-anchor="middle" font-size="9" fill="currentColor" opacity=".5">S</text>
+            <text x="6"  y="44" text-anchor="middle" font-size="9" fill="currentColor" opacity=".5">O</text>
+            <text x="74" y="44" text-anchor="middle" font-size="9" fill="currentColor" opacity=".5">E</text>
+            <g class="compass-needle">
+              <polygon points="40,18 36,40 40,42 44,40" fill="currentColor"/>
+              <polygon points="40,62 36,40 40,38 44,40" fill="currentColor" opacity=".3"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- The map SVG (Algeria simplified outline + cities) -->
+        <svg class="algeria-map-svg" viewBox="0 0 1000 750" role="img" aria-labelledby="alg-map-title">
+          <title id="alg-map-title">Carte d'Algérie avec localisations des agences</title>
+          <defs>
+            <linearGradient id="alg-fill" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"  stop-color="var(--mint)" stop-opacity=".08"/>
+              <stop offset="100%" stop-color="var(--mint)" stop-opacity=".02"/>
+            </linearGradient>
+            <radialGradient id="halo">
+              <stop offset="0%"  stop-color="var(--mint)" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="var(--mint)" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="grid-dots" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="12" cy="12" r="0.6" fill="currentColor" opacity=".18"/>
+            </pattern>
+          </defs>
+
+          <!-- Background dots grid -->
+          <rect width="1000" height="750" fill="url(#grid-dots)" opacity=".4"/>
+
+          <!-- Algeria outline (simplified) -->
+          <path class="algeria-outline" d="
+            M 220 110 Q 280 80 360 95 Q 430 110 510 95 Q 580 85 650 105 Q 720 120 790 100 Q 860 90 905 130
+            L 920 200 Q 870 240 880 290 Q 890 360 870 430 Q 850 500 820 570 Q 800 620 770 660
+            L 720 700 Q 640 720 560 700 Q 480 690 400 700 Q 320 710 250 690
+            L 180 660 Q 140 600 130 530 Q 120 450 140 380 Q 155 310 165 240 Q 175 180 220 110 Z"
+            fill="url(#alg-fill)"
+            stroke="currentColor"
+            stroke-opacity=".35"
+            stroke-width="1.5"
+            stroke-linejoin="round"/>
+
+          <!-- Mediterranean coast accent (top edge double-line) -->
+          <path d="M 220 110 Q 280 80 360 95 Q 430 110 510 95 Q 580 85 650 105 Q 720 120 790 100 Q 860 90 905 130"
+            fill="none"
+            stroke="var(--mint)"
+            stroke-opacity=".4"
+            stroke-width="2"
+            stroke-linecap="round"/>
+          <text x="500" y="62" text-anchor="middle" font-size="10" letter-spacing="3" fill="currentColor" opacity=".5">MER  MÉDITERRANÉE</text>
+
+          <!-- Borders labels (subtle) -->
+          <text x="100" y="380" font-size="8" letter-spacing="2" fill="currentColor" opacity=".3" transform="rotate(-90, 100, 380)">MAROC</text>
+          <text x="940" y="380" font-size="8" letter-spacing="2" fill="currentColor" opacity=".3" transform="rotate(90, 940, 380)">TUNISIE / LIBYE</text>
+          <text x="500" y="735" text-anchor="middle" font-size="8" letter-spacing="2" fill="currentColor" opacity=".3">MALI · NIGER</text>
+
+          <!-- Routes from HQ (Bordj Bou Arreridj) to each branch -->
+          <g class="routes" stroke="var(--mint)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="4 5">
+            <path class="route" d="M 615 175 Q 540 120 470 130"/> <!-- BBA → Algiers -->
+            <path class="route" d="M 615 175 Q 660 165 700 145"/> <!-- BBA → Setif/Constantine cluster -->
+            <path class="route" d="M 615 175 Q 760 175 805 130"/> <!-- BBA → Annaba -->
+            <path class="route" d="M 615 175 Q 480 230 320 175"/> <!-- BBA → Oran -->
+            <path class="route" d="M 615 175 Q 575 270 540 350"/> <!-- BBA → Ouargla (south) -->
+          </g>
+
+          <!-- City pins -->
+          <g class="city-pins">
+            <!-- HQ: Bordj Bou Arreridj -->
+            <g class="pin pin--hq" transform="translate(615 175)" data-city="bba">
+              <circle class="pin__halo" r="22" fill="url(#halo)"/>
+              <circle class="pin__halo pin__halo--2" r="14" fill="url(#halo)"/>
+              <circle r="9" fill="var(--mint)"/>
+              <circle r="4" fill="var(--navy)"/>
+              <text y="-22" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Bordj Bou Arreridj</text>
+              <text y="36" text-anchor="middle" font-size="9" letter-spacing="2" fill="var(--mint)" font-weight="600">SIÈGE SOCIAL</text>
+            </g>
+            <!-- Algiers (capital) -->
+            <g class="pin" transform="translate(470 130)" data-city="alger">
+              <circle class="pin__halo" r="14" fill="url(#halo)"/>
+              <circle r="6" fill="var(--mint)"/>
+              <circle r="2.5" fill="var(--navy)"/>
+              <text y="-14" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Alger</text>
+            </g>
+            <!-- Sétif -->
+            <g class="pin" transform="translate(670 155)" data-city="setif">
+              <circle class="pin__halo" r="12" fill="url(#halo)"/>
+              <circle r="5" fill="var(--mint)"/>
+              <circle r="2" fill="var(--navy)"/>
+              <text y="-12" text-anchor="middle" font-size="10" fill="currentColor">Sétif</text>
+            </g>
+            <!-- Constantine -->
+            <g class="pin" transform="translate(720 140)" data-city="constantine">
+              <circle class="pin__halo" r="12" fill="url(#halo)"/>
+              <circle r="5" fill="var(--mint)"/>
+              <circle r="2" fill="var(--navy)"/>
+              <text y="-12" text-anchor="middle" font-size="10" fill="currentColor">Constantine</text>
+            </g>
+            <!-- Annaba -->
+            <g class="pin" transform="translate(805 130)" data-city="annaba">
+              <circle class="pin__halo" r="12" fill="url(#halo)"/>
+              <circle r="5" fill="var(--mint)"/>
+              <circle r="2" fill="var(--navy)"/>
+              <text y="-12" text-anchor="middle" font-size="10" fill="currentColor">Annaba</text>
+            </g>
+            <!-- Oran -->
+            <g class="pin" transform="translate(320 175)" data-city="oran">
+              <circle class="pin__halo" r="12" fill="url(#halo)"/>
+              <circle r="5" fill="var(--mint)"/>
+              <circle r="2" fill="var(--navy)"/>
+              <text y="-12" text-anchor="middle" font-size="10" fill="currentColor">Oran</text>
+            </g>
+            <!-- Ouargla (south) -->
+            <g class="pin" transform="translate(540 360)" data-city="ouargla">
+              <circle class="pin__halo" r="11" fill="url(#halo)"/>
+              <circle r="4.5" fill="var(--mint)"/>
+              <circle r="2" fill="var(--navy)"/>
+              <text y="-12" text-anchor="middle" font-size="10" fill="currentColor">Ouargla</text>
+            </g>
+          </g>
+
+          <!-- Dotted scale bar -->
+          <g transform="translate(60 670)">
+            <line x1="0" y1="0" x2="100" y2="0" stroke="currentColor" stroke-opacity=".4" stroke-width="1"/>
+            <line x1="0" y1="-3" x2="0" y2="3" stroke="currentColor" stroke-opacity=".4"/>
+            <line x1="100" y1="-3" x2="100" y2="3" stroke="currentColor" stroke-opacity=".4"/>
+            <text x="50" y="-7" text-anchor="middle" font-size="8" letter-spacing="1" fill="currentColor" opacity=".5">≈ 200 KM</text>
+          </g>
+        </svg>
+
+        <!-- Branch cards floating around the map (responsive: stacks below on mobile) -->
+        <div class="branch-list">
+          <article class="branch-card branch-card--hq">
+            <header>
+              <span class="branch-flag">SIÈGE</span>
+              <h3>Bordj Bou Arreridj</h3>
+            </header>
+            <p class="branch-addr">Centre-ville · Boulevard de l'ALN</p>
+            <div class="branch-phones">
+              <a href="tel:+213561616266">📲 0561 616 266</a>
+              <a href="tel:+213561616267">📲 0561 616 267</a>
+            </div>
+          </article>
+          <article class="branch-card">
+            <header><h3>Sétif</h3><span class="branch-flag branch-flag--alt">PARTENAIRE</span></header>
+            <p class="branch-addr">Avenue 8 Mai 1945</p>
+            <a href="tel:+213561616268">📲 0561 616 268</a>
+          </article>
+          <article class="branch-card">
+            <header><h3>Alger</h3><span class="branch-flag branch-flag--alt">PARTENAIRE</span></header>
+            <p class="branch-addr">Centre Hydra</p>
+            <a href="tel:+213561616269">📲 0561 616 269</a>
+          </article>
+          <article class="branch-card">
+            <header><h3>Constantine</h3><span class="branch-flag branch-flag--alt">PARTENAIRE</span></header>
+            <p class="branch-addr">Cité Daksi</p>
+            <a href="tel:+213560869905">📲 0560 869 905</a>
+          </article>
+          <article class="branch-card">
+            <header><h3>Oran</h3><span class="branch-flag branch-flag--alt">PARTENAIRE</span></header>
+            <p class="branch-addr">Front de Mer</p>
+            <a href="tel:+213560860617">📲 0560 860 617</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────────────────────────── -->
+  <section class="section" id="contact" style="background:var(--bg-2);border-top:1px solid var(--border)">
+    <div class="container">
+      <div class="contact-section">
+        <div>
+          <p class="section-head__eyebrow" style="margin-bottom:var(--s3)">Nous joindre</p>
+          <h2
+            style="font-family:var(--font-display);font-size:clamp(28px,4vw,48px);font-weight:400;color:var(--txt-1);line-height:1.1;margin-bottom:var(--s5)">
+            Parlez-nous de<br><em style="color:var(--bronze)">votre projet</em></h2>
+          <p style="font-size:1rem;color:var(--txt-2);line-height:1.7;margin-bottom:var(--s7)">Inscrivez-vous par
+            téléphone ou WhatsApp. Paiement par virement CCP ou en espèces à l'agence. Un acompte suffit pour bloquer
+            votre place.</p>
+          <div style="display:flex;flex-direction:column;gap:var(--s4)">
+            <a href="https://wa.me/213561616266" class="btn btn--wa" target="_blank" rel="noopener"
+              style="width:fit-content">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              0560 869 905 (WhatsApp)
+            </a>
+            <a href="https://wa.me/213561616268" class="btn btn--wa" target="_blank" rel="noopener"
+              style="width:fit-content">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              0560 860 617 (WhatsApp)
+            </a>
+            <a href="tel:+213561616267" class="btn btn--ghost" style="width:fit-content">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              0561 616 268 (Viber/WhatsApp)
+            </a>
+            <a href="tel:+213561616269" class="btn btn--ghost" style="width:fit-content">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              0561 616 269 (Viber/WhatsApp)
+            </a>
+          </div>
+        </div>
+        <div
+          style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s7);display:flex;flex-direction:column;gap:var(--s5)">
+          <div style="display:flex;align-items:flex-start;gap:var(--s4)">
+            <div
+              style="width:40px;height:40px;border-radius:var(--r2);background:var(--accent-dim);display:grid;place-items:center;flex-shrink:0;color:var(--accent)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="10" r="3" />
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+              </svg>
+            </div>
+            <div>
+              <h4 style="font-size:.875rem;font-weight:500;color:var(--txt-1);margin-bottom:4px">Adresse</h4>
+              <p style="font-size:.875rem;color:var(--txt-2);line-height:1.5">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj,
+                Algérie<br><em style="color:var(--txt-3)">Au cœur du centre-ville</em></p>
+            </div>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div>
+            <h4
+              style="font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-3);margin-bottom:var(--s4)">
+              Paiement accepté</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--s3)">
+              <span
+                style="font-size:.8125rem;padding:var(--s2) var(--s3);background:var(--bg);border:1px solid var(--border);border-radius:var(--r1);color:var(--txt-2)">Virement
+                CCP</span>
+              <span
+                style="font-size:.8125rem;padding:var(--s2) var(--s3);background:var(--bg);border:1px solid var(--border);border-radius:var(--r1);color:var(--txt-2)">Espèces
+                agence</span>
+              <span
+                style="font-size:.8125rem;padding:var(--s2) var(--s3);background:var(--bg);border:1px solid var(--border);border-radius:var(--r1);color:var(--txt-2)">Virement
+                bancaire</span>
+            </div>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div>
+            <h4
+              style="font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-3);margin-bottom:var(--s4)">
+              Inscription possible</h4>
+            <p style="font-size:.875rem;color:var(--txt-2)">Par téléphone · WhatsApp · En agence. Un acompte suffit pour
+              bloquer votre place.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</main>
+<footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">Alliance<span>Travel</span></span>
+          <p class="footer-tagline">Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Nos Voyages 2026</h4>
+          <a href="cairo-sharm/">Le Caire &amp; Sharm El Sheikh</a>
+          <a href="azerbaidjan/">Azerbaïdjan · Bakou &amp; Gabala</a>
+          <a href="istanbul/">Istanbul · départ Constantine</a>
+          <a href="kuala-lumpur/">Kuala Lumpur · Malaisie</a>
+          <a href="sharm-constantine/">Sharm El Sheikh · départ Constantine</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+        
+        <p style="display:flex;align-items:center;gap:6px;font-weight:500;color:var(--txt-1)"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp / Viber</p>
+        <a href="tel:+213561616266">0561 616 266</a>
+        <a href="tel:+213561616267">0561 616 267</a>
+        <a href="tel:+213561616268">0561 616 268</a>
+        <a href="tel:+213561616269">0561 616 269</a>
+        <a href="tel:+213560869905">0560 869 905</a>
+        <a href="tel:+213560860617">0560 860 617</a>
+        <p style="margin-top:var(--s3)">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>
+      </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie</p>
+        <p>Prix en Dinar Algérien (DA) · Indicatifs · Confirmation à la réservation</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.querySelector('.site-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+    // Animate cards on scroll
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.trip-card, .hl-card, .value-card').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 500ms ease, transform 500ms ease';
+      obs.observe(el);
+    });
+  </script>
+  <script src="assets/js/enhance.js" defer></script>
+  <script src="assets/js/enhance-pro.js" defer></script>
+  <script type="module" src="assets/js/globe.js"></script>
+</body>
+
+</html>

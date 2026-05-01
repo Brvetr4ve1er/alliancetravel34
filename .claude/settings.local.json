@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "WebFetch(domain:www.intrepidtravel.com)",
+      "WebFetch(domain:www.audleytravel.com)",
+      "WebFetch(domain:www.blacktomato.com)",
+      "WebFetch(domain:www.getyourguide.com)"
+    ]
+  }
+}

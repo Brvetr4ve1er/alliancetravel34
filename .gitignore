@@ -1,0 +1,35 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# Node (if/when build is added)
+node_modules/
+dist/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tmp
+*.log
+.DS_Store
+
+# Local-only
+.claude/launch.json
