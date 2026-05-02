@@ -1,4 +1,4 @@
-# Alliance Travel — guided-tour static site
+# Alliance Travel — guided-tour  site
 
 Marketing site for **Alliance Travel**, a travel agency based in **Bordj Bou Arreridj (BBA), Algeria**. Six pages: a homepage hub and five guided-tour landing pages (Cairo + Sharm, Azerbaïdjan, Istanbul, Kuala Lumpur, Sharm + Constantine).
 
