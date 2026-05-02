@@ -1,0 +1,22 @@
+{
+  "name": "Alliance Travel",
+  "short_name": "Alliance",
+  "description": "Voyages guidés depuis Bordj Bou Arreridj",
+  "icons": [
+    {
+      "src": "/assets/images/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#002c51",
+  "background_color": "#0a0c12",
+  "display": "standalone",
+  "start_url": "/",
+  "lang": "fr-DZ"
+}

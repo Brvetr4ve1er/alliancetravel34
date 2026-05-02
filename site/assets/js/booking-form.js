@@ -134,18 +134,21 @@ const FORM_HTML = `
           </div>
         </div>
         <div class="bform-preview__footer">
-          <div class="bform-preview__actions">
-            <button class="btn--copy btn" id="bf-copy-btn" type="button">
-              ${icon('copy')} Copier le texte
-            </button>
-          </div>
           <a class="btn btn--wa btn--full" id="bf-send-btn" href="#" target="_blank" rel="noopener"
              style="pointer-events:none;opacity:.45;text-align:center;justify-content:center">
             ${icon('whatsapp')}
             Ouvrir WhatsApp &amp; Envoyer
           </a>
+          <div class="bform-preview__actions" style="display:flex;gap:8px;margin-top:8px">
+            <a class="btn btn--ghost" id="bf-email-btn" href="#" style="flex:1;justify-content:center;pointer-events:none;opacity:.45">
+              ${icon('chat')} Envoyer par email
+            </a>
+            <button class="btn btn--ghost" id="bf-copy-btn" type="button" style="flex:1;justify-content:center">
+              ${icon('copy')} Copier le texte
+            </button>
+          </div>
           <p class="bform-preview__foot-note">
-            Ouvre WhatsApp Web ou l'application mobile avec le message pré-rempli
+            WhatsApp est plus rapide. Email et copie disponibles si vous n'avez pas WhatsApp.
           </p>
         </div>
       </div>
@@ -217,6 +220,8 @@ class BookingForm {
     this.uploads    = [];     // array of { name, url, type }
     this.debounceTimer = null;
     this.WA_NUMBER  = '213561616266';
+    this.EMAIL      = 'contact@alliance-travel.dz';
+    this.AGENCY     = 'Alliance Travel';
 
     this.mount.innerHTML = FORM_HTML;
     this.el = {
@@ -228,6 +233,7 @@ class BookingForm {
       previews:     this.mount.querySelector('#bf-previews'),
       msgPreview:   this.mount.querySelector('#bf-msg-preview'),
       sendBtn:      this.mount.querySelector('#bf-send-btn'),
+      emailBtn:     this.mount.querySelector('#bf-email-btn'),
       copyBtn:      this.mount.querySelector('#bf-copy-btn'),
     };
 
@@ -403,13 +409,50 @@ class BookingForm {
 
     preview.innerHTML = `<pre>${escaped}</pre>`;
 
-    // Enable send button
+    // Enable send buttons (WhatsApp primary + email secondary)
     const btn = this.el.sendBtn;
     if (btn) {
-      const waUrl = `https://wa.me/${this.WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-      btn.href = waUrl;
+      btn.href = `https://wa.me/${this.WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       btn.style.pointerEvents = '';
       btn.style.opacity = '';
+    }
+    const ebtn = this.el.emailBtn;
+    if (ebtn) {
+      const subject = `Demande de devis — ${this._tripName()}`;
+      ebtn.href = `mailto:${this.EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
+      ebtn.style.pointerEvents = '';
+      ebtn.style.opacity = '';
+    }
+  }
+
+  /* Pull a short trip name from the page title for the email subject */
+  _tripName() {
+    const t = document.title || this.AGENCY;
+    return t.split(/\s[—··]\s/)[0].trim() || this.AGENCY;
+  }
+
+  /* Robust copy: try the modern Clipboard API first, fall back to a
+     hidden textarea + document.execCommand('copy') for older browsers
+     and non-secure contexts. Returns true on success. */
+  async _copy(text) {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) { /* permissions denied — fall through */ }
+    }
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      return ok;
+    } catch (e) {
+      return false;
     }
   }
 
@@ -458,16 +501,29 @@ class BookingForm {
       this._handleFiles(e.dataTransfer.files);
     });
 
-    // Copy button
-    this.el.copyBtn?.addEventListener('click', () => {
+    // Copy button — async clipboard with execCommand fallback
+    this.el.copyBtn?.addEventListener('click', async () => {
       const msg = this._buildMessage();
-      navigator.clipboard?.writeText(msg).then(() => {
-        const btn = this.el.copyBtn;
-        const orig = btn.innerHTML;
-        btn.innerHTML = `${icon('check')} Copié !`;
-        btn.classList.add('copied');
-        setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
-      });
+      const ok = await this._copy(msg);
+      if (!ok) {
+        window.AT_showToast?.('Impossible de copier — sélectionnez le texte manuellement', 'error');
+        return;
+      }
+      const btn = this.el.copyBtn;
+      const orig = btn.innerHTML;
+      btn.innerHTML = `${icon('check')} Copié&nbsp;!`;
+      btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+      window.AT_showToast?.('Texte du dossier copié — collez-le où vous voulez');
+    });
+
+    // Email button — toast confirms the mail client opened
+    this.el.emailBtn?.addEventListener('click', () => {
+      // mailto: navigation handles itself; the toast is a safety net so
+      // the user knows what happened (mail client may open in background)
+      setTimeout(() => {
+        window.AT_showToast?.(`Email préparé pour ${this.EMAIL}`);
+      }, 200);
     });
 
     // Listen for calculator state updates

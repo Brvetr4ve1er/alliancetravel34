@@ -339,6 +339,9 @@
       if (should !== visible) {
         visible = should;
         bar.classList.toggle('is-visible', visible);
+        // Mirror onto the body so the nav-push CSS rule can match
+        // without relying on :has() (Firefox <121 / older Safari).
+        document.body.classList.toggle('has-sticky-bar', visible);
       }
     };
     window.addEventListener('scroll', update, { passive: true });
@@ -403,24 +406,47 @@
       lbCounter.textContent = `${idx + 1} / ${targets.length}`;
     };
 
-    const open = (i) => {
+    // Remember the trigger so we can restore focus on close (a11y).
+    let lastTrigger = null;
+    const open = (i, trigger) => {
+      lastTrigger = trigger || document.activeElement;
       show(i);
       lb.classList.add('is-open');
-      document.documentElement.style.overflow = 'hidden';
-      btnClose.focus();
+      // Use a class-based scroll lock — doesn't clobber any
+      // existing overflow style set by a parent app.
+      document.documentElement.dataset.scrollLock = '1';
+      btnClose.focus({ preventScroll: true });
     };
     const close = () => {
       lb.classList.remove('is-open');
-      document.documentElement.style.overflow = '';
+      delete document.documentElement.dataset.scrollLock;
+      // Return focus to the originating image so screen-reader
+      // and keyboard users keep their place in the page.
+      if (lastTrigger && typeof lastTrigger.focus === 'function') {
+        lastTrigger.focus({ preventScroll: true });
+      }
+      lastTrigger = null;
     };
 
     targets.forEach((img, i) => {
+      // Skip standalone images that are inside a real link — let the link win
+      const link = img.closest('a');
+      const skipForLink = link && link.getAttribute('href') && !link.getAttribute('href').startsWith('#');
+      if (skipForLink) return;
+
+      // Make the trigger image keyboard-reachable + activate on Enter/Space
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', img.alt ? `Voir ${img.alt} en grand` : 'Voir en grand');
       img.addEventListener('click', (e) => {
-        // Don't hijack if the image is inside a real link
-        const link = img.closest('a');
-        if (link && link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) return;
         e.preventDefault();
-        open(i);
+        open(i, img);
+      });
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open(i, img);
+        }
       });
     });
 
@@ -483,16 +509,19 @@
     const strip = document.createElement('section');
     strip.className = 'press-strip';
     strip.setAttribute('aria-label', 'Vu dans les médias');
+    /* HONEST trust strip — replaces the previous "vu dans la presse"
+       version which listed media outlets without a confirmed press
+       relationship. Replace these labels with whatever the agency can
+       actually defend (registration numbers, certifications, etc.).
+       Owner-editable: keep this list short, true, and verifiable. */
     strip.innerHTML = `
-      <p class="press-strip__label">Vu dans la presse · Partenaires de confiance</p>
+      <p class="press-strip__label">Nos engagements</p>
       <div class="press-strip__items">
-        <span class="press-strip__item">EL WATAN</span>
-        <span class="press-strip__item">JEUNE AFRIQUE</span>
-        <span class="press-strip__item">TV5 MONDE</span>
-        <span class="press-strip__item">DZAIR TV</span>
-        <span class="press-strip__item">IATA</span>
-        <span class="press-strip__item">SNAV</span>
-        <span class="press-strip__item">ONT ALGÉRIE</span>
+        <span class="press-strip__item">Agence agréée Bordj Bou Arreridj</span>
+        <span class="press-strip__item">Vol &amp; hôtel inclus</span>
+        <span class="press-strip__item">Visa accompagné</span>
+        <span class="press-strip__item">Petits groupes (12 max)</span>
+        <span class="press-strip__item">Paiement à la confirmation</span>
       </div>
     `;
     footer.insertAdjacentElement('beforebegin', strip);

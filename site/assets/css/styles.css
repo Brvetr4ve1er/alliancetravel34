@@ -4399,15 +4399,65 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
     var(--hero-gradient, linear-gradient(135deg,#1a1208 0%,#0a0c12 60%,#0c1420 100%));
 }
 
-/* Per-region: pin the destination photo as the hero's full background.
-   Paths are RELATIVE TO THIS CSS FILE (site/assets/css/styles.css):
-   - ../  -> site/assets/
-   - ../images/heroes/* -> site/assets/images/heroes/* */
-[data-region="egypt"] .hero        { background-image: url("../images/heroes/hero__cairo-sharm.jpg"); }
-[data-region="azerbaijan"] .hero   { background-image: url("../images/heroes/hero__azerbaidjan.jpg"); }
-[data-region="istanbul"] .hero     { background-image: url("../images/heroes/hero__istanbul.jpg"); }
-[data-region="malaysia"] .hero     { background-image: url("../images/heroes/hero__kuala-lumpur.jpg"); }
-[data-region="sharm"] .hero        { background-image: url("../images/heroes/hero__sharm-constantine.jpg"); }
+/* Per-region hero photo backdrops with WebP-first via image-set().
+   Browsers that support WebP pick it; the rest fall back to JPG.
+   Mobile media query swaps to a smaller crop for a ~70% byte reduction.
+   Paths are relative to this CSS file (site/assets/css/styles.css):
+     ../images/heroes/* -> site/assets/images/heroes/* */
+[data-region="egypt"] .hero {
+  background-image:
+    image-set(url("../images/heroes/hero__cairo-sharm.webp") type("image/webp"),
+              url("../images/heroes/hero__cairo-sharm.jpg") type("image/jpeg"));
+}
+[data-region="azerbaijan"] .hero {
+  background-image:
+    image-set(url("../images/heroes/hero__azerbaidjan.webp") type("image/webp"),
+              url("../images/heroes/hero__azerbaidjan.jpg") type("image/jpeg"));
+}
+[data-region="istanbul"] .hero {
+  background-image:
+    image-set(url("../images/heroes/hero__istanbul.webp") type("image/webp"),
+              url("../images/heroes/hero__istanbul.jpg") type("image/jpeg"));
+}
+[data-region="malaysia"] .hero {
+  background-image:
+    image-set(url("../images/heroes/hero__kuala-lumpur.webp") type("image/webp"),
+              url("../images/heroes/hero__kuala-lumpur.jpg") type("image/jpeg"));
+}
+[data-region="sharm"] .hero {
+  background-image:
+    image-set(url("../images/heroes/hero__sharm-constantine.webp") type("image/webp"),
+              url("../images/heroes/hero__sharm-constantine.jpg") type("image/jpeg"));
+}
+
+/* Mobile (<=768px): use the smaller cropped variants — ~70% smaller files */
+@media (max-width: 768px) {
+  [data-region="egypt"] .hero {
+    background-image:
+      image-set(url("../images/heroes/hero__cairo-sharm--mobile.webp") type("image/webp"),
+                url("../images/heroes/hero__cairo-sharm--mobile.jpg") type("image/jpeg"));
+  }
+  [data-region="azerbaijan"] .hero {
+    background-image:
+      image-set(url("../images/heroes/hero__azerbaidjan--mobile.webp") type("image/webp"),
+                url("../images/heroes/hero__azerbaidjan--mobile.jpg") type("image/jpeg"));
+  }
+  [data-region="istanbul"] .hero {
+    background-image:
+      image-set(url("../images/heroes/hero__istanbul--mobile.webp") type("image/webp"),
+                url("../images/heroes/hero__istanbul--mobile.jpg") type("image/jpeg"));
+  }
+  [data-region="malaysia"] .hero {
+    background-image:
+      image-set(url("../images/heroes/hero__kuala-lumpur--mobile.webp") type("image/webp"),
+                url("../images/heroes/hero__kuala-lumpur--mobile.jpg") type("image/jpeg"));
+  }
+  [data-region="sharm"] .hero {
+    background-image:
+      image-set(url("../images/heroes/hero__sharm-constantine--mobile.webp") type("image/webp"),
+                url("../images/heroes/hero__sharm-constantine--mobile.jpg") type("image/jpeg"));
+  }
+}
 
 /* Override .hero__bg per region: keep the per-region tinted gradient
    AND the photo behind it. The pseudo-elements remain for atmosphere */
@@ -5659,12 +5709,17 @@ img.lb-target:hover {
   .trips-grid:hover .trip-card:not(:hover) { opacity: 1; filter: none; }
 }
 
-/* When sticky bar visible, push the floating site-nav slightly so they don't overlap */
-.trip-sticky-bar.is-visible ~ .site-nav,
-body:has(.trip-sticky-bar.is-visible) .site-nav {
+/* When sticky bar visible, push the floating site-nav slightly so they don't overlap.
+   Use a body-class toggle (set by JS) instead of :has() so we work in
+   Firefox <121 and older Safari. */
+body.has-sticky-bar .site-nav {
   transform: translateY(48px);
   transition: transform 360ms var(--ease-spring, cubic-bezier(.22, 1, .36, 1));
 }
+
+/* Class-based scroll lock used by the lightbox — non-destructive,
+   doesn't clobber any overflow style set by an outer app/component */
+:root[data-scroll-lock] body { overflow: hidden; }
 
 /* ══════════════════════════════════════════════════════════
    v8 — 3D globe (homepage hero) — cobe-powered

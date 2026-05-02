@@ -15,7 +15,6 @@
   <meta property="og:url" content="https://alliance-travel.dz/" />
   <meta property="og:site_name" content="Alliance Travel" />
   <meta property="og:locale" content="fr_FR" />
-  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Alliance Travel — Voyages Guidés depuis Bordj Bou Arreridj" />
   <meta name="twitter:description"
     content="5 destinations 2026 · Vol + hôtel + excursions inclus · 1.200+ voyageurs satisfaits" />
@@ -45,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Sans:ital,wght@1,400&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
@@ -334,6 +333,18 @@
       }
     }
   </style>
+  <!-- AT:favicons-og START -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png"/>
+<link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico"/>
+<link rel="manifest" href="site.webmanifest"/>
+<meta property="og:image" content="https://alliance-travel.dz/assets/images/og/og-home.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:image" content="https://alliance-travel.dz/assets/images/og/og-home.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!-- AT:favicons-og END -->
 </head>
 
 <body>
@@ -364,11 +375,36 @@
   <section class="home-hero" aria-label="Bienvenue chez Alliance Travel">
     <!-- Photographic backdrop: 5 destination photos as horizontal collage -->
     <div class="home-hero__photos" aria-hidden="true">
-      <img src="assets/images/heroes/hero__cairo-sharm.jpg"       alt="" loading="eager" fetchpriority="high"/>
-      <img src="assets/images/heroes/hero__azerbaidjan.jpg"        alt="" loading="eager"/>
-      <img src="assets/images/heroes/hero__istanbul.jpg"           alt="" loading="eager"/>
-      <img src="assets/images/heroes/hero__kuala-lumpur.jpg"       alt="" loading="eager"/>
-      <img src="assets/images/heroes/hero__sharm-constantine.jpg" alt="" loading="eager"/>
+      <picture>
+        <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__cairo-sharm--mobile.webp"/>
+        <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__cairo-sharm--mobile.jpg"/>
+        <source type="image/webp" srcset="assets/images/heroes/hero__cairo-sharm.webp"/>
+        <img src="assets/images/heroes/hero__cairo-sharm.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"/>
+      </picture>
+      <picture>
+        <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__azerbaidjan--mobile.webp"/>
+        <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__azerbaidjan--mobile.jpg"/>
+        <source type="image/webp" srcset="assets/images/heroes/hero__azerbaidjan.webp"/>
+        <img src="assets/images/heroes/hero__azerbaidjan.jpg" alt="" loading="eager" decoding="async"/>
+      </picture>
+      <picture>
+        <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__istanbul--mobile.webp"/>
+        <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__istanbul--mobile.jpg"/>
+        <source type="image/webp" srcset="assets/images/heroes/hero__istanbul.webp"/>
+        <img src="assets/images/heroes/hero__istanbul.jpg" alt="" loading="eager" decoding="async"/>
+      </picture>
+      <picture>
+        <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__kuala-lumpur--mobile.webp"/>
+        <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__kuala-lumpur--mobile.jpg"/>
+        <source type="image/webp" srcset="assets/images/heroes/hero__kuala-lumpur.webp"/>
+        <img src="assets/images/heroes/hero__kuala-lumpur.jpg" alt="" loading="lazy" decoding="async"/>
+      </picture>
+      <picture>
+        <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__sharm-constantine--mobile.webp"/>
+        <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__sharm-constantine--mobile.jpg"/>
+        <source type="image/webp" srcset="assets/images/heroes/hero__sharm-constantine.webp"/>
+        <img src="assets/images/heroes/hero__sharm-constantine.jpg" alt="" loading="lazy" decoding="async"/>
+      </picture>
     </div>
     <div class="home-hero__bg"></div>
     <div class="home-hero__noise" aria-hidden="true"></div>

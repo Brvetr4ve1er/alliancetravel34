@@ -6,11 +6,25 @@
  * - Markers in brand mint over a navy globe with cream atmosphere
  * - Polaroid photos that follow each destination as the globe spins
  *   (positioned per-frame via lat/lng -> screen projection)
+ * - Graceful fallback: if the cobe CDN is unreachable, the stage falls
+ *   back to its CSS-only atmosphere (glow ring + soft polaroid cluster).
  *
- * Loaded as ES module. Cobe is open-source (MIT) and pulled from esm.sh.
+ * Loaded as ES module. Cobe is open-source (MIT). Dynamic import so a
+ * CDN outage degrades to the static fallback instead of breaking the hero.
  */
 
-import createGlobe from 'https://esm.sh/cobe@0.6.4';
+let createGlobe = null;
+async function loadCobe() {
+  if (createGlobe) return createGlobe;
+  try {
+    const mod = await import('https://esm.sh/cobe@0.6.4');
+    createGlobe = mod.default || mod;
+    return createGlobe;
+  } catch (err) {
+    console.warn('[globe] cobe CDN unreachable, falling back to CSS-only stage:', err);
+    return null;
+  }
+}
 
 /* PRIMARY destinations — Alliance Travel's actual offerings.
    These get a polaroid photo overlay anchored to the marker. */
@@ -50,10 +64,30 @@ const ASPIRATIONAL_SIZE = 0.035;
 const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const ROT_SPEED = reduced ? 0 : 0.0028;
 
-function init() {
+async function init() {
   const canvas = document.getElementById('alliance-globe');
   const stage = document.getElementById('globe-stage');
   if (!canvas || !stage) return;
+
+  // Try to load cobe — if the CDN is unreachable, fall back to the
+  // CSS-only stage and reveal polaroids in a static cluster instead.
+  const cobe = await loadCobe();
+  if (!cobe) {
+    stage.classList.add('globe-stage--fallback');
+    canvas.style.display = 'none';
+    document.querySelectorAll('.globe-polaroid').forEach((el, i) => {
+      // Fan polaroids in a circle around the stage center
+      const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+      const r = stage.offsetWidth * 0.36;
+      el.style.left = `${stage.offsetWidth / 2 + Math.cos(angle) * r}px`;
+      el.style.top  = `${stage.offsetHeight / 2 + Math.sin(angle) * r}px`;
+      el.style.opacity = '1';
+    });
+    document.getElementById('globe-hint')?.remove();
+    return;
+  }
+  // Local alias so the rest of init() reads naturally
+  const createGlobe = cobe;
 
   // Brand color tokens converted to cobe's [r,g,b] 0..1 floats.
   // navy  #002c51 -> [0.000, 0.173, 0.318]
@@ -133,7 +167,8 @@ function init() {
       theta: 0.18,
       dark: 1,
       diffuse: 1.4,
-      mapSamples: 16000,
+      // Mobile gets fewer samples — saves ~150ms WebGL setup on low-end Android
+      mapSamples: window.matchMedia('(max-width: 768px)').matches ? 8000 : 16000,
       mapBrightness: 4,
       baseColor,
       markerColor,
