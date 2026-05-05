@@ -1,6 +1,23 @@
 # Alliance Travel — Master Design System
 
-A high-conversion blueprint for a Sétif-based curated-travel agency selling guided trips to Egypt, Azerbaijan, Türkiye, and Malaysia.
+> Audited: 2026-05-05
+>
+> ⚠️ **This is the original design blueprint** that shaped the project. Implementation has deliberately diverged from several proposals here — the live site is the source of truth, not this document.
+>
+> **For current state, prefer:**
+> - [COLOR-MAP.md](../COLOR-MAP.md) — actual tokens shipping in `styles.css` (cinematic dark mode primary, mint accent, DM Sans family)
+> - [SITEMAP.md](../SITEMAP.md) — actual page structure (homepage + 5 trip pages, current section order)
+> - [IMAGE-ASSETS.md](../IMAGE-ASSETS.md) — actual image manifest
+>
+> **Notable deviations from this blueprint:**
+> - Typography: blueprint proposes Fraunces + Inter — **actual** uses **DM Sans only** (single family for cohesion + perf budget; subset hardened in commit `27ae633`)
+> - Color: blueprint proposes warm-cream-with-bronze — **actual** is **dark-mode-primary with mint** (Prussian Blue `#002c51` + Teal Deer `#9ce8b2`); light mode is the variant, not the default
+> - Imagery: hero is per-region with `image-set()` WebP-first + mobile crops, not "single dominant"
+> - Maps: blueprint did not anticipate the homepage **Algeria branches map** or the 5 **trip itinerary maps** added in Phase 1.5
+>
+> The strategy + UX-logic sections (psychology, conversion triggers, hotel picker, pricing calc) **are still accurate** — those drove the implementation faithfully.
+
+A high-conversion blueprint for a **Bordj Bou Arreridj-based** curated-travel agency selling guided trips to Egypt, Azerbaijan, Türkiye, and Malaysia.
 
 > Pattern: **Trust & Authority + Conversion**
 > Mood: **Editorial luxury travel meets fintech transparency**

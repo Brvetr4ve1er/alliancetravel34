@@ -38,9 +38,9 @@ alliance-travel/
 │   ├── sw.js                ← service worker (HTTPS only)
 │   ├── site.webmanifest     ← PWA manifest
 │   └── assets/
-│       ├── css/styles.css   ← single 5,943-line stylesheet
-│       ├── js/              ← 5 vanilla modules
-│       └── images/          ← heroes, hotels, sites, og, favicon
+│       ├── css/styles.css   ← single 6,625-line stylesheet (layered v1–v11)
+│       ├── js/              ← 7 vanilla modules (3,284 lines total)
+│       └── images/          ← heroes, hotels, trips, og, favicon
 │
 ├── docs/                    ← documentation (don't deploy)
 ├── _archive/                ← frozen historical scripts (don't deploy)
@@ -98,14 +98,17 @@ A 60-second smoke test before any push:
 |---|---|---|
 | **Homepage hero** loads photo collage | `/` | 5 destination photos behind a "TRAVEL" wordmark |
 | **3D globe** rotates and is draggable | `/` (right side of hero) | Spinning navy sphere with 23 mint dots; "Glissez pour explorer" hint after 1.5s |
+| **Algeria branches map** loads | `/` → "Nos agences en Algérie" section | MapLibre vector map with 5 numbered pins (BBA HQ + Sétif + Alger + Constantine + Oran); pan/zoom works |
 | **Theme toggle** works | nav top-right (sun/moon icon) | Dark ↔ light, persists on refresh |
-| **Trip cards** open subpages | `/` → "Nos voyages" section | Each card links to `/{slug}/` |
+| **Trip cards** open subpages | `/` → "Programmes 2026" section | Each card links to `/{slug}/` |
 | **Per-region hero photo** shows | each trip page | Different photo per region, Ken Burns slow zoom |
+| **Trip itinerary map** loads | each trip page → after itinerary timeline | MapLibre map with day-numbered route polyline + pins; click pin to isolate, hover for popup |
+| **Anti-clutter on map** behaves | trip page → trip map at low zoom | Pins stack into clusters; labels collide-avoid; click-to-isolate clears the rest |
 | **Calculator** updates totals live | trip page → "Réserver" section | Changing dates/hotel updates price + breakdown |
 | **Booking buttons** are present | trip page → preview panel | WhatsApp (primary, mint) + Email + Copy |
 | **Sticky inquiry bar** slides in | trip page → scroll past hero | Bottom bar with trip name + price + WhatsApp CTA |
 | **Lightbox** opens on photo click | trip page → hotel cards | Fullscreen viewer with arrow nav, Esc to close |
-| **Footer** renders, no console errors | every page → DevTools console | No red errors |
+| **Footer** renders, no console errors | every page → DevTools console | No red errors (a single MapLibre warning about deprecated style spec is OK) |
 
 If any of these fail, **don't deploy yet** — fix locally first.
 
@@ -119,6 +122,7 @@ The site adapts:
 - Hero photos swap to mobile-cropped variants (~70% smaller)
 - Hamburger nav appears
 - Polaroids on globe hide on tiny screens
+- MapLibre maps shrink container height + simplify pin labels at narrow viewports (anti-clutter pass auto-tightens collision thresholds)
 
 ---
 
@@ -146,14 +150,16 @@ git push origin fix/typo-in-cairo-itinerary
 
 | What you want to change | File |
 |---|---|
-| Phone number, email, address | grep all files: `grep -rn "213561616266" site/ _archive/migrations/` (it's in many places — see ROADMAP "data extraction") |
-| Trip price | `site/{slug}/index.html` (search "DA") + `site/assets/js/calculator.js` |
+| Phone number, email, address | grep all files: `grep -rn "213561616266" site/ _archive/migrations/` (it's in 12+ places — see [ROADMAP](ROADMAP.md) Phase 2.1 + [CLEANUP-FLAGGED](CLEANUP-FLAGGED.md) #13) |
+| Trip price | `site/{slug}/index.html` (search "DA") + `site/assets/js/calculator.js` (also `enhance.js` `ALL_TRIPS` + `globe.js` `DESTINATIONS` if visible on homepage card) |
 | Trip dates | `site/{slug}/index.html` (search the dates in itinerary) |
-| Add/edit testimonial | `site/{slug}/index.html` → `<section id="confiance">` |
+| Add/edit testimonial | `site/cairo-sharm/index.html` → `<section class="trust">` (only on Cairo+Sharm currently) |
 | Hotel listings | `site/{slug}/index.html` → `<section id="hotels">` |
-| Brand colors | `site/assets/css/styles.css` → `:root` block (line ~50) and `:root[data-theme="light"]` (line ~3265) |
-| Press strip / trust commitments | `site/assets/js/enhance-pro.js` → `initPressStrip()` (line ~510) |
+| Brand colors | `site/assets/css/styles.css` → dark `:root` (line 59) and `:root[data-theme="light"]` (line 3254) |
+| Press strip / trust commitments | `site/assets/js/enhance-pro.js` → `initPressStrip()` |
 | Globe destinations | `site/assets/js/globe.js` → `DESTINATIONS` and `ASPIRATIONAL` arrays |
+| Algeria branches pins | `site/assets/js/algeria-map.js` → `BRANCHES` array |
+| Trip itinerary map data | `site/{slug}/index.html` → inline `TRIP_MAP_DATA` JSON before the closing `</body>` |
 
 ---
 
@@ -416,11 +422,12 @@ If you bump assets (CSS/JS), bump the service worker `CACHE_NAME` in `site/sw.js
 
 The current setup is solid for a launch — but [docs/ROADMAP.md](ROADMAP.md) lists items that need attention as the site grows:
 
-- **Phase 2** — extract `trips.json` / `hotels.json` / `agency.json` (currently the phone number lives in 10+ places; one edit becomes a 10-file find-and-replace)
+- **Phase 2** — extract `trips.json` / `hotels.json` / `agency.json` (currently the phone number lives in 12+ places; one edit becomes a 12-file find-and-replace)
+- **Phase 2 (CSS)** — `styles.css` is 6,625 lines with `.btn--primary` defined 4× and 163 `!important`s — split into ITCSS modules behind a build step
 - **Phase 4** — real testimonials, Arabic version, real lead-capture backend (Cloudflare Worker or Supabase)
 - **Phase 5** — analytics, A/B testing, multi-currency display, schema.org rich data
 
-For an MVP launch, you can skip these. Revisit when you start measuring conversion or onboarding the agency owner as a content editor.
+For an MVP launch, you can skip these. Revisit when you start measuring conversion or onboarding the agency owner as a content editor. See [docs/CLEANUP-FLAGGED.md](CLEANUP-FLAGGED.md) for every flagged leftover with severity classification.
 
 ---
 

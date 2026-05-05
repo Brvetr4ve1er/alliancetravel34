@@ -1,7 +1,7 @@
 # Alliance Travel — Sitemap
 
-> Audited: 2026-04-30
-> 6 pages · 11 unique section types · single-domain navigation graph
+> Audited: 2026-05-05
+> 6 pages · 13 unique section types · single-domain navigation graph
 
 ---
 
@@ -27,17 +27,18 @@ All pages share:
 ## Page 1 — Homepage  (`/`)
 
 **Type**: agency front door
-**Title**: Alliance Travel — Voyages Guidés · Sétif · 2026
+**Title**: Alliance Travel — Voyages Guidés · Bordj Bou Arreridj · 2026
 **Background**: cinematic dark with bronze radial glow
 
 | # | Section | id | Purpose |
 |---|---------|-----|---------|
-| 1 | `home-hero` | — | Title + globe SVG + agency stats counters |
+| 1 | `home-hero` | — | Title + cobe 3D globe + agency stats counters |
 | 2 | "Programmes 2026" | `voyages` | Grid of 5 trip cards |
 | 3 | "Notre histoire" | `agence` | About + 4 stat cards |
-| 4 | "Parlez-nous" | `contact` | All 6 phone numbers + address card |
+| 4 | "Nos agences en Algérie" | `branches` | **MapLibre map of Algeria** with 5 branch pins (BBA HQ + Sétif + Alger + Constantine + Oran) ⭐ added in Phase 1.5 |
+| 5 | "Parlez-nous" | `contact` | All 6 phone numbers + address card |
 
-**Internal anchors**: `#voyages`, `#agence`, `#contact`
+**Internal anchors**: `#voyages`, `#agence`, `#branches`, `#contact`
 **Outgoing pages**: links to all 5 trip pages
 
 ---
@@ -54,40 +55,42 @@ All pages share:
 | 1 | `hero` | `main` | Visual hero + departure dates card |
 | 2 | `highlights` | — | 4 inclusion icons |
 | 3 | `itinerary` | `itinerary` | Day-by-day timeline |
-| 4 | `trust` | — | **Stats + 3 testimonial cards** ⭐ unique to this page |
-| 5 | `inclus-section` | — | Inclus / Non Inclus comparison |
-| 6 | `faq` | `faq` | FAQ accordion |
-| 7 | `hotels` | `hotels` | Hotel picker (7 hotels: Tivoli, Verginia, Rehana 4★, Rehana Royal, Charmillion, Cleopatra, Pickalbatros) |
-| 8 | `calc-section` | `calculator` | Étape 1 — pricing calculator |
-| 9 | `booking-section` | `booking` | Étape 2 — passport + WhatsApp dossier |
-| 10 | `related-section` | — | "Vous aimerez aussi" cross-trip |
-| 11 | `final-cta` | — | Closing pyramids CTA |
+| 4 | `trip-map-section` | `map` | **MapLibre itinerary map** (Cairo → Sharm route, day-numbered pins) ⭐ added in Phase 1.5 |
+| 5 | `trust` | — | **Stats + 3 testimonial cards** ⭐ unique to this page |
+| 6 | `inclus-section` | — | Inclus / Non Inclus comparison |
+| 7 | `faq` | `faq` | FAQ accordion |
+| 8 | `hotels` | `hotels` | Hotel picker (7 hotels: Tivoli, Verginia, Rehana 4★, Rehana Royal, Charmillion, Cleopatra, Pickalbatros) |
+| 9 | `calc-section` | `calculator` | Étape 1 — pricing calculator |
+| 10 | `booking-section` | `booking` | Étape 2 — passport + WhatsApp dossier |
+| 11 | `related-section` | — | "Vous aimerez aussi" cross-trip |
+| 12 | `final-cta` | — | Closing pyramids CTA |
 
 ---
 
 ## Pages 3–6 — Other trip pages
 
-All four trip pages (Azerbaïdjan, Istanbul, Kuala Lumpur, Sharm-Constantine) share **the same 10-section structure**, missing only the `trust` section that Cairo+Sharm has:
+All four trip pages (Azerbaïdjan, Istanbul, Kuala Lumpur, Sharm-Constantine) share **the same 11-section structure**, missing only the `trust` section that Cairo+Sharm has:
 
 | # | Section | id |
 |---|---------|-----|
 | 1 | hero | `main` |
 | 2 | highlights | — |
 | 3 | itinerary | `itinerary` |
-| 4 | inclus-section | — |
-| 5 | faq | `faq` |
-| 6 | hotels | `hotels` |
-| 7 | calc-section | `calculator` |
-| 8 | booking-section | `booking` |
-| 9 | related-section | — |
-| 10 | final-cta | — |
+| 4 | trip-map-section | `map` ⭐ |
+| 5 | inclus-section | — |
+| 6 | faq | `faq` |
+| 7 | hotels | `hotels` |
+| 8 | calc-section | `calculator` |
+| 9 | booking-section | `booking` |
+| 10 | related-section | — |
+| 11 | final-cta | — |
 
-| Page | Region | Accent | Hotels | Departure |
-|------|--------|--------|--------|-----------|
-| Azerbaïdjan | azerbaijan | `#3AAFAF` Caspian teal | 2 (PARKSIDE Bakou + Yengice Gabala) | Alger |
-| Istanbul | istanbul | `#70b8e0` Bosphorus blue | 4 (Hotel River, Ozer Palace, Alpin Due, Tilia) | Constantine |
-| Kuala Lumpur | malaysia | `#4CAF82` Tropical jade | 1 (Grand Mercure KL) | Alger (Air Algérie direct) |
-| Sharm-Constantine | sharm | `#28B4D4` Red Sea aqua | 3 (Tivoli, Rehana, Rehana Royal Beach) | Constantine |
+| Page | Region | Accent | Hotels | Departure | Map route |
+|------|--------|--------|--------|-----------|-----------|
+| Azerbaïdjan | azerbaijan | `#3AAFAF` Caspian teal | 2 (PARKSIDE Bakou + Yengice Gabala) | Alger | Bakou → Gabala |
+| Istanbul | istanbul | `#70b8e0` Bosphorus blue | 4 (Hotel River, Ozer Palace, Alpin Due, Tilia) | Constantine | Sultanahmet → Bosphorus → Bursa loop |
+| Kuala Lumpur | malaysia | `#4CAF82` Tropical jade | 1 (Grand Mercure KL) | Alger (Air Algérie direct) | KL → Genting → Putrajaya |
+| Sharm-Constantine | sharm | `#28B4D4` Red Sea aqua | 3 (Tivoli, Rehana, Rehana Royal Beach) | Constantine | Sharm-only (Naama Bay + excursions) |
 
 ---
 
@@ -108,6 +111,7 @@ All four trip pages (Azerbaïdjan, Istanbul, Kuala Lumpur, Sharm-Constantine) sh
 - `#booking` — booking form (now adjacent to calculator)
 - `#faq` — FAQ
 - `#itinerary` — day-by-day timeline
+- `#map` — itinerary map (added in Phase 1.5)
 
 ### Cross-page navigation
 Every trip page links to:
@@ -127,18 +131,24 @@ site/
 ├── istanbul/index.html                           Istanbul trip
 ├── kuala-lumpur/index.html                       Malaysia trip
 ├── sharm-constantine/index.html                  Sharm-from-Constantine trip
+├── sw.js                                         Service worker (cache name 'alliance-v1-2026-05')
+├── site.webmanifest                              PWA manifest
 └── assets/
-    ├── css/styles.css                            Single-file design system (3500+ lines)
-    ├── js/calculator.js                          Pricing engine (per-trip data injection)
-    ├── js/booking-form.js                        WhatsApp dossier composer
-    ├── js/enhance.js                             Counters, scroll reveals, theme toggle, trip switcher
+    ├── css/styles.css                            Single-file design system (6,625 lines, layered v1–v11)
+    ├── js/                                       7 vanilla modules (3,284 lines total)
+    │   ├── enhance.js                            Theme toggle, reveals, FAB, sw register     (357)
+    │   ├── enhance-pro.js                        v6+v7 polish — sticky bar, lightbox, …      (600)
+    │   ├── calculator.js                         Pricing engine (per-trip data injection)    (403)
+    │   ├── booking-form.js                       WhatsApp + email + clipboard composer       (549)
+    │   ├── globe.js                              Cobe 3D globe (homepage)                    (313)
+    │   ├── algeria-map.js                        MapLibre branches map (homepage)            (501)
+    │   └── trip-map.js                           MapLibre itinerary map (each trip page)     (561)
     └── images/
-        ├── heroes/      (5 trip hero photos, 1600×1200)
-        ├── trips/       (5 homepage trip card photos, 1280×720)
-        ├── hotels/      (17 hotel photos, 800×600)
-        ├── sites/       (20 touristic site thumbs, saved for future use)
-        ├── og/          (empty — pending OG card composition)
-        ├── favicon/     (empty — pending master logo)
-        ├── logo.svg     (cream variant for dark bg)
-        └── logo-navy.svg (navy variant for light bg)
+        ├── heroes/                               5 trip hero photos × {desktop,mobile} × {jpg,webp} = 20 files
+        ├── trips/                                5 homepage trip card photos
+        ├── hotels/                               17 hotel photos (flat — `hotel__*.jpg`)
+        ├── og/                                   7 social-share images (1200×630 — 6 page-specific + 1 default)
+        ├── favicon/                              16/32/96/180/192/512 + .ico
+        ├── logo.svg                              cream variant for dark bg
+        └── logo-navy.svg                         navy variant for light bg
 ```

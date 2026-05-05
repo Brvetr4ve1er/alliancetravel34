@@ -1,7 +1,9 @@
 # Alliance Travel — Color Map & Design Tokens
 
-> Brand source: graphic chart "Charte graphique Février 2023"
+> Audited: 2026-05-05
+> Brand source: graphic chart "Charte graphique Février 2023" (`source of truth/charte graphique alliance travel.pdf`)
 > Brand colors: **Prussian Blue `#002c51`** + **Teal Deer `#9ce8b2`** + White
+> Maps (Phase 1.5 Algeria branches map + 5 trip itinerary maps) reuse the per-trip `--accent` for pins, route lines, and active labels — no new tokens needed.
 
 ---
 
@@ -52,6 +54,8 @@ PER-PAGE   →  accent / accent-dim / accent-glow  (overridden in each trip page
 | `#7a7c82` (txt-3)         | 4.9:1  | AA |
 | `#9ce8b2` (mint)          | 12.5:1 | AAA |
 | `#002c51` (navy on black) | 1.6:1  | ❌ — only used as brand surface, never for text |
+
+Dark mode `--bg` is **literal `#000000`** (verified 2026-05-05 in `styles.css:59`). The matching light mode `--bg` is `#fbf8f1` (`styles.css:3254`).
 
 ---
 
@@ -141,7 +145,8 @@ These badges sit on top of hotel/trip photos and **must remain readable regardle
 
 ## 7. Typography
 
-- Family: **DM Sans** (Google Fonts, weights 300/400/500/600 + italic 300/400)
+- Family: **DM Sans** (Google Fonts, weights 300/400/500/600/700 + italic 400)
+- Subset hardened in commit `27ae633` — dropped italic 300, added regular 700 to support headline weight without shipping a second family
 - Used as both display and body — single family for cohesion
 - Numerics: `font-variant-numeric: tabular-nums` on prices (no shifting columns when calculator updates)
 
