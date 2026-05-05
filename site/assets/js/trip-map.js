@@ -298,6 +298,186 @@
     recenterBtn.addEventListener('click', () => fitToContent(true));
     container.appendChild(recenterBtn);
 
+    /* ─── ANTI-CLUTTER ENGINE ─────────────────────────────────────
+       Runs on every move/zoom (throttled to one rAF). Implements:
+        a) Pin stacking — when ≥2 pins fall within 30 px on screen,
+           lower-priority ones hide and the survivor gets a +N badge.
+        b) Label collision — labels whose bounding boxes would overlap
+           a higher-priority label hide automatically.
+        c) Hover override — direct hover on any pin always reveals its
+           label (so nothing is permanently hidden, just out of the way).
+       Priority order: hub > featured > hotel > tour > site. */
+    const PRIORITY = { hub: 100, featured: 50, hotel: 40, tour: 30, site: 20 };
+    function classifyPin(el) {
+      if (el.classList.contains('tmap-hub')) return 'hub';
+      if (el.classList.contains('tmap-pin--featured')) return 'featured';
+      if (el.classList.contains('tmap-pin--hotel')) return 'hotel';
+      if (el.classList.contains('tmap-pin--tour')) return 'tour';
+      return 'site';
+    }
+    const pinRegistry = Array.from(container.querySelectorAll('.tmap-pin, .tmap-hub'))
+      .map(el => {
+        const kind = classifyPin(el);
+        const labelEl = el.querySelector('.tmap-pin__label, .tmap-hub__label');
+        return {
+          el, kind, prio: PRIORITY[kind], labelEl,
+          name: labelEl ? labelEl.textContent.trim() : ''
+        };
+      });
+
+    let clutterRaf = null;
+    function deClutter() {
+      clutterRaf = null;
+
+      // Reset state on every pass
+      pinRegistry.forEach(p => {
+        p.el.classList.remove('tmap-collide-hidden');
+        p.el.removeAttribute('data-stack-count');
+        p.el.removeAttribute('data-stacked-names');
+        p.el.removeAttribute('title');
+        if (p.labelEl) p.labelEl.classList.remove('tmap-label-collide');
+      });
+
+      // Sort by descending priority — winners process first
+      const sorted = [...pinRegistry].sort((a, b) => b.prio - a.prio);
+
+      // Pass 1: pin-stack detection (within 30 px on screen)
+      const visiblePins = [];
+      sorted.forEach(p => {
+        const rect = p.el.getBoundingClientRect();
+        if (rect.width === 0) return;        // not yet rendered
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        // Hubs never get hidden, never absorb other pins
+        if (p.kind === 'hub') {
+          p.x = cx; p.y = cy;
+          visiblePins.push(p);
+          return;
+        }
+        const absorber = visiblePins.find(v =>
+          v.kind !== 'hub' && Math.hypot(v.x - cx, v.y - cy) < 30
+        );
+        if (absorber) {
+          p.el.classList.add('tmap-collide-hidden');
+          absorber.stack = (absorber.stack || 1) + 1;
+          absorber.stackedNames = (absorber.stackedNames || [absorber.name]).concat(p.name);
+          absorber.el.setAttribute('data-stack-count', '+' + (absorber.stack - 1));
+          absorber.el.setAttribute('data-stacked-names', absorber.stackedNames.join(' · '));
+          absorber.el.setAttribute('title',
+            `${absorber.stack} sites groupés ici — cliquez pour zoomer : ${absorber.stackedNames.join(', ')}`);
+        } else {
+          p.x = cx; p.y = cy;
+          visiblePins.push(p);
+        }
+      });
+
+      // Pass 2: label collision (uses on-screen label boxes)
+      const labelBoxes = [];
+      visiblePins.forEach(p => {
+        if (!p.labelEl) return;
+        // Hubs always show their labels (they're the navigation anchors)
+        if (p.kind === 'hub') {
+          const lw = p.labelEl.offsetWidth || 100;
+          const lh = p.labelEl.offsetHeight || 22;
+          labelBoxes.push({
+            x1: p.x - lw / 2 - 4, y1: p.y - 28 - lh,
+            x2: p.x + lw / 2 + 4, y2: p.y - 24
+          });
+          return;
+        }
+        // For featured pins, only hide if NOT zoomed-in AND collides with
+        // a higher-priority label. For non-featured, hide whenever collides.
+        const lw = p.labelEl.offsetWidth || 80;
+        const lh = p.labelEl.offsetHeight || 18;
+        const box = {
+          x1: p.x - lw / 2 - 4, y1: p.y - 26 - lh,
+          x2: p.x + lw / 2 + 4, y2: p.y - 22
+        };
+        const overlaps = labelBoxes.some(b =>
+          !(box.x2 < b.x1 || box.x1 > b.x2 || box.y2 < b.y1 || box.y1 > b.y2)
+        );
+        if (overlaps) {
+          p.labelEl.classList.add('tmap-label-collide');
+        } else {
+          labelBoxes.push(box);
+        }
+      });
+    }
+    function scheduleDeClutter() {
+      if (clutterRaf) return;
+      clutterRaf = requestAnimationFrame(deClutter);
+    }
+    map.on('move', scheduleDeClutter);
+    map.on('zoom', scheduleDeClutter);
+    map.on('resize', scheduleDeClutter);
+    // Initial pass — call deClutter() directly (not via scheduleDeClutter's rAF
+    // wrapper) so it still runs in suspended-rAF environments like hidden iframes.
+    // We poll briefly until markers have been laid out.
+    let initTries = 0;
+    const initInterval = setInterval(() => {
+      const someLaidOut = pinRegistry.some(p => p.el.getBoundingClientRect().width > 0);
+      if (someLaidOut || ++initTries > 30) {
+        clearInterval(initInterval);
+        deClutter();
+      }
+    }, 100);
+
+    /* Stack-click → zoom into the cluster.
+       When the user clicks a pin that has a stack badge (data-stack-count),
+       fly to that location and zoom in 2 levels. The deClutter pass will
+       re-fire on moveend and the cluster naturally separates. */
+    container.addEventListener('click', (e) => {
+      const pin = e.target.closest('.tmap-pin[data-stack-count], .tmap-hub[data-stack-count]');
+      if (!pin) return;
+      const rect = pin.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const point = [
+        rect.left + rect.width / 2 - containerRect.left,
+        rect.top + rect.height / 2 - containerRect.top
+      ];
+      const lngLat = map.unproject(point);
+      map.flyTo({
+        center: [lngLat.lng, lngLat.lat],
+        zoom: Math.min(map.getZoom() + 2, 14),
+        duration: 600
+      });
+    }, true);   // capture phase — fires before MapLibre marker click
+
+    /* Click-to-isolate: clicking any pin briefly dims the others so the
+       focused area stands out. Auto-clears after 2.4s or on next click. */
+    let isolateTimer = null;
+    container.addEventListener('click', (e) => {
+      const pin = e.target.closest('.tmap-pin, .tmap-hub');
+      if (!pin) return;
+      // Don't isolate stack-click flights — that's handled separately above
+      if (pin.hasAttribute('data-stack-count')) return;
+      container.classList.add('is-isolating');
+      pinRegistry.forEach(p => p.el.classList.toggle('is-focused', p.el === pin));
+      clearTimeout(isolateTimer);
+      isolateTimer = setTimeout(() => {
+        container.classList.remove('is-isolating');
+        pinRegistry.forEach(p => p.el.classList.remove('is-focused'));
+      }, 2400);
+    });
+
+    /* Single-popup mode — opening one popup auto-closes any older.
+       MapLibre doesn't expose a 'popupopen' event on the map, so we
+       watch for new .maplibregl-popup nodes appearing in the container
+       and remove any older siblings. Cheap MutationObserver — fires
+       only when popup nodes change, never per frame. */
+    new MutationObserver((mutations) => {
+      const newPopups = mutations.flatMap(m =>
+        Array.from(m.addedNodes).filter(n =>
+          n.nodeType === 1 && n.classList?.contains('maplibregl-popup')
+        )
+      );
+      if (!newPopups.length) return;
+      const all = container.querySelectorAll('.maplibregl-popup');
+      // Keep only the most-recently-added; remove the rest
+      const keep = newPopups[newPopups.length - 1];
+      all.forEach(p => { if (p !== keep) p.remove(); });
+    }).observe(container, { childList: true, subtree: true });
+
     /* Theme-swap: re-add layers after setStyle clears them */
     new MutationObserver(() => {
       map.setStyle(isLightTheme() ? STYLE_LIGHT : STYLE_DARK);
