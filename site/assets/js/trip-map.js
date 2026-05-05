@@ -251,21 +251,52 @@
       if (map.getSource('tmap-routes') || ++polls > 75) clearInterval(styleWatcher);
     }, 200);
 
-    /* Auto-fit bounds to all markers */
-    if (HOTELS.length || SITES.length || TOURS.length || HUBS.length) {
+    /* Auto-fit bounds to all markers. Heavier padding + lower maxZoom
+       so dense clusters (Sultanahmet, Vieille Ville Bakou, Khan El-Khalili)
+       don't get crammed against the canvas edges. */
+    let initialBounds = null;
+    function fitToContent(animate = false) {
+      if (!HOTELS.length && !SITES.length && !TOURS.length && !HUBS.length) return;
       const allLocs = [...HOTELS, ...SITES, ...TOURS, ...HUBS].map(p => p.loc).filter(Boolean);
-      if (allLocs.length >= 1) {
-        const bounds = allLocs.reduce(
+      if (!allLocs.length) return;
+      if (!initialBounds) {
+        initialBounds = allLocs.reduce(
           (b, loc) => b.extend(loc),
           new maplibregl.LngLatBounds(allLocs[0], allLocs[0])
         );
-        map.fitBounds(bounds, {
-          padding: { top: 80, bottom: 80, left: 60, right: 60 },
-          duration: 0,            // instant on first paint
-          maxZoom: 9
-        });
       }
+      map.fitBounds(initialBounds, {
+        padding: { top: 110, bottom: 110, left: 90, right: 90 },
+        duration: animate ? 700 : 0,
+        maxZoom: 8           // capped so clustered POIs stay readable
+      });
     }
+    fitToContent();
+
+    /* Zoom-aware label visibility — at overview zoom keep the map
+       clean (only featured + hover labels show); zoom in past 9 and
+       every site/tour/hotel reveals its name. */
+    function syncZoomClass() {
+      container.classList.toggle('is-zoomed-in', map.getZoom() >= 9);
+    }
+    map.on('zoomend', syncZoomClass);
+    map.on('moveend', syncZoomClass);
+    syncZoomClass();
+
+    /* Recenter button — small floating chip bottom-left.
+       Re-fits bounds when the user has panned or zoomed away. */
+    const recenterBtn = document.createElement('button');
+    recenterBtn.type = 'button';
+    recenterBtn.className = 'tmap-recenter';
+    recenterBtn.setAttribute('aria-label', 'Recentrer la carte');
+    recenterBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+      </svg>
+      <span>Recentrer</span>`;
+    recenterBtn.addEventListener('click', () => fitToContent(true));
+    container.appendChild(recenterBtn);
 
     /* Theme-swap: re-add layers after setStyle clears them */
     new MutationObserver(() => {

@@ -247,6 +247,33 @@
       }
     }, 200);
 
+    /* Zoom-aware label visibility — overview stays clean (only HQ
+       label permanent), zoom past 6 reveals every branch label. */
+    function syncZoomClass() {
+      container.classList.toggle('is-zoomed-in', map.getZoom() >= 6);
+    }
+    map.on('zoomend', syncZoomClass);
+    map.on('moveend', syncZoomClass);
+    syncZoomClass();
+
+    /* Recenter button — re-fits to the original Algeria view if the
+       user has panned/zoomed away. */
+    const INITIAL = { center: [3.5, 33.0], zoom: 4.4 };
+    const recenterBtn = document.createElement('button');
+    recenterBtn.type = 'button';
+    recenterBtn.className = 'amap-recenter';
+    recenterBtn.setAttribute('aria-label', 'Recentrer la carte');
+    recenterBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+      </svg>
+      <span>Recentrer</span>`;
+    recenterBtn.addEventListener('click', () => {
+      map.flyTo({ center: INITIAL.center, zoom: INITIAL.zoom, duration: 700 });
+    });
+    container.appendChild(recenterBtn);
+
     /* Theme switching — re-add layers after setStyle clears them */
     const observer = new MutationObserver(() => {
       const newStyle = isLightTheme() ? STYLE_LIGHT : STYLE_DARK;
