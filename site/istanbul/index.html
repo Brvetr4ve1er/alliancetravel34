@@ -171,6 +171,67 @@
     </div>
   </div>
 </section>
+<!-- ── ITINERARY MAP ───────────────────────────────────────────── -->
+<section class="trip-map-section section" id="trip-map-section" aria-label="Carte de l'itinéraire">
+  <div class="container">
+    <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
+      <p class="section-head__eyebrow">Votre voyage en un coup d'œil</p>
+      <h2 class="section-head__title">L'itinéraire <em>sur la carte</em></h2>
+      <p class="section-head__sub">Sultanahmet, Bosphore, Îles des Princes, côté asiatique — votre semaine à Istanbul géolocalisée.</p>
+    </div>
+    <div id="trip-map" role="img" aria-label="Carte de l'itinéraire Istanbul">
+      <div class="tmap-fallback">
+        <p class="tmap-fallback__title">Chargement de la carte…</p>
+        <p class="tmap-fallback__sub">Aya Sofya · Mosquée Bleue · Grand Bazar · Îles des Princes · Çamlıca</p>
+      </div>
+    </div>
+    <div class="trip-map-legend" role="list" aria-label="Légende de la carte">
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--hotel" aria-hidden="true"></span>Hôtels</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--site" aria-hidden="true"></span>Sites visités</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--tour" aria-hidden="true"></span>Excursions guidées</span>
+    </div>
+  </div>
+</section>
+<script>
+  window.TRIP_MAP_DATA = {
+    name: 'Istanbul',
+    hotels: [
+      { id: 'river',  name: 'Hotel River',       loc: [28.965, 41.013], stars: 3, area: 'Aksaray, Istanbul' },
+      { id: 'ozer',   name: 'Hotel Ozer Palace', loc: [28.972, 41.011], stars: 4, area: 'Aksaray, Istanbul' },
+      { id: 'alpin',  name: 'Hotel Alpin Due',   loc: [28.968, 41.014], stars: 4, area: 'Aksaray, Istanbul' },
+      { id: 'tilia',  name: 'Hôtel Tilia',       loc: [28.974, 41.015], stars: 5, area: 'Sultanahmet, Istanbul' }
+    ],
+    sites: [
+      // J2 — Sultanahmet à pied
+      { name: 'Mosquée Bleue (Sultanahmet)',   loc: [28.977, 41.005], day: 2, featured: true },
+      { name: 'Aya Sofya',                      loc: [28.980, 41.008], day: 2, featured: true },
+      { name: 'Grand Bazar',                    loc: [28.967, 41.011], day: 2 },
+      // J3 — Croisière Mer de Marmara
+      { name: 'Îles des Princes (Büyükada)',    loc: [29.119, 40.872], day: 3, featured: true },
+      // J4 — Ortaköy, Florya, Olivium
+      { name: 'Mosquée d\'Ortaköy',             loc: [29.027, 41.047], day: 4 },
+      { name: 'Aqua Florya Mall',               loc: [28.793, 40.978], day: 4 },
+      { name: 'Mall Olivium',                   loc: [28.836, 40.992], day: 4 },
+      // J5 — Côté asiatique
+      { name: 'Palais Beylerbeyi',              loc: [29.041, 41.051], day: 5 },
+      { name: 'Tour de la Jeune Fille',         loc: [29.005, 41.021], day: 5 },
+      { name: 'Üsküdar',                        loc: [29.015, 41.024], day: 5 },
+      { name: 'Çamlıca (panorama)',             loc: [29.067, 41.029], day: 5, featured: true }
+    ],
+    tours: [
+      { name: 'Croisière Mer de Marmara',       loc: [29.020, 40.965], day: 3, note: 'Déjeuner inclus à bord' }
+    ],
+    hubs: [
+      { name: 'Istanbul', loc: [28.978, 41.014], days: 'J1–J8' }
+    ],
+    routes: [
+      // Boat trip arc to Princes' Islands (visual flourish)
+      { from: [29.005, 41.021], to: [29.119, 40.872], label: 'Croisière → Îles des Princes', type: 'sea', lift: 0.18 }
+    ]
+  };
+</script>
+<script src="../assets/js/trip-map.js" defer></script>
+
 <section class="trust-bg section" id="confiance" aria-label="Témoignages et confiance">
   <div class="container">
     <div class="section-head">

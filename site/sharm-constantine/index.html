@@ -171,6 +171,57 @@
     </div>
   </div>
 </section>
+<!-- ── ITINERARY MAP ───────────────────────────────────────────── -->
+<section class="trip-map-section section" id="trip-map-section" aria-label="Carte de l'itinéraire">
+  <div class="container">
+    <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
+      <p class="section-head__eyebrow">Votre voyage en un coup d'œil</p>
+      <h2 class="section-head__title">L'itinéraire <em>sur la carte</em></h2>
+      <p class="section-head__sub">Départ Constantine, vol via Istanbul, 9 nuits sur la Mer Rouge à Sharm El Sheikh.</p>
+    </div>
+    <div id="trip-map" role="img" aria-label="Carte de l'itinéraire Sharm El Sheikh + Constantine">
+      <div class="tmap-fallback">
+        <p class="tmap-fallback__title">Chargement de la carte…</p>
+        <p class="tmap-fallback__sub">Constantine · Istanbul · Sharm El Sheikh · Soho Square · Souk Al Kadim</p>
+      </div>
+    </div>
+    <div class="trip-map-legend" role="list" aria-label="Légende de la carte">
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--hotel" aria-hidden="true"></span>Hôtels</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--site" aria-hidden="true"></span>Sites visités</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--tour" aria-hidden="true"></span>Excursions guidées</span>
+    </div>
+  </div>
+</section>
+<script>
+  window.TRIP_MAP_DATA = {
+    name: 'Sharm El Sheikh + Constantine',
+    hotels: [
+      { id: 'tivoli_czl',       name: 'Hotel Tivoli & Aqua Park',          loc: [34.428, 27.972], stars: 4, area: 'Nabq Bay, Sharm El Sheikh' },
+      { id: 'rehana_czl',       name: 'Hotel Rehana & Aqua Park',          loc: [34.430, 27.958], stars: 4, area: 'Nabq Bay, Sharm El Sheikh' },
+      { id: 'rehana_royal_czl', name: 'Rehana Royal Beach & Aqua Park',    loc: [34.436, 27.957], stars: 5, area: 'Nabq Bay, Sharm El Sheikh' }
+    ],
+    sites: [
+      // J3-8 — visited landmarks during the All Inclusive stay
+      { name: 'Cité Tour Sharm El Sheikh', loc: [34.330, 27.870], day: '3-8' },
+      { name: 'Soho Square (animation nocturne)', loc: [34.380, 27.945], day: '3-8' },
+      { name: 'Souk Al Kadim (marché)',     loc: [34.297, 27.864], day: '3-8' }
+    ],
+    tours: [
+      { name: 'Plongée à la Mer Rouge',     loc: [34.450, 27.880], day: '3-8', note: 'Excursion optionnelle' }
+    ],
+    hubs: [
+      { name: 'Constantine',     loc: [6.6147, 36.3650], days: 'Départ · J1' },
+      { name: 'Sharm El Sheikh', loc: [34.330, 27.970], days: 'J1–J10' }
+    ],
+    routes: [
+      // 2-leg flight: Constantine → Istanbul (transit) → Sharm El Sheikh
+      { from: [6.624, 36.395],   to: [28.835, 41.260], label: 'Vol CZL → IST', type: 'flight', lift: 0.20 },
+      { from: [28.835, 41.260],  to: [34.395, 27.977], label: 'Vol IST → SSH', type: 'flight', lift: 0.20 }
+    ]
+  };
+</script>
+<script src="../assets/js/trip-map.js" defer></script>
+
 <section class="trust-bg section" id="confiance" aria-label="Témoignages et confiance">
   <div class="container">
     <div class="section-head">

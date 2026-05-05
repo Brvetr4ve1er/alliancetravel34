@@ -174,6 +174,72 @@
     </div>
   </div>
 </section>
+<!-- ── ITINERARY MAP ───────────────────────────────────────────── -->
+<section class="trip-map-section section" id="trip-map-section" aria-label="Carte de l'itinéraire">
+  <div class="container">
+    <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
+      <p class="section-head__eyebrow">Votre voyage en un coup d'œil</p>
+      <h2 class="section-head__title">L'itinéraire <em>sur la carte</em></h2>
+      <p class="section-head__sub">Bakou, Sheki, Gabala — tous les hôtels, sites et excursions de votre programme de 8 jours.</p>
+    </div>
+    <div id="trip-map" role="img" aria-label="Carte de l'itinéraire Azerbaïdjan">
+      <div class="tmap-fallback">
+        <p class="tmap-fallback__title">Chargement de la carte…</p>
+        <p class="tmap-fallback__sub">Bakou · Vieille Ville · Yanar Dag · Sheki · Gabala · Tufandag</p>
+      </div>
+    </div>
+    <div class="trip-map-legend" role="list" aria-label="Légende de la carte">
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--hotel" aria-hidden="true"></span>Hôtels</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--site" aria-hidden="true"></span>Sites visités</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--tour" aria-hidden="true"></span>Excursions guidées</span>
+    </div>
+  </div>
+</section>
+<script>
+  window.TRIP_MAP_DATA = {
+    name: 'Azerbaïdjan · Bakou & Gabala',
+    hotels: [
+      { id: 'parkside', name: 'PARKSIDE Hotel',  loc: [49.847, 40.371], stars: 4, area: 'Centre de Bakou' },
+      { id: 'yengice',  name: 'Yengice Hotel',   loc: [47.840, 40.971], stars: 5, area: 'Gabala' }
+    ],
+    sites: [
+      // Bakou — J2 Vieille Ville (Icherisheher)
+      { name: 'Maiden Tower',                  loc: [49.838, 40.366], day: 2, featured: true },
+      { name: 'Palace of the Shirvanshahs',    loc: [49.834, 40.366], day: 2 },
+      { name: 'Fountain Square',               loc: [49.836, 40.371], day: 2 },
+      { name: 'Nizami Street',                 loc: [49.851, 40.371], day: 2 },
+      { name: 'Baku Boulevard',                loc: [49.840, 40.358], day: 2 },
+      { name: 'Little Venice Baku',            loc: [49.853, 40.355], day: 2 },
+      // J3 Heydar Aliyev
+      { name: 'Heydar Aliyev Center',          loc: [49.867, 40.395], day: 3, featured: true },
+      { name: 'Upland Park (vue panoramique)', loc: [49.840, 40.355], day: 3 },
+      // J4 Absheron + Gobustan
+      { name: 'Yanar Dag (Montagne de Feu)',   loc: [49.890, 40.502], day: 4, featured: true },
+      { name: 'Ateshgah Fire Temple',          loc: [50.008, 40.413], day: 4 },
+      { name: 'Gobustan National Park',        loc: [49.402, 40.121], day: 4, featured: true },
+      { name: 'Gobustan Mud Volcanoes',        loc: [49.456, 40.090], day: 4 },
+      // J5 Sheki (day-trip from Bakou)
+      { name: "Sheki Khan's Palace",            loc: [47.198, 41.198], day: 5, featured: true },
+      { name: 'Sheki Caravanserai',            loc: [47.197, 41.197], day: 5 },
+      // J6-7 Gabala / Shahdag
+      { name: 'Lac de Nohur',                  loc: [47.872, 40.911], day: '6-7' },
+      { name: 'Shahdag Mountain Resort',       loc: [48.000, 41.265], day: '6-7' }
+    ],
+    tours: [
+      { name: 'Tufandag Téléphérique',         loc: [47.823, 40.984], day: '6-7', note: 'Téléphérique panoramique inclus' }
+    ],
+    hubs: [
+      { name: 'Bakou',  loc: [49.867, 40.395], days: 'J1–J5' },
+      { name: 'Gabala', loc: [47.840, 40.971], days: 'J6–J7' }
+    ],
+    routes: [
+      { from: [49.847, 40.371], to: [47.840, 40.971], label: 'Bakou → Gabala', type: 'road' },
+      { from: [49.847, 40.371], to: [47.198, 41.198], label: 'Excursion Sheki', type: 'road', lift: 0.30 }
+    ]
+  };
+</script>
+<script src="../assets/js/trip-map.js" defer></script>
+
 <section class="trust-bg section" id="confiance" aria-label="Témoignages et confiance">
   <div class="container">
     <div class="section-head">

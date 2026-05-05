@@ -171,6 +171,63 @@
     </div>
   </div>
 </section>
+<!-- ── ITINERARY MAP ───────────────────────────────────────────── -->
+<section class="trip-map-section section" id="trip-map-section" aria-label="Carte de l'itinéraire">
+  <div class="container">
+    <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
+      <p class="section-head__eyebrow">Votre voyage en un coup d'œil</p>
+      <h2 class="section-head__title">L'itinéraire <em>sur la carte</em></h2>
+      <p class="section-head__sub">KLCC, Batu Caves, Genting Highlands — votre semaine en Malaisie géolocalisée.</p>
+    </div>
+    <div id="trip-map" role="img" aria-label="Carte de l'itinéraire Kuala Lumpur">
+      <div class="tmap-fallback">
+        <p class="tmap-fallback__title">Chargement de la carte…</p>
+        <p class="tmap-fallback__sub">Tours Petronas · Batu Caves · Genting Highlands · Mosquée Negara</p>
+      </div>
+    </div>
+    <div class="trip-map-legend" role="list" aria-label="Légende de la carte">
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--hotel" aria-hidden="true"></span>Hôtels</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--site" aria-hidden="true"></span>Sites visités</span>
+      <span class="trip-map-legend__item" role="listitem"><span class="trip-map-legend__chip trip-map-legend__chip--tour" aria-hidden="true"></span>Excursions guidées</span>
+    </div>
+  </div>
+</section>
+<script>
+  window.TRIP_MAP_DATA = {
+    name: 'Kuala Lumpur · Malaisie',
+    hotels: [
+      { id: 'grandmercure', name: 'Grand Mercure Kuala Lumpur', loc: [101.706, 3.149], stars: 5, area: 'Bukit Bintang, KL' }
+    ],
+    sites: [
+      // J2 — City Tour
+      { name: 'Tours Petronas (KLCC)',           loc: [101.7117, 3.1579], day: 2, featured: true },
+      { name: 'Sultan Abdul Samad (colonial)',   loc: [101.6938, 3.1489], day: 2 },
+      // J3 — Batu Caves & alentours
+      { name: 'Batu Caves',                       loc: [101.6840, 3.2379], day: 3, featured: true },
+      { name: 'Palais Royal (Istana Negara)',     loc: [101.6720, 3.1284], day: 3 },
+      { name: 'Monument National',                loc: [101.6794, 3.1462], day: 3 },
+      { name: 'Mosquée Negara',                   loc: [101.6919, 3.1419], day: 3 },
+      // J4 — Genting Highlands
+      { name: 'Genting Highlands (1.800m)',       loc: [101.7937, 3.4226], day: 4, featured: true },
+      // J5-7 optionals
+      { name: 'Aquaria KLCC (opt.)',              loc: [101.7115, 3.1530], day: '5-7' },
+      { name: 'Sunway Lagoon (opt.)',             loc: [101.6072, 3.0719], day: '5-7' },
+      { name: 'Putrajaya (opt.)',                 loc: [101.6957, 2.9264], day: '5-7' }
+    ],
+    tours: [
+      { name: 'Téléphérique Awana SkyWay',        loc: [101.7937, 3.4226], day: 4, note: 'Téléphérique panoramique inclus' }
+    ],
+    hubs: [
+      { name: 'Kuala Lumpur', loc: [101.6958, 3.1390], days: 'J1–J8' }
+    ],
+    routes: [
+      { from: [101.706, 3.149], to: [101.6840, 3.2379], label: 'KL → Batu Caves',        type: 'road', lift: 0.18 },
+      { from: [101.706, 3.149], to: [101.7937, 3.4226], label: 'KL → Genting Highlands', type: 'road', lift: 0.22 }
+    ]
+  };
+</script>
+<script src="../assets/js/trip-map.js" defer></script>
+
 <section class="trust-bg section" id="confiance" aria-label="Témoignages et confiance">
   <div class="container">
     <div class="section-head">
