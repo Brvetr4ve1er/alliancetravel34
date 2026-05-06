@@ -38,7 +38,92 @@ Plus a parallel cleanup branch:
 
 ---
 
-## Phase 1.7 · Scroll-expand hero (v13) — ✅ COMPLETE
+## Phase 1.8 · Scroll-expand hero — sticky-scrub rewrite (v14) — ✅ COMPLETE
+
+Date: 2026-05-06. Replaced v13's wheel-hijack model with a **scroll-driven sticky-scrub** architecture.
+
+### Why rewrite
+
+User feedback on v13: *"it's only working in one direction, I want the heroes to go forward and backwards as well. A smooth transition, focus on making it as smooth as possible and quick to render. Add a rewind to it when you scroll back up the animation goes back to initial state."*
+
+v13 hijacked wheel + touch events to drive an internal progress counter, which:
+- Felt single-direction (input had to be forward)
+- Required workarounds for backward scroll / re-engagement
+- Required a 250ms boot grace period to avoid spurious release on page load
+- Set up arms-race with browser scroll restoration
+
+### Architecture (v14)
+
+The hero now uses **`position: sticky` + scroll-driven `--p`**. The browser does the work:
+
+```
+<section class="scroll-hero">
+  <div class="scroll-hero__scrub">    ← height: 170dvh runway
+    <div class="scroll-hero__pinned"> ← position: sticky; top: 0; height: 100dvh
+      [bg, media, title, eyebrow, caption, skip]
+    </div>
+  </div>
+  <div class="scroll-hero__continuation">[lede + price + CTAs]</div>
+</section>
+```
+
+JS does only one thing: on every scroll/resize, compute `progress = clamp(-scrub.top / (scrub.height - viewport), 0, 1)` and write it to `--p` on the section. The CSS uses `--p` in `transform: scale()`, `opacity`, and `translate3d` to animate everything.
+
+### What this gives us, for free
+
+- **Bidirectional scrolling** — scroll up reverses the animation automatically
+- **Rewind** — scroll back to top brings the animation back to initial state, exactly as user requested
+- **Smoothness** — browser interpolates frames at native refresh rate, transforms run on GPU
+- **Quick render** — all animated values use `transform` (composited) + `opacity`. No layout thrashing.
+- **Free a11y** — PgUp/PgDn, scrollbar drag, touch flick, keyboard focus traversal all work. User input habits aren't fought.
+- **Free no-JS fallback** — section renders as a normal scrollable page; CSS handles the visible-from-the-start state via `:not([data-sh-init])`.
+
+### Performance details
+
+- `will-change: transform, opacity` only on animated layers (not parent)
+- `translate3d(...)` with non-zero z forces a compositor layer
+- `transform: scale(0.32 → 1.0)` on centre media — composited, no layout
+- `transform: translateX(0 → ±55vw)` on title halves — composited, no layout
+- `opacity` interpolation — composited
+- Background uses `transform: scale(1 → 1.04)` for subtle zoom — composited
+- rAF-throttled scroll handler — at most one DOM read per frame (GPU writes are CSS-driven)
+- `contain: paint` on `.scroll-hero__pinned` to limit invalidation scope
+
+### Tunables (in `_v14_scroll_hero_smooth.css`)
+
+| Property | Value | Effect |
+|---|---|---|
+| `.scroll-hero__scrub` height | `170dvh` (desktop) / `150dvh` (mobile) | How much vertical scroll = full progress |
+| `.scroll-hero__media` width | `clamp(280px, 78vw, 1280px)` | Max media width at p=1 |
+| `.scroll-hero__media` height | `clamp(380px, 60vh, 840px)` | Max media height at p=1 |
+| Initial scale | `0.32` | Starting media size |
+| Title translate range | `±55vw` | How far title halves push apart |
+
+### Files changed
+
+- `_v14_scroll_hero_smooth.css` (NEW, ~290 lines, scratch source)
+- `site/assets/css/styles.css` — **v13 layer (363 lines) stripped + v14 layer appended**. Net: 7,710 → 7,725 lines.
+- `site/assets/js/scroll-hero.js` — full rewrite, ~210 lines (down from 280). Removed: wheel/touch/keyboard hijack, grace period, release/reengage state machine, listener cleanup. Added: scroll-driven rAF loop, `data-sh-init` attribute for no-JS detection.
+
+No HTML changes needed — the existing markup pattern from v13 (`<section class="scroll-hero" data-bg="..." data-fg="..." ...>...continuation...</section>`) is preserved. The JS wraps the visuals in scrub+pinned at init.
+
+### Verification
+
+All 5 trip pages tested in dark mode:
+- p=0 (top): bg + small centre media + eyebrow + title together + caption + skip all visible ✓
+- p=0.5 (mid-scrub): media expanded, title halves split, eyebrow fading ✓
+- p=1 (full release): media near-full-viewport, title pushed off edges, continuation card showing ✓
+- Rewind: scroll back to top → returns to p=0 state smoothly ✓
+- Bidirectional drag of scrollbar: works ✓
+
+### Things deferred
+
+- Cairo-sharm still has the legacy `<section class="hero">` wrapped in `display:none`. Cleanup pending.
+- Section heights use both `vh` and `dvh` units; older mobile browsers (iOS < 15.4) use `vh` fallback. Acceptable.
+
+---
+
+## Phase 1.7 · Scroll-expand hero (v13) — ✅ COMPLETE (superseded by v14)
 
 Date: 2026-05-06. The 5 trip-page heroes were rebuilt as a vanilla port of the
 [motion-primitives `ScrollExpandMedia`](https://motion-primitives.com) component

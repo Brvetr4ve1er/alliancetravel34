@@ -7352,76 +7352,99 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* End v12 ─────────────────────────────────────────────────── */
 
 /* ══════════════════════════════════════════════════════════
-   v13 — Scroll-Expand Hero (vanilla port of motion-primitives' ScrollExpandMedia)
-   The hero pins, the centre image expands as user scrolls,
-   the title splits + translates outward, then page releases to normal scroll.
-   Driven by a single CSS custom property --p (0..1) on the root section,
-   set by site/assets/js/scroll-hero.js.
+   v14 — Scroll-Expand Hero · sticky-scrub rewrite
+   Replaces v13's wheel-hijack model. Free bidirectional scrubbing,
+   smooth GPU-composited transforms, automatic rewind.
+   Uses scale() + translate3d everywhere for compositor fast-path.
    ══════════════════════════════════════════════════════════ */
 
+/* Reset v13 root — no longer pin via height/overflow, structure now
+   nested with scrub + pinned wrappers so sticky works. */
 .scroll-hero {
-  --p: 0;                      /* scroll progress 0..1, set by JS */
-  --bg-img: none;
-  --fg-img: none;
-  --media-w-min: 320px;
-  --media-w-max: min(1280px, 95vw);
-  --media-h-min: 420px;
-  --media-h-max: min(840px, 85vh);
   position: relative;
+  height: auto;
   width: 100%;
-  height: 100dvh;
-  overflow: hidden;
-  isolation: isolate;
+  overflow: visible;
+  isolation: auto;
   background: #050609;
   color: #f3f6fa;
-  /* Block normal scroll while pinned. JS removes this when expansion completes */
-  touch-action: none;
+  touch-action: auto;
+  --p: 0;
 }
 
-/* ── Background photo (fades out as expansion completes) ── */
+/* The scrub runway: total height = viewport + extra room for the animation.
+   170vh gives a comfortable scroll distance (~70vh of scrubbing) without
+   making the section feel oversized on long-scroll pages. */
+.scroll-hero__scrub {
+  position: relative;
+  height: 170vh;
+  height: 170dvh;
+  width: 100%;
+}
+
+/* Sticky pinned visuals — stays glued to viewport top while scrub runs. */
+.scroll-hero__pinned {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  /* Compositor hint */
+  contain: paint;
+}
+
+/* ── Background photo ──────────────────────────────────────
+   Fades out + slight scale-down. Uses transform (composited)
+   instead of width/height. */
 .scroll-hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* background-image is set inline by scroll-hero.js (URL must resolve from page, not CSS) */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: scale(calc(1 + (1 - var(--p)) * 0.04));
+  transform: translate3d(0, 0, 0) scale(calc(1 + (1 - var(--p)) * 0.04));
   opacity: calc(1 - var(--p) * 0.85);
-  transition: opacity 80ms linear;
-  will-change: opacity, transform;
+  will-change: transform, opacity;
+  /* No CSS transition — JS sets --p continuously via rAF, which gives us
+     per-frame interpolation by the browser's compositor. Adding a CSS
+     transition would actually hurt smoothness here (it would lag behind). */
 }
 .scroll-hero__bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, .35) 50%, rgba(0, 0, 0, .55) 100%);
+  pointer-events: none;
 }
 
-/* ── Center expanding media ─────────────────────────────── */
+/* ── Centre media — scales from small to large ──────────────
+   We render at FULL size (the max) and scale DOWN at p=0, scale UP toward
+   1.0 as p approaches 1. This keeps text inside the media crisp at every
+   stage and uses transform: scale() for compositing.  */
 .scroll-hero__media {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(var(--media-w-min) + var(--p) * (var(--media-w-max) - var(--media-w-min)));
-  height: calc(var(--media-h-min) + var(--p) * (var(--media-h-max) - var(--media-h-min)));
+  width: clamp(280px, 78vw, 1280px);
+  height: clamp(380px, 60vh, 840px);
   border-radius: calc(20px - var(--p) * 8px);
   overflow: hidden;
   z-index: 5;
-  /* background-image is set inline by scroll-hero.js — these provide the size+position fallback */
   background-color: #0a0d12;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  /* scale 0.32 (small) → 1.0 (full) — values tuned to match v13 width range */
+  transform: translate3d(-50%, -50%, 0) scale(calc(0.32 + var(--p) * 0.68));
+  transform-origin: center center;
   box-shadow:
     0 30px 80px rgba(0, 0, 0, .55),
     0 0 0 1px rgba(255, 255, 255, .08) inset;
-  will-change: width, height, border-radius;
+  will-change: transform, border-radius;
 }
-
-/* Subtle vignette on the foreground media */
 .scroll-hero__media::after {
   content: "";
   position: absolute;
@@ -7431,24 +7454,91 @@ section.section.phase-block + section.section:not(.phase-block) {
     linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, transparent 30%, transparent 60%, rgba(0, 0, 0, .35) 100%);
   pointer-events: none;
   opacity: calc(1 - var(--p) * 0.4);
-  transition: opacity 100ms linear;
+  will-change: opacity;
 }
 
-/* Caption directly below the media (date + scroll prompt) */
+/* ── Title — split halves translate outward ──────────────── */
+.scroll-hero__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 22px);
+  width: max-content;
+  pointer-events: none;
+  font-family: var(--font-display, "DM Sans", system-ui, sans-serif);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  font-size: clamp(2.25rem, 7vw, 5.5rem);
+  line-height: 1;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .45);
+  mix-blend-mode: difference;
+  color: #d6e8f5;
+}
+.scroll-hero__title-pre,
+.scroll-hero__title-post {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+.scroll-hero__title-pre {
+  transform: translate3d(calc(var(--p) * -55vw), 0, 0);
+}
+.scroll-hero__title-post {
+  transform: translate3d(calc(var(--p) * 55vw), 0, 0);
+}
+
+/* ── Eyebrow + caption + skip — fade out ────────────────── */
+.scroll-hero__eyebrow {
+  position: absolute;
+  top: calc(50% - clamp(80px, 12vh, 140px));
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  z-index: 11;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .35);
+  border: 1px solid rgba(255, 255, 255, .15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #e8eef3;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: calc(1 - var(--p) * 1.6);
+  will-change: opacity;
+}
+.scroll-hero__eyebrow svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
 .scroll-hero__caption {
   position: absolute;
-  top: calc(50% + (var(--media-h-min) / 2) + var(--p) * (var(--media-h-max) / 2 - var(--media-h-min) / 2) + 24px);
+  /* Pinned at bottom of viewport so it doesn't clip during scale */
+  bottom: clamp(40px, 9vh, 80px);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   z-index: 7;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   text-align: center;
   pointer-events: none;
-  opacity: calc(1 - var(--p) * 1.4);
-  transition: opacity 80ms linear;
+  opacity: calc(1 - var(--p) * 1.6);
+  will-change: opacity;
 }
 .scroll-hero__date {
   font-size: clamp(.875rem, 1.5vw, 1.0625rem);
@@ -7473,81 +7563,14 @@ section.section.phase-block + section.section:not(.phase-block) {
   width: 1px;
   height: 32px;
   background: linear-gradient(180deg, currentColor 0%, transparent 100%);
-  animation: sh-pulse 1.6s ease-in-out infinite;
+  animation: shv14-pulse 1.6s ease-in-out infinite;
   margin-left: 8px;
 }
-@keyframes sh-pulse {
+@keyframes shv14-pulse {
   0%, 100% { opacity: .25; transform: scaleY(.6); }
   50%      { opacity: 1;   transform: scaleY(1); }
 }
 
-/* ── Split title (two halves translate outward) ──────────── */
-.scroll-hero__title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.5vw, 22px);
-  width: max-content;
-  pointer-events: none;
-  font-family: var(--font-display, "DM Sans", system-ui, sans-serif);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  font-size: clamp(2.25rem, 7vw, 5.5rem);
-  line-height: 1;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, .45);
-  mix-blend-mode: difference;
-  color: #d6e8f5;
-}
-.scroll-hero__title-pre,
-.scroll-hero__title-post {
-  display: inline-block;
-  transition: transform 100ms linear;
-  white-space: nowrap;
-}
-.scroll-hero__title-pre {
-  transform: translateX(calc(var(--p) * -50vw));
-}
-.scroll-hero__title-post {
-  transform: translateX(calc(var(--p) * 50vw));
-}
-
-/* ── Eyebrow above title (fades out earliest) ────────────── */
-.scroll-hero__eyebrow {
-  position: absolute;
-  top: calc(50% - clamp(80px, 12vh, 140px));
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 11;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, .35);
-  border: 1px solid rgba(255, 255, 255, .15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #e8eef3;
-  white-space: nowrap;
-  opacity: calc(1 - var(--p) * 1.6);
-  pointer-events: none;
-}
-.scroll-hero__eyebrow svg {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
-
-/* ── Hint footer (skip-the-animation link, only on first viewport) ── */
 .scroll-hero__skip {
   position: absolute;
   bottom: 20px;
@@ -7564,43 +7587,19 @@ section.section.phase-block + section.section:not(.phase-block) {
   text-decoration: none;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
   opacity: calc(1 - var(--p) * 1.6);
-  pointer-events: auto;
-  transition: background var(--t-fast), color var(--t-fast);
+  will-change: opacity;
+  transition: background 200ms ease, color 200ms ease;
 }
 .scroll-hero__skip:hover {
   background: rgba(0, 0, 0, .55);
   color: #fff;
 }
 
-/* ── State: fully expanded — release pin, normal scroll resumes ── */
-.scroll-hero.is-released {
-  height: auto;
-  min-height: 100dvh;
-  touch-action: auto;
-}
-.scroll-hero.is-released .scroll-hero__bg {
-  opacity: 0;
-}
-.scroll-hero.is-released .scroll-hero__media {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: none;
-  width: 100%;
-  max-width: var(--media-w-max);
-  height: var(--media-h-max);
-  margin: 0 auto;
-  border-radius: 0;
-}
-.scroll-hero.is-released .scroll-hero__title,
-.scroll-hero.is-released .scroll-hero__caption,
-.scroll-hero.is-released .scroll-hero__eyebrow,
-.scroll-hero.is-released .scroll-hero__skip {
-  display: none;
-}
-
-/* ── Continuation block (the hero summary card that shows once expanded) ── */
+/* ── Continuation card — shows after the scrub completes ──
+   Fades in over the last 30% of progress so it's already
+   coming up as the media reaches full scale. */
 .scroll-hero__continuation {
   position: relative;
   z-index: 5;
@@ -7608,13 +7607,8 @@ section.section.phase-block + section.section:not(.phase-block) {
   padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 32px);
   max-width: 1180px;
   text-align: center;
-  opacity: calc(max(0, var(--p) - 0.85) / 0.15);
-  transition: opacity 200ms ease-out;
-  pointer-events: none;
-}
-.scroll-hero.is-released .scroll-hero__continuation {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: calc(max(0, var(--p) - 0.7) / 0.3);
+  will-change: opacity;
 }
 .scroll-hero__continuation h1 {
   font-family: var(--font-display, "DM Sans", system-ui, sans-serif);
@@ -7643,72 +7637,89 @@ section.section.phase-block + section.section:not(.phase-block) {
   justify-content: center;
 }
 
+/* Reset/override conflicting v13 rules that the cascade would otherwise apply.
+   We KEEP v13 rules where they don't conflict, but explicitly null these. */
+.scroll-hero.is-released {
+  height: auto;
+  min-height: 0;
+  touch-action: auto;
+}
+.scroll-hero.is-released .scroll-hero__bg { opacity: calc(1 - var(--p) * 0.85); }
+.scroll-hero.is-released .scroll-hero__media {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(calc(0.32 + var(--p) * 0.68));
+  width: clamp(280px, 78vw, 1280px);
+  height: clamp(380px, 60vh, 840px);
+  margin: 0;
+  border-radius: calc(20px - var(--p) * 8px);
+}
+.scroll-hero.is-released .scroll-hero__title,
+.scroll-hero.is-released .scroll-hero__caption,
+.scroll-hero.is-released .scroll-hero__eyebrow,
+.scroll-hero.is-released .scroll-hero__skip { display: revert; }
+.scroll-hero.is-released .scroll-hero__continuation {
+  opacity: calc(max(0, var(--p) - 0.7) / 0.3);
+  pointer-events: auto;
+}
+
 /* ── Mobile tuning ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .scroll-hero {
-    --media-w-min: 240px;
-    --media-w-max: 92vw;
-    --media-h-min: 320px;
-    --media-h-max: 70vh;
+  .scroll-hero__scrub {
+    height: 150vh;
+    height: 150dvh;
+  }
+  .scroll-hero__media {
+    width: clamp(240px, 86vw, 600px);
+    height: clamp(320px, 55vh, 600px);
+    transform: translate3d(-50%, -50%, 0) scale(calc(0.36 + var(--p) * 0.64));
   }
   .scroll-hero__title {
     font-size: clamp(1.75rem, 9vw, 3rem);
     gap: 4px;
   }
   .scroll-hero__title-pre {
-    transform: translateX(calc(var(--p) * -65vw));
+    transform: translate3d(calc(var(--p) * -65vw), 0, 0);
   }
   .scroll-hero__title-post {
-    transform: translateX(calc(var(--p) * 65vw));
+    transform: translate3d(calc(var(--p) * 65vw), 0, 0);
+  }
+  .scroll-hero__caption { bottom: 24px; }
+  .scroll-hero__skip {
+    right: 12px; bottom: 12px;
+    padding: 5px 10px;
+    font-size: .6875rem;
   }
   .scroll-hero__eyebrow {
     font-size: .6875rem;
     padding: 5px 12px;
   }
-  .scroll-hero__caption {
-    top: auto;
-    bottom: 24px;
-  }
-  .scroll-hero__skip { right: 12px; bottom: 12px; padding: 5px 10px; font-size: .6875rem; }
 }
 
-/* ── Reduced-motion: skip the pin entirely, just show released state ── */
+/* ── Reduced motion: collapse runway, render at p=1 ───────── */
 @media (prefers-reduced-motion: reduce) {
-  .scroll-hero {
+  .scroll-hero__scrub {
     height: auto;
+    min-height: 100vh;
     min-height: 100dvh;
-    touch-action: auto;
-    --p: 1;
   }
-  .scroll-hero__bg { opacity: 1; transform: none; }
-  .scroll-hero__media {
+  .scroll-hero__pinned {
     position: relative;
-    top: auto; left: auto;
-    transform: none;
-    width: 100%;
-    max-width: var(--media-w-max);
-    height: var(--media-h-max);
-    margin: 24px auto;
-    border-radius: 16px;
+    height: 100vh;
+    height: 100dvh;
   }
-  .scroll-hero__title { position: relative; top: auto; left: auto; transform: none; padding: 24px 16px; }
-  .scroll-hero__title-pre,
-  .scroll-hero__title-post { transform: none; }
-  .scroll-hero__caption, .scroll-hero__skip { display: none; }
-  .scroll-hero__continuation { opacity: 1; pointer-events: auto; }
+  .scroll-hero {
+    --p: 1 !important;
+  }
+  .scroll-hero__continuation {
+    opacity: 1;
+  }
 }
 
-/* ── No-JS fallback: show released state via :where for low specificity ── */
-.scroll-hero.no-js {
-  height: auto;
-  min-height: 100dvh;
-  touch-action: auto;
+/* ── No-JS fallback — preserve legibility even without scroll handler ── */
+.scroll-hero:not([data-sh-init]) .scroll-hero__continuation {
+  opacity: 1;
 }
-.scroll-hero.no-js .scroll-hero__title { position: relative; top: auto; left: auto; transform: none; padding: 32px 16px; text-align: center; }
-.scroll-hero.no-js .scroll-hero__title-pre,
-.scroll-hero.no-js .scroll-hero__title-post { transform: none; }
-.scroll-hero.no-js .scroll-hero__caption,
-.scroll-hero.no-js .scroll-hero__skip { display: none; }
-.scroll-hero.no-js .scroll-hero__continuation { opacity: 1; pointer-events: auto; }
 
-/* End v13 ─────────────────────────────────────────────────── */
+/* End v14 ─────────────────────────────────────────────────── */
