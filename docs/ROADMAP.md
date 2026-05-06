@@ -38,6 +38,63 @@ Plus a parallel cleanup branch:
 
 ---
 
+## Phase 1.10 · Design audit selective fixes (v16) — ✅ COMPLETE
+
+Date: 2026-05-06. Triggered by an external design-system audit (12 sections covering colour palette, typography, components, page-by-page issues, accessibility, SEO, performance). Same playbook as v15: reality-check first, then act on the genuine items.
+
+**Audit reality-check verdict:** ~50% of the audit was already addressed in v12/v14/v15 (prefers-reduced-motion implemented, voyage hero contrast fixed via mix-blend-difference + dark gradient, spacing scale tokenized, eyebrow tokens standardized, footer visual separation already different bg). The other ~50% identified genuine gaps. v16 closes the high-impact ones.
+
+### Genuine gaps fixed
+
+**P1-A · Ghost button contrast on hero** — `.btn--ghost` previously had `transparent` bg + 25% white border + cream text — over bright photo regions (sand, sky) it disappeared. Now scoped to hero contexts (`.scroll-hero .btn--ghost, .home-hero .btn--ghost, .hero .btn--ghost`): frosted bg `rgba(0,0,0,.35)` + 55% white border + pure white text + `text-shadow` + `backdrop-filter: blur(12px)`. Light-mode flips to `rgba(255,255,255,.85)` + navy text.
+
+**P1-C · Homepage contact form** — Previously zero-friction WhatsApp/phone only. Added a 4-field form (Nom & Prénom, Téléphone WhatsApp, Wilaya/Ville, Voyage qui vous intéresse) with `required` + `pattern` + `inputmode` + autocomplete attributes. Submit handler builds a French message ("Bonjour Alliance Travel ! Je m'appelle X depuis Y. Mon numéro WhatsApp : Z. Je suis intéressé(e) par le voyage : W. Pourriez-vous me recontacter ? Merci !") and opens `wa.me/213560860617` with prefilled text. No backend, no flakiness, conversion-ready.
+
+**P1-D · "Calculer mon prix" CTA explainer** — Auditor noted the CTA was opaque. Added italic helper text below the hero CTAs on each trip page: *"Choisissez vos dates, votre type de chambre, le nombre de voyageurs — votre prix se calcule en direct, puis ouvrez WhatsApp pour confirmer."*
+
+**P2-C · Destination filter pills** — New `.dest-filter` row above the trip-cards grid on homepage. 5 chips: Tous (5) · Égypte · Caucase · Turquie · Asie. Click filters trip-cards via `data-region` attribute, updates `aria-pressed` and the live count on the "Tous" chip. Mobile: horizontal scroll. Tracking: `data-track-event="dest_filter"` with `data-track-label`. Initial bug — script ran before trip-cards parsed; wrapped in DOMContentLoaded guard.
+
+**P3-D · Social media links in footer** — Added 3 placeholder links (Instagram, Facebook, TikTok) on all 6 pages with proper SVG icons (no emoji), `aria-label`, and hover state. Hrefs point to `/alliance.travel.dz` handles (placeholder pattern; can be updated when real handles exist).
+
+**Stats counter session-once** — `enhance.js` `animateCounter` now checks `sessionStorage.getItem('at-counters-played')`. On the very first counter to finish animating, marks the session as played. Subsequent counters (same page or after reload, same session) snap to final values. Removes the "0 → 1.2K voyageurs" flicker that the audit flagged as feeling slightly dishonest.
+
+### Audit items intentionally deferred
+
+- **P1-B** (voyage hero text legibility) — already fixed in v14 (sticky-scrub + mix-blend-difference + dark gradient overlay)
+- **P2-A** (spacing scale) — already tokenized in v12 (--s1..--s12 variables)
+- **P2-B** (globe palette change) — would require reworking the `cobe` library invocation; medium effort, low ROI for now
+- **P2-D** (map style unification) — homepage Algeria map (MapLibre + light style) vs voyage trip-maps (different library, full tile style); would need significant refactor to harmonize. Defer.
+- **P2-E** (real testimonials on all 5 trip pages) — testimonials exist on cairo-sharm + sharm-constantine; the others need real customer quotes from the agency before publishing. Out of scope.
+- **P3-A/B/C/E** (token system, eyebrow standardization, footer separation, prefers-reduced-motion) — already done.
+- **P4-A** (team photos) — needs real photos from the agency. Out of scope.
+- **P4-B** (homepage FAQ) — defer.
+- **P4-C** (sticky price bar on voyage pages) — already exists from v12 (`.sticky-total`).
+- **P4-D** (dark mode polish) — already comprehensive.
+
+### Files changed
+
+**New files:**
+- `_v16_design_audit.css` (~210 lines) — ghost button override, contact form, dest-filter, social links, calc-cta-hint, dep-badge polish
+- `_v16_apply.py` — idempotent migration script
+
+**Modified:**
+- `site/assets/css/styles.css` — appended v16 layer (8,039 → 8,285 lines)
+- `site/assets/js/enhance.js` — `_counterAlreadyPlayed()` + `_markCountersPlayed()` helpers, sessionStorage gate in `animateCounter()`
+- `site/index.html` — contact form, dest-filter pills + JS, trip-card data-region attrs, social links in footer
+- `site/cairo-sharm/index.html` + 4 other trip pages — calc-cta-hint, social links
+
+### Verification (live, dark mode)
+
+- ✅ Homepage hero "Nous contacter" ghost button: now `rgba(0,0,0,.35)` + 55% white border + white text — clearly visible against any photo region
+- ✅ Destination filter: 5 pills render, "Égypte" click → 2 cards visible (cairo-sharm + sharm-constantine), 3 hidden, count updates to "2"
+- ✅ Trip-card `data-region` attributes: 5/5 cards annotated correctly (egypt × 2, azerbaijan, istanbul, malaysia)
+- ✅ Contact form: 4 fields + submit button visible, opens WhatsApp with proper prefilled message
+- ✅ Footer: 3 social links present (Instagram, Facebook, TikTok), proper icons, hover state
+- ✅ Stats counter: `sessionStorage.at-counters-played === '1'` after first run; subsequent loads in same session snap to final
+- ✅ Calc CTA hint: present on all 5 trip pages, italic muted text below hero CTAs
+
+---
+
 ## Phase 1.9 · Booking + calculator hardening (v15) — ✅ COMPLETE
 
 Date: 2026-05-06. Triggered by an external UX audit that claimed the calculator + booking form were broken. **~70% of the audit was factually wrong** — the system was already dynamic, wired up, and functional. See [`docs/SURVEY-BOOKING-CALCULATOR.md`](SURVEY-BOOKING-CALCULATOR.md) for the verdict matrix on all 35 specific claims.

@@ -11,10 +11,29 @@
 
 const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-/* ─── Stat counters ──────────────────────────────────────── */
+/* ─── Stat counters ────────────────────────────────────────
+   On a fresh visit, the counter animates 0 → target which adds polish
+   but feels repetitive on every page reload (and ever-so-slightly
+   dishonest for a brief moment — "0.2K voyageurs"). Use sessionStorage
+   to mark "already played"; subsequent counters in the same session
+   (including across page navigations) just snap to final. */
+const COUNTER_PLAYED_KEY = 'at-counters-played';
+function _counterAlreadyPlayed() {
+  try {
+    return sessionStorage.getItem(COUNTER_PLAYED_KEY) === '1';
+  } catch (e) {
+    return false;
+  }
+}
+function _markCountersPlayed() {
+  try {
+    sessionStorage.setItem(COUNTER_PLAYED_KEY, '1');
+  } catch (e) { /* private mode / disabled storage */ }
+}
+
 function animateCounter(el) {
-  if (reducedMotion) {
-    // Just write final value
+  // If reduced-motion OR counters already played this session: snap to final
+  if (reducedMotion || _counterAlreadyPlayed()) {
     el.textContent = el.dataset.counterFormat
       ? el.dataset.counterFormat.replace('{n}', el.dataset.counter)
       : el.dataset.counter;
@@ -34,7 +53,13 @@ function animateCounter(el) {
     else if (target >= 100)  display = Math.floor(cur);
     else                     display = (Math.round(cur * 10) / 10).toString().replace(/\.0$/, '');
     el.textContent = format.replace('{n}', display);
-    if (t < 1) requestAnimationFrame(step);
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      // Animation finished — mark this session as having played the counters
+      // so subsequent reloads / navigations show final values immediately.
+      _markCountersPlayed();
+    }
   }
   requestAnimationFrame(step);
 }

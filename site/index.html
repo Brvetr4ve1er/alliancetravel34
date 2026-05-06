@@ -507,11 +507,43 @@
         <p class="section-head__sub">5 voyages guidés, vol + hôtel + excursions inclus. Chaque page voyage a un
           calculateur de prix live — obtenez votre devis en 30 secondes.</p>
       </div>
-
-      <div class="trips-grid">
+      <div class="dest-filter" role="toolbar" aria-label="Filtrer les destinations par région" id="destFilter">
+        <button class="dest-filter__pill" type="button" aria-pressed="true" data-filter="all" data-track-event="dest_filter" data-track-label="all">Tous <span class="dest-filter__count">5</span></button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="egypt" data-track-event="dest_filter" data-track-label="egypt">Égypte</button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="azerbaijan" data-track-event="dest_filter" data-track-label="azerbaijan">Caucase</button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="istanbul" data-track-event="dest_filter" data-track-label="istanbul">Turquie</button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="malaysia" data-track-event="dest_filter" data-track-label="malaysia">Asie</button>
+      </div>
+      <script>
+      // Wait for full DOM — this <script> sits BEFORE the .trips-grid in
+      // source order, so trip-cards aren't yet parsed when this executes.
+      (function() {
+        function init() {
+          const pills = document.querySelectorAll('.dest-filter__pill');
+          const cards = document.querySelectorAll('.trip-card');
+          if (!pills.length || !cards.length) return;
+          function applyFilter(region) {
+            cards.forEach(card => {
+              const match = region === 'all' || card.dataset.region === region;
+              card.classList.toggle('is-filtered-out', !match);
+            });
+            pills.forEach(p => p.setAttribute('aria-pressed', p.dataset.filter === region ? 'true' : 'false'));
+            const totalPill = document.querySelector('.dest-filter__pill[data-filter="all"] .dest-filter__count');
+            if (totalPill) totalPill.textContent = region === 'all' ? cards.length : Array.from(cards).filter(c => c.dataset.region === region).length;
+          }
+          pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter)));
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+      </script>
+<div class="trips-grid">
 
         <!-- Cairo + Sharm -->
-        <a href="cairo-sharm/index.html" class="trip-card"
+        <a href="cairo-sharm/index.html" class="trip-card" data-region="egypt"
           aria-label="Voyage Le Caire et Sharm El Sheikh, à partir de 190.000 DA">
           <div class="trip-card__hero">
             <div class="trip-card__art" style="background:linear-gradient(145deg,#1a0e00 0%,#0d0a05 50%,#060810 100%)">
@@ -565,7 +597,7 @@
         </a>
 
         <!-- Azerbaijan -->
-        <a href="azerbaidjan/index.html" class="trip-card" aria-label="Voyage Azerbaïdjan, à partir de 227.000 DA">
+        <a href="azerbaidjan/index.html" class="trip-card" data-region="azerbaijan" aria-label="Voyage Azerbaïdjan, à partir de 227.000 DA">
           <div class="trip-card__hero">
             <div class="trip-card__art" style="background:#060a16">
               <img class="trip-card__img" src="assets/images/trips/card__home__azerbaidjan.jpg" alt="" loading="lazy"
@@ -617,7 +649,7 @@
         </a>
 
         <!-- Istanbul -->
-        <a href="istanbul/index.html" class="trip-card" aria-label="Voyage Istanbul, à partir de 123.000 DA">
+        <a href="istanbul/index.html" class="trip-card" data-region="istanbul" aria-label="Voyage Istanbul, à partir de 123.000 DA">
           <div class="trip-card__hero">
             <div class="trip-card__art" style="background:#080610">
               <img class="trip-card__img" src="assets/images/trips/card__home__istanbul.jpg" alt="" loading="lazy"
@@ -670,7 +702,7 @@
         </a>
 
         <!-- Kuala Lumpur -->
-        <a href="kuala-lumpur/index.html" class="trip-card"
+        <a href="kuala-lumpur/index.html" class="trip-card" data-region="malaysia"
           aria-label="Voyage Kuala Lumpur Malaisie, à partir de 211.000 DA">
           <div class="trip-card__hero">
             <div class="trip-card__art" style="background:#040d08">
@@ -724,7 +756,7 @@
         </a>
 
         <!-- Sharm Constantine -->
-        <a href="sharm-constantine/index.html" class="trip-card"
+        <a href="sharm-constantine/index.html" class="trip-card" data-region="egypt"
           aria-label="Voyage Sharm El Sheikh depuis Constantine, à partir de 155.000 DA">
           <div class="trip-card__hero">
             <div class="trip-card__art" style="background:#020c12">
@@ -910,6 +942,70 @@
           <p style="font-size:1rem;color:var(--txt-2);line-height:1.7;margin-bottom:var(--s7)">Inscrivez-vous par
             téléphone ou WhatsApp. Paiement par virement CCP ou en espèces à l'agence. Un acompte suffit pour bloquer
             votre place.</p>
+        <form class="contact-form" id="contactForm" onsubmit="return submitContactForm(event)" aria-label="Formulaire de demande de devis">
+          <div class="contact-form__field">
+            <label for="cf-name">Nom &amp; Prénom</label>
+            <input type="text" id="cf-name" name="name" required minlength="2" autocomplete="name" placeholder="Ahmed Benkhalifa"/>
+          </div>
+          <div class="contact-form__field">
+            <label for="cf-phone">Téléphone WhatsApp</label>
+            <input type="tel" id="cf-phone" name="phone" required pattern="^(\+213|0)[5-7][0-9 ]{8,}$" autocomplete="tel" inputmode="tel" placeholder="0561 616 266"/>
+          </div>
+          <div class="contact-form__field">
+            <label for="cf-city">Wilaya / Ville</label>
+            <input type="text" id="cf-city" name="city" required minlength="2" autocomplete="address-level2" placeholder="Bordj Bou Arreridj"/>
+          </div>
+          <div class="contact-form__field">
+            <label for="cf-trip">Voyage qui vous intéresse</label>
+            <select id="cf-trip" name="trip">
+              <option value="">— À déterminer —</option>
+              <option value="cairo-sharm">Le Caire &amp; Sharm El Sheikh — dès 190 000 DA</option>
+              <option value="sharm-constantine">Sharm El Sheikh (départ Constantine) — dès 155 000 DA</option>
+              <option value="istanbul">Istanbul — dès 123 000 DA</option>
+              <option value="azerbaidjan">Azerbaïdjan (Bakou + Gabala) — dès 227 000 DA</option>
+              <option value="kuala-lumpur">Kuala Lumpur (Malaisie) — dès 211 000 DA</option>
+            </select>
+          </div>
+          <div class="contact-form__submit-wrap">
+            <p class="contact-form__hint">Aucun envoi automatique : votre message s'ouvre dans WhatsApp prêt à envoyer.</p>
+            <button type="submit" class="btn btn--primary" data-track-event="contact_form_submit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Envoyer ma demande sur WhatsApp
+            </button>
+          </div>
+        </form>
+        <script>
+        function submitContactForm(e) {
+          e.preventDefault();
+          const form = e.target;
+          const name = form.name.value.trim();
+          const phone = form.phone.value.trim();
+          const city = form.city.value.trim();
+          const trip = form.trip.value;
+          const tripLabels = {
+            'cairo-sharm': 'Le Caire & Sharm El Sheikh',
+            'sharm-constantine': 'Sharm El Sheikh (départ Constantine)',
+            'istanbul': 'Istanbul',
+            'azerbaidjan': 'Azerbaïdjan (Bakou + Gabala)',
+            'kuala-lumpur': 'Kuala Lumpur (Malaisie)',
+          };
+          const lines = [
+            'Bonjour Alliance Travel !',
+            '',
+            `Je m'appelle ${name}, je vous contacte depuis ${city}.`,
+            `📱 Mon numéro WhatsApp : ${phone}`,
+            '',
+            trip ? `Je suis intéressé(e) par le voyage : *${tripLabels[trip]}*` : `Je voudrais discuter d'un voyage avec vous.`,
+            '',
+            'Pourriez-vous me recontacter ? Merci !',
+          ];
+          const msg = lines.join('
+');
+          const url = 'https://wa.me/213560860617?text=' + encodeURIComponent(msg);
+          window.open(url, '_blank', 'noopener');
+          return false;
+        }
+        </script>
           <div style="display:flex;flex-direction:column;gap:var(--s4)">
             <a href="https://wa.me/213561616266" class="btn btn--wa" target="_blank" rel="noopener"
               style="width:fit-content">
@@ -1000,6 +1096,17 @@
         <div class="footer-brand">
           <span class="footer-logo">Alliance<span>Travel</span></span>
           <p class="footer-tagline">Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/alliance.travel.dz" target="_blank" rel="noopener" aria-label="Instagram Alliance Travel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/alliance.travel.dz" target="_blank" rel="noopener" aria-label="Facebook Alliance Travel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@alliance.travel.dz" target="_blank" rel="noopener" aria-label="TikTok Alliance Travel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z"/></svg>
+          </a>
+        </div>
         </div>
         <div class="footer-col">
           <h4>Nos Voyages 2026</h4>
