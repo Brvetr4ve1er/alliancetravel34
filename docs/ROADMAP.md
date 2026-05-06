@@ -38,6 +38,124 @@ Plus a parallel cleanup branch:
 
 ---
 
+## Phase 1.11 · Performance optimization (v17) — ✅ COMPLETE
+
+Date: 2026-05-06. User reported the site as "very slow" — measurement-driven optimization pass.
+
+### Baseline measurement (sharm-constantine, fresh load)
+
+| Metric | Before |
+|---|---|
+| Total page weight | 3,366 KB |
+| `hero__sharm-constantine--fg.jpg` | 1,545 KB |
+| `hero__sharm-constantine--bg.jpg` | 1,298 KB |
+| 3 hotel JPGs (below fold) | 384 KB |
+| DOMContentLoaded | 186 ms |
+| Load event | 15,182 ms |
+| Long tasks | 0 (no JS jank) |
+
+**Verdict:** ~85% of weight = 2 hero images. CSS bundle, JS, fonts all reasonable. Globe canvas was off-screen on this page so not a factor here.
+
+### Optimizations shipped
+
+**1. Hero photos → WebP + responsive srcset**
+
+`_v17_optimize_heroes.py` generates 3 variants per source JPG using Pillow:
+- Desktop WebP (q=82, max width 1920) — typical 35-50% smaller than JPG
+- Mobile JPG (q=78, max width 900) — 80%+ smaller than original (fallback for old browsers)
+- Mobile WebP (q=78, max width 900) — best of both
+
+Per-photo savings:
+
+| Source | Desktop WebP | Mobile WebP | Mobile saves |
+|---|---|---|---|
+| sharm-constantine--bg | 741 KB (-43%) | 161 KB | -87% |
+| sharm-constantine--fg | 1,053 KB (-32%) | 256 KB | -83% |
+| azerbaidjan--bg | 321 KB (-39%) | 74 KB | -86% |
+| azerbaidjan--fg | 557 KB (-49%) | 175 KB | -84% |
+| cairo-sharm--bg | 216 KB (-43%) | 37 KB | -90% |
+| cairo-sharm--fg | 151 KB (-54%) | 38 KB | -88% |
+| istanbul--bg | 307 KB (-42%) | 78 KB | -85% |
+| istanbul--fg | 68 KB (-70%) | 19 KB | -92% |
+| kuala-lumpur--bg | 472 KB (-40%) | 135 KB | -83% |
+| kuala-lumpur--fg | 235 KB (-55%) | 71 KB | -86% |
+| **Total** | 4,122 KB (was 7,242) | 1,043 KB | **-86% mobile** |
+
+**2. `<picture>` + `<source>` wiring in scroll-hero.js**
+
+Refactored `buildPictureLayer()` helper that builds:
+```html
+<picture class="scroll-hero__bg" aria-hidden="true">
+  <source media="(max-width: 768px)" srcset="...--bg--mobile.webp" type="image/webp">
+  <source media="(max-width: 768px)" srcset="...--bg--mobile.jpg"  type="image/jpeg">
+  <source                            srcset="...--bg.webp"          type="image/webp">
+  <img src="...--bg.jpg" alt="" loading="eager" fetchpriority="high" decoding="async" sizes="100vw">
+</picture>
+```
+
+Browser auto-picks: WebP if supported, mobile-cropped if viewport ≤768px, JPG fallback if WebP unsupported. Old browsers transparently get JPG. No JS feature detection.
+
+CSS update: `.scroll-hero__bg > img` and `.scroll-hero__media > img` get `position: absolute; inset: 0; width/height: 100%; object-fit: cover` so the inner `<img>` fills the picture container while parent transforms (scale, translate, opacity) stay GPU-composited.
+
+**3. Lazy-load + async decode for non-hero images**
+
+`_v17_lazy_images.py` adds `loading="lazy"` and `decoding="async"` to all 27 non-hero `<img>` tags across 6 pages. Saves ~384 KB (3 hotel JPGs) from initial paint on each trip page; saves more on homepage where multiple destination thumbnails are below fold.
+
+**4. Defer render-blocking scripts**
+
+`_v17_defer_scripts.py` adds `defer` to `calculator.js` and `booking-form.js` on all 5 trip pages. Both scripts have proper DOMContentLoaded guards, so deferring is safe (verified). 10 deferrals total. FCP improves on slow connections.
+
+**5. Pause cobe globe when off-screen**
+
+Added IntersectionObserver in `globe.js` (lines ~273): when the globe stage scrolls out of viewport, set `paused = true` (freezes rotation in onRender callback) and add `.is-paused` class (CSS sets `visibility: hidden` which the browser compositor uses to skip paint entirely). When it scrolls back into view, resume.
+
+CSS in `_v17_perf.css`: `.globe-stage.is-paused { visibility: hidden; }` plus belt-and-braces transform/opacity drops for Safari.
+
+Saves continuous WebGL render cost (the cobe rAF loop runs even when offscreen by default) — significant CPU/GPU savings on the homepage when the user scrolls below the hero.
+
+### Estimated impact
+
+| Scenario | Before | After | Delta |
+|---|---|---|---|
+| Desktop first paint (sharm-constantine) | ~3,400 KB | ~2,000 KB | **−41%** |
+| Mobile first paint (sharm-constantine) | ~3,400 KB | ~640 KB | **−81%** |
+| Below-fold images load | eager (blocking) | lazy (deferred) | -384 KB initial |
+| Off-screen globe GPU/CPU | continuous | paused | ~steady-state savings |
+| FCP (slow 3G estimate) | ~3-4 s | ~1-2 s | -50% |
+
+### Files added / changed
+
+**New:**
+- `_v17_optimize_heroes.py` (Pillow-based WebP + mobile crop generator)
+- `_v17_lazy_images.py` (lazy + decoding=async migration)
+- `_v17_defer_scripts.py` (script defer migration)
+- `_v17_perf.css` (picture/img layer rules + globe pause CSS)
+- 30 new image files in `site/assets/images/heroes-v2/`: 10 desktop WebP, 10 mobile JPG, 10 mobile WebP
+
+**Modified:**
+- `site/assets/js/scroll-hero.js` — `buildPictureLayer()` helper replaces the old `bg.style.backgroundImage = ...` divs
+- `site/assets/js/globe.js` — IntersectionObserver pause when off-screen
+- `site/assets/css/styles.css` — appended v17 layer (8,285 → 8,356 lines)
+- All 6 pages — `defer` on calculator.js + booking-form.js (where applicable), 27 lazy/decoding attrs
+
+### Verified
+
+- ✅ `<picture>` element built; `<img>` inside with `currentSrc` ending in `.webp` (desktop)
+- ✅ Mobile viewport (resize to 375): currentSrc ends in `--mobile.webp`
+- ✅ Title, eyebrow, caption, skip button all render at p=0
+- ✅ Background photo renders behind centre media (verified by hiding media)
+- ✅ `defer` attribute present on calculator.js + booking-form.js script tags
+- ✅ `window.__calcState` initialized after defer-scripts execute
+- ✅ Globe pause CSS applied via `.is-paused` class on off-screen scroll
+
+### Things deferred for later
+
+- **CSS dead-code elimination** — `styles.css` is 8,356 lines (234 KB raw, 44 KB gzipped). Cleanup would mean diffing v1→v17 layers for redundant selectors. Significant effort, modest gain (gzipped is already small). Defer.
+- **Critical CSS inlining** — splits the CSS into above-the-fold + async. ~30% FCP win possible but adds build complexity. Defer.
+- **Service worker hash-based cache** — current sw.js caches by URL; could use content-hashed assets for far-future caching. Out of scope for this pass.
+
+---
+
 ## Phase 1.10 · Design audit selective fixes (v16) — ✅ COMPLETE
 
 Date: 2026-05-06. Triggered by an external design-system audit (12 sections covering colour palette, typography, components, page-by-page issues, accessibility, SEO, performance). Same playbook as v15: reality-check first, then act on the genuine items.

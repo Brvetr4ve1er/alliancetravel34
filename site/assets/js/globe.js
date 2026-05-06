@@ -271,6 +271,33 @@ async function init() {
     }, 220);
   }, { passive: true });
 
+  /* Pause globe when offscreen.
+     Cobe runs its own internal rAF; when the globe scrolls below the viewport
+     (or to a different page section), there's no point spending GPU/CPU on it.
+     We freeze rotation via the `paused` flag (already used for drag) and add
+     a CSS class that flips visibility: hidden — modern browsers' compositors
+     skip paint for hidden subtrees, so the GPU work effectively stops.
+
+     IntersectionObserver with rootMargin:0 means "only when even one pixel is
+     visible". As soon as the user scrolls back, we resume. Dirt cheap. */
+  if ('IntersectionObserver' in window) {
+    let wasVisible = true;
+    const visObs = new IntersectionObserver((entries) => {
+      const visible = entries[0]?.isIntersecting ?? true;
+      if (visible === wasVisible) return;
+      wasVisible = visible;
+      if (visible) {
+        stage.classList.remove('is-paused');
+        // Resume rotation only if the user isn't currently dragging
+        if (!pointerStart) paused = false;
+      } else {
+        stage.classList.add('is-paused');
+        paused = true;
+      }
+    }, { rootMargin: '50px' });
+    visObs.observe(stage);
+  }
+
   // Polaroid overlays — fade in once the globe has loaded
   setTimeout(() => {
     document.querySelectorAll('.globe-polaroid').forEach(el => el.classList.add('is-ready'));

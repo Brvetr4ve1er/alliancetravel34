@@ -31,6 +31,60 @@
   }
 
   /**
+   * Build a <picture> with WebP-first sources + mobile-cropped variants,
+   * containing an <img> as the visible element. The <picture> itself gets
+   * the className passed in, so the existing CSS for `.scroll-hero__bg`
+   * and `.scroll-hero__media` keeps working — it just targets a <picture>
+   * element now instead of <div>, with the <img> inside set to fill via
+   * object-fit (handled in CSS).
+   *
+   * Expects the source path to point to a .jpg under heroes-v2/ — derives
+   * the .webp / --mobile.jpg / --mobile.webp neighbours from that path.
+   * Falls back gracefully if those neighbours don't exist (browsers skip
+   * <source> elements whose URLs 404 only when fetched, so harmless).
+   */
+  function buildPictureLayer(className, srcRelative, alt, ariaHidden, fetchPriority, sizes) {
+    if (!srcRelative) {
+      var empty = document.createElement('div');
+      empty.className = className;
+      if (ariaHidden) empty.setAttribute('aria-hidden', 'true');
+      return empty;
+    }
+    // Resolve the src against document.baseURI (so relative paths from the
+    // HTML resolve correctly; CSS-resolved URLs would be relative to styles.css)
+    var absSrc = new URL(srcRelative, document.baseURI).href;
+    var absBase = absSrc.replace(/\.jpg$/i, '');
+
+    var picture = document.createElement('picture');
+    picture.className = className;
+    if (ariaHidden) picture.setAttribute('aria-hidden', 'true');
+
+    function addSource(srcset, type, media) {
+      var s = document.createElement('source');
+      s.srcset = srcset;
+      s.type = type;
+      if (media) s.media = media;
+      picture.appendChild(s);
+    }
+    // Mobile WebP, mobile JPG, then desktop WebP. Browser picks the first
+    // <source> whose media matches AND whose type it supports.
+    addSource(absBase + '--mobile.webp', 'image/webp', '(max-width: 768px)');
+    addSource(absBase + '--mobile.jpg',  'image/jpeg', '(max-width: 768px)');
+    addSource(absBase + '.webp',         'image/webp');
+
+    var img = document.createElement('img');
+    img.src = absSrc;
+    img.alt = alt || '';
+    img.decoding = 'async';
+    if (fetchPriority) img.fetchPriority = fetchPriority;
+    img.loading = 'eager';
+    if (sizes) img.sizes = sizes;
+    picture.appendChild(img);
+
+    return picture;
+  }
+
+  /**
    * Build the sticky-scrub markup inside an existing <section class="scroll-hero">.
    * The data-* attributes drive the content. The pre-existing
    * <div class="scroll-hero__continuation"> is moved AFTER the scrub area
@@ -48,10 +102,9 @@
     var prompt = section.dataset.prompt || 'Faites défiler';
     var skipText = section.dataset.skip || 'Passer';
 
-    // Resolve URLs against the document baseURI so relative paths from the
-    // HTML (e.g. ../assets/...) resolve correctly when set inline via JS.
-    var bgURL = bg ? new URL(bg, document.baseURI).href : '';
-    var fgURL = fg ? new URL(fg, document.baseURI).href : '';
+    // (URL resolution handled inside buildPictureLayer below; passed-in
+    // relative paths from data-bg/data-fg get resolved against document.baseURI
+    // so they remain valid no matter where styles.css lives.)
 
     // Title split: explicit data-title-pre/post wins, else split on first space.
     var explicitPre = section.dataset.titlePre;
@@ -86,18 +139,18 @@
     pinned.className = 'scroll-hero__pinned';
     scrub.appendChild(pinned);
 
-    var bgEl = document.createElement('div');
-    bgEl.className = 'scroll-hero__bg';
-    bgEl.setAttribute('aria-hidden', 'true');
-    if (bgURL) bgEl.style.backgroundImage = 'url("' + bgURL + '")';
-    pinned.appendChild(bgEl);
+    // Background + foreground use <picture><source><img> rather than CSS
+    // background-image. Lets the browser pick WebP-or-JPG and mobile-or-desktop
+    // automatically, cutting the hero from ~3 MB JPG to ~400 KB WebP on mobile.
+    pinned.appendChild(buildPictureLayer('scroll-hero__bg', bg, /*alt*/ '', /*ariaHidden*/ true, /*priority*/ 'high', /*sizes*/ '100vw'));
 
-    var mediaEl = document.createElement('div');
-    mediaEl.className = 'scroll-hero__media';
-    mediaEl.setAttribute('role', 'img');
-    mediaEl.setAttribute('aria-label', title || pre + ' ' + post);
-    if (fgURL) mediaEl.style.backgroundImage = 'url("' + fgURL + '")';
-    pinned.appendChild(mediaEl);
+    var mediaPic = buildPictureLayer('scroll-hero__media', fg, /*alt*/ title || (pre + ' ' + post), /*ariaHidden*/ false, /*priority*/ 'high',
+      /*sizes*/ '(max-width: 768px) 86vw, 78vw');
+    if (mediaPic) {
+      mediaPic.setAttribute('role', 'img');
+      mediaPic.setAttribute('aria-label', title || pre + ' ' + post);
+    }
+    pinned.appendChild(mediaPic);
 
     if (eyebrow) {
       var eyebrowEl = document.createElement('div');
