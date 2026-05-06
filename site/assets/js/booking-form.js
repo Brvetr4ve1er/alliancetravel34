@@ -16,9 +16,10 @@ const fmt = (n) =>
 /* ─── HTML Template ───────────────────────────────────────────── */
 const FORM_HTML = `
 <div class="container">
-  <div class="section-head">
-    <p class="section-head__eyebrow">Demande de réservation</p>
-    <h2 class="section-head__title">Composez <em>votre dossier</em></h2>
+  <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
+    <span class="phase-marker"><span class="phase-marker__num">4</span><span class="phase-marker__label">Réserver par WhatsApp</span></span>
+    <p class="section-head__eyebrow">Composez votre dossier</p>
+    <h2 class="section-head__title">Votre <em>réservation</em></h2>
     <p class="section-head__sub">
       Renseignez vos informations, importez les copies de passeports,
       et un message complet sera généré automatiquement.

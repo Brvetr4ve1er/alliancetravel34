@@ -38,6 +38,46 @@ Plus a parallel cleanup branch:
 
 ---
 
+## Phase 1.6 · Hierarchy & UX audit pass (v12) — ✅ COMPLETE
+
+Date: 2026-05-06. Triggered by an 8-section UX critique covering page flow, visual hierarchy, layout/spacing, typography, interaction cues, IA dedup, trust band, and cross-sell/footer.
+
+**Output:** one new CSS layer (`_v12_hierarchy.css`, ~520 lines, appended to `site/assets/css/styles.css`), one migration script (`_v12_propagate.py`), targeted HTML edits across all 5 trip pages + homepage, and JS template updates in `booking-form.js` + `enhance-pro.js`.
+
+| Critique area | What changed | Where |
+|---|---|---|
+| **1. Page flow** | Added 4-phase funnel markers (Découvrir → Comparer les hôtels → Calculer mon prix → Réserver par WhatsApp) as accent-tinted pills above each section head. Phase 4 lives inside `booking-form.js` template so it auto-renders on all pages. | `.phase-marker` CSS + per-page section heads + `booking-form.js:18-22` |
+| **2. Visual hierarchy** | Hero price block elevated to a bounded glass panel with own "À PARTIR DE" tiny-caps label (via CSS `::before`), big accent-color number, and meta line below. Single dominant focal point per hero. | `.hero__price` rule in v12 layer + per-page hero markup normalized to `<strong>NUM DA</strong><span>meta</span>` |
+| **3. Layout & spacing** | FAQ open-state gets a Q/A separator border + breathing-room padding. Hotel cards: structured price block with explicit label/strong/meta children. Calculator gets sticky bound recap panel with accent-tinted total band. Section vertical rhythm normalized via `clamp()` padding. | v12 layer: `.faq-item.open .faq-a`, `.hotel-card__price-*`, `.breakdown__total`, `section.section` |
+| **4. Typography** | Section eyebrows + phase-marker labels + amenity pills + hotel ribbons all normalized to uppercase + tracking. Reduced inline-bold by promoting structure (lists, cards) over mid-paragraph emphasis. | v12 layer: `.section-head__eyebrow`, `.amenity-pill`, `.hotel-card__ribbon` |
+| **5. Interaction cues** | Tier filters changed from underlined tabs to pill chips with active accent fill. Steppers got 38px rounded-square buttons with hover scale. Hotel "Sélectionner cet hôtel" promoted to solid-accent primary CTA with arrow. Date-range and room-type controls re-styled as proper chips/segmented controls. | v12 layer: `.tier-tab`, `.stepper__btn`, `.hotel-card__cta`, `.date-chip`, `.seg-opt` |
+| **6. IA dedup** | Stripped redundant literal "À partir de " text from each page's hero (CSS supplies it via `::before` now). FAQ children-pricing answer restructured from inline run-on to a 2-column `<ul class="faq-prices">` grid. Removed the duplicate "trust strip" below hero (was echoing the highlights section). | v12 layer: `.hero__price::before`, `.faq-prices`, `.hero__strip {display:none}` + per-page HTML |
+| **7. Trust** | Stat cards + testimonial cards normalized to bounded containers with consistent inner spacing, larger-accent number contrast against caption, avatar circle treatment. | v12 layer: `.stat-card`, `.testi-card` |
+| **8. Cross-sell + footer** | `.related-section` (cross-sell) demoted: smaller titles, smaller cards, less padding so it doesn't compete with the booking CTA. Footer phones grouped into 3 explicit blocks (WhatsApp / Téléphone / Adresse) with icons. | v12 layer: `.related-section`, `.phone-group` + per-page footer HTML |
+
+### Side fixes during the pass
+
+- `enhance-pro.js` sticky context bar was reading `.hero__price` textContent (which now concatenates strong+span without space → "190.000 DApar personne…"). Fixed to read `.hero__price strong` instead.
+- All 4 trip page hero `<strong>` elements normalized to include the "DA" suffix so the sticky bar shows complete prices.
+- One azerbaidjan hotel card had a non-numeric "Voir tarifs" placeholder that the regex skipped; manually restructured as `Inclus dans le package / 2 nuits Gabala / tarif unifié — voir calculateur`.
+
+### Verification
+
+- Browser-verified all 5 trip pages in dark mode at desktop width: hero price block + phase markers + tier-chip filters + hotel cards + FAQ list rendering correctly.
+- Identified pre-existing **light-mode hero overlay contrast** issue on cairo-sharm specifically (bright pyramid photo + light cream overlay → text washed out). Not v12-caused; flagged for future fix.
+
+### Files changed
+
+- `_v12_hierarchy.css` (NEW, ~520 lines, scratch source)
+- `_v12_propagate.py` (NEW, migration script — idempotent, can re-run)
+- `site/assets/css/styles.css` (appended v12 layer; 6625 → 7352 lines)
+- `site/index.html` (footer phone groups)
+- `site/cairo-sharm/index.html`, `site/azerbaidjan/index.html`, `site/istanbul/index.html`, `site/kuala-lumpur/index.html`, `site/sharm-constantine/index.html` (hero price normalization, hotel card restructure, phase markers, footer groups, FAQ prices on sharm-constantine)
+- `site/assets/js/booking-form.js` (Phase 4 marker in form template)
+- `site/assets/js/enhance-pro.js` (sticky bar reads `.hero__price strong`)
+
+---
+
 ## Phase 2 · Refactoring — ⏳ DEFERRED
 
 ### Why deferred

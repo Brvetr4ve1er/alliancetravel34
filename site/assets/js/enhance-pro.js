@@ -299,12 +299,16 @@
     // Trip metadata (date range / duration) — look for hero subtitle / date strings
     const meta = document.querySelector('.hero__sub, .hero__lede, .hero__meta')?.textContent?.trim()?.slice(0, 60) || '';
 
-    // Price: look for known price-display elements or use a sensible fallback
-    const priceEl =
-      document.querySelector('[data-price-from]') ||
-      document.querySelector('.hero__price') ||
-      document.querySelector('.price-from__num');
-    const priceText = priceEl?.dataset?.priceFrom || priceEl?.textContent?.trim() || '';
+    // Price: look for known price-display elements or use a sensible fallback.
+    // Prefer the inner <strong> of .hero__price (just the number) so the sticky
+    // bar can compose its own "À partir de" prefix without doubling-up.
+    const priceFromAttr = document.querySelector('[data-price-from]')?.dataset?.priceFrom;
+    const heroPriceStrong = document.querySelector('.hero__price strong');
+    const priceFromNum = document.querySelector('.price-from__num');
+    const priceText = priceFromAttr
+      || heroPriceStrong?.textContent?.trim()
+      || priceFromNum?.textContent?.trim()
+      || '';
 
     // WhatsApp link: re-use the canonical one
     const navCta = document.querySelector('a.nav-cta[href*="wa.me"]');
