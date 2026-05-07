@@ -38,6 +38,67 @@ Plus a parallel cleanup branch:
 
 ---
 
+## Phase 1.13 · Trip cards + colour hierarchy refresh (v19) — ✅ COMPLETE
+
+Date: 2026-05-07. Three asks bundled together:
+
+1. **Hotel-card price stripe — removed.** v18 shipped a mint highlight bar behind the price number (fake-marker effect). On small renders it hurt readability. Deleted the rule. The bold number is the focal point on its own.
+
+2. **Homepage trip cards — image-fill + hover-reveal pattern** adapted from a shadcn/lucide reference. Same markup hooks (`.trip-card`, `.trip-card__hero`, `.trip-card__body`, `.trip-card__cta`) repurposed via CSS:
+
+   - **Photo fills the entire card** edge-to-edge, scales 1.08 on hover (600ms ease)
+   - **Multi-stop gradient overlay** at the bottom for legibility (25% → 92% black at 0% / 35% / 75% / 100%)
+   - **Monument SVG icon** top-left in a frosted-glass disc — pyramid for Cairo+Sharm, sun+waves for Sharm-Constantine, flame towers for Azerbaidjan, dome+minarets for Istanbul, twin towers for Kuala Lumpur. Each rotates -6° + scales on hover.
+   - **Title + subtitle** sit at the bottom by default; on hover they slide UP 58px so the price+CTA strip can slide in below from `translateY(20px)` + `opacity:0`
+   - **Price chip** ("À PARTIR DE / 190 000 DA") + **white pill CTA** ("Voir ce voyage →") reveal on hover with arrow translation
+   - **Bottom region accent strip** (per-trip colour) animates `scaleX(0)→1` from left on hover
+   - **4:5 portrait aspect ratio** in a `repeat(auto-fit, minmax(280px, 1fr))` grid — 3-up on desktop, 2-up tablet, 1-up mobile
+   - Per-region accent: cairo-sharm amber `#e0a04a`, azerbaijan crimson `#e07b5a`, istanbul teal `#5cb1c1`, malaysia mint `#8acaa1`, sharm coral `#5cc4c1`
+   - **Mobile + reduced-motion fallbacks** show the CTA + title-translated state by default since hover isn't available
+   - **Touch-device handling**: same as reduced-motion — CTAs always visible
+   
+   Per-trip price chip injected as a real `<span>` (CSS `attr()` can only read the element's own attributes, and `data-from` lives on the `.trip-card` root which is the parent of `.trip-card__cta`).
+
+3. **Colour hierarchy refresh** (`_v19_palette.css`). Three goals:
+
+   **a. Warmer dark mode.** `--bg: #000000` → `--bg: #0a0f15`. Pure black was clinical; the new tinted near-black reads editorial. Six-layer ladder: `bg-deep / bg / bg-low / bg-2 / bg-card / bg-elev` so cards have proper visible elevation against the page.
+   
+   **b. Same-temperature text ladder.** Original was warm `#efe8df` → cool `#b8bac4` (jarring temperature jump). Now `#f3ede2` (warm cream) → `#b6ada0` (warm beige) → `#7a7268` (warm gray). All three siblings.
+   
+   **c. Mint discipline.** New tokens `--mint-soft / --mint-deep / --mint-glow / --ring / --mint-dim` give chrome a quieter sibling. `--accent` stays mint-tied for primary CTAs, but `--mint-dim` (10% mint) is what borders/pads/halos use — so we stop painting every focus ring and pill border in the same loud green. `.amenity-pill`, `.dep-badge`, `.phase-marker` all rerouted to `--mint-dim` background + `--accent` text + `--border-mint` border.
+   
+   Borders globally subtler (default `rgba(255,255,255,.06)` was `#1e2025`). Card surfaces visibly elevated. Focus rings use the new unified `--ring` token. Light mode flips colours while preserving the same ladder + temperature consistency, with mint darkened to `#237a4a` for AA contrast on cream (matching the v12 fix).
+   
+   Surface elevation tokens `[data-elev="card|low|2|elev|glass"]` available for explicit hooks. Selection highlight + scrollbar styling pick up the new tokens too.
+
+### Files
+
+**New:**
+- `_v19_trip_cards.css` (~280 lines)
+- `_v19_palette.css` (~180 lines)
+- `_v19_inject_monuments.py` (~180 lines)
+
+**Modified:**
+- `site/assets/css/styles.css` — appended v19 trip-cards + v19 palette layer (8,786 → 9,346 lines). v18 hotel-card price-stripe rule removed inline.
+- `site/index.html` — 5 trip cards now have `data-from`, `<div class="trip-card__monument">SVG</div>`, and `<span class="trip-card__cta-price">` injected.
+- `docs/ROADMAP.md` — Phase 1.13 entry.
+
+### Verified
+
+- ✅ 5 trip cards all render with image-fill + monument icons + price text
+- ✅ Force-hover state confirms title slides up, CTA + price reveal at bottom
+- ✅ Body bg switched from `#000` to `#0a0f15` (warm-tinted)
+- ✅ Card surface (`--bg-card`) now `#161e28` (visible elevation, was `rgba(255,255,255,.04)`)
+- ✅ Text ladder warm-temperature throughout (`#f3ede2 / #b6ada0 / #7a7268`)
+- ✅ Hotel card prices no longer have the mint highlight stripe behind them
+
+### Things to watch
+
+- The trip-card hover effect requires a positioned ancestor for `.trip-card__cta` (an `<a>` sibling of `.trip-card__body`). Solved with `.trip-card { position: relative !important }` — without that, the absolutely-positioned CTA escapes the card. Keep this.
+- The price chip is injected as real DOM by `_v19_inject_monuments.py` rather than CSS `attr()` — re-running the script is idempotent (skips if `trip-card__cta-price` already present).
+
+---
+
 ## Phase 1.12 · Neo-brutalist hotel cards + WhatsApp cleanup (v18) — ✅ COMPLETE
 
 Date: 2026-05-07. Triggered by user request: "I want hotel cards in this style adapted to the website's design system, and find unnecessary WhatsApp buttons left over from previous edits and remove them."
