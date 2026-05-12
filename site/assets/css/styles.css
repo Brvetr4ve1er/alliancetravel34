@@ -159,9 +159,9 @@ select {
   --ease-spring: cubic-bezier(.22, 1, .36, 1);   /* same curve, semantic alias */
   --ease-snap:   cubic-bezier(.4,  0, .2, 1);    /* taps & chrome (Material)   */
   --ease-bounce: cubic-bezier(.34, 1.5, .64, 1); /* DELIGHT ONLY — toast, counter punch */
-  /* Legacy aliases for components that haven't migrated yet */
+  /* Legacy alias kept while a few v6 transitions still reference it.
+     --ease-out-quart deleted in phase H — had zero consumers. */
   --ease-spring-soft: var(--ease-spring);
-  --ease-out-quart:   var(--ease-spring);
 
   /* ── Legacy color shims (literal values matching baseline) ─────── */
   --navy-hov:     #003d72;                    /* = navy-soft */
@@ -8134,30 +8134,9 @@ section.section.phase-block + section.section:not(.phase-block) {
   text-shadow: none;
 }
 
-/* ── P1-D · Calculator CTA explainer ────────────────────────
-   "Calculer mon prix" is a sophisticated interactive feature.
-   Audit flagged it as opaque — users don't know what happens on click.
-   Add a one-line clarifier directly below the hero CTAs. */
-.scroll-hero__continuation .hero__ctas + .calc-cta-hint,
-.scroll-hero__continuation .calc-cta-hint {
-  display: block;
-  margin: 12px auto 0;
-  font-size: .75rem;
-  color: var(--txt-3, #8a99a8);
-  text-align: center;
-  max-width: 36ch;
-  line-height: 1.45;
-  font-style: italic;
-}
-.scroll-hero__continuation .calc-cta-hint kbd {
-  font-family: inherit;
-  font-style: normal;
-  background: var(--accent-dim, rgba(156, 232, 178, .12));
-  color: var(--accent, #9ce8b2);
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-weight: 600;
-}
+/* v21 phase H: .calc-cta-hint rules removed — HTML element was
+   deleted from all 5 trip pages in phase E.2 (calculator UI is
+   self-explanatory, didn't need the explainer copy). */
 
 /* ── P2-C · Destination filter pills on homepage ───────────
    Sits above the trip-card grid. Active state matches tier-tab styling.
@@ -9253,7 +9232,6 @@ body { background: var(--bg); color: var(--txt-1); }
 .bform-note,
 .contact-form__hint,
 .bf-trip-empty,
-.calc-cta-hint,
 .hero-fineprint {
   color: var(--txt-3);
 }
