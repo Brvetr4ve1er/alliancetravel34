@@ -1602,7 +1602,7 @@ select {
 .faq-a {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 280ms ease, padding 280ms ease;
+  transition: max-height var(--t-base) ease, padding var(--t-base) ease;
   font-size: .9rem;
   color: var(--txt-2);
   line-height: 1.65;
@@ -1783,7 +1783,7 @@ select {
 }
 
 .fade-up {
-  animation: fadeUp 600ms ease-out both;
+  animation: fadeUp var(--t-slow) ease-out both;
 }
 
 .fade-up--d1 {
@@ -1795,7 +1795,7 @@ select {
 }
 
 .fade-up--d3 {
-  animation-delay: 240ms;
+  animation-delay: var(--t-fast);
 }
 
 /* Reduced motion */
@@ -1921,7 +1921,7 @@ select {
 }
 
 .highlight-flash {
-  animation: flash 600ms ease;
+  animation: flash var(--t-slow) ease;
 }
 
 @keyframes flash {
@@ -2515,8 +2515,8 @@ select {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 700ms var(--ease-spring),
-    transform 700ms var(--ease-spring);
+  transition: opacity var(--t-slow) var(--ease-spring),
+    transform var(--t-slow) var(--ease-spring);
 }
 
 .reveal.visible {
@@ -2901,7 +2901,7 @@ select {
   box-shadow: var(--elev-2);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition: opacity var(--t-fast) ease, transform var(--t-fast) ease;
   z-index: 10000;
 }
 
@@ -3947,7 +3947,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 
 .hl-card:hover .hl-card__icon {
   transform: rotate(-6deg) scale(1.05);
-  transition: transform 280ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring);
 }
 
 .bform-block__title svg { transition: transform var(--t-fast) ease; }
@@ -4458,7 +4458,7 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
   object-fit: cover;
   filter: saturate(0.85) brightness(0.55);
   opacity: 0.55;
-  transition: opacity 600ms ease, filter 600ms ease;
+  transition: opacity var(--t-slow) ease, filter var(--t-slow) ease;
   animation: photo-fade 12s ease-in-out infinite;
 }
 
@@ -4599,8 +4599,8 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
   opacity: 0;
   transform: translate3d(0, 24px, 0);
   transition:
-    opacity 700ms var(--ease-spring),
-    transform 700ms var(--ease-spring);
+    opacity var(--t-slow) var(--ease-spring),
+    transform var(--t-slow) var(--ease-spring);
   transition-delay: calc(var(--d, 0) * 70ms);
   will-change: opacity, transform;
 }
@@ -4700,7 +4700,7 @@ a.btn--ghost,
   background: linear-gradient(90deg, transparent, var(--accent, var(--mint)), transparent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 600ms var(--ease-spring);
+  transition: transform var(--t-slow) var(--ease-spring);
   z-index: 2;
   pointer-events: none;
 }
@@ -4715,8 +4715,8 @@ section { scroll-margin-top: 90px; }
   opacity: 0;
   transform: translate3d(0, 20px, 0);
   transition:
-    opacity 800ms var(--ease-spring),
-    transform 800ms var(--ease-spring);
+    opacity var(--t-cinema) var(--ease-spring),
+    transform var(--t-cinema) var(--ease-spring);
   will-change: opacity, transform;
 }
 .section-head.is-in .section-head__eyebrow { opacity: 1; transform: none; transition-delay: 0ms; }
@@ -4800,7 +4800,7 @@ section { scroll-margin-top: 90px; }
   background: var(--mint);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 380ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring);
 }
 .nav-links a:hover::after,
 .nav-links a:focus-visible::after {
@@ -4821,7 +4821,7 @@ section { scroll-margin-top: 90px; }
   100% { transform: scale(1); }
 }
 [data-counter].is-in {
-  animation: counter-punch 720ms var(--ease-spring-soft) both;
+  animation: counter-punch var(--t-cinema) var(--ease-spring-soft) both;
   display: inline-block;
 }
 
@@ -4858,7 +4858,7 @@ textarea:focus-visible {
 img.fx-img {
   opacity: 0;
   transform: scale(1.02);
-  transition: opacity 600ms var(--ease-spring), transform 1.2s var(--ease-spring);
+  transition: opacity var(--t-slow) var(--ease-spring), transform 1.2s var(--ease-spring);
 }
 img.fx-img.loaded {
   opacity: 1;
@@ -4992,7 +4992,7 @@ section + section.is-in::before { width: 60%; }
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transform: translateY(-100%);
-  transition: transform 380ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring);
   pointer-events: none;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
@@ -5086,7 +5086,7 @@ section + section.is-in::before { width: 60%; }
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 280ms ease;
+  transition: opacity var(--t-base) ease;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
@@ -5101,7 +5101,7 @@ section + section.is-in::before { width: 60%; }
   border-radius: 6px;
   box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.7);
   transform: scale(0.96);
-  transition: transform 360ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring);
 }
 .lightbox.is-open .lightbox__img {
   transform: scale(1);
@@ -5167,7 +5167,7 @@ section + section.is-in::before { width: 60%; }
 /* Hover affordance on images that participate in the lightbox */
 img.lb-target {
   cursor: zoom-in;
-  transition: filter 220ms ease, transform 600ms var(--ease-spring);
+  transition: filter var(--t-fast) ease, transform var(--t-slow) var(--ease-spring);
 }
 img.lb-target:hover {
   filter: brightness(1.05) saturate(1.05);
@@ -5180,7 +5180,7 @@ img.lb-target:hover {
   overflow: hidden;
   background: var(--bg-card, rgba(255, 255, 255, 0.02));
   border: 1px solid var(--border, rgba(255, 255, 255, 0.06));
-  transition: border-color 220ms ease, background 220ms ease;
+  transition: border-color var(--t-fast) ease, background var(--t-fast) ease;
 }
 [data-accordion] + [data-accordion] {
   margin-top: 10px;
@@ -5207,7 +5207,7 @@ img.lb-target:hover {
   border-right: 2px solid var(--mint, currentColor);
   border-bottom: 2px solid var(--mint, currentColor);
   transform: rotate(45deg) translate(-2px, -2px);
-  transition: transform 280ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring);
   flex-shrink: 0;
 }
 [data-accordion][open] summary::after {
@@ -5375,7 +5375,7 @@ img.lb-target:hover {
   box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.5);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 280ms ease, transform 280ms var(--ease-spring);
+  transition: opacity var(--t-base) ease, transform var(--t-base) var(--ease-spring);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .fab-whatsapp__tooltip::after {
@@ -5490,7 +5490,7 @@ img.lb-target:hover {
     rgba(0, 0, 0, 0.45) 90%,
     rgba(0, 0, 0, 0.55) 100%);
   pointer-events: none;
-  transition: opacity 400ms ease;
+  transition: opacity var(--t-base) ease;
   opacity: 0.85;
   z-index: 1;
 }
@@ -5502,13 +5502,13 @@ img.lb-target:hover {
 .trips-grid:hover .trip-card:not(:hover) {
   opacity: 0.7;
   filter: saturate(0.85);
-  transition: opacity 380ms ease, filter 380ms ease;
+  transition: opacity var(--t-base) ease, filter var(--t-base) ease;
 }
 .trips-grid:hover .trip-card:hover {
   opacity: 1;
   filter: saturate(1.05);
 }
-.trips-grid .trip-card { transition: opacity 380ms ease, filter 380ms ease, transform var(--t-base) var(--ease-spring); }
+.trips-grid .trip-card { transition: opacity var(--t-base) ease, filter var(--t-base) ease, transform var(--t-base) var(--ease-spring); }
 @media (hover: none) {
   .trips-grid:hover .trip-card:not(:hover) { opacity: 1; filter: none; }
 }
@@ -5606,7 +5606,7 @@ img.lb-target:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 800ms var(--ease-spring);
+  transition: transform var(--t-cinema) var(--ease-spring);
 }
 .photo-strip__item:hover img {
   transform: scale(1.06);
@@ -5617,7 +5617,7 @@ img.lb-target:hover {
   inset: 0;
   background: rgba(0, 0, 0, 0.18);
   opacity: 0;
-  transition: opacity 240ms ease;
+  transition: opacity var(--t-fast) ease;
 }
 .photo-strip__item:hover::after { opacity: 1; }
 @media (max-width: 640px) {
@@ -5642,7 +5642,7 @@ img.lb-target:hover {
    Firefox <121 and older Safari. */
 body.has-sticky-bar .site-nav {
   transform: translateY(48px);
-  transition: transform 360ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring);
 }
 
 /* Class-based scroll lock used by the lightbox — non-destructive,
@@ -5718,7 +5718,7 @@ body.has-sticky-bar .site-nav {
      Until the globe loads, opacity stays 0. */
   opacity: 0;
   transform: translate(-50%, calc(-100% - 14px));
-  transition: opacity 220ms ease, filter 220ms ease;
+  transition: opacity var(--t-fast) ease, filter var(--t-fast) ease;
   z-index: 5;
   will-change: opacity, transform, filter, left, top;
 }
@@ -5834,7 +5834,7 @@ body.has-sticky-bar .site-nav {
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 600ms ease, transform 600ms var(--ease-spring);
+  transition: opacity var(--t-slow) ease, transform var(--t-slow) var(--ease-spring);
   z-index: 8;
   box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.5);
 }
@@ -5845,13 +5845,13 @@ body.has-sticky-bar .site-nav {
 .globe-hint.is-visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-  animation: globe-hint-bob 2.6s ease-in-out infinite 600ms;
+  animation: globe-hint-bob 2.6s ease-in-out infinite var(--t-slow);
 }
 .globe-hint.is-dismissed {
   opacity: 0 !important;
   transform: translateX(-50%) translateY(-6px) !important;
   animation: none !important;
-  transition: opacity 380ms ease, transform 380ms ease;
+  transition: opacity var(--t-base) ease, transform var(--t-base) ease;
 }
 @keyframes globe-hint-bob {
   0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -6141,7 +6141,7 @@ body.has-sticky-bar .site-nav {
   padding: var(--s7, 32px);
   background: linear-gradient(135deg, var(--bg-2, #0f1218), var(--bg, #0a0c12));
   z-index: 1;
-  transition: opacity 280ms ease;
+  transition: opacity var(--t-base) ease;
 }
 .amap-fallback > * { max-width: 480px; }
 
@@ -6451,7 +6451,7 @@ body.has-sticky-bar .site-nav {
   padding: var(--s7, 32px);
   background: linear-gradient(135deg, var(--bg-2, #0f1218), var(--bg, #0a0c12));
   z-index: 1;
-  transition: opacity 280ms ease;
+  transition: opacity var(--t-base) ease;
 }
 .tmap-fallback > * { max-width: 480px; }
 .tmap-fallback__title {
@@ -6528,7 +6528,7 @@ body.has-sticky-bar .site-nav {
   box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .55);
   transition: transform var(--t-fast) var(--ease-spring),
               background var(--t-fast) ease,
-              opacity 220ms ease;
+              opacity var(--t-fast) ease;
   opacity: 0;
   pointer-events: none;
 }
@@ -6608,7 +6608,7 @@ body.has-sticky-bar .site-nav {
   box-shadow: 0 2px 6px -1px rgba(0, 0, 0, .35);
   pointer-events: none;
   z-index: 4;
-  animation: tmap-stack-pop 380ms var(--ease-bounce) both;
+  animation: tmap-stack-pop var(--t-base) var(--ease-bounce) both;
 }
 @keyframes tmap-stack-pop {
   0%   { transform: scale(.4); opacity: 0; }
@@ -6653,14 +6653,14 @@ body.has-sticky-bar .site-nav {
 #algeria-map.is-isolating .amap-hq:not(.is-focused) {
   opacity: 0.32;
   filter: saturate(.5);
-  transition: opacity 240ms ease, filter 240ms ease;
+  transition: opacity var(--t-fast) ease, filter var(--t-fast) ease;
 }
 #trip-map .tmap-pin.is-focused,
 #trip-map .tmap-hub.is-focused,
 #algeria-map .amap-branch.is-focused,
 #algeria-map .amap-hq.is-focused {
   z-index: 25;
-  transition: filter 240ms ease;
+  transition: filter var(--t-fast) ease;
 }
 /* Halo behind the focused pin so it visibly "pops" out of the dim group */
 #trip-map .tmap-pin.is-focused .tmap-pin__dot,
@@ -8011,7 +8011,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 .info-card__chevron {
   flex-shrink: 0;
   color: var(--txt-3, #8a99a8);
-  transition: transform 220ms var(--ease-snap);
+  transition: transform var(--t-fast) var(--ease-snap);
 }
 
 /* ── Body (the expanded content) ──────────────────────────── */
@@ -8447,8 +8447,8 @@ picture.scroll-hero__media {
   box-shadow:
     8px 8px 0 var(--hc-shadow),
     inset 0 0 0 1px rgba(255, 255, 255, .03);
-  transition: transform 400ms var(--ease-spring),
-              box-shadow 400ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring),
+              box-shadow var(--t-base) var(--ease-spring);
   overflow: hidden;
   cursor: pointer;
   display: flex;
@@ -8519,7 +8519,7 @@ picture.scroll-hero__media {
   background-size: 8px 8px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 300ms ease;
+  transition: opacity var(--t-base) ease;
   z-index: 0;
 }
 .hotel-card:hover .hotel-card__body::before {
@@ -8540,7 +8540,7 @@ picture.scroll-hero__media {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 600ms var(--ease-spring);
+  transition: transform var(--t-slow) var(--ease-spring);
   filter: contrast(1.04) saturate(1.05);
 }
 .hotel-card:hover .hotel-card__photo {
@@ -8584,8 +8584,8 @@ picture.scroll-hero__media {
   border-radius: 4px;
   box-shadow: 3px 3px 0 var(--hc-shadow);
   transform: rotate(-3deg);
-  transition: transform 300ms var(--ease-spring),
-              box-shadow 300ms ease;
+  transition: transform var(--t-base) var(--ease-spring),
+              box-shadow var(--t-base) ease;
 }
 .hotel-card:hover .hotel-card__ribbon {
   transform: rotate(2deg) scale(1.06);
@@ -8762,7 +8762,7 @@ picture.scroll-hero__media {
     rgba(255, 255, 255, .35) 50%,
     transparent 100%
   );
-  transition: left 600ms ease;
+  transition: left var(--t-slow) ease;
   pointer-events: none;
 }
 
@@ -8892,8 +8892,8 @@ picture.scroll-hero__media {
     0 1px 0 rgba(255, 255, 255, .05) inset,
     0 10px 22px -12px rgba(0, 0, 0, .55),
     0 22px 44px -24px rgba(0, 0, 0, .35);
-  transition: transform 360ms var(--ease-spring),
-              box-shadow 360ms var(--ease-spring);
+  transition: transform var(--t-base) var(--ease-spring),
+              box-shadow var(--t-base) var(--ease-spring);
   cursor: pointer;
   font-family: inherit;
 }
@@ -8947,7 +8947,7 @@ picture.scroll-hero__media {
   height: 100% !important;
   object-fit: cover;
   object-position: center;
-  transition: transform 700ms var(--ease-spring);
+  transition: transform var(--t-slow) var(--ease-spring);
   filter: saturate(1.05);
 }
 
@@ -9006,7 +9006,7 @@ picture.scroll-hero__media {
   text-transform: uppercase !important;
   line-height: 1 !important;
   white-space: nowrap;
-  transition: border-color 280ms ease, background 280ms ease;
+  transition: border-color var(--t-base) ease, background var(--t-base) ease;
 }
 .trip-card__from > strong {
   display: block;
@@ -9038,9 +9038,9 @@ picture.scroll-hero__media {
   display: grid;
   place-items: center;
   color: var(--tc-fg);
-  transition: transform 360ms var(--ease-spring),
-              border-color 360ms ease,
-              background 360ms ease;
+  transition: transform var(--t-base) var(--ease-spring),
+              border-color var(--t-base) ease,
+              background var(--t-base) ease;
 }
 .trip-card:hover .trip-card__monument {
   transform: rotate(-4deg) scale(1.05);
@@ -9137,7 +9137,7 @@ picture.scroll-hero__media {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   white-space: nowrap;
-  transition: background 240ms ease, border-color 240ms ease, color 240ms ease;
+  transition: background var(--t-fast) ease, border-color var(--t-fast) ease, color var(--t-fast) ease;
 }
 
 .trip-card__cta > svg {
@@ -9147,7 +9147,7 @@ picture.scroll-hero__media {
   flex-shrink: 0;
   margin-left: 4px;
   color: var(--tc-fg);
-  transition: transform 240ms ease, color 240ms ease;
+  transition: transform var(--t-fast) ease, color var(--t-fast) ease;
 }
 
 .trip-card:hover .trip-card__cta > span:not(.trip-card__cta-price) {
@@ -9173,7 +9173,7 @@ picture.scroll-hero__media {
   z-index: 5;
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 580ms var(--ease-spring);
+  transition: transform var(--t-slow) var(--ease-spring);
 }
 .trip-card:hover::after {
   transform: scaleX(1);
@@ -9382,7 +9382,7 @@ body { background: var(--bg); color: var(--txt-1); }
   background: var(--bg);
   border: 1px solid var(--border-hi);
   border-radius: var(--r2, 10px);
-  transition: border-color 220ms ease, transform 220ms ease, background 220ms ease;
+  transition: border-color var(--t-fast) ease, transform var(--t-fast) ease, background var(--t-fast) ease;
 }
 .phone-card:hover {
   border-color: var(--border-mint);
