@@ -577,6 +577,55 @@
     }[c]));
   }
 
+  /* ─── 15. Pause-off-screen IntersectionObserver (v21 phase C.3) ───
+     The site keeps a lively cinematic feel (Q1=C in the cleanup survey),
+     but the Performance Contract forbids running ambient loops that
+     aren't visible. Any element marked with [data-pause-off-screen] (or
+     any of the high-cost ambient hosts below) gets `.is-paused` toggled
+     on/off based on viewport visibility. CSS rule:
+       .is-paused, .is-paused * { animation-play-state: paused !important; }
+     pairs with this and freezes every running keyframe inside the
+     element's subtree the moment it scrolls out.
+
+     Rationale: CSS keyframes still tick when off-screen (the browser
+     doesn't auto-pause them). On low-end devices this consumed up to
+     8 ms/frame for nothing. Pausing recovers that headroom for the
+     scroll itself.
+
+     What gets auto-observed (so HTML doesn't need editing):
+       • .home-hero — pauses paper plane + any other home-hero ambient
+       • .hero      — pauses ken-burns + twinkle + glow-pulse + drift-slow
+                       on trip pages
+       • #alliance-globe — pauses cobe's render loop indirectly via the
+                       opacity transition (cobe itself uses rAF; we mark
+                       its stage so any future CSS overlay animations
+                       pause too)
+       • [data-pause-off-screen] — explicit opt-in for region body
+                       backgrounds or future ambient elements
+  */
+  function initPauseOffScreen() {
+    if (!('IntersectionObserver' in window)) return;
+
+    const hosts = new Set();
+    document.querySelectorAll(
+      '.home-hero, .hero, #alliance-globe, [data-pause-off-screen]'
+    ).forEach(el => hosts.add(el));
+
+    if (!hosts.size) return;
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // `intersectionRatio === 0` is "fully off screen". A small slack
+        // (rootMargin) keeps things running as the element scrolls past
+        // the fold so the user sees the tail of the motion, not a snap.
+        const offScreen = !entry.isIntersecting;
+        entry.target.classList.toggle('is-paused', offScreen);
+      });
+    }, { rootMargin: '120px 0px' });
+
+    hosts.forEach((el) => obs.observe(el));
+  }
+
   /* ─── Boot ───────────────────────────────────────────────── */
   function boot() {
     // v6 motion layer
@@ -594,6 +643,9 @@
     initItineraryAccordion();
     initPressStrip();
     initValueProps();
+
+    // v21 phase C.3 — performance contract: pause ambient loops off-screen
+    initPauseOffScreen();
   }
 
   if (document.readyState === 'loading') {

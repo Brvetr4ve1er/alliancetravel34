@@ -1798,6 +1798,20 @@ select {
   animation-delay: var(--t-fast);
 }
 
+/* ── v21 phase C.3 — pause-off-screen plumbing ──────────────
+   enhance-pro.js's IntersectionObserver toggles `.is-paused` on any
+   ambient host (.home-hero, .hero, #alliance-globe, [data-pause-off-
+   screen]) when it scrolls out of view. This rule freezes every CSS
+   animation inside the subtree, recovering the frame budget the
+   browser would otherwise spend ticking off-screen keyframes.
+   Pairs with the Performance Contract in MOTION-CLEANUP-MASTER.md §0a. */
+.is-paused,
+.is-paused *,
+.is-paused *::before,
+.is-paused *::after {
+  animation-play-state: paused !important;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
