@@ -1,0 +1,21 @@
+# Alliance Travel — robots.txt (v21-phase-I.1)
+#
+# Standard crawl policy: allow everything by default. There are no
+# protected admin paths, no staging dirs that leak production data.
+# Asset directories (CSS/JS/images) are intentionally crawlable so
+# Google Images can surface our hero photography.
+
+User-agent: *
+Allow: /
+
+# Block known scraper bots that don't respect crawl-delay and ignore
+# the Allow directive while hammering the server. Add more here when
+# the access logs show abuse.
+User-agent: AhrefsBot
+Crawl-delay: 5
+
+User-agent: SemrushBot
+Crawl-delay: 5
+
+# Sitemap location — Google + Bing pick this up automatically.
+Sitemap: https://alliance-travel.dz/sitemap.xml

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!--
+    Alliance Travel — XML sitemap (v21-phase-I.1)
+
+    Generated 2026-05-11. lastmod dates reflect the latest substantive
+    content/SEO update per page. Update when content changes — Google
+    crawls more aggressively when lastmod is recent + accurate.
+
+    Image entries are included so Google Images surfaces our hero
+    photography. Per-page OG images live under /assets/images/og/.
+  -->
+
+  <!-- Homepage — highest priority, weekly content updates -->
+  <url>
+    <loc>https://alliance-travel.dz/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-home.jpg</image:loc>
+      <image:title>Alliance Travel — Voyages guidés depuis Bordj Bou Arreridj</image:title>
+      <image:caption>Agence de voyage à Bordj Bou Arreridj et M'Sila, Algérie</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Cairo + Sharm El Sheikh combo (Egypt) -->
+  <url>
+    <loc>https://alliance-travel.dz/cairo-sharm/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-cairo-sharm.jpg</image:loc>
+      <image:title>Le Caire &amp; Sharm El Sheikh — 7 nuits tout inclus</image:title>
+      <image:caption>Pyramides de Guizeh + Mer Rouge, vol EgyptAir, à partir de 190.000 DA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Sharm El Sheikh (départ Constantine) -->
+  <url>
+    <loc>https://alliance-travel.dz/sharm-constantine/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-sharm-constantine.jpg</image:loc>
+      <image:title>Sharm El Sheikh depuis Constantine — 10 jours All Inclusive</image:title>
+      <image:caption>Mer Rouge, hôtel Tivoli 4★, vol direct depuis l'aéroport de Constantine</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Istanbul (Turkey) -->
+  <url>
+    <loc>https://alliance-travel.dz/istanbul/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-istanbul.jpg</image:loc>
+      <image:title>Istanbul — Entre deux continents · 8 jours</image:title>
+      <image:caption>Aya Sofya, Grand Bazar, Bosphore, îles des Princes, à partir de 123.000 DA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Azerbaijan (Baku + Gabala) -->
+  <url>
+    <loc>https://alliance-travel.dz/azerbaidjan/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-azerbaidjan.jpg</image:loc>
+      <image:title>Azerbaïdjan — Bakou &amp; Gabala · 7 nuits</image:title>
+      <image:caption>Cité du Feu et montagnes du Caucase, visa électronique inclus, à partir de 227.000 DA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Kuala Lumpur (Malaysia) -->
+  <url>
+    <loc>https://alliance-travel.dz/kuala-lumpur/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-kuala-lumpur.jpg</image:loc>
+      <image:title>Kuala Lumpur — Malaisie · 8 jours Grand Mercure 5★</image:title>
+      <image:caption>Tours Petronas, Batu Caves, Genting Highlands, vol direct depuis Alger, à partir de 211.000 DA</image:caption>
+    </image:image>
+  </url>
+</urlset>
