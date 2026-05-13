@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Page introuvable — Alliance Travel</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png"/>
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon/favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep:  #06090d;
+      --bg:       #0a0f15;
+      --bg-card:  #161e28;
+      --txt-1:    #f3ede2;
+      --txt-2:    #b6ada0;
+      --txt-3:    #7a7268;
+      --mint:     #9ce8b2;
+      --mint-soft:#7dd4a0;
+      --navy:     #002c51;
+      --border:   rgba(255, 255, 255, .06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--txt-1);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 560px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mint);
+      padding: 6px 14px;
+      background: rgba(156, 232, 178, .08);
+      border: 1px solid rgba(156, 232, 178, .25);
+      border-radius: 999px;
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: clamp(48px, 10vw, 96px);
+      font-weight: 700;
+      line-height: .9;
+      letter-spacing: -.03em;
+      margin-bottom: 16px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--mint);
+      font-weight: 600;
+    }
+    p {
+      font-size: 16px;
+      color: var(--txt-2);
+      margin-bottom: 32px;
+      max-width: 42ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      text-decoration: none;
+      transition: transform 180ms cubic-bezier(.22, 1, .36, 1),
+                  background 180ms cubic-bezier(.22, 1, .36, 1),
+                  color 180ms cubic-bezier(.22, 1, .36, 1),
+                  border-color 180ms cubic-bezier(.22, 1, .36, 1);
+    }
+    .btn--primary {
+      background: var(--mint);
+      color: var(--navy);
+      border: 1.5px solid var(--mint);
+    }
+    .btn--primary:hover {
+      background: var(--mint-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156, 232, 178, .28);
+    }
+    .btn--ghost {
+      background: transparent;
+      color: var(--txt-1);
+      border: 1.5px solid rgba(255, 255, 255, .25);
+    }
+    .btn--ghost:hover {
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+    .links {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--txt-3);
+    }
+    .links a {
+      color: var(--txt-2);
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 180ms ease;
+    }
+    .links a:hover {
+      color: var(--mint);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <span class="eyebrow">Erreur 404</span>
+    <h1>Page <em>introuvable</em></h1>
+    <p>La page que vous cherchez n'existe pas, ou son adresse a changé. Retournons à l'essentiel.</p>
+    <div class="cta-row">
+      <a href="/" class="btn btn--primary">Retour à l'accueil</a>
+      <a href="https://wa.me/213561616266" class="btn btn--ghost" target="_blank" rel="noopener">Nous contacter</a>
+    </div>
+    <nav class="links" aria-label="Voyages disponibles">
+      <a href="/cairo-sharm/">Le Caire &amp; Sharm</a>·
+      <a href="/sharm-constantine/">Sharm depuis Constantine</a>·
+      <a href="/istanbul/">Istanbul</a>·
+      <a href="/azerbaidjan/">Azerbaïdjan</a>·
+      <a href="/kuala-lumpur/">Kuala Lumpur</a>
+    </nav>
+  </main>
+</body>
+</html>

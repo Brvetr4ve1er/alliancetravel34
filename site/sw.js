@@ -10,7 +10,7 @@
  * Bump CACHE_NAME on any release; the activate handler purges old caches.
  * Vanilla JS, no Workbox / build step.
  */
-const CACHE_NAME = 'alliance-v1-2026-05';
+const CACHE_NAME = 'alliance-v21-2026-05-13';
 const RUNTIME    = 'alliance-runtime';
 
 // Install: pre-cache the homepage shell so offline users see something

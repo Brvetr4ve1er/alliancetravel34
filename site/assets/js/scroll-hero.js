@@ -164,8 +164,14 @@
       pinned.appendChild(eyebrowEl);
     }
 
-    var titleEl = document.createElement('h1');
+    // v21 prod-prep: was `<h1>`, downgraded to `<div aria-hidden>` so the
+    // canonical semantic <h1> in .scroll-hero__continuation stays the
+    // ONLY h1 on the page (SEO acceptance gate: 1 h1 per page).
+    // This pinned title is pure visual decoration that animates into
+    // the continuation; screen readers reach the real h1 below.
+    var titleEl = document.createElement('div');
     titleEl.className = 'scroll-hero__title';
+    titleEl.setAttribute('aria-hidden', 'true');
     titleEl.innerHTML =
       '<span class="scroll-hero__title-pre">' + escapeHtml(pre) + '</span>' +
       (post ? '<span class="scroll-hero__title-post">' + escapeHtml(post) + '</span>' : '');

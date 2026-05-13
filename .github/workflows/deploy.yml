@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+# Trigger on every push to main + manual dispatch from the Actions tab.
+# Preview deployments per PR are handled by Cloudflare directly when
+# the repo is connected to a Pages project — this workflow is the
+# backup CLI path in case the GitHub integration ever needs to be
+# bypassed (or audited).
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to deploy"
+        required: true
+        default: "main"
+
+# Single concurrent deploy — newer pushes cancel in-flight runs.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Sanity check — site/ must contain index.html
+        run: |
+          test -f site/index.html || (echo "❌ site/index.html missing"; exit 1)
+          test -f site/sitemap.xml || (echo "❌ site/sitemap.xml missing"; exit 1)
+          test -f site/_headers || (echo "⚠️  site/_headers missing (deploy proceeds but no cache headers)" && true)
+          echo "✓ site/ contents verified"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=alliance-travel --branch=${{ github.event.inputs.branch || github.ref_name }}

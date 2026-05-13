@@ -5,7 +5,7 @@
   <!--
     Alliance Travel — XML sitemap (v21-phase-I.1)
 
-    Generated 2026-05-11. lastmod dates reflect the latest substantive
+    Generated 2026-05-13. lastmod dates reflect the latest substantive
     content/SEO update per page. Update when content changes — Google
     crawls more aggressively when lastmod is recent + accurate.
 
@@ -16,7 +16,7 @@
   <!-- Homepage — highest priority, weekly content updates -->
   <url>
     <loc>https://alliance-travel.dz/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -29,7 +29,7 @@
   <!-- Cairo + Sharm El Sheikh combo (Egypt) -->
   <url>
     <loc>https://alliance-travel.dz/cairo-sharm/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -42,7 +42,7 @@
   <!-- Sharm El Sheikh (départ Constantine) -->
   <url>
     <loc>https://alliance-travel.dz/sharm-constantine/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -55,7 +55,7 @@
   <!-- Istanbul (Turkey) -->
   <url>
     <loc>https://alliance-travel.dz/istanbul/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -68,7 +68,7 @@
   <!-- Azerbaijan (Baku + Gabala) -->
   <url>
     <loc>https://alliance-travel.dz/azerbaidjan/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -81,7 +81,7 @@
   <!-- Kuala Lumpur (Malaysia) -->
   <url>
     <loc>https://alliance-travel.dz/kuala-lumpur/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>

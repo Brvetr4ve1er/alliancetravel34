@@ -1,0 +1,37 @@
+# Alliance Travel — Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# Pattern: SOURCE  DESTINATION  STATUS [optional]
+# 301 = permanent redirect (SEO-preserving)
+# 302 = temporary redirect
+# 404 = explicit 404 page
+# 200 = rewrite (URL stays, content swaps — used for SPA-style routing)
+
+# ── Trailing-slash normalization ────────────────────────────────────
+# CF Pages serves /cairo-sharm/ and /cairo-sharm both. Force trailing
+# slash for the trip-page slugs so canonical URLs stay consistent.
+/cairo-sharm       /cairo-sharm/        301
+/sharm-constantine /sharm-constantine/  301
+/istanbul          /istanbul/           301
+/azerbaidjan       /azerbaidjan/        301
+/kuala-lumpur      /kuala-lumpur/       301
+
+# ── Common typos / legacy aliases ───────────────────────────────────
+# If anyone shared these incorrectly, redirect to canonical
+/azerbaijan/       /azerbaidjan/        301
+/azerbaijan        /azerbaidjan/        301
+/kl/               /kuala-lumpur/       301
+/kualalumpur/      /kuala-lumpur/       301
+/malaisie/         /kuala-lumpur/       301
+/egypt/            /cairo-sharm/        301
+/egypte/           /cairo-sharm/        301
+/sharm/            /sharm-constantine/  301
+/turquie/          /istanbul/           301
+/turkey/           /istanbul/           301
+
+# ── 404 fallback ────────────────────────────────────────────────────
+# CF Pages auto-serves /404.html for unmatched paths — no explicit rule
+# needed. Don't add a `/* /index.html 200` SPA-rewrite here: it would
+# silently return the homepage with 200 for missing assets, breaking
+# both SEO (Google indexes 200 OK responses as the real URL) and bug
+# detection (no way to know an asset is missing).

@@ -1,0 +1,23 @@
+# Alliance Travel — Cloudflare Pages config
+# Used by `wrangler pages deploy site --project-name=alliance-travel`
+#
+# This file is only needed for CLI deploys. If you're using the
+# GitHub-integration path (Pages dashboard → Connect repo), Cloudflare
+# reads its config directly from the dashboard settings, not this file.
+# Keep it anyway so any local `wrangler` command Just Works.
+#
+# Manual deploy command:
+#   npx wrangler pages deploy site --project-name=alliance-travel --branch=main
+#
+# Docs: https://developers.cloudflare.com/pages/configuration/
+
+name = "alliance-travel"
+compatibility_date = "2026-01-01"
+pages_build_output_dir = "site"
+
+# Branch deployment routing:
+#   main                  → production    (https://alliance-travel.dz)
+#   feat/v12-hierarchy-pass → preview     (https://feat-v12-hierarchy-pass.alliance-travel.pages.dev)
+#   any other branch       → preview     (https://<branch>.alliance-travel.pages.dev)
+# This is configured in the Cloudflare Pages dashboard under
+# Settings → Builds & deployments → Production branch.

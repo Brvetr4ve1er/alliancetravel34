@@ -59,6 +59,14 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- v21 prod-prep: preload the LCP hero image so the browser starts
+       fetching it in parallel with HTML parsing. Per-viewport srcset so
+       mobile gets the 60-92 KB mobile crop, desktop gets the full 470 KB. -->
+  <link rel="preload" as="image" type="image/webp"
+        href="assets/images/heroes/hero__cairo-sharm.webp"
+        imagesrcset="assets/images/heroes/hero__cairo-sharm--mobile.webp 768w, assets/images/heroes/hero__cairo-sharm.webp 1920w"
+        imagesizes="100vw"
+        fetchpriority="high" />
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Sans:ital,wght@1,400&display=swap"
     rel="stylesheet" />
@@ -242,13 +250,13 @@
         <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__azerbaidjan--mobile.webp"/>
         <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__azerbaidjan--mobile.jpg"/>
         <source type="image/webp" srcset="assets/images/heroes/hero__azerbaidjan.webp"/>
-        <img src="assets/images/heroes/hero__azerbaidjan.jpg" alt="" loading="eager" decoding="async"/>
+        <img src="assets/images/heroes/hero__azerbaidjan.jpg" alt="" loading="lazy" decoding="async"/>
       </picture>
       <picture>
         <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__istanbul--mobile.webp"/>
         <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__istanbul--mobile.jpg"/>
         <source type="image/webp" srcset="assets/images/heroes/hero__istanbul.webp"/>
-        <img src="assets/images/heroes/hero__istanbul.jpg" alt="" loading="eager" decoding="async"/>
+        <img src="assets/images/heroes/hero__istanbul.jpg" alt="" loading="lazy" decoding="async"/>
       </picture>
       <picture>
         <source media="(max-width: 768px)" type="image/webp" srcset="assets/images/heroes/hero__kuala-lumpur--mobile.webp"/>

@@ -1,0 +1,67 @@
+# Alliance Travel — Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Strategy:
+#   * HTML pages : short cache (1 hour) so content updates appear fast
+#   * Assets     : 1 year immutable cache since filenames don't have hashes
+#                  (we cache-bust manually via `?cb=` query strings when
+#                  shipping CSS/JS changes — see DEPLOY.md)
+#   * Service worker : never cache (must always re-validate so updates land)
+#
+# Security headers apply to every response.
+
+# ── Global security headers ─────────────────────────────────────────
+/*
+  # Prevent MIME-sniffing the response away from the declared Content-Type
+  X-Content-Type-Options: nosniff
+  # Iframe embedding allowed from same origin only (clickjacking defense)
+  X-Frame-Options: SAMEORIGIN
+  # Strict referrer policy — never leak full URLs to other origins
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Disable Flash / legacy XSS auditor handling
+  X-XSS-Protection: 0
+  # Don't allow Permissions-Policy-controlled features we don't use
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+# ── HTML pages: short cache, must-revalidate ────────────────────────
+/
+  Cache-Control: public, max-age=3600, must-revalidate
+/index.html
+  Cache-Control: public, max-age=3600, must-revalidate
+/*/index.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# ── Static assets: long cache (1 year immutable) ────────────────────
+# CSS + JS — manually cache-bust via `?cb=` when shipping changes
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images and fonts — truly immutable (filenames identify the content)
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Per-page Open Graph cards
+/assets/images/og/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── Service worker: never cache (must always check for updates) ─────
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
+# ── PWA manifest: short cache so icon/theme changes appear fast ─────
+/site.webmanifest
+  Cache-Control: public, max-age=3600
+  Content-Type: application/manifest+json
+
+# ── SEO files: short cache so updates are picked up by crawlers ─────
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml; charset=utf-8
+/robots.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=utf-8
