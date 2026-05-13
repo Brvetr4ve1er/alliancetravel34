@@ -605,16 +605,9 @@ select {
   overflow: hidden;
 }
 
-.hotel-card__img-art {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(160deg, var(--accent-dim) 0%, rgba(0, 0, 0, .5) 100%);
-  transition: transform var(--t);
-}
-
-.hotel-card:hover .hotel-card__img-art {
-  transform: scale(1.03);
-}
+/* v21 phase J.2.5: .hotel-card__img-art + its hover-scale deleted —
+   a gradient fill layer for hotel card photos that was replaced by
+   real <img> elements via the hotel-card__photo class. */
 
 .hotel-card__ribbon {
   position: absolute;
@@ -2842,10 +2835,11 @@ select {
    IMAGE INJECTION — local photos in placeholder wrappers
    Added by _inject_images.py · additive only · no class mods
    ══════════════════════════════════════════════════════════ */
-.hero__visual-img,
+/* v21 phase J.2.5: .hero__visual-img + .hl-card__photo dropped —
+   neither is used in HTML. Real consumers (.trip-card__img,
+   .hotel-card__photo) keep the shared rule. */
 .trip-card__img,
-.hotel-card__photo,
-.hl-card__photo {
+.hotel-card__photo {
   display: block;
   width: 100%;
   height: 100%;
@@ -2853,10 +2847,6 @@ select {
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-
-.hero__visual-img {
-  z-index: 1;
 }
 
 .hero__visual-art {
@@ -2886,49 +2876,11 @@ select {
   z-index: 3;
 }
 
-Added by _inject_images.py · additive only · no class mods ══════════════════════════════════════════════════════════ */ .hero__visual-img,
-.trip-card__img,
-.hotel-card__photo,
-.hl-card__photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__visual-img {
-  z-index: 1;
-}
-
-.hero__visual-art {
-  position: relative;
-}
-
-.trip-card__art {
-  position: relative;
-}
-
-/* Soft dark vignette so light text/badges stay legible over photos */
-.hero__visual-art::after,
-.trip-card__art::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-      rgba(12, 14, 18, 0) 0%,
-      rgba(12, 14, 18, 0) 50%,
-      rgba(12, 14, 18, .55) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.trip-card__flag,
-.trip-card__from {
-  z-index: 3;
-}
+/* v21 phase J.2.5: ~43-line duplicate IMAGE-INJECTION block deleted —
+   was a verbatim copy of the proper block above, prefixed by a broken
+   comment fragment ("Added by _inject_images.py …") whose opening
+   `/*` had been eaten by a prior edit. The duplicate was parsing-broken
+   anyway because of the corrupted comment; deleting it is pure repair. */
 
 /* ══════════════════════════════════════════════════════════
    ALLIANCE TRAVEL BRAND SYSTEM — Token overrides applied
@@ -2958,12 +2910,8 @@ Added by _inject_images.py · additive only · no class mods ══════�
 }
 .skip-link:focus { top: 8px; }
 
-/* ── Nav logo with real SVG ──────────────────────────────── */
-.nav-logo-img {
-  height: 36px;
-  width: auto;
-  display: block;
-}
+/* v21 phase J.2.5: .nav-logo-img deleted — the SVG logo lives directly
+   inside the .nav-logo anchor and uses its own size attributes. */
 .site-nav { gap: var(--s5); }
 
 /* ── Nav scrolled: navy surface ──────────────────────────── */
@@ -3101,13 +3049,8 @@ Added by _inject_images.py · additive only · no class mods ══════�
   align-items: center;
   gap: var(--s6);
 }
-.nav-right {
-  grid-column: 3;
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: var(--s3);
-}
+/* v21 phase J.2.5: .nav-right deleted — was for a 3-column grid nav
+   that the current flex-based nav doesn't use. */
 @media (max-width: 768px) {
   .site-nav { grid-template-columns: auto 1fr auto; gap: var(--s3); padding: var(--s3) var(--s5); }
   .site-nav .nav-links { display: none; }
@@ -5137,26 +5080,9 @@ img.lb-target:hover {
   .trips-grid:hover .trip-card:not(:hover) { opacity: 1; filter: none; }
 }
 
-/* ---- 7.11 — Hotel cards: amenities row ---- */
-.hotel-amenities {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-.amenity {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 8px;
-  font-size: 0.6875rem;
-  background: rgba(156, 232, 178, 0.08);
-  border: 1px solid rgba(156, 232, 178, 0.18);
-  color: var(--txt-2);
-  border-radius: 6px;
-  font-weight: 500;
-}
-.amenity svg { width: 12px; height: 12px; color: var(--mint); }
+/* v21 phase J.2.5: .hotel-amenities + .amenity (non-pill) + .amenity svg
+   deleted — amenities row on hotel cards was scaffolded but never used.
+   Real hotel cards use .amenity-pill (different styling). */
 
 /* ---- 7.12 — 3-icon value-prop row (universal travel-site pattern) ---- */
 .value-props-3 {
