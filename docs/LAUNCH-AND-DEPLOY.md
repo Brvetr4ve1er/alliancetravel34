@@ -1,5 +1,13 @@
 # Launch & Deploy — Alliance Travel
 
+> ⚠️ **SUPERSEDED by [`DEPLOY.md`](DEPLOY.md) as of 2026-05-13.**
+>
+> This older doc (May 2026, pre-v21) covers Netlify / Vercel / Cloudflare Pages / GitHub Pages / self-host in general terms. The newer `DEPLOY.md` is a focused 30-minute Cloudflare Pages walkthrough that incorporates the v21 prod-prep artifacts (`_headers`, `_redirects`, `404.html`, `wrangler.toml`, GitHub Actions workflow).
+>
+> **Use `DEPLOY.md` to ship.** Keep this file for historical context about the alternative-host comparison.
+
+---
+
 End-to-end guide for **previewing the site locally** and **shipping it to a real domain**. Zero build step required — it's static HTML, CSS, and JS.
 
 ---
