@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Build Squad — We turn travel agencies into booking machines</title>
-<meta name="description" content="Freelance product engineers for B2B travel agencies. Catalogue vitrine + tailor-made pricing calculator + 1-click WhatsApp dossier. Reference build: Alliance Travel (Bordj Bou Arreridj, Algérie)." />
+<title>Build Squad — Nous transformons les agences de voyage en machines à réservations</title>
+<meta name="description" content="Ingénieurs produit freelance pour les agences de voyage B2B. Vitrine catalogue + calculateur de prix sur mesure + dossier WhatsApp en un clic. Build de référence : Alliance Travel (Bordj Bou Arreridj, Algérie)." />
 <meta name="theme-color" content="#08090C" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://rsms.me" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* ════════════════════════════════════════════════════════════════
    TOKENS — modern dark / cream system, vivid accents, no serif
@@ -53,8 +53,8 @@
   --whatsapp-dk:#075E54;
 
   /* Type */
-  --f-display:  'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --f-body:     'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-display:  'Space Grotesk', 'Cairo', 'Inter', system-ui, sans-serif;
+  --f-body:     'Inter', 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --f-mono:     'JetBrains Mono', ui-monospace, monospace;
 
   /* Spacing scale */
@@ -284,6 +284,90 @@ p { color: var(--text-2); }
 .nav__cta:hover { background: white; }
 
 @media (max-width: 800px) { .nav__links { display: none; } }
+
+/* Language switcher */
+.nav__lang {
+  display: inline-flex; gap: 2px; padding: 3px;
+  background: rgba(255,255,255,.04);
+  border-radius: 999px;
+  margin-inline: 4px;
+}
+.nav__lang button {
+  border: none; background: transparent;
+  color: rgba(255,255,255,.55);
+  font-family: var(--f-mono); font-size: 10px;
+  font-weight: 600; letter-spacing: 0.1em;
+  padding: 6px 10px; border-radius: 999px;
+  cursor: pointer; transition: all .2s;
+  text-transform: uppercase;
+}
+.nav__lang button:hover { color: white; }
+.nav__lang button.active {
+  background: rgba(224,178,108,.18);
+  color: var(--gold);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RTL — Arabic overrides
+   ════════════════════════════════════════════════════════════════ */
+[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', var(--f-body);
+}
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 {
+  font-family: 'Cairo', 'Space Grotesk', sans-serif;
+  letter-spacing: 0;
+}
+[dir="rtl"] .eyebrow,
+[dir="rtl"] .module__num,
+[dir="rtl"] .fric-card__pain,
+[dir="rtl"] .price-card__from,
+[dir="rtl"] .stat-big__l,
+[dir="rtl"] .hero__stat-l,
+[dir="rtl"] .case-hero__meta-item p,
+[dir="rtl"] .mock-map__stat-l,
+[dir="rtl"] .mock-cat__eyebrow {
+  letter-spacing: 0.04em;
+}
+[dir="rtl"] .module__list li { padding-left: 0; padding-right: 30px; }
+[dir="rtl"] .module__list li::before { left: auto; right: 0; }
+[dir="rtl"] .phase__list li { padding-left: 0; padding-right: 22px; }
+[dir="rtl"] .phase__list li::before { left: auto; right: 0; content: '←'; }
+[dir="rtl"] .module__num::before { margin-inline: 0; }
+[dir="rtl"] .eyebrow::before { margin-inline: 0; }
+[dir="rtl"] .price-card__chip { right: auto; left: 12px; }
+[dir="rtl"] .fric-card::before { right: auto; left: -20%; }
+[dir="rtl"] .phone-label--top { left: auto; right: -20px; }
+[dir="rtl"] .phone-label--mid { right: auto; left: -30px; }
+[dir="rtl"] .phone-label--bot { left: auto; right: 0; }
+[dir="rtl"] .wa-bubble { margin-left: 0; margin-right: auto; border-radius: 2px 10px 10px 10px; }
+[dir="rtl"] .wa-bubble__time { text-align: left; }
+[dir="rtl"] .nav__lang button { font-family: var(--f-mono); }
+[dir="rtl"] .mock__url,
+[dir="rtl"] .breakdown__head,
+[dir="rtl"] .mock-calc__sub,
+[dir="rtl"] .mock-cat__filter,
+[dir="rtl"] .marquee__item,
+[dir="rtl"] .phone__name,
+[dir="rtl"] .phone__online,
+[dir="rtl"] .wa-bubble,
+[dir="rtl"] .trip-card__meta,
+[dir="rtl"] .trip-card__price,
+[dir="rtl"] .price-card__price,
+[dir="rtl"] .price-card__departs,
+[dir="rtl"] .region-tile__price,
+[dir="rtl"] .case-hero__meta-item h4,
+[dir="rtl"] .mock-map__stat-n,
+[dir="rtl"] .stepper__val,
+[dir="rtl"] .breakdown__line,
+[dir="rtl"] .breakdown__total-v,
+[dir="rtl"] .stat-big__n,
+[dir="rtl"] .hero__stat-n,
+[dir="rtl"] .phase__num,
+[dir="rtl"] .orb__hq-label,
+[dir="rtl"] .orb__node::after {
+  direction: ltr; unicode-bidi: isolate;
+}
+[dir="rtl"] .price-card__price-row { flex-direction: row-reverse; }
 
 /* ════════════════════════════════════════════════════════════════
    HERO
@@ -1546,13 +1630,18 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
     Build Squad
   </div>
   <div class="nav__links">
-    <a href="#why">Why us</a>
-    <a href="#case">Case study</a>
-    <a href="#modules">Modules</a>
-    <a href="#pricing">Inventory</a>
-    <a href="#engineering">Engineering</a>
+    <a href="#why" data-i18n="nav.why">Pourquoi nous</a>
+    <a href="#case" data-i18n="nav.case">Cas d'étude</a>
+    <a href="#modules" data-i18n="nav.modules">Modules</a>
+    <a href="#pricing" data-i18n="nav.pricing">Inventaire</a>
+    <a href="#engineering" data-i18n="nav.eng">Ingénierie</a>
   </div>
-  <a href="#contact" class="nav__cta">Book a call</a>
+  <div class="nav__lang" role="group" aria-label="Language switcher">
+    <button data-lang="fr" type="button">FR</button>
+    <button data-lang="ar" type="button">AR</button>
+    <button data-lang="en" type="button">EN</button>
+  </div>
+  <a href="#contact" class="nav__cta" data-i18n="nav.cta">Réserver un appel</a>
 </nav>
 
 <!-- ════════════════════════════════════════════════════════════════
@@ -1567,37 +1656,33 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
     <div>
       <div class="hero__badge fade-up">
         <span class="hero__badge-dot"></span>
-        <span>For travel agencies · <strong>Hot season 2026</strong></span>
+        <span data-i18n="hero.badge">Pour les agences de voyage · <strong>Saison 2026</strong></span>
       </div>
-      <h1 class="fade-up d1">
-        <span class="stack">Your agency,</span>
-        <span class="stack">finally on <span class="grad-gold">autopilot.</span></span>
-      </h1>
-      <p class="hero__sub fade-up d2">
-        We're a tight squad of freelance product engineers who turn travel agencies into
-        booking machines. Same trips. Same hotels. Same prices.
-        <strong style="color: white; font-weight: 500;">Half the steps to close.</strong>
+      <h1 class="fade-up d1" data-i18n="hero.h1"><span class="stack">Votre agence,</span><span class="stack">enfin en <span class="grad-gold">pilote automatique.</span></span></h1>
+      <p class="hero__sub fade-up d2" data-i18n="hero.sub">
+        Nous sommes une équipe resserrée d'ingénieurs produit freelance qui transforment les agences de voyage en machines à réservations. Mêmes voyages. Mêmes hôtels. Mêmes prix.
+        <strong style="color: white; font-weight: 500;">Deux fois moins d'étapes pour conclure.</strong>
       </p>
       <div class="hero__ctas fade-up d3">
-        <a href="#case" class="btn btn--primary">See the reference build →</a>
-        <a href="#contact" class="btn btn--ghost">Book a 15-min call</a>
+        <a href="#case" class="btn btn--primary" data-i18n="hero.cta1">Voir la référence →</a>
+        <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Réserver 15 min</a>
       </div>
       <div class="hero__stats fade-up d4">
         <div class="hero__stat">
           <div class="hero__stat-n tnum" data-counter="1200" data-fmt="k">0</div>
-          <div class="hero__stat-l">Travelers guided</div>
+          <div class="hero__stat-l" data-i18n="hero.s1">Voyageurs guidés</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-n tnum" data-counter="98" data-fmt="pct">0</div>
-          <div class="hero__stat-l">Satisfaction</div>
+          <div class="hero__stat-l" data-i18n="hero.s2">Satisfaction</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-n tnum" data-counter="5" data-fmt="num">0</div>
-          <div class="hero__stat-l">Destinations '26</div>
+          <div class="hero__stat-l" data-i18n="hero.s3">Destinations '26</div>
         </div>
         <div class="hero__stat">
           <div class="hero__stat-n tnum" data-counter="6" data-fmt="num">0</div>
-          <div class="hero__stat-l">Wilayas covered</div>
+          <div class="hero__stat-l" data-i18n="hero.s4">Wilayas couvertes</div>
         </div>
       </div>
     </div>
@@ -1618,7 +1703,7 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
       </svg>
 
       <div class="orb__pulse"></div>
-      <div class="orb__hq-label">★ BBA — Siège</div>
+      <div class="orb__hq-label" data-i18n="hero.hq">★ BBA — Siège</div>
 
       <div class="orb__node orb__node--1" data-label="Cairo"></div>
       <div class="orb__node orb__node--2" data-label="Bakou"></div>
@@ -1664,9 +1749,9 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 <section class="section section--cream" id="why">
   <div class="container">
     <div class="section-head fade-up">
-      <span class="eyebrow">Why us, not a theme shop</span>
-      <h2>Travel agencies don't have a traffic problem.<br /><span class="grad-warm">They have a friction problem.</span></h2>
-      <p class="section-head__sub">Every dinar of price confusion costs you a closed deal. Every contact form replaces a WhatsApp conversation that could have closed in two taps. We engineer the bridge.</p>
+      <span class="eyebrow" data-i18n="why.eye">Pourquoi nous, pas un thème WordPress</span>
+      <h2 data-i18n="why.h2">Les agences de voyage n'ont pas un problème de trafic.<br /><span class="grad-warm">Elles ont un problème de friction.</span></h2>
+      <p class="section-head__sub" data-i18n="why.sub">Chaque dinar de confusion sur le prix coûte une vente fermée. Chaque formulaire de contact remplace une conversation WhatsApp qui aurait pu se conclure en deux taps. Nous construisons le pont.</p>
     </div>
 
     <div class="friction">
@@ -1674,54 +1759,54 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
         <div class="fric-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <div class="fric-card__pain">Hidden fees, opaque "real total"</div>
-        <div class="fric-card__fix">Live line-by-line breakdown</div>
-        <div class="fric-card__txt">Every dinar — flight, hotel, room supplement, child, baby, extras — accounted for in real time. Tabular figures, no shifting columns.</div>
+        <div class="fric-card__pain" data-i18n="why.f1.p">Frais cachés, "vrai total" opaque</div>
+        <div class="fric-card__fix" data-i18n="why.f1.f">Détail ligne par ligne, en direct</div>
+        <div class="fric-card__txt" data-i18n="why.f1.t">Chaque dinar — vol, hôtel, supplément chambre, enfant, bébé, suppléments — compté en temps réel. Chiffres tabulaires, colonnes qui ne bougent pas.</div>
       </div>
 
       <div class="fric-card fade-up d1" style="--accent-color: var(--c-aze); --accent-color-2: #1B6868;">
         <div class="fric-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         </div>
-        <div class="fric-card__pain">Hotel × date × room = 63 combos</div>
-        <div class="fric-card__fix">One screen, one total, instant</div>
-        <div class="fric-card__txt">Cairo+Sharm alone: 7 hotels × 3 dates × 3 rooms. Chips, dropdown, stepper — clients get it in 5 seconds.</div>
+        <div class="fric-card__pain" data-i18n="why.f2.p">Hôtel × date × chambre = 63 combos</div>
+        <div class="fric-card__fix" data-i18n="why.f2.f">Un écran, un total, instantané</div>
+        <div class="fric-card__txt" data-i18n="why.f2.t">Le Caire+Sharm seul : 7 hôtels × 3 dates × 3 chambres. Chips, dropdown, stepper — le client comprend en 5 secondes.</div>
       </div>
 
       <div class="fric-card fade-up d2" style="--accent-color: var(--whatsapp); --accent-color-2: var(--whatsapp-dk);">
         <div class="fric-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.46 3.49 11.815 11.815 0 0012.05 0z"/></svg>
         </div>
-        <div class="fric-card__pain">"Send me a contact form"</div>
-        <div class="fric-card__fix">One-tap WhatsApp dossier</div>
-        <div class="fric-card__txt">Calculator state → pre-formatted message body. Your agent gets a perfect summary, not a 6-message back-and-forth.</div>
+        <div class="fric-card__pain" data-i18n="why.f3.p">"Envoyez un formulaire de contact"</div>
+        <div class="fric-card__fix" data-i18n="why.f3.f">Dossier WhatsApp en un tap</div>
+        <div class="fric-card__txt" data-i18n="why.f3.t">État du calculateur → corps du message pré-rempli. Votre agent reçoit un résumé parfait, pas un aller-retour de 6 messages.</div>
       </div>
 
       <div class="fric-card fade-up" style="--accent-color: var(--c-violet); --accent-color-2: #5B3DC4;">
         <div class="fric-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
-        <div class="fric-card__pain">"I don't have WhatsApp" objection</div>
-        <div class="fric-card__fix">Email + clipboard fallback</div>
-        <div class="fric-card__txt">Same dossier piped to <code style="background:rgba(184,134,90,.10);color:var(--bronze-dk);padding:1px 5px;border-radius:3px;font-family:var(--f-mono);font-size:12px;">mailto:</code> or to the clipboard. Zero clients lost to platform issues.</div>
+        <div class="fric-card__pain" data-i18n="why.f4.p">Objection "je n'ai pas WhatsApp"</div>
+        <div class="fric-card__fix" data-i18n="why.f4.f">Email + presse-papiers en secours</div>
+        <div class="fric-card__txt" data-i18n="why.f4.t">Même dossier envoyé par <code style="background:rgba(184,134,90,.10);color:var(--bronze-dk);padding:1px 5px;border-radius:3px;font-family:var(--f-mono);font-size:12px;">mailto:</code> ou copié dans le presse-papiers. Zéro client perdu pour des soucis de plateforme.</div>
       </div>
 
       <div class="fric-card fade-up d1" style="--accent-color: var(--c-kl); --accent-color-2: #2E6E52;">
         <div class="fric-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></svg>
         </div>
-        <div class="fric-card__pain">"Is this agency real?"</div>
-        <div class="fric-card__fix">Trust signals everywhere</div>
-        <div class="fric-card__txt">Real siège, six-wilaya partner map, schema.org JSON-LD, no fake media logos. Credibility before the client scrolls to the trips.</div>
+        <div class="fric-card__pain" data-i18n="why.f5.p">"Est-ce une vraie agence ?"</div>
+        <div class="fric-card__fix" data-i18n="why.f5.f">Signaux de confiance partout</div>
+        <div class="fric-card__txt" data-i18n="why.f5.t">Vrai siège, carte de 6 wilayas, JSON-LD schema.org, zéro faux logos médias. La crédibilité avant que le client scrolle aux voyages.</div>
       </div>
 
       <div class="fric-card fade-up d2" style="--accent-color: var(--c-pink); --accent-color-2: #B23A6E;">
         <div class="fric-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
         </div>
-        <div class="fric-card__pain">Slow site on Algerian 4G</div>
-        <div class="fric-card__fix">No bundler, no framework</div>
-        <div class="fric-card__txt">Hand-written HTML/CSS, WebP-first heroes with mobile crops, font subset, service-worker offline cache. Lighthouse-friendly out of the box.</div>
+        <div class="fric-card__pain" data-i18n="why.f6.p">Site lent sur la 4G algérienne</div>
+        <div class="fric-card__fix" data-i18n="why.f6.f">Pas de bundler, pas de framework</div>
+        <div class="fric-card__txt" data-i18n="why.f6.t">HTML/CSS écrits à la main, héros WebP avec crops mobiles, fontes sous-ensemblées, cache service-worker. Lighthouse-friendly d'emblée.</div>
       </div>
     </div>
   </div>
@@ -1737,29 +1822,29 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 
       <div class="case-hero__grid">
         <div>
-          <span class="eyebrow" style="color: var(--gold)">★ Case study · Live in production</span>
-          <h2 style="margin-top:12px">Alliance Travel,<br /><span class="grad-gold">Bordj Bou Arreridj → 5 continents</span></h2>
-          <p class="lede" style="color: var(--on-dark-2); margin-top: 16px;">
-            A 6-page guided-tour vitrine. Zero build step, zero framework lock-in, zero monthly SaaS bill.
-            Deployable on any static host. A calculator and WhatsApp dossier on every trip page.
+          <span class="eyebrow" style="color: var(--gold)" data-i18n="case.eye">★ Cas d'étude · En production</span>
+          <h2 style="margin-top:12px" data-i18n="case.h2">Alliance Travel,<br /><span class="grad-gold">Bordj Bou Arreridj → 5 continents</span></h2>
+          <p class="lede" style="color: var(--on-dark-2); margin-top: 16px;" data-i18n="case.lede">
+            Une vitrine de voyages guidés sur 6 pages. Zéro étape de build, zéro dépendance framework, zéro abonnement SaaS mensuel.
+            Déployable sur n'importe quel hébergeur statique. Un calculateur et un dossier WhatsApp sur chaque page voyage.
           </p>
 
           <div class="case-hero__meta">
             <div class="case-hero__meta-item">
               <h4 class="tnum">12,500</h4>
-              <p>Lines shipped</p>
+              <p data-i18n="case.m1">Lignes livrées</p>
             </div>
             <div class="case-hero__meta-item">
               <h4 class="tnum">6</h4>
-              <p>Pages</p>
+              <p data-i18n="case.m2">Pages</p>
             </div>
             <div class="case-hero__meta-item">
               <h4 class="tnum">5</h4>
-              <p>Region themes</p>
+              <p data-i18n="case.m3">Thèmes régionaux</p>
             </div>
             <div class="case-hero__meta-item">
               <h4 class="tnum">0</h4>
-              <p>SaaS subs</p>
+              <p data-i18n="case.m4">Abonnements SaaS</p>
             </div>
           </div>
         </div>
@@ -1841,22 +1926,22 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
   <div class="container">
 
     <div class="section-head fade-up">
-      <span class="eyebrow">What we ship</span>
-      <h2>Four modules.<br /><span class="grad-cool">Each removes a specific friction.</span></h2>
-      <p class="section-head__sub">Built à la carte. Mix the modules that match what your agency is missing today.</p>
+      <span class="eyebrow" data-i18n="mods.eye">Ce que nous livrons</span>
+      <h2 data-i18n="mods.h2">Quatre modules.<br /><span class="grad-cool">Chacun supprime une friction précise.</span></h2>
+      <p class="section-head__sub" data-i18n="mods.sub">Construits à la carte. Combinez les modules qui correspondent à ce qui manque à votre agence aujourd'hui.</p>
     </div>
 
     <!-- ── MODULE 01 ── -->
     <div class="module fade-up">
       <div class="module__content">
-        <div class="module__num">Module 01 / Storyline</div>
-        <h2 class="module__title">The <span class="grad-warm">agency storyline.</span></h2>
-        <p class="lede">A cinematic homepage that earns trust before the client scrolls. Interactive globe, animated counters, a national map pinning your <em style="color:var(--text);font-weight:500">siège</em> and every partner wilaya.</p>
+        <div class="module__num" data-i18n="m1.num">Module 01 / Storyline</div>
+        <h2 class="module__title" data-i18n="m1.title">La <span class="grad-warm">storyline de l'agence.</span></h2>
+        <p class="lede" data-i18n="m1.lede">Une homepage cinématographique qui gagne la confiance avant que le client scrolle. Globe interactif, compteurs animés, carte nationale qui épingle votre <em style="color:var(--text);font-weight:500">siège</em> et chaque wilaya partenaire.</p>
         <ul class="module__list">
-          <li>Interactive globe with destination polaroids — drag to spin</li>
-          <li>Live counters: travelers, satisfaction rate, years in business</li>
-          <li>Per-region accent theming via <code>data-region</code> on <code>&lt;body&gt;</code></li>
-          <li>Geographically accurate Algeria map with animated routes from HQ</li>
+          <li data-i18n="m1.l1">Globe interactif avec polaroïdes de destinations — glissez pour faire tourner</li>
+          <li data-i18n="m1.l2">Compteurs en direct : voyageurs, taux de satisfaction, années d'activité</li>
+          <li data-i18n="m1.l3">Accent par région via <code>data-region</code> sur <code>&lt;body&gt;</code></li>
+          <li data-i18n="m1.l4">Carte d'Algérie géographiquement fidèle avec routes animées depuis le siège</li>
         </ul>
       </div>
       <div class="module__visual">
@@ -2039,14 +2124,14 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
     <!-- ── MODULE 02 — Catalogue ── -->
     <div class="module module--reverse fade-up">
       <div class="module__content">
-        <div class="module__num">Module 02 / Catalogue</div>
-        <h2 class="module__title">The <span class="grad-cool">catalogue.</span></h2>
-        <p class="lede">Browsable, magazine-style. Designed so a non-tech-savvy client gets the gist in <strong style="color:var(--text);font-weight:600">3 seconds</strong> — not a database dump, not a spreadsheet, not a wall of buttons.</p>
+        <div class="module__num" data-i18n="m2.num">Module 02 / Catalogue</div>
+        <h2 class="module__title" data-i18n="m2.title">Le <span class="grad-cool">catalogue.</span></h2>
+        <p class="lede" data-i18n="m2.lede">Parcourable, style magazine. Conçu pour qu'un client peu tech saisisse l'essentiel en <strong style="color:var(--text);font-weight:600">3 secondes</strong> — pas un dump de base, pas un tableur, pas un mur de boutons.</p>
         <ul class="module__list">
-          <li>One illustrated card per destination — month, "à partir de" price, duration</li>
-          <li>Hand-crafted SVG art per region — pyramids, fire towers, twin towers</li>
-          <li>Per-region color signature carries through to the trip page</li>
-          <li>Trip data lives in a JSON block <em style="color:var(--text);font-weight:500">you edit yourself</em> — no CMS subscription</li>
+          <li data-i18n="m2.l1">Une carte illustrée par destination — mois, prix "à partir de", durée</li>
+          <li data-i18n="m2.l2">Illustrations SVG faites main par région — pyramides, tours de feu, tours jumelles</li>
+          <li data-i18n="m2.l3">La signature couleur par région se prolonge jusqu'à la page voyage</li>
+          <li data-i18n="m2.l4">Les données voyage vivent dans un bloc JSON <em style="color:var(--text);font-weight:500">que vous éditez vous-même</em> — pas d'abonnement CMS</li>
         </ul>
       </div>
       <div class="module__visual">
@@ -2266,14 +2351,14 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
     <!-- ── MODULE 03 — Calculator ── -->
     <div class="module fade-up">
       <div class="module__content">
-        <div class="module__num">Module 03 / Calculator</div>
-        <h2 class="module__title">The <span class="grad-warm">tailor-made calculator.</span></h2>
-        <p class="lede">The crown jewel. Updates every dinar live as the client picks date, hotel, room, group size. <strong style="color:var(--text);font-weight:600">"Pourquoi ce prix ?"</strong> explains every line. Zero confusion, zero "is this the real total?"</p>
+        <div class="module__num" data-i18n="m3.num">Module 03 / Calculateur</div>
+        <h2 class="module__title" data-i18n="m3.title">Le <span class="grad-warm">calculateur sur mesure.</span></h2>
+        <p class="lede" data-i18n="m3.lede">Le joyau. Recalcule chaque dinar en direct pendant que le client choisit date, hôtel, chambre, composition. <strong style="color:var(--text);font-weight:600">"Pourquoi ce prix ?"</strong> détaille chaque ligne. Zéro confusion, zéro "est-ce le vrai total ?"</p>
         <ul class="module__list">
-          <li>Chips · dropdown · segmented controls · adult/kid/baby steppers</li>
-          <li>Tabular numerics — columns never shift while you tinker</li>
-          <li>State syncs to the booking form via a DOM event — try it on the right →</li>
-          <li>The mock auto-cycles a configuration sequence when in view</li>
+          <li data-i18n="m3.l1">Chips · dropdown · segmented control · steppers adultes/enfants/bébés</li>
+          <li data-i18n="m3.l2">Chiffres tabulaires — les colonnes ne bougent jamais pendant que vous bidouillez</li>
+          <li data-i18n="m3.l3">L'état se synchronise au formulaire via un event DOM — essayez à droite →</li>
+          <li data-i18n="m3.l4">Le mock joue une séquence automatique quand il apparaît à l'écran</li>
         </ul>
       </div>
       <div class="module__visual">
@@ -2357,14 +2442,14 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
     <!-- ── MODULE 04 — WhatsApp dossier ── -->
     <div class="module module--reverse fade-up">
       <div class="module__content">
-        <div class="module__num">Module 04 / WhatsApp dossier</div>
-        <h2 class="module__title">The <span class="grad-cool">1-click WhatsApp dossier.</span></h2>
-        <p class="lede">The closer. Calculator state + passport info + uploaded scans <strong style="color:var(--text);font-weight:600">compose themselves</strong> into a perfectly formatted WhatsApp message. One tap and your inbox receives a complete dossier.</p>
+        <div class="module__num" data-i18n="m4.num">Module 04 / Dossier WhatsApp</div>
+        <h2 class="module__title" data-i18n="m4.title">Le <span class="grad-cool">dossier WhatsApp en un clic.</span></h2>
+        <p class="lede" data-i18n="m4.lede">Le closer. L'état du calculateur + infos passeport + scans téléchargés <strong style="color:var(--text);font-weight:600">se composent eux-mêmes</strong> en un message WhatsApp parfaitement formaté. Un tap et votre boîte reçoit un dossier complet.</p>
         <ul class="module__list">
-          <li>Auto-fills from calculator selection — hotel, date, room, group, total</li>
-          <li>Add/remove passport rows · drag-and-drop scan upload (JPG/PNG/PDF)</li>
-          <li>Opens <code>wa.me</code> deep link with the message pre-formatted</li>
-          <li>Fallbacks: <code>mailto:</code> + copy-to-clipboard with <code>execCommand</code> safety net</li>
+          <li data-i18n="m4.l1">Auto-rempli depuis la sélection du calculateur — hôtel, date, chambre, groupe, total</li>
+          <li data-i18n="m4.l2">Ajouter/retirer des passeports · scan en glisser-déposer (JPG/PNG/PDF)</li>
+          <li data-i18n="m4.l3">Ouvre le lien <code>wa.me</code> avec le message déjà pré-formaté</li>
+          <li data-i18n="m4.l4">Secours : <code>mailto:</code> + copier-coller avec filet <code>execCommand</code></li>
         </ul>
       </div>
       <div class="module__visual">
@@ -2430,9 +2515,9 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 <section class="section section--paper" id="pricing">
   <div class="container">
     <div class="section-head section-head--center fade-up">
-      <span class="eyebrow">Ready-to-ship inventory</span>
-      <h2>Five trips. Five regions.<br /><span class="grad-warm">One reusable engine.</span></h2>
-      <p class="section-head__sub">All five trip pages share the same skeleton — they swap accents, hero art, hotels and prices. Adding a sixth destination is a one-day job.</p>
+      <span class="eyebrow" data-i18n="inv.eye">Inventaire prêt à livrer</span>
+      <h2 data-i18n="inv.h2">Cinq voyages. Cinq régions.<br /><span class="grad-warm">Un seul moteur réutilisable.</span></h2>
+      <p class="section-head__sub" data-i18n="inv.sub">Les cinq pages voyage partagent le même squelette — accents, illustrations, hôtels et prix s'échangent. Ajouter une sixième destination est un travail d'une journée.</p>
     </div>
 
     <div class="price-grid fade-up">
@@ -2452,7 +2537,7 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
           <div class="price-card__name">Le Caire & Sharm</div>
           <div class="price-card__departs">9 jours · Alger · 3 dates</div>
           <div class="price-card__price-row">
-            <span class="price-card__from">À partir de</span>
+            <span class="price-card__from" data-i18n="inv.from">À partir de</span>
             <div class="price-card__price tnum">190K<small> DA</small></div>
           </div>
         </div>
@@ -2475,7 +2560,7 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
           <div class="price-card__name">Sharm depuis CZL</div>
           <div class="price-card__departs">10 jours · Constantine · 5 dates</div>
           <div class="price-card__price-row">
-            <span class="price-card__from">À partir de</span>
+            <span class="price-card__from" data-i18n="inv.from">À partir de</span>
             <div class="price-card__price tnum">155K<small> DA</small></div>
           </div>
         </div>
@@ -2497,7 +2582,7 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
           <div class="price-card__name">Istanbul</div>
           <div class="price-card__departs">7 nuits · Constantine · hebdo</div>
           <div class="price-card__price-row">
-            <span class="price-card__from">À partir de</span>
+            <span class="price-card__from" data-i18n="inv.from">À partir de</span>
             <div class="price-card__price tnum">123K<small> DA</small></div>
           </div>
         </div>
@@ -2519,7 +2604,7 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
           <div class="price-card__name">Azerbaïdjan</div>
           <div class="price-card__departs">Bakou + Gabala · Alger</div>
           <div class="price-card__price-row">
-            <span class="price-card__from">À partir de</span>
+            <span class="price-card__from" data-i18n="inv.from">À partir de</span>
             <div class="price-card__price tnum">227K<small> DA</small></div>
           </div>
         </div>
@@ -2538,7 +2623,7 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
           <div class="price-card__name">Kuala Lumpur</div>
           <div class="price-card__departs">7 nuits · Alger direct · 5★</div>
           <div class="price-card__price-row">
-            <span class="price-card__from">À partir de</span>
+            <span class="price-card__from" data-i18n="inv.from">À partir de</span>
             <div class="price-card__price tnum">211K<small> DA</small></div>
           </div>
         </div>
@@ -2554,9 +2639,9 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 <section class="section section--dark" id="engineering">
   <div class="container">
     <div class="section-head fade-up">
-      <span class="eyebrow">Engineering you don't have to think about</span>
-      <h2>We sweat the details<br /><span class="grad-gold">so your booking team doesn't have to.</span></h2>
-      <p class="section-head__sub">Every choice below is documented in <code style="color:var(--gold);background:rgba(224,178,108,.10); padding:2px 6px; border-radius:4px; font-family:var(--f-mono); font-size:13px;">/docs</code> — design system, color tokens, image manifest, sitemap, roadmap.</p>
+      <span class="eyebrow" data-i18n="eng.eye">L'ingénierie dont vous n'avez pas à vous soucier</span>
+      <h2 data-i18n="eng.h2">Nous suons sur les détails<br /><span class="grad-gold">pour que votre équipe n'ait pas à le faire.</span></h2>
+      <p class="section-head__sub" data-i18n="eng.sub">Chaque choix ci-dessous est documenté dans <code style="color:var(--gold);background:rgba(224,178,108,.10); padding:2px 6px; border-radius:4px; font-family:var(--f-mono); font-size:13px;">/docs</code> — design system, tokens couleur, manifest images, sitemap, roadmap.</p>
     </div>
 
     <div class="eng-grid fade-up">
@@ -2564,67 +2649,67 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
         <div class="eng-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <div class="eng-card__title">Fast on 4G</div>
-        <div class="eng-card__txt">Hand-written HTML/CSS, no framework, no bundler. WebP-first heroes with <code>image-set()</code>. Font subset. Service-worker offline cache.</div>
+        <div class="eng-card__title" data-i18n="eng.c1.t">Rapide sur 4G</div>
+        <div class="eng-card__txt" data-i18n="eng.c1.x">HTML/CSS écrits à la main, pas de framework, pas de bundler. Héros WebP avec <code>image-set()</code>. Fontes sous-ensemblées. Cache offline service-worker.</div>
       </div>
 
       <div class="eng-card" style="--ic1: #3CC2C2; --ic2: #1F7A7A;">
         <div class="eng-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
         </div>
-        <div class="eng-card__title">5 regions, 1 skeleton</div>
-        <div class="eng-card__txt">Per-trip accent via one <code>data-region</code> attribute on <code>&lt;body&gt;</code>. Caspian teal, Red Sea aqua, Bosphorus blue — same code, five moods.</div>
+        <div class="eng-card__title" data-i18n="eng.c2.t">5 régions, 1 squelette</div>
+        <div class="eng-card__txt" data-i18n="eng.c2.x">Accent par voyage via un seul attribut <code>data-region</code> sur <code>&lt;body&gt;</code>. Teal caspien, aqua Mer Rouge, bleu Bosphore — même code, cinq ambiances.</div>
       </div>
 
       <div class="eng-card" style="--ic1: #F25C8C; --ic2: #B23A6E;">
         <div class="eng-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-        <div class="eng-card__title">Mobile-first conversion</div>
-        <div class="eng-card__txt">Sticky-total bar on scroll. Floating WhatsApp FAB. Keyboard-accessible lightbox. Dark mode persists in <code>localStorage</code>.</div>
+        <div class="eng-card__title" data-i18n="eng.c3.t">Conversion mobile-first</div>
+        <div class="eng-card__txt" data-i18n="eng.c3.x">Barre de total sticky au scroll. FAB WhatsApp flottant. Lightbox accessible au clavier. Mode sombre persistant dans <code>localStorage</code>.</div>
       </div>
 
       <div class="eng-card" style="--ic1: #6BB6E3; --ic2: #2A6594;">
         <div class="eng-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <div class="eng-card__title">SEO baked in</div>
-        <div class="eng-card__txt">Open Graph + Twitter cards + 6 trip-specific OG images. <code>schema.org/TravelAgency</code> + <code>schema.org/TouristTrip</code> JSON-LD on every page.</div>
+        <div class="eng-card__title" data-i18n="eng.c4.t">SEO intégré</div>
+        <div class="eng-card__txt" data-i18n="eng.c4.x">Open Graph + cartes Twitter + 6 images OG spécifiques. JSON-LD <code>schema.org/TravelAgency</code> + <code>schema.org/TouristTrip</code> sur chaque page.</div>
       </div>
 
       <div class="eng-card" style="--ic1: #4FC58F; --ic2: #2E8B5E;">
         <div class="eng-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="eng-card__title">Accessibility-first</div>
-        <div class="eng-card__txt">Skip-link, semantic landmarks, ARIA labels, focus management. WCAG contrast verified in <code>COLOR-MAP.md</code>.</div>
+        <div class="eng-card__title" data-i18n="eng.c5.t">Accessibilité prioritaire</div>
+        <div class="eng-card__txt" data-i18n="eng.c5.x">Skip-link, repères sémantiques, étiquettes ARIA, gestion du focus. Contraste WCAG vérifié dans <code>COLOR-MAP.md</code>.</div>
       </div>
 
       <div class="eng-card" style="--ic1: #8B5CF6; --ic2: #5B3DC4;">
         <div class="eng-card__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         </div>
-        <div class="eng-card__title">Zero deploy headaches</div>
-        <div class="eng-card__txt">One folder, any static host (Netlify · Vercel · Cloudflare Pages · S3). HTTPS auto-detected for the SW. Cache headers documented.</div>
+        <div class="eng-card__title" data-i18n="eng.c6.t">Zéro casse-tête de déploiement</div>
+        <div class="eng-card__txt" data-i18n="eng.c6.x">Un dossier, n'importe quel hébergeur statique (Netlify · Vercel · Cloudflare Pages · S3). HTTPS auto-détecté pour le SW. En-têtes cache documentés.</div>
       </div>
     </div>
 
     <div class="stats-bar fade-up" style="margin-top: 80px">
       <div class="stat-big">
         <div class="stat-big__n">0</div>
-        <div class="stat-big__l">JS frameworks shipped</div>
+        <div class="stat-big__l" data-i18n="eng.b1">Frameworks JS livrés</div>
       </div>
       <div class="stat-big">
         <div class="stat-big__n">0</div>
-        <div class="stat-big__l">Monthly SaaS bills</div>
+        <div class="stat-big__l" data-i18n="eng.b2">Factures SaaS mensuelles</div>
       </div>
       <div class="stat-big">
         <div class="stat-big__n">~3s</div>
-        <div class="stat-big__l">TTI on 4G</div>
+        <div class="stat-big__l" data-i18n="eng.b3">TTI sur 4G</div>
       </div>
       <div class="stat-big">
         <div class="stat-big__n">100%</div>
-        <div class="stat-big__l">Your code · your repo</div>
+        <div class="stat-big__l" data-i18n="eng.b4">Votre code · votre repo</div>
       </div>
     </div>
   </div>
@@ -2636,41 +2721,41 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 <section class="section section--cream">
   <div class="container">
     <div class="section-head section-head--center fade-up">
-      <span class="eyebrow">How we work</span>
-      <h2>Three phases.<br /><span class="grad-warm">Fixed-price. No surprises.</span></h2>
-      <p class="section-head__sub">We don't sell retainers, we sell outcomes. Cancel after any phase — keep everything we shipped.</p>
+      <span class="eyebrow" data-i18n="ph.eye">Comment on travaille</span>
+      <h2 data-i18n="ph.h2">Trois phases.<br /><span class="grad-warm">Prix fixe. Aucune surprise.</span></h2>
+      <p class="section-head__sub" data-i18n="ph.sub">On ne vend pas des forfaits mensuels, on vend des résultats. Stoppez après n'importe quelle phase — gardez tout ce qu'on a livré.</p>
     </div>
 
     <div class="phases">
       <div class="phase fade-up" style="--phase-c1: #E0B26C; --phase-c2: #E59A3D;">
         <div class="phase__num">01</div>
-        <div class="phase__name">Audit</div>
-        <div class="phase__dur">Week 1 · Fixed-price</div>
+        <div class="phase__name" data-i18n="ph.p1.n">Audit</div>
+        <div class="phase__dur" data-i18n="ph.p1.d">Semaine 1 · Prix fixe</div>
         <ul class="phase__list">
-          <li>We sit in on your WhatsApp inbox for a week</li>
-          <li>Count: messages per booking, repeat questions, where deals die</li>
-          <li>Deliverable: a written friction map you keep, even if you don't ship with us</li>
+          <li data-i18n="ph.p1.l1">On observe votre boîte WhatsApp pendant une semaine</li>
+          <li data-i18n="ph.p1.l2">On compte : messages par réservation, questions répétées, où les deals meurent</li>
+          <li data-i18n="ph.p1.l3">Livrable : une carte de friction écrite que vous gardez, même si vous ne livrez pas avec nous</li>
         </ul>
       </div>
       <div class="phase fade-up d1" style="--phase-c1: #3CC2C2; --phase-c2: #6BB6E3;">
         <div class="phase__num">02</div>
-        <div class="phase__name">The vitrine</div>
-        <div class="phase__dur">Weeks 2–5 · Fixed-price</div>
+        <div class="phase__name" data-i18n="ph.p2.n">La vitrine</div>
+        <div class="phase__dur" data-i18n="ph.p2.d">Semaines 2–5 · Prix fixe</div>
         <ul class="phase__list">
-          <li>Storyline page · network map · 2026 catalogue</li>
-          <li>One calculator + one WhatsApp dossier <em style="color:var(--bronze);font-weight:600">per trip</em></li>
-          <li>Email & clipboard fallbacks · FR + AR ready (RTL audited)</li>
-          <li>JSON-editable trip data — no CMS subscription</li>
+          <li data-i18n="ph.p2.l1">Page storyline · carte du réseau · catalogue 2026</li>
+          <li data-i18n="ph.p2.l2">Un calculateur + un dossier WhatsApp <em style="color:var(--bronze);font-weight:600">par voyage</em></li>
+          <li data-i18n="ph.p2.l3">Secours email & presse-papiers · prêt FR + AR (RTL audité)</li>
+          <li data-i18n="ph.p2.l4">Données voyage éditables en JSON — pas d'abonnement CMS</li>
         </ul>
       </div>
       <div class="phase fade-up d2" style="--phase-c1: #4FC58F; --phase-c2: #8B5CF6;">
         <div class="phase__num">03</div>
-        <div class="phase__name">Optimize</div>
-        <div class="phase__dur">Ongoing · Optional</div>
+        <div class="phase__name" data-i18n="ph.p3.n">Optimiser</div>
+        <div class="phase__dur" data-i18n="ph.p3.d">En continu · Optionnel</div>
         <ul class="phase__list">
-          <li>A/B test pricing copy · breakdown labels · CTA microcopy</li>
-          <li>Lead capture into a real backend when you want one</li>
-          <li>Add a new destination in <em style="color:var(--bronze);font-weight:600">one day</em> by cloning a page</li>
+          <li data-i18n="ph.p3.l1">A/B test du wording prix · libellés du détail · microcopy des CTA</li>
+          <li data-i18n="ph.p3.l2">Capture de leads dans un vrai backend quand vous en voulez un</li>
+          <li data-i18n="ph.p3.l3">Ajouter une nouvelle destination en <em style="color:var(--bronze);font-weight:600">une journée</em> en clonant une page</li>
         </ul>
       </div>
     </div>
@@ -2683,18 +2768,18 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 <section class="section section--cream" id="contact" style="padding-top: 0;">
   <div class="container">
     <div class="final-cta fade-up">
-      <span class="eyebrow" style="color: var(--gold)">The offer</span>
-      <h2 style="margin-top: 24px;">Give us your <span class="grad-gold">worst-converting</span> trip page.</h2>
-      <p class="final-cta__sub">In two weeks we'll send you back a version that does the closing for you. You only pay if you want to ship it. No retainer. No lock-in. No SaaS.</p>
+      <span class="eyebrow" style="color: var(--gold)" data-i18n="final.eye">L'offre</span>
+      <h2 style="margin-top: 24px;" data-i18n="final.h2">Donnez-nous votre page voyage qui <span class="grad-gold">convertit le moins.</span></h2>
+      <p class="final-cta__sub" data-i18n="final.sub">En deux semaines on vous renvoie une version qui ferme la vente à votre place. Vous payez seulement si vous voulez la livrer. Pas de forfait. Pas de lock-in. Pas de SaaS.</p>
       <div class="final-cta__ctas">
         <a href="https://wa.me/" class="btn btn--wa">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.46 3.49 11.815 11.815 0 0012.05 0z"/></svg>
-          WhatsApp the squad
+          <span data-i18n="final.wa">Écrire à la squad sur WhatsApp</span>
         </a>
-        <a href="mailto:" class="btn btn--ghost" style="color:white; border-color:rgba(255,255,255,.25);">Email us a brief</a>
-        <a href="#" class="btn btn--gold">Book a 15-min call →</a>
+        <a href="mailto:" class="btn btn--ghost" style="color:white; border-color:rgba(255,255,255,.25);" data-i18n="final.mail">Envoyer un brief par email</a>
+        <a href="#" class="btn btn--gold" data-i18n="final.call">Réserver 15 min →</a>
       </div>
-      <p class="final-cta__tag">
+      <p class="final-cta__tag" data-i18n="final.tag">
         <strong>Le calcul du voyage, sans le calcul mental.</strong><br />
         De "C'est combien ?" à "C'est réservé." en un seul écran.
       </p>
@@ -2702,8 +2787,8 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
   </div>
 </section>
 
-<footer>
-  Pitch deck rendered from the <strong>Alliance Travel</strong> reference build · 6 pages · 5 destinations · Bordj Bou Arreridj
+<footer data-i18n="foot">
+  Pitch deck construit à partir du build de référence <strong>Alliance Travel</strong> · 6 pages · 5 destinations · Bordj Bou Arreridj
 </footer>
 
 <a href="https://wa.me/" class="fab" aria-label="WhatsApp">
@@ -2711,6 +2796,439 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
 </a>
 
 <script>
+/* ════════════════════════════════════════════════════════════════
+   I18N — French (default), English, Arabic (RTL)
+   ════════════════════════════════════════════════════════════════ */
+const I18N = {
+  fr: {
+    'nav.why': 'Pourquoi nous',
+    'nav.case': "Cas d'étude",
+    'nav.modules': 'Modules',
+    'nav.pricing': 'Inventaire',
+    'nav.eng': 'Ingénierie',
+    'nav.cta': 'Réserver un appel',
+
+    'hero.badge': 'Pour les agences de voyage · <strong>Saison 2026</strong>',
+    'hero.h1': '<span class="stack">Votre agence,</span><span class="stack">enfin en <span class="grad-gold">pilote automatique.</span></span>',
+    'hero.sub': "Nous sommes une équipe resserrée d'ingénieurs produit freelance qui transforment les agences de voyage en machines à réservations. Mêmes voyages. Mêmes hôtels. Mêmes prix. <strong style=\"color:white;font-weight:500\">Deux fois moins d'étapes pour conclure.</strong>",
+    'hero.cta1': 'Voir la référence →',
+    'hero.cta2': 'Réserver 15 min',
+    'hero.s1': 'Voyageurs guidés',
+    'hero.s2': 'Satisfaction',
+    'hero.s3': "Destinations '26",
+    'hero.s4': 'Wilayas couvertes',
+    'hero.hq': '★ BBA — Siège',
+
+    'why.eye': 'Pourquoi nous, pas un thème WordPress',
+    'why.h2': "Les agences de voyage n'ont pas un problème de trafic.<br /><span class=\"grad-warm\">Elles ont un problème de friction.</span>",
+    'why.sub': "Chaque dinar de confusion sur le prix coûte une vente fermée. Chaque formulaire de contact remplace une conversation WhatsApp qui aurait pu se conclure en deux taps. Nous construisons le pont.",
+    'why.f1.p': 'Frais cachés, "vrai total" opaque',
+    'why.f1.f': 'Détail ligne par ligne, en direct',
+    'why.f1.t': "Chaque dinar — vol, hôtel, supplément chambre, enfant, bébé, suppléments — compté en temps réel. Chiffres tabulaires, colonnes qui ne bougent pas.",
+    'why.f2.p': 'Hôtel × date × chambre = 63 combos',
+    'why.f2.f': 'Un écran, un total, instantané',
+    'why.f2.t': "Le Caire+Sharm seul : 7 hôtels × 3 dates × 3 chambres. Chips, dropdown, stepper — le client comprend en 5 secondes.",
+    'why.f3.p': '"Envoyez un formulaire de contact"',
+    'why.f3.f': 'Dossier WhatsApp en un tap',
+    'why.f3.t': "État du calculateur → corps du message pré-rempli. Votre agent reçoit un résumé parfait, pas un aller-retour de 6 messages.",
+    'why.f4.p': 'Objection "je n\'ai pas WhatsApp"',
+    'why.f4.f': 'Email + presse-papiers en secours',
+    'why.f4.t': "Même dossier envoyé par <code style=\"background:rgba(184,134,90,.10);color:var(--bronze-dk);padding:1px 5px;border-radius:3px;font-family:var(--f-mono);font-size:12px;\">mailto:</code> ou copié dans le presse-papiers. Zéro client perdu pour des soucis de plateforme.",
+    'why.f5.p': '"Est-ce une vraie agence ?"',
+    'why.f5.f': 'Signaux de confiance partout',
+    'why.f5.t': "Vrai siège, carte de 6 wilayas, JSON-LD schema.org, zéro faux logos médias. La crédibilité avant que le client scrolle aux voyages.",
+    'why.f6.p': 'Site lent sur la 4G algérienne',
+    'why.f6.f': 'Pas de bundler, pas de framework',
+    'why.f6.t': "HTML/CSS écrits à la main, héros WebP avec crops mobiles, fontes sous-ensemblées, cache service-worker. Lighthouse-friendly d'emblée.",
+
+    'case.eye': "★ Cas d'étude · En production",
+    'case.h2': 'Alliance Travel,<br /><span class="grad-gold">Bordj Bou Arreridj → 5 continents</span>',
+    'case.lede': "Une vitrine de voyages guidés sur 6 pages. Zéro étape de build, zéro dépendance framework, zéro abonnement SaaS mensuel. Déployable sur n'importe quel hébergeur statique. Un calculateur et un dossier WhatsApp sur chaque page voyage.",
+    'case.m1': 'Lignes livrées',
+    'case.m2': 'Pages',
+    'case.m3': 'Thèmes régionaux',
+    'case.m4': 'Abonnements SaaS',
+
+    'mods.eye': 'Ce que nous livrons',
+    'mods.h2': 'Quatre modules.<br /><span class="grad-cool">Chacun supprime une friction précise.</span>',
+    'mods.sub': "Construits à la carte. Combinez les modules qui correspondent à ce qui manque à votre agence aujourd'hui.",
+
+    'm1.num': 'Module 01 / Storyline',
+    'm1.title': "La <span class=\"grad-warm\">storyline de l'agence.</span>",
+    'm1.lede': "Une homepage cinématographique qui gagne la confiance avant que le client scrolle. Globe interactif, compteurs animés, carte nationale qui épingle votre <em style=\"color:var(--text);font-weight:500\">siège</em> et chaque wilaya partenaire.",
+    'm1.l1': 'Globe interactif avec polaroïdes de destinations — glissez pour faire tourner',
+    'm1.l2': "Compteurs en direct : voyageurs, taux de satisfaction, années d'activité",
+    'm1.l3': "Accent par région via <code>data-region</code> sur <code>&lt;body&gt;</code>",
+    'm1.l4': "Carte d'Algérie géographiquement fidèle avec routes animées depuis le siège",
+
+    'm2.num': 'Module 02 / Catalogue',
+    'm2.title': 'Le <span class="grad-cool">catalogue.</span>',
+    'm2.lede': "Parcourable, style magazine. Conçu pour qu'un client peu tech saisisse l'essentiel en <strong style=\"color:var(--text);font-weight:600\">3 secondes</strong> — pas un dump de base, pas un tableur, pas un mur de boutons.",
+    'm2.l1': 'Une carte illustrée par destination — mois, prix "à partir de", durée',
+    'm2.l2': 'Illustrations SVG faites main par région — pyramides, tours de feu, tours jumelles',
+    'm2.l3': "La signature couleur par région se prolonge jusqu'à la page voyage",
+    'm2.l4': "Les données voyage vivent dans un bloc JSON <em style=\"color:var(--text);font-weight:500\">que vous éditez vous-même</em> — pas d'abonnement CMS",
+
+    'm3.num': 'Module 03 / Calculateur',
+    'm3.title': 'Le <span class="grad-warm">calculateur sur mesure.</span>',
+    'm3.lede': "Le joyau. Recalcule chaque dinar en direct pendant que le client choisit date, hôtel, chambre, composition. <strong style=\"color:var(--text);font-weight:600\">\"Pourquoi ce prix ?\"</strong> détaille chaque ligne. Zéro confusion, zéro \"est-ce le vrai total ?\"",
+    'm3.l1': 'Chips · dropdown · segmented control · steppers adultes/enfants/bébés',
+    'm3.l2': 'Chiffres tabulaires — les colonnes ne bougent jamais pendant que vous bidouillez',
+    'm3.l3': "L'état se synchronise au formulaire via un event DOM — essayez à droite →",
+    'm3.l4': "Le mock joue une séquence automatique quand il apparaît à l'écran",
+
+    'm4.num': 'Module 04 / Dossier WhatsApp',
+    'm4.title': 'Le <span class="grad-cool">dossier WhatsApp en un clic.</span>',
+    'm4.lede': "Le closer. L'état du calculateur + infos passeport + scans téléchargés <strong style=\"color:var(--text);font-weight:600\">se composent eux-mêmes</strong> en un message WhatsApp parfaitement formaté. Un tap et votre boîte reçoit un dossier complet.",
+    'm4.l1': 'Auto-rempli depuis la sélection du calculateur — hôtel, date, chambre, groupe, total',
+    'm4.l2': 'Ajouter/retirer des passeports · scan en glisser-déposer (JPG/PNG/PDF)',
+    'm4.l3': 'Ouvre le lien <code>wa.me</code> avec le message déjà pré-formaté',
+    'm4.l4': "Secours : <code>mailto:</code> + copier-coller avec filet <code>execCommand</code>",
+
+    'inv.eye': 'Inventaire prêt à livrer',
+    'inv.h2': 'Cinq voyages. Cinq régions.<br /><span class="grad-warm">Un seul moteur réutilisable.</span>',
+    'inv.sub': "Les cinq pages voyage partagent le même squelette — accents, illustrations, hôtels et prix s'échangent. Ajouter une sixième destination est un travail d'une journée.",
+    'inv.from': 'À partir de',
+
+    'eng.eye': "L'ingénierie dont vous n'avez pas à vous soucier",
+    'eng.h2': "Nous suons sur les détails<br /><span class=\"grad-gold\">pour que votre équipe n'ait pas à le faire.</span>",
+    'eng.sub': "Chaque choix ci-dessous est documenté dans <code style=\"color:var(--gold);background:rgba(224,178,108,.10);padding:2px 6px;border-radius:4px;font-family:var(--f-mono);font-size:13px;\">/docs</code> — design system, tokens couleur, manifest images, sitemap, roadmap.",
+    'eng.c1.t': 'Rapide sur 4G',
+    'eng.c1.x': "HTML/CSS écrits à la main, pas de framework, pas de bundler. Héros WebP avec <code>image-set()</code>. Fontes sous-ensemblées. Cache offline service-worker.",
+    'eng.c2.t': '5 régions, 1 squelette',
+    'eng.c2.x': "Accent par voyage via un seul attribut <code>data-region</code> sur <code>&lt;body&gt;</code>. Teal caspien, aqua Mer Rouge, bleu Bosphore — même code, cinq ambiances.",
+    'eng.c3.t': 'Conversion mobile-first',
+    'eng.c3.x': "Barre de total sticky au scroll. FAB WhatsApp flottant. Lightbox accessible au clavier. Mode sombre persistant dans <code>localStorage</code>.",
+    'eng.c4.t': 'SEO intégré',
+    'eng.c4.x': "Open Graph + cartes Twitter + 6 images OG spécifiques. JSON-LD <code>schema.org/TravelAgency</code> + <code>schema.org/TouristTrip</code> sur chaque page.",
+    'eng.c5.t': 'Accessibilité prioritaire',
+    'eng.c5.x': "Skip-link, repères sémantiques, étiquettes ARIA, gestion du focus. Contraste WCAG vérifié dans <code>COLOR-MAP.md</code>.",
+    'eng.c6.t': 'Zéro casse-tête de déploiement',
+    'eng.c6.x': "Un dossier, n'importe quel hébergeur statique (Netlify · Vercel · Cloudflare Pages · S3). HTTPS auto-détecté pour le SW. En-têtes cache documentés.",
+    'eng.b1': 'Frameworks JS livrés',
+    'eng.b2': 'Factures SaaS mensuelles',
+    'eng.b3': 'TTI sur 4G',
+    'eng.b4': 'Votre code · votre repo',
+
+    'ph.eye': 'Comment on travaille',
+    'ph.h2': 'Trois phases.<br /><span class="grad-warm">Prix fixe. Aucune surprise.</span>',
+    'ph.sub': "On ne vend pas des forfaits mensuels, on vend des résultats. Stoppez après n'importe quelle phase — gardez tout ce qu'on a livré.",
+    'ph.p1.n': 'Audit', 'ph.p1.d': 'Semaine 1 · Prix fixe',
+    'ph.p1.l1': "On observe votre boîte WhatsApp pendant une semaine",
+    'ph.p1.l2': "On compte : messages par réservation, questions répétées, où les deals meurent",
+    'ph.p1.l3': "Livrable : une carte de friction écrite que vous gardez, même si vous ne livrez pas avec nous",
+    'ph.p2.n': 'La vitrine', 'ph.p2.d': 'Semaines 2–5 · Prix fixe',
+    'ph.p2.l1': 'Page storyline · carte du réseau · catalogue 2026',
+    'ph.p2.l2': 'Un calculateur + un dossier WhatsApp <em style="color:var(--bronze);font-weight:600">par voyage</em>',
+    'ph.p2.l3': 'Secours email & presse-papiers · prêt FR + AR (RTL audité)',
+    'ph.p2.l4': "Données voyage éditables en JSON — pas d'abonnement CMS",
+    'ph.p3.n': 'Optimiser', 'ph.p3.d': 'En continu · Optionnel',
+    'ph.p3.l1': 'A/B test du wording prix · libellés du détail · microcopy des CTA',
+    'ph.p3.l2': 'Capture de leads dans un vrai backend quand vous en voulez un',
+    'ph.p3.l3': 'Ajouter une nouvelle destination en <em style="color:var(--bronze);font-weight:600">une journée</em> en clonant une page',
+
+    'final.eye': "L'offre",
+    'final.h2': 'Donnez-nous votre page voyage qui <span class="grad-gold">convertit le moins.</span>',
+    'final.sub': "En deux semaines on vous renvoie une version qui ferme la vente à votre place. Vous payez seulement si vous voulez la livrer. Pas de forfait. Pas de lock-in. Pas de SaaS.",
+    'final.wa': 'Écrire à la squad sur WhatsApp',
+    'final.mail': 'Envoyer un brief par email',
+    'final.call': 'Réserver 15 min →',
+    'final.tag': "<strong>Le calcul du voyage, sans le calcul mental.</strong><br />De \"C'est combien ?\" à \"C'est réservé.\" en un seul écran.",
+
+    'foot': 'Pitch deck construit à partir du build de référence <strong>Alliance Travel</strong> · 6 pages · 5 destinations · Bordj Bou Arreridj',
+  },
+
+  en: {
+    'nav.why': 'Why us', 'nav.case': 'Case study', 'nav.modules': 'Modules',
+    'nav.pricing': 'Inventory', 'nav.eng': 'Engineering', 'nav.cta': 'Book a call',
+
+    'hero.badge': 'For travel agencies · <strong>Hot season 2026</strong>',
+    'hero.h1': '<span class="stack">Your agency,</span><span class="stack">finally on <span class="grad-gold">autopilot.</span></span>',
+    'hero.sub': "We're a tight squad of freelance product engineers who turn travel agencies into booking machines. Same trips. Same hotels. Same prices. <strong style=\"color:white;font-weight:500\">Half the steps to close.</strong>",
+    'hero.cta1': 'See the reference build →',
+    'hero.cta2': 'Book a 15-min call',
+    'hero.s1': 'Travelers guided', 'hero.s2': 'Satisfaction',
+    'hero.s3': "Destinations '26", 'hero.s4': 'Wilayas covered',
+    'hero.hq': '★ BBA — HQ',
+
+    'why.eye': 'Why us, not a theme shop',
+    'why.h2': "Travel agencies don't have a traffic problem.<br /><span class=\"grad-warm\">They have a friction problem.</span>",
+    'why.sub': "Every dinar of price confusion costs you a closed deal. Every contact form replaces a WhatsApp conversation that could have closed in two taps. We engineer the bridge.",
+    'why.f1.p': 'Hidden fees, opaque "real total"',
+    'why.f1.f': 'Live line-by-line breakdown',
+    'why.f1.t': 'Every dinar — flight, hotel, room supplement, child, baby, extras — accounted for in real time. Tabular figures, no shifting columns.',
+    'why.f2.p': 'Hotel × date × room = 63 combos',
+    'why.f2.f': 'One screen, one total, instant',
+    'why.f2.t': 'Cairo+Sharm alone: 7 hotels × 3 dates × 3 rooms. Chips, dropdown, stepper — clients get it in 5 seconds.',
+    'why.f3.p': '"Send me a contact form"',
+    'why.f3.f': 'One-tap WhatsApp dossier',
+    'why.f3.t': 'Calculator state → pre-formatted message body. Your agent gets a perfect summary, not a 6-message back-and-forth.',
+    'why.f4.p': '"I don\'t have WhatsApp" objection',
+    'why.f4.f': 'Email + clipboard fallback',
+    'why.f4.t': 'Same dossier piped to <code style="background:rgba(184,134,90,.10);color:var(--bronze-dk);padding:1px 5px;border-radius:3px;font-family:var(--f-mono);font-size:12px;">mailto:</code> or to the clipboard. Zero clients lost to platform issues.',
+    'why.f5.p': '"Is this agency real?"',
+    'why.f5.f': 'Trust signals everywhere',
+    'why.f5.t': 'Real siège, six-wilaya partner map, schema.org JSON-LD, no fake media logos. Credibility before the client scrolls to the trips.',
+    'why.f6.p': 'Slow site on Algerian 4G',
+    'why.f6.f': 'No bundler, no framework',
+    'why.f6.t': 'Hand-written HTML/CSS, WebP-first heroes with mobile crops, font subset, service-worker offline cache. Lighthouse-friendly out of the box.',
+
+    'case.eye': '★ Case study · Live in production',
+    'case.h2': 'Alliance Travel,<br /><span class="grad-gold">Bordj Bou Arreridj → 5 continents</span>',
+    'case.lede': 'A 6-page guided-tour vitrine. Zero build step, zero framework lock-in, zero monthly SaaS bill. Deployable on any static host. A calculator and WhatsApp dossier on every trip page.',
+    'case.m1': 'Lines shipped', 'case.m2': 'Pages', 'case.m3': 'Region themes', 'case.m4': 'SaaS subs',
+
+    'mods.eye': 'What we ship',
+    'mods.h2': 'Four modules.<br /><span class="grad-cool">Each removes a specific friction.</span>',
+    'mods.sub': 'Built à la carte. Mix the modules that match what your agency is missing today.',
+
+    'm1.num': 'Module 01 / Storyline',
+    'm1.title': 'The <span class="grad-warm">agency storyline.</span>',
+    'm1.lede': 'A cinematic homepage that earns trust before the client scrolls. Interactive globe, animated counters, a national map pinning your <em style="color:var(--text);font-weight:500">siège</em> and every partner wilaya.',
+    'm1.l1': 'Interactive globe with destination polaroids — drag to spin',
+    'm1.l2': 'Live counters: travelers, satisfaction rate, years in business',
+    'm1.l3': 'Per-region accent theming via <code>data-region</code> on <code>&lt;body&gt;</code>',
+    'm1.l4': 'Geographically accurate Algeria map with animated routes from HQ',
+
+    'm2.num': 'Module 02 / Catalogue',
+    'm2.title': 'The <span class="grad-cool">catalogue.</span>',
+    'm2.lede': 'Browsable, magazine-style. Designed so a non-tech-savvy client gets the gist in <strong style="color:var(--text);font-weight:600">3 seconds</strong> — not a database dump, not a spreadsheet, not a wall of buttons.',
+    'm2.l1': 'One illustrated card per destination — month, "à partir de" price, duration',
+    'm2.l2': 'Hand-crafted SVG art per region — pyramids, fire towers, twin towers',
+    'm2.l3': 'Per-region color signature carries through to the trip page',
+    'm2.l4': 'Trip data lives in a JSON block <em style="color:var(--text);font-weight:500">you edit yourself</em> — no CMS subscription',
+
+    'm3.num': 'Module 03 / Calculator',
+    'm3.title': 'The <span class="grad-warm">tailor-made calculator.</span>',
+    'm3.lede': 'The crown jewel. Updates every dinar live as the client picks date, hotel, room, group size. <strong style="color:var(--text);font-weight:600">"Pourquoi ce prix ?"</strong> explains every line. Zero confusion, zero "is this the real total?"',
+    'm3.l1': 'Chips · dropdown · segmented controls · adult/kid/baby steppers',
+    'm3.l2': 'Tabular numerics — columns never shift while you tinker',
+    'm3.l3': 'State syncs to the booking form via a DOM event — try it on the right →',
+    'm3.l4': 'The mock auto-cycles a configuration sequence when in view',
+
+    'm4.num': 'Module 04 / WhatsApp dossier',
+    'm4.title': 'The <span class="grad-cool">1-click WhatsApp dossier.</span>',
+    'm4.lede': 'The closer. Calculator state + passport info + uploaded scans <strong style="color:var(--text);font-weight:600">compose themselves</strong> into a perfectly formatted WhatsApp message. One tap and your inbox receives a complete dossier.',
+    'm4.l1': 'Auto-fills from calculator selection — hotel, date, room, group, total',
+    'm4.l2': 'Add/remove passport rows · drag-and-drop scan upload (JPG/PNG/PDF)',
+    'm4.l3': 'Opens <code>wa.me</code> deep link with the message pre-formatted',
+    'm4.l4': 'Fallbacks: <code>mailto:</code> + copy-to-clipboard with <code>execCommand</code> safety net',
+
+    'inv.eye': 'Ready-to-ship inventory',
+    'inv.h2': 'Five trips. Five regions.<br /><span class="grad-warm">One reusable engine.</span>',
+    'inv.sub': 'All five trip pages share the same skeleton — they swap accents, hero art, hotels and prices. Adding a sixth destination is a one-day job.',
+    'inv.from': 'From',
+
+    'eng.eye': "Engineering you don't have to think about",
+    'eng.h2': "We sweat the details<br /><span class=\"grad-gold\">so your booking team doesn't have to.</span>",
+    'eng.sub': 'Every choice below is documented in <code style="color:var(--gold);background:rgba(224,178,108,.10);padding:2px 6px;border-radius:4px;font-family:var(--f-mono);font-size:13px;">/docs</code> — design system, color tokens, image manifest, sitemap, roadmap.',
+    'eng.c1.t': 'Fast on 4G',
+    'eng.c1.x': 'Hand-written HTML/CSS, no framework, no bundler. WebP-first heroes with <code>image-set()</code>. Font subset. Service-worker offline cache.',
+    'eng.c2.t': '5 regions, 1 skeleton',
+    'eng.c2.x': 'Per-trip accent via one <code>data-region</code> attribute on <code>&lt;body&gt;</code>. Caspian teal, Red Sea aqua, Bosphorus blue — same code, five moods.',
+    'eng.c3.t': 'Mobile-first conversion',
+    'eng.c3.x': 'Sticky-total bar on scroll. Floating WhatsApp FAB. Keyboard-accessible lightbox. Dark mode persists in <code>localStorage</code>.',
+    'eng.c4.t': 'SEO baked in',
+    'eng.c4.x': 'Open Graph + Twitter cards + 6 trip-specific OG images. <code>schema.org/TravelAgency</code> + <code>schema.org/TouristTrip</code> JSON-LD on every page.',
+    'eng.c5.t': 'Accessibility-first',
+    'eng.c5.x': 'Skip-link, semantic landmarks, ARIA labels, focus management. WCAG contrast verified in <code>COLOR-MAP.md</code>.',
+    'eng.c6.t': 'Zero deploy headaches',
+    'eng.c6.x': 'One folder, any static host (Netlify · Vercel · Cloudflare Pages · S3). HTTPS auto-detected for the SW. Cache headers documented.',
+    'eng.b1': 'JS frameworks shipped',
+    'eng.b2': 'Monthly SaaS bills',
+    'eng.b3': 'TTI on 4G',
+    'eng.b4': 'Your code · your repo',
+
+    'ph.eye': 'How we work',
+    'ph.h2': 'Three phases.<br /><span class="grad-warm">Fixed-price. No surprises.</span>',
+    'ph.sub': "We don't sell retainers, we sell outcomes. Cancel after any phase — keep everything we shipped.",
+    'ph.p1.n': 'Audit', 'ph.p1.d': 'Week 1 · Fixed-price',
+    'ph.p1.l1': "We sit in on your WhatsApp inbox for a week",
+    'ph.p1.l2': "Count: messages per booking, repeat questions, where deals die",
+    'ph.p1.l3': "Deliverable: a written friction map you keep, even if you don't ship with us",
+    'ph.p2.n': 'The vitrine', 'ph.p2.d': 'Weeks 2–5 · Fixed-price',
+    'ph.p2.l1': 'Storyline page · network map · 2026 catalogue',
+    'ph.p2.l2': 'One calculator + one WhatsApp dossier <em style="color:var(--bronze);font-weight:600">per trip</em>',
+    'ph.p2.l3': 'Email & clipboard fallbacks · FR + AR ready (RTL audited)',
+    'ph.p2.l4': 'JSON-editable trip data — no CMS subscription',
+    'ph.p3.n': 'Optimize', 'ph.p3.d': 'Ongoing · Optional',
+    'ph.p3.l1': 'A/B test pricing copy · breakdown labels · CTA microcopy',
+    'ph.p3.l2': 'Lead capture into a real backend when you want one',
+    'ph.p3.l3': 'Add a new destination in <em style="color:var(--bronze);font-weight:600">one day</em> by cloning a page',
+
+    'final.eye': 'The offer',
+    'final.h2': 'Give us your <span class="grad-gold">worst-converting</span> trip page.',
+    'final.sub': "In two weeks we'll send you back a version that does the closing for you. You only pay if you want to ship it. No retainer. No lock-in. No SaaS.",
+    'final.wa': 'WhatsApp the squad',
+    'final.mail': 'Email us a brief',
+    'final.call': 'Book a 15-min call →',
+    'final.tag': "<strong>Travel pricing, without the mental math.</strong><br />From \"How much?\" to \"Booked.\" in a single screen.",
+
+    'foot': 'Pitch deck rendered from the <strong>Alliance Travel</strong> reference build · 6 pages · 5 destinations · Bordj Bou Arreridj',
+  },
+
+  ar: {
+    'nav.why': 'لماذا نحن', 'nav.case': 'دراسة الحالة', 'nav.modules': 'الوحدات',
+    'nav.pricing': 'الجرد', 'nav.eng': 'الهندسة', 'nav.cta': 'احجز مكالمة',
+
+    'hero.badge': 'لوكالات السفر · <strong>موسم ٢٠٢٦</strong>',
+    'hero.h1': '<span class="stack">وكالتك،</span><span class="stack">أخيراً على <span class="grad-gold">الطيار الآلي.</span></span>',
+    'hero.sub': 'نحن فريق مصغّر من مهندسي المنتج المستقلين، نحوّل وكالات السفر إلى آلات حجز. نفس الرحلات. نفس الفنادق. نفس الأسعار. <strong style="color:white;font-weight:500">نصف الخطوات لإتمام الصفقة.</strong>',
+    'hero.cta1': 'شاهد المرجع ←',
+    'hero.cta2': 'احجز ١٥ دقيقة',
+    'hero.s1': 'مسافرون مرافقون', 'hero.s2': 'رضا العملاء',
+    'hero.s3': "وجهات '٢٦", 'hero.s4': 'ولايات مغطاة',
+    'hero.hq': '★ برج بوعريريج — المقر',
+
+    'why.eye': 'لماذا نحن، وليس قالباً جاهزاً',
+    'why.h2': 'وكالات السفر ليست لديها مشكلة زيارات.<br /><span class="grad-warm">لديها مشكلة احتكاك.</span>',
+    'why.sub': 'كل دينار من الغموض في السعر يكلّفك صفقة مغلقة. كل نموذج اتصال يستبدل محادثة واتساب كان يمكن إغلاقها في نقرتين. نحن نبني الجسر.',
+    'why.f1.p': 'رسوم خفية و"إجمالي حقيقي" غامض',
+    'why.f1.f': 'تفصيل سطر بسطر، مباشر',
+    'why.f1.t': 'كل دينار — الطيران، الفندق، فارق الغرفة، الطفل، الرضيع، الإضافات — محسوب بالوقت الفعلي. أرقام مصفوفة، أعمدة لا تتزحزح.',
+    'why.f2.p': 'فندق × تاريخ × غرفة = ٦٣ توليفة',
+    'why.f2.f': 'شاشة واحدة، إجمالي واحد، فوراً',
+    'why.f2.t': 'القاهرة + شرم وحدها: ٧ فنادق × ٣ تواريخ × ٣ غرف. شيبس، قائمة منسدلة، عدّاد — العميل يفهم في ٥ ثوانٍ.',
+    'why.f3.p': '"أرسل لي نموذج اتصال"',
+    'why.f3.f': 'ملف واتساب بنقرة واحدة',
+    'why.f3.t': 'حالة الحاسبة ← نص رسالة جاهز. وكيلك يستلم ملخصاً مثالياً، لا ست رسائل ذهاباً وإياباً.',
+    'why.f4.p': 'اعتراض "ليس لدي واتساب"',
+    'why.f4.f': 'بريد إلكتروني + نسخ احتياطي للحافظة',
+    'why.f4.t': 'نفس الملف يُرسل عبر <code style="background:rgba(184,134,90,.10);color:var(--bronze-dk);padding:1px 5px;border-radius:3px;font-family:var(--f-mono);font-size:12px;">mailto:</code> أو يُنسخ إلى الحافظة. صفر عملاء يُفقدون بسبب مشاكل المنصة.',
+    'why.f5.p': '"هل هذه وكالة حقيقية؟"',
+    'why.f5.f': 'إشارات ثقة في كل مكان',
+    'why.f5.t': 'مقر حقيقي، خريطة ست ولايات، JSON-LD حسب schema.org، صفر شعارات إعلامية مزيّفة. مصداقية قبل أن يصل العميل إلى الرحلات.',
+    'why.f6.p': 'موقع بطيء على شبكة الجيل الرابع',
+    'why.f6.f': 'بدون مُجمِّع، بدون إطار عمل',
+    'why.f6.t': 'HTML/CSS مكتوبة يدوياً، صور WebP مع قطوع للجوال، خطوط مختزلة، تخزين مؤقت بدون اتصال عبر service-worker. صديقة لـ Lighthouse من البداية.',
+
+    'case.eye': '★ دراسة حالة · إنتاج مباشر',
+    'case.h2': 'Alliance Travel،<br /><span class="grad-gold">برج بوعريريج ← ٥ قارات</span>',
+    'case.lede': 'واجهة عرض لرحلات مرشدة على ٦ صفحات. صفر خطوات بناء، صفر ارتباط بإطار عمل، صفر اشتراك SaaS شهري. قابلة للنشر على أي مستضيف ثابت. حاسبة وملف واتساب على كل صفحة رحلة.',
+    'case.m1': 'أسطر مُسلَّمة', 'case.m2': 'صفحات', 'case.m3': 'سمات إقليمية', 'case.m4': 'اشتراكات SaaS',
+
+    'mods.eye': 'ما نقوم بتسليمه',
+    'mods.h2': 'أربع وحدات.<br /><span class="grad-cool">كل واحدة تزيل احتكاكاً محدداً.</span>',
+    'mods.sub': 'مبنية حسب الطلب. اختر الوحدات التي تطابق ما ينقص وكالتك اليوم.',
+
+    'm1.num': 'الوحدة ٠١ / القصة',
+    'm1.title': '<span class="grad-warm">قصة الوكالة.</span>',
+    'm1.lede': 'صفحة رئيسية سينمائية تكسب الثقة قبل أن يبدأ العميل بالتمرير. كرة أرضية تفاعلية، عدّادات متحركة، خريطة وطنية تثبّت <em style="color:var(--text);font-weight:500">مقرّك</em> وكل ولاية شريكة.',
+    'm1.l1': 'كرة أرضية تفاعلية مع بطاقات وجهات — اسحب للتدوير',
+    'm1.l2': 'عدّادات مباشرة: المسافرون، نسبة الرضا، سنوات النشاط',
+    'm1.l3': 'لون مميز لكل وجهة عبر <code>data-region</code> على <code>&lt;body&gt;</code>',
+    'm1.l4': 'خريطة الجزائر دقيقة جغرافياً مع مسارات متحركة من المقر',
+
+    'm2.num': 'الوحدة ٠٢ / الكتالوج',
+    'm2.title': '<span class="grad-cool">الكتالوج.</span>',
+    'm2.lede': 'قابل للتصفح، بأسلوب المجلات. مصمَّم بحيث يلتقط العميل غير التقني الفكرة في <strong style="color:var(--text);font-weight:600">٣ ثوانٍ</strong> — ليس تفريغاً لقاعدة بيانات، ولا جدولاً، ولا جداراً من الأزرار.',
+    'm2.l1': 'بطاقة مصوّرة لكل وجهة — الشهر، السعر "ابتداءً من"، المدة',
+    'm2.l2': 'رسومات SVG يدوية لكل منطقة — أهرامات، أبراج اللهب، البرجان التوأمان',
+    'm2.l3': 'توقيع اللون لكل منطقة يمتد إلى صفحة الرحلة',
+    'm2.l4': 'بيانات الرحلة في كتلة JSON <em style="color:var(--text);font-weight:500">تحرّرها بنفسك</em> — بدون اشتراك CMS',
+
+    'm3.num': 'الوحدة ٠٣ / الحاسبة',
+    'm3.title': '<span class="grad-warm">الحاسبة على المقاس.</span>',
+    'm3.lede': 'جوهرة التاج. تعيد حساب كل دينار مباشرة بينما يختار العميل التاريخ، الفندق، الغرفة، التركيبة. <strong style="color:var(--text);font-weight:600">"لماذا هذا السعر؟"</strong> يفصّل كل سطر. صفر التباس، صفر "هل هذا الإجمالي الحقيقي؟"',
+    'm3.l1': 'شيبس · قائمة منسدلة · أزرار مقسّمة · عدّادات بالغين/أطفال/رضّع',
+    'm3.l2': 'أرقام مصفوفة — الأعمدة لا تتحرّك أثناء التعديل',
+    'm3.l3': 'الحالة تتزامن مع نموذج الحجز عبر حدث DOM — جرّبها على اليمين ←',
+    'm3.l4': 'النموذج يشغّل تسلسل إعدادات تلقائي عند ظهوره على الشاشة',
+
+    'm4.num': 'الوحدة ٠٤ / ملف واتساب',
+    'm4.title': '<span class="grad-cool">ملف واتساب بنقرة واحدة.</span>',
+    'm4.lede': 'المُغلِق. حالة الحاسبة + بيانات الجواز + المسوحات المرفوعة <strong style="color:var(--text);font-weight:600">تتألّف بنفسها</strong> في رسالة واتساب منسّقة تماماً. نقرة واحدة وصندوقك يستلم ملفاً كاملاً.',
+    'm4.l1': 'يُملأ تلقائياً من اختيار الحاسبة — الفندق، التاريخ، الغرفة، المجموعة، الإجمالي',
+    'm4.l2': 'إضافة/حذف صفوف الجوازات · رفع المسوحات بالسحب والإفلات (JPG/PNG/PDF)',
+    'm4.l3': 'يفتح رابط <code>wa.me</code> مع الرسالة منسّقة مسبقاً',
+    'm4.l4': 'الاحتياطي: <code>mailto:</code> + نسخ إلى الحافظة مع شبكة أمان <code>execCommand</code>',
+
+    'inv.eye': 'جرد جاهز للتسليم',
+    'inv.h2': 'خمس رحلات. خمس مناطق.<br /><span class="grad-warm">محرّك واحد قابل لإعادة الاستخدام.</span>',
+    'inv.sub': 'الصفحات الخمس تشترك في الهيكل نفسه — تتبدّل الألوان والرسومات والفنادق والأسعار. إضافة وجهة سادسة عمل يوم واحد.',
+    'inv.from': 'ابتداءً من',
+
+    'eng.eye': 'هندسة لا داعي للتفكير فيها',
+    'eng.h2': 'نتعب على التفاصيل<br /><span class="grad-gold">حتى لا يضطر فريق الحجز إلى ذلك.</span>',
+    'eng.sub': 'كل خيار أدناه موثّق في <code style="color:var(--gold);background:rgba(224,178,108,.10);padding:2px 6px;border-radius:4px;font-family:var(--f-mono);font-size:13px;">/docs</code> — نظام التصميم، الرموز اللونية، قائمة الصور، خريطة الموقع، خارطة الطريق.',
+    'eng.c1.t': 'سريع على الجيل الرابع',
+    'eng.c1.x': 'HTML/CSS مكتوبة يدوياً، بدون إطار عمل، بدون مُجمِّع. صور WebP مع <code>image-set()</code>. خطوط مختزلة. تخزين مؤقت بدون اتصال عبر service-worker.',
+    'eng.c2.t': '٥ مناطق، هيكل واحد',
+    'eng.c2.x': 'لون مميز لكل رحلة عبر سمة <code>data-region</code> واحدة على <code>&lt;body&gt;</code>. أزرق قزويني، أزرق البحر الأحمر، أزرق البوسفور — نفس الكود، خمسة أمزجة.',
+    'eng.c3.t': 'تحويل بنهج الجوال أولاً',
+    'eng.c3.x': 'شريط إجمالي ملتصق عند التمرير. زر واتساب عائم. صندوق ضوئي يدعم لوحة المفاتيح. الوضع الداكن محفوظ في <code>localStorage</code>.',
+    'eng.c4.t': 'SEO مدمج',
+    'eng.c4.x': 'Open Graph + بطاقات تويتر + ٦ صور OG لكل رحلة. <code>schema.org/TravelAgency</code> + <code>schema.org/TouristTrip</code> JSON-LD على كل صفحة.',
+    'eng.c5.t': 'الوصولية أولاً',
+    'eng.c5.x': 'رابط تخطّي، مَعالم دلالية، تسميات ARIA، إدارة التركيز. تباين WCAG محقّق في <code>COLOR-MAP.md</code>.',
+    'eng.c6.t': 'صفر صداع نشر',
+    'eng.c6.x': 'مجلّد واحد، أي مستضيف ثابت (Netlify · Vercel · Cloudflare Pages · S3). HTTPS مكتشف تلقائياً لـ SW. ترويسات التخزين المؤقت موثّقة.',
+    'eng.b1': 'أُطر JS مُسلَّمة',
+    'eng.b2': 'فواتير SaaS شهرية',
+    'eng.b3': 'TTI على الجيل الرابع',
+    'eng.b4': 'كودك · مستودعك',
+
+    'ph.eye': 'كيف نعمل',
+    'ph.h2': 'ثلاث مراحل.<br /><span class="grad-warm">سعر ثابت. صفر مفاجآت.</span>',
+    'ph.sub': 'لا نبيع اشتراكات شهرية، نبيع نتائج. أوقف بعد أي مرحلة — احتفظ بكل ما سلّمناه.',
+    'ph.p1.n': 'تدقيق', 'ph.p1.d': 'الأسبوع ١ · سعر ثابت',
+    'ph.p1.l1': 'نراقب صندوق واتساب لديك لمدة أسبوع',
+    'ph.p1.l2': 'نحسب: الرسائل لكل حجز، الأسئلة المتكررة، أين تموت الصفقات',
+    'ph.p1.l3': 'المُسلَّم: خريطة احتكاك مكتوبة تبقى لك، حتى لو لم تسلّم معنا',
+    'ph.p2.n': 'الواجهة', 'ph.p2.d': 'الأسابيع ٢–٥ · سعر ثابت',
+    'ph.p2.l1': 'صفحة القصة · خريطة الشبكة · كتالوج ٢٠٢٦',
+    'ph.p2.l2': 'حاسبة واحدة + ملف واتساب واحد <em style="color:var(--bronze);font-weight:600">لكل رحلة</em>',
+    'ph.p2.l3': 'احتياطي البريد والحافظة · جاهز FR + AR (RTL مدقَّق)',
+    'ph.p2.l4': 'بيانات رحلة قابلة للتحرير بصيغة JSON — بدون اشتراك CMS',
+    'ph.p3.n': 'تحسين', 'ph.p3.d': 'مستمر · اختياري',
+    'ph.p3.l1': 'اختبار A/B لصياغة السعر · تسميات التفصيل · صياغة الـ CTA',
+    'ph.p3.l2': 'التقاط العملاء المحتملين في backend حقيقي عندما تريده',
+    'ph.p3.l3': 'إضافة وجهة جديدة في <em style="color:var(--bronze);font-weight:600">يوم واحد</em> باستنساخ صفحة',
+
+    'final.eye': 'العرض',
+    'final.h2': 'أعطنا صفحة الرحلة <span class="grad-gold">الأسوأ تحويلاً.</span>',
+    'final.sub': 'في أسبوعين نعيد إليك نسخة تُغلق البيع نيابة عنك. لا تدفع إلا إذا أردت تسليمها. بدون اشتراك. بدون ارتباط. بدون SaaS.',
+    'final.wa': 'راسل الفريق على واتساب',
+    'final.mail': 'أرسل لنا موجزاً بالبريد',
+    'final.call': 'احجز ١٥ دقيقة ←',
+    'final.tag': '<strong>حساب الرحلة، بدون حساب ذهني.</strong><br />من "بكم؟" إلى "محجوز." في شاشة واحدة.',
+
+    'foot': 'بطاقة عرض مبنية من المرجع <strong>Alliance Travel</strong> · ٦ صفحات · ٥ وجهات · برج بوعريريج',
+  }
+};
+
+function setLang(lang) {
+  if (!I18N[lang]) lang = 'fr';
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const v = I18N[lang][key];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-lang]').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try { localStorage.setItem('pitch-lang', lang); } catch(e) {}
+}
+
+// Wire up switcher
+document.querySelectorAll('[data-lang]').forEach(b => {
+  b.addEventListener('click', () => setLang(b.dataset.lang));
+});
+
+// Init: pick stored > browser > fr
+(function initLang() {
+  let lang = null;
+  try { lang = localStorage.getItem('pitch-lang'); } catch(e) {}
+  if (!lang) {
+    const browser = (navigator.language || 'fr').toLowerCase().slice(0, 2);
+    lang = ['fr', 'en', 'ar'].includes(browser) ? browser : 'fr';
+  }
+  setLang(lang);
+})();
+
 /* ════════════════════════════════════════════════════════════════
    SCROLL REVEAL
    ════════════════════════════════════════════════════════════════ */

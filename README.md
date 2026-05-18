@@ -13,6 +13,16 @@ python -m http.server 5500
 
 Or double-click `index.html`. Zero local dependencies beyond two Google Fonts (Space Grotesk + Inter + JetBrains Mono) loaded over the network.
 
+## Languages
+
+Three languages, switchable via the **FR / AR / EN** pills in the nav. Default is French (target audience: Algerian B2B agencies). Choice persists in `localStorage`; first visit picks from `navigator.language`.
+
+- **FR** — Algerian business French (default)
+- **AR** — Modern Standard Arabic with RTL layout (Cairo + IBM Plex Sans Arabic fonts)
+- **EN** — for international reach
+
+Mock product UI (URL bars, calculator chips, WhatsApp message body, region tile names, trip names, prices) stays in **French** in all languages — it represents the live Alliance Travel product. The pitch copy around the mocks translates.
+
 ## Creative direction
 
 - **Typography** — Space Grotesk display + Inter body + JetBrains Mono for technical labels. No serifs anywhere.
