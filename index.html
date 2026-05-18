@@ -428,10 +428,15 @@ p { color: var(--text-2); }
   background: var(--gold);
   position: relative;
   display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 12px var(--gold), inset 0 0 4px rgba(0,0,0,.3);
+}
+.hero__badge-dot::after {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ink);
 }
 .hero__badge-dot::before {
-  content: ''; position: absolute; inset: -3px; border-radius: 50%;
-  border: 1px solid var(--gold);
+  content: ''; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1.5px solid var(--gold);
   animation: pulse-ring 2.4s ease-out infinite;
 }
 .hero__badge strong { color: white; font-weight: 600; }
@@ -486,13 +491,14 @@ p { color: var(--text-2); }
   position: absolute; inset: 18%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.10) 0%, transparent 40%),
-    radial-gradient(circle at 70% 70%, rgba(224,178,108,.18) 0%, transparent 50%),
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.12) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(224,178,108,.22) 0%, transparent 50%),
     radial-gradient(circle at 50% 50%, #1A1D26 0%, #0B0D14 70%);
   box-shadow:
-    inset -25px -25px 60px rgba(0,0,0,.6),
-    inset 25px 25px 60px rgba(224,178,108,.04),
-    0 0 80px rgba(224,178,108,.15);
+    inset -30px -30px 80px rgba(0,0,0,.7),
+    inset 30px 30px 60px rgba(224,178,108,.06),
+    0 0 120px rgba(224,178,108,.22),
+    0 40px 80px rgba(0,0,0,.4);
   overflow: hidden;
 }
 .orb__core::before {
@@ -600,6 +606,8 @@ p { color: var(--text-2); }
   border-bottom: 1px solid var(--line-dark);
   overflow: hidden;
   position: relative;
+  mask-image: linear-gradient(90deg, transparent 0, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 8%, black 92%, transparent 100%);
 }
 .marquee__track {
   display: flex; gap: 56px;
@@ -750,12 +758,21 @@ p { color: var(--text-2); }
   padding: 14px;
   color: white;
   cursor: default;
-  transition: transform .3s ease;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -1px 0 rgba(0,0,0,.2);
 }
-.region-tile:hover { transform: translateY(-4px); }
-.region-tile__inner { position: relative; z-index: 2; }
-.region-tile__price { font-family: var(--f-display); font-size: 20px; font-weight: 500; letter-spacing: -0.03em; }
-.region-tile__name { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: .8; margin-top: 2px; }
+.region-tile::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, transparent 30%, transparent 70%, rgba(0,0,0,.35) 100%);
+  pointer-events: none;
+}
+.region-tile:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 36px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.region-tile__inner { position: relative; z-index: 3; }
+.region-tile__price { font-family: var(--f-display); font-size: 22px; font-weight: 600; letter-spacing: -0.04em; text-shadow: 0 2px 8px rgba(0,0,0,.3); }
+.region-tile__name { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; opacity: .85; margin-top: 4px; font-weight: 600; }
 
 /* ════════════════════════════════════════════════════════════════
    MODULES — alternating row layouts with rich visuals
@@ -1962,143 +1979,191 @@ footer strong { color: var(--gold); font-family: var(--f-body); letter-spacing: 
               </div>
             </div>
 
-            <svg class="mock-map__svg" viewBox="0 0 800 580" role="img" aria-label="Algeria map">
+            <svg class="mock-map__svg" viewBox="0 0 800 920" role="img" aria-label="Carte d'Algérie">
               <defs>
                 <radialGradient id="halo-gold">
-                  <stop offset="0%" stop-color="#E0B26C" stop-opacity=".7"/>
-                  <stop offset="60%" stop-color="#E0B26C" stop-opacity=".2"/>
+                  <stop offset="0%" stop-color="#E0B26C" stop-opacity=".75"/>
+                  <stop offset="55%" stop-color="#E0B26C" stop-opacity=".22"/>
                   <stop offset="100%" stop-color="#E0B26C" stop-opacity="0"/>
                 </radialGradient>
                 <radialGradient id="halo-branch">
                   <stop offset="0%" stop-color="#B8865A" stop-opacity=".6"/>
                   <stop offset="100%" stop-color="#B8865A" stop-opacity="0"/>
                 </radialGradient>
-                <linearGradient id="alg-fill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#E0B26C" stop-opacity=".10"/>
-                  <stop offset="100%" stop-color="#E0B26C" stop-opacity=".02"/>
+                <linearGradient id="alg-terrain" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"  stop-color="#3CC2C2" stop-opacity=".18"/>
+                  <stop offset="22%" stop-color="#4FC58F" stop-opacity=".12"/>
+                  <stop offset="48%" stop-color="#E0B26C" stop-opacity=".10"/>
+                  <stop offset="78%" stop-color="#E59A3D" stop-opacity=".08"/>
+                  <stop offset="100%" stop-color="#7A4515" stop-opacity=".06"/>
                 </linearGradient>
-                <pattern id="grid-m" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <circle cx="10" cy="10" r=".6" fill="white" opacity=".18"/>
+                <linearGradient id="alg-stroke" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"  stop-color="#3CC2C2" stop-opacity=".7"/>
+                  <stop offset="40%" stop-color="#E0B26C" stop-opacity=".55"/>
+                  <stop offset="100%" stop-color="#E59A3D" stop-opacity=".45"/>
+                </linearGradient>
+                <pattern id="grid-m" width="22" height="22" patternUnits="userSpaceOnUse">
+                  <circle cx="11" cy="11" r=".55" fill="white" opacity=".15"/>
                 </pattern>
+                <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="1.2" />
+                </filter>
               </defs>
 
-              <!-- background dots -->
-              <rect width="800" height="580" fill="url(#grid-m)"/>
+              <!-- Background grid + faint latitude rings -->
+              <rect width="800" height="920" fill="url(#grid-m)"/>
+              <g stroke="white" stroke-opacity=".05" stroke-width=".5" fill="none">
+                <line x1="0" y1="170" x2="800" y2="170"/>
+                <line x1="0" y1="320" x2="800" y2="320"/>
+                <line x1="0" y1="490" x2="800" y2="490"/>
+                <line x1="0" y1="680" x2="800" y2="680"/>
+              </g>
 
               <!--
-                ───── ALGERIA OUTLINE (geographically accurate-ish)
-                Mediterranean coast at the top, narrowing south,
-                Tunisia/Libya border on the east, Morocco border on the west,
-                Mali/Niger to the south. Country is taller than wide.
-                viewBox 800×580 — we use ~80 to 720 horizontal range.
-              ─────-->
+                ─────────────────────────────────────────────────
+                ALGERIA OUTLINE — geographically accurate silhouette
+                North coast slightly curved (Tlemcen → Annaba),
+                east border angles SE along Tunisia then Libya,
+                south border tapers toward the SW (Bordj Mokhtar),
+                west border with the Tindouf indent and Béchar bulge.
+                viewBox 800×920 — country fills ~110→680 horizontally,
+                ~100→870 vertically.
+                ─────────────────────────────────────────────────
+              -->
               <path d="
-                M 110 70
-                Q 180 50 280 60
-                Q 380 70 470 55
-                Q 560 45 640 70
-                Q 700 85 730 110
-                L 720 150
-                L 690 180
-                L 700 220
-                Q 720 280 700 340
-                Q 680 400 640 460
-                Q 600 510 540 540
-                L 470 560
-                Q 420 568 380 560
-                L 320 545
-                Q 280 525 250 490
-                Q 210 440 175 380
-                Q 145 320 120 250
-                Q 95 180 100 120
-                Q 100 90 110 70 Z"
-                fill="url(#alg-fill)"
-                stroke="rgba(255,255,255,.32)"
-                stroke-width="1.4"
+                M 130 175
+                C 160 165, 240 145, 330 128
+                C 380 117, 420 108, 480 105
+                C 540 102, 605 100, 660 110
+                C 670 125, 668 150, 672 180
+                C 668 215, 660 235, 680 270
+                C 700 320, 715 380, 718 440
+                C 720 520, 712 600, 700 670
+                C 686 730, 660 770, 620 800
+                C 565 825, 500 838, 440 836
+                C 380 832, 320 818, 270 795
+                C 230 778, 200 758, 175 730
+                C 150 700, 152 670, 195 660
+                C 175 620, 145 580, 120 530
+                C 95 470, 92 410, 100 350
+                C 108 290, 118 230, 130 175 Z"
+                fill="url(#alg-terrain)"
+                stroke="url(#alg-stroke)"
+                stroke-width="1.6"
                 stroke-linejoin="round"/>
 
-              <!-- Mediterranean coast line (top, slightly thicker) -->
-              <path d="M 110 70 Q 180 50 280 60 Q 380 70 470 55 Q 560 45 640 70 Q 700 85 730 110"
-                fill="none"
-                stroke="#3CC2C2"
-                stroke-opacity=".45"
-                stroke-width="2.2"
-                stroke-linecap="round"/>
+              <!-- Mediterranean coast emphasis (top edge, doubled) -->
+              <path d="M 130 175 C 160 165, 240 145, 330 128 C 380 117, 420 108, 480 105 C 540 102, 605 100, 660 110"
+                fill="none" stroke="#3CC2C2" stroke-opacity=".8" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M 130 175 C 160 165, 240 145, 330 128 C 380 117, 420 108, 480 105 C 540 102, 605 100, 660 110"
+                fill="none" stroke="#3CC2C2" stroke-opacity=".25" stroke-width="6" stroke-linecap="round" filter="url(#soft-glow)"/>
+
+              <!-- Sahara texture (subtle dune contours in the south) -->
+              <g stroke="#E59A3D" stroke-opacity=".18" fill="none" stroke-width=".8">
+                <path d="M 200 540 Q 320 525 440 545 T 680 530"/>
+                <path d="M 180 590 Q 300 575 440 595 T 700 585"/>
+                <path d="M 200 650 Q 320 635 440 660 T 690 645"/>
+                <path d="M 240 720 Q 360 705 480 730 T 680 720"/>
+                <path d="M 290 780 Q 400 770 510 795"/>
+              </g>
 
               <!-- Sea label -->
-              <text x="420" y="30" text-anchor="middle" font-size="9" letter-spacing="3" fill="#3CC2C2" fill-opacity=".6" font-weight="600">MER MÉDITERRANÉE</text>
+              <text x="395" y="75" text-anchor="middle" font-size="9" letter-spacing="3" fill="#3CC2C2" fill-opacity=".7" font-weight="600">MER MÉDITERRANÉE</text>
+              <text x="395" y="88" text-anchor="middle" font-size="6" letter-spacing="2" fill="#3CC2C2" fill-opacity=".3" font-family="JetBrains Mono, monospace">— ✦ —</text>
 
               <!-- Border labels -->
-              <text x="80" y="280" text-anchor="middle" font-size="8" letter-spacing="2" fill="white" fill-opacity=".3" transform="rotate(-90 80 280)">MAROC</text>
-              <text x="745" y="280" text-anchor="middle" font-size="8" letter-spacing="2" fill="white" fill-opacity=".3" transform="rotate(90 745 280)">TUNISIE · LIBYE</text>
-              <text x="430" y="572" text-anchor="middle" font-size="8" letter-spacing="2" fill="white" fill-opacity=".3">MALI · NIGER</text>
+              <text x="65" y="420" text-anchor="middle" font-size="8.5" letter-spacing="2" fill="white" fill-opacity=".3" transform="rotate(-90 65 420)">MAROC · SAHARA OCC.</text>
+              <text x="735" y="420" text-anchor="middle" font-size="8.5" letter-spacing="2" fill="white" fill-opacity=".3" transform="rotate(90 735 420)">TUNISIE · LIBYE</text>
+              <text x="445" y="880" text-anchor="middle" font-size="8.5" letter-spacing="2" fill="white" fill-opacity=".3">MALI · NIGER</text>
 
-              <!-- Routes from HQ (BBA) to each branch -->
-              <g fill="none" stroke="#E0B26C" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 5">
-                <path class="route" d="M 460 145 Q 380 110 290 105"/>
-                <path class="route" d="M 460 145 Q 500 125 525 115"/>
-                <path class="route" d="M 460 145 Q 540 130 580 110"/>
-                <path class="route" d="M 460 145 Q 600 115 650 100"/>
-                <path class="route" d="M 460 145 Q 320 175 180 130"/>
-                <path class="route" d="M 460 145 Q 440 240 420 380"/>
+              <!-- Geographic reference dots (non-branches) -->
+              <g fill="white" fill-opacity=".18">
+                <circle cx="180" cy="560" r="1.5"/><text x="180" y="554" text-anchor="middle" font-size="7" fill="white" fill-opacity=".35">Béchar</text>
+                <circle cx="555" cy="240" r="1.5"/><text x="555" y="234" text-anchor="middle" font-size="7" fill="white" fill-opacity=".35">Biskra</text>
+                <circle cx="430" cy="500" r="1.5"/><text x="430" y="494" text-anchor="middle" font-size="7" fill="white" fill-opacity=".35">In Salah</text>
+                <circle cx="490" cy="780" r="1.5"/><text x="490" y="774" text-anchor="middle" font-size="7" fill="white" fill-opacity=".35">Tamanrasset</text>
               </g>
 
-              <!-- BRANCH CITY PINS -->
+              <!-- Routes from HQ (BBA at 430,165) to each branch -->
+              <g fill="none" stroke="#E0B26C" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 5">
+                <path class="route" d="M 430 165 Q 380 140 200 155"/>            <!-- → Oran -->
+                <path class="route" d="M 430 165 Q 400 135 370 115"/>            <!-- → Alger -->
+                <path class="route" d="M 430 165 Q 450 152 475 150"/>            <!-- → Sétif -->
+                <path class="route" d="M 430 165 Q 490 145 540 130"/>            <!-- → Constantine -->
+                <path class="route" d="M 430 165 Q 540 130 620 108"/>            <!-- → Annaba -->
+                <path class="route" d="M 430 165 Q 445 270 455 385"/>            <!-- → Ouargla -->
+              </g>
+
+              <!-- Northern wilayas cluster — branch pins -->
               <g>
-                <!-- Oran (NW) -->
-                <circle cx="180" cy="130" r="18" fill="url(#halo-branch)"/>
-                <circle cx="180" cy="130" r="5" fill="#B8865A"/>
-                <circle cx="180" cy="130" r="2" fill="#08090C"/>
-                <text x="180" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="white">Oran</text>
+                <!-- Oran (NW coast) -->
+                <circle cx="200" cy="155" r="16" fill="url(#halo-branch)"/>
+                <circle cx="200" cy="155" r="5" fill="#B8865A"/>
+                <circle cx="200" cy="155" r="2" fill="#08090C"/>
+                <text x="200" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="white">Oran</text>
 
-                <!-- Alger (N center, west of BBA) -->
-                <circle cx="290" cy="105" r="20" fill="url(#halo-branch)"/>
-                <circle cx="290" cy="105" r="6" fill="#B8865A"/>
-                <circle cx="290" cy="105" r="2.5" fill="#08090C"/>
-                <text x="290" y="90" text-anchor="middle" font-size="12" font-weight="600" fill="white">Alger</text>
+                <!-- Alger (N central coast) -->
+                <circle cx="370" cy="115" r="20" fill="url(#halo-branch)"/>
+                <circle cx="370" cy="115" r="6" fill="#B8865A"/>
+                <circle cx="370" cy="115" r="2.5" fill="#08090C"/>
+                <text x="370" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="white">Alger</text>
+                <text x="370" y="89" text-anchor="middle" font-size="6.5" letter-spacing="1.5" fill="white" fill-opacity=".4" font-family="JetBrains Mono, monospace">CAPITALE</text>
 
-                <!-- Sétif (between BBA and Constantine) -->
-                <circle cx="525" cy="115" r="16" fill="url(#halo-branch)"/>
-                <circle cx="525" cy="115" r="4.5" fill="#B8865A"/>
-                <circle cx="525" cy="115" r="2" fill="#08090C"/>
-                <text x="525" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="white">Sétif</text>
+                <!-- Sétif (interior, east of BBA) -->
+                <circle cx="475" cy="150" r="14" fill="url(#halo-branch)"/>
+                <circle cx="475" cy="150" r="4.5" fill="#B8865A"/>
+                <circle cx="475" cy="150" r="2" fill="#08090C"/>
+                <text x="475" y="135" text-anchor="middle" font-size="10" font-weight="600" fill="white">Sétif</text>
 
                 <!-- Constantine -->
-                <circle cx="580" cy="110" r="18" fill="url(#halo-branch)"/>
-                <circle cx="580" cy="110" r="5" fill="#B8865A"/>
-                <circle cx="580" cy="110" r="2" fill="#08090C"/>
-                <text x="580" y="95" text-anchor="middle" font-size="11" font-weight="600" fill="white">Constantine</text>
+                <circle cx="540" cy="130" r="17" fill="url(#halo-branch)"/>
+                <circle cx="540" cy="130" r="5" fill="#B8865A"/>
+                <circle cx="540" cy="130" r="2" fill="#08090C"/>
+                <text x="540" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="white">Constantine</text>
 
-                <!-- Annaba (far NE coast) -->
-                <circle cx="650" cy="100" r="16" fill="url(#halo-branch)"/>
-                <circle cx="650" cy="100" r="4.5" fill="#B8865A"/>
-                <circle cx="650" cy="100" r="2" fill="#08090C"/>
-                <text x="650" y="85" text-anchor="middle" font-size="10" font-weight="600" fill="white">Annaba</text>
+                <!-- Annaba (NE coast) -->
+                <circle cx="620" cy="108" r="16" fill="url(#halo-branch)"/>
+                <circle cx="620" cy="108" r="4.5" fill="#B8865A"/>
+                <circle cx="620" cy="108" r="2" fill="#08090C"/>
+                <text x="620" y="93" text-anchor="middle" font-size="10" font-weight="600" fill="white">Annaba</text>
 
-                <!-- Ouargla (south) -->
-                <circle cx="420" cy="380" r="14" fill="url(#halo-branch)"/>
-                <circle cx="420" cy="380" r="4" fill="#B8865A"/>
-                <circle cx="420" cy="380" r="2" fill="#08090C"/>
-                <text x="420" y="365" text-anchor="middle" font-size="10" font-weight="600" fill="white">Ouargla</text>
+                <!-- Ouargla (south-central) -->
+                <circle cx="455" cy="385" r="14" fill="url(#halo-branch)"/>
+                <circle cx="455" cy="385" r="4.5" fill="#B8865A"/>
+                <circle cx="455" cy="385" r="2" fill="#08090C"/>
+                <text x="455" y="370" text-anchor="middle" font-size="10" font-weight="600" fill="white">Ouargla</text>
               </g>
 
-              <!-- HQ — BBA (between Algiers and Sétif) -->
-              <g class="pin-hq" style="transform-origin: 460px 145px; transform-box: fill-box;">
-                <circle cx="460" cy="145" r="34" fill="url(#halo-gold)"/>
-                <circle cx="460" cy="145" r="22" fill="url(#halo-gold)" opacity=".7"/>
-                <circle cx="460" cy="145" r="9" fill="#E0B26C"/>
-                <circle cx="460" cy="145" r="4" fill="#08090C"/>
+              <!-- HQ — BBA at (430, 165) between Algiers and Sétif -->
+              <g class="pin-hq" style="transform-origin: 430px 165px; transform-box: fill-box;">
+                <circle cx="430" cy="165" r="38" fill="url(#halo-gold)"/>
+                <circle cx="430" cy="165" r="24" fill="url(#halo-gold)" opacity=".75"/>
+                <circle cx="430" cy="165" r="11" fill="#E0B26C"/>
+                <circle cx="430" cy="165" r="4.5" fill="#08090C"/>
+                <!-- inner star -->
+                <polygon points="430,158 432,163 437,163 433,166 435,171 430,168 425,171 427,166 423,163 428,163" fill="#08090C"/>
               </g>
-              <text x="460" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="white">Bordj Bou Arreridj</text>
-              <text x="460" y="175" text-anchor="middle" font-size="8" letter-spacing="2" fill="#E0B26C" font-weight="600">★ SIÈGE SOCIAL ★</text>
+              <text x="430" y="208" text-anchor="middle" font-size="12" font-weight="700" fill="white">Bordj Bou Arreridj</text>
+              <text x="430" y="222" text-anchor="middle" font-size="7.5" letter-spacing="2.5" fill="#E0B26C" font-weight="600" font-family="JetBrains Mono, monospace">★ SIÈGE SOCIAL ★</text>
+
+              <!-- Scale bar -->
+              <g transform="translate(100, 850)" opacity=".5">
+                <line x1="0" y1="0" x2="80" y2="0" stroke="white" stroke-width="1"/>
+                <line x1="0" y1="-3" x2="0" y2="3" stroke="white" stroke-width="1"/>
+                <line x1="40" y1="-2" x2="40" y2="2" stroke="white" stroke-width="1"/>
+                <line x1="80" y1="-3" x2="80" y2="3" stroke="white" stroke-width="1"/>
+                <text x="0" y="14" font-size="7" fill="white" font-family="JetBrains Mono, monospace">0</text>
+                <text x="80" y="14" text-anchor="end" font-size="7" fill="white" font-family="JetBrains Mono, monospace">500 km</text>
+              </g>
 
               <!-- Compass -->
-              <g transform="translate(700, 480)" opacity=".5">
-                <circle r="22" fill="none" stroke="white" stroke-opacity=".3" stroke-width=".8"/>
-                <circle r="14" fill="none" stroke="white" stroke-opacity=".15" stroke-width=".8" stroke-dasharray="2 3"/>
-                <text x="0" y="-26" text-anchor="middle" font-size="8" font-weight="600" fill="white">N</text>
-                <polygon points="0,-14 -3,0 0,2 3,0" fill="#E0B26C"/>
-                <polygon points="0,14 -3,0 0,-2 3,0" fill="white" fill-opacity=".3"/>
+              <g transform="translate(700, 850)" opacity=".55">
+                <circle r="22" fill="rgba(8,9,12,.6)" stroke="white" stroke-opacity=".3" stroke-width=".8"/>
+                <circle r="14" fill="none" stroke="white" stroke-opacity=".18" stroke-width=".6" stroke-dasharray="2 3"/>
+                <text x="0" y="-26" text-anchor="middle" font-size="9" font-weight="700" fill="#E0B26C">N</text>
+                <text x="0" y="32" text-anchor="middle" font-size="7" fill="white" fill-opacity=".4">S</text>
+                <polygon points="0,-14 -3.5,0 0,2.5 3.5,0" fill="#E0B26C"/>
+                <polygon points="0,14 -3.5,0 0,-2.5 3.5,0" fill="white" fill-opacity=".25"/>
               </g>
             </svg>
 
