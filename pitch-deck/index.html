@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Alliance Travel × Build Squad — Pitch Deck for Travel Agencies, Hot Season 2026</title>
+<meta name="description" content="Freelance software builders who turn travel agencies into booking machines. A pitch deck built around the Alliance Travel case study — calculator, WhatsApp 1-click dossier, catalogue vitrine." />
+<meta name="theme-color" content="#0B1929" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet" />
+<style>
+/* ─────────────────────────────────────────────────────────────
+   TOKENS — borrowed from /docs/design-system/MASTER.md
+   Ink + warm cream + bronze; per-region accents on demand.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --ink: #0B1929;
+  --ink-2: #0F2236;
+  --canvas: #FAF7F2;
+  --surface: #FFFFFF;
+  --bronze: #B8865A;
+  --bronze-700: #8E6541;
+  --gold: #D4A574;
+  --sage: #2E5D4F;
+  --sand: #E8DDC8;
+  --slate: #475569;
+  --slate-300: #94A3B8;
+  --line: #E5E1D8;
+  --danger: #B23A3A;
+  --whatsapp: #25D366;
+
+  /* Per-region accent reservoir */
+  --acc-egypt: #C9872E;
+  --acc-aze: #3AAFAF;
+  --acc-ist: #70B8E0;
+  --acc-kl: #4CAF82;
+  --acc-sharm: #28B4D4;
+
+  --font-display: 'Fraunces', 'DM Sans', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+
+  /* spacing 4/8 — exposed as s1..s13 */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px;
+  --s6: 24px; --s7: 32px; --s8: 40px; --s9: 56px; --s10: 72px;
+  --s11: 96px; --s12: 128px; --s13: 160px;
+
+  --r1: 6px; --r2: 12px; --r3: 20px; --r4: 32px;
+
+  --shadow-1: 0 1px 0 rgba(11,25,41,.04), 0 4px 12px rgba(11,25,41,.05);
+  --shadow-2: 0 12px 40px rgba(11,25,41,.12);
+  --shadow-glow: 0 0 60px rgba(184,134,90,.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UTILITIES
+   ───────────────────────────────────────────────────────────── */
+.container { max-width: 1240px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 64px); }
+.section { padding-block: clamp(80px, 10vw, 160px); position: relative; }
+.section--dark { background: var(--ink); color: #E8E4DA; }
+.section--cream { background: var(--canvas); }
+.section--sand { background: linear-gradient(180deg, var(--canvas) 0%, var(--sand) 100%); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--bronze);
+}
+.eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: currentColor;
+}
+.section--dark .eyebrow { color: var(--gold); }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+h1 { font-size: clamp(48px, 7.5vw, 104px); font-weight: 400; }
+h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 400; }
+h3 { font-size: clamp(22px, 2.4vw, 30px); }
+h4 { font-size: 18px; font-weight: 600; letter-spacing: 0; font-family: var(--font-body); }
+em { font-style: italic; color: var(--bronze); font-feature-settings: 'ss01'; }
+.section--dark em { color: var(--gold); }
+
+p { color: var(--slate); }
+.section--dark p { color: #B4B0A6; }
+
+.lede { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55; max-width: 64ch; color: var(--slate); }
+.section--dark .lede { color: #C8C3B7; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 999px;
+  font-family: var(--font-body); font-weight: 600; font-size: 15px;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn--primary { background: var(--bronze); color: white; }
+.btn--primary:hover { background: var(--bronze-700); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,134,90,.4); }
+.btn--ghost { background: transparent; color: currentColor; border: 1px solid currentColor; }
+.btn--ghost:hover { background: currentColor; color: var(--ink); }
+.btn--wa { background: var(--whatsapp); color: white; }
+.btn--wa:hover { background: #1FB855; transform: translateY(-2px); }
+
+/* ─────────────────────────────────────────────────────────────
+   ANIMATION PRIMITIVES
+   ───────────────────────────────────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+.fade-up.d1 { transition-delay: .12s; }
+.fade-up.d2 { transition-delay: .24s; }
+.fade-up.d3 { transition-delay: .36s; }
+.fade-up.d4 { transition-delay: .48s; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes pulse-ring {
+  0% { transform: scale(.6); opacity: .9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes typewriter-blink { 50% { opacity: 0; } }
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes count-tick { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ─────────────────────────────────────────────────────────────
+   NAV
+   ───────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 100;
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 10px; border-radius: 999px;
+  background: rgba(11, 25, 41, .82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+}
+.nav__brand {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 14px; color: #fff; font-weight: 700; font-size: 14px;
+  letter-spacing: 0.5px;
+}
+.nav__brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+.nav__links { display: flex; gap: 2px; }
+.nav a {
+  color: rgba(255,255,255,.7); text-decoration: none;
+  padding: 8px 14px; font-size: 13px; font-weight: 500; border-radius: 999px;
+  transition: color .2s, background .2s;
+}
+.nav a:hover { color: white; background: rgba(255,255,255,.06); }
+.nav__cta {
+  background: var(--bronze); color: white !important;
+  padding: 8px 16px !important;
+}
+.nav__cta:hover { background: var(--bronze-700); }
+
+@media (max-width: 800px) {
+  .nav__links { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HERO
+   ───────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: center;
+  overflow: hidden;
+  background: var(--ink);
+  color: #F2EFE7;
+  isolation: isolate;
+}
+.hero__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(212,165,116,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(58,175,175,.10) 0%, transparent 60%),
+    linear-gradient(160deg, #050A12 0%, #0B1929 50%, #07111E 100%);
+  z-index: -2;
+}
+.hero__noise {
+  position: absolute; inset: 0; opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: -1;
+}
+.hero__faded {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(140px, 22vw, 360px);
+  font-weight: 300; letter-spacing: -0.06em;
+  color: white; opacity: .025;
+  pointer-events: none; user-select: none;
+  z-index: -1;
+}
+.hero__inner {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin-inline: auto;
+  padding: 140px clamp(20px, 5vw, 64px) 80px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; padding-top: 120px; }
+}
+
+.hero__eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px; border-radius: 999px;
+  background: rgba(212,165,116,.12);
+  border: 1px solid rgba(212,165,116,.3);
+  color: var(--gold);
+  font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero__eyebrow span.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: .4; } }
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 112px);
+  line-height: .98; letter-spacing: -0.03em;
+  color: #FFFCF5; margin-bottom: 28px;
+}
+.hero h1 em { color: var(--gold); }
+.hero__sub {
+  font-size: clamp(17px, 1.5vw, 21px);
+  color: #C8C3B7; line-height: 1.55;
+  max-width: 540px; margin-bottom: 36px;
+}
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px; }
+.hero__ctas .btn--ghost { color: white; border-color: rgba(255,255,255,.3); }
+.hero__ctas .btn--ghost:hover { background: rgba(255,255,255,.08); color: white; }
+
+.hero__stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  max-width: 560px;
+}
+.hero__stat { display: flex; flex-direction: column; }
+.hero__stat-n {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(28px, 3vw, 40px); color: #FFFCF5;
+  font-feature-settings: 'tnum';
+}
+.hero__stat-l { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #8B8579; }
+@media (max-width: 600px) { .hero__stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* Globe visual */
+.hero__visual {
+  position: relative; aspect-ratio: 1; max-width: 540px; margin-inline: auto;
+  width: 100%;
+}
+.globe {
+  position: relative; width: 100%; aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(212,165,116,.35), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(58,175,175,.25), transparent 50%),
+    linear-gradient(145deg, #1a2742 0%, #0a1322 70%);
+  box-shadow:
+    inset -40px -40px 80px rgba(0,0,0,.5),
+    inset 40px 40px 80px rgba(212,165,116,.06),
+    0 30px 90px rgba(212,165,116,.18);
+  overflow: hidden;
+}
+.globe::before {
+  content: ''; position: absolute; inset: -2px; border-radius: 50%;
+  background:
+    repeating-linear-gradient(transparent 0 36px, rgba(255,255,255,.05) 36px 37px),
+    repeating-linear-gradient(90deg, transparent 0 36px, rgba(255,255,255,.04) 36px 37px);
+  animation: spin-slow 80s linear infinite;
+  mask: radial-gradient(circle, black 60%, transparent 100%);
+  -webkit-mask: radial-gradient(circle, black 60%, transparent 100%);
+}
+.globe__pulse {
+  position: absolute; top: 50%; left: 50%;
+  width: 10px; height: 10px; transform: translate(-50%,-50%);
+  border-radius: 50%; background: var(--gold);
+  box-shadow: 0 0 20px var(--gold);
+}
+.globe__pulse::after,
+.globe__pulse::before {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%;
+  border: 2px solid var(--gold);
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+.globe__pulse::after { animation-delay: 1.2s; }
+
+.polaroid {
+  position: absolute;
+  background: white; padding: 6px 6px 24px; border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.5);
+  transform: rotate(var(--rot, -4deg));
+  animation: float-y 6s ease-in-out infinite;
+  z-index: 3;
+}
+.polaroid__img {
+  width: 100px; height: 70px; border-radius: 2px;
+  background: linear-gradient(135deg, var(--c1,#C9872E), var(--c2,#8E6541));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: white; letter-spacing: 1px;
+}
+.polaroid__cap {
+  position: absolute; bottom: 6px; left: 0; right: 0; text-align: center;
+  font-family: var(--font-display); font-size: 11px; color: var(--ink);
+  font-style: italic;
+}
+.polaroid--1 { top: 8%; left: 4%; --rot: -8deg; --c1: var(--acc-egypt); --c2: #8E6541; animation-delay: 0s; }
+.polaroid--2 { top: 12%; right: 0%; --rot: 6deg; --c1: var(--acc-aze); --c2: #1B6868; animation-delay: -1.5s; }
+.polaroid--3 { bottom: 22%; left: 0%; --rot: 4deg; --c1: var(--acc-ist); --c2: #2A6594; animation-delay: -3s; }
+.polaroid--4 { bottom: 10%; right: 6%; --rot: -6deg; --c1: var(--acc-kl); --c2: #2E6E52; animation-delay: -4.5s; }
+
+@media (max-width: 600px) {
+  .polaroid__img { width: 70px; height: 50px; }
+  .polaroid { padding: 4px 4px 18px; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECTION HEADERS
+   ───────────────────────────────────────────────────────────── */
+.section-head { max-width: 720px; margin-bottom: clamp(48px, 6vw, 80px); }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head__title { margin: 16px 0 20px; }
+.section-head__sub { font-size: 18px; color: var(--slate); }
+.section--dark .section-head__sub { color: #A8A398; }
+
+/* ─────────────────────────────────────────────────────────────
+   FRICTION STRIP (Problem)
+   ───────────────────────────────────────────────────────────── */
+.friction-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r3); overflow: hidden;
+}
+.friction-card {
+  background: var(--surface); padding: 36px 28px;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative; transition: background .3s;
+}
+.friction-card:hover { background: #FFFDF8; }
+.friction-card__pain { color: var(--danger); font-weight: 600; font-size: 14px; }
+.friction-card__pain::before { content: '✕  '; }
+.friction-card__fix { color: var(--sage); font-weight: 600; font-size: 14px; }
+.friction-card__fix::before { content: '✓  '; }
+.friction-card__txt { font-size: 14px; color: var(--slate); line-height: 1.55; }
+
+/* ─────────────────────────────────────────────────────────────
+   CASE STUDY HEADER (Alliance Travel)
+   ───────────────────────────────────────────────────────────── */
+.case-hero {
+  background: var(--ink);
+  color: #F2EFE7;
+  border-radius: var(--r4);
+  padding: clamp(40px, 5vw, 72px);
+  position: relative; overflow: hidden;
+  margin-bottom: 64px;
+}
+.case-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(212,165,116,.22), transparent),
+    radial-gradient(ellipse 50% 40% at 10% 100%, rgba(58,175,175,.14), transparent);
+  pointer-events: none;
+}
+.case-hero__grid {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;
+  position: relative; z-index: 1;
+}
+@media (max-width: 800px) { .case-hero__grid { grid-template-columns: 1fr; } }
+
+.case-hero h2 { color: white; margin: 12px 0 20px; }
+.case-hero h2 em { color: var(--gold); }
+.case-hero__meta {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  margin-top: 28px; padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.case-hero__meta-item h4 {
+  color: white; font-size: 24px; font-family: var(--font-display); font-weight: 300;
+}
+.case-hero__meta-item p { font-size: 12px; color: #8B8579; letter-spacing: 1px; text-transform: uppercase; margin: 0; }
+
+/* Region accent strip */
+.region-strip {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-radius: var(--r2); overflow: hidden;
+  box-shadow: var(--shadow-2);
+}
+.region-cell {
+  padding: 28px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  color: white; position: relative; overflow: hidden;
+}
+.region-cell::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,.15), transparent 70%);
+  opacity: 0; transition: opacity .3s;
+}
+.region-cell:hover::before { opacity: 1; }
+.region-cell__n { font-family: var(--font-display); font-size: 14px; opacity: .8; }
+.region-cell__v { font-family: var(--font-display); font-size: 22px; font-weight: 500; }
+.region-cell__l { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: .7; margin-top: 4px; }
+
+/* ─────────────────────────────────────────────────────────────
+   FOUR MODULES — alternating layouts
+   ───────────────────────────────────────────────────────────── */
+.module {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+  margin-bottom: clamp(80px, 8vw, 128px);
+}
+.module--reverse { grid-template-columns: 1.1fr 1fr; }
+.module--reverse .module__content { order: 2; }
+@media (max-width: 900px) {
+  .module, .module--reverse { grid-template-columns: 1fr; }
+  .module--reverse .module__content { order: unset; }
+}
+
+.module__index {
+  font-family: var(--font-display); font-weight: 300; font-size: 22px;
+  color: var(--bronze); letter-spacing: 4px;
+}
+.module__title { margin: 8px 0 20px; }
+.module__title em { color: var(--bronze); }
+.module__list { margin-top: 20px; }
+.module__list li {
+  list-style: none; padding-left: 28px; position: relative;
+  margin-bottom: 12px; font-size: 15px; color: var(--slate);
+}
+.module__list li::before {
+  content: ''; position: absolute; left: 0; top: 10px;
+  width: 14px; height: 2px; background: var(--bronze);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MOCK SCREENS — designed to look like product screenshots
+   ───────────────────────────────────────────────────────────── */
+.mock {
+  background: var(--surface); border-radius: var(--r3);
+  box-shadow: var(--shadow-2), 0 0 0 1px var(--line);
+  overflow: hidden; position: relative;
+}
+.mock__bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 12px 16px; background: #F5F1E8;
+  border-bottom: 1px solid var(--line);
+}
+.mock__dot { width: 10px; height: 10px; border-radius: 50%; background: #D7CFC0; }
+.mock__dot:nth-child(2) { background: #E2D9C7; }
+.mock__dot:nth-child(3) { background: #ECE4D2; }
+.mock__url {
+  flex: 1; margin-left: 16px;
+  font-size: 11px; color: var(--slate); font-family: ui-monospace, monospace;
+}
+
+/* — Mock 1: Catalogue (trip cards) — */
+.mock-cat { padding: 24px; background: var(--canvas); }
+.mock-cat__head { margin-bottom: 16px; }
+.mock-cat__eyebrow { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--bronze); }
+.mock-cat__title { font-family: var(--font-display); font-size: 22px; color: var(--ink); margin-top: 6px; }
+.mock-cat__title em { color: var(--bronze); }
+.mock-cat__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.trip-card {
+  background: var(--surface);
+  border-radius: var(--r2); overflow: hidden;
+  border: 1px solid var(--line);
+  cursor: pointer; transition: transform .3s ease, box-shadow .3s ease;
+}
+.trip-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
+.trip-card__art {
+  aspect-ratio: 4/3; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--c1, var(--acc-egypt)), var(--c2, #2a1a0a));
+  display: flex; align-items: end; padding: 10px;
+}
+.trip-card[data-region="egypt"] .trip-card__art { background: linear-gradient(135deg, #C9872E 0%, #5C3A14 70%, #2a1a0a 100%); }
+.trip-card[data-region="aze"] .trip-card__art { background: linear-gradient(135deg, #3AAFAF 0%, #1B6868 60%, #0A2E2E 100%); }
+.trip-card[data-region="ist"] .trip-card__art { background: linear-gradient(135deg, #70B8E0 0%, #2A6594 60%, #0F2640 100%); }
+.trip-card[data-region="kl"] .trip-card__art { background: linear-gradient(135deg, #4CAF82 0%, #2E6E52 60%, #0E2D22 100%); }
+.trip-card[data-region="sharm"] .trip-card__art { background: linear-gradient(135deg, #28B4D4 0%, #135F75 60%, #06212D 100%); }
+.trip-card__flag {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: white; background: rgba(0,0,0,.45);
+  padding: 4px 8px; border-radius: 4px;
+}
+.trip-card__body { padding: 12px; }
+.trip-card__name { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--ink); }
+.trip-card__price { font-size: 11px; color: var(--slate); margin-top: 4px; }
+.trip-card__price strong { color: var(--bronze); font-weight: 700; }
+
+@media (max-width: 600px) {
+  .mock-cat__grid { grid-template-columns: repeat(2, 1fr); }
+  .mock-cat__grid > :last-child { grid-column: span 2; }
+}
+
+/* — Mock 2: Calculator — */
+.mock-calc { padding: 24px; background: var(--canvas); }
+.mock-calc__title { font-family: var(--font-display); font-size: 18px; color: var(--ink); margin-bottom: 16px; }
+.mock-calc__title em { color: var(--bronze); }
+.mock-calc__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
+@media (max-width: 700px) { .mock-calc__grid { grid-template-columns: 1fr; } }
+
+.calc-block { margin-bottom: 14px; }
+.calc-block label {
+  display: block; font-size: 11px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--slate); margin-bottom: 8px;
+  font-weight: 600;
+}
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  padding: 7px 12px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line);
+  font-size: 12px; font-weight: 500; color: var(--ink);
+  cursor: pointer; transition: all .2s;
+}
+.chip.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+.seg {
+  display: inline-flex; padding: 3px; background: #F0EBE0;
+  border-radius: 999px; gap: 2px;
+}
+.seg__opt {
+  padding: 6px 14px; border-radius: 999px; cursor: pointer;
+  font-size: 12px; font-weight: 600; color: var(--slate);
+  transition: all .2s;
+}
+.seg__opt.active { background: white; color: var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+
+.stepper {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 14px; background: var(--surface); border-radius: var(--r1);
+  border: 1px solid var(--line); margin-bottom: 8px;
+}
+.stepper__info p:first-child { font-size: 13px; font-weight: 600; color: var(--ink); }
+.stepper__info p:last-child { font-size: 11px; color: var(--slate); }
+.stepper__ctrl { display: flex; align-items: center; gap: 8px; }
+.stepper__ctrl button {
+  width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line);
+  background: white; font-weight: 600; cursor: pointer; color: var(--ink);
+}
+.stepper__val { width: 24px; text-align: center; font-weight: 700; font-feature-settings: 'tnum'; }
+
+.breakdown {
+  background: var(--ink); color: white;
+  border-radius: var(--r2); padding: 20px;
+  position: relative; overflow: hidden;
+}
+.breakdown::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(212,165,116,.15), transparent 60%);
+  pointer-events: none;
+}
+.breakdown__head {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+  position: relative;
+}
+.breakdown__line {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 6px 0; font-size: 13px;
+  color: #C8C3B7;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  font-feature-settings: 'tnum';
+}
+.breakdown__line span:last-child { color: white; font-weight: 600; }
+.breakdown__total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-top: 16px; margin-top: 8px;
+  border-top: 1px solid rgba(255,255,255,.16);
+}
+.breakdown__total-label { font-size: 13px; color: #B4B0A6; }
+.breakdown__total-v {
+  font-family: var(--font-display); font-size: 28px; font-weight: 400;
+  color: var(--gold); font-feature-settings: 'tnum';
+  display: inline-block; transition: transform .3s;
+}
+.breakdown__total-v.tick { animation: count-tick .35s ease; }
+.breakdown__why {
+  margin-top: 14px; font-size: 11px; color: #888578;
+  display: flex; align-items: center; gap: 6px;
+  cursor: pointer;
+}
+.breakdown__why:hover { color: var(--gold); }
+
+/* — Mock 3: WhatsApp dossier — */
+.mock-wa {
+  background: #ECE5DD; padding: 20px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.mock-wa__head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; background: #075E54; color: white;
+  border-radius: var(--r1); margin-bottom: 16px;
+}
+.mock-wa__avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--bronze));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px; color: var(--ink);
+}
+.mock-wa__name { font-weight: 600; font-size: 14px; }
+.mock-wa__status { font-size: 11px; opacity: .8; }
+.mock-wa__status::before { content: '● '; color: var(--whatsapp); }
+
+.wa-bubble {
+  background: white; padding: 12px 14px; border-radius: 8px 8px 8px 2px;
+  max-width: 90%; box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  font-size: 12.5px; line-height: 1.5; color: #303030;
+  position: relative; margin-bottom: 8px;
+  animation: slide-in-up .5s ease;
+}
+.wa-bubble strong { color: var(--ink); }
+.wa-bubble__time { font-size: 10px; color: #999; margin-top: 4px; text-align: right; }
+.wa-bubble--right {
+  background: #DCF8C6; border-radius: 8px 8px 2px 8px; margin-left: auto;
+}
+.wa-line { display: flex; justify-content: space-between; font-feature-settings: 'tnum'; }
+.wa-line span:last-child { color: var(--sage); font-weight: 600; }
+.wa-divider { height: 1px; background: var(--line); margin: 8px 0; }
+
+.wa-cta {
+  margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;
+}
+.wa-cta__btn {
+  flex: 1; min-width: 110px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; text-decoration: none;
+  border: none; cursor: pointer;
+}
+.wa-cta__btn--wa { background: var(--whatsapp); color: white; }
+.wa-cta__btn--mail { background: white; color: var(--ink); border: 1px solid var(--line); }
+.wa-cta__btn--copy { background: white; color: var(--ink); border: 1px solid var(--line); }
+
+/* — Mock 4: Agency map — */
+.mock-map { padding: 28px; background: var(--ink); color: white; }
+.mock-map__svg { width: 100%; height: auto; display: block; }
+.mock-map__legend {
+  display: flex; justify-content: center; gap: 24px; margin-top: 16px;
+  font-size: 11px; color: #A8A398; letter-spacing: 1px; text-transform: uppercase;
+}
+.mock-map__legend span::before {
+  content: ''; display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+.mock-map__legend .hq::before { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.mock-map__legend .branch::before { background: var(--bronze); }
+
+@keyframes pin-glow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 var(--gold)); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 8px var(--gold)); }
+}
+.pin-hq { animation: pin-glow 3s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+
+/* dashed route stroke animation */
+@keyframes route-flow {
+  to { stroke-dashoffset: -40; }
+}
+.route { stroke-dasharray: 4 5; animation: route-flow 4s linear infinite; }
+
+/* ─────────────────────────────────────────────────────────────
+   ENGINEERING TABLE
+   ───────────────────────────────────────────────────────────── */
+.eng-table {
+  border-radius: var(--r3); overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.02);
+}
+.eng-row {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.eng-row:last-child { border-bottom: none; }
+.eng-row > div { padding: 24px 28px; }
+.eng-row__pain { color: #E2DED2; font-weight: 600; }
+.eng-row__pain::before {
+  content: ''; display: inline-block; width: 6px; height: 6px;
+  background: var(--danger); border-radius: 50%; margin-right: 10px;
+  vertical-align: middle;
+}
+.eng-row__fix { color: #B4B0A6; font-size: 14.5px; }
+.eng-row__fix code {
+  display: inline-block; padding: 2px 6px;
+  background: rgba(212,165,116,.12); border-radius: 4px;
+  color: var(--gold); font-family: ui-monospace, monospace; font-size: 12px;
+}
+@media (max-width: 700px) { .eng-row { grid-template-columns: 1fr; } .eng-row > div { padding: 16px 20px; } }
+
+/* ─────────────────────────────────────────────────────────────
+   PRICING TABLE
+   ───────────────────────────────────────────────────────────── */
+.price-table {
+  border-radius: var(--r3); overflow: hidden;
+  background: var(--surface); box-shadow: var(--shadow-1);
+  border: 1px solid var(--line);
+}
+.price-row {
+  display: grid; grid-template-columns: 1.6fr 1fr .8fr 1fr 1fr;
+  align-items: center; padding: 0;
+  border-bottom: 1px solid var(--line);
+  transition: background .25s;
+}
+.price-row:last-child { border-bottom: none; }
+.price-row:hover { background: #FBF8F1; }
+.price-row > div { padding: 22px 24px; font-size: 14px; }
+.price-row__name { font-family: var(--font-display); font-size: 18px; color: var(--ink); display: flex; align-items: center; gap: 12px; }
+.price-row__chip { display: inline-block; width: 6px; height: 24px; border-radius: 2px; }
+.price-row__price { font-weight: 700; color: var(--bronze); font-feature-settings: 'tnum'; font-size: 16px; }
+.price-row__price small { font-weight: 500; color: var(--slate); font-size: 11px; }
+.price-row--head {
+  background: var(--ink); color: #A8A398;
+}
+.price-row--head:hover { background: var(--ink); }
+.price-row--head > div {
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #A8A398;
+  font-family: var(--font-body);
+}
+@media (max-width: 800px) {
+  .price-row { grid-template-columns: 1.2fr 1fr; gap: 4px; padding: 14px 20px; }
+  .price-row > div { padding: 4px 0; }
+  .price-row > div:nth-child(3), .price-row > div:nth-child(4), .price-row > div:nth-child(5) { display: none; }
+  .price-row--head { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PHASES
+   ───────────────────────────────────────────────────────────── */
+.phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 800px) { .phases { grid-template-columns: 1fr; } }
+.phase {
+  padding: 36px 32px; border-radius: var(--r3);
+  background: var(--surface); border: 1px solid var(--line);
+  position: relative; overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.phase:hover { transform: translateY(-6px); box-shadow: var(--shadow-2); }
+.phase__n {
+  font-family: var(--font-display); font-weight: 300; font-size: 56px;
+  color: var(--bronze); line-height: 1; opacity: .35;
+}
+.phase__name {
+  font-family: var(--font-display); font-size: 24px; color: var(--ink);
+  margin: 12px 0 6px;
+}
+.phase__dur {
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--bronze); font-weight: 600; margin-bottom: 20px;
+}
+.phase__list { padding: 0; }
+.phase__list li {
+  list-style: none; padding-left: 22px; position: relative;
+  font-size: 14px; color: var(--slate); margin-bottom: 10px; line-height: 1.5;
+}
+.phase__list li::before {
+  content: '→'; position: absolute; left: 0; color: var(--bronze); font-weight: 700;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BIG STATS BAR
+   ───────────────────────────────────────────────────────────── */
+.stats-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(255,255,255,.10);
+  border-radius: var(--r3); overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+}
+@media (max-width: 700px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+
+.stat-big {
+  padding: 48px 28px; background: var(--ink-2);
+  position: relative;
+}
+.stat-big__n {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(40px, 5vw, 64px); color: #FFFCF5;
+  line-height: 1; margin-bottom: 12px;
+  font-feature-settings: 'tnum';
+}
+.stat-big__l { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8B8579; }
+
+/* ─────────────────────────────────────────────────────────────
+   FINAL CTA
+   ───────────────────────────────────────────────────────────── */
+.final-cta {
+  background: linear-gradient(160deg, #050A12 0%, #0B1929 60%, #1a1408 100%);
+  color: white; text-align: center;
+  border-radius: var(--r4);
+  padding: clamp(64px, 8vw, 120px) clamp(32px, 5vw, 80px);
+  position: relative; overflow: hidden;
+  isolation: isolate;
+}
+.final-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 20%, rgba(212,165,116,.18), transparent),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(58,175,175,.14), transparent);
+  z-index: -1;
+}
+.final-cta h2 { color: white; max-width: 880px; margin-inline: auto; }
+.final-cta h2 em { color: var(--gold); }
+.final-cta__sub { color: #C8C3B7; max-width: 640px; margin: 24px auto 36px; }
+.final-cta__ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────────────────────────── */
+footer {
+  padding: 48px 0 32px; text-align: center;
+  background: var(--ink); color: #8B8579; font-size: 13px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+footer strong { color: var(--gold); }
+
+/* ─────────────────────────────────────────────────────────────
+   FLOATING WHATSAPP FAB
+   ───────────────────────────────────────────────────────────── */
+.fab {
+  position: fixed; bottom: 24px; right: 24px; z-index: 90;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--whatsapp); color: white;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37,211,102,.45);
+  transition: transform .25s ease;
+}
+.fab:hover { transform: scale(1.1); }
+.fab::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid var(--whatsapp);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-up { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────────────────────────
+     NAV
+     ───────────────────────────────────────────────────────────── -->
+<nav class="nav" aria-label="Pitch deck navigation">
+  <div class="nav__brand">
+    <span class="nav__brand-dot"></span>
+    Build Squad
+  </div>
+  <div class="nav__links">
+    <a href="#why">Why us</a>
+    <a href="#case">Case study</a>
+    <a href="#modules">Modules</a>
+    <a href="#engineering">Engineering</a>
+    <a href="#phases">Process</a>
+  </div>
+  <a href="#contact" class="nav__cta">Book a 15-min call</a>
+</nav>
+
+<!-- ─────────────────────────────────────────────────────────────
+     HERO
+     ───────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__noise" aria-hidden="true"></div>
+  <div class="hero__faded" aria-hidden="true">SQUAD</div>
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      <span class="hero__eyebrow fade-up">
+        <span class="dot"></span>
+        For travel agencies · Hot season 2026
+      </span>
+      <h1 class="fade-up d1">
+        Your agency,<br />
+        finally on <em>autopilot.</em>
+      </h1>
+      <p class="hero__sub fade-up d2">
+        We're a tight squad of freelance product engineers who turn travel agencies
+        into booking machines. Same trips. Same hotels. Same prices. Half the steps to close.
+      </p>
+      <div class="hero__ctas fade-up d3">
+        <a href="#case" class="btn btn--primary">See the reference build →</a>
+        <a href="#contact" class="btn btn--ghost">Book a 15-min call</a>
+      </div>
+      <div class="hero__stats fade-up d4">
+        <div class="hero__stat">
+          <div class="hero__stat-n" data-counter="1200" data-suffix="+">0</div>
+          <div class="hero__stat-l">Travelers guided</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-n" data-counter="98" data-suffix="%">0</div>
+          <div class="hero__stat-l">Satisfaction</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-n" data-counter="5" data-suffix="">0</div>
+          <div class="hero__stat-l">Destinations '26</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-n" data-counter="6" data-suffix="">0</div>
+          <div class="hero__stat-l">Wilayas covered</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual fade-up d2" aria-hidden="true">
+      <div class="globe">
+        <div class="globe__pulse"></div>
+      </div>
+      <div class="polaroid polaroid--1">
+        <div class="polaroid__img">CAIRO</div>
+        <div class="polaroid__cap">Le Caire · Sharm</div>
+      </div>
+      <div class="polaroid polaroid--2">
+        <div class="polaroid__img">BAKU</div>
+        <div class="polaroid__cap">Azerbaïdjan</div>
+      </div>
+      <div class="polaroid polaroid--3">
+        <div class="polaroid__img">IST</div>
+        <div class="polaroid__cap">Istanbul</div>
+      </div>
+      <div class="polaroid polaroid--4">
+        <div class="polaroid__img">KL</div>
+        <div class="polaroid__cap">Kuala Lumpur</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     WHY US — Problem / Friction
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--cream" id="why">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">Why us, not a theme shop</span>
+      <h2 class="section-head__title">Travel agencies don't have a traffic problem.<br />They have a <em>friction problem.</em></h2>
+      <p class="section-head__sub">
+        Every dinar of price confusion costs you a closed deal. Every contact form replaces a
+        WhatsApp message that could have closed in two taps. We engineer the bridge.
+      </p>
+    </div>
+
+    <div class="friction-grid">
+      <div class="friction-card fade-up">
+        <div class="friction-card__pain">Hidden fees, opaque "real total"</div>
+        <div class="friction-card__fix">Live line-by-line breakdown</div>
+        <p class="friction-card__txt">Every dinar — flight, hotel, room supplement, child, baby, extras — accounted for in real time. Tabular figures, no shifting columns.</p>
+      </div>
+      <div class="friction-card fade-up d1">
+        <div class="friction-card__pain">Hotel × date × room = 63 combos</div>
+        <div class="friction-card__fix">One screen, one total, instant</div>
+        <p class="friction-card__txt">Cairo+Sharm alone: 7 hotels × 3 dates × 3 rooms. We collapse the wall of numbers into chips, a dropdown and a stepper — non-tech-savvy users get it in 5 seconds.</p>
+      </div>
+      <div class="friction-card fade-up d2">
+        <div class="friction-card__pain">"Send me a contact form"</div>
+        <div class="friction-card__fix">One-tap WhatsApp dossier</div>
+        <p class="friction-card__txt">Calculator state → pre-formatted message body. Your agent receives a perfect summary, not a 6-message back-and-forth.</p>
+      </div>
+      <div class="friction-card fade-up d3">
+        <div class="friction-card__pain">"Do you have WhatsApp?" objection</div>
+        <div class="friction-card__fix">Email + clipboard fallbacks</div>
+        <p class="friction-card__txt">Same dossier piped to <code>mailto:</code> or to the clipboard. No client lost because their iCloud account doesn't have WhatsApp.</p>
+      </div>
+      <div class="friction-card fade-up">
+        <div class="friction-card__pain">"Is this agency real?"</div>
+        <div class="friction-card__fix">Trust signals everywhere</div>
+        <p class="friction-card__txt">Real siège, six-wilaya partner map, schema.org TravelAgency JSON-LD, no fake media logos, real testimonials when you have them.</p>
+      </div>
+      <div class="friction-card fade-up d1">
+        <div class="friction-card__pain">Slow site on Algerian 4G</div>
+        <div class="friction-card__fix">No bundler, no framework</div>
+        <p class="friction-card__txt">Hand-written HTML/CSS, WebP-first with mobile crops, font subset, service-worker offline cache. Lighthouse-friendly out of the box.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     CASE STUDY — Alliance Travel
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--cream" id="case">
+  <div class="container">
+
+    <div class="case-hero">
+      <div class="case-hero__grid">
+        <div>
+          <span class="eyebrow" style="color: var(--gold)">Case study · Live in production</span>
+          <h2>Alliance Travel,<br />Bordj Bou Arreridj <em>→ five continents</em></h2>
+          <p class="lede" style="color: #C8C3B7">
+            A 6-page guided-tour vitrine. Zero build step, zero framework lock-in, zero monthly SaaS bill.
+            Deployable on any static host. A calculator and WhatsApp dossier on every trip page.
+          </p>
+
+          <div class="case-hero__meta">
+            <div class="case-hero__meta-item">
+              <h4>~12,500</h4>
+              <p>Lines shipped</p>
+            </div>
+            <div class="case-hero__meta-item">
+              <h4>6</h4>
+              <p>Pages</p>
+            </div>
+            <div class="case-hero__meta-item">
+              <h4>5</h4>
+              <p>Region themes</p>
+            </div>
+            <div class="case-hero__meta-item">
+              <h4>0</h4>
+              <p>SaaS subscriptions</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="region-strip">
+            <div class="region-cell" style="background: linear-gradient(160deg, #C9872E, #5C3A14)">
+              <div class="region-cell__n">Égypte</div>
+              <div class="region-cell__v">190K</div>
+              <div class="region-cell__l">DA · Juin '26</div>
+            </div>
+            <div class="region-cell" style="background: linear-gradient(160deg, #3AAFAF, #1B6868)">
+              <div class="region-cell__n">Azerbaïdjan</div>
+              <div class="region-cell__v">227K</div>
+              <div class="region-cell__l">DA · Avr–Juil</div>
+            </div>
+            <div class="region-cell" style="background: linear-gradient(160deg, #70B8E0, #2A6594)">
+              <div class="region-cell__n">Istanbul</div>
+              <div class="region-cell__v">123K</div>
+              <div class="region-cell__l">DA · Mars–Mai</div>
+            </div>
+            <div class="region-cell" style="background: linear-gradient(160deg, #4CAF82, #2E6E52)">
+              <div class="region-cell__n">Malaisie</div>
+              <div class="region-cell__v">211K</div>
+              <div class="region-cell__l">DA · Mars–Mai</div>
+            </div>
+            <div class="region-cell" style="background: linear-gradient(160deg, #28B4D4, #135F75)">
+              <div class="region-cell__n">Sharm</div>
+              <div class="region-cell__v">155K</div>
+              <div class="region-cell__l">DA · CZL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     MODULES — 4 functional modules of the build
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--cream" id="modules">
+  <div class="container">
+
+    <div class="section-head fade-up">
+      <span class="eyebrow">What we ship</span>
+      <h2 class="section-head__title">Four modules.<br />Each one removes a <em>specific friction.</em></h2>
+      <p class="section-head__sub">Built à la carte. Mix the modules that match what your agency is missing today.</p>
+    </div>
+
+    <!-- ── MODULE 1 ─ AGENCY STORYLINE ── -->
+    <div class="module fade-up">
+      <div class="module__content">
+        <div class="module__index">MODULE 01</div>
+        <h2 class="module__title">The <em>agency storyline.</em></h2>
+        <p class="lede">A cinematic homepage that earns trust before the client scrolls. Interactive 3D globe, animated counters, a national map pinning your <em>siège</em> and every partner wilaya.</p>
+        <ul class="module__list">
+          <li>Animated globe with destination polaroids — drag to spin</li>
+          <li>Live counters: travelers, satisfaction rate, years in business</li>
+          <li>Per-region accent theming via a single <code style="background:rgba(184,134,90,.12); color: var(--bronze-700); padding:2px 6px; border-radius:4px; font-family:ui-monospace,monospace; font-size:13px;">data-region</code> switch on <code style="background:rgba(184,134,90,.12); color: var(--bronze-700); padding:2px 6px; border-radius:4px; font-family:ui-monospace,monospace; font-size:13px;">&lt;body&gt;</code></li>
+          <li>Algeria map with animated routes from HQ to each branch</li>
+        </ul>
+      </div>
+      <div class="module__visual">
+        <div class="mock">
+          <div class="mock__bar">
+            <div class="mock__dot"></div><div class="mock__dot"></div><div class="mock__dot"></div>
+            <span class="mock__url">alliance-travel.dz</span>
+          </div>
+          <div class="mock-map">
+            <svg class="mock-map__svg" viewBox="0 0 600 380" role="img" aria-label="Algeria map mock">
+              <defs>
+                <radialGradient id="halo-pink">
+                  <stop offset="0%" stop-color="#D4A574" stop-opacity=".6"/>
+                  <stop offset="100%" stop-color="#D4A574" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="alg-fill-m" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#D4A574" stop-opacity=".10"/>
+                  <stop offset="100%" stop-color="#D4A574" stop-opacity=".02"/>
+                </linearGradient>
+                <pattern id="grid-m" width="14" height="14" patternUnits="userSpaceOnUse">
+                  <circle cx="7" cy="7" r=".5" fill="white" opacity=".15"/>
+                </pattern>
+              </defs>
+              <rect width="600" height="380" fill="url(#grid-m)"/>
+              <path d="M 90 70 Q 140 50 220 60 Q 290 70 360 60 Q 430 50 500 70 L 520 130 Q 490 200 510 280 Q 480 330 420 340 Q 320 350 220 340 Q 130 330 100 280 Q 70 200 90 130 Z"
+                fill="url(#alg-fill-m)" stroke="white" stroke-opacity=".25" stroke-width="1.2"/>
+              <text x="305" y="40" text-anchor="middle" font-size="9" fill="white" opacity=".4" letter-spacing="3">MER MÉDITERRANÉE</text>
+
+              <!-- Routes -->
+              <g stroke="#D4A574" stroke-width="1.2" fill="none" stroke-linecap="round">
+                <path class="route" d="M 360 130 Q 280 110 220 100"/>
+                <path class="route" d="M 360 130 Q 400 115 440 105"/>
+                <path class="route" d="M 360 130 Q 440 130 470 95"/>
+                <path class="route" d="M 360 130 Q 250 170 150 130"/>
+                <path class="route" d="M 360 130 Q 340 200 320 270"/>
+              </g>
+
+              <!-- Pins -->
+              <g class="pin-hq">
+                <circle cx="360" cy="130" r="14" fill="url(#halo-pink)"/>
+                <circle cx="360" cy="130" r="7" fill="#D4A574"/>
+                <circle cx="360" cy="130" r="2.5" fill="#0B1929"/>
+              </g>
+              <text x="360" y="112" text-anchor="middle" font-size="10" font-weight="700" fill="white">Bordj Bou Arreridj</text>
+              <text x="360" y="160" text-anchor="middle" font-size="7" letter-spacing="1.5" fill="#D4A574" font-weight="600">SIÈGE</text>
+
+              <!-- Branches -->
+              <g fill="#B8865A">
+                <circle cx="220" cy="100" r="4"/>
+                <text x="220" y="92" text-anchor="middle" font-size="8" fill="white">Alger</text>
+                <circle cx="400" cy="115" r="4"/>
+                <text x="400" y="107" text-anchor="middle" font-size="8" fill="white">Sétif</text>
+                <circle cx="440" cy="105" r="4"/>
+                <text x="440" y="97" text-anchor="middle" font-size="8" fill="white">Constantine</text>
+                <circle cx="470" cy="95" r="4"/>
+                <text x="470" y="87" text-anchor="middle" font-size="8" fill="white">Annaba</text>
+                <circle cx="150" cy="130" r="4"/>
+                <text x="150" y="122" text-anchor="middle" font-size="8" fill="white">Oran</text>
+                <circle cx="320" cy="270" r="4"/>
+                <text x="320" y="262" text-anchor="middle" font-size="8" fill="white">Ouargla</text>
+              </g>
+            </svg>
+            <div class="mock-map__legend">
+              <span class="hq">Siège social</span>
+              <span class="branch">Représentation partenaire</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODULE 2 ─ CATALOGUE ── -->
+    <div class="module module--reverse fade-up">
+      <div class="module__content">
+        <div class="module__index">MODULE 02</div>
+        <h2 class="module__title">The <em>catalogue.</em></h2>
+        <p class="lede">Browsable, magazine-style. Designed so a non-tech-savvy client gets the gist in <strong>3 seconds</strong> — not a database dump, not a spreadsheet, not a wall of buttons.</p>
+        <ul class="module__list">
+          <li>One card per destination — image, month, "à partir de" price, duration</li>
+          <li>Per-region color signature carries through to the trip page</li>
+          <li>Hover state lifts the card; tap opens the full landing</li>
+          <li>Trip data lives in a JSON-like block you edit yourself — no CMS subscription</li>
+        </ul>
+      </div>
+      <div class="module__visual">
+        <div class="mock">
+          <div class="mock__bar">
+            <div class="mock__dot"></div><div class="mock__dot"></div><div class="mock__dot"></div>
+            <span class="mock__url">alliance-travel.dz / #voyages</span>
+          </div>
+          <div class="mock-cat">
+            <div class="mock-cat__head">
+              <div class="mock-cat__eyebrow">Programmes 2026</div>
+              <div class="mock-cat__title">Nos <em>destinations</em></div>
+            </div>
+            <div class="mock-cat__grid">
+              <div class="trip-card" data-region="egypt">
+                <div class="trip-card__art"><span class="trip-card__flag">Égypte · Juin</span></div>
+                <div class="trip-card__body">
+                  <div class="trip-card__name">Le Caire & Sharm</div>
+                  <div class="trip-card__price">À partir de <strong>190.000 DA</strong></div>
+                </div>
+              </div>
+              <div class="trip-card" data-region="aze">
+                <div class="trip-card__art"><span class="trip-card__flag">Bakou · Avr</span></div>
+                <div class="trip-card__body">
+                  <div class="trip-card__name">Azerbaïdjan</div>
+                  <div class="trip-card__price">À partir de <strong>227.000 DA</strong></div>
+                </div>
+              </div>
+              <div class="trip-card" data-region="ist">
+                <div class="trip-card__art"><span class="trip-card__flag">Istanbul · Mars</span></div>
+                <div class="trip-card__body">
+                  <div class="trip-card__name">Istanbul</div>
+                  <div class="trip-card__price">À partir de <strong>123.000 DA</strong></div>
+                </div>
+              </div>
+              <div class="trip-card" data-region="kl">
+                <div class="trip-card__art"><span class="trip-card__flag">Malaisie · Mai</span></div>
+                <div class="trip-card__body">
+                  <div class="trip-card__name">Kuala Lumpur</div>
+                  <div class="trip-card__price">À partir de <strong>211.000 DA</strong></div>
+                </div>
+              </div>
+              <div class="trip-card" data-region="sharm">
+                <div class="trip-card__art"><span class="trip-card__flag">CZL · Juin</span></div>
+                <div class="trip-card__body">
+                  <div class="trip-card__name">Sharm El Sheikh</div>
+                  <div class="trip-card__price">À partir de <strong>155.000 DA</strong></div>
+                </div>
+              </div>
+              <div class="trip-card" data-region="egypt" style="opacity:.55">
+                <div class="trip-card__art"><span class="trip-card__flag">+ vos trips</span></div>
+                <div class="trip-card__body">
+                  <div class="trip-card__name">Add yours</div>
+                  <div class="trip-card__price">Edit a JSON block</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODULE 3 ─ CALCULATOR ── -->
+    <div class="module fade-up">
+      <div class="module__content">
+        <div class="module__index">MODULE 03</div>
+        <h2 class="module__title">The <em>tailor-made calculator.</em></h2>
+        <p class="lede">The crown jewel. Live updates every dinar as the client picks date, hotel, room, group size, and extras. <strong>"Pourquoi ce prix ?"</strong> explains every line — zero confusion, zero "is this the real total?"</p>
+        <ul class="module__list">
+          <li>Date chips · hotel dropdown · room segmented control · adult/kid/baby steppers · extras toggles</li>
+          <li>Tabular numerics — columns never shift while you tinker</li>
+          <li>State syncs to the booking form via a custom DOM event</li>
+          <li>Watch the total tick live in the mock on the right →</li>
+        </ul>
+      </div>
+      <div class="module__visual">
+        <div class="mock">
+          <div class="mock__bar">
+            <div class="mock__dot"></div><div class="mock__dot"></div><div class="mock__dot"></div>
+            <span class="mock__url">alliance-travel.dz / cairo-sharm / #calculator</span>
+          </div>
+          <div class="mock-calc">
+            <div class="mock-calc__title">Choisissez <em>votre formule</em></div>
+            <div class="mock-calc__grid">
+              <div class="calc-form">
+                <div class="calc-block">
+                  <label>Date de départ</label>
+                  <div class="chips">
+                    <button class="chip active" data-demo="date" data-val="12 Juin">12 Juin</button>
+                    <button class="chip" data-demo="date" data-val="19 Juin">19 Juin</button>
+                    <button class="chip" data-demo="date" data-val="26 Juin">26 Juin</button>
+                  </div>
+                </div>
+                <div class="calc-block">
+                  <label>Hôtel</label>
+                  <div class="chips">
+                    <button class="chip active" data-demo="hotel" data-price="190000">Tivoli 4★</button>
+                    <button class="chip" data-demo="hotel" data-price="230000">Rehana Royal 5★</button>
+                    <button class="chip" data-demo="hotel" data-price="306000">Pickalbatros 5★</button>
+                  </div>
+                </div>
+                <div class="calc-block">
+                  <label>Chambre</label>
+                  <div class="seg">
+                    <span class="seg__opt active" data-demo="room" data-mul="1">Double</span>
+                    <span class="seg__opt" data-demo="room" data-mul="0.95">Triple</span>
+                    <span class="seg__opt" data-demo="room" data-mul="1.18">Single</span>
+                  </div>
+                </div>
+                <div class="stepper">
+                  <div class="stepper__info">
+                    <p>Adultes</p>
+                    <p>À partir de 12 ans</p>
+                  </div>
+                  <div class="stepper__ctrl">
+                    <button data-demo="adults" data-delta="-1">−</button>
+                    <span class="stepper__val" id="demo-adults">2</span>
+                    <button data-demo="adults" data-delta="1">+</button>
+                  </div>
+                </div>
+                <div class="stepper">
+                  <div class="stepper__info">
+                    <p>Enfants</p>
+                    <p>2 – 11.99 ans</p>
+                  </div>
+                  <div class="stepper__ctrl">
+                    <button data-demo="kids" data-delta="-1">−</button>
+                    <span class="stepper__val" id="demo-kids">0</span>
+                    <button data-demo="kids" data-delta="1">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="breakdown">
+                <div class="breakdown__head">Récapitulatif</div>
+                <div class="breakdown__line"><span>Adultes <span id="demo-adults-x">×2</span></span><span id="demo-adults-v">380.000 DA</span></div>
+                <div class="breakdown__line"><span>Enfants <span id="demo-kids-x">×0</span></span><span id="demo-kids-v">0 DA</span></div>
+                <div class="breakdown__line"><span>Supplément chambre</span><span id="demo-supp">0 DA</span></div>
+                <div class="breakdown__total">
+                  <span class="breakdown__total-label">Total estimé</span>
+                  <span class="breakdown__total-v" id="demo-total">380.000 DA</span>
+                </div>
+                <div class="breakdown__why">
+                  <span style="font-size:14px">ⓘ</span>
+                  Pourquoi ce prix ?
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODULE 4 ─ WHATSAPP DOSSIER ── -->
+    <div class="module module--reverse fade-up">
+      <div class="module__content">
+        <div class="module__index">MODULE 04</div>
+        <h2 class="module__title">The <em>1-click WhatsApp dossier.</em></h2>
+        <p class="lede">The closer. Calculator state + passport info + uploaded scans <strong>compose themselves</strong> into a perfectly formatted WhatsApp message. One tap and your inbox receives a complete dossier.</p>
+        <ul class="module__list">
+          <li>Auto-fills from calculator selection — hotel, date, room, group, total</li>
+          <li>Add/remove passport rows · drag-and-drop scan upload (JPG/PNG/PDF)</li>
+          <li>Opens <code style="background:rgba(184,134,90,.12); color: var(--bronze-700); padding:2px 6px; border-radius:4px; font-family:ui-monospace,monospace; font-size:13px;">wa.me</code> deep link with the whole message pre-formatted</li>
+          <li>Fallbacks: <code style="background:rgba(184,134,90,.12); color: var(--bronze-700); padding:2px 6px; border-radius:4px; font-family:ui-monospace,monospace; font-size:13px;">mailto:</code> + copy-to-clipboard with <code style="background:rgba(184,134,90,.12); color: var(--bronze-700); padding:2px 6px; border-radius:4px; font-family:ui-monospace,monospace; font-size:13px;">execCommand</code> safety net</li>
+        </ul>
+      </div>
+      <div class="module__visual">
+        <div class="mock">
+          <div class="mock__bar">
+            <div class="mock__dot"></div><div class="mock__dot"></div><div class="mock__dot"></div>
+            <span class="mock__url">wa.me/213561616266</span>
+          </div>
+          <div class="mock-wa">
+            <div class="mock-wa__head">
+              <div class="mock-wa__avatar">AT</div>
+              <div>
+                <div class="mock-wa__name">Alliance Travel</div>
+                <div class="mock-wa__status">en ligne</div>
+              </div>
+            </div>
+
+            <div class="wa-bubble wa-bubble--right" id="wa-bubble">
+              <strong>📋 Demande de réservation</strong><br/>
+              <span style="font-size:11px;color:#666">Voyage · Le Caire & Sharm El Sheikh</span>
+              <div class="wa-divider"></div>
+              <div class="wa-line"><span>Date</span><span id="wa-date">12 Juin 2026</span></div>
+              <div class="wa-line"><span>Hôtel</span><span id="wa-hotel">Tivoli Aqua Park 4★</span></div>
+              <div class="wa-line"><span>Chambre</span><span id="wa-room">Double</span></div>
+              <div class="wa-line"><span>Groupe</span><span id="wa-group">2 adultes</span></div>
+              <div class="wa-divider"></div>
+              <div class="wa-line" style="font-weight:700"><span>TOTAL</span><span id="wa-total" style="color:#075E54">380.000 DA</span></div>
+              <div class="wa-divider"></div>
+              <span style="font-size:11px;color:#666">📎 3 passeports joints · Ahmed B., Sara B., Yacine B.</span>
+              <div class="wa-bubble__time">14:32 ✓✓</div>
+            </div>
+
+            <div class="wa-cta">
+              <a class="wa-cta__btn wa-cta__btn--wa" href="#">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.46 3.49 11.815 11.815 0 0012.05 0z"/></svg>
+                Ouvrir WhatsApp
+              </a>
+              <a class="wa-cta__btn wa-cta__btn--mail" href="#">✉️  Email</a>
+              <a class="wa-cta__btn wa-cta__btn--copy" href="#">⧉  Copier</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     PRICING TABLE
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--sand">
+  <div class="container">
+    <div class="section-head section-head--center fade-up">
+      <span class="eyebrow">Ready-to-ship inventory</span>
+      <h2 class="section-head__title">Five trips. Five region themes. <em>One reusable engine.</em></h2>
+      <p class="section-head__sub">All five trip pages share the same skeleton — they swap accents, hero photos, hotels and prices. Adding a sixth destination is a one-day job.</p>
+    </div>
+
+    <div class="price-table fade-up">
+      <div class="price-row price-row--head">
+        <div>Trip</div>
+        <div>Departure</div>
+        <div>Hotels</div>
+        <div>Window</div>
+        <div>From</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row__name"><span class="price-row__chip" style="background:#C9872E"></span>Le Caire & Sharm</div>
+        <div>Alger</div>
+        <div>7</div>
+        <div>Juin 2026</div>
+        <div class="price-row__price">190.000<small> DA</small></div>
+      </div>
+      <div class="price-row">
+        <div class="price-row__name"><span class="price-row__chip" style="background:#28B4D4"></span>Sharm depuis Constantine</div>
+        <div>Constantine</div>
+        <div>3</div>
+        <div>Avr–Juin '26</div>
+        <div class="price-row__price">155.000<small> DA</small></div>
+      </div>
+      <div class="price-row">
+        <div class="price-row__name"><span class="price-row__chip" style="background:#70B8E0"></span>Istanbul</div>
+        <div>Constantine</div>
+        <div>4</div>
+        <div>Mars–Mai '26</div>
+        <div class="price-row__price">123.000<small> DA</small></div>
+      </div>
+      <div class="price-row">
+        <div class="price-row__name"><span class="price-row__chip" style="background:#3AAFAF"></span>Azerbaïdjan · Bakou & Gabala</div>
+        <div>Alger</div>
+        <div>2</div>
+        <div>Avr–Juil '26</div>
+        <div class="price-row__price">227.000<small> DA</small></div>
+      </div>
+      <div class="price-row">
+        <div class="price-row__name"><span class="price-row__chip" style="background:#4CAF82"></span>Kuala Lumpur</div>
+        <div>Alger · direct</div>
+        <div>1 · 5★</div>
+        <div>Mars–Mai '26</div>
+        <div class="price-row__price">211.000<small> DA</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     ENGINEERING — Dark
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--dark" id="engineering">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">Engineering you don't have to think about</span>
+      <h2 class="section-head__title">We sweat the details<br />so your booking team <em>doesn't have to.</em></h2>
+      <p class="section-head__sub">Every choice below is documented in <code style="color:var(--gold);background:rgba(212,165,116,.10); padding:2px 6px; border-radius:4px; font-family:ui-monospace,monospace; font-size:13px;">/docs</code> — design system, color tokens, image manifest, sitemap, roadmap.</p>
+    </div>
+
+    <div class="eng-table fade-up">
+      <div class="eng-row">
+        <div class="eng-row__pain">Slow site on Algerian 4G</div>
+        <div class="eng-row__fix">Hand-written HTML/CSS, no framework, no bundler. WebP-first with <code>image-set()</code> + mobile crops. Font subset, <code>service-worker</code> offline cache.</div>
+      </div>
+      <div class="eng-row">
+        <div class="eng-row__pain">"Looks generic, looks like every other agency"</div>
+        <div class="eng-row__fix">Per-trip accent themed via one <code>data-region</code> attribute on <code>&lt;body&gt;</code>. Caspian teal, Red Sea aqua, Bosphorus blue — same skeleton, five moods.</div>
+      </div>
+      <div class="eng-row">
+        <div class="eng-row__pain">Conversion drop on mobile</div>
+        <div class="eng-row__fix">Sticky-total bar on scroll. Floating WhatsApp FAB. Keyboard-accessible lightbox. Dark mode toggle that persists in <code>localStorage</code>.</div>
+      </div>
+      <div class="eng-row">
+        <div class="eng-row__pain">SEO invisible</div>
+        <div class="eng-row__fix">Open Graph + Twitter cards + 6 trip-specific OG images. <code>schema.org/TravelAgency</code> + <code>schema.org/TouristTrip</code> JSON-LD on every trip page.</div>
+      </div>
+      <div class="eng-row">
+        <div class="eng-row__pain">Accessibility audit risk</div>
+        <div class="eng-row__fix">Skip-link, semantic landmarks, ARIA labels, focus management. Color contrast WCAG-verified in <code>COLOR-MAP.md</code>.</div>
+      </div>
+      <div class="eng-row">
+        <div class="eng-row__pain">Deploy headaches</div>
+        <div class="eng-row__fix">One folder. Any static host (Netlify · Vercel · Cloudflare Pages · S3). HTTPS auto-detected for the SW. Cache headers documented.</div>
+      </div>
+    </div>
+
+    <div class="stats-bar fade-up" style="margin-top: 64px">
+      <div class="stat-big">
+        <div class="stat-big__n">0</div>
+        <div class="stat-big__l">JS frameworks shipped to client</div>
+      </div>
+      <div class="stat-big">
+        <div class="stat-big__n">0</div>
+        <div class="stat-big__l">Monthly SaaS subscriptions</div>
+      </div>
+      <div class="stat-big">
+        <div class="stat-big__n">~3s</div>
+        <div class="stat-big__l">Time to interactive on 4G</div>
+      </div>
+      <div class="stat-big">
+        <div class="stat-big__n">100%</div>
+        <div class="stat-big__l">Your code · your repo · your call</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     PHASES
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--cream" id="phases">
+  <div class="container">
+    <div class="section-head section-head--center fade-up">
+      <span class="eyebrow">How we work</span>
+      <h2 class="section-head__title">Three phases.<br /><em>Fixed-price.</em> No surprises.</h2>
+      <p class="section-head__sub">We don't sell retainers, we sell outcomes. Cancel after any phase — keep everything we shipped.</p>
+    </div>
+
+    <div class="phases">
+      <div class="phase fade-up">
+        <div class="phase__n">01</div>
+        <div class="phase__name">Audit</div>
+        <div class="phase__dur">Week 1 · Fixed-price</div>
+        <ul class="phase__list">
+          <li>We sit in on your WhatsApp inbox for a week</li>
+          <li>Count: messages per closed booking, pricing questions that repeat, where deals die</li>
+          <li>Deliverable: a written friction map you keep, even if you don't ship with us</li>
+        </ul>
+      </div>
+      <div class="phase fade-up d1">
+        <div class="phase__n">02</div>
+        <div class="phase__name">The vitrine</div>
+        <div class="phase__dur">Weeks 2–5 · Fixed-price</div>
+        <ul class="phase__list">
+          <li>Storyline page · your network map · your 2026 catalogue</li>
+          <li>One calculator + one WhatsApp dossier <em>per trip</em></li>
+          <li>Email & clipboard fallbacks · FR + AR ready (RTL audited)</li>
+          <li>JSON-editable trip data — no CMS subscription</li>
+        </ul>
+      </div>
+      <div class="phase fade-up d2">
+        <div class="phase__n">03</div>
+        <div class="phase__name">Optimize</div>
+        <div class="phase__dur">Ongoing · Optional</div>
+        <ul class="phase__list">
+          <li>A/B test pricing copy · breakdown labels · CTA microcopy</li>
+          <li>Lead capture into a real backend when you want one</li>
+          <li>Add a new destination in <em>one day</em> by cloning a page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────
+     FINAL CTA
+     ───────────────────────────────────────────────────────────── -->
+<section class="section section--cream" id="contact">
+  <div class="container">
+    <div class="final-cta fade-up">
+      <span class="eyebrow" style="color: var(--gold)">The offer</span>
+      <h2 style="margin: 24px auto 0">Give us your <em>worst-converting</em> trip page.</h2>
+      <p class="final-cta__sub">In two weeks we'll send you back a version that does the closing for you. You only pay if you want to ship it. No retainer. No lock-in. No SaaS.</p>
+      <div class="final-cta__ctas">
+        <a href="https://wa.me/" class="btn btn--wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.46 3.49 11.815 11.815 0 0012.05 0z"/></svg>
+          WhatsApp the squad
+        </a>
+        <a href="mailto:" class="btn btn--ghost" style="color:white; border-color:rgba(255,255,255,.3)">Email us a brief</a>
+        <a href="#" class="btn btn--primary">Book a 15-min call →</a>
+      </div>
+      <p style="font-size:13px; color:#8B8579; margin-top:32px">
+        <strong style="color: var(--gold)">Le calcul du voyage, sans le calcul mental.</strong><br/>
+        De "C'est combien ?" à "C'est réservé." en un seul écran.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Pitch deck rendered from the <strong>Alliance Travel</strong> repo · 6 pages · 5 destinations · ~12,500 lines · Bordj Bou Arreridj
+</footer>
+
+<a href="https://wa.me/" class="fab" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   SCROLL REVEAL
+   ───────────────────────────────────────────────────────────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+/* ─────────────────────────────────────────────────────────────
+   COUNTERS (hero stats)
+   ───────────────────────────────────────────────────────────── */
+function formatNumber(n, target) {
+  if (target >= 1000) {
+    return (n / 1000).toFixed(1) + 'K';
+  }
+  return Math.round(n).toString();
+}
+
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.counter);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const cur = target * eased;
+    el.textContent = formatNumber(cur, target) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = formatNumber(target, target) + suffix;
+  }
+  requestAnimationFrame(tick);
+}
+
+const counterIo = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCounter(e.target);
+      counterIo.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-counter]').forEach(el => counterIo.observe(el));
+
+/* ─────────────────────────────────────────────────────────────
+   INTERACTIVE CALCULATOR DEMO + WhatsApp SYNC
+   ───────────────────────────────────────────────────────────── */
+const fmtDZ = (n) => new Intl.NumberFormat('fr-DZ').format(Math.round(n)) + ' DA';
+
+const demo = {
+  date: '12 Juin 2026',
+  hotelName: 'Tivoli Aqua Park 4★',
+  hotelPrice: 190000,
+  room: 'Double',
+  roomMul: 1,
+  adults: 2,
+  kids: 0,
+};
+
+function renderDemo() {
+  const adultsTotal = demo.adults * demo.hotelPrice * demo.roomMul;
+  const kidsTotal = demo.kids * 115000;
+  const supp = (demo.roomMul - 1) * demo.hotelPrice * demo.adults;
+  const total = adultsTotal + kidsTotal;
+
+  // Calculator
+  document.getElementById('demo-adults').textContent = demo.adults;
+  document.getElementById('demo-kids').textContent = demo.kids;
+  document.getElementById('demo-adults-x').textContent = '×' + demo.adults;
+  document.getElementById('demo-kids-x').textContent = '×' + demo.kids;
+  document.getElementById('demo-adults-v').textContent = fmtDZ(adultsTotal);
+  document.getElementById('demo-kids-v').textContent = demo.kids ? fmtDZ(kidsTotal) : '0 DA';
+  document.getElementById('demo-supp').textContent = supp > 0 ? '+ ' + fmtDZ(supp) : '0 DA';
+
+  const totalEl = document.getElementById('demo-total');
+  totalEl.textContent = fmtDZ(total);
+  totalEl.classList.remove('tick');
+  void totalEl.offsetWidth;
+  totalEl.classList.add('tick');
+
+  // WhatsApp bubble
+  document.getElementById('wa-date').textContent = demo.date.includes('2026') ? demo.date : (demo.date + ' 2026');
+  document.getElementById('wa-hotel').textContent = demo.hotelName;
+  document.getElementById('wa-room').textContent = demo.room;
+  let group = demo.adults + ' adulte' + (demo.adults > 1 ? 's' : '');
+  if (demo.kids > 0) group += ' · ' + demo.kids + ' enfant' + (demo.kids > 1 ? 's' : '');
+  document.getElementById('wa-group').textContent = group;
+  document.getElementById('wa-total').textContent = fmtDZ(total);
+}
+
+// Date chips
+document.querySelectorAll('[data-demo="date"]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-demo="date"]').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    demo.date = el.dataset.val;
+    renderDemo();
+  });
+});
+
+// Hotel chips
+document.querySelectorAll('[data-demo="hotel"]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-demo="hotel"]').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    demo.hotelPrice = parseInt(el.dataset.price, 10);
+    demo.hotelName = el.textContent.trim();
+    renderDemo();
+  });
+});
+
+// Room segmented
+document.querySelectorAll('[data-demo="room"]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-demo="room"]').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    demo.roomMul = parseFloat(el.dataset.mul);
+    demo.room = el.textContent.trim();
+    renderDemo();
+  });
+});
+
+// Adults stepper
+document.querySelectorAll('[data-demo="adults"]').forEach(el => {
+  el.addEventListener('click', () => {
+    const d = parseInt(el.dataset.delta, 10);
+    demo.adults = Math.max(1, Math.min(8, demo.adults + d));
+    renderDemo();
+  });
+});
+
+// Kids stepper
+document.querySelectorAll('[data-demo="kids"]').forEach(el => {
+  el.addEventListener('click', () => {
+    const d = parseInt(el.dataset.delta, 10);
+    demo.kids = Math.max(0, Math.min(6, demo.kids + d));
+    renderDemo();
+  });
+});
+
+renderDemo();
+
+/* ─────────────────────────────────────────────────────────────
+   AUTO-DEMO LOOP — runs a fake "user is configuring their trip"
+   sequence to make the calculator feel alive when nobody touches it
+   ───────────────────────────────────────────────────────────── */
+const autoSequence = [
+  () => clickIt('[data-demo="date"][data-val="19 Juin"]'),
+  () => stepIt('adults', 1),
+  () => clickIt('[data-demo="room"][data-mul="0.95"]'),
+  () => stepIt('kids', 1),
+  () => clickIt('[data-demo="hotel"][data-price="230000"]'),
+  () => clickIt('[data-demo="date"][data-val="26 Juin"]'),
+  () => clickIt('[data-demo="hotel"][data-price="306000"]'),
+  () => clickIt('[data-demo="room"][data-mul="1"]'),
+  () => stepIt('kids', -1),
+  () => stepIt('adults', -1),
+  () => clickIt('[data-demo="date"][data-val="12 Juin"]'),
+  () => clickIt('[data-demo="hotel"][data-price="190000"]'),
+];
+
+function clickIt(sel) {
+  const el = document.querySelector(sel);
+  if (el) el.click();
+}
+function stepIt(kind, delta) {
+  const sel = '[data-demo="' + kind + '"][data-delta="' + delta + '"]';
+  const el = document.querySelector(sel);
+  if (el) el.click();
+}
+
+let autoIdx = 0;
+let autoInterval = null;
+let autoActive = true;
+
+function startAuto() {
+  if (autoInterval) return;
+  autoInterval = setInterval(() => {
+    if (!autoActive) return;
+    autoSequence[autoIdx % autoSequence.length]();
+    autoIdx++;
+  }, 2200);
+}
+function stopAuto() {
+  if (autoInterval) { clearInterval(autoInterval); autoInterval = null; }
+}
+
+// Only auto-run when calculator is on screen, pause when user interacts
+const calcMock = document.querySelector('.mock-calc');
+if (calcMock) {
+  const calcIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) startAuto();
+      else stopAuto();
+    });
+  }, { threshold: 0.4 });
+  calcIo.observe(calcMock);
+
+  calcMock.addEventListener('pointerdown', () => {
+    autoActive = false;
+    setTimeout(() => { autoActive = true; }, 8000);
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   NAV bg toggle on scroll
+   ───────────────────────────────────────────────────────────── */
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) nav.style.background = 'rgba(11,25,41,.92)';
+  else nav.style.background = 'rgba(11,25,41,.82)';
+}, { passive: true });
+</script>
+
+</body>
+</html>
