@@ -9,14 +9,16 @@
  *   - Animated dashed arcs from HQ to every branch (Bezier curves
  *     so the lines breathe rather than feel rigid)
  *
- * Loads MapLibre GL via CDN (same approach as cobe globe). Falls
- * back to a static "the map can't load" placeholder if the CDN is
- * unreachable so the section never appears blank.
+ * Shares CDN load + style URLs + arcCoords + dash animation + lazy
+ * boot + popup/theme observers with trip-map.js via window.MapBase
+ * (see map-base.js — loaded before this file via <script defer>).
  *
- * No build step required.
+ * Falls back to a static placeholder if the CDN is unreachable so
+ * the section never appears blank. No build step required.
  */
 (() => {
-  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const MB = window.MapBase;
+  if (!MB) { console.warn('[algeria-map] map-base.js not loaded'); return; }
 
   /* ─── 1. Data ──────────────────────────────────────────────── */
   /* Real Alliance Travel network — 3 owned agencies.
@@ -51,71 +53,25 @@
     }
   ];
 
-  /* ─── 2. Style URLs (CARTO basemaps — free, no API key) ────── */
-  const STYLE_LIGHT = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
-  const STYLE_DARK  = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
-  const isLightTheme = () => document.documentElement.dataset.theme === 'light';
-
-  /* ─── 3. Geometry helper: Bezier arc between two points ───── */
-  function arcCoords(from, to, samples = 64, lift = 0.18) {
-    // lift = how much the curve bows away from the straight line.
-    // Negative lift would bow the other way.
-    const [x1, y1] = from, [x2, y2] = to;
-    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
-    const dx = x2 - x1, dy = y2 - y1;
-    // Perpendicular vector (rotated 90deg)
-    const cx = mx - dy * lift, cy = my + dx * lift;
-    const pts = [];
-    for (let i = 0; i <= samples; i++) {
-      const t = i / samples, u = 1 - t;
-      pts.push([
-        u * u * x1 + 2 * u * t * cx + t * t * x2,
-        u * u * y1 + 2 * u * t * cy + t * t * y2
-      ]);
-    }
-    return pts;
-  }
-
-  /* ─── 4. Lazy-load MapLibre from CDN ──────────────────────── */
-  function loadMapLibre() {
-    if (window.maplibregl) return Promise.resolve(window.maplibregl);
-    return new Promise((resolve, reject) => {
-      // CSS first (parallel)
-      if (!document.querySelector('link[href*="maplibre-gl"]')) {
-        const css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
-        document.head.appendChild(css);
-      }
-      const s = document.createElement('script');
-      s.src = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';
-      s.async = true;
-      s.onload = () => resolve(window.maplibregl);
-      s.onerror = () => reject(new Error('MapLibre GL failed to load'));
-      document.head.appendChild(s);
-    });
-  }
-
-  /* ─── 5. Boot ─────────────────────────────────────────────── */
+  /* ─── 2. Boot ─────────────────────────────────────────────── */
   async function boot() {
     const container = document.getElementById('algeria-map');
     if (!container) return;
 
     let maplibregl;
     try {
-      maplibregl = await loadMapLibre();
+      maplibregl = await MB.loadMapLibre();
     } catch (e) {
       console.warn('[algeria-map]', e.message);
       renderFallback(container);
       return;
     }
 
-    // Hide the fallback placeholder (it shows by default in case JS fails)
     container.classList.add('algeria-map--ready');
 
     const map = new maplibregl.Map({
       container: 'algeria-map',
-      style: isLightTheme() ? STYLE_LIGHT : STYLE_DARK,
+      style: MB.currentStyle(),
       center: [4.65, 35.89],        // mid-point between BBA & M'Sila
       zoom: 7.2,
       minZoom: 5.5,
@@ -194,7 +150,7 @@
           properties: { id: b.id, future: !!b.future },
           geometry: {
             type: 'LineString',
-            coordinates: arcCoords(HQ.loc, b.loc, 64, lift)
+            coordinates: MB.arcCoords(HQ.loc, b.loc, 64, lift)
           }
         };
       });
@@ -232,25 +188,13 @@
         }
       });
 
-      if (!reduced && !window.__amapDashTimer) {
-        // The "ants marching" animation — cycles a series of dash patterns
-        const dashSeq = [
-          [0, 4, 3], [1, 4, 2], [2, 4, 1], [3, 4, 0],
-          [0, 1, 3, 3], [0, 2, 3, 2], [0, 3, 3, 1]
-        ];
-        let step = 0;
-        window.__amapDashTimer = setInterval(() => {
-          if (!map.getLayer('amap-routes-line')) return;
-          step = (step + 1) % dashSeq.length;
-          map.setPaintProperty('amap-routes-line', 'line-dasharray', dashSeq[step]);
-        }, 70);
-      }
+      MB.attachDashAnimation(map, 'amap-routes-line', '__amapDashTimer');
     };
 
     // Race-safe: addRouteLayers needs the style fully loaded. Listen on
     // BOTH the 'load' event (fires once everything's ready) AND
     // 'styledata' (fires earlier, on every style swap including the
-    // initial one). idempotent guard inside addRouteLayers prevents
+    // initial one). Idempotent guard inside addRouteLayers prevents
     // double-add.
     map.on('load', addRouteLayers);
     map.on('styledata', () => {
@@ -437,35 +381,14 @@
       }, 2400);
     });
 
-    /* Single-popup mode */
-    new MutationObserver((mutations) => {
-      const newPopups = mutations.flatMap(m =>
-        Array.from(m.addedNodes).filter(n =>
-          n.nodeType === 1 && n.classList?.contains('maplibregl-popup')
-        )
-      );
-      if (!newPopups.length) return;
-      const all = container.querySelectorAll('.maplibregl-popup');
-      const keep = newPopups[newPopups.length - 1];
-      all.forEach(p => { if (p !== keep) p.remove(); });
-    }).observe(container, { childList: true, subtree: true });
-
-    /* Theme switching — re-add layers after setStyle clears them */
-    const observer = new MutationObserver(() => {
-      const newStyle = isLightTheme() ? STYLE_LIGHT : STYLE_DARK;
-      map.setStyle(newStyle);
-      map.once('styledata', addRouteLayers);
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    });
+    MB.setupSinglePopup(container);
+    MB.setupThemeSwap(map, addRouteLayers);
 
     // Expose for debugging
     window.__alliance_algeria_map = map;
   }
 
-  /* ─── 6. Fallback when MapLibre CDN is unreachable ─────────── */
+  /* ─── 3. Fallback when MapLibre CDN is unreachable ─────────── */
   function renderFallback(container) {
     container.classList.add('algeria-map--fallback');
     container.innerHTML = `
@@ -476,53 +399,5 @@
     `;
   }
 
-  /* ─── 7. Lazy boot — only init when map is in viewport ──────
-     IntersectionObserver lazy-loads the map when it scrolls in.
-     Two safety nets so the map never silently fails to appear:
-       a) If IO isn't supported, boot immediately
-       b) If the container is already in viewport at script start
-          (or becomes visible while IO is throttled — e.g. iframe
-          embeds with document.visibilityState=hidden), boot anyway. */
-  let booted = false;
-  function safeBoot() {
-    if (booted) return;
-    booted = true;
-    boot().catch(err => console.warn('[algeria-map] boot failed:', err));
-  }
-
-  function lazyBoot() {
-    const container = document.getElementById('algeria-map');
-    if (!container) return;
-    if (!('IntersectionObserver' in window)) { safeBoot(); return; }
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          io.disconnect();
-          safeBoot();
-        }
-      });
-    }, { rootMargin: '200px 0px' });
-    io.observe(container);
-
-    // Fallback: if the container is already on-screen (or becomes
-    // on-screen while IO is throttled) boot via a manual scroll check.
-    const checkVisible = () => {
-      if (booted) return;
-      const r = container.getBoundingClientRect();
-      const onScreen = r.top < (window.innerHeight + 200) && r.bottom > -200;
-      if (onScreen) safeBoot();
-    };
-    checkVisible();   // immediate
-    window.addEventListener('scroll', checkVisible, { passive: true });
-    // Final long-tail safety: if 30s pass and we're still not booted,
-    // boot anyway — better a wasted resource load than a blank section.
-    setTimeout(safeBoot, 30000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', lazyBoot);
-  } else {
-    lazyBoot();
-  }
+  MB.lazyBoot('algeria-map', boot);
 })();

@@ -23,10 +23,13 @@
  *   - animated dashed Bezier arcs between hubs (flight/road routes)
  *   - auto-fit bounds, theme-aware basemap, CDN fallback, lazy-boot
  *
- * Loads MapLibre GL via CDN (same as algeria-map.js + globe.js).
+ * Shares CDN load + style URLs + arcCoords + dash animation + lazy
+ * boot + popup/theme observers with algeria-map.js via window.MapBase
+ * (see map-base.js — loaded before this file via <script defer>).
  */
 (() => {
-  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const MB = window.MapBase;
+  if (!MB) { console.warn('[trip-map] map-base.js not loaded'); return; }
 
   /* ─── 1. Read inline data ──────────────────────────────────── */
   const DATA = window.TRIP_MAP_DATA;
@@ -38,55 +41,16 @@
   const HUBS   = Array.isArray(DATA.hubs)    ? DATA.hubs    : [];
   const ROUTES = Array.isArray(DATA.routes)  ? DATA.routes  : [];
 
-  /* ─── 2. Style URLs (CARTO basemaps — free, no API key) ────── */
-  const STYLE_LIGHT = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
-  const STYLE_DARK  = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
-  const isLightTheme = () => document.documentElement.dataset.theme === 'light';
+  const escape = MB.escapeHtml.bind(MB);
 
-  /* ─── 3. Bezier arc helper (same as algeria-map) ───────────── */
-  function arcCoords(from, to, samples = 64, lift = 0.18) {
-    const [x1, y1] = from, [x2, y2] = to;
-    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
-    const dx = x2 - x1, dy = y2 - y1;
-    const cx = mx - dy * lift, cy = my + dx * lift;
-    const pts = [];
-    for (let i = 0; i <= samples; i++) {
-      const t = i / samples, u = 1 - t;
-      pts.push([
-        u * u * x1 + 2 * u * t * cx + t * t * x2,
-        u * u * y1 + 2 * u * t * cy + t * t * y2
-      ]);
-    }
-    return pts;
-  }
-
-  /* ─── 4. Lazy-load MapLibre from CDN ──────────────────────── */
-  function loadMapLibre() {
-    if (window.maplibregl) return Promise.resolve(window.maplibregl);
-    return new Promise((resolve, reject) => {
-      if (!document.querySelector('link[href*="maplibre-gl"]')) {
-        const css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
-        document.head.appendChild(css);
-      }
-      const s = document.createElement('script');
-      s.src = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';
-      s.async = true;
-      s.onload = () => resolve(window.maplibregl);
-      s.onerror = () => reject(new Error('MapLibre GL failed to load'));
-      document.head.appendChild(s);
-    });
-  }
-
-  /* ─── 5. Boot ─────────────────────────────────────────────── */
+  /* ─── 2. Boot ─────────────────────────────────────────────── */
   async function boot() {
     const container = document.getElementById('trip-map');
     if (!container) return;
 
     let maplibregl;
     try {
-      maplibregl = await loadMapLibre();
+      maplibregl = await MB.loadMapLibre();
     } catch (e) {
       console.warn('[trip-map]', e.message);
       renderFallback(container);
@@ -96,7 +60,7 @@
 
     const map = new maplibregl.Map({
       container: 'trip-map',
-      style: isLightTheme() ? STYLE_LIGHT : STYLE_DARK,
+      style: MB.currentStyle(),
       center: DATA.center || [30, 30],   // overridden by fitBounds
       zoom: 3,
       attributionControl: { compact: true },
@@ -191,7 +155,7 @@
         properties: { id: i, type: r.type || 'flight', label: r.label || '' },
         geometry: {
           type: 'LineString',
-          coordinates: arcCoords(r.from, r.to, 64, r.lift ?? 0.22)
+          coordinates: MB.arcCoords(r.from, r.to, 64, r.lift ?? 0.22)
         }
       }));
 
@@ -224,18 +188,7 @@
         }
       });
 
-      if (!reduced && !window.__tmapDashTimer) {
-        const dashSeq = [
-          [0, 4, 3], [1, 4, 2], [2, 4, 1], [3, 4, 0],
-          [0, 1, 3, 3], [0, 2, 3, 2], [0, 3, 3, 1]
-        ];
-        let step = 0;
-        window.__tmapDashTimer = setInterval(() => {
-          if (!map.getLayer('tmap-routes-line')) return;
-          step = (step + 1) % dashSeq.length;
-          map.setPaintProperty('tmap-routes-line', 'line-dasharray', dashSeq[step]);
-        }, 70);
-      }
+      MB.attachDashAnimation(map, 'tmap-routes-line', '__tmapDashTimer');
     };
 
     /* Triple-listener: load + styledata + 200ms polling. Same belt-and-
@@ -460,37 +413,13 @@
       }, 2400);
     });
 
-    /* Single-popup mode — opening one popup auto-closes any older.
-       MapLibre doesn't expose a 'popupopen' event on the map, so we
-       watch for new .maplibregl-popup nodes appearing in the container
-       and remove any older siblings. Cheap MutationObserver — fires
-       only when popup nodes change, never per frame. */
-    new MutationObserver((mutations) => {
-      const newPopups = mutations.flatMap(m =>
-        Array.from(m.addedNodes).filter(n =>
-          n.nodeType === 1 && n.classList?.contains('maplibregl-popup')
-        )
-      );
-      if (!newPopups.length) return;
-      const all = container.querySelectorAll('.maplibregl-popup');
-      // Keep only the most-recently-added; remove the rest
-      const keep = newPopups[newPopups.length - 1];
-      all.forEach(p => { if (p !== keep) p.remove(); });
-    }).observe(container, { childList: true, subtree: true });
-
-    /* Theme-swap: re-add layers after setStyle clears them */
-    new MutationObserver(() => {
-      map.setStyle(isLightTheme() ? STYLE_LIGHT : STYLE_DARK);
-      map.once('styledata', addRouteLayers);
-    }).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    });
+    MB.setupSinglePopup(container);
+    MB.setupThemeSwap(map, addRouteLayers);
 
     window.__alliance_trip_map = map;
   }
 
-  /* ─── 6. Fallback when MapLibre CDN unreachable ────────────── */
+  /* ─── 3. Fallback when MapLibre CDN unreachable ────────────── */
   function renderFallback(container) {
     container.classList.add('trip-map--fallback');
     const summary = [...HUBS, ...HOTELS].slice(0, 6).map(p => p.name).join(' · ');
@@ -502,15 +431,7 @@
     `;
   }
 
-  /* ─── 7. Helpers ─────────────────────────────────────────── */
-  function escape(s) {
-    return String(s ?? '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
+  /* ─── 4. Helpers ─────────────────────────────────────────── */
   function dayLabel(d) {
     if (typeof d === 'number') return `JOUR ${d}`;
     return `JOUR ${escape(String(d))}`;
@@ -521,41 +442,5 @@
     </svg>`;
   }
 
-  /* ─── 8. Lazy boot ───────────────────────────────────────── */
-  let booted = false;
-  function safeBoot() {
-    if (booted) return;
-    booted = true;
-    boot().catch(err => console.warn('[trip-map] boot failed:', err));
-  }
-  function lazyBoot() {
-    const container = document.getElementById('trip-map');
-    if (!container) return;
-    if (!('IntersectionObserver' in window)) { safeBoot(); return; }
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          io.disconnect();
-          safeBoot();
-        }
-      });
-    }, { rootMargin: '200px 0px' });
-    io.observe(container);
-
-    const checkVisible = () => {
-      if (booted) return;
-      const r = container.getBoundingClientRect();
-      if (r.top < (window.innerHeight + 200) && r.bottom > -200) safeBoot();
-    };
-    checkVisible();
-    window.addEventListener('scroll', checkVisible, { passive: true });
-    setTimeout(safeBoot, 30000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', lazyBoot);
-  } else {
-    lazyBoot();
-  }
+  MB.lazyBoot('trip-map', boot);
 })();
