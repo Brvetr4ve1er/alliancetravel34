@@ -125,7 +125,8 @@ button {
   a[href]:not(.skip-link):not(.nav-logo):not(.lang-btn),
   button:not(.theme-toggle):not(.lang-btn):not(.nav-hamburger),
   [role="button"],
-  summary {
+  summary,
+  .phone-card__btn {
     min-height: var(--touch-min);
   }
   input:not([type="checkbox"]):not([type="radio"]),
