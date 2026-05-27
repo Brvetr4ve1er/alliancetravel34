@@ -22,7 +22,6 @@ const PRECACHE_URLS = [
   '/',
   '/assets/css/styles.css',
   '/assets/js/enhance.js',
-  '/assets/js/enhance-pro.js',
   '/assets/images/favicon/favicon-32x32.png',
   '/site.webmanifest',
 ];
