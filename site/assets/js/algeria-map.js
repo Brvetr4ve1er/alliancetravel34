@@ -104,7 +104,7 @@
           <div class="amap-popup__role">${HQ.role}</div>
           <h3 class="amap-popup__name">${HQ.name}</h3>
           <p class="amap-popup__addr">${HQ.addr}</p>
-          <a class="amap-popup__phone" href="tel:+213${HQ.phone.replace(/\D/g, '')}">
+          <a class="amap-popup__phone" href="https://wa.me/213${HQ.phone.replace(/\D/g, '').replace(/^0/, '')}?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">
             ${HQ.phone}
           </a>
           ${HQ.mapsUrl ? `<a class="amap-popup__maps" href="${HQ.mapsUrl}" target="_blank" rel="noopener">Itinéraire ↗</a>` : ''}
@@ -127,7 +127,7 @@
           <div class="amap-popup">
             <h3 class="amap-popup__name">${b.name}</h3>
             <p class="amap-popup__addr">${b.addr || ''}</p>
-            ${b.phone ? `<a class="amap-popup__phone" href="tel:+213${b.phone.replace(/\D/g, '')}">${b.phone}</a>` : ''}
+            ${b.phone ? `<a class="amap-popup__phone" href="https://wa.me/213${b.phone.replace(/\D/g, '').replace(/^0/, '')}?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">${b.phone}</a>` : ''}
             ${b.mapsUrl ? `<a class="amap-popup__maps" href="${b.mapsUrl}" target="_blank" rel="noopener">Itinéraire ↗</a>` : ''}
           </div>
         `));
