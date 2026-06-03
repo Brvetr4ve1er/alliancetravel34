@@ -907,7 +907,7 @@ select {
    family deleted — v13 hero trust strip (review-stars / experience-
    years / certifications under the hero). v14 + v7 industry layer
    replaced this with the standalone .trust-strip component injected
-   by enhance-pro.js. */
+   by enhance.js. */
 
 /* ── Floating highlight cards ────────────────────────────── */
 .highlights {
@@ -1247,12 +1247,19 @@ select {
   cursor: pointer;
 }
 
-.date-chip:hover {
-  border-color: var(--border-hi);
-  color: var(--txt-1);
+/* Hover gated to non-touch + non-active chips — fixes "hover stuck on first
+   default chip after selecting another" (touch devices retain :hover until
+   you tap somewhere else; active chip overrides hover so the freeze never
+   manifests as a stale visual). */
+@media (hover: hover) {
+  .date-chip:not(.active):hover {
+    border-color: var(--border-hi);
+    color: var(--txt-1);
+  }
 }
 
-.date-chip.active {
+.date-chip.active,
+.date-chip.active:hover {
   border-color: var(--mint);
   background: var(--mint-dim);
   color: var(--mint);
@@ -2108,7 +2115,7 @@ select {
 }
 
 /* ── v21 phase C.3 — pause-off-screen plumbing ──────────────
-   enhance-pro.js's IntersectionObserver toggles `.is-paused` on any
+   enhance.js's IntersectionObserver toggles `.is-paused` on any
    ambient host (.home-hero, .hero, #alliance-globe, [data-pause-off-
    screen]) when it scrolls out of view. This rule freezes every CSS
    animation inside the subtree, recovering the frame budget the
@@ -3679,6 +3686,19 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 
 /* Logo: swap cream fills to navy in light mode */
 :root[data-theme="light"] .nav-logo svg path[fill="#efe8df"] { fill: var(--navy) !important; }
+
+/* Make the "Travel" wordmark legible at small sizes — the original SVG
+   geometry is hairline-thin so add a matching-color stroke to thicken
+   the visual weight without changing the artwork. paint-order ensures
+   the stroke sits behind the fill so corners stay crisp. */
+.nav-logo svg path[fill="#efe8df"] {
+  stroke: #efe8df;
+  stroke-width: 0.8;
+  paint-order: stroke fill;
+}
+:root[data-theme="light"] .nav-logo svg path[fill="#efe8df"] {
+  stroke: var(--navy);
+}
 
 /* Hero: cream gradient instead of black */
 :root[data-theme="light"] .hero__bg {
@@ -9890,7 +9910,29 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .stat-card__num,
 :root[lang="ar"] .hero__price strong,
 :root[lang="ar"] .hotel-card__price strong,
-:root[lang="ar"] .trip-card__cta-price {
+:root[lang="ar"] .trip-card__cta-price,
+/* Extended coverage 2026-06-03: every numeric surface across calc, booking,
+   sticky bars, trip cards, date chips, agency stats, related cards, etc. */
+:root[lang="ar"] .date-chip,
+:root[lang="ar"] .calc-line__amount,
+:root[lang="ar"] .breakdown__amount,
+:root[lang="ar"] .breakdown__line strong,
+:root[lang="ar"] .sticky-total__amount,
+:root[lang="ar"] .trip-sticky-bar__price-num,
+:root[lang="ar"] .trip-card__from strong,
+:root[lang="ar"] .trip-card__from-amount,
+:root[lang="ar"] .hotel-card__price,
+:root[lang="ar"] .hotel-card__price-from,
+:root[lang="ar"] .bf-trip-chip,
+:root[lang="ar"] .calc-cta__price,
+:root[lang="ar"] .calc-total__amount,
+:root[lang="ar"] .related-card__price,
+:root[lang="ar"] .related-card__price strong,
+:root[lang="ar"] .conseiller-num,
+:root[lang="ar"] .phone-group a,
+:root[lang="ar"] time,
+:root[lang="ar"] [data-num],
+:root[lang="ar"] .num-ltr {
   direction: ltr;
   unicode-bidi: isolate;
   font-family: 'DM Sans', system-ui, sans-serif;
