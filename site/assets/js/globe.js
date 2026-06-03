@@ -11,6 +11,29 @@
  *
  * Loaded as ES module. Cobe is open-source (MIT). Dynamic import so a
  * CDN outage degrades to the static fallback instead of breaking the hero.
+ *
+ * v26 perf optimizations:
+ * - DPR capped at 2 (prevents 4-9× pixel load on retina displays)
+ * - mapSamples reduced 16000 → 10000 desktop (visually similar, ~37% lighter)
+ * - Polaroid updates use single GPU-friendly transform (no left/top thrash)
+ * - Per-frame polaroid math skipped when paused or prefers-reduced-motion
+ * - Init deferred to window.load + requestIdleCallback for snappier FCP
+ * - Aspirational dots trimmed 18 → 10 (cuts marker-rendering cost)
+ *
+ * TODO (CSS — needs visual review on running page):
+ * - .globe-polaroid[data-marker="egypt"] now anchors to Cairo (30.04°N,
+ *   31.24°E) instead of Sharm El Sheikh (27.92°N, 34.33°E). The caption
+ *   still reads "Le Caire · Sharm" which is accurate for the photo
+ *   subject; if the layout needs adjustment, eyeball it on /index.html
+ *   and tune the rotation offset in the `rot` map (currently -4°).
+ * - Sharm El Sheikh + Gabala render as cobe dots only (no polaroid HTML).
+ *   If product wants polaroids for them, add:
+ *     <div class="globe-polaroid" data-marker="sharm" aria-hidden="true">
+ *       <img src="assets/images/heroes/hero__sharm.jpg" ... />
+ *       <span class="globe-polaroid__caption">Sharm El Sheikh</span>
+ *     </div>
+ *   and the matching entries with `polaroidId: 'sharm'` / `polaroidId: 'gabala'`
+ *   in the DESTINATIONS array below.
  */
 
 let createGlobe = null;
@@ -27,36 +50,39 @@ async function loadCobe() {
 }
 
 /* PRIMARY destinations — Alliance Travel's actual offerings.
-   These get a polaroid photo overlay anchored to the marker. */
+   These get a polaroid photo overlay anchored to the marker.
+   Coords are spec-precise (lat, lng in degrees). cobe marker format:
+   `{ location: [lat, lng], size }`. HQ has a slightly larger marker.
+   Cairo + Sharm are close on the globe (~3° apart) — disambiguated
+   by slightly different `size`. */
 const DESTINATIONS = [
-  { id: 'bba',   loc: [36.073,   4.761], size: 0.10, home: true,  label: 'Bordj Bou Arreridj' },
-  { id: 'egypt', loc: [27.916,  34.330], size: 0.07, label: 'Le Caire & Sharm' },
-  { id: 'aze',   loc: [40.409,  49.867], size: 0.07, label: 'Bakou' },
-  { id: 'ist',   loc: [41.008,  28.978], size: 0.07, label: 'Istanbul' },
-  { id: 'kl',    loc: [ 3.139, 101.687], size: 0.07, label: 'Kuala Lumpur' }
+  // `id` = cobe internal id, `polaroidId` = which `.globe-polaroid[data-marker]`
+  // DOM node tracks this marker. The egypt polaroid (single photo) anchors to
+  // Cairo since it's the headline city; Sharm appears as a dot only.
+  { id: 'bba',    loc: [36.0686,   4.7616], size: 0.10,  home: true, polaroidId: 'bba',   label: 'Bordj Bou Arreridj' },
+  { id: 'cairo',  loc: [30.0444,  31.2357], size: 0.07,              polaroidId: 'egypt', label: 'Le Caire' },
+  { id: 'sharm',  loc: [27.9158,  34.3300], size: 0.065,                                   label: 'Sharm El Sheikh' },
+  { id: 'aze',    loc: [40.4093,  49.8671], size: 0.07,              polaroidId: 'aze',   label: 'Bakou' },
+  { id: 'gabala', loc: [40.9852,  47.8460], size: 0.06,                                   label: 'Gabala' },
+  { id: 'ist',    loc: [41.0082,  28.9784], size: 0.07,              polaroidId: 'ist',   label: 'Istanbul' },
+  { id: 'kl',     loc: [ 3.1390, 101.6869], size: 0.07,              polaroidId: 'kl',    label: 'Kuala Lumpur' }
 ];
 
 /* SECONDARY destinations — top global tourist hotspots that decorate the
    globe to make it feel worldwide and aspirational. They appear as smaller
-   mint dots without polaroids — a visual hint that travel is everywhere. */
+   mint dots without polaroids — a visual hint that travel is everywhere.
+   Trimmed v26: fewer dots = lighter per-frame WebGL load. Kept the most
+   iconic hubs across continents. */
 const ASPIRATIONAL = [
   { name: 'Paris',          loc: [ 48.86,    2.35] },
   { name: 'London',         loc: [ 51.51,   -0.13] },
   { name: 'Rome',           loc: [ 41.90,   12.50] },
-  { name: 'Barcelona',      loc: [ 41.39,    2.17] },
-  { name: 'Amsterdam',      loc: [ 52.37,    4.90] },
-  { name: 'Athens',         loc: [ 37.98,   23.73] },
-  { name: 'Marrakech',      loc: [ 31.63,   -8.01] },
   { name: 'Dubai',          loc: [ 25.20,   55.27] },
   { name: 'Tokyo',          loc: [ 35.68,  139.65] },
   { name: 'Bangkok',        loc: [ 13.76,  100.50] },
   { name: 'Bali',           loc: [ -8.65,  115.22] },
-  { name: 'Maldives',       loc: [  3.20,   73.22] },
-  { name: 'Mauritius',      loc: [-20.35,   57.55] },
-  { name: 'Zanzibar',       loc: [ -6.16,   39.20] },
   { name: 'Cape Town',      loc: [-33.92,   18.42] },
   { name: 'New York',       loc: [ 40.71,  -74.01] },
-  { name: 'Rio de Janeiro', loc: [-22.91,  -43.17] },
   { name: 'Sydney',         loc: [-33.87,  151.21] }
 ];
 const ASPIRATIONAL_SIZE = 0.035;
@@ -120,12 +146,17 @@ async function init() {
   let pointerY = 0;
   let dpr = 1;
 
-  // Pre-resolve polaroid DOM nodes once (cheap each-frame lookup)
-  const polaroids = DESTINATIONS.map(d => ({
-    dest: d,
-    el: document.querySelector(`.globe-polaroid[data-marker="${d.id}"]`),
-    rot: { bba: 0, egypt: -4, aze: 3, ist: -2, kl: 5 }[d.id] || 0
-  })).filter(p => p.el);
+  // Pre-resolve polaroid DOM nodes once (cheap each-frame lookup).
+  // Only destinations with a `polaroidId` get a DOM overlay — others render
+  // as cobe dots only (e.g. Sharm shares the Egypt photo with Cairo).
+  const polaroids = DESTINATIONS
+    .filter(d => d.polaroidId)
+    .map(d => ({
+      dest: d,
+      el: document.querySelector(`.globe-polaroid[data-marker="${d.polaroidId}"]`),
+      rot: { bba: 0, egypt: -4, aze: 3, ist: -2, kl: 5 }[d.polaroidId] || 0
+    }))
+    .filter(p => p.el);
 
   /* Project a [lat, lng] onto the rendered canvas at the given globe rotation.
      Returns { x, y, depth } in CSS pixels relative to the canvas, where
@@ -150,17 +181,26 @@ async function init() {
     };
   }
 
-  /* Update each polaroid's screen position + visibility on every frame */
+  /* Update each polaroid's screen position + visibility on every frame.
+     Perf v26: pinned to `left:0; top:0` and driven by a single 3D transform
+     so the browser keeps the polaroids on the compositor layer (no layout/
+     paint thrash per frame). The CSS rule already sets left:0/top:0. */
   function updatePolaroids(rotPhi, rotTheta) {
     for (const p of polaroids) {
       const pos = projectMarker(p.dest.loc[0], p.dest.loc[1], rotPhi, rotTheta);
       // Fade based on depth — front-facing = full, edge = transparent, back = hidden
       const visibility = Math.max(0, Math.min(1, (pos.depth - 0.05) / 0.5));
-      p.el.style.left = pos.x + 'px';
-      p.el.style.top = pos.y + 'px';
-      p.el.style.transform = `translate(-50%, calc(-100% - 14px)) rotate(${p.rot}deg)`;
+      // translate3d primes the GPU path; nudge above the marker by 14px + the
+      // polaroid's own height (handled by translate(-50%, -100%)).
+      p.el.style.transform =
+        `translate3d(${pos.x.toFixed(1)}px, ${pos.y.toFixed(1)}px, 0) ` +
+        `translate(-50%, calc(-100% - 14px)) rotate(${p.rot}deg)`;
       p.el.style.opacity = visibility.toFixed(3);
-      p.el.style.filter = `blur(${((1 - visibility) * 6).toFixed(1)}px)`;
+      // Skip the blur filter when fully visible — composite blurs are GPU-cheap
+      // but not free; gating on (visibility < 0.95) drops it in the common case.
+      p.el.style.filter = visibility >= 0.95
+        ? 'none'
+        : `blur(${((1 - visibility) * 6).toFixed(1)}px)`;
     }
   }
 
@@ -179,8 +219,12 @@ async function init() {
       theta: 0.18,
       dark: 1,
       diffuse: 1.4,
-      // Mobile gets fewer samples — saves ~150ms WebGL setup on low-end Android
-      mapSamples: window.matchMedia('(max-width: 768px)').matches ? 8000 : 16000,
+      // mapSamples = sphere-sampling density. cobe default is 16000; on
+      // high-DPI displays with DPR 2 that's already a 4× pixel budget on
+      // top — far past the visual diminishing returns. 10000 desktop /
+      // 8000 mobile keeps the dotted-globe aesthetic without burning a
+      // first-paint budget. Drop further (e.g. 6000) if you still see jank.
+      mapSamples: window.matchMedia('(max-width: 768px)').matches ? 8000 : 10000,
       mapBrightness: 4,
       baseColor,
       markerColor,
@@ -192,6 +236,9 @@ async function init() {
         ...ASPIRATIONAL.map(d => ({ location: d.loc, size: ASPIRATIONAL_SIZE }))
       ],
       onRender: (state) => {
+        // When paused (offscreen or user dragging-released), skip the rotation
+        // step. cobe still re-paints the frame, but at least the geometry is
+        // static so the GPU just composites the last buffer.
         if (!paused) phi += ROT_SPEED;
         const curPhi = phi + phiOffset + drag.phi;
         const curTheta = theta + thetaOffset + drag.theta;
@@ -200,8 +247,11 @@ async function init() {
         // Resize defensively in case the canvas changed
         state.width = canvas.offsetWidth * dpr;
         state.height = canvas.offsetWidth * dpr;
-        // Project polaroids to follow markers as the globe rotates
-        updatePolaroids(curPhi, curTheta);
+        // Project polaroids to follow markers as the globe rotates.
+        // Reduced-motion users see the globe at theta=0.18 phi=0 (set once on
+        // init); skipping per-frame polaroid math saves 5 trig ops × 5 polaroids.
+        // When paused we also don't need to recompute — nothing moved.
+        if (!reduced && !paused) updatePolaroids(curPhi, curTheta);
       }
     });
   };
@@ -345,8 +395,24 @@ async function init() {
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
+/* Defer globe init until after the page has settled.
+   Cobe pulls ~50 KB from esm.sh and warms a WebGL context — both expensive
+   during the critical first-paint window. Sequencing:
+     1) wait for `load` (HTML, CSS, hero images are done downloading)
+     2) wait for `requestIdleCallback` (any leftover layout / paint flushes)
+     3) finally call init()
+   Browsers without rIC fall back to a 200 ms setTimeout. */
+function scheduleInit() {
+  const run = () => init();
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(run, { timeout: 1500 });
+  } else {
+    setTimeout(run, 200);
+  }
+}
+
+if (document.readyState === 'complete') {
+  scheduleInit();
 } else {
-  init();
+  window.addEventListener('load', scheduleInit, { once: true });
 }
