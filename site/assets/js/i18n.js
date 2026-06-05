@@ -217,11 +217,11 @@
         },
         azerbaidjan: {
           title: "Voyage Azerbaïdjan · Bakou & Gabala dès 227 000 DA — Alliance",
-          description: "7 nuits entre Bakou et Gabala, vol Turkish Airlines, e-visa compris, accompagnateur arabophone sur place. Départs avril-juillet 2026 depuis Alger. À partir de 227 000 DA."
+          description: "7 nuits entre Bakou et Gabala, vol Turkish Airlines, e-visa compris, accompagnateur arabophone sur place. Départs juin–octobre 2026 depuis Alger. À partir de 227 000 DA."
         },
         istanbul: {
           title: "Voyage Istanbul depuis Constantine dès 123 000 DA — Alliance",
-          description: "Istanbul en 8 jours, vols directs Turkish Airlines depuis Constantine. Hôtel 4★, transferts inclus, guide arabophone. Départs hebdomadaires mars–mai 2026."
+          description: "Istanbul en 8 jours, vols directs Turkish Airlines depuis Constantine. Hôtel 4★, transferts inclus, guide arabophone. Départs hebdomadaires septembre–novembre 2026."
         },
         kuala_lumpur: {
           title: "Voyage Malaisie · Kuala Lumpur en vol direct dès 211 000 DA",
@@ -229,7 +229,7 @@
         },
         sharm_constantine: {
           title: "Voyage Sharm El Sheikh depuis Constantine dès 155 000 DA",
-          description: "Sharm El Sheikh en 10 jours / 8 nuits formule ALL INCLUSIVE depuis Constantine. Vol Turkish Airlines, hôtels 4★/5★ sur la mer Rouge. 5 départs avril–juin 2026."
+          description: "Sharm El Sheikh en 10 jours / 8 nuits formule ALL INCLUSIVE depuis Constantine. Vol Turkish Airlines, hôtels 4★/5★ sur la mer Rouge. 5 départs juin–octobre 2026."
         },
       visa: {
         title: 'Rendez-vous Visa · Alliance Travel · Bordj Bou Arreridj',
@@ -517,11 +517,11 @@
         },
         azerbaidjan: {
           title: "Azerbaijan 2026 · Baku & Gabala from DZD 227,000 — Alliance Travel",
-          description: "Seven nights in Baku and Gabala. Turkish Airlines flight, e-visa, Arabic-speaking guide. April–July 2026 departures from Algiers. From DZD 227,000."
+          description: "Seven nights in Baku and Gabala. Turkish Airlines flight, e-visa, Arabic-speaking guide. June–October 2026 departures from Algiers. From DZD 227,000."
         },
         istanbul: {
           title: "Istanbul from Constantine · from DZD 123,000 — Alliance Travel",
-          description: "Eight days in Istanbul, direct Turkish Airlines flights from Constantine. 4★ hotel, transfers, Arabic-speaking guide. Weekly departures, March–May 2026."
+          description: "Eight days in Istanbul, direct Turkish Airlines flights from Constantine. 4★ hotel, transfers, Arabic-speaking guide. Weekly departures, September–November 2026."
         },
         kuala_lumpur: {
           title: "Malaysia 2026 · Kuala Lumpur direct from Algiers, from DZD 211,000",
@@ -529,7 +529,7 @@
         },
         sharm_constantine: {
           title: "Sharm El Sheikh from Constantine · from DZD 155,000 — Alliance Travel",
-          description: "Sharm El Sheikh, ten days / eight nights all-inclusive, direct from Constantine on Turkish Airlines. 4★/5★ Red Sea hotels. Five departures, April–June 2026."
+          description: "Sharm El Sheikh, ten days / eight nights all-inclusive, direct from Constantine on Turkish Airlines. 4★/5★ Red Sea hotels. Five departures, June–October 2026."
         },
       visa: {
         title: 'Visa Appointments & Dossier Service — Alliance Travel · BBA',
@@ -817,11 +817,11 @@
         },
         azerbaidjan: {
           title: 'رحلة أذربيجان · باكو وقَبَلَة ابتداءً من 227.000 دينار جزائري — أليانس',
-          description: 'سبع ليالٍ بين باكو وقَبَلَة، طيران Turkish Airlines، التأشيرة الإلكترونية مشمولة، مُرافِق ناطق بالعربية. انطلاقات بين أفريل وجويلية 2026 من الجزائر. ابتداءً من 227.000 د.ج.'
+          description: 'سبع ليالٍ بين باكو وقَبَلَة، طيران Turkish Airlines، التأشيرة الإلكترونية مشمولة، مُرافِق ناطق بالعربية. انطلاقات بين جوان وأكتوبر 2026 من الجزائر. ابتداءً من 227.000 د.ج.'
         },
         istanbul: {
           title: 'رحلة إسطنبول من قسنطينة ابتداءً من 123.000 دينار جزائري — أليانس',
-          description: 'إسطنبول في ثمانية أيام، رحلات مباشرة بـTurkish Airlines من قسنطينة. فندق 4★، تنقّلات، مُرافِق ناطق بالعربية. انطلاقات أسبوعية بين مارس وماي 2026.'
+          description: 'إسطنبول في ثمانية أيام، رحلات مباشرة بـTurkish Airlines من قسنطينة. فندق 4★، تنقّلات، مُرافِق ناطق بالعربية. انطلاقات أسبوعية بين سبتمبر ونوفمبر 2026.'
         },
         kuala_lumpur: {
           title: 'رحلة ماليزيا · كوالا لمبور برحلة مباشرة ابتداءً من 211.000 دينار جزائري',
@@ -829,7 +829,7 @@
         },
         sharm_constantine: {
           title: 'رحلة شرم الشيخ من قسنطينة ابتداءً من 155.000 دينار جزائري',
-          description: 'شرم الشيخ في عشرة أيام وثماني ليالٍ، نظام All Inclusive، انطلاقًا من قسنطينة. طيران Turkish Airlines، فنادق 4★/5★ على البحر الأحمر. خمس انطلاقات بين أفريل وجوان 2026.'
+          description: 'شرم الشيخ في عشرة أيام وثماني ليالٍ، نظام All Inclusive، انطلاقًا من قسنطينة. طيران Turkish Airlines، فنادق 4★/5★ على البحر الأحمر. خمس انطلاقات بين جوان وأكتوبر 2026.'
         },
       visa: {
         title: 'خدمة موعد التأشيرة وتجهيز الملف — أليانس ترافل · برج بوعريريج',

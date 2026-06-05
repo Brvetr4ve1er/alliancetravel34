@@ -14,14 +14,19 @@
 /* CACHE NAME RULE: bump version on every release that changes site/.
    The activate handler purges old caches automatically. Query-param
    cache busting (?v=) does NOT work for SW-cached resources. */
-const CACHE_NAME = 'alliance-v27-2026-06-03';
+const CACHE_NAME = 'alliance-v28-2026-06-05';
 const RUNTIME    = 'alliance-runtime';
 
-// Install: pre-cache the homepage shell so offline users see something
+// Install: pre-cache the absolute homepage shell only.
+//
+// IMPORTANT: keep this list MINIMAL. addAll() is atomic — if any URL
+// 404s the entire precache aborts and offline first-visit fails. The
+// SWR fetch handler (line 86+) covers JS/CSS/images on first runtime
+// request, so we don't need to enumerate them here. Audit 2026-06-05
+// flagged that pre-listing enhance.js + styles.css drifted from what
+// trip pages actually load — dropped to '/' only.
 const PRECACHE_URLS = [
   '/',
-  '/assets/css/styles.css',
-  '/assets/js/enhance.js',
   '/assets/images/favicon/favicon-32x32.png',
   '/site.webmanifest',
 ];

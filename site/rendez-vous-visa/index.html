@@ -114,6 +114,48 @@
     "url": "https://alliance-travel.dz/rendez-vous-visa/"
   }
   </script>
+
+  <!-- FAQPage schema — mirrors the 15 visible faq-items rendered below.
+       Each answer is the FR baseline; client-side i18n switches the rendered
+       copy but Google indexes only the canonical FR. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Combien de temps faut-il pour obtenir un visa Schengen ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le délai dépend entièrement du consulat et de la période de l'année. Nous ne pouvons pas le garantir : nous indiquons les délais constatés sur les derniers mois, et nous calons votre dépôt aussi tôt que possible." } },
+      { "@type": "Question", "name": "Mon visa peut-il être refusé ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui. La décision appartient au consulat, et personne d'autre — agence, intermédiaire, sponsor — ne peut promettre l'inverse. Notre rôle est de présenter un dossier propre et complet ; la décision finale reste hors de notre contrôle." } },
+      { "@type": "Question", "name": "Combien coûte le service ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le tarif dépend du pays, du niveau de service choisi (RDV seul, dossier complet, ou dépôt) et de votre situation. On vous fait un devis personnalisé sur WhatsApp en moins de 30 minutes." } },
+      { "@type": "Question", "name": "Quels documents dois-je apporter ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La liste varie par consulat et par type de visa : passeport en cours de validité, justificatifs de revenus, attestation d'hébergement ou réservation d'hôtel, assurance, photos aux normes. On vous envoie la liste exacte une fois votre pays confirmé." } },
+      { "@type": "Question", "name": "Vais-je récupérer mon dossier en cas de refus ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le passeport et les documents originaux vous sont restitués par le consulat ou le centre de dépôt, refus ou pas. Les frais de visa déjà payés au consulat ne sont en revanche jamais remboursés — c'est la règle officielle, pas la nôtre." } },
+      { "@type": "Question", "name": "Quels pays acceptent les Algériens sans visa ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Au moment où nous écrivons ces lignes : Tunisie, Maroc, Mauritanie, Syrie, Liban, Jordanie (sous conditions), Kenya, Maldives, plusieurs îles des Caraïbes et quelques pays d'Asie du Sud-Est. Cette liste évolue — vérifiez avec nous avant de réserver." } },
+      { "@type": "Question", "name": "Acceptez-vous les dossiers Umrah ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "L'Umrah est encadrée en Algérie par un agrément officiel distinct du nôtre. Selon votre cas, nous vous orientons vers une agence agréée Umrah pour la partie pèlerinage. Le visa touristique pour l'Arabie Saoudite (hors Umrah/Hajj) reste dans notre périmètre." } },
+      { "@type": "Question", "name": "Combien de temps avant le voyage dois-je faire la demande ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le plus tôt possible — au minimum 6 à 8 semaines avant la date de départ pour un Schengen, parfois plus pour les pays à forte affluence. Plus on s'y prend tôt, plus on a de marge en cas de demande complémentaire du consulat." } },
+      { "@type": "Question", "name": "Quelle est la différence entre VFS, BLS, Capago et CVASC ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ce sont des prestataires privés à qui les ambassades sous-traitent l'accueil des demandeurs : prise de RDV, dépôt des dossiers, biométrie. Chaque consulat choisit son centre — VFS travaille pour beaucoup de pays, BLS pour d'autres, Capago pour la France depuis avril 2025, CVASC pour la Chine. On vous oriente automatiquement vers le bon." } },
+      { "@type": "Question", "name": "Faut-il un certificat médical ou une assurance voyage ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "L'assurance voyage est obligatoire pour les visas Schengen (couverture minimum 30 000 €) et fortement recommandée ailleurs. Le certificat médical n'est exigé que pour certains pays (long séjour, étudiant). On vous indique exactement ce qui s'applique à votre dossier." } },
+      { "@type": "Question", "name": "Puis-je déposer le dossier moi-même ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui, totalement. C'est même la règle quand la biométrie ou un entretien sont obligatoires. Notre prestation « dépôt physique » est un service de confort là où le consulat l'autorise, pas une exclusivité — vous restez libre de monter à Alger si vous préférez." } },
+      { "@type": "Question", "name": "Travaillez-vous avec des dossiers pour étudiants ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui. Le visa étudiant a ses spécificités (lettre d'admission, justificatifs de moyens financiers, parfois Campus France pour la France). On vous accompagne du calage du RDV jusqu'au dépôt, et on vous indique les pièces propres à votre université d'accueil." } },
+      { "@type": "Question", "name": "Que se passe-t-il si l'ambassade demande des documents supplémentaires ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On vous prévient immédiatement sur WhatsApp, on liste précisément ce qui est demandé, et on vous aide à le constituer. Selon le pays, on peut compléter le dossier en cours ou reprendre un RDV — on gère le suivi jusqu'au bout." } },
+      { "@type": "Question", "name": "Êtes-vous une agence officielle ou un intermédiaire ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Alliance Travel est une agence de voyages agréée, immatriculée à Bordj Bou Arreridj, en activité depuis 2019, avec trois agences physiques. Nous ne sommes ni partenaires officiels ni représentants des consulats : nous accompagnons votre demande en tant qu'agence de service." } },
+      { "@type": "Question", "name": "Comment se passe le suivi de mon dossier ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Un conseiller dédié vous suit sur WhatsApp du début à la fin : confirmation du RDV, checklist, validation du dossier, point d'étape avant le dépôt, et retour quand votre passeport est prêt à être récupéré." } }
+    ]
+  }
+  </script>
 </head>
 <body data-page="visa" class="has-visa-stickybar">
 

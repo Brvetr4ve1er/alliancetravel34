@@ -3,9 +3,12 @@
 #
 # Strategy:
 #   * HTML pages : short cache (1 hour) so content updates appear fast
-#   * Assets     : 1 year immutable cache since filenames don't have hashes
-#                  (we cache-bust manually via `?cb=` query strings when
-#                  shipping CSS/JS changes — see DEPLOY.md)
+#   * CSS / JS   : 10-min browser cache + 24-hour stale-while-revalidate
+#                  (audit 2026-06-05 found ?cb= cache-busting was never
+#                  actually implemented; switched to SWR so the next CSS
+#                  bump reaches returning visitors within 10 min without
+#                  per-deploy URL rewrites)
+#   * Images / fonts : 1 year immutable (filenames identify the content)
 #   * Service worker : never cache (must always re-validate so updates land)
 #
 # Security headers apply to every response.
@@ -31,12 +34,14 @@
 /*/index.html
   Cache-Control: public, max-age=3600, must-revalidate
 
-# ── Static assets: long cache (1 year immutable) ────────────────────
-# CSS + JS — manually cache-bust via `?cb=` when shipping changes
+# ── CSS + JS: short cache + stale-while-revalidate ─────────────────
+# 10-min browser cache + 24h SWR. Returning visitors get cached file
+# instantly; browser re-validates in background, fresh CSS lands on
+# next paint. No manual ?cb= cache-busting required.
 /assets/css/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
 /assets/js/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
 
 # Images and fonts — truly immutable (filenames identify the content)
 /assets/images/*

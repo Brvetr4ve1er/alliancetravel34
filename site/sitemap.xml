@@ -16,7 +16,7 @@
   <!-- Homepage — highest priority, weekly content updates -->
   <url>
     <loc>https://alliance-travel.dz/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -29,7 +29,7 @@
   <!-- Voyages catalog (consolidated trips index — also breadcrumb position 2) -->
   <url>
     <loc>https://alliance-travel.dz/voyages/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -42,7 +42,7 @@
   <!-- Cairo + Sharm El Sheikh combo (Egypt) -->
   <url>
     <loc>https://alliance-travel.dz/cairo-sharm/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -55,7 +55,7 @@
   <!-- Sharm El Sheikh (départ Constantine) -->
   <url>
     <loc>https://alliance-travel.dz/sharm-constantine/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -68,7 +68,7 @@
   <!-- Istanbul (Turkey) -->
   <url>
     <loc>https://alliance-travel.dz/istanbul/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -81,7 +81,7 @@
   <!-- Azerbaijan (Baku + Gabala) -->
   <url>
     <loc>https://alliance-travel.dz/azerbaidjan/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -94,7 +94,7 @@
   <!-- Kuala Lumpur (Malaysia) -->
   <url>
     <loc>https://alliance-travel.dz/kuala-lumpur/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -108,6 +108,11 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/rendez-vous-visa/"/>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Rendez-vous Visa · Alliance Travel</image:title>
+      <image:caption>Service RDV ambassade et VFS, 10 pays couverts depuis Bordj Bou Arreridj</image:caption>
+    </image:image>
   </url>
 </urlset>

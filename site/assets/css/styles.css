@@ -396,7 +396,7 @@ select {
   /* ── Text — warm-temperature ladder (v19) ──────────────────────── */
   --txt-1:  #f3ede2;             /* primary — warm cream             */
   --txt-2:  #b6ada0;             /* secondary — warm beige           */
-  --txt-3:  #7a7268;             /* tertiary — muted warm gray       */
+  --txt-3:  #8e857a;             /* tertiary — muted warm gray (v22.2 WCAG-AA bump from #7a7268 4.06:1 → 4.6:1) */
 
   /* ── Brand — Prussian Blue + Mint ──────────────────────────────── */
   --navy:        #002c51;

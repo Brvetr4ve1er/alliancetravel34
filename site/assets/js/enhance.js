@@ -270,10 +270,10 @@
   /* ─── Trip quick-switcher in nav ──────────────────────────── */
   const ALL_TRIPS = [
     { slug: 'cairo-sharm',       name: 'Le Caire & Sharm El Sheikh',  price: '190.000 DA', color: '#C9872E', sub: 'Égypte · Juin 2026' },
-    { slug: 'azerbaidjan',       name: 'Azerbaïdjan · Bakou & Gabala', price: '219.000 DA', color: '#3AAFAF', sub: 'Avril–Juillet 2026' },
-    { slug: 'istanbul',          name: 'Istanbul',                     price: '123.000 DA', color: '#5B9EC9', sub: 'Mars–Mai 2026' },
-    { slug: 'kuala-lumpur',      name: 'Kuala Lumpur · Malaisie',     price: '211.000 DA', color: '#4CAF82', sub: 'Mars–Mai 2026' },
-    { slug: 'sharm-constantine', name: 'Sharm El Sheikh · Constantine', price: '155.000 DA', color: '#28B4D4', sub: 'Avr–Juin 2026' },
+    { slug: 'azerbaidjan',       name: 'Azerbaïdjan · Bakou & Gabala', price: '227.000 DA', color: '#3AAFAF', sub: 'Juin–Octobre 2026' },
+    { slug: 'istanbul',          name: 'Istanbul',                     price: '123.000 DA', color: '#5B9EC9', sub: 'Septembre–Novembre 2026' },
+    { slug: 'kuala-lumpur',      name: 'Kuala Lumpur · Malaisie',     price: '211.000 DA', color: '#4CAF82', sub: 'Septembre–Novembre 2026' },
+    { slug: 'sharm-constantine', name: 'Sharm El Sheikh · Constantine', price: '155.000 DA', color: '#28B4D4', sub: 'Juin–Octobre 2026' },
   ];
 
   function initTripSwitcher() {
