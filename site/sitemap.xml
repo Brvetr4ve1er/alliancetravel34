@@ -103,4 +103,11 @@
       <image:caption>Tours Petronas, Batu Caves, Genting Highlands, vol direct depuis Alger, à partir de 211.000 DA</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://alliance-travel.dz/rendez-vous-visa/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/rendez-vous-visa/"/>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

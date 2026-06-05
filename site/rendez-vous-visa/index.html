@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Rendez-vous Visa · Alliance Travel · Bordj Bou Arreridj</title>
+  <meta name="description" content="Réservation de RDV ambassade et VFS, préparation complète de dossier, dépôt physique selon ambassade. 10 pays couverts depuis Bordj Bou Arreridj — pas besoin de monter à Alger."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&display=swap" rel="stylesheet"/>
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+  <style>
+    :root {
+      --accent: #B2E89C;
+      --accent-dim: rgba(178,232,156,.13);
+      --accent-glow: rgba(178,232,156,.22);
+    }
+    /* Visa page-only styles ─────────────────────────────────── */
+    .hero--service { padding-block: clamp(80px, 12vh, 140px) clamp(48px, 6vh, 80px); }
+    .hero__trust { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s4); font-size: .875rem; color: var(--txt-2); }
+    .hero__trust li { position: relative; padding-left: 18px; }
+    .hero__trust li::before { content: '✓'; position: absolute; left: 0; color: var(--mint); font-weight: 700; }
+    .visa-countries { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s4); }
+    .visa-country-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r3); overflow: hidden; transition: border-color var(--t-base); }
+    .visa-country-card[open], .visa-country-card:hover { border-color: var(--border-hi); }
+    .visa-country-card__head { display: flex; align-items: center; gap: var(--s3); padding: var(--s4); cursor: pointer; min-height: 64px; list-style: none; }
+    .visa-country-card__head::-webkit-details-marker { display: none; }
+    .visa-country-card__flag { display: inline-flex; width: 36px; height: 27px; border-radius: 4px; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,.05); }
+    .visa-country-card__flag img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .visa-country-card__name { font-weight: 600; flex: 1; font-size: 1rem; }
+    .visa-country-card__tiers { display: inline-flex; gap: 4px; flex-shrink: 0; }
+    .visa-country-card__chip { font-size: .6875rem; padding: 3px 8px; border-radius: 999px; background: var(--mint-dim); color: var(--mint); font-weight: 600; }
+    .visa-country-card__chip--muted { background: rgba(255,255,255,.04); color: var(--txt-3); }
+    .visa-country-card__toggle { color: var(--txt-3); transition: transform var(--t-base); flex-shrink: 0; }
+    .visa-country-card[open] .visa-country-card__toggle { transform: rotate(180deg); }
+    .visa-country-card__body { padding: 0 var(--s4) var(--s4); border-top: 1px solid var(--border); padding-top: var(--s4); display: flex; flex-direction: column; gap: var(--s3); }
+    .visa-country-card__provider { font-size: .875rem; color: var(--txt-1); font-weight: 500; margin: 0; }
+    .visa-country-card__notes { font-size: .8125rem; color: var(--txt-2); line-height: 1.6; margin: 0; }
+    .visa-country-card__body .btn { align-self: flex-start; font-size: .875rem; padding: 8px 16px; }
+    #visa-map { height: clamp(380px, 60vh, 560px); border-radius: var(--r3); overflow: hidden; background: var(--bg-2); position: relative; }
+    .visa-partners { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .visa-partners__disclaimer { color: var(--txt-3); font-size: .8125rem; max-width: 540px; line-height: 1.6; margin-block: var(--s3) var(--s5); }
+    .visa-partners__list { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s5); list-style: none; padding: 0; margin: 0; }
+    .visa-partners__badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--txt-2); font-size: .8125rem; font-weight: 500; background: var(--bg); }
+    .visa-partners__badge strong { color: var(--txt-1); font-weight: 600; }
+    .visa-cta__addresses { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s3); }
+    .visa-cta__addresses li { display: flex; flex-direction: column; gap: 2px; font-size: .875rem; color: var(--txt-2); }
+    .visa-cta__addresses strong { color: var(--txt-1); font-size: .9375rem; }
+    .phone-card-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s2); }
+    .trip-sticky-bar--visa { display: none; }
+    @media (max-width: 768px) {
+      .trip-sticky-bar--visa {
+        display: flex; position: fixed; inset: auto 0 0 0; z-index: var(--z-sticky, 80);
+        background: var(--bg); border-top: 1px solid var(--border);
+        padding: 10px var(--s4) calc(10px + env(safe-area-inset-bottom));
+        gap: var(--s2); box-shadow: 0 -8px 24px rgba(0,0,0,.3);
+      }
+      .trip-sticky-bar--visa .btn { flex: 1; min-height: 44px; font-size: .8125rem; }
+      body.has-visa-stickybar { padding-bottom: 80px; }
+    }
+  </style>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Rendez-vous Visa · Alliance Travel"/>
+  <meta property="og:description" content="On s'occupe du RDV, du dossier et du dépôt — vous restez à Bordj. 10 pays · réponse WhatsApp en 30 min."/>
+  <meta property="og:url" content="https://alliance-travel.dz/rendez-vous-visa/"/>
+  <meta property="og:site_name" content="Alliance Travel"/>
+  <meta property="og:locale" content="fr_FR"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Rendez-vous Visa · Alliance Travel"/>
+  <meta name="twitter:description" content="RDV ambassade + dossier complet + dépôt physique. 10 pays. Devis WhatsApp en 30 min."/>
+  <link rel="canonical" href="https://alliance-travel.dz/rendez-vous-visa/"/>
+  <link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/rendez-vous-visa/"/>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg"/>
+
+  <!-- BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://alliance-travel.dz/" },
+      { "@type": "ListItem", "position": 2, "name": "Rendez-vous Visa", "item": "https://alliance-travel.dz/rendez-vous-visa/" }
+    ]
+  }
+  </script>
+
+  <!-- Service schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Service Rendez-vous Visa",
+    "serviceType": "Visa appointment booking and dossier preparation",
+    "areaServed": { "@type": "Country", "name": "Algérie" },
+    "provider": {
+      "@type": "TravelAgency",
+      "name": "Alliance Travel",
+      "url": "https://alliance-travel.dz/",
+      "telephone": "+213561616266",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bordj Bou Arreridj",
+        "addressCountry": "DZ"
+      }
+    },
+    "description": "Réservation de RDV ambassade et VFS, préparation complète de dossier, dépôt physique selon ambassade. 10 pays couverts depuis Bordj Bou Arreridj.",
+    "url": "https://alliance-travel.dz/rendez-vous-visa/"
+  }
+  </script>
+</head>
+<body data-page="visa" class="has-visa-stickybar">
+
+<a href="#main" class="skip-link" data-i18n="nav.skip">Aller au contenu principal</a>
+
+<nav class="site-nav" aria-label="Navigation principale">
+  <a href="../index.html" class="nav-logo" aria-label="Alliance Travel" data-i18n-aria-label="nav.logo_label">
+    <img src="../assets/images/logo.svg" alt="" width="160" height="40"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#voyages" data-i18n="nav.trips">Nos voyages</a></li>
+    <li><a href="/rendez-vous-visa/" aria-current="page" data-i18n="nav.visa">Rendez-vous Visa</a></li>
+    <li><a href="../index.html#agence" data-i18n="nav.agency">L'agence</a></li>
+    <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" type="button" data-i18n-aria-label="nav.theme_label" data-i18n-title="nav.theme_label" aria-label="Changer de thème" title="Changer de thème">
+    <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20devis%20pour%20un%20rendez-vous%20visa." class="btn btn--primary btn--wa" target="_blank" rel="noopener" data-i18n-aria-label="nav.whatsapp_label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span data-i18n="nav.whatsapp">WhatsApp</span>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- ─── HERO ─────────────────────────────────────────────── -->
+<section class="hero hero--service" aria-labelledby="visa-hero-title" data-region="service">
+  <div class="container hero__content">
+    <p class="hero__eyebrow" data-i18n="visa.hero.eyebrow">Service Rendez-vous Visa · Bordj Bou Arreridj</p>
+    <h1 id="visa-hero-title" class="hero__title">
+      <span data-i18n="visa.hero.title_l1">Votre rendez-vous visa,</span><br>
+      <em data-i18n="visa.hero.title_em">pris en charge de A à Z.</em>
+    </h1>
+    <p class="hero__lede" data-i18n="visa.hero.lede">On réserve votre RDV à l'ambassade ou au centre VFS, on prépare votre dossier complet, et — selon les règles du consulat — on dépose le dossier pour vous. Vous restez à Bordj, on fait la route. 10 pays couverts. Devis personnalisé sur WhatsApp.</p>
+    <div class="hero__ctas">
+      <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20devis%20pour%20un%20rendez-vous%20visa." class="btn btn--primary btn--wa" target="_blank" rel="noopener" data-i18n="visa.hero.cta_wa">WhatsApp un conseiller</a>
+      <a href="#countries" class="btn btn--ghost" data-i18n="visa.hero.cta_form">Voir les pays</a>
+    </div>
+    <ul class="hero__trust" role="list">
+      <li data-i18n="visa.hero.trust_branches">3 agences physiques · BBA &amp; M'Sila</li>
+      <li data-i18n="visa.hero.trust_no_alger">Pas besoin de monter à Alger</li>
+      <li data-i18n="visa.hero.trust_since">Depuis 2019 · 1 200+ dossiers traités</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── SERVICES (3-tier) ────────────────────────────────── -->
+<section class="section" id="services" aria-labelledby="visa-services-title">
+  <div class="container">
+    <div class="section-head u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="visa.services.eyebrow">Nos prestations</p>
+      <h2 id="visa-services-title" class="section-head__title">
+        <span data-i18n="visa.services.title_l1">Trois niveaux,</span>
+        <em data-i18n="visa.services.title_em">vous choisissez.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="visa.services.sub">Du simple créneau réservé jusqu'au dépôt physique du dossier, vous prenez exactement ce dont vous avez besoin — et rien de plus.</p>
+    </div>
+    <div class="grid-cards grid-cards--lg" style="margin-top:var(--s8)">
+      <article class="hl-card" data-aos="fade-up" data-aos-delay="0">
+        <span class="hl-card__label" data-i18n="visa.services.tier1.tag">Niveau 1</span>
+        <h3 class="hl-card__title" data-i18n="visa.services.tier1.title">Réservation du RDV</h3>
+        <p class="hl-card__body" data-i18n="visa.services.tier1.body">On bloque votre créneau au consulat, à VFS, BLS, TLScontact ou CVASC selon le pays demandé. Vous recevez la confirmation du rendez-vous par WhatsApp avec les justificatifs à imprimer.</p>
+        <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20souhaite%20une%20r%C3%A9servation%20de%20RDV%20visa." target="_blank" rel="noopener" data-i18n="visa.services.tier1.cta">WhatsApp pour ce service</a>
+      </article>
+      <article class="hl-card" data-aos="fade-up" data-aos-delay="80">
+        <span class="hl-card__label" data-i18n="visa.services.tier2.tag">Niveau 2</span>
+        <h3 class="hl-card__title" data-i18n="visa.services.tier2.title">Préparation complète du dossier</h3>
+        <p class="hl-card__body" data-i18n="visa.services.tier2.body">Relecture point par point de chaque document, attestations, formulaires, traductions, photos aux normes, lettres d'invitation. Vous arrivez au guichet avec un dossier propre et complet — pas de surprise à l'accueil.</p>
+        <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20souhaite%20une%20pr%C3%A9paration%20compl%C3%A8te%20de%20dossier%20visa." target="_blank" rel="noopener" data-i18n="visa.services.tier2.cta">WhatsApp pour ce service</a>
+      </article>
+      <article class="hl-card" data-aos="fade-up" data-aos-delay="160">
+        <span class="hl-card__label" data-i18n="visa.services.tier3.tag">Niveau 3</span>
+        <h3 class="hl-card__title" data-i18n="visa.services.tier3.title">Dépôt physique du dossier</h3>
+        <p class="hl-card__body" data-i18n="visa.services.tier3.body">Là où le consulat l'autorise, on remet votre dossier au guichet à votre place. Vous restez à Bordj, on fait la route. Service non disponible quand la présence du demandeur est exigée (biométrie, entretien).</p>
+        <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20souhaite%20le%20d%C3%A9p%C3%B4t%20physique%20de%20mon%20dossier%20visa." target="_blank" rel="noopener" data-i18n="visa.services.tier3.cta">WhatsApp pour ce service</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COUNTRIES GRID ───────────────────────────────────── -->
+<section class="section" id="countries" aria-labelledby="visa-countries-title" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-head u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="visa.countries.eyebrow">Pays couverts</p>
+      <h2 id="visa-countries-title" class="section-head__title">
+        <span data-i18n="visa.countries.title_l1">Dix pays,</span>
+        <em data-i18n="visa.countries.title_em">un seul interlocuteur.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="visa.countries.sub">Cliquez sur un pays pour voir le centre de traitement (ambassade, VFS, BLS, TLScontact ou CVASC) et les niveaux de service que nous prenons en charge. La biométrie et les entretiens restent obligatoirement en présentiel — c'est le consulat qui décide.</p>
+    </div>
+    <div class="visa-countries" style="margin-top:var(--s8)">
+
+      <details class="visa-country-card" data-country="france">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/fr.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.france.name">France</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.france.provider">Capago — 4 centres officiels (Alger · Oran · Annaba · Constantine)</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.france.notes">Schengen C-type · biométrie obligatoire sur place · pas d'e-visa. Délai standard 15 jours selon Code Schengen, jusqu'à 45 en haute saison. Capago a remplacé VFS et TLScontact en avril 2025.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20France." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="turkiye">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/tr.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.turkiye.name">Türkiye</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.turkiye.provider">Mosaic Visa — Centre officiel Türkiye, Alger</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.turkiye.notes">Visa sticker · biométrie sur place · e-visa disponible pour titulaires d'un visa Schengen, UK, US ou Irlande valide. Voyageurs algériens &lt;15 ou &gt;65 ans : entrée sans visa jusqu'à 90 jours.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20T%C3%BCrkiye." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="allemagne">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/de.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.allemagne.name">Allemagne</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.allemagne.provider">VFS Global, Sidi Yahia (Hydra), Alger</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.allemagne.notes">Schengen C-type · formulaire VIDEX en ligne · biométrie sur place · décision sous 15 jours en standard, dépôt entre 6 mois et 15 jours avant le départ.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20Allemagne." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="espagne">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/es.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.espagne.name">Espagne</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.espagne.provider">BLS International — 2 centres (Alger · Oran)</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.espagne.notes">Schengen C-type · biométrie sur place · documents en français ou espagnol uniquement. Nouvelles catégories ALG1-ALG4 effectives janvier 2026 selon votre historique Schengen-Espagne.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20Espagne." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="chine">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/cn.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.chine.name">Chine</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.chine.provider">CVASC, Ben Aknoun, Alger (dim. + jeu. 09:00-15:00)</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.chine.notes">Visa L tourisme ou M affaires · formulaire COVA en ligne obligatoire · invitation requise · pas d'e-visa pour passeports algériens ordinaires. Délai standard 4 jours ouvrables.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20Chine." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="russie">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/ru.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.russie.name">Russie</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.russie.provider">Ambassade de Russie, El-Biar, Alger</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.russie.notes">Visa sticker direct ambassade · voucher touristique d'une agence russe accréditée obligatoire · pas d'e-visa pour Algériens · délai standard 5-10 jours ouvrables selon ambassade.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20Russie." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="egypte">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/eg.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.egypte.name">Égypte</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.egypte.provider">Ambassade d'Égypte, Hydra, Alger · ou e-visa visa2egypt.gov.eg</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.egypte.notes">Visa sticker ou e-visa selon éligibilité · enfants de moins de 14 ans dispensés · option visa à l'arrivée pour groupes via lettre de garantie d'agence touristique. Nouvelle multi-entrée 5 ans annoncée pour Algériens — à vérifier au cas par cas.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20%C3%89gypte." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="arabie_saoudite">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/sa.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.arabie_saoudite.name">Arabie Saoudite</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.arabie_saoudite.provider">Ambassade KSA, Ben Aknoun · ou Nusuk (Umrah) · ou visa.visitsaudi.com (tourisme)</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.arabie_saoudite.notes">L'e-visa tourisme KSA n'est pas ouvert aux passeports algériens ordinaires sans visa Schengen, UK ou US valide, ou résidence GCC. Umrah : plateforme Nusuk en ligne. Hadj : régime distinct via agences agréées ONHO (hors notre périmètre).</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20Arabie%20Saoudite." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="etats_unis">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/us.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.etats_unis.name">États-Unis</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.etats_unis.provider">Ambassade des États-Unis, El-Biar, Alger</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.etats_unis.notes">DS-160 en ligne · entretien obligatoire à l'ambassade · biométrie sur place. Programme pilote « visa bond » en cours depuis janvier 2026 pour certains visiteurs B1/B2 algériens : caution remboursable de 5 000 à 15 000 USD selon dossier. Délai d'attente RDV variable.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20%C3%89tats-Unis." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+      <details class="visa-country-card" data-country="canada">
+        <summary class="visa-country-card__head">
+          <span class="visa-country-card__flag"><img src="../assets/images/flags/ca.svg" alt="" width="36" height="27" loading="lazy"/></span>
+          <span class="visa-country-card__name" data-i18n="visa.countries.canada.name">Canada</span>
+          <span class="visa-country-card__tiers" data-i18n-aria-label="visa.countries.a11y_tiers" aria-label="Niveaux disponibles">
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier1">RDV</span>
+            <span class="visa-country-card__chip" data-i18n="visa.countries.chip.tier2">Dossier</span>
+            <span class="visa-country-card__chip visa-country-card__chip--muted" data-i18n="visa.countries.chip.tier3">Dépôt</span>
+          </span>
+          <svg class="visa-country-card__toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="visa-country-card__body">
+          <p class="visa-country-card__provider" data-i18n="visa.countries.canada.provider">VFS Global Canada VAC, Ben Aknoun + Ambassade du Canada</p>
+          <p class="visa-country-card__notes" data-i18n="visa.countries.canada.notes">Biométrie obligatoire à Alger (VAC Ben Aknoun, depuis octobre 2024) · les décisions IRCC sont émises par les bureaux extérieurs (Paris, Dakar, Rabat) selon le type de dossier. Empreintes valides 59 mois pour les demandes ultérieures.</p>
+          <a class="btn btn--ghost btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20visa%20Canada." target="_blank" rel="noopener" data-i18n="visa.countries.cta_wa">WhatsApp pour ce pays</a>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── MAP ─────────────────────────────────────────────── -->
+<section class="section" id="visa-map-section" aria-labelledby="visa-map-title">
+  <div class="container">
+    <div class="section-head u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="visa.map.eyebrow">Centres officiels · Algérie</p>
+      <h2 id="visa-map-title" class="section-head__title">
+        <span data-i18n="visa.map.title_l1">D'où votre dossier</span>
+        <em data-i18n="visa.map.title_em">est-il déposé ?</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="visa.map.sub">Vue d'ensemble des ambassades et centres VFS, BLS, TLScontact et CVASC implantés en Algérie, ainsi que nos trois agences. Vous voyez d'un coup d'œil le trajet que votre dossier prend — et celui que vous n'avez pas à faire.</p>
+    </div>
+    <div id="visa-map" role="img" aria-label="Carte des centres de visa en Algérie" data-i18n-aria-label="visa.map.a11y_label" style="margin-top:var(--s8)">
+      <div class="tmap-fallback" style="display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:var(--s7);color:var(--txt-3);font-size:.875rem">
+        <p data-i18n="visa.map.fallback_title">Chargement de la carte…</p>
+        <p data-i18n-html="visa.map.fallback_sub_html">VFS · BLS · TLScontact · CVASC · <strong>3 agences Alliance Travel</strong></p>
+      </div>
+    </div>
+    <div class="trip-map-legend" role="list" aria-label="Légende de la carte" data-i18n-aria-label="visa.map.a11y_legend" style="margin-top:var(--s5);display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s5);font-size:.8125rem;color:var(--txt-2)">
+      <span class="trip-map-legend__item" role="listitem" style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:12px;height:12px;border-radius:50%;background:#9ce8b2;display:inline-block"></span><span data-i18n="visa.map.legend_agency">Agences Alliance Travel</span></span>
+      <span class="trip-map-legend__item" role="listitem" style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:12px;height:12px;border-radius:50%;background:#5b9eC9;display:inline-block"></span><span data-i18n="visa.map.legend_embassy">Ambassades</span></span>
+      <span class="trip-map-legend__item" role="listitem" style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:12px;height:12px;border-radius:50%;background:#E0A04A;display:inline-block"></span><span data-i18n="visa.map.legend_centre">VFS · BLS · Capago · CVASC</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PARTNERS TRUST STRIP ─────────────────────────────── -->
+<section class="section-sm visa-partners" aria-labelledby="visa-partners-title">
+  <div class="container u-text-center">
+    <p class="section-head__eyebrow" id="visa-partners-title" data-i18n="visa.partners.eyebrow">Partenaires opérationnels</p>
+    <p class="visa-partners__disclaimer u-mx-auto" data-i18n="visa.partners.disclaimer">Nous traitons vos dossiers via ces centres officiels — Alliance Travel n'est pas affilié à ces sociétés et n'agit pas en leur nom.</p>
+    <ul class="visa-partners__list" role="list">
+      <li class="visa-partners__badge"><strong>Capago</strong> <span data-i18n="visa.partners.capago_note">· Visas France</span></li>
+      <li class="visa-partners__badge"><strong>VFS Global</strong> <span data-i18n="visa.partners.vfs_note">· Allemagne · Canada</span></li>
+      <li class="visa-partners__badge"><strong>BLS International</strong> <span data-i18n="visa.partners.bls_note">· Espagne</span></li>
+      <li class="visa-partners__badge"><strong>CVASC</strong> <span data-i18n="visa.partners.cvasc_note">· Chine</span></li>
+      <li class="visa-partners__badge"><strong>Nusuk</strong> <span data-i18n="visa.partners.nusuk_note">· Omra Arabie Saoudite</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── FAQ ─────────────────────────────────────────────── -->
+<section class="section" id="faq" aria-labelledby="visa-faq-title">
+  <div class="container">
+    <div class="section-head u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="visa.faq.eyebrow">Questions fréquentes</p>
+      <h2 id="visa-faq-title" class="section-head__title">
+        <span data-i18n="visa.faq.title_l1">Ce que les gens</span>
+        <em data-i18n="visa.faq.title_em">nous demandent.</em>
+      </h2>
+    </div>
+    <div class="faq-list" style="margin-top:var(--s8);max-width:780px;margin-inline:auto">
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q1.q">Combien de temps faut-il pour obtenir un visa Schengen ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q1.a">Le délai dépend entièrement du consulat et de la période de l'année. Nous ne pouvons pas le garantir : nous indiquons les délais constatés sur les derniers mois, et nous calons votre dépôt aussi tôt que possible.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q2.q">Mon visa peut-il être refusé ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q2.a">Oui. La décision appartient au consulat, et personne d'autre — agence, intermédiaire, sponsor — ne peut promettre l'inverse. Notre rôle est de présenter un dossier propre et complet ; la décision finale reste hors de notre contrôle.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q3.q">Combien coûte le service ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q3.a">Le tarif dépend du pays, du niveau de service choisi (RDV seul, dossier complet, ou dépôt) et de votre situation. On vous fait un devis personnalisé sur WhatsApp en moins de 30 minutes.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q4.q">Quels documents dois-je apporter ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q4.a">La liste varie par consulat et par type de visa : passeport en cours de validité, justificatifs de revenus, attestation d'hébergement ou réservation d'hôtel, assurance, photos aux normes. On vous envoie la liste exacte une fois votre pays confirmé.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q5.q">Vais-je récupérer mon dossier en cas de refus ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q5.a">Le passeport et les documents originaux vous sont restitués par le consulat ou le centre de dépôt, refus ou pas. Les frais de visa déjà payés au consulat ne sont en revanche jamais remboursés — c'est la règle officielle, pas la nôtre.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q6.q">Quels pays acceptent les Algériens sans visa ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q6.a">Au moment où nous écrivons ces lignes : Tunisie, Maroc, Mauritanie, Syrie, Liban, Jordanie (sous conditions), Kenya, Maldives, plusieurs îles des Caraïbes et quelques pays d'Asie du Sud-Est. Cette liste évolue — vérifiez avec nous avant de réserver.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q7.q">Acceptez-vous les dossiers Umrah ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q7.a">L'Umrah est encadrée en Algérie par un agrément officiel distinct du nôtre. Selon votre cas, nous vous orientons vers une agence agréée Umrah pour la partie pèlerinage. Le visa touristique pour l'Arabie Saoudite (hors Umrah/Hajj) reste dans notre périmètre.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q8.q">Combien de temps avant le voyage dois-je faire la demande ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q8.a">Le plus tôt possible — au minimum 6 à 8 semaines avant la date de départ pour un Schengen, parfois plus pour les pays à forte affluence. Plus on s'y prend tôt, plus on a de marge en cas de demande complémentaire du consulat.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q9.q">Quelle est la différence entre VFS, BLS, TLScontact et CVASC ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q9.a">Ce sont des prestataires privés à qui les ambassades sous-traitent l'accueil des demandeurs : prise de RDV, dépôt des dossiers, biométrie. Chaque consulat choisit son centre — VFS travaille pour beaucoup de pays, BLS pour d'autres, Capago pour la France depuis avril 2025, CVASC pour la Chine. On vous oriente automatiquement vers le bon.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q10.q">Faut-il un certificat médical ou une assurance voyage ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q10.a">L'assurance voyage est obligatoire pour les visas Schengen (couverture minimum 30 000 €) et fortement recommandée ailleurs. Le certificat médical n'est exigé que pour certains pays (long séjour, étudiant). On vous indique exactement ce qui s'applique à votre dossier.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q11.q">Puis-je déposer le dossier moi-même ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q11.a">Oui, totalement. C'est même la règle quand la biométrie ou un entretien sont obligatoires. Notre prestation « dépôt physique » est un service de confort là où le consulat l'autorise, pas une exclusivité — vous restez libre de monter à Alger si vous préférez.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q12.q">Travaillez-vous avec des dossiers pour étudiants ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q12.a">Oui. Le visa étudiant a ses spécificités (lettre d'admission, justificatifs de moyens financiers, parfois Campus France pour la France). On vous accompagne du calage du RDV jusqu'au dépôt, et on vous indique les pièces propres à votre université d'accueil.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q13.q">Que se passe-t-il si l'ambassade demande des documents supplémentaires ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q13.a">On vous prévient immédiatement sur WhatsApp, on liste précisément ce qui est demandé, et on vous aide à le constituer. Selon le pays, on peut compléter le dossier en cours ou reprendre un RDV — on gère le suivi jusqu'au bout.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q14.q">Êtes-vous une agence officielle ou un intermédiaire ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q14.a">Alliance Travel est une agence de voyages agréée, immatriculée à Bordj Bou Arreridj, en activité depuis 2019, avec trois agences physiques. Nous ne sommes ni partenaires officiels ni représentants des consulats : nous accompagnons votre demande en tant qu'agence de service.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="visa.faq.q15.q">Comment se passe le suivi de mon dossier ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="visa.faq.q15.a">Un conseiller dédié vous suit sur WhatsApp du début à la fin : confirmation du RDV, checklist, validation du dossier, point d'étape avant le dépôt, et retour quand votre passeport est prêt à être récupéré.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ───────────────────────────────────────── -->
+<section class="section" id="visa-form" aria-labelledby="visa-cta-title" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="section-head u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="visa.cta.eyebrow">Prêt à démarrer ?</p>
+      <h2 id="visa-cta-title" class="section-head__title">
+        <span data-i18n="visa.cta.title_l1">Trois façons</span>
+        <em data-i18n="visa.cta.title_em">de nous joindre.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="visa.cta.sub">Choisissez ce qui vous va. WhatsApp pour aller vite, un appel pour parler à un humain, ou un passage à l'agence si vous préférez le café qui va avec.</p>
+    </div>
+    <div class="grid-cards grid-cards--lg" style="margin-top:var(--s8)">
+      <article class="hl-card">
+        <span class="hl-card__label" data-i18n="visa.cta.wa.tag">Le plus rapide</span>
+        <h3 class="hl-card__title" data-i18n="visa.cta.wa.title">WhatsApp</h3>
+        <p class="hl-card__body" data-i18n="visa.cta.wa.body">Réponse en moins de 30 minutes pendant les heures d'ouverture. Un conseiller arabophone disponible.</p>
+        <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20devis%20pour%20un%20rendez-vous%20visa." class="btn btn--primary btn--wa" target="_blank" rel="noopener" data-i18n="visa.cta.wa.btn">Écrire sur WhatsApp</a>
+      </article>
+      <article class="hl-card">
+        <span class="hl-card__label" data-i18n="visa.cta.phone.tag">Par téléphone</span>
+        <h3 class="hl-card__title" data-i18n="visa.cta.phone.title">Lignes directes</h3>
+        <ul class="phone-card-list" role="list">
+          <li><a href="tel:+213561616266" class="phone-card__num">0561 616 266</a></li>
+          <li><a href="tel:+213561616267" class="phone-card__num">0561 616 267</a></li>
+          <li><a href="tel:+213561616268" class="phone-card__num">0561 616 268</a></li>
+          <li><a href="tel:+213561616269" class="phone-card__num">0561 616 269</a></li>
+        </ul>
+      </article>
+      <article class="hl-card">
+        <span class="hl-card__label" data-i18n="visa.cta.branch.tag">En agence</span>
+        <h3 class="hl-card__title" data-i18n="visa.cta.branch.title">Passez nous voir</h3>
+        <ul class="visa-cta__addresses" role="list">
+          <li><strong data-i18n="contact.hq_label">Siège · BBA La Graf</strong><span>Bd. Houari Boumediene, La Graf</span></li>
+          <li><strong data-i18n="contact.branch_zehour_label">BBA · Cité Zehour</strong><span data-i18n="visa.cta.branch.zehour_addr">Cité Zehour · Route de Medjana</span></li>
+          <li><strong data-i18n="contact.branch_msila_label">M'Sila</strong><span data-i18n="contact.branch_msila_addr">Centre-ville</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ─── STICKY MOBILE BAR ───────────────────────────────── -->
+<aside class="trip-sticky-bar trip-sticky-bar--visa" role="complementary" aria-label="Contact rapide" data-i18n-aria-label="visa.sticky.a11y_label">
+  <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'aimerais%20un%20devis%20pour%20un%20rendez-vous%20visa." class="btn btn--primary btn--wa" target="_blank" rel="noopener" data-i18n="visa.sticky.wa">WhatsApp</a>
+  <a href="tel:+213561616266" class="btn btn--ghost" data-i18n="visa.sticky.call">Appeler</a>
+</aside>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom u-text-center" style="padding-block:var(--s7);font-size:.875rem;color:var(--txt-3)">
+      <p><strong>Alliance Travel</strong> · <span data-i18n="footer.tagline_short">Agence de voyages · Bordj Bou Arreridj · depuis 2019</span></p>
+      <p style="margin-top:var(--s2)" data-i18n="footer.copyright">© 2026 Alliance Travel — Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/map-base.js" defer></script>
+<script src="../assets/js/visa-map.js" defer></script>
+<script src="../assets/js/i18n.js" defer></script>
+<script src="../assets/js/enhance.js" defer></script>
+
+</body>
+</html>
