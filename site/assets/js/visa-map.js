@@ -49,7 +49,7 @@
     { id: 'es-bls-oran',  cc: 'es', flagId: 'es', label: 'BLS Espagne Oran',  country: 'Espagne',  role: 'centre BLS',       loc: [-0.6363, 35.6976], kind: 'centre' },
 
     /* China — CVASC + Embassy */
-    { id: 'cn-cvasc',     cc: 'cn', flagId: 'cn', label: 'CVASC',              country: 'Chine',    role: 'centre CVASC',     loc: [3.0125, 36.7585], kind: 'centre' },
+    { id: 'cn-cvasc',     cc: 'cn', flagId: 'cn', label: 'CVASC',              country: 'Chine',    role: 'centre CVASC',     loc: [3.0090, 36.7560], kind: 'centre' },
     { id: 'cn-embassy',   cc: 'cn', flagId: 'cn', label: 'Ambassade Chine',    country: 'Chine',    role: 'ambassade',        loc: [3.0425182, 36.7535686], kind: 'embassy' },
 
     /* Russia — Embassy direct */
@@ -65,7 +65,7 @@
     { id: 'us-embassy',   cc: 'us', flagId: 'us', label: 'Ambassade États-Unis', country: 'États-Unis', role: 'ambassade',     loc: [3.0416653, 36.7547454], kind: 'embassy' },
 
     /* Canada — VAC + Embassy */
-    { id: 'ca-vac',       cc: 'ca', flagId: 'ca', label: 'VFS Canada VAC',     country: 'Canada',   role: 'centre VFS',       loc: [3.0125, 36.7585], kind: 'centre' },
+    { id: 'ca-vac',       cc: 'ca', flagId: 'ca', label: 'VFS Canada VAC',     country: 'Canada',   role: 'centre VFS',       loc: [3.0160, 36.7610], kind: 'centre' },
     { id: 'ca-embassy',   cc: 'ca', flagId: 'ca', label: 'Ambassade Canada',   country: 'Canada',   role: 'ambassade',        loc: [3.0171605, 36.761142], kind: 'embassy' }
   ];
 
@@ -82,7 +82,9 @@
       return;  // existing .tmap-fallback stays visible
     }
 
-    container.classList.add('visa-map--ready');
+    // Add both 'visa-map--ready' (page-specific) and 'trip-map--ready'
+    // (existing CSS hook in styles.css:6680 that hides .tmap-fallback).
+    container.classList.add('visa-map--ready', 'trip-map--ready');
 
     // Algeria-wide view: Capago Annaba is far east (7.77E), Capago Oran far
     // west (-0.59E). Centre roughly on Algiers, fit padding handles the rest.
