@@ -8501,8 +8501,10 @@ section.section.phase-block + section.section:not(.phase-block) {
   flex-wrap: wrap;
 }
 .footer-social a {
-  width: 36px;
-  height: 36px;
+  /* 44×44 hit area = WCAG 2.5.5 AAA enhanced target size
+     (was 36×36 which already met the 2.5.8 AA 24×24 minimum). */
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--bg-card, rgba(255, 255, 255, .04));
   border: 1px solid var(--border, rgba(255, 255, 255, .08));
