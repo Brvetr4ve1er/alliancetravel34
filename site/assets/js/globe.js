@@ -40,6 +40,12 @@ let createGlobe = null;
 async function loadCobe() {
   if (createGlobe) return createGlobe;
   try {
+    // NOTE: dynamic import() cannot carry an SRI integrity attribute
+    // (SRI is only valid on <script>/<link> elements), so the audit's
+    // "add SRI here" item is infeasible as written. The real mitigation
+    // is self-hosting cobe (~5 KB) — tracked as W3 in the master audit.
+    // Until then, the try/catch below means a blocked or tampered load
+    // degrades safely to the CSS-only stage rather than executing.
     const mod = await import('https://esm.sh/cobe@0.6.4');
     createGlobe = mod.default || mod;
     return createGlobe;

@@ -1122,6 +1122,29 @@
     });
   }
 
+  /* a11y (WCAG 4.1.3): announce language change to assistive tech.
+     Lazy-created so it never fires on first page load (init) — only
+     on a user-initiated switch via setLang. */
+  let _liveRegion = null;
+  const LANG_ANNOUNCE = {
+    fr: 'Langue changée en français.',
+    en: 'Language changed to English.',
+    ar: 'تم تغيير اللغة إلى العربية.'
+  };
+  function announceLang(lang) {
+    if (!_liveRegion) {
+      _liveRegion = document.createElement('div');
+      _liveRegion.setAttribute('role', 'status');
+      _liveRegion.setAttribute('aria-live', 'polite');
+      _liveRegion.setAttribute('aria-atomic', 'true');
+      _liveRegion.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;';
+      document.body.appendChild(_liveRegion);
+    }
+    // Set lang on the region itself so the SR uses the correct voice.
+    _liveRegion.setAttribute('lang', lang);
+    _liveRegion.textContent = LANG_ANNOUNCE[lang] || LANG_ANNOUNCE.fr;
+  }
+
   function setLang(lang) {
     if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
     if (lang === 'ar') ensureArabicFont();
@@ -1130,6 +1153,7 @@
     translate(lang);
     updateMeta(lang);
     reflectActive(lang);
+    announceLang(lang);
   }
 
   /* Expose for debug / cross-module use */

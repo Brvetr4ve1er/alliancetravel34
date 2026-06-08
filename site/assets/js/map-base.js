@@ -59,14 +59,21 @@
     loadMapLibre() {
       if (window.maplibregl) return Promise.resolve(window.maplibregl);
       return new Promise((resolve, reject) => {
+        // jsDelivr (not unpkg) — more reliable across MENA edges and serves
+        // byte-identical npm files, so the SRI hashes below are stable.
+        // SRI + crossorigin guard against CDN compromise (audit F6).
         if (!document.querySelector('link[href*="maplibre-gl"]')) {
           const css = document.createElement('link');
           css.rel = 'stylesheet';
-          css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
+          css.href = 'https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css';
+          css.integrity = 'sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V';
+          css.crossOrigin = 'anonymous';
           document.head.appendChild(css);
         }
         const s = document.createElement('script');
-        s.src = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';
+        s.src = 'https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js';
+        s.integrity = 'sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj';
+        s.crossOrigin = 'anonymous';
         s.async = true;
         s.onload = () => resolve(window.maplibregl);
         s.onerror = () => reject(new Error('MapLibre GL failed to load'));
