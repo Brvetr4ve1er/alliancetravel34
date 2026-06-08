@@ -4,7 +4,8 @@
  * re-renders the breakdown in real-time on every input change.
  */
 
-const fmt = (n) => new Intl.NumberFormat('fr-DZ').format(n) + ' DA';
+// Guard against NaN/undefined ever reaching the UI as "NaN DA".
+const fmt = (n) => new Intl.NumberFormat('fr-DZ').format(Number.isFinite(n) ? n : 0) + ' DA';
 
 class TripCalculator {
   constructor() {
@@ -176,7 +177,7 @@ class TripCalculator {
 
     // Adults
     const rateKey = room === 'triple' ? 'triple' : room === 'single' ? 'single' : 'double';
-    const rate = hotel.prices[rateKey] ?? hotel.prices.double;
+    const rate = hotel.prices[rateKey] ?? hotel.prices.double ?? 0;
     lines.push({
       label: `${hotel.name} — ${this.roomLabel(room)} × ${this.state.adults} adulte${this.state.adults > 1 ? 's' : ''}`,
       amount: rate * this.state.adults,
