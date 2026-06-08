@@ -14,7 +14,7 @@
 /* CACHE NAME RULE: bump version on every release that changes site/.
    The activate handler purges old caches automatically. Query-param
    cache busting (?v=) does NOT work for SW-cached resources. */
-const CACHE_NAME = 'alliance-v28-2026-06-05';
+const CACHE_NAME = 'alliance-v29-2026-06-09';
 const RUNTIME    = 'alliance-runtime';
 
 // Install: pre-cache the absolute homepage shell only.
