@@ -13,6 +13,18 @@
 const fmt = (n) =>
   n ? new Intl.NumberFormat('fr-DZ').format(n) + ' DA' : null;
 
+/* Escape user-controlled values before interpolating into innerHTML.
+   No backend exists so the only exposure is self-XSS, but escaping is
+   cheap and removes the footgun. Safe in attribute and text contexts. */
+function escapeHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 /* ─── HTML Template ───────────────────────────────────────────── */
 const FORM_HTML = `
 <div class="container">
@@ -205,13 +217,13 @@ function renderPassportEntry(idx, data = {}) {
       <div class="bform-field">
         <label for="pp-name-${idx}">Nom &amp; Prénom</label>
         <input type="text" id="pp-name-${idx}" class="pp-name" data-idx="${idx}"
-          placeholder="Ahmed Benkhalifa" value="${data.name || ''}"
+          placeholder="Ahmed Benkhalifa" value="${escapeHtml(data.name)}"
           autocomplete="off"/>
       </div>
       <div class="bform-field">
         <label for="pp-num-${idx}">N° de passeport</label>
         <input type="text" id="pp-num-${idx}" class="pp-num" data-idx="${idx}"
-          placeholder="AB 123456" value="${data.number || ''}"
+          placeholder="AB 123456" value="${escapeHtml(data.number)}"
           inputmode="text" pattern="[A-Z0-9 ]{4,12}"
           aria-describedby="pp-num-${idx}-hint"/>
         <p class="bf-field-hint" id="pp-num-${idx}-hint">8 caractères alphanumériques.</p>
@@ -219,14 +231,14 @@ function renderPassportEntry(idx, data = {}) {
       <div class="bform-field">
         <label for="pp-expiry-${idx}">Date d'expiration</label>
         <input type="date" id="pp-expiry-${idx}" class="pp-expiry" data-idx="${idx}"
-          value="${data.expiry || ''}"
+          value="${escapeHtml(data.expiry)}"
           aria-describedby="pp-expiry-${idx}-hint"/>
         <p class="bf-field-hint" id="pp-expiry-${idx}-hint">Doit être valide ≥ 6 mois après le retour.</p>
       </div>
       <div class="bform-field">
         <label for="pp-dob-${idx}">Date de naissance</label>
         <input type="date" id="pp-dob-${idx}" class="pp-dob" data-idx="${idx}"
-          value="${data.dob || ''}"/>
+          value="${escapeHtml(data.dob)}"/>
       </div>
     </div>
   </div>`;
@@ -395,12 +407,13 @@ class BookingForm {
   _renderPreviews() {
     this.el.previews.innerHTML = this.uploads.map((f, i) => {
       const isImg = f.type.startsWith('image/');
+      const safeName = escapeHtml(f.name);
       return `
       <div class="upload-thumb">
         ${isImg
-          ? `<img src="${f.url}" alt="${f.name}"/>`
+          ? `<img src="${f.url}" alt="${safeName}"/>`
           : `<div class="upload-pdf-icon">${icon('pdf')}</div>`}
-        <span class="upload-thumb__label">${f.name}</span>
+        <span class="upload-thumb__label">${safeName}</span>
         <button class="upload-thumb__remove" data-remove="${i}" title="Supprimer">${icon('x')}</button>
       </div>`;
     }).join('');
