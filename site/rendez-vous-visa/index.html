@@ -23,7 +23,7 @@
     .hero__trust li::before { content: '✓'; position: absolute; left: 0; color: var(--mint); font-weight: 700; }
     .visa-countries { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s4); }
     .visa-country-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r3); overflow: hidden; transition: border-color var(--t-base); }
-    .visa-country-card[open], .visa-country-card:hover { border-color: var(--border-hi); }
+    .visa-country-card[open], .visa-country-card:hover, .visa-country-card:focus-within { border-color: var(--border-hi); }
     .visa-country-card__head { display: flex; align-items: center; gap: var(--s3); padding: var(--s4); cursor: pointer; min-height: 64px; list-style: none; }
     .visa-country-card__head::-webkit-details-marker { display: none; }
     .visa-country-card__flag { display: inline-flex; width: 36px; height: 27px; border-radius: 4px; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,.05); }
