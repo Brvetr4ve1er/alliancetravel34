@@ -4797,17 +4797,10 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
 
 /* ---- 6.0 — Motion tokens folded into canonical :root at top of file ---- */
 
-/* ---- 6.1 — Cinematic hero (Ken Burns slow zoom + drift) ---- */
-@keyframes ken-burns {
-  0%   { background-size: 110% auto;  background-position: 50% 50%; }
-  50%  { background-size: 118% auto;  background-position: 52% 48%; }
-  100% { background-size: 110% auto;  background-position: 50% 50%; }
-}
-[data-region] .hero {
-  background-size: 110% auto;
-  animation: ken-burns 26s ease-in-out infinite;
-  will-change: background-size, background-position;
-}
+/* ---- 6.1 — Ken Burns hero removed (2026-06-12): selector
+   `[data-region] .hero` matched no element (trip pages use .scroll-hero),
+   and the keyframes animated background-size/position (paint-storm if it
+   ever matched). Dead code deleted. ---- */
 
 .hero__bg {
   transform: translate3d(0, calc(var(--scroll-y, 0) * 0.18px), 0);
@@ -5927,7 +5920,9 @@ body.has-sticky-bar .site-nav {
   transform: translate(-50%, calc(-100% - 14px));
   transition: opacity var(--t-fast) ease, filter var(--t-fast) ease;
   z-index: 5;
-  will-change: opacity, transform, filter, left, top;
+  /* v26: globe.js pins left:0/top:0 and drives only transform/opacity/filter
+     per frame — left/top never change, so hinting them just wastes a layer. */
+  will-change: transform, opacity, filter;
 }
 
 /* Photo polaroid (the four trip destinations) */
@@ -7742,7 +7737,9 @@ section.section.phase-block + section.section:not(.phase-block) {
   box-shadow:
     0 30px 80px rgba(0, 0, 0, .55),
     0 0 0 1px rgba(255, 255, 255, .08) inset;
-  will-change: transform, border-radius;
+  /* v26: border-radius animates per scroll frame (paint) — paint props gain
+     nothing from will-change; only the composited transform belongs here. */
+  will-change: transform;
 }
 .scroll-hero__media::after {
   content: "";
