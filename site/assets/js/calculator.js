@@ -46,13 +46,21 @@ class TripCalculator {
   }
 
   bind() {
-    // Date chips
+    // Date chips — ARIA radiogroup. Keep .active, aria-checked AND the
+    // roving tabindex in sync. (Bug fix: the old handler only moved
+    // .active, so the first chip's hardcoded aria-checked="true" kept it
+    // painted as selected via the `.date-chip[aria-checked="true"]` rule
+    // even after another date was picked — two chips looked selected.)
     this.el.dateChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        this.state.date = chip.dataset.date;
-        this.el.dateChips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        this.render();
+      chip.addEventListener('click', () => this.selectDateChip(chip));
+      // Arrow-key navigation within the radiogroup (a11y).
+      chip.addEventListener('keydown', e => {
+        const chips = [...this.el.dateChips];
+        const i = chips.indexOf(chip);
+        let next = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = chips[(i + 1) % chips.length];
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = chips[(i - 1 + chips.length) % chips.length];
+        if (next) { e.preventDefault(); this.selectDateChip(next); next.focus(); }
       });
     });
 
@@ -106,6 +114,9 @@ class TripCalculator {
       toggle.addEventListener('click', () => {
         this.state.extras[i].checked = !this.state.extras[i].checked;
         toggle.classList.toggle('checked', this.state.extras[i].checked);
+        // role="checkbox" — keep aria-checked in sync (was never updated,
+        // so screen readers always announced "unchecked").
+        toggle.setAttribute('aria-checked', this.state.extras[i].checked ? 'true' : 'false');
         const checkIcon = toggle.querySelector('.extra-toggle__check');
         if (checkIcon) checkIcon.innerHTML = this.state.extras[i].checked
           ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="color:#fff"><polyline points="20 6 9 17 4 12"/></svg>'
@@ -137,6 +148,18 @@ class TripCalculator {
         setTimeout(() => calcEl.querySelector('.breakdown')?.classList.remove('highlight-flash'), 1100);
       }
     });
+  }
+
+  selectDateChip(chip) {
+    if (!chip) return;
+    this.state.date = chip.dataset.date;
+    this.el.dateChips.forEach(c => {
+      const on = c === chip;
+      c.classList.toggle('active', on);
+      c.setAttribute('aria-checked', on ? 'true' : 'false');
+      c.setAttribute('tabindex', on ? '0' : '-1');
+    });
+    this.render();
   }
 
   buildKids() {

@@ -500,6 +500,13 @@
   function autoMarkReveals() {
     if (reduced) return;
 
+    // NOTE: these grids drive the data-fx-stagger reveal. Some names below
+    // (hotels-grid, branches-grid, programme-list, faq__list) match nothing —
+    // those sections already reveal via AOS (data-aos), and `[data-fx-stagger]
+    // > *` forces opacity:0 until the fx observer fires, so pointing these at
+    // the real classes (.hotel-grid/.faq-list/...) would give AOS cards a
+    // SECOND opacity-0 master and risk stuck-hidden content. Left as-is
+    // intentionally; consolidating onto one reveal system is a separate task.
     const cardGroups = [
       '.trips-grid',
       '.hotels-grid',
