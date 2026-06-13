@@ -87,6 +87,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
   <!-- v21 prod-prep: preload the LCP hero image so the browser starts
        fetching it in parallel with HTML parsing. Per-viewport srcset so
        mobile gets the 60-92 KB mobile crop, desktop gets the full 470 KB. -->
@@ -378,6 +380,10 @@
           <div class="globe-polaroid" data-marker="kl" aria-hidden="true">
             <img src="assets/images/heroes/hero__kuala-lumpur.jpg" alt="" loading="lazy" decoding="async"/>
             <span class="globe-polaroid__caption">Kuala Lumpur</span>
+          </div>
+          <div class="globe-polaroid" data-marker="tunisie" aria-hidden="true">
+            <img src="assets/images/heroes-v2/hero__tunisie--bg--mobile.jpg" alt="" loading="lazy" decoding="async"/>
+            <span class="globe-polaroid__caption">Tunisie</span>
           </div>
           <!-- First-visit drag hint, dismissed on first pointer interaction -->
           <div class="globe-hint" id="globe-hint" aria-hidden="true">

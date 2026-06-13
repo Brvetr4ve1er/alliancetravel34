@@ -71,7 +71,13 @@ const DESTINATIONS = [
   { id: 'aze',    loc: [40.4093,  49.8671], size: 0.07,              polaroidId: 'aze',   label: 'Bakou' },
   { id: 'gabala', loc: [40.9852,  47.8460], size: 0.06,                                   label: 'Gabala' },
   { id: 'ist',    loc: [41.0082,  28.9784], size: 0.07,              polaroidId: 'ist',   label: 'Istanbul' },
-  { id: 'kl',     loc: [ 3.1390, 101.6869], size: 0.07,              polaroidId: 'kl',    label: 'Kuala Lumpur' }
+  { id: 'kl',     loc: [ 3.1390, 101.6869], size: 0.07,              polaroidId: 'kl',    label: 'Kuala Lumpur' },
+  // Tunisia programme (bus) — polaroid anchors to Hammamet (headline
+  // resort); Sousse is ~0.6° away (same pixel at globe scale, omitted).
+  { id: 'tunisie',  loc: [36.4000,  10.6167], size: 0.07,            polaroidId: 'tunisie', label: 'Hammamet' },
+  { id: 'djerba',   loc: [33.8076,  10.8451], size: 0.06,                                   label: 'Djerba' },
+  // Hurghada — Red Sea leg of the Caire & Hurghada combo.
+  { id: 'hurghada', loc: [27.2579,  33.8116], size: 0.065,                                  label: 'Hurghada' }
 ];
 
 /* SECONDARY destinations — top global tourist hotspots that decorate the
@@ -119,9 +125,10 @@ async function init() {
   if (!cobe) {
     stage.classList.add('globe-stage--fallback');
     canvas.style.display = 'none';
-    document.querySelectorAll('.globe-polaroid').forEach((el, i) => {
-      // Fan polaroids in a circle around the stage center
-      const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+    const fallbackPols = document.querySelectorAll('.globe-polaroid');
+    fallbackPols.forEach((el, i) => {
+      // Fan polaroids in a circle around the stage center (count-agnostic)
+      const angle = (i / fallbackPols.length) * Math.PI * 2 - Math.PI / 2;
       const r = stage.offsetWidth * 0.36;
       el.style.left = `${stage.offsetWidth / 2 + Math.cos(angle) * r}px`;
       el.style.top  = `${stage.offsetHeight / 2 + Math.sin(angle) * r}px`;
@@ -160,7 +167,7 @@ async function init() {
     .map(d => ({
       dest: d,
       el: document.querySelector(`.globe-polaroid[data-marker="${d.polaroidId}"]`),
-      rot: { bba: 0, egypt: -4, aze: 3, ist: -2, kl: 5 }[d.polaroidId] || 0
+      rot: { bba: 0, egypt: -4, aze: 3, ist: -2, kl: 5, tunisie: -3 }[d.polaroidId] || 0
     }))
     .filter(p => p.el);
 

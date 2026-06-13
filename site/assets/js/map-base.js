@@ -141,9 +141,14 @@
        3. 30-second hard timeout — never silently fails */
     lazyBoot(containerId, bootFn) {
       let booted = false;
+      let teardown = null;
       const safeBoot = () => {
         if (booted) return;
         booted = true;
+        // Detach the fallback scroll listener / observer the moment we boot,
+        // whichever trigger fired — previously the scroll listener stayed
+        // attached for the page's life as a short-circuited no-op (small leak).
+        if (teardown) { teardown(); teardown = null; }
         bootFn().catch(err => console.warn(`[${containerId}] boot failed:`, err));
       };
       const launch = () => {
@@ -154,15 +159,19 @@
           entries.forEach(e => {
             if (e.isIntersecting) { io.disconnect(); safeBoot(); }
           });
-        }, { rootMargin: '200px 0px' });
+        }, { rootMargin: '600px 0px' }); // boot ~1 viewport early so the map is ready when it scrolls in
         io.observe(container);
         const checkVisible = () => {
           if (booted) return;
           const r = container.getBoundingClientRect();
-          if (r.top < (window.innerHeight + 200) && r.bottom > -200) safeBoot();
+          if (r.top < (window.innerHeight + 600) && r.bottom > -600) safeBoot();
+        };
+        window.addEventListener('scroll', checkVisible, { passive: true });
+        teardown = () => {
+          io.disconnect();
+          window.removeEventListener('scroll', checkVisible);
         };
         checkVisible();
-        window.addEventListener('scroll', checkVisible, { passive: true });
         setTimeout(safeBoot, 30000);
       };
       if (document.readyState === 'loading') {
