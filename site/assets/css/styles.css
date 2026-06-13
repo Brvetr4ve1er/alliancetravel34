@@ -8190,6 +8190,10 @@ section.section.phase-block + section.section:not(.phase-block) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--s4, 16px);
+  /* start, not stretch: an open card grew its row, stretching the CLOSED
+     sibling to the same height → it showed a tall empty box ("others open
+     empty" bug). align-items:start lets each card own its height. */
+  align-items: start;
 }
 
 /* ── Card (collapsible) ───────────────────────────────────── */
