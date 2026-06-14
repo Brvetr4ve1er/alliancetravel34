@@ -360,16 +360,30 @@
     if (!heroes.length || window.innerWidth < 1024) return;
 
     heroes.forEach(hero => {
+      // Cache the art node once (was re-queried on every pointer move) and
+      // read the hero rect on enter, not per-move, so the hot mousemove path
+      // does no DOM query and no forced layout. Writes are coalesced into one
+      // rAF tick — the transform itself is composited.
+      const art = hero.querySelector('.hero__visual-art > svg');
+      if (!art) return;
+      let rect = null, raf = 0, px = 0, py = 0;
+
+      hero.addEventListener('mouseenter', () => { rect = hero.getBoundingClientRect(); });
       hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 8;
-        const y = ((e.clientY - rect.top)  / rect.height - 0.5) * 8;
-        const art = hero.querySelector('.hero__visual-art > svg');
-        if (art) art.style.transform = `translate(${-x}px, ${-y}px)`;
+        if (!rect) rect = hero.getBoundingClientRect();
+        px = e.clientX; py = e.clientY;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const x = ((px - rect.left) / rect.width  - 0.5) * 8;
+          const y = ((py - rect.top)  / rect.height - 0.5) * 8;
+          art.style.transform = `translate(${-x}px, ${-y}px)`;
+        });
       });
       hero.addEventListener('mouseleave', () => {
-        const art = hero.querySelector('.hero__visual-art > svg');
-        if (art) art.style.transform = '';
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        rect = null;
+        art.style.transform = '';
       });
     });
   }
@@ -601,23 +615,36 @@
       if (btn.dataset.magnetized === '1') return;
       btn.dataset.magnetized = '1';
 
+      // Read the rect once on enter (was getBoundingClientRect() on every move
+      // → forced layout per pointer move) and coalesce the four CSS-var writes
+      // into a single rAF tick. The vars feed a composited transform.
+      let r = null, raf = 0, px = 0, py = 0;
+      const onEnter = () => { r = btn.getBoundingClientRect(); };
       const onMove = (e) => {
-        const r = btn.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        const dx = (e.clientX - cx) / (r.width  * RADIUS);
-        const dy = (e.clientY - cy) / (r.height * RADIUS);
-        btn.style.setProperty('--mx', `${dx * STRENGTH}px`);
-        btn.style.setProperty('--my', `${dy * STRENGTH}px`);
-        const lx = ((e.clientX - r.left) / r.width) * 100;
-        const ly = ((e.clientY - r.top) / r.height) * 100;
-        btn.style.setProperty('--gx', `${lx}%`);
-        btn.style.setProperty('--gy', `${ly}%`);
+        if (!r) r = btn.getBoundingClientRect();
+        px = e.clientX; py = e.clientY;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const cx = r.left + r.width / 2;
+          const cy = r.top + r.height / 2;
+          const dx = (px - cx) / (r.width  * RADIUS);
+          const dy = (py - cy) / (r.height * RADIUS);
+          btn.style.setProperty('--mx', `${dx * STRENGTH}px`);
+          btn.style.setProperty('--my', `${dy * STRENGTH}px`);
+          const lx = ((px - r.left) / r.width) * 100;
+          const ly = ((py - r.top) / r.height) * 100;
+          btn.style.setProperty('--gx', `${lx}%`);
+          btn.style.setProperty('--gy', `${ly}%`);
+        });
       };
       const onLeave = () => {
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        r = null;
         btn.style.setProperty('--mx', '0px');
         btn.style.setProperty('--my', '0px');
       };
+      btn.addEventListener('mouseenter', onEnter);
       btn.addEventListener('mousemove', onMove);
       btn.addEventListener('mouseleave', onLeave);
     });
