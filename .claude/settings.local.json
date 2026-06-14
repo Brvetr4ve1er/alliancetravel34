@@ -5,7 +5,8 @@
       "WebFetch(domain:www.intrepidtravel.com)",
       "WebFetch(domain:www.audleytravel.com)",
       "WebFetch(domain:www.blacktomato.com)",
-      "WebFetch(domain:www.getyourguide.com)"
+      "WebFetch(domain:www.getyourguide.com)",
+      "Bash(node -e ' *)"
     ]
   }
 }
