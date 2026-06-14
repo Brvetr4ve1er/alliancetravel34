@@ -1,0 +1,221 @@
+{
+  "_meta": {
+    "generated": "2026-06-14",
+    "purpose": "Real hotel data + one official/representative photo URL per hotel, to replace duplicate/generic placeholder images on the trip pages.",
+    "imageBasePath": "site/assets/images/hotels/",
+    "notes": [
+      "currentImage = path referenced by the hotel-card <img> on the trip page.",
+      "photoUrl prefers the hotel's OWN official domain; where the official site only serves lazy-loaded/data-URI or thumbnail images, a verified direct URL is given when possible, otherwise photoSource page URL is given and photoUrl is the best constructible/representative URL or null.",
+      "Several hotels appear on two trips (Sharm physical hotels are shared between cairo-sharm and sharm-constantine) - same real hotel, different card id/image file."
+    ]
+  },
+
+  "cairo-sharm": [
+    {
+      "id": "tivoli",
+      "name": "Tivoli Hotel Aqua Park",
+      "stars": 4,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay",
+      "descriptor": "Aqua park 6 toboggans, 2 piscines, jacuzzi chauffe, club enfants",
+      "currentImage": "../assets/images/hotels/hotel__tivoli.jpg",
+      "photoUrl": "https://www.tivolisharm-hotel.com/images/slide-1.jpg",
+      "photoSource": "https://www.tivolisharm-hotel.com/ (official site; direct hero JPEG verified valid, 162KB)"
+    },
+    {
+      "id": "verginia",
+      "name": "Verginia Sharm Resort & Aqua Park",
+      "stars": 4,
+      "city": "Sharm El Sheikh",
+      "area": "El Hadaba (Ras Om El Sid)",
+      "descriptor": "2 piscines dont aqua park familial + piscine adultes, spa hammam, centre de plongee",
+      "currentImage": "../assets/images/hotels/hotel__verginia.jpg",
+      "photoUrl": null,
+      "photoSource": "https://www.verginiasharm.com/ (official site; hero images use relative paths only, no verifiable direct URL extracted). Booking listing with photos: https://www.booking.com/hotel/eg/verginia-sharm-resort.html"
+    },
+    {
+      "id": "rehana4",
+      "name": "Rehana Sharm Resort - Aquapark & Spa",
+      "stars": 4,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay",
+      "descriptor": "10+ piscines, grand aqua park adultes/enfants, plage privee + jetee, spa",
+      "currentImage": "../assets/images/hotels/hotel__rehana-4star.jpg",
+      "photoUrl": null,
+      "photoSource": "Official-domain aggregators were 403/placeholder-only. Representative photos: https://www.booking.com/hotel/eg/rehana-sharm-resort.html and https://www.tripadvisor.com/Hotel_Review-g303855-d736972-Reviews-Rehana_Sharm_Resort_Aquapark_Spa-Nabq_Bay_Sharm_El_Sheikh.html"
+    },
+    {
+      "id": "rehana5",
+      "name": "Rehana Royal Beach Resort - Aquapark & Spa",
+      "stars": 5,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay",
+      "descriptor": "11 piscines, aqua park, plage privee Red Sea, Butterfly Spa, 5 restaurants",
+      "currentImage": "../assets/images/hotels/hotel__rehana-royal.jpg",
+      "photoUrl": null,
+      "photoSource": "Official-domain aggregators were 403/placeholder-only. Representative photos: https://www.booking.com/hotel/eg/rehana-royal-beach-resort-spa.html and https://www.tripadvisor.com/Hotel_Review-g303855-d1141245-Reviews-Rehana_Royal_Beach_Resort_Aqua_Park_Spa-Nabq_Bay_Sharm_El_Sheikh.html"
+    },
+    {
+      "id": "charmillion",
+      "name": "Charmillion Club Aqua Park",
+      "stars": 5,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay (adjacent aeroport)",
+      "descriptor": "369 chambres, aqua park 10 toboggans adultes + 12 enfants, plage privee, 3 restaurants",
+      "currentImage": "../assets/images/hotels/hotel__charmillion.jpg",
+      "photoUrl": null,
+      "photoSource": "https://charmillionresorts.com/home/clubaquapark/ (official chain site; slider uses RevSlider dummy placeholders, no real direct URL extractable). Booking listing: https://www.booking.com/hotel/eg/sea-club-aqua-park.html"
+    },
+    {
+      "id": "cleopatra",
+      "name": "Cleopatra Luxury Resort Sharm El Sheikh",
+      "stars": 5,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay (front de mer)",
+      "descriptor": "209 chambres vue mer, theme pharaonique, grande piscine a debordement, plage privee, 10 points F&B",
+      "currentImage": "../assets/images/hotels/hotel__cleopatra.jpg",
+      "photoUrl": "https://www.cleopatraluxuryhotels.com/wp-content/uploads/sites/55/2023/07/Exterior-13.jpg",
+      "photoSource": "https://www.cleopatraluxuryhotels.com/hotel/cleopatra-luxury-resort-sharm-sheikh/ (official site; full-size 'Exterior-13.jpg' confirmed to exist - file too large to inline-render, >10MB fetch cap, but path derived from a real WP thumbnail Exterior-13-150x75.jpg on the page)"
+    },
+    {
+      "id": "pickalbatros",
+      "name": "Pickalbatros (Sharm El Sheikh) - exact property unconfirmed",
+      "stars": 5,
+      "city": "Sharm El Sheikh",
+      "area": "varies by property",
+      "descriptor": "Chaine Pickalbatros - le programme indique seulement 'Pickalbatros 5*' sans nommer le resort precis",
+      "currentImage": "../assets/images/hotels/hotel__pickalbatros.jpg",
+      "photoUrl": null,
+      "photoSource": "AMBIGUOUS: trip data only says 'Pickalbatros 5*'. The chain runs several Sharm resorts (Palace, Royal Grand, Royal Moderna, Laguna Vista, Albatros Sharm, Luxury Suites). Official chain hub: https://www.pickalbatros.com/destinations/sharm-el-sheikh . Confirm with client which property before picking a photo; official pages lazy-load images (data-URI placeholders) so no direct URL extractable here."
+    }
+  ],
+
+  "azerbaidjan": [
+    {
+      "id": "parkside",
+      "name": "Parkside Hotel & Apartments Baku",
+      "stars": 4,
+      "city": "Baku",
+      "area": "City Center (pres promenade Caspienne)",
+      "descriptor": "Hotel-appart centre-ville, proche restaurants/shopping et bord de mer Caspien",
+      "currentImage": "../assets/images/hotels/hotel__parkside-baku.jpg",
+      "photoUrl": "https://parksidebaku.com/img/0a6a03576daf4821.webp",
+      "photoSource": "https://parksidebaku.com/ (official site; direct carousel WEBP verified valid, 514KB). Note: page lists no explicit star rating; 4* per trip data."
+    },
+    {
+      "id": "yengice",
+      "name": "Gabala Yengice Thermal Resort",
+      "stars": 5,
+      "city": "Gabala (Qabala)",
+      "area": "Foret de Yengija",
+      "descriptor": "Resort thermal en foret, bains thermaux, spa/wellness, piscine interieure, 61 chambres",
+      "currentImage": "../assets/images/hotels/hotel__yengice-gabala.jpg",
+      "photoUrl": null,
+      "photoSource": "No official standalone domain found in results. Representative photos: https://www.booking.com/hotel/az/qafqaz-thermal-amp-spa-resort.html and https://www.expedia.com/Gabala-Hotels-Gabala-Yengice-Thermal-Resort.h84520734.Hotel-Information"
+    }
+  ],
+
+  "istanbul": [
+    {
+      "id": "river",
+      "name": "River Hotel Istanbul",
+      "stars": 3,
+      "city": "Istanbul",
+      "area": "Laleli / Aksaray, Fatih",
+      "descriptor": "48 chambres, quartier historique Aksaray, spa/sauna/hammam, restaurant et terrasse",
+      "currentImage": "../assets/images/hotels/hotel__river-istanbul.jpg",
+      "photoUrl": null,
+      "photoSource": "Two official domains exist: https://www.istanbulriverhotel.com/ (live; images via relative path images/1569855543_5d9218375ab06-thumb.png - thumbnail only) and https://www.riverhotelistanbul.com/ (connection refused at fetch time). Use page above; no verifiable full-res direct URL."
+    },
+    {
+      "id": "ozer",
+      "name": "Ozer Palace Hotel",
+      "stars": 4,
+      "city": "Istanbul",
+      "area": "Aksaray, Fatih",
+      "descriptor": "Hotel central proche sites historiques, petit-dej buffet, service 24/7",
+      "currentImage": "../assets/images/hotels/hotel__ozer-palace.jpg",
+      "photoUrl": "https://ozerpalacehotel.com/img/377c485c059a9818.webp",
+      "photoSource": "https://ozerpalacehotel.com/en-gb/ (official site; direct hero WEBP verified valid, 170KB). Page lists no star badge; 4* per trip data."
+    },
+    {
+      "id": "alpin",
+      "name": "Alpinn Hotel Due",
+      "stars": 4,
+      "city": "Istanbul",
+      "area": "Laleli / Beyazit, Fatih (historical peninsula)",
+      "descriptor": "Chambres familiales centre historique, restaurant cuisine turque halal, petit-dej buffet",
+      "currentImage": "../assets/images/hotels/hotel__alpin-due.jpg",
+      "photoUrl": null,
+      "photoSource": "https://www.alpinnhoteldue.com/en (official site; only room thumbnails + logo on landing page, no hero/exterior direct URL extractable). Booking listing with photos: https://www.booking.com/hotel/tr/alpinn-due.html"
+    },
+    {
+      "id": "tilia",
+      "name": "Tilia Hotel Istanbul",
+      "stars": 4,
+      "city": "Istanbul",
+      "area": "Laleli / Aksaray, Fatih",
+      "descriptor": "Boutique 25 chambres vue ville, hammam turc + sauna, restaurant, proche metro Vezneciler",
+      "currentImage": "../assets/images/hotels/hotel__tilia.jpg",
+      "photoUrl": null,
+      "photoSource": "No clean first-party official domain confirmed (results were aggregator mirrors). Representative photos: https://www.expedia.com/Istanbul-Hotels-Tilia-Hotel.h3688175.Hotel-Information"
+    }
+  ],
+
+  "kuala-lumpur": [
+    {
+      "id": "grandmercure",
+      "name": "Grand Mercure Kuala Lumpur Bukit Bintang",
+      "stars": 5,
+      "city": "Kuala Lumpur",
+      "area": "Bukit Bintang (pres Chinatown)",
+      "descriptor": "325 chambres, ouvert 2025, piscine, fitness, restaurant all-day, grand ballroom sans pilier",
+      "currentImage": "../assets/images/hotels/hotel__grand-mercure-kl.jpg",
+      "photoUrl": "https://www.ahstatic.com/photos/c3m1_ho_00_p_1024x768.jpg",
+      "photoSource": "https://all.accor.com/hotel/C3M1/index.en.shtml (Accor official page; ahstatic.com is Accor's official photo CDN, hotel code C3M1)"
+    }
+  ],
+
+  "sharm-constantine": [
+    {
+      "id": "tivoli_czl",
+      "name": "Tivoli Hotel Aqua Park",
+      "stars": 4,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay",
+      "descriptor": "Meme hotel physique que cairo-sharm 'tivoli'. Aqua park 6 toboggans, 2 piscines, jacuzzi",
+      "currentImage": "../assets/images/hotels/hotel__tivoli-czl.jpg",
+      "photoUrl": "https://www.tivolisharm-hotel.com/images/slide-1.jpg",
+      "photoSource": "https://www.tivolisharm-hotel.com/ (same real hotel as cairo-sharm tivoli)"
+    },
+    {
+      "id": "rehana_czl",
+      "name": "Rehana Sharm Resort - Aquapark & Spa",
+      "stars": 4,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay",
+      "descriptor": "Meme hotel physique que cairo-sharm 'rehana4'. 10+ piscines, aqua park, plage privee, spa",
+      "currentImage": "../assets/images/hotels/hotel__rehana-czl.jpg",
+      "photoUrl": null,
+      "photoSource": "Same real hotel as cairo-sharm rehana4. Photos: https://www.booking.com/hotel/eg/rehana-sharm-resort.html"
+    },
+    {
+      "id": "rehana_royal_czl",
+      "name": "Rehana Royal Beach Resort - Aquapark & Spa",
+      "stars": 5,
+      "city": "Sharm El Sheikh",
+      "area": "Nabq Bay",
+      "descriptor": "Meme hotel physique que cairo-sharm 'rehana5'. 11 piscines, aqua park, plage privee, spa",
+      "currentImage": "../assets/images/hotels/hotel__rehana-royal-czl.jpg",
+      "photoUrl": null,
+      "photoSource": "Same real hotel as cairo-sharm rehana5. Photos: https://www.booking.com/hotel/eg/rehana-royal-beach-resort-spa.html"
+    }
+  ],
+
+  "duplicatesFound": [
+    "BYTE-IDENTICAL cluster A (md5 e72f15374169f1a4af78824fb65536ac) - 7 card files share ONE image: hotel__tivoli.jpg, hotel__rehana-4star.jpg, hotel__rehana-royal.jpg, hotel__charmillion.jpg (cairo-sharm) + hotel__tivoli-czl.jpg, hotel__rehana-czl.jpg, hotel__rehana-royal-czl.jpg (sharm-constantine).",
+    "BYTE-IDENTICAL cluster B (md5 a7f24af3058e599ee031d966b371210c) - 3 card files share ONE image: hotel__verginia.jpg, hotel__cleopatra.jpg, hotel__pickalbatros.jpg (all cairo-sharm).",
+    "Net effect: of 17 distinct hotel image files on disk, only 9 are visually unique. 10 files are duplicates of just 2 source photos. Unique files: ozer-palace, grand-mercure-kl, alpin-due, parkside-baku, tilia, yengice-gabala, river-istanbul + the 2 shared source images.",
+    "LEGITIMATE re-use (not a bug): Sharm 'tivoli/rehana/rehana-royal' physically exist on BOTH cairo-sharm and sharm-constantine - they are the same hotels and may intentionally share a corrected photo once replaced."
+  ]
+}

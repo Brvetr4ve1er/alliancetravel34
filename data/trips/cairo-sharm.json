@@ -1,0 +1,296 @@
+{
+  "slug": "cairo-sharm",
+  "region": "egypt",
+  "dataPage": "cairo_sharm",
+  "lang": "fr",
+
+  "meta": {
+    "title": "Le Caire & Sharm El Sheikh — Alliance Travel · Juin 2026",
+    "description": "Voyage guidé au Caire et Sharm El Sheikh. 7 nuits, 2 expériences, vol EgyptAir inclus. Départs juin 2026 depuis Alger. À partir de 190.000 DA.",
+    "canonical": "https://alliance-travel.dz/cairo-sharm/",
+    "themeColor": "#C9872E",
+    "og": {
+      "type": "website",
+      "title": "Le Caire & Sharm El Sheikh — Alliance Travel",
+      "description": "7 nuits guidées entre les Pyramides de Guizeh et la Mer Rouge. Vol EgyptAir + All Inclusive Soft + excursions. Départs juin 2026 depuis Alger.",
+      "url": "https://alliance-travel.dz/cairo-sharm/",
+      "siteName": "Alliance Travel",
+      "locale": "fr_FR",
+      "image": "https://alliance-travel.dz/assets/images/og/og-cairo-sharm.jpg",
+      "imageWidth": 1200,
+      "imageHeight": 630
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Le Caire & Sharm El Sheikh — Alliance Travel",
+      "description": "7 nuits guidées entre les Pyramides de Guizeh et la Mer Rouge. Vol EgyptAir + All Inclusive Soft + excursions. Départs juin 2026 depuis Alger.",
+      "image": "https://alliance-travel.dz/assets/images/og/og-cairo-sharm.jpg"
+    }
+  },
+
+  "accent": {
+    "color": "#B2E89C",
+    "dim": "rgba(178,232,156,.13)",
+    "glow": "rgba(178,232,156,.22)",
+    "heroGradient": "linear-gradient(145deg,#130900 0%,#0d0a05 55%,#060810 100%)"
+  },
+
+  "jsonLd": {
+    "breadcrumbName": "Le Caire & Sharm El Sheikh",
+    "touristTrip": {
+      "name": "Le Caire & Sharm El Sheikh — Alliance Travel",
+      "description": "7 nuits guidées entre les Pyramides de Guizeh et la Mer Rouge. Vol EgyptAir + All Inclusive Soft + excursions. Départs juin 2026 depuis Alger.",
+      "offerPrice": "190000",
+      "priceCurrency": "DZD"
+    }
+  },
+
+  "hero": {
+    "bg": "../assets/images/heroes-v2/hero__cairo-sharm--bg.jpg",
+    "fg": "../assets/images/heroes-v2/hero__cairo-sharm--fg.jpg",
+    "titlePre": "Le Caire",
+    "titlePost": "& Sharm El Sheikh",
+    "titleSingle": null,
+    "eyebrow": "Voyage guidé · Départ Alger · Juin 2026",
+    "date": "7 nuits · 5 Sharm + 2 Le Caire · Vol EgyptAir",
+    "prompt": "Faites défiler pour découvrir",
+    "skip": "Passer",
+    "h1Pre": "Le Caire",
+    "h1Em": "& Sharm El Sheikh",
+    "lede": "2 expériences en 1 seul voyage. Les pyramides de Guizeh le matin, la Mer Rouge au coucher du soleil. 7 nuits tout confort, vol EgyptAir, transferts & excursions guidées.",
+    "priceFrom": "190.000 DA",
+    "priceUnit": "par personne · chambre double",
+    "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation."
+  },
+
+  "highlights": [
+    { "icon": "star",     "label": "Monuments",   "title": "Pyramides & Sphinx",   "body": "Guizeh, Khan El-Khalili, Mosquée Al-Azhar, croisière dîner sur le Nil avec spectacle." },
+    { "icon": "clock",    "label": "Balnéaire",   "title": "Mer Rouge · Sharm",    "body": "5 nuits All Inclusive Soft, Naama Bay, Old Market, Sahaba Mosque et Soho Square." },
+    { "icon": "plane",    "label": "Transport",   "title": "Vol EgyptAir",         "body": "ALG → CAI → SSH → CAI → ALG. Vols domestiques inclus entre Le Caire et Sharm." },
+    { "icon": "building", "label": "Hébergement", "title": "7 hôtels au choix",    "body": "De 4★ Économique à 5★ Luxe (Pickalbatros). Marwa Palace Le Caire en petit-déjeuner." }
+  ],
+
+  "itinerary": {
+    "eyebrow": "9 jours · 7 nuits",
+    "layout": "split",
+    "columns": [
+      {
+        "heading": "Sharm El Sheikh — 5 nuits",
+        "days": [
+          { "node": "J1", "dayLabel": "Jour 1", "active": true, "title": "Arrivée à Sharm El Sheikh", "activities": "Vol ALG→CAI puis CAI→SSH. Accueil à l'aéroport, transfert hôtel, check-in 14h00, installation et soirée libre.", "tags": [] },
+          { "node": "J2", "dayLabel": "Jours 2–5", "title": "Découverte de Sharm & excursions", "activities": "Naama Bay, Old Market, Sahaba Mosque, Soho Square. Journées en formule All Inclusive Soft.", "tags": ["Naama Bay", "Old Market", "Soho Square"] },
+          { "node": "J6", "dayLabel": "Jour 6", "title": "Transfert Sharm → Le Caire", "activities": "Vol SSH→CAI. Accueil, transfert à l'hôtel Marwa Palace. Dîner et installation.", "tags": [] }
+        ]
+      },
+      {
+        "heading": "Le Caire — 2 nuits",
+        "days": [
+          { "node": "J7", "dayLabel": "Jour 7", "title": "Guizeh, Sphinx, Khan El-Khalili", "activities": "Plateau de Guizeh (Pyramides & Sphinx), Mosquée Al-Azhar, Mosquée Hussein, Bazar Khan El-Khalili.", "tags": ["Pyramides", "Sphinx", "Khan El-Khalili"] },
+          { "node": "J8", "dayLabel": "Jour 8", "title": "Croisière dîner sur le Nil", "activities": "Journée libre puis croisière avec dîner et spectacle de danses traditionnelles sur le Nil au coucher du soleil.", "tags": ["Croisière Nil", "Spectacle"] },
+          { "node": "J9", "dayLabel": "Jour 9", "title": "Retour à Alger", "activities": "Petit-déjeuner, transfert aéroport, vol CAI→ALG. Arrivée en fin de journée.", "tags": [] }
+        ]
+      }
+    ]
+  },
+
+  "tripMap": {
+    "present": true,
+    "subFallback": "Sharm El Sheikh · Le Caire · Pyramides de Guizeh · Croisière sur le Nil",
+    "subHead": "Tous les hôtels, sites et excursions de votre programme de 9 jours, géolocalisés.",
+    "ariaLabel": "Carte de l'itinéraire Le Caire & Sharm El Sheikh",
+    "data": {
+      "name": "Le Caire & Sharm El Sheikh",
+      "hotels": [
+        { "id": "tivoli",       "name": "Tivoli Aqua Park",          "loc": [34.428, 27.972], "stars": 4, "area": "Nabq Bay, Sharm El Sheikh" },
+        { "id": "verginia",     "name": "Verginia Aqua Park",        "loc": [34.422, 27.952], "stars": 4, "area": "Nabq Bay, Sharm El Sheikh" },
+        { "id": "rehana4",      "name": "Rehana Aqua Park",          "loc": [34.430, 27.958], "stars": 4, "area": "Nabq Bay, Sharm El Sheikh" },
+        { "id": "rehana5",      "name": "Rehana Royal Beach",        "loc": [34.436, 27.957], "stars": 5, "area": "Nabq Bay, Sharm El Sheikh" },
+        { "id": "charmillion",  "name": "Charmillion Club Aquapark", "loc": [34.430, 27.952], "stars": 5, "area": "Nabq Bay, Sharm El Sheikh" },
+        { "id": "cleopatra",    "name": "Cleopatra Luxury Resort",   "loc": [34.378, 27.932], "stars": 5, "area": "Sharks Bay, Sharm El Sheikh" },
+        { "id": "pickalbatros", "name": "Pickalbatros",              "loc": [34.422, 27.948], "stars": 5, "area": "Nabq Bay, Sharm El Sheikh" },
+        { "id": "marwa",        "name": "Marwa Palace",              "loc": [31.250, 30.064], "stars": 4, "area": "Heliopolis, Le Caire" }
+      ],
+      "sites": [
+        { "name": "Naama Bay",           "loc": [34.330, 27.910], "day": "2-5" },
+        { "name": "Old Market",          "loc": [34.297, 27.864], "day": "2-5" },
+        { "name": "Sahaba Mosque",       "loc": [34.299, 27.863], "day": "2-5" },
+        { "name": "Soho Square",         "loc": [34.380, 27.945], "day": "2-5" },
+        { "name": "Pyramides de Guizeh", "loc": [31.134, 29.978], "day": 7, "featured": true },
+        { "name": "Sphinx",             "loc": [31.137, 29.975], "day": 7, "featured": true },
+        { "name": "Mosquée Al-Azhar",    "loc": [31.262, 30.046], "day": 7 },
+        { "name": "Mosquée Hussein",     "loc": [31.263, 30.048], "day": 7 },
+        { "name": "Khan El-Khalili",     "loc": [31.262, 30.048], "day": 7 }
+      ],
+      "tours": [
+        { "name": "Croisière sur le Nil", "loc": [31.225, 30.045], "day": 8, "note": "Dîner et spectacle au coucher du soleil" }
+      ],
+      "hubs": [
+        { "name": "Sharm El Sheikh", "loc": [34.330, 27.970], "days": "J1–J6" },
+        { "name": "Le Caire",        "loc": [31.235, 30.044], "days": "J6–J9" }
+      ],
+      "routes": [
+        { "from": [34.395, 27.977], "to": [31.405, 30.121], "label": "Vol SSH → CAI", "type": "flight" }
+      ]
+    }
+  },
+
+  "trust": {
+    "eyebrow": "Plus de 1.200 voyageurs guidés",
+    "stats": [
+      { "num": "1.2K+", "label": "Voyageurs guidés depuis 2019" },
+      { "num": "98%",   "label": "Taux de satisfaction" },
+      { "num": "3",     "label": "Départs Égypte en juin 2026" },
+      { "num": "7",     "label": "Hôtels triés au choix" }
+    ],
+    "testimonials": [
+      { "stars": 5, "text": "Tout était parfaitement organisé. Les pyramides au lever du soleil, le Nil le soir — je n'aurais jamais pu faire ça seul. Alliance Travel a pensé à tout.", "initials": "YB", "name": "Yacine B.", "trip": "Bordj Bou Arreridj · Voyage Égypte 2024" },
+      { "stars": 5, "text": "L'hôtel Rehana Royal Beach était exceptionnel. La Mer Rouge est incroyable. Le prix affiché était le vrai prix — pas de mauvaises surprises.", "initials": "SM", "name": "Sarah M.", "trip": "Constantine · Voyage Sharm 2025" },
+      { "stars": 5, "text": "Famille de 4. Nos enfants ont adoré l'Aqua Park. L'accompagnateur était disponible 24h/24. On repart avec Alliance Travel l'été prochain.", "initials": "KA", "name": "Karim A.", "trip": "Alger · Voyage Égypte 2025" }
+    ]
+  },
+
+  "inclus": {
+    "sub": "Aucune surprise à l'arrivée. Voici exactement ce que couvre votre forfait — et ce que vous prévoirez en plus.",
+    "includedCount": "9 prestations couvertes",
+    "excludedCount": "7 éléments hors forfait",
+    "included": [
+      "Vol international <strong>EgyptAir</strong> ALG ↔ CAI aller-retour",
+      "Vol domestique CAI ↔ SSH aller-retour",
+      "Transferts aéroport ↔ hôtel ↔ aéroport",
+      "<strong>5 nuits</strong> Sharm El Sheikh en formule <strong>All Inclusive Soft</strong>",
+      "<strong>2 nuits</strong> Le Caire à Marwa Palace (petit-déjeuner)",
+      "Excursions Sharm : Naama Bay · Old Market · Sahaba Mosque · Soho Square",
+      "Excursions Caire : Pyramides · Sphinx · Khan El-Khalili · Croisière Nil avec dîner et spectacle",
+      "Lettre de garantie pour le visa",
+      "Accompagnateur Alliance Travel sur place"
+    ],
+    "excluded": [
+      "Taxe de visa à l'arrivée au Caire (selon tarif en vigueur)",
+      "Nouveau Musée Égyptien (en option, sur demande)",
+      "Boissons alcoolisées",
+      "Pourboires (personnel hôtel · guides · chauffeurs)",
+      "Activités optionnelles : plongée, quad, parapente",
+      "Assurance voyage personnelle",
+      "Dépenses personnelles"
+    ]
+  },
+
+  "faq": [
+    { "open": true,  "question": "Est-ce que le visa est inclus ?", "answerHtml": "Alliance Travel fournit une <strong>lettre de garantie pour le visa</strong>. Le paiement de la taxe de visa se fait directement à l'arrivée au Caire par le client, <strong>selon le tarif en vigueur à l'aéroport</strong>. Cette démarche est 100% encadrée et expliquée par notre accompagnateur." },
+    { "open": false, "question": "Comment payer ? Le CCP est-il accepté ?", "answerHtml": "Oui. Paiement par virement CCP, espèces à l'agence (Bordj Bou Arreridj), ou par versement bancaire. Inscription par téléphone / WhatsApp possible. Un acompte suffit pour bloquer votre place." },
+    { "open": false, "question": "À quelle heure est le check-in à l'hôtel ?", "answerHtml": "Le check-in est toujours à <strong>14h00</strong>, quelle que soit l'heure d'arrivée. Si vous arrivez plus tôt, vos bagages sont gardés et vous pouvez profiter des espaces communs de l'hôtel dès l'arrivée." },
+    { "open": false, "question": "Combien coûte la place pour un bébé ou un enfant ?", "answerHtml": "Bébé (0–2 ans) : <strong>25.000 DA</strong> · sans lit. 1ᵉʳ enfant (2–12 ans) : <strong>115.000 DA</strong>. 2ᵉ enfant : selon l'hôtel, entre 151.000 et 207.000 DA. Les prix varient par hôtel — utilisez le calculateur pour obtenir le total exact." },
+    { "open": false, "question": "Que comprend exactement le \"All Inclusive Soft\" ?", "answerHtml": "La formule All Inclusive Soft couvre tous les repas (petit-déjeuner, déjeuner, dîner) et la plupart des boissons. Les boissons alcoolisées et certaines activités payantes (plongée, excursions optionnelles) sont à la charge du client." }
+  ],
+
+  "hotelsSection": {
+    "phaseLabel": "Comparer les hôtels",
+    "eyebrow": "Hôtels à Sharm El Sheikh",
+    "title": "Sélectionnez <em>votre confort</em>",
+    "sub": "Tous les hôtels incluent la formule All Inclusive Soft. Le prix de départ englobe le vol, les transferts et les excursions.",
+    "tierTabs": [
+      { "tier": "all",        "label": "Tous",        "active": true },
+      { "tier": "economique", "label": "Économique" },
+      { "tier": "medium",     "label": "Médium" },
+      { "tier": "premium",    "label": "Premium" },
+      { "tier": "luxe",       "label": "Luxe" }
+    ]
+  },
+
+  "hotels": [
+    { "id": "tivoli",       "tier": "economique", "name": "Tivoli Aqua Park",         "nameSuffix": null, "stars": 4, "ribbon": "Économique",   "image": "../assets/images/hotels/hotel__tivoli.jpg",       "alt": "Tivoli Aqua Park",         "amenities": ["Aqua Park", "All Inclusive"], "priceFrom": "192.000 DA", "priceMeta": "par pers. en double", "calcName": "Tivoli Aqua Park 4★",         "selectOption": "Tivoli Aqua Park 4★ — dès 192.000 DA",         "prices": { "double": 192000, "triple": 190000, "single": 215000, "child1": 115000, "child2": 151000, "baby": 25000 }, "why": "Prix par personne en chambre double, vol EgyptAir Alger–Le Caire–Sharm aller-retour, 2N Le Caire + 5N Sharm All Inclusive Soft chez Tivoli, transferts inclus." },
+    { "id": "verginia",     "tier": "economique", "name": "Verginia Aqua Park",       "nameSuffix": null, "stars": 4, "ribbon": "Économique+",  "image": "../assets/images/hotels/hotel__verginia.jpg",     "alt": "Verginia Aqua Park",       "amenities": ["Aqua Park", "Plage"], "priceFrom": "193.000 DA", "priceMeta": "par pers. en double", "calcName": "Verginia Aqua Park 4★",        "selectOption": "Verginia Aqua Park 4★ — dès 193.000 DA",       "prices": { "double": 193000, "triple": 191000, "single": 220000, "child1": 115000, "child2": 153000, "baby": 25000 }, "why": "Vol EgyptAir aller-retour, 2N Le Caire + 5N Sharm chez Verginia Aqua Park 4★, All Inclusive Soft + transferts. Hôtel central Hadaba." },
+    { "id": "rehana4",      "tier": "medium",     "name": "Rehana Aqua Park",         "nameSuffix": null, "stars": 4, "ribbon": "Médium",       "image": "../assets/images/hotels/hotel__rehana-4star.jpg", "alt": "Rehana Aqua Park",         "amenities": ["Aqua Park", "Plage"], "priceFrom": "205.000 DA", "priceMeta": "par pers. en double", "calcName": "Rehana Aqua Park 4★",          "selectOption": "Rehana Aqua Park 4★ — dès 205.000 DA",         "prices": { "double": 205000, "triple": 202000, "single": 245000, "child1": 115000, "child2": 155000, "baby": 25000 }, "why": "Vol EgyptAir aller-retour, 2N Le Caire + 5N Sharm chez Rehana 4★ avec Aqua Park, All Inclusive Soft + transferts. Hôtel familial Nabq Bay." },
+    { "id": "rehana5",      "tier": "medium",     "name": "Rehana Royal Beach",       "nameSuffix": null, "stars": 5, "ribbon": "Médium 5★",    "image": "../assets/images/hotels/hotel__rehana-royal.jpg", "alt": "Rehana Royal Beach",       "amenities": ["Plage Privée", "Royal"], "priceFrom": "230.000 DA", "priceMeta": "par pers. en double", "calcName": "Rehana Royal Beach 5★",        "selectOption": "Rehana Royal Beach 5★ — dès 230.000 DA",       "prices": { "double": 230000, "triple": 227000, "single": 267000, "child1": 115000, "child2": 162000, "baby": 25000 }, "why": "Vol EgyptAir aller-retour, 2N Le Caire + 5N Sharm chez Rehana Royal Beach 5★ avec Aqua Park et plage privée, All Inclusive Soft + transferts." },
+    { "id": "charmillion",  "tier": "premium",    "name": "Charmillion Club AquaPark","nameSuffix": null, "stars": 5, "ribbon": "Premium",      "image": "../assets/images/hotels/hotel__charmillion.jpg",  "alt": "Charmillion Club AquaPark","amenities": ["Aqua Park", "Club", "5★"], "priceFrom": "268.000 DA", "priceMeta": "par pers. en double", "calcName": "Charmillion Club AquaPark 5★", "selectOption": "Charmillion Club AquaPark 5★ — dès 268.000 DA", "prices": { "double": 268000, "triple": 263000, "single": 350000, "child1": 115000, "child2": 187000, "baby": 25000 }, "why": "Vol EgyptAir aller-retour, 2N Le Caire + 5N Sharm chez Charmillion Club 5★ avec grand Aqua Park, All Inclusive Soft + transferts. Resort animation premium." },
+    { "id": "cleopatra",    "tier": "premium",    "name": "Cleopatra Luxury Resort",  "nameSuffix": null, "stars": 5, "ribbon": "Premium",      "image": "../assets/images/hotels/hotel__cleopatra.jpg",    "alt": "Cleopatra Luxury Resort",  "amenities": ["Plage Privée", "Luxury"], "priceFrom": "270.000 DA", "priceMeta": "par pers. en double", "calcName": "Cleopatra Luxury Resort 5★",   "selectOption": "Cleopatra Luxury Resort 5★ — dès 270.000 DA",   "prices": { "double": 270000, "triple": 265000, "single": 355000, "child1": 115000, "child2": 190000, "baby": 25000 }, "why": "Vol EgyptAir aller-retour, 2N Le Caire + 5N Sharm chez Cleopatra Luxury Resort 5★ thème pharaonique, All Inclusive Soft + plage privée + transferts." },
+    { "id": "pickalbatros", "tier": "luxe",       "name": "Pickalbatros 5★",          "nameSuffix": "Laguna Vista / Royal Moderna", "stars": 5, "ribbon": "Luxe", "image": "../assets/images/hotels/hotel__pickalbatros.jpg", "alt": "Pickalbatros 5★", "amenities": ["Ultra Luxe", "Sur Demande"], "priceFrom": "306.000 DA", "priceMeta": "par pers. en double", "calcName": "Pickalbatros 5★", "selectOption": "Pickalbatros 5★ — dès 306.000 DA", "prices": { "double": 306000, "triple": 303000, "single": 460000, "child1": 115000, "child2": 207000, "baby": 25000 }, "why": "Vol EgyptAir aller-retour, 2N Le Caire + 5N Sharm chez Pickalbatros 5★ luxe, All Inclusive Soft, plage privée, club enfants, transferts. Le haut de gamme du programme." }
+  ],
+
+  "calculator": {
+    "name": "Le Caire & Sharm El Sheikh · Juin 2026",
+    "dates": ["12 Juin 2026", "19 Juin 2026", "26 Juin 2026"],
+    "roomTypes": ["double", "triple", "single"],
+    "groupConfig": {
+      "adults":   { "label": "Adultes", "hint": "À partir de 12 ans", "default": 2 },
+      "children": { "label": "Enfants", "hint": "2 à 11.99 ans · avec lit", "kidType": "child_a" },
+      "babies":   { "label": "Bébés", "hint": "0 à 2 ans · sans lit · 25.000 DA", "kidType": "baby" }
+    },
+    "extras": [
+      { "label": "Nouveau Musée Égyptien (optionnel)", "amount": 0, "currency": "DA", "uiLabel": "Nouveau Musée Égyptien", "uiDetail": "Visite optionnelle · au Caire", "uiPrice": "En option" }
+    ],
+    "whyDefault": "Prix par personne en chambre double, vol international + domestique EgyptAir inclus, 5 nuits All Inclusive Soft à Sharm + 2 nuits petit-déjeuner au Caire, excursions et transferts inclus."
+  },
+
+  "infoBlocks": [
+    {
+      "icon": "card",
+      "open": true,
+      "title": "Conditions de paiement",
+      "lede": null,
+      "list": [
+        "<strong>Acompte de réservation</strong> · 30 % du montant total au moment de la confirmation, à régler dans les 48 h après accord par WhatsApp.",
+        "<strong>Solde</strong> · 70 % restants au plus tard <strong>21 jours avant le départ</strong>.",
+        "<strong>Modes acceptés</strong> · Virement bancaire (BNA, BEA, CPA), versement en agence, espèces. Pas de carte bancaire en ligne pour le moment.",
+        "<strong>Reçu</strong> · Reçu officiel Alliance Travel remis à chaque versement.",
+        "<strong>Devis valable</strong> 7 jours · Les prix peuvent évoluer selon la disponibilité aérienne et le taux de change."
+      ],
+      "note": null
+    },
+    {
+      "icon": "no-entry",
+      "open": false,
+      "title": "Conditions d'annulation",
+      "lede": "Annulation par le client (selon le délai avant départ) :",
+      "listTiered": true,
+      "list": [
+        "<strong>≥ 60 jours avant départ</strong> · Remboursement intégral moins frais de dossier (5 000 DA).",
+        "<strong>30 à 59 jours</strong> · Retenue de 30 % du montant total.",
+        "<strong>14 à 29 jours</strong> · Retenue de 60 % du montant total.",
+        "<strong>7 à 13 jours</strong> · Retenue de 80 %.",
+        "<strong>&lt; 7 jours</strong> · Pas de remboursement (frais aériens et hôteliers définitifs)."
+      ],
+      "note": "<strong>Annulation par la compagnie aérienne ou l'hôtel</strong> · Remboursement intégral ou re-routing sans frais supplémentaires de notre part.<br><strong>Modification de date</strong> possible jusqu'à 30 jours avant départ, sous réserve de disponibilité et du différentiel tarifaire."
+    },
+    {
+      "icon": "passport",
+      "open": false,
+      "title": "Formalités & visa",
+      "lede": "<strong>Visa égyptien à l'arrivée</strong>",
+      "list": [
+        "<strong>Visa</strong> · <strong>Visa on Arrival</strong> (VOA) délivré au comptoir à l'arrivée. Aucune démarche préalable.",
+        "<strong>Coût</strong> · <strong>25 USD en espèces</strong> par personne, à régler en arrivant à l'aéroport (Le Caire ou Sharm). Prévoir le montant exact en USD.",
+        "<strong>Passeport</strong> · Validité minimum <strong>6 mois après la date de retour</strong>, 2 pages vierges minimum.",
+        "<strong>Documents</strong> · Passeport + billet retour. Photo d'identité non requise. Le formulaire d'immigration est rempli dans l'avion ou à l'arrivée.",
+        "<strong>Bébés / enfants</strong> · Mêmes conditions. Les enfants doivent figurer sur leur propre passeport."
+      ],
+      "note": null
+    },
+    {
+      "icon": "shield",
+      "open": false,
+      "title": "Assurance voyage",
+      "lede": "L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> — surtout pour les voyages long-courrier.",
+      "list": [
+        "<strong>Couverture conseillée</strong> · Frais médicaux d'urgence (≥ 100 000 €), rapatriement sanitaire, perte/vol de bagages, annulation voyage.",
+        "<strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination.",
+        "<strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance).",
+        "<strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage."
+      ],
+      "note": null
+    }
+  ],
+
+  "related": [
+    { "href": "../sharm-constantine/", "flag": "Juin–Octobre 2026", "title": "Sharm El Sheikh · depuis Constantine", "priceFrom": "155.000 DA", "color": "#28B4D4" },
+    { "href": "../azerbaidjan/",       "flag": "Juin–Octobre 2026", "title": "Azerbaïdjan · Bakou & Gabala",       "priceFrom": "219.000 DA", "color": "#3AAFAF" }
+  ],
+
+  "finalCta": {
+    "scarcity": "Places limitées · Les départs de juin se remplissent vite",
+    "title": "Prêt à voir les<br><em>Pyramides</em> ?",
+    "sub": "Bloquez votre place en moins de 5 minutes. Notre équipe vous confirme la disponibilité immédiatement via WhatsApp.",
+    "waReserveText": "Bonjour Alliance Travel, je veux réserver le voyage Caire & Sharm Juin 2026.",
+    "addressLine": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville"
+  }
+}
