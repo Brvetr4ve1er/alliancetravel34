@@ -7,6 +7,34 @@
 // Guard against NaN/undefined ever reaching the UI as "NaN DA".
 const fmt = (n) => new Intl.NumberFormat('fr-DZ').format(Number.isFinite(n) ? n : 0) + ' DA';
 
+// --- Past-due departure filtering -----------------------------------------
+// Parse the END date of a French departure label into a Date. Handles
+// "13 – 20 Juin 2026", "27 Juin – 04 Juillet 2026" and single "3 Septembre 2026".
+const _FR_MONTHS = { 'janvier':0,'février':1,'fevrier':1,'mars':2,'avril':3,'mai':4,'juin':5,'juillet':6,'août':7,'aout':7,'septembre':8,'octobre':9,'novembre':10,'décembre':11,'decembre':11 };
+function parseDepartureEnd(str) {
+  if (!str) return null;
+  const s = String(str).toLowerCase();
+  const ym = s.match(/(\d{4})/);
+  const year = ym ? +ym[1] : new Date().getFullYear();
+  const parts = s.split(/[–—-]/);                 // en/em dash or hyphen range
+  const endPart = parts.length > 1 ? parts[parts.length - 1] : parts[0];
+  const startPart = parts[0];
+  const dm = endPart.match(/(\d{1,2})/);
+  const day = dm ? +dm[1] : 1;
+  const monthFrom = (txt) => { for (const k in _FR_MONTHS) if (txt.includes(k)) return _FR_MONTHS[k]; return null; };
+  let month = monthFrom(endPart);
+  if (month == null) month = monthFrom(startPart);
+  if (month == null) return null;
+  return new Date(year, month, day);
+}
+// Bookable if the departure's end date is today or later (client clock).
+function isFutureDeparture(str) {
+  const d = parseDepartureEnd(str);
+  if (!d) return true;                            // unparseable → keep, don't hide
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  return d.getTime() >= today.getTime();
+}
+
 class TripCalculator {
   constructor() {
     this.trip = window.TRIP_DATA;
@@ -39,10 +67,48 @@ class TripCalculator {
       whyDetails:   document.getElementById('breakdown-why-details'),
     };
 
+    this.pruneDates();
     this.bind();
     this.syncHotelFromPicker();
     this.render();
     this.initIntersectionObs();
+  }
+
+  /**
+   * Hide departure chips whose end date is already in the past (vs the
+   * client's clock) and re-anchor the active chip + state to the first
+   * still-bookable date. Also trims TRIP_DATA.dates so the WhatsApp summary
+   * never offers a past departure. Past dates vanish automatically as the
+   * season advances — no manual pruning per page.
+   */
+  pruneDates() {
+    const chips = [...this.el.dateChips];
+    if (chips.length) {
+      let firstVisible = null;
+      chips.forEach(chip => {
+        if (!isFutureDeparture(chip.dataset.date)) {
+          chip.style.display = 'none';
+          chip.classList.remove('active');
+          chip.setAttribute('aria-checked', 'false');
+          chip.setAttribute('tabindex', '-1');
+        } else if (!firstVisible) {
+          firstVisible = chip;
+        }
+      });
+      if (firstVisible) {
+        chips.forEach(c => {
+          const on = c === firstVisible;
+          c.classList.toggle('active', on);
+          c.setAttribute('aria-checked', on ? 'true' : 'false');
+          c.setAttribute('tabindex', on ? '0' : '-1');
+        });
+        this.state.date = firstVisible.dataset.date;
+      }
+    }
+    if (Array.isArray(this.trip.dates)) {
+      const future = this.trip.dates.filter(isFutureDeparture);
+      if (future.length) { this.trip.dates = future; this.state.date = this.state.date ?? future[0]; }
+    }
   }
 
   bind() {
