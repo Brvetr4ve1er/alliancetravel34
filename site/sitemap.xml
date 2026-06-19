@@ -35,7 +35,7 @@
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-home.jpg</image:loc>
       <image:title>Tous nos voyages 2026 — Alliance Travel</image:title>
-      <image:caption>5 destinations guidées 2026 depuis Bordj Bou Arreridj</image:caption>
+      <image:caption>8 destinations guidées 2026 depuis Bordj Bou Arreridj</image:caption>
     </image:image>
   </url>
 
@@ -99,8 +99,47 @@
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-kuala-lumpur.jpg</image:loc>
-      <image:title>Kuala Lumpur — Malaisie · 8 jours Grand Mercure 5★</image:title>
-      <image:caption>Tours Petronas, Batu Caves, Genting Highlands, vol direct depuis Alger, à partir de 211.000 DA</image:caption>
+      <image:title>Kuala Lumpur &amp; Langkawi · 10 jours · hôtels 5★</image:title>
+      <image:caption>Petronas, Batu Caves, Genting puis les plages de Langkawi, à partir de 370.000 DA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Tunisie (Hammamet, Sousse, Djerba — bus) -->
+  <url>
+    <loc>https://alliance-travel.dz/tunisie/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Tunisie — Hammamet, Sousse &amp; Djerba · 6 nuits demi-pension</image:title>
+      <image:caption>Voyage en bus sans visa, 9 hôtels balnéaires au choix, à partir de 36.000 DA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Bali (Indonésie) -->
+  <url>
+    <loc>https://alliance-travel.dz/bali/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Bali — Kuta, Ubud &amp; Nusa Dua · 9 nuits 5★</image:title>
+      <image:caption>Rizières, temples et plages, combiné Kuala Lumpur en option, à partir de 419.000 DA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Vietnam (circuit) -->
+  <url>
+    <loc>https://alliance-travel.dz/vietnam/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Vietnam — Ho Chi Minh, Phu Quoc, Hanoï &amp; baie d'Ha Long · 12 jours</image:title>
+      <image:caption>Circuit 4 étapes avec croisière en baie d'Ha Long, à partir de 439.000 DA</image:caption>
     </image:image>
   </url>
   <url>

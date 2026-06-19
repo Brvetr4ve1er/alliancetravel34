@@ -77,7 +77,13 @@ const DESTINATIONS = [
   { id: 'tunisie',  loc: [36.4000,  10.6167], size: 0.07,            polaroidId: 'tunisie', label: 'Hammamet' },
   { id: 'djerba',   loc: [33.8076,  10.8451], size: 0.06,                                   label: 'Djerba' },
   // Hurghada — Red Sea leg of the Caire & Hurghada combo.
-  { id: 'hurghada', loc: [27.2579,  33.8116], size: 0.065,                                  label: 'Hurghada' }
+  { id: 'hurghada', loc: [27.2579,  33.8116], size: 0.065,                                  label: 'Hurghada' },
+  // Vietnam circuit (Qatar Airways) — Ho Chi Minh headline + Phu Quoc beach + Hanoï.
+  { id: 'hochiminh', loc: [10.8231, 106.6297], size: 0.065,                                 label: 'Ho Chi Minh' },
+  { id: 'phuquoc',   loc: [10.2899, 103.9840], size: 0.06,                                  label: 'Phu Quoc' },
+  { id: 'hanoi',     loc: [21.0278, 105.8342], size: 0.06,                                  label: 'Hanoï' },
+  // Bali (Indonésie) — promoted from aspirational dot to a real destination.
+  { id: 'bali',      loc: [-8.6500, 115.1700], size: 0.07,                                  label: 'Bali' }
 ];
 
 /* SECONDARY destinations — top global tourist hotspots that decorate the
@@ -92,7 +98,6 @@ const ASPIRATIONAL = [
   { name: 'Dubai',          loc: [ 25.20,   55.27] },
   { name: 'Tokyo',          loc: [ 35.68,  139.65] },
   { name: 'Bangkok',        loc: [ 13.76,  100.50] },
-  { name: 'Bali',           loc: [ -8.65,  115.22] },
   { name: 'Cape Town',      loc: [-33.92,   18.42] },
   { name: 'New York',       loc: [ 40.71,  -74.01] },
   { name: 'Sydney',         loc: [-33.87,  151.21] }
