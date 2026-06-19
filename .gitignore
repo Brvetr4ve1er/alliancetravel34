@@ -30,6 +30,9 @@ venv/
 *.tmp
 *.log
 
+# Image-pipeline scratch (Pexels candidates, contact-sheet montages)
+_imgtmp/
+
 # Local-only
 .claude/launch.json
 
