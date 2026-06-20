@@ -105,6 +105,14 @@
     var date = section.dataset.date || '';
     var prompt = section.dataset.prompt || 'Faites défiler';
     var skipText = section.dataset.skip || 'Passer';
+    // Optional i18n keys. When the section provides them, the generated pinned
+    // eyebrow / title-pre / title-post / date spans carry data-i18n, so the
+    // shared i18n engine (loaded AFTER this script) translates the visible hero
+    // overlay on load and re-translates it on every language switch.
+    var eyebrowKey   = section.dataset.eyebrowKey   || '';
+    var titlePreKey  = section.dataset.titlePreKey  || '';
+    var titlePostKey = section.dataset.titlePostKey || '';
+    var dateKey      = section.dataset.dateKey      || '';
 
     // (URL resolution handled inside buildPictureLayer below; passed-in
     // relative paths from data-bg/data-fg get resolved against document.baseURI
@@ -168,7 +176,7 @@
         '<circle cx="12" cy="10" r="3"/>' +
         '<path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>' +
         '</svg>' +
-        '<span>' + escapeHtml(eyebrow) + '</span>';
+        '<span' + (eyebrowKey ? ' data-i18n="' + eyebrowKey + '"' : '') + '>' + escapeHtml(eyebrow) + '</span>';
       pinned.appendChild(eyebrowEl);
     }
 
@@ -181,15 +189,15 @@
     titleEl.className = 'scroll-hero__title';
     titleEl.setAttribute('aria-hidden', 'true');
     titleEl.innerHTML =
-      '<span class="scroll-hero__title-pre">' + escapeHtml(pre) + '</span>' +
-      (post ? '<span class="scroll-hero__title-post">' + escapeHtml(post) + '</span>' : '');
+      '<span class="scroll-hero__title-pre"' + (titlePreKey ? ' data-i18n="' + titlePreKey + '"' : '') + '>' + escapeHtml(pre) + '</span>' +
+      (post ? '<span class="scroll-hero__title-post"' + (titlePostKey ? ' data-i18n="' + titlePostKey + '"' : '') + '>' + escapeHtml(post) + '</span>' : '');
     pinned.appendChild(titleEl);
 
     var captionEl = document.createElement('div');
     captionEl.className = 'scroll-hero__caption';
     captionEl.setAttribute('aria-hidden', 'true');
     captionEl.innerHTML =
-      (date ? '<span class="scroll-hero__date">' + escapeHtml(date) + '</span>' : '') +
+      (date ? '<span class="scroll-hero__date"' + (dateKey ? ' data-i18n="' + dateKey + '"' : '') + '>' + escapeHtml(date) + '</span>' : '') +
       '<span class="scroll-hero__prompt">' + escapeHtml(prompt) + '</span>';
     pinned.appendChild(captionEl);
 
