@@ -201,6 +201,11 @@ class TripCalculator {
     this.el.whatsappBtn?.addEventListener('click', () => this.openWhatsApp());
     this.el.stickyBtn?.addEventListener('click', () => this.openWhatsApp());
 
+    // Re-render when the language switches so dynamic strings (esp. the
+    // "Pourquoi ce prix" details) re-localize immediately instead of staying
+    // in the language they were last drawn in.
+    document.addEventListener('langchange', () => this.render());
+
     // Listen for hotel selection from the picker cards
     document.addEventListener('hotelSelected', e => {
       this.state.hotelId = e.detail.id;
@@ -334,9 +339,23 @@ class TripCalculator {
     // Sticky
     if (this.el.stickyTotal) this.el.stickyTotal.textContent = fmt(totalDA);
 
-    // Why
+    // Why — localized. hotel.why may be a French string (legacy) or { fr, en, ar }.
+    // When only a French string exists but the UI is EN/AR, fall back to the page's
+    // generic localized line (window.AL_PAGE_I18N[lang].calcWhyGeneric) so non-French
+    // users no longer see French here. Re-runs on 'langchange' (see bind()).
     if (this.el.whyDetails) {
-      this.el.whyDetails.textContent = hotel.why ?? `Prix par personne en chambre ${this.roomLabel(this.state.room)}, vol inclus, transferts inclus, selon la grille tarifaire de ${hotel.name}.`;
+      const lang = document.documentElement.getAttribute('lang') || 'fr';
+      const w = hotel.why;
+      let why;
+      if (w && typeof w === 'object') {
+        why = w[lang] || w.fr || '';
+      } else if (lang === 'fr') {
+        why = w || '';
+      } else {
+        const page = window.AL_PAGE_I18N && window.AL_PAGE_I18N[lang];
+        why = (page && page.calcWhyGeneric) || w || '';
+      }
+      this.el.whyDetails.textContent = why || `Prix par personne en chambre ${this.roomLabel(this.state.room)}, vol inclus, transferts inclus, selon la grille tarifaire de ${hotel.name}.`;
     }
 
     // Surface child/baby prices next to each kid stepper. Reads the selected
