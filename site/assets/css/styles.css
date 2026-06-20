@@ -1217,7 +1217,16 @@ select {
   display: flex;
   flex-direction: column;
   gap: var(--s2);
+  min-width: 0;
 }
+
+/* Responsive: the hotel/formule <select>'s longest <option> was forcing the
+   calc grid's column to its ~700px min-content, clipping the calculator on
+   phones. Let the grid items + form controls shrink below intrinsic width. */
+.calc-grid > * { min-width: 0; }
+.calc-form select,
+.calc-form input,
+.calc-form textarea { min-width: 0; max-width: 100%; }
 
 .calc-form-label {
   /* v22 Agent 3 — same uplift as .bform-field label: --txt-3 → --txt-2,
@@ -1474,12 +1483,23 @@ select {
   font-size: .875rem;
   color: var(--txt-2);
   animation: lineIn var(--t) both;
+  min-width: 0;
 }
 
 .breakdown__line span {
   text-align: right;
-  white-space: nowrap;
   font-variant-numeric: tabular-nums;
+}
+/* The label (1st span) must wrap; only the amount (last span) stays on one
+   line — otherwise a long package label nowraps past the panel on phones. */
+.breakdown__line span:first-child {
+  text-align: left;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.breakdown__line span:last-child {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .breakdown__divider {
@@ -1575,11 +1595,17 @@ select {
   border: none;
   text-align: center;
   white-space: nowrap;
+  max-width: 100%;
 }
 .btn:active { transform: scale(.97); }
 .btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+/* On phones, let a long-label button wrap instead of overflowing the viewport
+   (e.g. "Une question ? Contactez-nous sur WhatsApp"). Desktop stays nowrap. */
+@media (max-width: 600px) {
+  .btn { white-space: normal; }
 }
 
 /* Primary — mint fill, navy text, mint glow on hover, radial halo on hover */
@@ -2333,6 +2359,14 @@ select {
   gap: var(--s9);
   align-items: start;
 }
+/* Responsive: let the booking grid items + fields shrink so the form doesn't
+   exceed the viewport on phones (long select options / inputs). */
+.bform-grid > *,
+.bform-left,
+.bform-block { min-width: 0; }
+.bform-grid input,
+.bform-grid select,
+.bform-grid textarea { min-width: 0; max-width: 100%; }
 
 /* ── Form blocks ──────────────────────────────────────────── */
 .bform-left {
@@ -2722,6 +2756,7 @@ select {
    in case future booking redesign reuses it. */
 .bform-preview__actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--s2);
 }
 
@@ -8445,6 +8480,15 @@ section.section.phase-block + section.section:not(.phase-block) {
   border: 1px solid var(--border-hi, rgba(255, 255, 255, .16));
   border-radius: var(--r3, 14px);
 }
+/* Responsive fix: the trip <select>'s longest <option> was forcing the contact
+   grid's 1fr column to its ~442px min-content, clipping the form on narrow
+   phones. Let the grid items + form controls shrink below their intrinsic min. */
+.contact-section > * { min-width: 0; }
+.contact-form,
+.contact-form__field { min-width: 0; }
+.contact-form input,
+.contact-form select,
+.contact-form textarea { min-width: 0; max-width: 100%; }
 .contact-form__field {
   display: flex;
   flex-direction: column;
