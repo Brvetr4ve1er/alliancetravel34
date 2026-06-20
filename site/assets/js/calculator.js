@@ -436,6 +436,18 @@ function initHotelPicker() {
         card.style.display = (tier === 'all' || card.dataset.tier === tier) ? '' : 'none';
       });
       checkEmpty();
+      // If this tier is a single "formule"/package (all its cards share one
+      // hotel id), selecting the tab also reprices the calculator to that
+      // package — so circuit/combo formula tabs drive the price. Multi-hotel
+      // category tabs (e.g. Tunisia cities) have many ids → choice stays the user's.
+      if (tier && tier !== 'all') {
+        const ids = [...new Set([...cards].filter(c => c.dataset.tier === tier).map(c => c.dataset.hotelId))];
+        const sel = document.getElementById('hotel-select');
+        if (ids.length === 1 && sel && sel.value !== ids[0]) {
+          sel.value = ids[0];
+          sel.dispatchEvent(new Event('change'));
+        }
+      }
     });
   });
 

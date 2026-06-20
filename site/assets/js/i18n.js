@@ -1055,7 +1055,11 @@
      For French the live baseline wins, so visible on-page copy is preserved. */
   function resolve(key, lang, base) {
     if (lang === DEFAULT_LANG) return base[key] ?? lookup(key, T[DEFAULT_LANG]);
-    return lookup(key, T[lang]) ?? base[key] ?? lookup(key, T[DEFAULT_LANG]);
+    // Page-local translations (inline `window.AL_PAGE_I18N = { en:{…}, ar:{…} }`)
+    // take precedence over the shared dict. This lets each trip page ship its
+    // own EN/AR strings without bloating — or colliding on — the global T.
+    const page = (typeof window !== 'undefined' && window.AL_PAGE_I18N && window.AL_PAGE_I18N[lang]) || null;
+    return (page && lookup(key, page)) ?? lookup(key, T[lang]) ?? base[key] ?? lookup(key, T[DEFAULT_LANG]);
   }
 
   function translate(lang) {
