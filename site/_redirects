@@ -7,11 +7,21 @@
 # 404 = explicit 404 page
 # 200 = rewrite (URL stays, content swaps — used for SPA-style routing)
 
+# ── Égypte hub consolidation ────────────────────────────────────────
+# /egypte/ is now the single Égypte hub (5 programmes). The old
+# cairo-sharm and sharm-constantine trip pages are folded into it.
+# These MUST come before the trailing-slash normalization block below
+# (CF Pages uses the first matching rule). The old page files are kept
+# on disk; these redirects send their URLs to the hub.
+/cairo-sharm/       /egypte/             301
+/cairo-sharm        /egypte/             301
+/sharm-constantine/ /egypte/             301
+/sharm-constantine  /egypte/             301
+
 # ── Trailing-slash normalization ────────────────────────────────────
-# CF Pages serves /cairo-sharm/ and /cairo-sharm both. Force trailing
+# CF Pages serves /istanbul/ and /istanbul both. Force trailing
 # slash for the trip-page slugs so canonical URLs stay consistent.
-/cairo-sharm       /cairo-sharm/        301
-/sharm-constantine /sharm-constantine/  301
+/egypte            /egypte/             301
 /istanbul          /istanbul/           301
 /azerbaidjan       /azerbaidjan/        301
 /kuala-lumpur      /kuala-lumpur/       301
@@ -23,9 +33,8 @@
 /kl/               /kuala-lumpur/       301
 /kualalumpur/      /kuala-lumpur/       301
 /malaisie/         /kuala-lumpur/       301
-/egypt/            /cairo-sharm/        301
-/egypte/           /cairo-sharm/        301
-/sharm/            /sharm-constantine/  301
+/egypt/            /egypte/             301
+/sharm/            /egypte/             301
 /turquie/          /istanbul/           301
 /turkey/           /istanbul/           301
 
