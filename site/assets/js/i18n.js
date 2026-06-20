@@ -24,7 +24,10 @@
   const STORAGE_KEY  = 'al-lang';
   const DEFAULT_LANG = 'fr';
   const SUPPORTED    = ['fr', 'en', 'ar'];
-  const AR_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap';
+  // Arabic webfont: only 400 & 700 are used in the design system; trimming
+  // from 5+4 weights shrinks the payload (~300-500KB) on metered Android.
+  // &display=swap lets text paint immediately with a fallback (no FOIT).
+  const AR_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap';
 
   /* ════════════════════════════════════════════════════════════════
      TRANSLATIONS
@@ -961,6 +964,12 @@
   }
 
   function ensureArabicFont() {
+    // Hard gate: never fetch the Arabic webfont unless Arabic is the active
+    // OR the stored language. Callers already guard with `lang === 'ar'`, but
+    // this guarantees FR/EN visitors never pay for the render-blocking font.
+    let stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (_) { /* private mode */ }
+    if (document.documentElement.lang !== 'ar' && stored !== 'ar') return;
     if (document.querySelector('link[data-arabic-font]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';

@@ -448,6 +448,31 @@
       nav.appendChild(drawer);
     }
 
+    /* ── 2b. In-drawer close (X) button ──
+       The hamburger lives in the top corner and is the ONLY affordance to
+       close the drawer. Add an explicit, keyboard-focusable X inside the
+       drawer at its top-inline-end, reusing the same icon-close markup, and
+       wire it to the shared setOpen(false) below. Sized to --touch-min. */
+    let closeBtn = drawer.querySelector('.nav-drawer__close');
+    if (!closeBtn) {
+      closeBtn = document.createElement('button');
+      closeBtn.className = 'nav-drawer__close';
+      closeBtn.type = 'button';
+      closeBtn.setAttribute('aria-label', 'Fermer le menu');
+      closeBtn.style.width = 'var(--touch-min)';
+      closeBtn.style.height = 'var(--touch-min)';
+      closeBtn.innerHTML = `
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6"  x2="6"  y2="18"/>
+          <line x1="6"  y1="6"  x2="18" y2="18"/>
+        </svg>`;
+      // Prepend so it sits at the drawer's top-inline-end ahead of the
+      // moved controls (CSS can position:absolute it; first child keeps it
+      // first in the focus order too).
+      drawer.insertBefore(closeBtn, drawer.firstChild);
+    }
+
     /* ── 3. Backdrop overlay ── */
     let backdrop = document.querySelector('.nav-backdrop');
     if (!backdrop) {
@@ -478,6 +503,7 @@
     /* ── 5. Wire events ── */
     btn.addEventListener('click', () => setOpen(!nav.classList.contains('nav-open')));
     backdrop.addEventListener('click', () => setOpen(false));
+    closeBtn.addEventListener('click', () => setOpen(false));
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && nav.classList.contains('nav-open')) {

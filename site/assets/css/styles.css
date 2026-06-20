@@ -3,7 +3,8 @@
    Dark editorial · Warm bronze · Destination accents
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+/* v26 mobile-ux: render-blocking @import removed (an @import blocks the whole
+   stylesheet). DM Sans still loads via the <link> in each page <head>. */
 
 /* ── Reset ─────────────────────────────────────────────── */
 *,
@@ -92,7 +93,8 @@ button {
   /* ── FLUID TYPOGRAPHY SCALE ── */
   --fs-caption:    clamp(0.75rem,    0.70rem  + 0.20vw, 0.8125rem);
   --fs-body-sm:    clamp(0.8125rem,  0.78rem  + 0.15vw, 0.875rem);
-  --fs-body:       clamp(0.9375rem,  0.90rem  + 0.20vw, 1rem);
+  /* v26 mobile-ux: floor raised 0.9375rem→1rem so body copy never drops below 16px on phones */
+  --fs-body:       clamp(1rem,       0.90rem  + 0.20vw, 1rem);
   --fs-body-lg:    clamp(1rem,       0.95rem  + 0.30vw, 1.125rem);
   --fs-h6:         clamp(1rem,       0.95rem  + 0.30vw, 1.125rem);
   --fs-h5:         clamp(1.125rem,   1.05rem  + 0.40vw, 1.25rem);
@@ -2227,6 +2229,13 @@ select {
     grid-template-columns: 1fr;
     padding: calc(var(--nav-h) + var(--space-5)) var(--container-x) var(--space-7);
     gap: var(--space-4);
+  }
+
+  /* v26 mobile-ux: homepage hero keeps a fixed ~140px/128px inline padding at
+     all widths (set inline in index.html). Override here so the headline sits
+     higher on phones, mirroring .hero__inner above. !important beats the inline. */
+  .home-hero__inner {
+    padding: calc(var(--nav-h) + var(--space-5)) var(--container-x) var(--section-y) !important;
   }
 
   .hero__visual { display: none; }
@@ -7364,6 +7373,17 @@ body.has-sticky-bar .site-nav {
   border-color: var(--accent);
   font-weight: 600;
 }
+/* v26 mobile-ux: at ≤640px the FR date labels wrap to 2–3 rows; raise the
+   inter-chip gap (--s2→--space-3) and horizontal padding (14px→--space-3) so
+   wrapped 44px chips separate clearly. */
+@media (max-width: 640px) {
+  .date-chips {
+    gap: var(--space-3);
+  }
+  .date-chip {
+    padding: 8px var(--space-3);
+  }
+}
 
 /* ── 12. Segmented control — proper visual ────────────────── */
 .segmented {
@@ -7392,6 +7412,20 @@ body.has-sticky-bar .site-nav {
   background: var(--accent);
   color: var(--bg);
   font-weight: 600;
+}
+/* v26 mobile-ux: the inline-flex duplicate above floats the room-type control
+   left at content width. At ≤640px force three equal full-width thirds so it
+   aligns with the chips/select. Coarse-pointer min-height (44px, :126) kept. */
+@media (max-width: 640px) {
+  .segmented {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+  .seg-opt {
+    flex: 1;
+    min-width: 0;
+  }
 }
 
 /* ── 13. Footer — phone group with icons ──────────────────── */
@@ -7938,7 +7972,9 @@ section.section.phase-block + section.section:not(.phase-block) {
   padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 32px);
   max-width: 1180px;
   text-align: center;
-  opacity: calc(max(0, var(--p) - 0.7) / 0.3);
+  /* v26 mobile-ux: reveal the offer sooner — threshold 0.7→0.55; divisor matched
+     to the remaining 0.45 runway so it still reaches opacity 1 at --p=1. */
+  opacity: calc(max(0, var(--p) - 0.55) / 0.45);
   will-change: opacity;
 }
 .scroll-hero__continuation h1 {
@@ -7991,15 +8027,19 @@ section.section.phase-block + section.section:not(.phase-block) {
 .scroll-hero.is-released .scroll-hero__eyebrow,
 .scroll-hero.is-released .scroll-hero__skip { display: revert; }
 .scroll-hero.is-released .scroll-hero__continuation {
-  opacity: calc(max(0, var(--p) - 0.7) / 0.3);
+  /* v26 mobile-ux: reveal sooner — mirrors the base rule (threshold 0.7→0.55,
+     divisor matched to the 0.45 runway so opacity still reaches 1 at --p=1). */
+  opacity: calc(max(0, var(--p) - 0.55) / 0.45);
   pointer-events: auto;
 }
 
 /* ── Mobile tuning ───────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* v26 mobile-ux: shorten the mobile scrub runway 150vh→115vh so the offer
+     arrives ~⅓ of a screen sooner. */
   .scroll-hero__scrub {
-    height: 150vh;
-    height: 150dvh;
+    height: 115vh;
+    height: 115dvh;
   }
   .scroll-hero__media {
     width: clamp(240px, 86vw, 600px);
@@ -8018,8 +8058,12 @@ section.section.phase-block + section.section:not(.phase-block) {
   }
   .scroll-hero__caption { bottom: 24px; }
   .scroll-hero__skip {
-    right: 12px; bottom: 12px;
-    padding: 5px 10px;
+    right: var(--space-3); bottom: var(--space-3);
+    /* v26 mobile-ux: real 44px tap target — was ~27px tall (5px/10px padding). */
+    min-height: var(--touch-min);
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
     font-size: .6875rem;
   }
   .scroll-hero__eyebrow {
@@ -9073,13 +9117,16 @@ picture.scroll-hero__media {
 
 /* ── Mobile tuning ──────────────────────────────────────── */
 @media (max-width: 640px) {
+  /* v26 mobile-ux: lighten stacked cards — border 3px→2px, hard-shadow offset
+     8px→4px so 6 full-width cards read shorter/lighter. The mint
+     .hotel-card.selected ring is defined elsewhere and is left intact. */
   .hotel-card {
-    border-width: 2.5px;
-    box-shadow: 6px 6px 0 var(--hc-shadow);
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--hc-shadow);
   }
   .hotel-card:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 9px 9px 0 var(--hc-shadow);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--hc-shadow);
   }
 
   /* v22 Agent 3 — when cards stack in 1-col, the 16/10 photo gets too
@@ -10017,6 +10064,10 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Logo letter-spacing tweak for Arabic */
 [dir="rtl"] .nav-logo,
 [lang="ar"] .nav-logo { letter-spacing: 0; }
+/* v26 mobile-ux: blanket letter-spacing reset for Arabic — Latin-tuned tracking
+   (.04em–.18em on display/eyebrow/.btn/badges) breaks joined cursive script. */
+:root[lang="ar"] *,
+[dir="rtl"] * { letter-spacing: 0 !important; }
 [dir="rtl"] .nav-links { padding-inline-start: 0; }
 /* WhatsApp FAB anchors right by default — flip to left for RTL */
 [dir="rtl"] .fab-whatsapp { left: var(--s5); right: auto; }

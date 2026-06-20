@@ -338,6 +338,11 @@ class TripCalculator {
 
     // Sticky
     if (this.el.stickyTotal) this.el.stickyTotal.textContent = fmt(totalDA);
+    // Sticky CTA — value-bearing, localized label ("Réserver · {total}").
+    if (this.el.stickyBtn) {
+      const reserveLabel = this._labels().reserve;
+      this.el.stickyBtn.textContent = reserveLabel + ' · ' + fmt(totalDA);
+    }
 
     // Why — localized. hotel.why may be a French string (legacy) or { fr, en, ar }.
     // When only a French string exists but the UI is EN/AR, fall back to the page's
@@ -383,6 +388,67 @@ class TripCalculator {
     return { double: 'Double', triple: 'Triple', single: 'Individuelle' }[r] ?? r;
   }
 
+  // Active UI language ('fr' | 'en' | 'ar'), read off <html lang>. Falls back to 'fr'.
+  _lang() {
+    const l = document.documentElement.getAttribute('lang') || 'fr';
+    return (l === 'en' || l === 'ar') ? l : 'fr';
+  }
+
+  // Lang-aware room label for the WhatsApp message (and reusable on-page).
+  // Keeps roomLabel() (French) untouched so existing behaviour is preserved.
+  roomLabelL(r, lang) {
+    lang = lang || this._lang();
+    const map = {
+      fr: { double: 'Double', triple: 'Triple', single: 'Individuelle' },
+      en: { double: 'Double', triple: 'Triple', single: 'Single' },
+      ar: { double: 'مزدوجة', triple: 'ثلاثية', single: 'فردية' },
+    };
+    return (map[lang] || map.fr)[r] ?? r;
+  }
+
+  // Single source of truth for all per-language UI strings used by both the
+  // WhatsApp message (openWhatsApp) and the sticky CTA label (render).
+  // {name} is interpolated with the trip name; numbers stay Western digits.
+  _labels(lang) {
+    lang = lang || this._lang();
+    const sets = {
+      fr: {
+        greeting: (name) => `Bonjour Alliance Travel! Je voudrais réserver le voyage ${name}.`,
+        hotel:    'Hôtel choisi',
+        date:     'Date de départ',
+        room:     'Chambre',
+        adults:   (n) => `${n} adulte${n > 1 ? 's' : ''}`,
+        kids:     'Enfants/Bébés',
+        total:    'Total estimé',
+        thanks:   'Merci!',
+        reserve:  'Réserver',
+      },
+      en: {
+        greeting: (name) => `Hello Alliance Travel! I'd like to book the trip ${name}.`,
+        hotel:    'Chosen hotel',
+        date:     'Departure date',
+        room:     'Room',
+        adults:   (n) => `${n} adult${n > 1 ? 's' : ''}`,
+        kids:     'Children/Babies',
+        total:    'Estimated total',
+        thanks:   'Thank you!',
+        reserve:  'Book',
+      },
+      ar: {
+        greeting: (name) => `مرحباً Alliance Travel! أودّ حجز رحلة ${name}.`,
+        hotel:    'الفندق المختار',
+        date:     'تاريخ المغادرة',
+        room:     'الغرفة',
+        adults:   (n) => `${n} بالغ`,
+        kids:     'أطفال/رضّع',
+        total:    'الإجمالي التقديري',
+        thanks:   'شكراً!',
+        reserve:  'احجز',
+      },
+    };
+    return sets[lang] || sets.fr;
+  }
+
   /**
    * Inject the actual child / baby price for the currently selected hotel
    * into each kid stepper's info paragraph. The base markup uses generic
@@ -412,14 +478,17 @@ class TripCalculator {
     const result = this.calculate();
     const hotel  = result?.hotel;
     const total  = result ? fmt(result.totalDA) : '—';
+    const lang   = this._lang();
+    const L      = this._labels(lang);
+    // trip.name, hotel.name and the fmt() total keep Western digits as-is.
     const msg = [
-      `Bonjour Alliance Travel! Je voudrais réserver le voyage ${this.trip.name}.`,
-      hotel    ? `Hôtel choisi : ${hotel.name}` : '',
-      this.state.date ? `Date de départ : ${this.state.date}` : '',
-      `Chambre : ${this.roomLabel(this.state.room)} — ${this.state.adults} adulte(s)`,
-      this.state.kids.length ? `Enfants/Bébés : ${this.state.kids.length}` : '',
-      `Total estimé : ${total}`,
-      `Merci!`,
+      L.greeting(this.trip.name),
+      hotel    ? `${L.hotel} : ${hotel.name}` : '',
+      this.state.date ? `${L.date} : ${this.state.date}` : '',
+      `${L.room} : ${this.roomLabelL(this.state.room, lang)} — ${L.adults(this.state.adults)}`,
+      this.state.kids.length ? `${L.kids} : ${this.state.kids.length}` : '',
+      `${L.total} : ${total}`,
+      L.thanks,
     ].filter(Boolean).join('\n');
 
     const num = '213561616266';
