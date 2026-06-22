@@ -269,11 +269,13 @@
 
   /* ─── Trip quick-switcher in nav ──────────────────────────── */
   const ALL_TRIPS = [
-    { slug: 'cairo-sharm',       name: 'Le Caire & Sharm El Sheikh',  price: '190.000 DA', color: '#C9872E', sub: 'Égypte · Juin 2026' },
-    { slug: 'azerbaidjan',       name: 'Azerbaïdjan · Bakou & Gabala', price: '227.000 DA', color: '#3AAFAF', sub: 'Juin–Octobre 2026' },
-    { slug: 'istanbul',          name: 'Istanbul',                     price: '123.000 DA', color: '#5B9EC9', sub: 'Septembre–Novembre 2026' },
-    { slug: 'kuala-lumpur',      name: 'Kuala Lumpur · Malaisie',     price: '211.000 DA', color: '#4CAF82', sub: 'Septembre–Novembre 2026' },
-    { slug: 'sharm-constantine', name: 'Sharm El Sheikh · Constantine', price: '155.000 DA', color: '#28B4D4', sub: 'Juin–Octobre 2026' },
+    { slug: 'egypte',       name: 'Égypte · Le Caire, Sharm & Hurghada', price: '169.000 DA', color: '#C9872E', sub: 'Égypte · 5 programmes 2026' },
+    { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '249.900 DA', color: '#3AAFAF', sub: 'Juillet–Septembre 2026' },
+    { slug: 'istanbul',     name: 'Istanbul',                            price: '129.000 DA', color: '#5B9EC9', sub: 'Septembre–Novembre 2026' },
+    { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '370.000 DA', color: '#4CAF82', sub: 'Malaisie · Été 2026' },
+    { slug: 'tunisie',      name: 'Tunisie · Hammamet, Sousse & Djerba', price: '36.000 DA',  color: '#19B5B0', sub: 'Été 2026' },
+    { slug: 'bali',         name: 'Bali · Indonésie',                    price: '419.000 DA', color: '#D98E48', sub: 'Août–Septembre 2026' },
+    { slug: 'vietnam',      name: 'Vietnam · Circuit',                   price: '439.000 DA', color: '#15A88E', sub: 'Août–Septembre 2026' },
   ];
 
   function initTripSwitcher() {
