@@ -281,19 +281,30 @@ class BookingForm {
     const el = this.el.tripSummary;
     if (!el) return;
 
+    // _lang() always resolves to 'fr' | 'en' | 'ar', so this lookup never misses.
+    const SUM = {
+      fr: { empty: 'Configurez votre voyage dans la section <strong>Tarifs</strong> ci-dessus pour voir votre sélection ici.',
+            destination: 'Destination', hotel: 'Hôtel', date: 'Date', room: 'Chambre', adults: 'Adultes', kids: 'Enfants/Bébés', total: 'Total estimé' },
+      en: { empty: 'Configure your trip in the <strong>Pricing</strong> section above to see your selection here.',
+            destination: 'Destination', hotel: 'Hotel', date: 'Date', room: 'Room', adults: 'Adults', kids: 'Children/Babies', total: 'Estimated total' },
+      ar: { empty: 'اضبط رحلتك في قسم <strong>الأسعار</strong> أعلاه لرؤية اختيارك هنا.',
+            destination: 'الوجهة', hotel: 'الفندق', date: 'التاريخ', room: 'الغرفة', adults: 'البالغون', kids: 'أطفال/رضّع', total: 'الإجمالي التقديري' },
+    };
+    const T = SUM[this._lang()];
+
     if (!s || !s.hotel) {
-      el.innerHTML = `<p class="bf-trip-empty">Configurez votre voyage dans la section <strong>Tarifs</strong> ci-dessus pour voir votre sélection ici.</p>`;
+      el.innerHTML = `<p class="bf-trip-empty">${T.empty}</p>`;
       return;
     }
 
     const chips = [
-      { label: 'Destination', val: s.tripName },
-      { label: 'Hôtel',       val: s.hotel },
-      { label: 'Date',        val: s.date || '—' },
-      { label: 'Chambre',     val: s.room },
-      { label: 'Adultes',     val: s.adults },
-      s.kids?.length ? { label: 'Enfants/Bébés', val: s.kids.length } : null,
-      s.totalDA ? { label: 'Total estimé', val: fmt(s.totalDA), highlight: true } : null,
+      { label: T.destination, val: s.tripName },
+      { label: T.hotel,       val: s.hotel },
+      { label: T.date,        val: s.date || '—' },
+      { label: T.room,        val: s.room },
+      { label: T.adults,      val: s.adults },
+      s.kids?.length ? { label: T.kids, val: s.kids.length } : null,
+      s.totalDA ? { label: T.total, val: fmt(s.totalDA), highlight: true } : null,
     ].filter(Boolean);
 
     el.innerHTML = `<div class="bf-trip-chips">
@@ -427,6 +438,100 @@ class BookingForm {
     });
   }
 
+  /* ── i18n ─────────────────────────────────────────────────────
+     Active UI language ('fr' | 'en' | 'ar'), read off <html lang>.
+     Falls back to 'fr'. Mirrors calculator.js _lang()/_labels(). */
+  _lang() {
+    const l = document.documentElement.getAttribute('lang') || 'fr';
+    return (l === 'en' || l === 'ar') ? l : 'fr';
+  }
+
+  // Single source of truth for the per-language strings used by the WhatsApp
+  // (and email) message body. Names, numbers, prices and uploaded values stay
+  // as-is (Western digits). Wording/style mirror calculator.js _labels() and
+  // the booking empty-state FR/EN/AR strings in _liveUpdate().
+  _labels(lang) {
+    lang = lang || this._lang();
+    const sets = {
+      fr: {
+        title:      '🌍 *Demande de réservation — Alliance Travel*',
+        tripHead:   '📋 *VOYAGE SÉLECTIONNÉ*',
+        destination:'Destination',
+        hotel:      'Hôtel',
+        date:       'Date de départ',
+        room:       'Chambre',
+        adults:     'Adultes',
+        kids:       'Enfants/Bébés',
+        price:      'Prix estimé',
+        localTax:   (usd) => `Taxe locale : ${usd} USD (sur place)`,
+        ownerHead:  '👤 *RESPONSABLE DU DOSSIER*',
+        nameField:  'Nom',
+        nameEmpty:  '• Nom : (non renseigné)',
+        phone:      'Téléphone WA',
+        city:       'Wilaya/Ville',
+        passHead:   '📄 *INFORMATIONS PASSEPORTS*',
+        traveler:   'Voyageur',
+        passNum:    (n) => `N° ${n}`,
+        passExpiry: (d) => `Exp. ${d}`,
+        passDob:    (d) => `Né(e) le ${d}`,
+        uploads:    (n) => `📎 *${n} copie(s) de passeport* seront envoyées dans ce chat.`,
+        note:       (txt) => `💬 *NOTE :* ${txt}`,
+        thanks:     'Merci ! ✅',
+      },
+      en: {
+        title:      '🌍 *Booking request — Alliance Travel*',
+        tripHead:   '📋 *SELECTED TRIP*',
+        destination:'Destination',
+        hotel:      'Hotel',
+        date:       'Departure date',
+        room:       'Room',
+        adults:     'Adults',
+        kids:       'Children/Babies',
+        price:      'Estimated price',
+        localTax:   (usd) => `Local tax: ${usd} USD (on site)`,
+        ownerHead:  '👤 *FILE HOLDER*',
+        nameField:  'Name',
+        nameEmpty:  '• Name: (not provided)',
+        phone:      'WhatsApp phone',
+        city:       'Wilaya/City',
+        passHead:   '📄 *PASSPORT DETAILS*',
+        traveler:   'Traveler',
+        passNum:    (n) => `No. ${n}`,
+        passExpiry: (d) => `Exp. ${d}`,
+        passDob:    (d) => `Born ${d}`,
+        uploads:    (n) => `📎 *${n} passport copy/copies* will be sent in this chat.`,
+        note:       (txt) => `💬 *NOTE:* ${txt}`,
+        thanks:     'Thank you! ✅',
+      },
+      ar: {
+        title:      '🌍 *طلب حجز — Alliance Travel*',
+        tripHead:   '📋 *الرحلة المختارة*',
+        destination:'الوجهة',
+        hotel:      'الفندق',
+        date:       'تاريخ المغادرة',
+        room:       'الغرفة',
+        adults:     'البالغون',
+        kids:       'أطفال/رضّع',
+        price:      'السعر التقديري',
+        localTax:   (usd) => `الضريبة المحلية: ${usd} USD (في الموقع)`,
+        ownerHead:  '👤 *صاحب الملف*',
+        nameField:  'الاسم',
+        nameEmpty:  '• الاسم: (غير محدّد)',
+        phone:      'هاتف واتساب',
+        city:       'الولاية/المدينة',
+        passHead:   '📄 *معلومات جوازات السفر*',
+        traveler:   'المسافر',
+        passNum:    (n) => `رقم ${n}`,
+        passExpiry: (d) => `انتهاء ${d}`,
+        passDob:    (d) => `تاريخ الميلاد ${d}`,
+        uploads:    (n) => `📎 *${n} نسخة من جواز السفر* ستُرسَل في هذه المحادثة.`,
+        note:       (txt) => `💬 *ملاحظة:* ${txt}`,
+        thanks:     'شكراً! ✅',
+      },
+    };
+    return sets[lang] || sets.fr;
+  }
+
   /* ── Message builder ─────────────────────────────────────── */
   _buildMessage() {
     const s    = window.__calcState ?? {};
@@ -435,49 +540,51 @@ class BookingForm {
     const city = this.mount.querySelector('#bf-city')?.value.trim()  || '';
     const notes = this.mount.querySelector('#bf-notes')?.value.trim() || '';
 
+    const L = this._labels();
+
     const validPassports = this.passports.filter(p => p.name || p.number);
 
     const lines = [
-      '🌍 *Demande de réservation — Alliance Travel*',
+      L.title,
       '',
-      '📋 *VOYAGE SÉLECTIONNÉ*',
-      `• Destination : ${s.tripName || '—'}`,
-      s.hotel  ? `• Hôtel : ${s.hotel}`          : null,
-      s.date   ? `• Date de départ : ${s.date}`   : null,
-      s.room   ? `• Chambre : ${s.room}`           : null,
-      s.adults ? `• Adultes : ${s.adults}`         : null,
-      (s.kids?.length) ? `• Enfants/Bébés : ${s.kids.length}` : null,
-      s.totalDA ? `• Prix estimé : ${fmt(s.totalDA)}` : null,
-      s.totalUSD ? `• Taxe locale : ${s.totalUSD} USD (sur place)` : null,
+      L.tripHead,
+      `• ${L.destination} : ${s.tripName || '—'}`,
+      s.hotel  ? `• ${L.hotel} : ${s.hotel}`          : null,
+      s.date   ? `• ${L.date} : ${s.date}`             : null,
+      s.room   ? `• ${L.room} : ${s.room}`             : null,
+      s.adults ? `• ${L.adults} : ${s.adults}`         : null,
+      (s.kids?.length) ? `• ${L.kids} : ${s.kids.length}` : null,
+      s.totalDA ? `• ${L.price} : ${fmt(s.totalDA)}` : null,
+      s.totalUSD ? `• ${L.localTax(s.totalUSD)}` : null,
       '',
-      '👤 *RESPONSABLE DU DOSSIER*',
-      name ? `• Nom : ${name}`             : '• Nom : (non renseigné)',
-      ph   ? `• Téléphone WA : ${ph}`      : null,
-      city ? `• Wilaya/Ville : ${city}`    : null,
+      L.ownerHead,
+      name ? `• ${L.nameField} : ${name}`  : L.nameEmpty,
+      ph   ? `• ${L.phone} : ${ph}`        : null,
+      city ? `• ${L.city} : ${city}`       : null,
     ];
 
     if (validPassports.length) {
-      lines.push('', '📄 *INFORMATIONS PASSEPORTS*');
+      lines.push('', L.passHead);
       validPassports.forEach((p, i) => {
         const parts = [
           p.name   ? p.name   : null,
-          p.number ? `N° ${p.number}` : null,
-          p.expiry ? `Exp. ${p.expiry}` : null,
-          p.dob    ? `Né(e) le ${p.dob}` : null,
+          p.number ? L.passNum(p.number) : null,
+          p.expiry ? L.passExpiry(p.expiry) : null,
+          p.dob    ? L.passDob(p.dob) : null,
         ].filter(Boolean);
-        lines.push(`• Voyageur ${i + 1} : ${parts.join(' · ') || '—'}`);
+        lines.push(`• ${L.traveler} ${i + 1} : ${parts.join(' · ') || '—'}`);
       });
     }
 
     if (this.uploads.length) {
-      lines.push('', `📎 *${this.uploads.length} copie(s) de passeport* seront envoyées dans ce chat.`);
+      lines.push('', L.uploads(this.uploads.length));
     }
 
     if (notes) {
-      lines.push('', `💬 *NOTE :* ${notes}`);
+      lines.push('', L.note(notes));
     }
 
-    lines.push('', 'Merci ! ✅');
+    lines.push('', L.thanks);
 
     return lines.filter(l => l !== null).join('\n');
   }
@@ -575,7 +682,8 @@ class BookingForm {
     }
     const ebtn = this.el.emailBtn;
     if (ebtn) {
-      const subject = `Demande de devis — ${this._tripName()}`;
+      const subjectLead = { fr: 'Demande de devis', en: 'Quote request', ar: 'طلب عرض سعر' }[this._lang()] || 'Demande de devis';
+      const subject = `${subjectLead} — ${this._tripName()}`;
       ebtn.href = `mailto:${this.EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
       ebtn.classList.toggle('is-disabled', !ok);
       ebtn.style.pointerEvents = ok ? '' : 'none';
