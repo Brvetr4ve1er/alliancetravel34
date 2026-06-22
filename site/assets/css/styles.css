@@ -288,7 +288,18 @@ button {
    continuous-animation + scroll-linked selectors on ≤640px. The
    keyframes / scroll handlers still run, but the browser is allowed
    to manage layer creation per-frame instead of permanently. Outside
-   the foundation block so component-level concerns stay editable. */
+   the foundation block so component-level concerns stay editable.
+
+   v26 mobile-ux GPU audit: the scroll-hero layers the plan flags
+   (.scroll-hero__bg/__media/__title) declare will-change permanently in
+   their base rules (:7773/:7811/:7851 etc.). On low-end GPUs that permanent
+   hold is released HERE — every will-change-bearing layer in that group
+   (__bg, __media, __media::after, __title-pre, __title-post) is listed below,
+   so ≤640px phones (the low-end target) never hold those layers forever.
+   (.scroll-hero__title itself declares no will-change; only its animating
+   -pre/-post halves do, and both are gated.) Scoping via .is-released was
+   rejected: that class is dead — no JS/HTML ever sets it — so it would be a
+   no-op. No runtime change needed beyond this existing gate. */
 @media (max-width: 640px) {
   [data-region] .hero,
   .home-hero__photos img,
@@ -1039,6 +1050,12 @@ select {
 
 .hotel-grid {
   display: grid;
+  /* v26 mobile-ux: mid-band orphan audit. The 600-768px band is already
+     forced to a single column by the ≤768px override (:2249), so the 300px
+     floor cannot strand a lopsided 2-up there. Above 768px the 1fr tracks
+     stay equal-width and only form a 2-up once inner width clears 624px, then
+     a 3-up at the 1280px container — both balanced. Floor kept at 300px on
+     purpose; no earlier 1-col forcing needed. */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--s5);
 }
@@ -7695,6 +7712,17 @@ section.section.phase-block + section.section:not(.phase-block) {
   }
   .stepper {
     gap: var(--s4);
+  }
+  /* v26 mobile-ux: tighten stepper row density so the 2-line helper rows don't
+     push the running total further down — padding --s3(16px)→--space-2(8px).
+     The 44px buttons above set the row height, so vertical rhythm is unchanged. */
+  .stepper-item {
+    padding: var(--space-2) 0;
+  }
+  /* v26 mobile-ux: lift helper-copy contrast --txt-3→--txt-2 to match the
+     .calc-form-label uplift already shipped (:7343). */
+  .stepper-item__info p {
+    color: var(--txt-2);
   }
 }
 
