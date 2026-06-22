@@ -63,13 +63,6 @@ button {
    ADDITIVE: legacy --s1..--s12 + scattered clamp() are left alone.
    ════════════════════════════════════════════════════════════════ */
 :root {
-  /* ── BREAKPOINTS (documentation only) ── */
-  --bp-xs:  480px;
-  --bp-sm:  640px;
-  --bp-md:  900px;
-  --bp-lg:  1200px;
-  --bp-xl:  1440px;
-
   /* ── SPACING SCALE — 8-aligned (user-requested 8/16/24/32/48/64/80) ── */
   --space-1:  4px;
   --space-2:  8px;
@@ -2959,11 +2952,7 @@ html.js [data-aos] {
       var(--aos-delay, 0ms);
 }
 html.js [data-aos="fade-up"]    { transform: translateY(28px); }
-html.js [data-aos="fade-down"]  { transform: translateY(-28px); }
-html.js [data-aos="fade-left"]  { transform: translateX(40px); }
-html.js [data-aos="fade-right"] { transform: translateX(-40px); }
 html.js [data-aos="zoom-in"]    { transform: scale(.92); }
-html.js [data-aos="zoom-out"]   { transform: scale(1.08); }
 html.js [data-aos].visible {
   opacity: 1;
   transform: none;
@@ -4366,12 +4355,6 @@ body[data-region]::before {
   opacity: var(--region-pattern-opacity-light, 0.08);
 }
 
-/* v21 phase J.2.3: .hero__deco + .hero__particles family deleted (~52 lines).
-   v13 hero decorative orphans — silhouettes at hero foot + floating
-   particle dots that drift up. Both had zero HTML hosts in the current
-   v14 scroll-pinned hero markup. @keyframes drift-up deleted too — it
-   was only consumed by .hero__particles span. */
-
 /* ══════════════════════════════════════════════════════════
    EGYPT — sand-gold hieroglyph chevrons
    ══════════════════════════════════════════════════════════ */
@@ -4383,37 +4366,6 @@ body[data-region]::before {
 [data-region="egypt"] .hero__bg::after {
   background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,135,46,0.28), transparent 70%),
               radial-gradient(circle at 20% 100%, rgba(140,80,30,0.4), transparent 50%);
-}
-
-/* Egypt hero deco: pyramid silhouettes + sun rays */
-[data-region="egypt"] .hero__deco::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background:
-    /* Distant small pyramid */
-    radial-gradient(ellipse 100px 40px at 15% 100%, rgba(201,135,46,0.35), transparent 70%),
-    /* Big pyramid */
-    radial-gradient(ellipse 200px 80px at 88% 100%, rgba(180,100,30,0.5), transparent 70%);
-  filter: blur(4px);
-}
-[data-region="egypt"] .hero__deco::after {
-  content: '';
-  position: absolute;
-  top: 8%;
-  right: 12%;
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(circle, rgba(255,200,120,0.18), transparent 60%);
-  pointer-events: none;
-  animation: sun-pulse 6s ease-in-out infinite;
-}
-@keyframes sun-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50%      { transform: scale(1.12); opacity: 1; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -4429,38 +4381,6 @@ body[data-region]::before {
               radial-gradient(ellipse 70% 50% at 30% 30%, rgba(58,175,175,0.25), transparent 65%);
 }
 
-/* Azerbaijan hero deco: Flame Towers silhouettes */
-[data-region="azerbaijan"] .hero__deco::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 180px;
-  background:
-    /* Three flame-shaped towers */
-    radial-gradient(ellipse 30px 100px at 15% 100%, rgba(232,93,47,0.4), transparent 70%),
-    radial-gradient(ellipse 35px 130px at 22% 100%, rgba(232,93,47,0.5), transparent 70%),
-    radial-gradient(ellipse 30px 110px at 30% 100%, rgba(232,93,47,0.4), transparent 70%),
-    /* Caspian shimmer */
-    linear-gradient(180deg, transparent 60%, rgba(58,175,175,0.15) 100%);
-  filter: blur(2px);
-}
-[data-region="azerbaijan"] .hero__deco::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: repeating-linear-gradient(90deg, transparent 0px, rgba(58,175,175,0.15) 1px, transparent 2px, transparent 30px);
-  animation: wave-shimmer 8s linear infinite;
-}
-@keyframes wave-shimmer {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-30px); }
-}
-
 /* ══════════════════════════════════════════════════════════
    ISTANBUL — Ottoman 8-point star tile
    ══════════════════════════════════════════════════════════ */
@@ -4472,36 +4392,6 @@ body[data-region]::before {
 [data-region="istanbul"] .hero__bg::after {
   background: radial-gradient(ellipse 70% 60% at 70% 80%, rgba(224,112,64,0.20), transparent 60%),
               radial-gradient(ellipse 60% 50% at 30% 30%, rgba(112,184,224,0.20), transparent 65%);
-}
-
-/* Istanbul hero deco: dome silhouettes + minaret */
-[data-region="istanbul"] .hero__deco::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 160px;
-  background:
-    /* Central dome */
-    radial-gradient(ellipse 70px 50px at 50% 100%, rgba(112,184,224,0.4), transparent 70%),
-    /* Side minarets */
-    radial-gradient(ellipse 8px 90px at 38% 100%, rgba(112,184,224,0.5), transparent 60%),
-    radial-gradient(ellipse 8px 90px at 62% 100%, rgba(112,184,224,0.5), transparent 60%),
-    /* Bosphorus glow */
-    linear-gradient(180deg, transparent 70%, rgba(112,184,224,0.18) 100%);
-  filter: blur(3px);
-}
-[data-region="istanbul"] .hero__deco::after {
-  content: '';
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: repeating-linear-gradient(90deg, transparent 0px, rgba(224,112,64,0.10) 1px, transparent 2px, transparent 40px);
-  animation: wave-shimmer 12s linear infinite;
-  opacity: 0.6;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -4517,40 +4407,6 @@ body[data-region]::before {
               radial-gradient(ellipse 50% 40% at 80% 20%, rgba(150,210,180,0.18), transparent 60%);
 }
 
-/* Malaysia hero deco: Petronas Towers silhouette + palm fronds */
-[data-region="malaysia"] .hero__deco::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background:
-    /* Twin Towers */
-    radial-gradient(ellipse 16px 160px at 47% 100%, rgba(76,175,130,0.5), transparent 60%),
-    radial-gradient(ellipse 16px 160px at 53% 100%, rgba(76,175,130,0.5), transparent 60%),
-    /* Palm fronds left */
-    radial-gradient(ellipse 60px 30px at 8% 90%, rgba(76,175,130,0.4), transparent 70%),
-    /* Palm fronds right */
-    radial-gradient(ellipse 60px 30px at 92% 90%, rgba(76,175,130,0.4), transparent 70%);
-  filter: blur(3px);
-}
-[data-region="malaysia"] .hero__deco::after {
-  content: '';
-  position: absolute;
-  top: 20%;
-  right: -50px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(150,210,180,0.12), transparent 60%);
-  filter: blur(40px);
-  animation: tropical-haze 10s ease-in-out infinite;
-}
-@keyframes tropical-haze {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
-  50%      { transform: translateY(-20px) scale(1.1); opacity: 0.9; }
-}
-
 /* ══════════════════════════════════════════════════════════
    SHARM — Coral wave & bubble
    ══════════════════════════════════════════════════════════ */
@@ -4562,43 +4418,6 @@ body[data-region]::before {
 [data-region="sharm"] .hero__bg::after {
   background: radial-gradient(ellipse 70% 60% at 50% 70%, rgba(40,180,212,0.25), transparent 60%),
               radial-gradient(ellipse 50% 40% at 70% 30%, rgba(232,138,58,0.15), transparent 60%);
-}
-
-/* Sharm hero deco: coral reef + bubble particles */
-[data-region="sharm"] .hero__deco::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 140px;
-  background:
-    /* Coral mounds */
-    radial-gradient(ellipse 60px 30px at 18% 100%, rgba(232,80,112,0.30), transparent 70%),
-    radial-gradient(ellipse 80px 36px at 50% 100%, rgba(40,180,212,0.40), transparent 70%),
-    radial-gradient(ellipse 50px 28px at 82% 100%, rgba(232,80,112,0.25), transparent 70%),
-    /* Water surface */
-    linear-gradient(180deg, transparent 50%, rgba(40,180,212,0.20) 100%);
-  filter: blur(4px);
-}
-[data-region="sharm"] .hero__deco::after {
-  /* Bubbles */
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background:
-    radial-gradient(circle 4px at 22% 70%, rgba(255,255,255,0.5), transparent 60%),
-    radial-gradient(circle 6px at 78% 60%, rgba(255,255,255,0.4), transparent 60%),
-    radial-gradient(circle 3px at 35% 50%, rgba(255,255,255,0.5), transparent 60%);
-  animation: bubbles-rise 14s ease-in-out infinite;
-}
-@keyframes bubbles-rise {
-  0%   { transform: translateY(0); opacity: 0.4; }
-  50%  { opacity: 0.9; }
-  100% { transform: translateY(-100vh); opacity: 0; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -4624,19 +4443,6 @@ body:not([data-region])::before {
 
 /* Make sure body content sits above the pattern overlay (do NOT touch .site-nav — it must stay z-index 100 fixed) */
 main, footer, section, .home-hero { position: relative; z-index: 1; }
-
-/* Reduced motion: kill ambient animations */
-@media (prefers-reduced-motion: reduce) {
-  .hero__particles span,
-  [data-region="egypt"] .hero__deco::after,
-  [data-region="azerbaijan"] .hero__deco::after,
-  [data-region="istanbul"] .hero__deco::after,
-  [data-region="malaysia"] .hero__deco::after,
-  [data-region="sharm"] .hero__deco::after {
-    animation: none !important;
-  }
-}
-
 
 /* ══════════════════════════════════════════════════════════
    v5.2 — Real photographic backgrounds (full-bleed hero atmospheres)
@@ -4749,11 +4555,6 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
 :root[data-theme="light"] [data-region] .hero__visual {
   background: rgba(255,255,255,0.18);
   border-color: rgba(0,44,81,0.10);
-}
-
-/* Make sure the visual-img inside still shows the same photo crisply */
-[data-region] .hero__visual-img {
-  filter: saturate(1.1) contrast(1.05);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -8030,35 +7831,6 @@ section.section.phase-block + section.section:not(.phase-block) {
 }
 .scroll-hero__continuation .hero__ctas {
   justify-content: center;
-}
-
-/* Reset/override conflicting v13 rules that the cascade would otherwise apply.
-   We KEEP v13 rules where they don't conflict, but explicitly null these. */
-.scroll-hero.is-released {
-  height: auto;
-  min-height: 0;
-  touch-action: auto;
-}
-.scroll-hero.is-released .scroll-hero__bg { opacity: calc(1 - var(--p) * 0.85); }
-.scroll-hero.is-released .scroll-hero__media {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0) scale(calc(0.32 + var(--p) * 0.68));
-  width: clamp(280px, 78vw, 1280px);
-  height: clamp(380px, 60vh, 840px);
-  margin: 0;
-  border-radius: calc(20px - var(--p) * 8px);
-}
-.scroll-hero.is-released .scroll-hero__title,
-.scroll-hero.is-released .scroll-hero__caption,
-.scroll-hero.is-released .scroll-hero__eyebrow,
-.scroll-hero.is-released .scroll-hero__skip { display: revert; }
-.scroll-hero.is-released .scroll-hero__continuation {
-  /* v26 mobile-ux: reveal sooner — mirrors the base rule (threshold 0.7→0.55,
-     divisor matched to the 0.45 runway so opacity still reaches 1 at --p=1). */
-  opacity: calc(max(0, var(--p) - 0.55) / 0.45);
-  pointer-events: auto;
 }
 
 /* ── Mobile tuning ───────────────────────────────────────── */
