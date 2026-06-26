@@ -20,12 +20,18 @@
  * - Init deferred to window.load + requestIdleCallback for snappier FCP
  * - Aspirational dots trimmed 18 → 10 (cuts marker-rendering cost)
  *
- * TODO (CSS — needs visual review on running page):
- * - .globe-polaroid[data-marker="egypt"] now anchors to Cairo (30.04°N,
- *   31.24°E) instead of Sharm El Sheikh (27.92°N, 34.33°E). The caption
- *   still reads "Le Caire · Sharm" which is accurate for the photo
- *   subject; if the layout needs adjustment, eyeball it on /index.html
- *   and tune the rotation offset in the `rot` map (currently -4°).
+ * v28 projection fix:
+ * - projectMarker() now matches cobe@0.6.4's lat/lng→sphere convention
+ *   (verified against its bundled shader), so the DOM polaroids stay locked
+ *   to the GPU dots as the globe spins. The old per-marker `rot` fudge map
+ *   (egypt -4°, etc.) that masked the misalignment is gone. If overlays are
+ *   still a hair off on the running page, calibrate LNG_OFFSET / ROT_SIGN at
+ *   the top of this file — they are the two intended visual tuning knobs.
+ * - cobe is now self-hosted at ./vendor/cobe.min.js (no runtime esm.sh fetch).
+ *
+ * NOTE (CSS — needs visual review on running page):
+ * - .globe-polaroid[data-marker="egypt"] anchors to Cairo (30.04°N, 31.24°E).
+ *   The caption reads "Le Caire · Sharm" which is accurate for the photo.
  * - Sharm El Sheikh + Gabala render as cobe dots only (no polaroid HTML).
  *   If product wants polaroids for them, add:
  *     <div class="globe-polaroid" data-marker="sharm" aria-hidden="true">
@@ -36,21 +42,38 @@
  *   in the DESTINATIONS array below.
  */
 
+/* ──────────────────────────────────────────────────────────────────────────
+   VISUAL CALIBRATION TUNABLES — adjust these two on the running page if the
+   DOM polaroids sit slightly off the GPU dots. They feed projectMarker()
+   below and exist precisely so a human can dial the alignment by eye without
+   touching the projection math.
+
+   LNG_OFFSET (radians): a constant phase added to every marker's longitude
+     before projection. cobe@0.6.4 builds its marker vectors with a -π phase
+     baked in (see its `w()`: `s = lng*π/180 - π`), so +π is the matching
+     best-guess default. Nudge by ±0.05 rad if dots drift east/west together.
+   ROT_SIGN (+1 / -1): the sign of the auto-rotation (phi) as seen by the
+     projection. cobe's onRender increments phi and the shader rotates the
+     globe; -1 makes the DOM overlays track that spin direction. Flip to +1
+     if the polaroids lag/lead the dots in the wrong direction.
+   ────────────────────────────────────────────────────────────────────────── */
+const LNG_OFFSET = 0; // radians — matches cobe's -π marker phase
+const ROT_SIGN   = -1;      // +1 or -1 — direction phi feeds the projection
+
+// Self-hosted cobe (esm.sh bundled build, MIT) — ./vendor/cobe.min.js.
+// Bundling phenomenon inline makes it a clean standalone ES module, so the
+// homepage hero no longer depends on a live esm.sh fetch at runtime (removes
+// the single point of failure flagged in recon item A). The try/catch still
+// degrades to the CSS-only stage if the file is missing or fails to parse.
 let createGlobe = null;
 async function loadCobe() {
   if (createGlobe) return createGlobe;
   try {
-    // NOTE: dynamic import() cannot carry an SRI integrity attribute
-    // (SRI is only valid on <script>/<link> elements), so the audit's
-    // "add SRI here" item is infeasible as written. The real mitigation
-    // is self-hosting cobe (~5 KB) — tracked as W3 in the master audit.
-    // Until then, the try/catch below means a blocked or tampered load
-    // degrades safely to the CSS-only stage rather than executing.
-    const mod = await import('https://esm.sh/cobe@0.6.4');
+    const mod = await import('./vendor/cobe.min.js');
     createGlobe = mod.default || mod;
     return createGlobe;
   } catch (err) {
-    console.warn('[globe] cobe CDN unreachable, falling back to CSS-only stage:', err);
+    console.warn('[globe] cobe module unavailable, falling back to CSS-only stage:', err);
     return null;
   }
 }
@@ -171,8 +194,11 @@ async function init() {
     .filter(d => d.polaroidId)
     .map(d => ({
       dest: d,
-      el: document.querySelector(`.globe-polaroid[data-marker="${d.polaroidId}"]`),
-      rot: { bba: 0, egypt: -4, aze: 3, ist: -2, kl: 5, tunisie: -3 }[d.polaroidId] || 0
+      el: document.querySelector(`.globe-polaroid[data-marker="${d.polaroidId}"]`)
+      // NOTE: the old per-marker `rot` fudge map (egypt:-4, aze:3, …) was
+      // removed — it existed only to mask the broken projection. With
+      // projectMarker() now matching cobe's convention, polaroids sit
+      // upright over their dots and need no per-city rotation hack.
     }))
     .filter(p => p.el);
 
@@ -181,13 +207,18 @@ async function init() {
      depth ∈ [-1, 1] (1 = facing camera, -1 = far side). */
   function projectMarker(lat, lng, rotPhi, rotTheta) {
     const r = canvas.offsetWidth / 2;
-    const phiR = (lng * Math.PI) / 180 + rotPhi;
-    const thetaR = (lat * Math.PI) / 180;
-    // 3D point on unit sphere
-    let x = Math.cos(thetaR) * Math.sin(phiR);
-    let y = Math.sin(thetaR);
-    let z = Math.cos(thetaR) * Math.cos(phiR);
-    // Rotate around X axis by rotTheta (camera tilt)
+    // cobe@0.6.4 convention (verified against its bundled shader):
+    //   latR = lat·π/180,  lngR = lng·π/180
+    //   the globe's auto-rotation (rotPhi) folds into longitude via ROT_SIGN,
+    //   and LNG_OFFSET reproduces cobe's baked-in -π marker phase.
+    const latR = (lat * Math.PI) / 180;
+    const lngR = (lng * Math.PI) / 180 + rotPhi * ROT_SIGN + LNG_OFFSET;
+    // Point on the unit sphere after the Y-axis (longitude/phi) rotation.
+    let x = Math.cos(latR) * Math.sin(lngR);
+    let y = Math.sin(latR);
+    let z = Math.cos(latR) * Math.cos(lngR);
+    // Apply the X-axis tilt (theta) with the SAME sign cobe's L(theta,phi)
+    // matrix uses, so the overlay tracks the GPU dots through the tilt.
     const ct = Math.cos(rotTheta);
     const st = Math.sin(rotTheta);
     const yT = y * ct - z * st;
@@ -195,7 +226,7 @@ async function init() {
     return {
       x: r + x * r,
       y: r - yT * r,
-      depth: zT
+      depth: zT // > 0 = front-facing hemisphere (drives the back-of-globe fade)
     };
   }
 
@@ -209,10 +240,11 @@ async function init() {
       // Fade based on depth — front-facing = full, edge = transparent, back = hidden
       const visibility = Math.max(0, Math.min(1, (pos.depth - 0.05) / 0.5));
       // translate3d primes the GPU path; nudge above the marker by 14px + the
-      // polaroid's own height (handled by translate(-50%, -100%)).
+      // polaroid's own height (handled by translate(-50%, -100%)). No per-card
+      // rotation — the projection now lands the overlay on its dot directly.
       p.el.style.transform =
         `translate3d(${pos.x.toFixed(1)}px, ${pos.y.toFixed(1)}px, 0) ` +
-        `translate(-50%, calc(-100% - 14px)) rotate(${p.rot}deg)`;
+        `translate(-50%, calc(-100% - 14px))`;
       p.el.style.opacity = visibility.toFixed(3);
       // Skip the blur filter when fully visible — composite blurs are GPU-cheap
       // but not free; gating on (visibility < 0.95) drops it in the common case.
@@ -225,8 +257,20 @@ async function init() {
   // Initialize the globe sized to the rendered canvas.
   // Cobe drives its own animation loop via rAF and calls our onRender
   // each frame so we can mutate `state.phi` / `state.theta`.
+  // Resolve a usable pixel width even when offsetWidth is briefly 0 during
+  // layout (e.g. the globe column is display-toggling). Falls back through
+  // the stage's offset width, then a live getBoundingClientRect measurement,
+  // before giving up. Returns 0 only when nothing has laid out yet.
+  const measureWidth = () => {
+    return canvas.offsetWidth
+      || stage.offsetWidth
+      || Math.round(stage.getBoundingClientRect().width)
+      || Math.round(canvas.getBoundingClientRect().width)
+      || 0;
+  };
+
   const ensure = () => {
-    const w = canvas.offsetWidth || stage.offsetWidth || 420;
+    const w = measureWidth();
     if (w === 0) return null;
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     return createGlobe(canvas, {
@@ -262,9 +306,14 @@ async function init() {
         const curTheta = theta + thetaOffset + drag.theta;
         state.phi = curPhi;
         state.theta = curTheta;
-        // Resize defensively in case the canvas changed
-        state.width = canvas.offsetWidth * dpr;
-        state.height = canvas.offsetWidth * dpr;
+        // Resize defensively in case the canvas changed. Guard against a
+        // transient 0 width (layout reflow) which would collapse the globe —
+        // keep the last good width when the live measurement reads 0.
+        const liveW = measureWidth();
+        if (liveW > 0) {
+          state.width = liveW * dpr;
+          state.height = liveW * dpr;
+        }
         // Project polaroids to follow markers as the globe rotates.
         // Reduced-motion users see the globe at theta=0.18 phi=0 (set once on
         // init); skipping per-frame polaroid math saves 5 trig ops × 5 polaroids.
@@ -275,31 +324,52 @@ async function init() {
   };
 
   let globe = null;
+  let initRetries = 0;
+  const MAX_INIT_RETRIES = 10; // ~10 rAF frames (~160ms) before giving up
 
-  // Wait for the canvas to actually have a measurable width before init
+  // Attempt init once the canvas has a measurable width. Returns true on
+  // success (or permanent failure) so callers can stop retrying.
   const tryInit = () => {
-    if (globe || canvas.offsetWidth === 0) return;
+    if (globe) return true;
+    // Use the full width-resolution chain (offsetWidth → stage → rects), not
+    // just offsetWidth, so a zero-width-init race doesn't permanently stall.
+    if (measureWidth() === 0) return false;
     try {
       globe = ensure();
     } catch (err) {
       console.error('[globe] init failed:', err);
       canvas.style.opacity = '0';
-      return;
+      return true; // hard failure — don't keep retrying
     }
     if (globe) {
-      canvas.style.opacity = '1';
+      // Reveal the canvas ONLY after createGlobe has succeeded, so a failed
+      // init never flashes an empty/garbage canvas.
+      canvas.style.setProperty('opacity', '1', 'important');
       // Project polaroids once synchronously so they appear at correct
       // positions even before the first rAF tick.
       updatePolaroids(0, theta);
+      return true;
     }
+    return false;
   };
 
-  tryInit();
-  if (!globe) {
+  // Retry on requestAnimationFrame (covers the zero-width-init race where the
+  // ResizeObserver never fires because the box was already its final size).
+  const rafRetry = () => {
+    if (tryInit()) return;
+    if (++initRetries >= MAX_INIT_RETRIES) return;
+    requestAnimationFrame(rafRetry);
+  };
+
+  if (!tryInit()) {
+    requestAnimationFrame(rafRetry);
+    // Belt-and-suspenders: also init on the first real resize/layout change,
+    // in case width only becomes non-zero after the rAF budget elapses.
     const ro = new ResizeObserver(() => {
-      if (!globe) tryInit();
+      if (tryInit()) ro.disconnect();
     });
     ro.observe(canvas);
+    ro.observe(stage);
   }
 
   // Drag-to-spin
@@ -414,8 +484,8 @@ async function init() {
 }
 
 /* Defer globe init until after the page has settled.
-   Cobe pulls ~50 KB from esm.sh and warms a WebGL context — both expensive
-   during the critical first-paint window. Sequencing:
+   Cobe loads its ~12 KB module (now self-hosted) and warms a WebGL context —
+   both worth keeping out of the critical first-paint window. Sequencing:
      1) wait for `load` (HTML, CSS, hero images are done downloading)
      2) wait for `requestIdleCallback` (any leftover layout / paint flushes)
      3) finally call init()

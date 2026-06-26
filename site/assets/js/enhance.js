@@ -928,6 +928,11 @@
 
   /* ─── Itinerary accordion — convert .tl-day list to <details> ─── */
   function initItineraryAccordion() {
+    /* v28 guard: the spine timeline keeps rich markup (tags/i18n keys/photos).
+       Rebuilding it from textContent would strip all of that. Migrated pages
+       carry .timeline--spine — bail so they keep their markup; un-migrated
+       pages still get the <details> accordion below. */
+    if (document.querySelector('.timeline--spine')) return;
     const days = document.querySelectorAll('.tl-day, .timeline-day');
     if (!days.length) return;
     if (document.querySelector('[data-accordion]')) return;
@@ -1027,8 +1032,11 @@
     if (!('IntersectionObserver' in window)) return;
 
     const hosts = new Set();
+    /* v28: #alliance-globe removed — globe.js solely owns its pause via
+       .is-paused on #globe-stage. Toggling .is-paused on the canvas here
+       conflicted with that ownership and caused the globe to be born hidden. */
     document.querySelectorAll(
-      '.home-hero, .hero, #alliance-globe, [data-pause-off-screen]'
+      '.home-hero, .hero, [data-pause-off-screen]'
     ).forEach(el => hosts.add(el));
 
     if (!hosts.size) return;

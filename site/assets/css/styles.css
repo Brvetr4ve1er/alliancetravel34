@@ -973,39 +973,9 @@ select {
   line-height: 1.55;
 }
 
-/* ── Section heads ──────────────────────────────────────── */
-.section-head {
-  margin-bottom: var(--s9);
-}
-
-.section-head__eyebrow {
-  font-size: .6875rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--s3);
-}
-
-.section-head__title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 400;
-  color: var(--txt-1);
-  line-height: 1.1;
-}
-
-.section-head__title em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.section-head__sub {
-  font-size: 1rem;
-  color: var(--txt-2);
-  max-width: 56ch;
-  margin-top: var(--s3);
-}
+/* Section heads — canonical definition lives in section "15. Section heads"
+   below (~L7311). The older duplicate block was removed here to keep a single
+   source of truth; the .section-head__title em rule was migrated there. */
 
 /* ── Hotel Picker ───────────────────────────────────────── */
 .hotels {
@@ -1799,6 +1769,139 @@ select {
   background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--txt-3);
+}
+
+/* ══════════════════════════════════════════════════════════
+   TIMELINE — ALTERNATING SPINE (additive .timeline--spine modifier)
+   Base .timeline above is untouched so un-migrated pages keep working.
+   ══════════════════════════════════════════════════════════ */
+.timeline--spine {
+  position: relative;
+}
+
+/* Mobile-first: single left rail (rail moved to centre on desktop below) */
+.timeline--spine::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--border) 8%, var(--border) 92%, transparent);
+}
+[dir="rtl"] .timeline--spine::before {
+  left: auto;
+  right: 21px;
+}
+
+.timeline--spine .tl-day {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: start;
+  gap: var(--space-5);
+  padding-bottom: var(--space-8);
+  cursor: pointer;
+}
+.timeline--spine .tl-day:last-child {
+  padding-bottom: 0;
+}
+
+/* Medallion node — 44px (meets --touch-min), rings the --bg so the spine
+   reads behind it */
+.timeline--spine .tl-node {
+  grid-column: 1;
+  width: 44px;
+  height: 44px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px var(--bg);
+  display: grid;
+  place-items: center;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  z-index: 1;
+}
+.timeline--spine .tl-day.active .tl-node,
+.timeline--spine .tl-day:hover .tl-node {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Card — mobile single-rail default */
+.timeline--spine .tl-content {
+  grid-column: 2;
+  text-align: start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: var(--space-5);
+  padding-top: var(--space-5);
+  transition:
+    transform var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+}
+.timeline--spine .tl-day:hover .tl-content {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px -12px var(--accent-glow);
+}
+
+/* Mobile: override fade-left/right to fade-up to avoid x-overflow */
+@media (max-width: 767.98px) {
+  .timeline--spine .tl-content[data-aos="fade-left"],
+  .timeline--spine .tl-content[data-aos="fade-right"] {
+    transform: translateY(20px);
+  }
+}
+
+/* Desktop: central spine + alternating cards */
+@media (min-width: 768px) {
+  .timeline--spine::before {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--border) 8%, var(--border) 92%, transparent);
+  }
+  [dir="rtl"] .timeline--spine::before {
+    left: 50%;
+    right: auto;
+  }
+
+  .timeline--spine .tl-day {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-5);
+    padding-bottom: var(--space-8);
+  }
+
+  .timeline--spine .tl-node {
+    grid-column: 2;
+    margin-inline: auto;
+  }
+
+  .timeline--spine .tl-day--right .tl-content {
+    grid-column: 3;
+    text-align: start;
+  }
+  .timeline--spine .tl-day--left .tl-content {
+    grid-column: 1;
+    text-align: end;
+  }
+
+  /* RTL mirrors the alternation: swap the side columns */
+  [dir="rtl"] .timeline--spine .tl-day--right .tl-content {
+    grid-column: 1;
+    text-align: end;
+  }
+  [dir="rtl"] .timeline--spine .tl-day--left .tl-content {
+    grid-column: 3;
+    text-align: start;
+  }
 }
 
 /* v21 phase J.2: ~95 lines of .packages-bg / .packages-grid /
@@ -2952,6 +3055,10 @@ html.js [data-aos] {
       var(--aos-delay, 0ms);
 }
 html.js [data-aos="fade-up"]    { transform: translateY(28px); }
+html.js [data-aos="fade-left"]  { transform: translateX(28px); }
+html.js [data-aos="fade-right"] { transform: translateX(-28px); }
+[dir="rtl"] html.js [data-aos="fade-left"]  { transform: translateX(-28px); }
+[dir="rtl"] html.js [data-aos="fade-right"] { transform: translateX(28px); }
 html.js [data-aos="zoom-in"]    { transform: scale(.92); }
 html.js [data-aos].visible {
   opacity: 1;
@@ -5727,8 +5834,6 @@ body.has-sticky-bar .site-nav {
   aspect-ratio: 1 / 1;
   margin-inline: auto;
   isolation: isolate;
-  /* Anchor name registration — cobe auto-positions polaroids using these */
-  anchor-name: --globe-stage;
   /* Subtle outer atmosphere bloom */
   filter: drop-shadow(0 30px 60px rgba(0, 44, 81, 0.45));
 }
@@ -5755,8 +5860,8 @@ body.has-sticky-bar .site-nav {
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0;
-  transition: opacity 1.4s ease;
+  opacity: 1; /* v27: default-visible — JS reveal raced behind the async cobe import + 1.4s transition and could stay hidden; cobe paints the canvas itself */
+  transition: opacity .6s ease;
   cursor: grab;
   touch-action: none;
   border-radius: 50%;
@@ -5765,10 +5870,9 @@ body.has-sticky-bar .site-nav {
 #alliance-globe:active { cursor: grabbing; }
 
 /* ---- Polaroid overlays ----
-   Each polaroid uses CSS Anchor Positioning to stick to its corresponding
-   marker on the globe. cobe v0.6+ exposes anchors named --cobe-{id} and
-   visibility flags --cobe-visible-{id}. In browsers without anchor support,
-   the var() fallbacks keep the polaroids invisible (graceful degradation).
+   Each polaroid is positioned over its marker by globe.js's onRender callback,
+   which writes inline left/top/transform/opacity per frame (see below).
+   cobe 0.6.4 exposes no CSS anchors, so there is no anchor scaffolding here.
 */
 .globe-polaroid {
   position: absolute;
@@ -7324,12 +7428,31 @@ section.section.phase-block + section.section:not(.phase-block) {
   letter-spacing: -.015em;
   margin-top: var(--s3);
 }
+/* migrated from the removed duplicate block (~L998) */
+.section-head__title em {
+  font-style: italic;
+  color: var(--accent);
+}
 .section-head__sub {
   margin-top: var(--s3);
   font-size: 1rem;
   color: var(--txt-2);
   max-width: 56ch;
   line-height: 1.6;
+}
+
+/* Centered modifier (HTML wave adds .section-head--center). The region
+   eyebrow dash (~L3876) keeps its inline-block flow so its ::before dash
+   sits immediately left of the centered text. */
+.section-head--center {
+  text-align: center;
+}
+.section-head--center .section-head__eyebrow {
+  display: inline-block;
+  margin-inline: auto;
+}
+.section-head--center .section-head__sub {
+  margin-inline: auto;
 }
 
 /* ── 16. Stat cards — bounded, readable ───────────────────── */
@@ -9325,6 +9448,7 @@ picture.scroll-hero__media {
   .trip-card__from { top: 12px; right: 12px; padding: 6px 10px !important; }
   .trip-card__monument { top: 12px; left: 12px; width: 38px; height: 38px; }
   .trip-card__cta { left: 18px; bottom: 16px; }
+  [dir="rtl"] .trip-card__cta { left: auto; right: 18px; }
   /* Touch devices have no hover — give them the "active" look at rest */
   .trip-card__cta > span:not(.trip-card__cta-price) {
     background: var(--tc-accent);
@@ -9861,6 +9985,9 @@ body { background: var(--bg); color: var(--txt-1); }
 [dir="rtl"] .hotel-card__ribbon { left: auto; right: var(--s3); }
 [dir="rtl"] .trip-card__from,
 [dir="rtl"] .trip-card__share { right: auto; left: var(--s3); }
+/* Mirror trip-card edge alignment for RTL */
+[dir="rtl"] .trip-card__from { align-items: flex-start; }
+[dir="rtl"] .trip-card__cta { left: auto; right: 22px; }
 /* Logo letter-spacing tweak for Arabic */
 [dir="rtl"] .nav-logo,
 [lang="ar"] .nav-logo { letter-spacing: 0; }
@@ -10001,3 +10128,84 @@ body { background: var(--bg); color: var(--txt-1); }
   .aurora-hero__sky, .aurora-hero__img, .aurora-hero__inner, .aurora-hero__offer{ animation:none !important; }
   .aurora-hero__img{ transform:scale(1.04); }
 }
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER — premium brand band + WhatsApp CTA (additive)
+   Extends the 6 scattered in-place footer rules above; does not rewrite
+   them. The .footer-cta band only renders once the HTML adds it.
+   All inside the global reduced-motion umbrella — no new infinite keyframes.
+   ══════════════════════════════════════════════════════════ */
+.site-footer {
+  position: relative;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 40%);
+}
+/* Accent hairline along the top edge */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+}
+
+/* CTA band — sits above the existing .footer-grid */
+.footer-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-7);
+  margin-bottom: var(--space-7);
+  border-bottom: 1px solid var(--border);
+}
+.footer-cta__text h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  color: var(--txt-1);
+  margin: 0;
+}
+.footer-cta__text p {
+  color: var(--txt-2);
+  font-size: var(--fs-body-sm);
+  margin: .25rem 0 0;
+}
+.footer-cta__btn {
+  min-height: var(--touch-min);
+}
+
+/* Rebalance the brand-heavier grid + bump the logo */
+.footer-grid {
+  grid-template-columns: 1.4fr 1fr 1fr;
+}
+.footer-logo {
+  font-size: 1.375rem;
+}
+
+/* Animated underline on footer column links */
+.footer-col a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  color: var(--txt-2);
+  transition:
+    background-size var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out);
+}
+.footer-col a:hover {
+  background-size: 100% 1px;
+  color: var(--txt-1);
+}
+
+/* RTL: mirror the CTA band */
+:root[lang="ar"] .footer-cta {
+  flex-direction: row-reverse;
+}
+
+/* v27: globe destination polaroids hidden pending a visual marker-calibration pass
+   (the projection lands them off their cobe dots; a clean rotating globe ships meanwhile).
+   Re-enable by removing this rule once LNG_OFFSET/ROT_SIGN in globe.js are tuned live. */
+.globe-polaroid{ display:none !important; }
