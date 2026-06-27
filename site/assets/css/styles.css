@@ -168,7 +168,6 @@ button {
     -webkit-backdrop-filter: blur(8px);
   }
   /* Hero ghost button: 12px → 8px */
-  .scroll-hero .btn--ghost,
   .home-hero .btn--ghost,
   .hero .btn--ghost {
     backdrop-filter: blur(8px);
@@ -179,11 +178,6 @@ button {
   .trip-card__monument {
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-  }
-  /* Globe-hint pill (~480-640px range, visible briefly) */
-  .globe-hint {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
   /* Glass elevation wrapper utility */
   [data-elev="glass"] {
@@ -281,32 +275,11 @@ button {
    continuous-animation + scroll-linked selectors on ≤640px. The
    keyframes / scroll handlers still run, but the browser is allowed
    to manage layer creation per-frame instead of permanently. Outside
-   the foundation block so component-level concerns stay editable.
-
-   v26 mobile-ux GPU audit: the scroll-hero layers the plan flags
-   (.scroll-hero__bg/__media/__title) declare will-change permanently in
-   their base rules (:7773/:7811/:7851 etc.). On low-end GPUs that permanent
-   hold is released HERE — every will-change-bearing layer in that group
-   (__bg, __media, __media::after, __title-pre, __title-post) is listed below,
-   so ≤640px phones (the low-end target) never hold those layers forever.
-   (.scroll-hero__title itself declares no will-change; only its animating
-   -pre/-post halves do, and both are gated.) Scoping via .is-released was
-   rejected: that class is dead — no JS/HTML ever sets it — so it would be a
-   no-op. No runtime change needed beyond this existing gate. */
+   the foundation block so component-level concerns stay editable. */
 @media (max-width: 640px) {
   [data-region] .hero,
   .home-hero__photos img,
-  .fab-whatsapp::before,
-  .globe-polaroid,
-  .scroll-hero__bg,
-  .scroll-hero__media,
-  .scroll-hero__media::after,
-  .scroll-hero__title-pre,
-  .scroll-hero__title-post,
-  .scroll-hero__eyebrow,
-  .scroll-hero__caption,
-  .scroll-hero__skip,
-  .scroll-hero__continuation {
+  .fab-whatsapp::before {
     will-change: auto;
   }
 }
@@ -5821,220 +5794,6 @@ body.has-sticky-bar .site-nav {
 :root[data-scroll-lock] body { overflow: hidden; }
 
 /* ══════════════════════════════════════════════════════════
-   v8 — 3D globe (homepage hero) — cobe-powered
-   Replaces the static SVG globe.
-   ══════════════════════════════════════════════════════════ */
-
-/* The wrapper inside .home-hero__globe — keeps a square aspect ratio
-   and lets the canvas fill it. */
-.globe-stage {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 1 / 1;
-  margin-inline: auto;
-  isolation: isolate;
-  /* Subtle outer atmosphere bloom */
-  filter: drop-shadow(0 30px 60px rgba(0, 44, 81, 0.45));
-}
-
-/* Soft warm glow ring behind the globe */
-.globe-stage::before {
-  content: "";
-  position: absolute;
-  inset: -8%;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center,
-    rgba(156, 232, 178, 0.12) 0%,
-    rgba(156, 232, 178, 0.04) 40%,
-    transparent 70%);
-  pointer-events: none;
-  /* v21-phase-C: globe-aura culled — halo is now static. Per hero spec
-     §E.1, the globe simplifies to a single slow rotation; the aura's
-     14s breathing loop was the second focal motion competing with it. */
-}
-
-/* The canvas — fills the stage, fades in once cobe paints its first frame */
-#alliance-globe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  opacity: 1; /* v27: default-visible — JS reveal raced behind the async cobe import + 1.4s transition and could stay hidden; cobe paints the canvas itself */
-  transition: opacity .6s ease;
-  cursor: grab;
-  touch-action: none;
-  border-radius: 50%;
-  contain: paint;
-}
-#alliance-globe:active { cursor: grabbing; }
-
-/* ---- Polaroid overlays ----
-   Each polaroid is positioned over its marker by globe.js's onRender callback,
-   which writes inline left/top/transform/opacity per frame (see below).
-   cobe 0.6.4 exposes no CSS anchors, so there is no anchor scaffolding here.
-*/
-.globe-polaroid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  /* JS-driven inline left/top/transform/opacity from globe.js's onRender
-     positions each polaroid above its marker and fades it based on depth.
-     Until the globe loads, opacity stays 0. */
-  opacity: 0;
-  transform: translate(-50%, calc(-100% - 14px));
-  transition: opacity var(--t-fast) ease, filter var(--t-fast) ease;
-  z-index: 5;
-  /* v26: globe.js pins left:0/top:0 and drives only transform/opacity/filter
-     per frame — left/top never change, so hinting them just wastes a layer. */
-  will-change: transform, opacity, filter;
-}
-
-/* Photo polaroid (the four trip destinations) */
-.globe-polaroid:not(.globe-polaroid--home) {
-  background: #fdfaf3;
-  padding: 6px 6px 22px;
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.18),
-    0 12px 28px -8px rgba(0, 0, 0, 0.45);
-  border-radius: 2px;
-}
-.globe-polaroid img {
-  display: block;
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 1px;
-}
-.globe-polaroid__caption {
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-family: var(--font-body, "DM Sans", sans-serif);
-  font-size: 0.5625rem;
-  font-weight: 500;
-  color: #2a2a2a;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  padding: 0 6px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Per-marker rotation is applied inline by globe.js inside the JS-driven
-   transform string — see updatePolaroids(). Keeping no CSS rotate here
-   avoids stacking with the per-frame transform reset. */
-
-/* The home pin uses a chip style instead of a photo */
-.globe-polaroid--home .globe-polaroid__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  background: var(--mint, var(--mint));
-  color: var(--navy, var(--navy));
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow:
-    0 0 0 3px rgba(156, 232, 178, 0.18),
-    0 8px 22px -4px rgba(156, 232, 178, 0.45);
-  text-transform: uppercase;
-}
-
-/* Light theme adjustments — softer glow ring */
-:root[data-theme="light"] .globe-stage {
-  filter: drop-shadow(0 30px 60px rgba(0, 44, 81, 0.18));
-}
-:root[data-theme="light"] .globe-stage::before {
-  background: radial-gradient(ellipse at center,
-    rgba(35, 122, 74, 0.10) 0%,
-    rgba(35, 122, 74, 0.04) 40%,
-    transparent 70%);
-}
-:root[data-theme="light"] .globe-polaroid--home .globe-polaroid__chip {
-  background: var(--mint, #237a4a);
-  color: #fff;
-  box-shadow:
-    0 0 0 3px rgba(35, 122, 74, 0.18),
-    0 8px 22px -4px rgba(35, 122, 74, 0.45);
-}
-
-/* Mobile: hide polaroids on tiny screens, keep the globe itself */
-@media (max-width: 720px) {
-  .globe-polaroid:not(.globe-polaroid--home) { display: none; }
-}
-@media (max-width: 480px) {
-  .globe-polaroid--home { display: none; }
-  .globe-stage { max-width: 360px; }
-}
-
-/* Reduced motion: kill the aura pulse */
-@media (prefers-reduced-motion: reduce) {
-  .globe-stage::before { animation: none !important; }
-  #alliance-globe { transition-duration: 0s; opacity: 1; }
-}
-
-/* ---- 8.2 — Globe drag hint (first-visit, dismisses on interaction) ---- */
-.globe-hint {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 14px 7px 12px;
-  background: rgba(12, 14, 18, 0.78);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(156, 232, 178, 0.22);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--txt-2, #c9cdd4);
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--t-slow) ease, transform var(--t-slow) var(--ease-spring);
-  z-index: 8;
-  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.5);
-}
-.globe-hint svg {
-  color: var(--mint, var(--mint));
-  flex-shrink: 0;
-}
-.globe-hint.is-visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  /* v21-phase-C: globe-hint-bob culled — hint appears once, stays still.
-     Bobbing was a third ambient motion stacked on the home hero. */
-}
-.globe-hint.is-dismissed {
-  opacity: 0 !important;
-  transform: translateX(-50%) translateY(-6px) !important;
-  transition: opacity var(--t-base) ease, transform var(--t-base) ease;
-}
-:root[data-theme="light"] .globe-hint {
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--txt-2);
-  border-color: rgba(35, 122, 74, 0.22);
-  box-shadow: 0 12px 24px -12px rgba(0, 44, 81, 0.18);
-}
-@media (prefers-reduced-motion: reduce) {
-  .globe-hint.is-visible { animation: none !important; }
-}
-@media (max-width: 480px) {
-  .globe-hint { font-size: 0.6875rem; padding: 6px 12px; bottom: -34px; }
-}
-
-/* ══════════════════════════════════════════════════════════
    v9 — Real-geography Algeria branches map (MapLibre GL)
    Replaces the v4 hand-drawn SVG outline.
    ══════════════════════════════════════════════════════════ */
@@ -7661,372 +7420,6 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* End v12 ─────────────────────────────────────────────────── */
 
 /* ══════════════════════════════════════════════════════════
-   v14 — Scroll-Expand Hero · sticky-scrub rewrite
-   Replaces v13's wheel-hijack model. Free bidirectional scrubbing,
-   smooth GPU-composited transforms, automatic rewind.
-   Uses scale() + translate3d everywhere for compositor fast-path.
-   ══════════════════════════════════════════════════════════ */
-
-/* Reset v13 root — no longer pin via height/overflow, structure now
-   nested with scrub + pinned wrappers so sticky works. */
-.scroll-hero {
-  position: relative;
-  height: auto;
-  width: 100%;
-  overflow: visible;
-  isolation: auto;
-  background: #050609;
-  color: #f3f6fa;
-  touch-action: auto;
-  --p: 0;
-}
-
-/* The scrub runway: total height = viewport + extra room for the animation.
-   170vh gives a comfortable scroll distance (~70vh of scrubbing) without
-   making the section feel oversized on long-scroll pages. */
-.scroll-hero__scrub {
-  position: relative;
-  height: 170vh;
-  height: 170dvh;
-  width: 100%;
-}
-
-/* Sticky pinned visuals — stays glued to viewport top while scrub runs. */
-.scroll-hero__pinned {
-  position: sticky;
-  top: 0;
-  /* v22 Agent 3 — 3-tier viewport-height fallback (vh → svh → dvh) so
-     iOS Safari pre-15.4 still renders sanely. dvh is the modern choice
-     here (NOT svh): it adapts as the URL bar shows/hides, which is what
-     a sticky-pinned hero needs. svh would leave a gap when the bar
-     collapses. */
-  height: 100vh;
-  height: 100svh;
-  height: 100dvh;
-  width: 100%;
-  overflow: hidden;
-  isolation: isolate;
-  /* Compositor hint */
-  contain: paint;
-}
-
-/* ── Background photo ──────────────────────────────────────
-   Fades out + slight scale-down. Uses transform (composited)
-   instead of width/height. */
-.scroll-hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: translate3d(0, 0, 0) scale(calc(1 + (1 - var(--p)) * 0.04));
-  opacity: calc(1 - var(--p) * 0.85);
-  will-change: transform, opacity;
-  /* No CSS transition — JS sets --p continuously via rAF, which gives us
-     per-frame interpolation by the browser's compositor. Adding a CSS
-     transition would actually hurt smoothness here (it would lag behind). */
-}
-.scroll-hero__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, .35) 50%, rgba(0, 0, 0, .55) 100%);
-  pointer-events: none;
-}
-
-/* ── Centre media — scales from small to large ──────────────
-   We render at FULL size (the max) and scale DOWN at p=0, scale UP toward
-   1.0 as p approaches 1. This keeps text inside the media crisp at every
-   stage and uses transform: scale() for compositing.  */
-.scroll-hero__media {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: clamp(280px, 78vw, 1280px);
-  height: clamp(380px, 60vh, 840px);
-  border-radius: calc(20px - var(--p) * 8px);
-  overflow: hidden;
-  z-index: 5;
-  background-color: #0a0d12;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* scale 0.32 (small) → 1.0 (full) — values tuned to match v13 width range */
-  transform: translate3d(-50%, -50%, 0) scale(calc(0.32 + var(--p) * 0.68));
-  transform-origin: center center;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, .55),
-    0 0 0 1px rgba(255, 255, 255, .08) inset;
-  /* v26: border-radius animates per scroll frame (paint) — paint props gain
-     nothing from will-change; only the composited transform belongs here. */
-  will-change: transform;
-}
-.scroll-hero__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, .35) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, transparent 30%, transparent 60%, rgba(0, 0, 0, .35) 100%);
-  pointer-events: none;
-  opacity: calc(1 - var(--p) * 0.4);
-  will-change: opacity;
-}
-
-/* ── Title — split halves translate outward ──────────────── */
-.scroll-hero__title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.5vw, 22px);
-  width: max-content;
-  pointer-events: none;
-  font-family: var(--font-display, "DM Sans", system-ui, sans-serif);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  font-size: clamp(2.25rem, 7vw, 5.5rem);
-  line-height: 1;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, .45);
-  mix-blend-mode: difference;
-  color: #d6e8f5;
-}
-.scroll-hero__title-pre,
-.scroll-hero__title-post {
-  display: inline-block;
-  white-space: nowrap;
-  will-change: transform;
-}
-.scroll-hero__title-pre {
-  transform: translate3d(calc(var(--p) * -55vw), 0, 0);
-}
-.scroll-hero__title-post {
-  transform: translate3d(calc(var(--p) * 55vw), 0, 0);
-}
-
-/* ── Eyebrow + caption + skip — fade out ────────────────── */
-.scroll-hero__eyebrow {
-  position: absolute;
-  top: calc(50% - clamp(80px, 12vh, 140px));
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
-  z-index: 11;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, .35);
-  border: 1px solid rgba(255, 255, 255, .15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #e8eef3;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: calc(1 - var(--p) * 1.6);
-  will-change: opacity;
-}
-.scroll-hero__eyebrow svg {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
-
-.scroll-hero__caption {
-  position: absolute;
-  /* Pinned at bottom of viewport so it doesn't clip during scale */
-  bottom: clamp(40px, 9vh, 80px);
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
-  z-index: 7;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-align: center;
-  pointer-events: none;
-  opacity: calc(1 - var(--p) * 1.6);
-  will-change: opacity;
-}
-.scroll-hero__date {
-  font-size: clamp(.875rem, 1.5vw, 1.0625rem);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: #cfe4f3;
-  font-weight: 500;
-}
-.scroll-hero__prompt {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .8125rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #9fb6c8;
-  font-weight: 500;
-}
-.scroll-hero__prompt::after {
-  content: "";
-  display: inline-block;
-  width: 1px;
-  height: 32px;
-  background: linear-gradient(180deg, currentColor 0%, transparent 100%);
-  animation: shv14-pulse 1.6s ease-in-out infinite;
-  margin-left: 8px;
-}
-@keyframes shv14-pulse {
-  0%, 100% { opacity: .25; transform: scaleY(.6); }
-  50%      { opacity: 1;   transform: scaleY(1); }
-}
-
-.scroll-hero__skip {
-  position: absolute;
-  bottom: 20px;
-  right: 24px;
-  z-index: 12;
-  font-size: .75rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(232, 238, 243, .65);
-  background: rgba(0, 0, 0, .35);
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 999px;
-  padding: 6px 14px;
-  text-decoration: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  cursor: pointer;
-  opacity: calc(1 - var(--p) * 1.6);
-  will-change: opacity;
-  transition: background var(--t-fast) ease, color var(--t-fast) ease;
-}
-.scroll-hero__skip:hover {
-  background: rgba(0, 0, 0, .55);
-  color: #fff;
-}
-
-/* ── Continuation card — shows after the scrub completes ──
-   Fades in over the last 30% of progress so it's already
-   coming up as the media reaches full scale. */
-.scroll-hero__continuation {
-  position: relative;
-  z-index: 5;
-  margin: 0 auto;
-  padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 32px);
-  max-width: 1180px;
-  text-align: center;
-  /* v26 mobile-ux: reveal the offer sooner — threshold 0.7→0.55; divisor matched
-     to the remaining 0.45 runway so it still reaches opacity 1 at --p=1. */
-  opacity: calc(max(0, var(--p) - 0.55) / 0.45);
-  will-change: opacity;
-}
-.scroll-hero__continuation h1 {
-  font-family: var(--font-display, "DM Sans", system-ui, sans-serif);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  line-height: 1.1;
-  color: var(--txt-1, #f3f6fa);
-  margin-bottom: var(--s4, 16px);
-}
-.scroll-hero__continuation h1 em {
-  font-style: italic;
-  color: var(--accent, var(--mint));
-}
-.scroll-hero__continuation p {
-  max-width: 56ch;
-  margin: 0 auto var(--s5, 24px);
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--txt-2, #cfe4f3);
-}
-.scroll-hero__continuation .hero__price {
-  margin: 0 auto var(--s5, 24px);
-}
-.scroll-hero__continuation .hero__ctas {
-  justify-content: center;
-}
-
-/* ── Mobile tuning ───────────────────────────────────────── */
-@media (max-width: 768px) {
-  /* v26 mobile-ux: shorten the mobile scrub runway 150vh→115vh so the offer
-     arrives ~⅓ of a screen sooner. */
-  .scroll-hero__scrub {
-    height: 115vh;
-    height: 115dvh;
-  }
-  .scroll-hero__media {
-    width: clamp(240px, 86vw, 600px);
-    height: clamp(320px, 55vh, 600px);
-    transform: translate3d(-50%, -50%, 0) scale(calc(0.36 + var(--p) * 0.64));
-  }
-  .scroll-hero__title {
-    font-size: clamp(1.75rem, 9vw, 3rem);
-    gap: 4px;
-  }
-  .scroll-hero__title-pre {
-    transform: translate3d(calc(var(--p) * -65vw), 0, 0);
-  }
-  .scroll-hero__title-post {
-    transform: translate3d(calc(var(--p) * 65vw), 0, 0);
-  }
-  .scroll-hero__caption { bottom: 24px; }
-  .scroll-hero__skip {
-    right: var(--space-3); bottom: var(--space-3);
-    /* v26 mobile-ux: real 44px tap target — was ~27px tall (5px/10px padding). */
-    min-height: var(--touch-min);
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-2) var(--space-3);
-    font-size: .6875rem;
-  }
-  .scroll-hero__eyebrow {
-    font-size: .6875rem;
-    padding: 5px 12px;
-  }
-}
-
-/* ── Reduced motion: collapse runway, render at p=1 ───────── */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-hero__scrub {
-    height: auto;
-    /* v22 Agent 3 — 3-tier fallback (vh → svh → dvh). See note on
-       .scroll-hero__pinned for why dvh is the final preferred value. */
-    min-height: 100vh;
-    min-height: 100svh;
-    min-height: 100dvh;
-  }
-  .scroll-hero__pinned {
-    position: relative;
-    height: 100vh;
-    height: 100svh;
-    height: 100dvh;
-  }
-  .scroll-hero {
-    --p: 1 !important;
-  }
-  .scroll-hero__continuation {
-    opacity: 1;
-  }
-}
-
-/* ── No-JS fallback — preserve legibility even without scroll handler ── */
-.scroll-hero:not([data-sh-init]) .scroll-hero__continuation {
-  opacity: 1;
-}
-
-/* End v14 ─────────────────────────────────────────────────── */
-
-/* ══════════════════════════════════════════════════════════
    v15 — Validation, A11y polish, Transparency disclaimers
    Pairs with _v15_a11y_migrate.py + booking-form.js validate()
    ══════════════════════════════════════════════════════════ */
@@ -8125,10 +7518,6 @@ section.section.phase-block + section.section:not(.phase-block) {
   line-height: 1.5;
   font-style: italic;
   letter-spacing: .01em;
-}
-.scroll-hero__continuation .hero-fineprint {
-  margin-top: -8px;
-  margin-bottom: 16px;
 }
 
 /* ── Calculator tax disclaimer ──────────────────────────────── */
@@ -8356,7 +7745,6 @@ section.section.phase-block + section.section:not(.phase-block) {
    Over a hero photo with bright regions (sand, sky), text and border
    both fade. Fix: scope only to hero contexts — give a frosted-glass
    backdrop, stronger border, and a text-shadow safety net. */
-.scroll-hero .btn--ghost,
 .home-hero .btn--ghost,
 .hero .btn--ghost {
   background: rgba(0, 0, 0, .35);
@@ -8368,14 +7756,12 @@ section.section.phase-block + section.section:not(.phase-block) {
   font-weight: 600;
   transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
 }
-.scroll-hero .btn--ghost:hover,
 .home-hero .btn--ghost:hover,
 .hero .btn--ghost:hover {
   background: rgba(0, 0, 0, .55);
   border-color: rgba(255, 255, 255, .85);
   transform: translateY(-1px);
 }
-:root[data-theme="light"] .scroll-hero .btn--ghost,
 :root[data-theme="light"] .home-hero .btn--ghost,
 :root[data-theme="light"] .hero .btn--ghost {
   background: rgba(255, 255, 255, .85);
@@ -8579,77 +7965,6 @@ section.section.phase-block + section.section:not(.phase-block) {
 }
 
 /* End v16 ─────────────────────────────────────────────────── */
-
-/* ══════════════════════════════════════════════════════════
-   v17 — Performance optimizations
-   - Hero <picture><img> structure for WebP + responsive srcset
-   - object-fit on inner <img> so transforms still work on parent
-   - GPU compositing hints
-   ══════════════════════════════════════════════════════════ */
-
-/* ── Hero <picture> as bg/fg layer container ──────────────
-   Previously these rules used background-image. Now we use real <img>
-   inside <picture> so the browser auto-picks WebP + mobile-cropped
-   variants. The transform/opacity animations stay on the <picture>
-   (parent) — the inner <img> just fills via object-fit. */
-
-.scroll-hero__bg,
-picture.scroll-hero__bg {
-  display: block;
-  background: none;            /* drop legacy background-image fallback */
-}
-.scroll-hero__bg > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  /* The img itself doesn't need a separate transform — parent has it */
-}
-
-.scroll-hero__media,
-picture.scroll-hero__media {
-  display: block;
-  background: none;
-  background-color: #0a0d12;
-}
-.scroll-hero__media > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  border-radius: inherit;
-}
-
-/* The ::after pseudo-elements need to stay above the img (they were
-   already positioned absolute over the same area, just over a div).
-   Bump z-index slightly to make sure they paint over the img. */
-.scroll-hero__bg::after,
-.scroll-hero__media::after {
-  z-index: 1;
-}
-
-/* ── Globe canvas: pause hint via JS-applied class ────────
-   When the globe scrolls offscreen, JS applies .is-paused which we
-   use to hide it cheaply. The actual rAF loop in globe.js stops too,
-   but this keeps the visible state correct. */
-.globe-stage.is-paused {
-  visibility: hidden;
-}
-.globe-stage.is-paused canvas {
-  /* Belt-and-braces: even if visibility:hidden somehow doesn't apply
-     (Safari quirk), this drops the GPU layer */
-  transform: translateZ(0) scale(0.98);
-  opacity: 0.4;
-  transition: opacity var(--t-fast) ease;
-}
-
-/* End v17 ─────────────────────────────────────────────────── */
 
 /* ══════════════════════════════════════════════════════════════
    v18 — Neo-brutalist hotel cards
@@ -10204,12 +9519,6 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .footer-cta {
   flex-direction: row-reverse;
 }
-
-/* v27: globe destination polaroids hidden pending a visual marker-calibration pass
-   (the projection lands them off their cobe dots; a clean rotating globe ships meanwhile).
-   Re-enable by removing this rule once LNG_OFFSET/ROT_SIGN in globe.js are tuned live. */
-.globe-polaroid{ display:none !important; }
-
 
 /* ── Aurora orb (homepage hero visual — replaces the cobe WebGL globe) ──────
    CSS-only floating photo-stack over the same aurora atmosphere as the trip
