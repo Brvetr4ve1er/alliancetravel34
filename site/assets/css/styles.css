@@ -10227,3 +10227,20 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .aurora-orb__card--2{left:auto;right:2%}
 :root[lang="ar"] .aurora-orb__card--3{right:auto;left:0}
 @media (prefers-reduced-motion:reduce){.aurora-orb__sky,.aurora-orb__card{animation:none!important}}
+
+
+/* ── v27 responsive / delivery polish (from the responsive audit) ──────────── */
+/* iOS focus-zoom guard: keep form controls >=16px even when a utility font class
+   (e.g. .fs-body-sm on #hotel-select) outranks the pointer:coarse safety rule. */
+.calc-form select,
+.bform-field input, .bform-field select, .bform-field textarea{ font-size:max(16px, 1rem); }
+/* Stepper +/- buttons: full 44px hit area on touch (the coarse rule set only min-height). */
+@media (pointer:coarse){ .stepper__btn{ min-width:var(--touch-min); min-height:var(--touch-min); } }
+/* Aurora hero title: never clip/overflow on narrow phones; add a side gutter to the inner. */
+.aurora-hero__title{ overflow-wrap:break-word; hyphens:auto; }
+.aurora-hero__inner{ padding-inline:var(--container-x); }
+/* Aurora hero CTAs: stack full-width on the smallest phones instead of a cramped 2-up. */
+@media (max-width:380px){
+  .aurora-hero__actions{ flex-wrap:wrap; }
+  .aurora-hero__actions .btn{ flex:1 1 100%; }
+}
