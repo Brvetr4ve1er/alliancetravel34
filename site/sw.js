@@ -16,6 +16,12 @@
    cache busting (?v=) does NOT work for SW-cached resources. */
 const CACHE_NAME = 'alliance-v30-2026-06-20';
 const RUNTIME    = 'alliance-runtime-v30';
+const SCOPE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, '');
+
+function scopedPath(path) {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${SCOPE_PATH}${normalized}` || '/';
+}
 
 // Install: pre-cache the absolute homepage shell only.
 //
@@ -26,9 +32,9 @@ const RUNTIME    = 'alliance-runtime-v30';
 // flagged that pre-listing enhance.js + styles.css drifted from what
 // trip pages actually load — dropped to '/' only.
 const PRECACHE_URLS = [
-  '/',
-  '/assets/images/favicon/favicon-32x32.png',
-  '/site.webmanifest',
+  scopedPath('/'),
+  scopedPath('/assets/images/favicon/favicon-32x32.png'),
+  scopedPath('/site.webmanifest'),
 ];
 
 self.addEventListener('install', (event) => {
@@ -83,7 +89,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(RUNTIME).then((c) => c.put(req, copy));
           return res;
         })
-        .catch(() => caches.match(req).then((c) => c || caches.match('/')))
+        .catch(() => caches.match(req).then((c) => c || caches.match(scopedPath('/'))))
     );
     return;
   }

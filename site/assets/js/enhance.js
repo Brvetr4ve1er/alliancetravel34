@@ -1101,6 +1101,10 @@ if ('serviceWorker' in navigator
     && location.protocol === 'https:'
     && location.hostname !== 'localhost') {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {/* fail silent */});
+    const isProjectPagesHost = /\.github\.io$/i.test(location.hostname);
+    const firstPathSegment = location.pathname.split('/').filter(Boolean)[0];
+    const scope = (isProjectPagesHost && firstPathSegment) ? `/${firstPathSegment}/` : '/';
+    const swUrl = `${scope}sw.js`;
+    navigator.serviceWorker.register(swUrl, { scope }).catch(() => {/* fail silent */});
   });
 }
