@@ -40,7 +40,18 @@ jobs:
           test -f site/_headers || (echo "⚠️  site/_headers missing (deploy proceeds but no cache headers)" && true)
           echo "✓ site/ contents verified"
 
+      - name: Check Cloudflare secrets
+        id: cf_secrets
+        run: |
+          if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] && [ -n "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Skipping Cloudflare deploy because CLOUDFLARE_API_TOKEN and/or CLOUDFLARE_ACCOUNT_ID are not configured."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Deploy to Cloudflare Pages
+        if: steps.cf_secrets.outputs.ready == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
