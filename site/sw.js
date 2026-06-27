@@ -14,8 +14,8 @@
 /* CACHE NAME RULE: bump version on every release that changes site/.
    The activate handler purges old caches automatically. Query-param
    cache busting (?v=) does NOT work for SW-cached resources. */
-const CACHE_NAME = 'alliance-v30-2026-06-20';
-const RUNTIME    = 'alliance-runtime-v30';
+const CACHE_NAME = 'alliance-v31-2026-06-27';
+const RUNTIME    = 'alliance-runtime-v31';
 
 // Install: pre-cache the absolute homepage shell only.
 //
@@ -61,8 +61,8 @@ function isImage(url) {
   return /\.(?:jpg|jpeg|png|webp|avif|gif|svg|ico)$/i.test(url.pathname);
 }
 function isCDN(url) {
-  // Cache fonts.googleapis + esm.sh (cobe) as runtime cache
-  return /(fonts\.googleapis\.com|fonts\.gstatic\.com|esm\.sh)$/.test(url.hostname);
+  // Cache Google Fonts as runtime cache (cobe/esm.sh removed in v31)
+  return /(fonts\.googleapis\.com|fonts\.gstatic\.com)$/.test(url.hostname);
 }
 
 self.addEventListener('fetch', (event) => {

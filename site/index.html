@@ -216,7 +216,8 @@
       }
 
       .home-hero__globe {
-        display: none;
+        display: flex;
+        margin-top: var(--s7);
       }
 
       .contact-section {
@@ -357,43 +358,22 @@
         </div>
       </div>
 
-      <!-- Interactive 3D globe (cobe-powered, drag to spin) -->
+      <!-- Aurora orb: floating destination photo-stack (CSS-only, replaces the cobe globe) -->
       <div class="home-hero__globe">
-        <div class="globe-stage" id="globe-stage" aria-label="Carte interactive de nos destinations 2026">
-          <canvas id="alliance-globe" aria-hidden="true"></canvas>
-          <!-- Polaroid markers (positioned by JS via CSS Anchor Positioning) -->
-          <div class="globe-polaroid globe-polaroid--home" data-marker="bba" aria-hidden="true">
-            <div class="globe-polaroid__chip">★ Bordj Bou Arreridj</div>
-          </div>
-          <div class="globe-polaroid" data-marker="egypt" aria-hidden="true">
-            <img src="assets/images/heroes/hero__cairo-sharm.jpg" alt="" loading="lazy" decoding="async"/>
-            <span class="globe-polaroid__caption">Le Caire · Sharm</span>
-          </div>
-          <div class="globe-polaroid" data-marker="aze" aria-hidden="true">
-            <img src="assets/images/heroes/hero__azerbaidjan.jpg" alt="" loading="lazy" decoding="async"/>
-            <span class="globe-polaroid__caption">Bakou</span>
-          </div>
-          <div class="globe-polaroid" data-marker="ist" aria-hidden="true">
-            <img src="assets/images/heroes/hero__istanbul.jpg" alt="" loading="lazy" decoding="async"/>
-            <span class="globe-polaroid__caption">Istanbul</span>
-          </div>
-          <div class="globe-polaroid" data-marker="kl" aria-hidden="true">
-            <img src="assets/images/heroes/hero__kuala-lumpur.jpg" alt="" loading="lazy" decoding="async"/>
-            <span class="globe-polaroid__caption">Kuala Lumpur</span>
-          </div>
-          <div class="globe-polaroid" data-marker="tunisie" aria-hidden="true">
-            <img src="assets/images/heroes-v2/hero__tunisie--bg--mobile.jpg" alt="" loading="lazy" decoding="async"/>
-            <span class="globe-polaroid__caption">Tunisie</span>
-          </div>
-          <!-- First-visit drag hint, dismissed on first pointer interaction -->
-          <div class="globe-hint" id="globe-hint" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 11V6a2 2 0 0 1 4 0v5"/>
-              <path d="M13 9v-1a2 2 0 0 1 4 0v6"/>
-              <path d="M17 11V9a2 2 0 0 1 4 0v8a7 7 0 0 1-7 7h-1a8 8 0 0 1-8-8 4 4 0 0 1 8 0v1"/>
-            </svg>
-            <span>Glissez pour explorer le monde</span>
-          </div>
+        <div class="aurora-orb" aria-hidden="true">
+          <div class="aurora-orb__sky"></div>
+          <figure class="aurora-orb__card aurora-orb__card--1">
+            <img src="assets/images/trips/card__home__cairo-sharm.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            <figcaption>Le Caire · Sharm</figcaption>
+          </figure>
+          <figure class="aurora-orb__card aurora-orb__card--2">
+            <img src="assets/images/trips/card__home__istanbul.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            <figcaption>Istanbul</figcaption>
+          </figure>
+          <figure class="aurora-orb__card aurora-orb__card--3">
+            <img src="assets/images/trips/card__home__bali.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            <figcaption>Bali</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -1471,7 +1451,6 @@
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/enhance.js" defer></script>
   <script src="assets/js/hero-collage-lazy.js" defer></script>
-  <script type="module" src="assets/js/globe.js"></script>
   <script src="assets/js/map-base.js" defer></script>
   <script src="assets/js/algeria-map.js" defer></script>
 </body>

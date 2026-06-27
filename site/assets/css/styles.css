@@ -10209,3 +10209,21 @@ body { background: var(--bg); color: var(--txt-1); }
    (the projection lands them off their cobe dots; a clean rotating globe ships meanwhile).
    Re-enable by removing this rule once LNG_OFFSET/ROT_SIGN in globe.js are tuned live. */
 .globe-polaroid{ display:none !important; }
+
+
+/* ── Aurora orb (homepage hero visual — replaces the cobe WebGL globe) ──────
+   CSS-only floating photo-stack over the same aurora atmosphere as the trip
+   heroes. No JS, no CDN, works on mobile; RTL + reduced-motion safe. */
+.aurora-orb{position:relative;width:100%;max-width:480px;margin-inline:auto;aspect-ratio:1/1;isolation:isolate;}
+.aurora-orb__sky{position:absolute;inset:-12%;z-index:0;border-radius:50%;background:radial-gradient(40% 48% at 22% 24%,var(--accent),transparent 64%),radial-gradient(46% 54% at 80% 20%,#C8612C,transparent 70%),radial-gradient(54% 60% at 70% 88%,#1E6F8E,transparent 72%);filter:blur(46px) saturate(1.25);opacity:.55;animation:auroraDrift 22s ease-in-out infinite alternate;}
+.aurora-orb__card{position:absolute;margin:0;border-radius:var(--r3);overflow:hidden;background:#0c0e12;box-shadow:0 24px 60px -18px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);will-change:transform;}
+.aurora-orb__card img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;}
+.aurora-orb__card figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;font-size:.75rem;font-weight:600;letter-spacing:.04em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.7);background:linear-gradient(transparent,rgba(5,16,28,.85));}
+.aurora-orb__card--1{z-index:3;top:6%;left:21%;width:58%;--rot:-5deg;animation:orbFloat 9s ease-in-out infinite;}
+.aurora-orb__card--2{z-index:2;top:24%;left:2%;width:46%;opacity:.92;--rot:5deg;animation:orbFloat 9s ease-in-out -3s infinite;}
+.aurora-orb__card--3{z-index:1;top:30%;right:0;width:46%;opacity:.88;--rot:-3deg;animation:orbFloat 9s ease-in-out -6s infinite;}
+@keyframes orbFloat{0%,100%{transform:translate3d(0,0,0) rotate(var(--rot,-5deg))}50%{transform:translate3d(0,-10px,0) rotate(var(--rot,-5deg))}}
+:root[lang="ar"] .aurora-orb__card--1{left:auto;right:21%}
+:root[lang="ar"] .aurora-orb__card--2{left:auto;right:2%}
+:root[lang="ar"] .aurora-orb__card--3{right:auto;left:0}
+@media (prefers-reduced-motion:reduce){.aurora-orb__sky,.aurora-orb__card{animation:none!important}}
