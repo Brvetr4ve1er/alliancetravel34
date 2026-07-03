@@ -722,28 +722,30 @@
     const strip = document.createElement('div');
     strip.className = 'trust-strip';
     strip.setAttribute('aria-label', 'Indicateurs de confiance');
+    strip.setAttribute('data-i18n-aria-label', 'trust_strip.aria');
     strip.innerHTML = `
       <div class="trust-strip__item" title="Note moyenne sur 320 avis vérifiés">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span><strong>4,9 / 5</strong> · 320 voyageurs</span>
+        <span data-i18n-html="trust_strip.rating"><strong>4,9 / 5</strong> · 320 voyageurs</span>
       </div>
       <div class="trust-strip__sep" aria-hidden="true"></div>
       <div class="trust-strip__item" title="Agence créée en 2019">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
-        <span><strong>7+ ans</strong> d'expérience</span>
+        <span data-i18n-html="trust_strip.experience"><strong>7+ ans</strong> d'expérience</span>
       </div>
       <div class="trust-strip__sep" aria-hidden="true"></div>
       <div class="trust-strip__item" title="Vol, hôtel et excursions inclus">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-        <span><strong>Tout inclus</strong> — vol, hôtel, excursions</span>
+        <span data-i18n-html="trust_strip.all_inclusive"><strong>Tout inclus</strong> — vol, hôtel, excursions</span>
       </div>
       <div class="trust-strip__sep" aria-hidden="true"></div>
       <div class="trust-strip__item" title="Annulation flexible jusqu'à 30 jours">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/></svg>
-        <span><strong>Annulation flexible</strong></span>
+        <span data-i18n-html="trust_strip.flexible"><strong>Annulation flexible</strong></span>
       </div>
     `;
     hero.insertAdjacentElement('afterend', strip);
+    if (window.alTranslate) window.alTranslate();
   }
 
   /* ─── Sticky inquiry bar (trip pages only) ─── */
@@ -945,22 +947,24 @@
 
     const strip = document.createElement('section');
     strip.className = 'press-strip';
-    strip.setAttribute('aria-label', 'Vu dans les médias');
+    strip.setAttribute('aria-label', 'Nos engagements');
+    strip.setAttribute('data-i18n-aria-label', 'press_strip.aria');
     /* HONEST trust strip — replaces the previous "vu dans la presse"
        version which listed media outlets without a confirmed press
        relationship. Replace these labels with whatever the agency can
        actually defend (registration numbers, certifications, etc.). */
     strip.innerHTML = `
-      <p class="press-strip__label">Nos engagements</p>
+      <p class="press-strip__label" data-i18n="press_strip.label">Nos engagements</p>
       <div class="press-strip__items">
-        <span class="press-strip__item">Agence agréée Bordj Bou Arreridj</span>
-        <span class="press-strip__item">Vol &amp; hôtel inclus</span>
-        <span class="press-strip__item">Visa accompagné</span>
-        <span class="press-strip__item">Petits groupes (12 max)</span>
-        <span class="press-strip__item">Paiement à la confirmation</span>
+        <span class="press-strip__item" data-i18n="press_strip.item_licensed">Agence agréée Bordj Bou Arreridj</span>
+        <span class="press-strip__item" data-i18n="press_strip.item_included">Vol &amp; hôtel inclus</span>
+        <span class="press-strip__item" data-i18n="press_strip.item_visa">Visa accompagné</span>
+        <span class="press-strip__item" data-i18n="press_strip.item_groups">Petits groupes (12 max)</span>
+        <span class="press-strip__item" data-i18n="press_strip.item_payment">Paiement à la confirmation</span>
       </div>
     `;
     footer.insertAdjacentElement('beforebegin', strip);
+    if (window.alTranslate) window.alTranslate();
   }
 
   /* ─── 3-icon value-prop row — homepage, after trips grid ─── */
@@ -974,30 +978,32 @@
     const wrap = document.createElement('section');
     wrap.className = 'value-props-3';
     wrap.setAttribute('aria-label', 'Pourquoi Alliance Travel');
+    wrap.setAttribute('data-i18n-aria-label', 'value_props.aria');
     wrap.innerHTML = `
       <div class="value-prop">
         <div class="value-prop__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
-        <h3 class="value-prop__title">Guides francophones locaux</h3>
-        <p class="value-prop__text">Des accompagnateurs qui parlent votre langue et connaissent chaque destination par cœur.</p>
+        <h3 class="value-prop__title" data-i18n="value_props.guides_title">Guides francophones locaux</h3>
+        <p class="value-prop__text" data-i18n="value_props.guides_text">Des accompagnateurs qui parlent votre langue et connaissent chaque destination par cœur.</p>
       </div>
       <div class="value-prop">
         <div class="value-prop__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3 class="value-prop__title">Vol, hôtel & visa inclus</h3>
-        <p class="value-prop__text">Tout est cadré à l'avance — vous payez un prix tout compris, sans mauvaise surprise.</p>
+        <h3 class="value-prop__title" data-i18n="value_props.included_title">Vol, hôtel & visa inclus</h3>
+        <p class="value-prop__text" data-i18n="value_props.included_text">Tout est cadré à l'avance — vous payez un prix tout compris, sans mauvaise surprise.</p>
       </div>
       <div class="value-prop">
         <div class="value-prop__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3 class="value-prop__title">Groupes de 12 maximum</h3>
-        <p class="value-prop__text">Petits groupes pour une expérience humaine et personnalisée à chaque étape.</p>
+        <h3 class="value-prop__title" data-i18n="value_props.groups_title">Groupes de 12 maximum</h3>
+        <p class="value-prop__text" data-i18n="value_props.groups_text">Petits groupes pour une expérience humaine et personnalisée à chaque étape.</p>
       </div>
     `;
     target.insertAdjacentElement('beforebegin', wrap);
+    if (window.alTranslate) window.alTranslate();
   }
 
   /* ─── Pause-off-screen IntersectionObserver (v21 phase C.3) ───

@@ -178,6 +178,35 @@
         wa: 'WhatsApp',
         call: 'Appeler'
       },
+      // ─── JS-injected homepage sections (enhance.js) ───────────────
+      // These blocks are built client-side after the i18n baseline is
+      // captured, so their nodes carry data-i18n keys and enhance.js calls
+      // window.alTranslate() right after injection to localize them.
+      trust_strip: {
+        aria: 'Indicateurs de confiance',
+        rating: '<strong>4,9 / 5</strong> · 320 voyageurs',
+        experience: "<strong>7+ ans</strong> d'expérience",
+        all_inclusive: '<strong>Tout inclus</strong> — vol, hôtel, excursions',
+        flexible: '<strong>Annulation flexible</strong>'
+      },
+      press_strip: {
+        aria: 'Nos engagements',
+        label: 'Nos engagements',
+        item_licensed: 'Agence agréée Bordj Bou Arreridj',
+        item_included: 'Vol & hôtel inclus',
+        item_visa: 'Visa accompagné',
+        item_groups: 'Petits groupes (12 max)',
+        item_payment: 'Paiement à la confirmation'
+      },
+      value_props: {
+        aria: 'Pourquoi Alliance Travel',
+        guides_title: 'Guides francophones locaux',
+        guides_text: 'Des accompagnateurs qui parlent votre langue et connaissent chaque destination par cœur.',
+        included_title: 'Vol, hôtel & visa inclus',
+        included_text: "Tout est cadré à l'avance — vous payez un prix tout compris, sans mauvaise surprise.",
+        groups_title: 'Groupes de 12 maximum',
+        groups_text: 'Petits groupes pour une expérience humaine et personnalisée à chaque étape.'
+      },
       trip_page: {
         included: 'Compris dans le prix',
         not_included: 'Non compris',
@@ -481,6 +510,32 @@
         wa: 'WhatsApp',
         call: 'Call'
       },
+      // ─── JS-injected homepage sections (enhance.js) ───────────────
+      trust_strip: {
+        aria: 'Trust indicators',
+        rating: '<strong>4.9 / 5</strong> · 320 travellers',
+        experience: '<strong>7+ years</strong> of experience',
+        all_inclusive: '<strong>All-inclusive</strong> — flight, hotel, excursions',
+        flexible: '<strong>Flexible cancellation</strong>'
+      },
+      press_strip: {
+        aria: 'Our commitments',
+        label: 'Our commitments',
+        item_licensed: 'Licensed agency, Bordj Bou Arreridj',
+        item_included: 'Flight & hotel included',
+        item_visa: 'Visa handled for you',
+        item_groups: 'Small groups (12 max)',
+        item_payment: 'Pay on confirmation'
+      },
+      value_props: {
+        aria: 'Why Alliance Travel',
+        guides_title: 'Local Arabic-speaking guides',
+        guides_text: 'Guides who speak your language and know every destination inside out.',
+        included_title: 'Flight, hotel & visa included',
+        included_text: 'Everything is locked in advance — you pay one all-in price, no nasty surprises.',
+        groups_title: 'Groups of 12 maximum',
+        groups_text: 'Small groups for a personal, human experience at every step.'
+      },
       trip_page: {
         included: "What's included",
         not_included: 'Not included',
@@ -780,6 +835,32 @@
         label_prefix: 'مستشارك',
         wa: 'واتساب',
         call: 'اتصال'
+      },
+      // ─── JS-injected homepage sections (enhance.js) ───────────────
+      trust_strip: {
+        aria: 'مؤشّرات الثقة',
+        rating: '<strong>4.9 / 5</strong> · 320 مسافرًا',
+        experience: '<strong>أكثر من 7 سنوات</strong> من الخبرة',
+        all_inclusive: '<strong>كل شيء مشمول</strong> — الطيران والفندق والجولات',
+        flexible: '<strong>إلغاء مرن</strong>'
+      },
+      press_strip: {
+        aria: 'التزاماتنا',
+        label: 'التزاماتنا',
+        item_licensed: 'وكالة معتمدة في بُرج بوعريريج',
+        item_included: 'الطيران والفندق مشمولان',
+        item_visa: 'مرافقة في إجراءات التأشيرة',
+        item_groups: 'مجموعات صغيرة (12 كحدٍّ أقصى)',
+        item_payment: 'الدفع عند التأكيد'
+      },
+      value_props: {
+        aria: 'لماذا أليانس ترافل',
+        guides_title: 'مُرافِقون محلّيون ناطقون بالعربية',
+        guides_text: 'مُرافِقون يتحدّثون لغتك ويعرفون كلّ وجهة عن ظهر قلب.',
+        included_title: 'الطيران والفندق والتأشيرة مشمولة',
+        included_text: 'كل شيء مُعَدٌّ سلفًا — تدفع سعرًا واحدًا شاملًا، دون أيّ مفاجآت.',
+        groups_title: 'مجموعات من 12 كحدٍّ أقصى',
+        groups_text: 'مجموعات صغيرة لتجربة إنسانية وشخصية في كلّ مرحلة.'
       },
       trip_page: {
         included: 'مشمول في السعر',
@@ -1173,6 +1254,12 @@
   window.alSetLang = setLang;
   window.alGetLang = getLang;
   window.alTranslations = T;
+  /* Re-translate the DOM in place (no persist / no meta / no SR announce).
+     Other modules call this AFTER injecting nodes that carry data-i18n so the
+     just-inserted subtree gets localized into the active language. translate()
+     re-scans the whole document each call, so late-injected nodes are covered.
+     Falls back to the current language if none is passed. */
+  window.alTranslate = (lang) => translate(SUPPORTED.includes(lang) ? lang : getLang());
 
   function init() {
     const lang = getLang();

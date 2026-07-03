@@ -566,9 +566,20 @@ function initHotelPicker() {
     const visible = [...cards].some(c => c.style.display !== 'none');
     let empty = grid.querySelector('.hotel-empty');
     if (!visible && !empty) {
+      // Localize off <html lang> at injection time (mirrors _lang() logic;
+      // these are top-level helpers with no `this`). Reset button keeps its
+      // inline onclick → resetFilters(), so behavior is unchanged.
+      const l = document.documentElement.getAttribute('lang') || 'fr';
+      const lang = (l === 'en' || l === 'ar') ? l : 'fr';
+      const EMPTY = {
+        fr: { msg: 'Aucun hôtel ne correspond aux filtres.', reset: 'Réinitialiser' },
+        en: { msg: 'No hotel matches these filters.',        reset: 'Reset' },
+        ar: { msg: 'لا يوجد فندق مطابق لعوامل التصفية.',      reset: 'إعادة الضبط' }
+      };
+      const L = EMPTY[lang];
       empty = document.createElement('div');
       empty.className = 'hotel-empty';
-      empty.innerHTML = '<p>Aucun hôtel ne correspond aux filtres.</p><button onclick="resetFilters()">Réinitialiser</button>';
+      empty.innerHTML = `<p>${L.msg}</p><button onclick="resetFilters()">${L.reset}</button>`;
       grid.appendChild(empty);
     } else if (visible && empty) {
       empty.remove();

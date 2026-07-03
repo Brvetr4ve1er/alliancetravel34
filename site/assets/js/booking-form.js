@@ -646,16 +646,17 @@ class BookingForm {
     const phone = this.mount.querySelector('#bf-phone')?.value.trim();
     const hasContact = !!(name || phone);
     if (!hasCalcSelection && !hasContact) {
-      // TODO(i18n): Agent 4 may extend i18n.js with a `booking.empty_state`
-      // key — once that lands, swap the innerHTML to use a single
-      // <p data-i18n="booking.empty_state"> element. Until then we hard-
-      // code FR (primary locale) with EN + AR strings in data-i18n-fallback
-      // attributes so a future i18n script can pick them up.
-      preview.innerHTML = `<p class="bform-preview__empty"
-        data-i18n="booking.empty_state"
-        data-i18n-en="Configure your trip with the calculator above — your WhatsApp summary will appear here."
-        data-i18n-ar="اضبط رحلتك باستخدام الحاسبة أعلاه — سيظهر ملخّص واتساب الخاص بك هنا."
-      >Configurez votre voyage avec le calculateur ci-dessus — votre récap WhatsApp apparaîtra ici.</p>`;
+      // Empty-state copy, localized at injection time off <html lang> via
+      // _lang(). This preview is re-rendered on every keystroke (debounced
+      // _liveUpdate), so we resolve the string here rather than relying on the
+      // i18n baseline — mirrors _renderTripSummary()'s SUM[this._lang()] pattern.
+      const EMPTY = {
+        fr: 'Configurez votre voyage avec le calculateur ci-dessus — votre récap WhatsApp apparaîtra ici.',
+        en: 'Configure your trip with the calculator above — your WhatsApp summary will appear here.',
+        ar: 'اضبط رحلتك باستخدام الحاسبة أعلاه — سيظهر ملخّص واتساب الخاص بك هنا.'
+      };
+      const emptyMsg = EMPTY[this._lang()] || EMPTY.fr;
+      preview.innerHTML = `<p class="bform-preview__empty">${emptyMsg}</p>`;
       // Keep the send buttons disabled in this state — fall through to the
       // _validate() block below so href/aria stay coherent.
     } else {
