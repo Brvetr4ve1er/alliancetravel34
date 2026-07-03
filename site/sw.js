@@ -14,8 +14,8 @@
 /* CACHE NAME RULE: bump version on every release that changes site/.
    The activate handler purges old caches automatically. Query-param
    cache busting (?v=) does NOT work for SW-cached resources. */
-const CACHE_NAME = 'alliance-v31-2026-06-27';
-const RUNTIME    = 'alliance-runtime-v31';
+const CACHE_NAME = 'alliance-v32-2026-07-03';
+const RUNTIME    = 'alliance-runtime-v32';
 
 // Install: pre-cache the absolute homepage shell only.
 //
@@ -88,8 +88,27 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (isStaticAsset(url) || isImage(url) || isCDN(url)) {
-    // Stale-while-revalidate
+  if (isImage(url)) {
+    // Cache-first: images are immutable once shipped, so a cached hit is
+    // returned as-is with NO background revalidation (avoids a needless
+    // re-fetch of every image on every visit). Only fetch when not cached.
+    event.respondWith(
+      caches.match(req).then((cached) => {
+        if (cached) return cached;
+        return fetch(req).then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(RUNTIME).then((c) => c.put(req, copy));
+          }
+          return res;
+        });
+      })
+    );
+    return;
+  }
+
+  if (isStaticAsset(url) || isCDN(url)) {
+    // Stale-while-revalidate (CSS / JS / fonts / CDN)
     event.respondWith(
       caches.match(req).then((cached) => {
         const fresh = fetch(req).then((res) => {

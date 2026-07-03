@@ -200,13 +200,8 @@ button {
 
 /* Fluid typography utilities */
 .fs-display-1 { font-size: var(--fs-display-1); line-height: var(--lh-tight);   }
-.fs-display-2 { font-size: var(--fs-display-2); line-height: var(--lh-tight);   }
-.fs-h1        { font-size: var(--fs-h1);        line-height: var(--lh-snug);    }
-.fs-h2        { font-size: var(--fs-h2);        line-height: var(--lh-snug);    }
 .fs-h3        { font-size: var(--fs-h3);        line-height: var(--lh-snug);    }
-.fs-h4        { font-size: var(--fs-h4);        line-height: var(--lh-snug);    }
 .fs-h5        { font-size: var(--fs-h5);        line-height: var(--lh-normal);  }
-.fs-h6        { font-size: var(--fs-h6);        line-height: var(--lh-normal);  }
 .fs-body-lg   { font-size: var(--fs-body-lg);   line-height: var(--lh-relaxed); }
 .fs-body      { font-size: var(--fs-body);      line-height: var(--lh-relaxed); }
 .fs-body-sm   { font-size: var(--fs-body-sm);   line-height: var(--lh-normal);  }
@@ -214,30 +209,23 @@ button {
 
 /* Adaptive grid utilities */
 .grid-cards     { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.grid-cards--sm { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); }
-.grid-cards--lg { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-5); }
-.grid-cards--xl { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-5); }
+.grid-cards--lg { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: var(--space-5); }
 
 /* Atomic utilities — minimal set for inline-style migration (v22 Phase A) */
 .u-hidden        { display: none; }
-.u-block         { display: block; }
 .u-inline-block  { display: inline-block; }
 .u-text-center   { text-align: center; }
 .u-mx-auto       { margin-inline: auto; }
 .u-m-0           { margin: 0; }
-.u-mt-1          { margin-top: 4px; }
 .u-mt-2          { margin-top: 6px; }
 .u-mt-3          { margin-top: 8px; }
 .u-mt-sp3        { margin-top: var(--space-3); }
-.u-mt-sp4        { margin-top: var(--space-4); }
 .u-mt-sp5        { margin-top: var(--space-5); }
 .u-mb-1          { margin-bottom: 4px; }
 .u-mb-sp3        { margin-bottom: var(--space-3); }
 .u-mb-sp4        { margin-bottom: var(--space-4); }
 .u-mb-sp5        { margin-bottom: var(--space-5); }
-.u-mb-sp7        { margin-bottom: var(--space-7); }
 .u-size-full     { width: 100%; height: 100%; }
-.u-measure-sm    { max-width: 500px; }
 .u-measure-md    { max-width: 600px; }
 .u-measure-lg    { max-width: 680px; }
 .u-measure-xl    { max-width: 720px; }
@@ -257,12 +245,11 @@ button {
 .u-no-decoration { text-decoration: none; }
 .u-uppercase     { text-transform: uppercase; }
 .u-letter-wide   { letter-spacing: .1em; }
-.u-link-mint     { color: var(--mint); text-decoration: none; }
 
 /* Noscript fallback styling (used in 5 region pages' booking-section <noscript>) */
-.u-noscript-card { margin: 48px auto; padding: 24px; background: rgba(255,255,255,.04);
-                   border: 1px solid rgba(255,255,255,.1); border-radius: 14px; color: #fbf8f1; }
-.u-noscript-msg  { margin: 0 0 16px; color: #c9cdd4; line-height: 1.6; }
+.u-noscript-card { margin: 48px auto; padding: 24px; background: var(--bg-card);
+                   border: 1px solid rgba(255,255,255,.1); border-radius: 14px; color: var(--txt-1); }
+.u-noscript-msg  { margin: 0 0 16px; color: var(--txt-2); line-height: 1.6; }
 .u-noscript-title { margin: 0 0 12px; }
 .u-cluster       { display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .u-cluster--sm   { display: flex; flex-wrap: wrap; gap: var(--space-3); }
@@ -518,12 +505,8 @@ select {
   padding-inline: var(--container-x, clamp(16px, 5vw, 80px));
   width: 100%;
 }
-.container--narrow { max-width: 960px; }
-.container--prose  { max-width: 70ch; }
-
 .section    { padding-block: var(--section-y,    clamp(48px, 8vw, 96px));  }
 .section-sm { padding-block: var(--section-y-sm, clamp(32px, 5vw, 64px));  }
-.section-lg { padding-block: var(--section-y-lg, clamp(64px, 10vw, 128px));}
 
 /* ── Navigation ─────────────────────────────────────────── */
 .site-nav {
@@ -577,7 +560,10 @@ select {
   font-weight: 500;
   padding: var(--s2) var(--s5);
   background: var(--mint);
-  color: #fff;
+  /* --mint is light in the default (dark) theme, so white text was ~1.4:1 and
+     invisible; navy is the fixed dark ink. Light theme overrides back to #fff
+     (darker --mint) via the !important rule further down. */
+  color: var(--navy);
   border-radius: 999px;
   transition: background var(--t-fast), transform var(--t-fast);
 }
@@ -1207,7 +1193,7 @@ select {
   border: 1px solid var(--border);
   font-size: .8125rem;
   color: var(--txt-2);
-  transition: all var(--t-fast);
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
   cursor: pointer;
 }
 
@@ -1313,7 +1299,7 @@ select {
   place-items: center;
   font-size: 1.125rem;
   color: var(--txt-2);
-  transition: all var(--t-fast);
+  transition: border-color var(--t-fast), color var(--t-fast), opacity var(--t-fast);
 }
 
 .stepper__btn:hover:not(:disabled) {
@@ -1602,7 +1588,7 @@ select {
 /* WhatsApp — brand green */
 .btn--wa {
   background: var(--wa-green);
-  color: #fff;
+  color: #052e16;
 }
 .btn--wa:hover {
   background: var(--wa-green-hov);
@@ -2625,7 +2611,7 @@ select {
   color: var(--txt-3);
   font-size: 1rem;
   line-height: 1;
-  transition: all var(--t-fast);
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
   cursor: pointer;
 }
 
@@ -3266,7 +3252,7 @@ html.js [data-aos].visible {
   border-radius: var(--r2);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--t-fast);
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
 }
 
 .trip-switcher__trigger:hover {
@@ -3377,7 +3363,7 @@ html.js [data-aos].visible {
   color: var(--txt-1);
   cursor: pointer;
   opacity: 0;
-  transition: all var(--t-fast);
+  transition: opacity var(--t-fast), background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
   z-index: 2;
 }
 
@@ -3422,14 +3408,6 @@ html.js [data-aos].visible {
 .toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-.toast--success {
-  border-color: var(--sage);
-}
-
-.toast--success svg {
-  color: var(--sage);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3757,7 +3735,7 @@ html.js [data-aos].visible {
   grid-column: 2;
   justify-self: center;
 }
-.nav-logo svg, .nav-logo-img {
+.nav-logo svg {
   height: 52px !important;
   width: auto;
 }
@@ -3773,7 +3751,7 @@ html.js [data-aos].visible {
 @media (max-width: 768px) {
   .site-nav { grid-template-columns: auto 1fr auto; gap: var(--s3); padding: var(--s3) var(--s5); }
   .site-nav .nav-links { display: none; }
-  .nav-logo svg, .nav-logo-img { height: 40px !important; }
+  .nav-logo svg { height: 40px !important; }
 }
 
 /* ── Theme toggle button ─────────────────────────────────── */
@@ -4010,7 +3988,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   grid-row: auto !important;
   justify-self: auto !important;
 }
-.nav-logo svg, .nav-logo-img { height: 40px !important; }
+.nav-logo svg { height: 40px !important; }
 
 /* Left side: nav-links */
 .site-nav .nav-links {
@@ -4088,13 +4066,16 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
     right: 10px;
   }
   .site-nav .nav-links { display: none; }
-  .nav-logo svg, .nav-logo-img { height: 32px !important; }
-  .site-nav .nav-cta {
+  .nav-logo svg { height: 32px !important; }
+  /* Direct-child only: the drawer's moved-in .nav-cta / .theme-toggle must NOT
+     inherit these mobile-nav-bar shrink sizes — they render full-size inside
+     the open drawer. */
+  .site-nav > .nav-cta {
     height: 36px;
     padding: 0 var(--s3);
     font-size: 0.8125rem;
   }
-  .site-nav .theme-toggle { width: 32px; height: 32px; }
+  .site-nav > .theme-toggle { width: 32px; height: 32px; }
   .site-nav > .theme-toggle { margin-left: auto; }
 }
 
@@ -4822,7 +4803,6 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
 .nav-cta,
 a.btn--primary,
 a.btn--ghost,
-.book-form button[type="submit"],
 .calc-cta {
   --mx: 0px;
   --my: 0px;
@@ -4841,8 +4821,6 @@ a.btn--ghost,
 .nav-cta:hover, .nav-cta:focus-visible,
 a.btn--primary:hover, a.btn--primary:focus-visible,
 a.btn--ghost:hover, a.btn--ghost:focus-visible,
-.book-form button[type="submit"]:hover,
-.book-form button[type="submit"]:focus-visible,
 .calc-cta:hover, .calc-cta:focus-visible {
   will-change: transform;
 }
@@ -4873,7 +4851,6 @@ a.btn--ghost:hover, a.btn--ghost:focus-visible,
 .hotel-card,
 .value-card,
 .branch-card,
-.testimonial,
 .faq__item {
   transition:
     transform var(--t-base) var(--ease-spring-soft),
@@ -5729,52 +5706,12 @@ img.lb-target:hover {
   .value-prop__text { max-width: 32ch; }
 }
 
-/* ---- 7.13 — Photo strip (4-thumbnail row above hero on trip pages) ---- */
-.photo-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  padding: 12px clamp(16px, 4vw, 32px);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.photo-strip__item {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 8px;
-  cursor: zoom-in;
-  position: relative;
-  background: var(--bg-card);
-}
-.photo-strip__item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--t-cinema) var(--ease-spring);
-}
-.photo-strip__item:hover img {
-  transform: scale(1.06);
-}
-.photo-strip__item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  transition: opacity var(--t-fast) ease;
-}
-.photo-strip__item:hover::after { opacity: 1; }
-@media (max-width: 640px) {
-  .photo-strip { grid-template-columns: repeat(2, 1fr); }
-}
-
 /* ---- 7.14 — Reduced-motion + nav-clearance for sticky bar ---- */
 @media (prefers-reduced-motion: reduce) {
   .trip-sticky-bar,
   .lightbox,
   .lightbox__img,
-  .fab-whatsapp__tooltip,
-  .badge--limited {
+  .fab-whatsapp__tooltip {
     transition: none !important;
     animation: none !important;
   }
@@ -5787,6 +5724,16 @@ img.lb-target:hover {
 body.has-sticky-bar .site-nav {
   transform: translateY(48px);
   transition: transform var(--t-base) var(--ease-spring);
+}
+/* When the mobile nav drawer is open, drop the scroll transform. A transform
+   makes .site-nav the containing block for its position:fixed drawer child,
+   trapping the drawer inside the ~56px nav box — this is the root cause of the
+   "mobile nav breaks when scrolled/resized" bug. Removing it instantly (no
+   transition) while open lets the drawer resolve against the viewport again.
+   The nav sits under the backdrop while open, so the reset is invisible. */
+body.has-sticky-bar.nav-scroll-lock .site-nav {
+  transform: none;
+  transition: none;
 }
 
 /* Class-based scroll lock used by the lightbox — non-destructive,
@@ -5806,7 +5753,7 @@ body.has-sticky-bar .site-nav {
   position: relative;
   width: 100%;
   height: clamp(540px, 60vw, 720px);
-  border-radius: var(--r3, 24px);
+  border-radius: var(--r3, 12px);
   overflow: hidden;
   background: var(--bg-2, #0f1218);
   border: 1px solid var(--border, rgba(255,255,255,.08));
@@ -5844,7 +5791,7 @@ body.has-sticky-bar .site-nav {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(156, 232, 178, .18) !important;
-  border-radius: var(--r2, 12px) !important;
+  border-radius: var(--r2, 8px) !important;
   box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .5) !important;
 }
 #algeria-map .maplibregl-ctrl-group button {
@@ -6000,7 +5947,7 @@ body.has-sticky-bar .site-nav {
 .maplibregl-popup-content {
   background: rgba(12, 14, 18, .96) !important;
   color: var(--txt-1, #efe8df) !important;
-  border-radius: var(--r2, 12px) !important;
+  border-radius: var(--r2, 8px) !important;
   border: 1px solid rgba(156, 232, 178, .22) !important;
   padding: 12px 14px !important;
   box-shadow: 0 14px 30px -8px rgba(0, 0, 0, .55) !important;
@@ -6099,7 +6046,7 @@ body.has-sticky-bar .site-nav {
   position: relative;
   width: 100%;
   height: clamp(560px, 64vw, 760px);
-  border-radius: var(--r3, 24px);
+  border-radius: var(--r3, 12px);
   overflow: hidden;
   background: var(--bg-2, #0f1218);
   border: 1px solid var(--border, rgba(255,255,255,.08));
@@ -6745,7 +6692,7 @@ body.has-sticky-bar .site-nav {
   background: transparent;
   margin-bottom: 0;
   cursor: pointer;
-  transition: all var(--t-fast) var(--ease-snap);
+  transition: border-color var(--t-fast) var(--ease-snap), color var(--t-fast) var(--ease-snap), background var(--t-fast) var(--ease-snap), box-shadow var(--t-fast) var(--ease-snap), filter var(--t-fast) var(--ease-snap);
   letter-spacing: .02em;
 }
 .tier-tab:hover {
@@ -6814,7 +6761,7 @@ body.has-sticky-bar .site-nav {
   gap: var(--s2);
   border-radius: var(--r2);
   cursor: pointer;
-  transition: all var(--t-fast);
+  transition: filter var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
   letter-spacing: .01em;
 }
 .hotel-card__cta::after {
@@ -6853,7 +6800,7 @@ body.has-sticky-bar .site-nav {
   font-weight: 500;
   color: var(--txt-1);
   cursor: pointer;
-  transition: all var(--t-fast);
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
   display: grid;
   place-items: center;
   line-height: 1;
@@ -7040,7 +6987,7 @@ body.has-sticky-bar .site-nav {
   font-weight: 500;
   color: var(--txt-2);
   cursor: pointer;
-  transition: all var(--t-fast);
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
   letter-spacing: .01em;
 }
 .date-chip:hover {
@@ -7083,7 +7030,7 @@ body.has-sticky-bar .site-nav {
   background: transparent;
   border-radius: 6px;
   cursor: pointer;
-  transition: all var(--t-fast);
+  transition: color var(--t-fast), background var(--t-fast);
   border: none;
 }
 .seg-opt:hover {
@@ -7427,14 +7374,14 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* ── Booking form validation states ───────────────────────── */
 .bform-field input.is-invalid,
 .bform-field textarea.is-invalid {
-  border-color: #d04444;
+  border-color: var(--danger);
   box-shadow: 0 0 0 3px rgba(208, 68, 68, .12);
   background: rgba(208, 68, 68, .04);
 }
 .bform-field input.is-invalid:focus,
 .bform-field textarea.is-invalid:focus {
   outline: none;
-  border-color: #d04444;
+  border-color: var(--danger);
   box-shadow: 0 0 0 4px rgba(208, 68, 68, .22);
 }
 .bform-field input[aria-invalid="true"] + .bf-field-err,
@@ -7445,7 +7392,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 .bf-field-err {
   margin: 6px 0 0;
   font-size: .8125rem;
-  color: #d04444;
+  color: var(--danger);
   font-weight: 500;
   display: flex;
   align-items: flex-start;
@@ -7469,7 +7416,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 
 /* Required asterisk colored for visibility */
 .bform-field .req {
-  color: #d04444;
+  color: var(--danger);
   font-weight: 700;
   margin-left: 2px;
 }
@@ -7484,18 +7431,18 @@ section.section.phase-block + section.section:not(.phase-block) {
   background: rgba(208, 68, 68, .08);
   border: 1px solid rgba(208, 68, 68, .25);
   border-radius: var(--r2, 8px);
-  color: #c43d3d;
+  color: var(--danger);
   font-size: .875rem;
   font-weight: 500;
   line-height: 1.4;
 }
 .bf-validation-banner svg {
-  color: #d04444;
+  color: var(--danger);
   flex-shrink: 0;
 }
 :root[data-theme="light"] .bf-validation-banner {
   background: rgba(208, 68, 68, .06);
-  color: #b13434;
+  color: var(--danger);
 }
 
 /* ── Disabled send button (when form invalid) ─────────────── */
@@ -7518,34 +7465,6 @@ section.section.phase-block + section.section:not(.phase-block) {
   line-height: 1.5;
   font-style: italic;
   letter-spacing: .01em;
-}
-
-/* ── Calculator tax disclaimer ──────────────────────────────── */
-.calc-disclaimer {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin: 0 0 var(--s4, 16px);
-  padding: 10px 12px;
-  background: rgba(245, 200, 66, .10);
-  border: 1px solid rgba(245, 200, 66, .25);
-  border-radius: var(--r2, 8px);
-  font-size: .8125rem;
-  color: var(--txt-2, #c9cdd4);
-  line-height: 1.5;
-}
-.calc-disclaimer svg {
-  color: var(--star-gold);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.calc-disclaimer strong {
-  color: var(--txt-1, #fbf8f1);
-  font-weight: 600;
-}
-:root[data-theme="light"] .calc-disclaimer {
-  background: rgba(245, 200, 66, .14);
-  color: var(--txt-2, #3a4252);
 }
 
 /* ── Date chips: keyboard focus + active visual ──────────── */
@@ -7591,7 +7510,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 .info-card {
   background: var(--bg-card, rgba(255,255,255,.03));
   border: 1px solid var(--border, rgba(255,255,255,.08));
-  border-radius: var(--r3, 14px);
+  border-radius: var(--r3, 12px);
   overflow: hidden;
   transition: border-color var(--t-fast) ease, box-shadow var(--t-fast) ease;
 }
@@ -7794,7 +7713,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   font-weight: 600;
   color: var(--txt-2, #c9cdd4);
   cursor: pointer;
-  transition: all var(--t-fast);
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
   letter-spacing: .02em;
 }
 .dest-filter__pill:hover {
@@ -7909,7 +7828,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   display: grid;
   place-items: center;
   color: var(--txt-2, #c9cdd4);
-  transition: all var(--t-fast);
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
   text-decoration: none;
 }
 .footer-social a:hover {
@@ -8334,7 +8253,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 .hotel-card__cta:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--hc-shadow);
-  transition: all 80ms ease;
+  transition: transform 80ms ease, box-shadow 80ms ease;
 }
 
 /* Selected hotel — solid CTA flips into a "✓ Sélectionné" state */
@@ -8808,7 +8727,6 @@ body { background: var(--bg); color: var(--txt-1); }
    All cards listed here share bg-card + border-color. Each card's
    individual block keeps its own padding, gap, radius (some use r1
    instead of r3), and transition — those vary by component shape. */
-.dest-card,
 .testi-card,
 .stat-card,
 .info-card,
@@ -8824,7 +8742,6 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 
 /* Hover surfaces tip up to bg-elev */
-.dest-card:hover,
 .testi-card:hover,
 .faq-item.open {
   background: var(--bg-elev);
@@ -8843,7 +8760,6 @@ body { background: var(--bg); color: var(--txt-1); }
 
 /* Mint usage discipline — small dim variant for non-CTA mint moments */
 .amenity-pill,
-.dep-badge,
 .phase-marker {
   background: var(--mint-dim);
   color: var(--accent);
@@ -8957,7 +8873,7 @@ body { background: var(--bg); color: var(--txt-1); }
   padding: 14px 14px 12px;
   background: var(--bg);
   border: 1px solid var(--border-hi);
-  border-radius: var(--r2, 10px);
+  border-radius: var(--r2, 8px);
   transition: border-color var(--t-fast) ease, transform var(--t-fast) ease, background var(--t-fast) ease;
 }
 .phone-card:hover {
@@ -9261,18 +9177,13 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Extended coverage 2026-06-03: every numeric surface across calc, booking,
    sticky bars, trip cards, date chips, agency stats, related cards, etc. */
 :root[lang="ar"] .date-chip,
-:root[lang="ar"] .calc-line__amount,
-:root[lang="ar"] .breakdown__amount,
 :root[lang="ar"] .breakdown__line strong,
 :root[lang="ar"] .sticky-total__amount,
 :root[lang="ar"] .trip-sticky-bar__price-num,
 :root[lang="ar"] .trip-card__from strong,
-:root[lang="ar"] .trip-card__from-amount,
 :root[lang="ar"] .hotel-card__price,
 :root[lang="ar"] .hotel-card__price-from,
 :root[lang="ar"] .bf-trip-chip,
-:root[lang="ar"] .calc-cta__price,
-:root[lang="ar"] .calc-total__amount,
 :root[lang="ar"] .related-card__price,
 :root[lang="ar"] .related-card__price strong,
 :root[lang="ar"] .conseiller-num,
@@ -9287,8 +9198,6 @@ body { background: var(--bg); color: var(--txt-1); }
 
 /* ── RTL LAYOUT ADJUSTMENTS  (Arabic only) ── */
 /* Flip directional arrows */
-[dir="rtl"] .btn svg.btn__arrow,
-[dir="rtl"] .nav-cta svg.nav-cta__arrow,
 [dir="rtl"] .trip-card__cta svg,
 [dir="rtl"] .related-card__cta svg,
 [dir="rtl"] .voyage-arrow,
@@ -9395,7 +9304,7 @@ body { background: var(--bg); color: var(--txt-1); }
 .aurora-hero__title em{
   display:block; margin-top:var(--space-3); font-family:var(--font-display);
   font-style:normal; font-weight:400; font-size:clamp(.95rem,2.4vw,1.5rem);
-  letter-spacing:.005em; line-height:1.3; color:var(--txt-1); text-shadow:0 1px 12px rgba(0,0,0,.6);
+  letter-spacing:.005em; line-height:1.3; color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.6);
 }
 .aurora-hero__date{ margin:0; font-size:var(--fs-body-sm); text-transform:uppercase; letter-spacing:.14em; color:var(--txt-2); }
 
@@ -9413,6 +9322,8 @@ body { background: var(--bg); color: var(--txt-1); }
 .aurora-hero__price{ margin:0; display:flex; align-items:baseline; flex-wrap:wrap; justify-content:center; gap:.15em .5ch; }
 .aurora-hero__from{ font-size:var(--fs-caption); text-transform:uppercase; letter-spacing:.12em; color:var(--txt-2); }
 .aurora-hero__amount{ font-family:var(--font-hero-display, var(--font-display)); font-weight:600; font-size:clamp(1.55rem,4.4vw,2.2rem); color:#fff; direction:ltr; unicode-bidi:isolate; }
+/* The offer bar glass is cream in light mode, so #fff price was invisible. */
+:root[data-theme="light"] .aurora-hero__amount{ color:var(--txt-1); }
 .aurora-hero__unit{ font-size:var(--fs-caption); color:var(--txt-2); }
 .aurora-hero__actions{ display:flex; flex-wrap:wrap; gap:var(--space-3); justify-content:center; }
 .aurora-hero__wa{ display:inline-flex; align-items:center; gap:.5ch; }
