@@ -1028,22 +1028,8 @@ select {
   background: rgba(12, 14, 18, .8);
   color: var(--txt-2);
 }
-
-.hotel-card__ribbon.economique {
-  color: #8AB4F8;
-}
-
-.hotel-card__ribbon.medium {
-  color: #8BD5CA;
-}
-
-.hotel-card__ribbon.premium {
-  color: var(--mint);
-}
-
-.hotel-card__ribbon.luxe {
-  color: var(--star-gold);
-}
+/* Per-tier ribbon colours intentionally omitted: the ribbon is unified to white
+   via a `!important` rule below, so tier-specific colours never rendered. */
 
 .hotel-card__body {
   padding: var(--s5);
@@ -8058,16 +8044,6 @@ section.section.phase-block + section.section:not(.phase-block) {
   transform: rotate(2deg) scale(1.06);
   box-shadow: 4px 4px 0 var(--hc-shadow);
 }
-
-/* Tier-specific accent — keeps the v12 colour assignments */
-.hotel-card__ribbon.economique { color: #5b9eC9; }
-.hotel-card__ribbon.medium     { color: #5cc4c1; }
-.hotel-card__ribbon.premium    { color: #d8a653; }
-.hotel-card__ribbon.luxe       { color: var(--star-gold); }
-:root[data-theme="light"] .hotel-card__ribbon.economique { color: #1f568a; }
-:root[data-theme="light"] .hotel-card__ribbon.medium     { color: #1f7a78; }
-:root[data-theme="light"] .hotel-card__ribbon.premium    { color: #8a5616; }
-:root[data-theme="light"] .hotel-card__ribbon.luxe       { color: #876608; }
 
 /* ── Body ──────────────────────────────────────────────────── */
 .hotel-card__body {
