@@ -1,6 +1,6 @@
 <section class="info-block-section section" id="conditions" aria-label="Informations pratiques pour votre réservation">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-head--center">
       <p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400"{{k.infoEyebrow}}>Avant de partir</p>
       <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500"{{k.infoTitle}}>Tout ce qu'il <em>faut savoir</em></h2>
       <p class="section-head__sub"{{k.infoSub}}>Paiement, annulation, formalités visa, assurance — la transparence en quatre blocs.</p>
