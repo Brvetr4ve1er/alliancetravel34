@@ -1,0 +1,1085 @@
+{
+  "meta": {
+    "title": "Istanbul — Alliance Travel · Saison 2026",
+    "description": "Voyage guidé à Istanbul depuis Constantine. 8 jours / 7 nuits, Turkish Airlines, départs hebdomadaires septembre–novembre 2026. Dès 129.000 DA.",
+    "ogTitle": "Istanbul — Alliance Travel",
+    "ogDescription": "8 jours / 7 nuits à Istanbul depuis l'aéroport de Constantine. Turkish Airlines, 4 jours d'excursions guidées, 4 hôtels au choix. Départs hebdomadaires.",
+    "themeColor": "#5B9EC9",
+    "ogImage": "og-istanbul.jpg"
+  },
+  "accent": {
+    "color": "#70b8e0",
+    "dim": "rgba(91,158,201,.13)",
+    "glow": "rgba(91,158,201,.22)",
+    "heroGradient": "linear-gradient(145deg,#0a0510 0%,#100816 55%,#080610 100%)"
+  },
+  "slug": "istanbul",
+  "jsonLd": {
+    "breadcrumbName": "Istanbul"
+  },
+  "seo": {
+    "tripName": "Istanbul — Alliance Travel",
+    "tripDescription": "8 jours / 7 nuits à Istanbul depuis l'aéroport de Constantine. Turkish Airlines, 4 jours d'excursions guidées, 4 hôtels au choix. Départs hebdomadaires.",
+    "offerPrice": "123000",
+    "faqJsonLd": [
+      {
+        "name": "Depuis quel aéroport part-on ?",
+        "text": "Le départ se fait depuis l' aéroport de Constantine (CZL) avec Turkish Airlines, directement vers Istanbul. Pas besoin de se déplacer à Alger."
+      },
+      {
+        "name": "Comment obtenir le visa turc ?",
+        "text": "Le visa turc se paie au centre Gateway . Il n'est pas inclus dans le package. Notre équipe vous fournit toutes les instructions et vous guide dans la démarche, qui est simple et rapide."
+      },
+      {
+        "name": "Comment s'inscrire depuis chez moi ?",
+        "text": "Inscription par téléphone ou WhatsApp. Le paiement se fait par virement CCP ou en espèces à l'agence. Un acompte suffit pour bloquer votre place."
+      },
+      {
+        "name": "Tarifs enfants pour Istanbul ?",
+        "text": "Selon l'hôtel : enfant 6–12 ans avec lit entre 100.000 et 110.000 DA . Enfant 2–5 ans sans lit entre 79.000 et 85.000 DA . Bébé <2 ans : 25.000 DA . Utilisez le calculateur pour le total exact."
+      }
+    ]
+  },
+  "region": "istanbul",
+  "dataPage": "istanbul",
+  "k": {
+    "navAttrs": "",
+    "navListRole": "",
+    "heroKeys": "",
+    "heroH1": "",
+    "heroLede": "",
+    "heroPriceUnit": "",
+    "heroFineprint": "",
+    "heroCtaCalc": "",
+    "hlSection": "",
+    "itinSection": "",
+    "itinPhase": "",
+    "itinEyebrow": "",
+    "itinTitle": "",
+    "mapEyebrow": "",
+    "mapTitle": "",
+    "mapSub": "",
+    "mapLoading": "",
+    "legendHotels": "",
+    "legendSites": "",
+    "legendTours": "",
+    "trustEyebrow": "",
+    "trustTitle": "",
+    "inclEyebrow": "",
+    "inclTitle": "",
+    "inclSub": "",
+    "inclColTitle": "",
+    "inclColCount": "",
+    "exclColTitle": "",
+    "exclColCount": "",
+    "faqSection": "",
+    "faqEyebrow": "",
+    "faqTitle": "",
+    "hotelsSection": "",
+    "hotelsPhase": "",
+    "hotelsEyebrow": "",
+    "hotelsTitle": "",
+    "hotelsSub": "",
+    "tierTabsAria": "",
+    "hotelGridAttrs": "",
+    "calcSection": "",
+    "calcPhase": "",
+    "calcEyebrow": "",
+    "calcTitle": "",
+    "calcSub": "",
+    "calcFormAttrs": "",
+    "calcDateLabel": "",
+    "dateChipsRole": "",
+    "calcSelectLabel": "",
+    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
+    "calcRoomLabel": "",
+    "segmentedAttrs": "",
+    "calcTravLabel": "",
+    "breakdownAttrs": "",
+    "recap": "",
+    "recapEmpty": "",
+    "totalLabel": "",
+    "whyAttrs": "",
+    "continueA": "",
+    "continue": "",
+    "nextStep": "",
+    "infoEyebrow": "",
+    "infoTitle": "",
+    "infoSub": "",
+    "relEyebrow": "",
+    "relTitle": "",
+    "finalSection": "",
+    "finalScarcity": "",
+    "finalTitle": "",
+    "finalSub": "",
+    "footerAttrs": "",
+    "stickyAria": "",
+    "stickyLabel": "",
+    "stickyCta": ""
+  },
+  "nav": {
+    "ctaHtml": "Réserver"
+  },
+  "hero": {
+    "bg": "../assets/images/heroes-v2/hero__istanbul--bg.jpg",
+    "fg": "../assets/images/heroes-v2/hero__istanbul--fg.jpg",
+    "titlePre": "Istanbul",
+    "titlePost": "Entre deux continents",
+    "eyebrow": "Départ Constantine · Turkish Airlines · Septembre–Novembre 2026",
+    "date": "8 jours · 7 nuits · Hôtel River 3★",
+    "prompt": "Faites défiler pour découvrir",
+    "skip": "Passer",
+    "h1Pre": "Istanbul ",
+    "h1Em": "Entre deux continents",
+    "lede": "Aya Sofya, le Grand Bazar, les îles des Princes et le Bosphore au coucher du soleil. 8 jours de découverte totale depuis l'aéroport de Constantine, chaque semaine.",
+    "priceFrom": "129.000 DA",
+    "priceUnit": "par personne · chambre double · Hotel River 3★",
+    "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation."
+  },
+  "highlights": [
+    {
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/>",
+      "kLabel": "",
+      "label": "Jour 2",
+      "kTitle": "",
+      "title": "City Tour &amp; Sultanahmet",
+      "kBody": "",
+      "body": "Mosquée Bleue, Aya Sofya, Grand Bazar — à pied, en pleine immersion dans le vieux Istanbul."
+    },
+    {
+      "iconSvg": "<path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>",
+      "kLabel": "",
+      "label": "Jour 3",
+      "kTitle": "",
+      "title": "Croisière Îles des Princes",
+      "kBody": "",
+      "body": "Mer de Marmara en bateau, déjeuner inclus, visite des îles des Princes — carte postale garantie."
+    },
+    {
+      "iconSvg": "<polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/>",
+      "kLabel": "",
+      "label": "Jour 4",
+      "kTitle": "",
+      "title": "Ortaköy &amp; Malls",
+      "kBody": "",
+      "body": "Ortaköy, Mall Florya (aquarium), Mall Olivium — shopping et modernité face au Bosphore."
+    },
+    {
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kLabel": "",
+      "label": "Jour 5",
+      "kTitle": "",
+      "title": "Côté Asiatique",
+      "kBody": "",
+      "body": "Palais Beylerbeyi, Tour de la Jeune Fille, Üsküdar, colline Çamlıca, Mall Venezia."
+    }
+  ],
+  "itinerary": {
+    "phaseLabel": "Découvrir",
+    "eyebrow": "8 jours · 7 nuits",
+    "titleHtml": "Votre <em>programme</em>",
+    "days": [
+      {
+        "active": true,
+        "kNode": "",
+        "node": "J1",
+        "kLabel": "",
+        "dayLabel": "Jour 1",
+        "kTitle": "",
+        "title": "Arrivée à Istanbul",
+        "kAct": "",
+        "activities": "Vol TK depuis Constantine. Accueil à l'aéroport, transfert hôtel, check-in, installation et soirée libre."
+      },
+      {
+        "active": false,
+        "aosDelay": 0,
+        "kNode": "",
+        "node": "J2",
+        "kLabel": "",
+        "dayLabel": "Jour 2",
+        "kTitle": "",
+        "title": "City Tour · Sultanahmet à pied",
+        "kAct": "",
+        "activities": "Mosquée Bleue, Aya Sofya, Grand Bazar — visite guidée à pied. Échange de devises inclus dans la visite.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Mosquée Bleue"
+          },
+          {
+            "k": "",
+            "t": "Aya Sofya"
+          },
+          {
+            "k": "",
+            "t": "Grand Bazar"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 80,
+        "kNode": "",
+        "node": "J3",
+        "kLabel": "",
+        "dayLabel": "Jour 3",
+        "kTitle": "",
+        "title": "Croisière Mer de Marmara · Îles des Princes",
+        "kAct": "",
+        "activities": "Balade en bateau sur la Mer de Marmara. Visite des Îles des Princes avec déjeuner inclus à bord.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Îles des Princes"
+          },
+          {
+            "k": "",
+            "t": "Déjeuner inclus"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 160,
+        "kNode": "",
+        "node": "J4",
+        "kLabel": "",
+        "dayLabel": "Jour 4",
+        "kTitle": "",
+        "title": "Ortaköy · Florya · Olivium",
+        "kAct": "",
+        "activities": "Visite d'Ortaköy (mosquée face au Bosphore), Mall Florya (aquarium sans ticket), Mall Olivium.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Ortaköy"
+          },
+          {
+            "k": "",
+            "t": "Shopping"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 240,
+        "kNode": "",
+        "node": "J5",
+        "kLabel": "",
+        "dayLabel": "Jour 5",
+        "kTitle": "",
+        "title": "Côté Asiatique d'Istanbul",
+        "kAct": "",
+        "activities": "Palais Beylerbeyi, Tour de la Jeune Fille, Üsküdar, colline Çamlıca (panorama sur les deux continents), Mall Venezia.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Asie"
+          },
+          {
+            "k": "",
+            "t": "Tour de la Jeune Fille"
+          },
+          {
+            "k": "",
+            "t": "Çamlıca"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 320,
+        "kNode": "",
+        "node": "J6-7",
+        "kLabel": "",
+        "dayLabel": "Jours 6 &amp; 7",
+        "kTitle": "",
+        "title": "Jours libres · Shopping ou optionnel",
+        "kAct": "",
+        "activities": "Journées libres pour shopping, Grand Bazar à votre rythme, ou programme optionnel supplémentaire."
+      },
+      {
+        "active": false,
+        "aosDelay": 400,
+        "kNode": "",
+        "node": "J8",
+        "kLabel": "",
+        "dayLabel": "Jour 8",
+        "kTitle": "",
+        "title": "Retour à Constantine",
+        "kAct": "",
+        "activities": "Petit-déjeuner, restitution des chambres, transfert aéroport IST, vol retour vers Constantine."
+      }
+    ]
+  },
+  "tripMap": {
+    "eyebrow": "Votre voyage en un coup d'œil",
+    "titleHtml": "L'itinéraire <em>sur la carte</em>",
+    "subHead": "Sultanahmet, Bosphore, Îles des Princes, côté asiatique — votre semaine à Istanbul géolocalisée.",
+    "ariaLabel": "Carte de l'itinéraire Istanbul",
+    "subFallback": "Aya Sofya · Mosquée Bleue · Grand Bazar · Îles des Princes · Çamlıca",
+    "legendHotels": "Hôtels",
+    "legendSites": "Sites visités",
+    "legendTours": "Excursions guidées",
+    "data": {
+      "name": "Istanbul",
+      "hotels": [
+        {
+          "id": "river",
+          "name": "Hotel River",
+          "loc": [
+            28.965,
+            41.013
+          ],
+          "stars": 3,
+          "area": "Aksaray, Istanbul"
+        },
+        {
+          "id": "ozer",
+          "name": "Hotel Ozer Palace",
+          "loc": [
+            28.972,
+            41.011
+          ],
+          "stars": 4,
+          "area": "Aksaray, Istanbul"
+        },
+        {
+          "id": "alpin",
+          "name": "Hotel Alpin Due",
+          "loc": [
+            28.968,
+            41.014
+          ],
+          "stars": 4,
+          "area": "Aksaray, Istanbul"
+        },
+        {
+          "id": "tilia",
+          "name": "Hôtel Tilia",
+          "loc": [
+            28.974,
+            41.015
+          ],
+          "stars": 5,
+          "area": "Sultanahmet, Istanbul"
+        }
+      ],
+      "sites": [
+        {
+          "name": "Mosquée Bleue (Sultanahmet)",
+          "loc": [
+            28.977,
+            41.005
+          ],
+          "day": 2,
+          "featured": true
+        },
+        {
+          "name": "Aya Sofya",
+          "loc": [
+            28.98,
+            41.008
+          ],
+          "day": 2,
+          "featured": true
+        },
+        {
+          "name": "Grand Bazar",
+          "loc": [
+            28.967,
+            41.011
+          ],
+          "day": 2
+        },
+        {
+          "name": "Îles des Princes (Büyükada)",
+          "loc": [
+            29.119,
+            40.872
+          ],
+          "day": 3,
+          "featured": true
+        },
+        {
+          "name": "Mosquée d'Ortaköy",
+          "loc": [
+            29.027,
+            41.047
+          ],
+          "day": 4
+        },
+        {
+          "name": "Aqua Florya Mall",
+          "loc": [
+            28.793,
+            40.978
+          ],
+          "day": 4
+        },
+        {
+          "name": "Mall Olivium",
+          "loc": [
+            28.836,
+            40.992
+          ],
+          "day": 4
+        },
+        {
+          "name": "Palais Beylerbeyi",
+          "loc": [
+            29.041,
+            41.051
+          ],
+          "day": 5
+        },
+        {
+          "name": "Tour de la Jeune Fille",
+          "loc": [
+            29.005,
+            41.021
+          ],
+          "day": 5
+        },
+        {
+          "name": "Üsküdar",
+          "loc": [
+            29.015,
+            41.024
+          ],
+          "day": 5
+        },
+        {
+          "name": "Çamlıca (panorama)",
+          "loc": [
+            29.067,
+            41.029
+          ],
+          "day": 5,
+          "featured": true
+        }
+      ],
+      "tours": [
+        {
+          "name": "Croisière Mer de Marmara",
+          "loc": [
+            29.02,
+            40.965
+          ],
+          "day": 3,
+          "note": "Déjeuner inclus à bord"
+        }
+      ],
+      "hubs": [
+        {
+          "name": "Istanbul",
+          "loc": [
+            28.978,
+            41.014
+          ],
+          "days": "J1–J8"
+        }
+      ],
+      "routes": [
+        {
+          "from": [
+            29.005,
+            41.021
+          ],
+          "to": [
+            29.119,
+            40.872
+          ],
+          "label": "Croisière → Îles des Princes",
+          "type": "sea",
+          "lift": 0.18
+        }
+      ]
+    }
+  },
+  "trust": {
+    "stats": [
+      {
+        "kNum": "",
+        "num": "1.2K+",
+        "k": "",
+        "label": "Voyageurs guidés depuis 2019"
+      },
+      {
+        "kNum": "",
+        "num": "98%",
+        "k": "",
+        "label": "Taux de satisfaction"
+      },
+      {
+        "kNum": "",
+        "num": "6",
+        "k": "",
+        "label": "Départs Istanbul en 2026"
+      },
+      {
+        "kNum": "",
+        "num": "4",
+        "k": "",
+        "label": "Hôtels triés au choix"
+      }
+    ],
+    "testimonials": [
+      {
+        "kText": "",
+        "text": "\"Sainte-Sophie au lever du jour, croisière sur le Bosphore au coucher du soleil — chaque journée était cadrée à la minute. Aucun stress, juste profiter.\"",
+        "initials": "NB",
+        "name": "Nadia B.",
+        "kTrip": "",
+        "trip": "Bordj Bou Arreridj · Voyage Istanbul 2025"
+      },
+      {
+        "kText": "",
+        "text": "\"L'hôtel choisi à Sultanahmet est à deux pas de tous les sites. L'accompagnateur parle parfaitement le français et connaît la ville comme sa poche.\"",
+        "initials": "FA",
+        "name": "Farid A.",
+        "kTrip": "",
+        "trip": "Annaba · Voyage Istanbul 2024"
+      },
+      {
+        "kText": "",
+        "text": "\"Voyage en groupe d'amies. Le Grand Bazar, la Mosquée Bleue, la traversée vers la rive asiatique — un programme dense mais bien dosé. On y retourne.\"",
+        "initials": "AM",
+        "name": "Amina M.",
+        "kTrip": "",
+        "trip": "Sétif · Voyage Istanbul 2025"
+      }
+    ]
+  },
+  "inclus": {
+    "includedCount": "8 prestations couvertes",
+    "included": [
+      {
+        "k": "",
+        "t": "Vol <strong>Turkish Airlines</strong> Constantine ↔ Istanbul aller-retour"
+      },
+      {
+        "k": "",
+        "t": "Transferts aéroport ↔ hôtel ↔ aéroport"
+      },
+      {
+        "k": "",
+        "t": "<strong>7 nuits</strong> d'hébergement avec petit-déjeuner"
+      },
+      {
+        "k": "",
+        "t": "<strong>4 jours d'excursions guidées</strong> complètes"
+      },
+      {
+        "k": "",
+        "t": "Cité tour Sultanahmet : Mosquée Bleue · Aya Sofya · Grand Bazar (à pied)"
+      },
+      {
+        "k": "",
+        "t": "Croisière sur la Mer de Marmara avec <strong>déjeuner inclus</strong> + Îles des Princes"
+      },
+      {
+        "k": "",
+        "t": "Visite côté asiatique : Beylerbeyi · Tour de la Jeune Fille · Üsküdar · Çamlıca"
+      },
+      {
+        "k": "",
+        "t": "Visites Ortaköy + malls Florya & Olivium"
+      }
+    ],
+    "excludedCount": "7 éléments hors forfait",
+    "excluded": [
+      {
+        "k": "",
+        "t": "<strong>Visa turc</strong> — à régler séparément au centre Gateway (notre équipe vous accompagne)"
+      },
+      {
+        "k": "",
+        "t": "Repas hors petit-déjeuner et déjeuner croisière"
+      },
+      {
+        "k": "",
+        "t": "Tickets d'entrée payants spécifiques"
+      },
+      {
+        "k": "",
+        "t": "Programmes optionnels jours 6 et 7"
+      },
+      {
+        "k": "",
+        "t": "Pourboires"
+      },
+      {
+        "k": "",
+        "t": "Achats personnels"
+      },
+      {
+        "k": "",
+        "t": "Assurance voyage personnelle"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "open": true,
+      "kBtn": "",
+      "kQ": "",
+      "question": "Depuis quel aéroport part-on ?",
+      "kA": "",
+      "answerHtml": "Le départ se fait depuis l'<strong>aéroport de Constantine (CZL)</strong> avec Turkish Airlines, directement vers Istanbul. Pas besoin de se déplacer à Alger."
+    },
+    {
+      "open": false,
+      "aosDelay": 0,
+      "kBtn": "",
+      "kQ": "",
+      "question": "Comment obtenir le visa turc ?",
+      "kA": "",
+      "answerHtml": "Le visa turc se paie au centre <strong>Gateway</strong>. Il n'est pas inclus dans le package. Notre équipe vous fournit toutes les instructions et vous guide dans la démarche, qui est simple et rapide."
+    },
+    {
+      "open": false,
+      "aosDelay": 50,
+      "kBtn": "",
+      "kQ": "",
+      "question": "Comment s'inscrire depuis chez moi ?",
+      "kA": "",
+      "answerHtml": "Inscription par téléphone ou WhatsApp. Le paiement se fait par <strong>virement CCP</strong> ou en espèces à l'agence. Un acompte suffit pour bloquer votre place."
+    },
+    {
+      "open": false,
+      "aosDelay": 100,
+      "kBtn": "",
+      "kQ": "",
+      "question": "Tarifs enfants pour Istanbul ?",
+      "kA": "",
+      "answerHtml": "Selon l'hôtel : enfant 6–12 ans avec lit entre <strong>100.000 et 110.000 DA</strong>. Enfant 2–5 ans sans lit entre <strong>79.000 et 85.000 DA</strong>. Bébé &lt;2 ans : <strong>25.000 DA</strong>. Utilisez le calculateur pour le total exact."
+    }
+  ],
+  "hotelsSection": {
+    "phaseLabel": "Comparer les hôtels",
+    "eyebrow": "Hôtels à Istanbul · 4 au choix",
+    "titleHtml": "De 3★ à 4★ · <em>Même programme</em>",
+    "sub": "Tous les hôtels sont situés en centre-ville d'Istanbul. Même programme d'excursions quelle que soit votre catégorie.",
+    "tierTabs": [
+      {
+        "active": true,
+        "tier": "all",
+        "tier2": "all",
+        "k": "",
+        "label": "Tous"
+      },
+      {
+        "active": false,
+        "tier": "economique",
+        "tier2": "economique",
+        "k": "",
+        "label": "3★ Économique"
+      },
+      {
+        "active": false,
+        "tier": "medium",
+        "tier2": "medium",
+        "k": "",
+        "label": "4★ Confort"
+      },
+      {
+        "active": false,
+        "tier": "premium",
+        "tier2": "premium",
+        "k": "",
+        "label": "4★ Supérieur"
+      }
+    ],
+    "hint": false
+  },
+  "hotels": [
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "river",
+      "tier": "economique",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__river-istanbul.jpg",
+      "alt": "Hotel River",
+      "ribbonClass": "economique",
+      "kRibbon": "",
+      "ribbon": "3★ Économique",
+      "stars": 3,
+      "starsHtml": "★★★",
+      "name": "Hotel River",
+      "amenities": [
+        {
+          "k": "",
+          "t": "Centre-ville"
+        },
+        {
+          "k": "",
+          "t": "Petit-déj."
+        }
+      ],
+      "kPriceLabel": "",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "129.000 DA",
+      "kMeta": "",
+      "priceMeta": "Double · pers · Single 170.000 DA",
+      "kCta": ""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "ozer",
+      "tier": "medium",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__ozer-palace.jpg",
+      "alt": "Hotel Ozer Palace",
+      "ribbonClass": "medium",
+      "kRibbon": "",
+      "ribbon": "4★ Confort",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hotel Ozer Palace",
+      "amenities": [
+        {
+          "k": "",
+          "t": "Sultanahmet"
+        },
+        {
+          "k": "",
+          "t": "Petit-déj."
+        }
+      ],
+      "kPriceLabel": "",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "135.000 DA",
+      "kMeta": "",
+      "priceMeta": "Double · pers · Single 175.000 DA",
+      "kCta": ""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": "",
+      "calcId": "alpin",
+      "tier": "medium",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__alpin-due.jpg",
+      "alt": "Hotel Alpin Due",
+      "ribbonClass": "medium",
+      "kRibbon": "",
+      "ribbon": "4★ Confort",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hotel Alpin Due",
+      "amenities": [
+        {
+          "k": "",
+          "t": "Beyoğlu"
+        },
+        {
+          "k": "",
+          "t": "Petit-déj."
+        }
+      ],
+      "kPriceLabel": "",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "137.000 DA",
+      "kMeta": "",
+      "priceMeta": "Double · pers · Single 180.000 DA",
+      "kCta": ""
+    },
+    {
+      "aosDelay": 180,
+      "kRole": "",
+      "calcId": "tilia",
+      "tier": "premium",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__tilia.jpg",
+      "alt": "Hôtel Tilia",
+      "ribbonClass": "premium",
+      "kRibbon": "",
+      "ribbon": "4★ Supérieur",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hôtel Tilia",
+      "amenities": [
+        {
+          "k": "",
+          "t": "Vue Bosphore"
+        },
+        {
+          "k": "",
+          "t": "Premium"
+        }
+      ],
+      "kPriceLabel": "",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "142.000 DA",
+      "kMeta": "",
+      "priceMeta": "Double · pers · Single 189.000 DA",
+      "kCta": ""
+    }
+  ],
+  "calcUi": {
+    "phaseLabel": "Calculer mon prix",
+    "eyebrow": "Étape 1 · Configurez votre voyage",
+    "titleHtml": "Choisissez <em>votre formule</em>",
+    "sub": "Départs multiples disponibles. Choisissez votre date et votre hôtel pour obtenir le total exact.",
+    "dateLabel": "Date de départ (sélection représentative)",
+    "dateChips": [
+      {
+        "active": true,
+        "value": "3 Septembre 2026",
+        "k": "",
+        "label": "3 Sep"
+      },
+      {
+        "active": false,
+        "value": "10 Septembre 2026",
+        "k": "",
+        "label": "10 Sep"
+      },
+      {
+        "active": false,
+        "value": "17 Septembre 2026",
+        "k": "",
+        "label": "17 Sep"
+      },
+      {
+        "active": false,
+        "value": "1 Octobre 2026",
+        "k": "",
+        "label": "1 Oct"
+      },
+      {
+        "active": false,
+        "value": "15 Octobre 2026",
+        "k": "",
+        "label": "15 Oct"
+      },
+      {
+        "active": false,
+        "value": "5 Novembre 2026",
+        "k": "",
+        "label": "5 Nov"
+      }
+    ],
+    "selectLabel": "Hôtel",
+    "optionsHtml": "            <option value=\"river\">Hotel River 3★ — dès 129.000 DA</option>\n            <option value=\"ozer\">Hotel Ozer Palace 4★ — dès 135.000 DA</option>\n            <option value=\"alpin\">Hotel Alpin Due 4★ — dès 137.000 DA</option>\n            <option value=\"tilia\">Hôtel Tilia 4★ — dès 142.000 DA</option>\n",
+    "roomLabel": "Type de chambre",
+    "roomOptions": [
+      {
+        "active": true,
+        "room": "double",
+        "k": "",
+        "label": "Double"
+      },
+      {
+        "active": false,
+        "room": "single",
+        "k": "",
+        "label": "Individuelle"
+      }
+    ],
+    "travellersLabel": "Voyageurs",
+    "steppersHtml": "\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4>Adultes</h4></div>\n              <div class=\"stepper\"><button class=\"stepper__btn\" id=\"adults-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'adultes\">−</button><span class=\"stepper__val\" id=\"adults-val\">2</span><button class=\"stepper__btn\" id=\"adults-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'adultes\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4>Enfants 6–12 ans</h4><p>Avec lit</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_b\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 1ᵉʳ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 1ᵉʳ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4>Enfants 2–5 ans</h4><p>Sans lit</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_a\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 2ᵉ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 2ᵉ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4>Bébés &lt;2 ans</h4><p>25.000 DA</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"baby\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de bébé\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de bébé\">+</button></div>\n            </div>",
+    "noteHtml": "        <div class=\"calc-form-group\">\n          <label class=\"calc-form-label\">À noter</label>\n          <div class=\"fs-body-sm u-text-2\" style=\"background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-4)\">\n            <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"u-text-accent\" style=\"display:inline; margin-right:4px\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4M12 8h.01\"/></svg>\n            Visa turc <strong class=\"u-text-1\">non inclus</strong> — à régler séparément au centre Gateway. Notre équipe vous accompagne dans la démarche.\n          </div>\n        </div>\n",
+    "emptyMsg": "Choisissez un hôtel pour calculer.",
+    "whyHtml": "<details><summary>Pourquoi ce prix ?</summary><p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\">Prix par personne en chambre double, vol TK Constantine–Istanbul–Constantine inclus, 7 nuits petit-déjeuner, transferts aéroport–hôtel, 4 jours d'excursions guidées inclus.</p></details>",
+    "continueLabel": "Continuer vers la réservation",
+    "nextStep": "Étape suivante : remplissez votre dossier ci-dessous"
+  },
+  "infoBlocks": [
+    {
+      "open": true,
+      "iconSvg": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>",
+      "kTitle": "",
+      "title": "Conditions de paiement",
+      "list": [
+        {
+          "k": "",
+          "t": "<strong>Acompte de réservation</strong> · 30 % du montant total au moment de la confirmation, à régler dans les 48 h après accord par WhatsApp."
+        },
+        {
+          "k": "",
+          "t": "<strong>Solde</strong> · 70 % restants au plus tard <strong>21 jours avant le départ</strong>."
+        },
+        {
+          "k": "",
+          "t": "<strong>Modes acceptés</strong> · Virement bancaire (BNA, BEA, CPA), versement en agence, espèces. Pas de carte bancaire en ligne pour le moment."
+        },
+        {
+          "k": "",
+          "t": "<strong>Reçu</strong> · Reçu officiel Alliance Travel remis à chaque versement."
+        },
+        {
+          "k": "",
+          "t": "<strong>Devis valable</strong> 7 jours · Les prix peuvent évoluer selon la disponibilité aérienne et le taux de change."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/>",
+      "kTitle": "",
+      "title": "Conditions d'annulation",
+      "ledeHtml": "Annulation par le client (selon le délai avant départ) :</p>\n            <ul class=\"info-list info-list--tiered\">\n              <li><strong>≥ 60 jours avant départ</strong> · Remboursement intégral moins frais de dossier (5 000 DA).</li>\n              <li><strong>30 à 59 jours</strong> · Retenue de 30 % du montant total.</li>\n              <li><strong>14 à 29 jours</strong> · Retenue de 60 % du montant total.</li>\n              <li><strong>7 à 13 jours</strong> · Retenue de 80 %.</li>\n              <li><strong>&lt; 7 jours</strong> · Pas de remboursement (frais aériens et hôteliers définitifs).</li>\n            </ul>\n            <p class=\"info-card__note\">\n              <strong>Annulation par la compagnie aérienne ou l'hôtel</strong> · Remboursement intégral ou re-routing sans frais supplémentaires de notre part.\n              <br>\n              <strong>Modification de date</strong> possible jusqu'à 30 jours avant départ, sous réserve de disponibilité et du différentiel tarifaire.\n            </p>\n          </div>\n        </details>\n\n\n        <details class=\"info-card\">\n          <summary class=\"info-card__head\">\n            <span class=\"info-card__icon\" aria-hidden=\"true\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M7 21v-1a5 5 0 0 1 10 0v1\"/></svg>\n            </span>\n            <span class=\"info-card__title\">Formalités &amp; visa</span>\n            <svg class=\"info-card__chevron\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>\n          </summary>\n          <div class=\"info-card__body\">\n            <p class=\"info-card__lede\"><strong>Visa Turquie pour les ressortissants algériens</strong>",
+      "kLede": "",
+      "list": [
+        {
+          "k": "",
+          "t": "<strong>Visa</strong> · <strong>Visa Turquie obligatoire</strong> pour les passeports algériens. Demande en ligne sur evisa.gov.tr OU vignette à l'arrivée selon votre profil."
+        },
+        {
+          "k": "",
+          "t": "<strong>Coût</strong> · Environ <strong>50 USD</strong>. Variable selon le mode de demande."
+        },
+        {
+          "k": "",
+          "t": "<strong>Délai</strong> · e-Visa : <strong>1 à 3 jours ouvrés</strong>. Vignette à l'arrivée : immédiate mais files d'attente possibles."
+        },
+        {
+          "k": "",
+          "t": "<strong>Accompagnement</strong> · Sur demande, Alliance Travel peut <strong>vous assister dans la démarche e-Visa</strong> (assistance gratuite, le visa lui-même restant à votre charge)."
+        },
+        {
+          "k": "",
+          "t": "<strong>Passeport</strong> · Validité minimum <strong>6 mois après le retour</strong>."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kTitle": "",
+      "title": "Assurance voyage",
+      "ledeHtml": "\n              L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> — surtout pour les voyages long-courrier.\n            ",
+      "kLede": "",
+      "list": [
+        {
+          "k": "",
+          "t": "<strong>Couverture conseillée</strong> · Frais médicaux d'urgence (≥ 100 000 €), rapatriement sanitaire, perte/vol de bagages, annulation voyage."
+        },
+        {
+          "k": "",
+          "t": "<strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination."
+        },
+        {
+          "k": "",
+          "t": "<strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance)."
+        },
+        {
+          "k": "",
+          "t": "<strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage."
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "slug": "azerbaidjan",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#060a16\"/>\n<radialGradient id=\"az-azerbaidjan-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#3AAFAF\" stop-opacity=\".35\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#az-azerbaidjan-g)\"/>\n<path d=\"M30 88 Q33 30 38 22 Q42 15 46 22 Q51 30 54 88 Z\" fill=\"#1a2d5a\" fill-opacity=\".85\"/>\n<path d=\"M48 88 Q51 38 56 30 Q60 24 63 30 Q68 38 71 88 Z\" fill=\"#3AAFAF\" fill-opacity=\".55\"/>\n<path d=\"M65 88 Q68 45 72 38 Q75 33 77 38 Q81 45 84 88 Z\" fill=\"#1a2d5a\" fill-opacity=\".75\"/>\n</svg>",
+      "color": "#3AAFAF",
+      "kFlag": "",
+      "flag": "Juin–Octobre 2026",
+      "kTitle": "",
+      "title": "Azerbaïdjan · Bakou & Gabala",
+      "kPrice": "",
+      "priceHtml": "À partir de <strong>219.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": ""
+    },
+    {
+      "slug": "egypte",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#020c12\"/>\n<radialGradient id=\"ssh-sharm-constantine-g\" cx=\"50%\" cy=\"60%\" r=\"60%\"><stop offset=\"0\" stop-color=\"#28B4D4\" stop-opacity=\".3\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#ssh-sharm-constantine-g)\"/>\n<rect x=\"0\" y=\"58\" width=\"100\" height=\"42\" fill=\"#04121e\"/>\n<polygon points=\"0,60 22,30 44,55 0,55\" fill=\"#0a1e2a\" fill-opacity=\".8\"/>\n<polygon points=\"50,60 75,32 95,55 70,60\" fill=\"#0a1e2a\" fill-opacity=\".8\"/>\n<ellipse cx=\"50\" cy=\"62\" rx=\"46\" ry=\"2\" fill=\"#E88A3A\" fill-opacity=\".15\"/>\n<ellipse cx=\"80\" cy=\"18\" r=\"7\" fill=\"#FFF8F0\" fill-opacity=\".1\"/>\n</svg>",
+      "color": "#28B4D4",
+      "kFlag": "",
+      "flag": "Juin–Octobre 2026",
+      "kTitle": "",
+      "title": "Sharm El Sheikh · depuis Constantine",
+      "kPrice": "",
+      "priceHtml": "À partir de <strong>155.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": ""
+    }
+  ],
+  "finalCta": {
+    "scarcityHtml": "Départs hebdomadaires · Places limitées par groupe",
+    "titleHtml": "Istanbul vous<br><em>attend</em>",
+    "sub": "Depuis Constantine, en 8 jours. Le Bosphore, les mosquées, le Grand Bazar — et deux jours libres pour en profiter à votre rythme.",
+    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20voyage%20Istanbul%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\">Réserver via WhatsApp</a>\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
+    "contactHtml": "<div class=\"contact-item\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville</div>"
+  },
+  "footer": {
+    "html": "<div class=\"container\"><div class=\"footer-grid\"><div class=\"footer-brand\"><span class=\"footer-logo\">Alliance<span>Travel</span></span><p class=\"footer-tagline\" data-i18n=\"footer.tagline\">Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.</p>\n        <div class=\"footer-social\">\n          <a href=\"https://www.instagram.com/alliance_travel34/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>\n          </a>\n          <a href=\"https://web.facebook.com/Alliance.Mebarkia\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://web.facebook.com/visa.bba.9\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel — Visa BBA\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://www.tiktok.com/@visa.bba34\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z\"/></svg>\n          </a>\n        </div></div><div class=\"footer-col\"><h4>Nos Voyages</h4><a href=\"../egypte/\">Égypte</a><a href=\"../tunisie/\">Tunisie</a><a href=\"../azerbaidjan/\">Azerbaïdjan</a><a href=\"../istanbul/\">Istanbul</a><a href=\"../kuala-lumpur/\">Kuala Lumpur &amp; Langkawi</a><a href=\"../bali/\">Bali</a><a href=\"../vietnam/\">Vietnam</a></div><div class=\"footer-col\"><h4 data-i18n=\"footer.col_contact\">Contact</h4>\n        \n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span data-i18n=\"footer.wa_viber\">WhatsApp / Viber</span></p>\n          <a href=\"https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 860 617</a>\n          <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg><span data-i18n=\"footer.phone\">Téléphone</span></p>\n          <a href=\"https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 267</a>\n          <a href=\"https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 268</a>\n          <a href=\"https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 269</a>\n          <a href=\"https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 869 905</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><span data-i18n=\"footer.address_label\">Adresse</span></p>\n          <p class=\"fs-body-sm u-text-2 u-m-0\">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>\n        </div>\n      </div></div><div class=\"footer-bottom\"><p data-i18n=\"footer.copyright\">© 2026 Alliance Travel · Bordj Bou Arreridj</p><p data-i18n=\"footer.notice\">Prix en DA · Visa non inclus pour Istanbul · Indicatifs</p></div></div>"
+  },
+  "tripData": {
+    "name": "Istanbul 2026 · Départ Constantine",
+    "dates": [
+      "3 Septembre 2026",
+      "10 Septembre 2026",
+      "17 Septembre 2026",
+      "1 Octobre 2026",
+      "15 Octobre 2026",
+      "5 Novembre 2026"
+    ],
+    "hotels": [
+      {
+        "id": "river",
+        "name": "Hotel River 3★",
+        "prices": {
+          "double": 129000,
+          "triple": 129000,
+          "single": 170000,
+          "child1": 105000,
+          "child2": 80000,
+          "baby": 25000
+        },
+        "why": "Prix par personne en chambre double, vol TK Constantine–Istanbul inclus, 7 nuits petit-déjeuner, 4 jours excursions guidées + transferts."
+      },
+      {
+        "id": "ozer",
+        "name": "Hotel Ozer Palace 4★",
+        "prices": {
+          "double": 135000,
+          "triple": 135000,
+          "single": 175000,
+          "child1": 110000,
+          "child2": 80000,
+          "baby": 25000
+        },
+        "why": "Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet."
+      },
+      {
+        "id": "alpin",
+        "name": "Hotel Alpin Due 4★",
+        "prices": {
+          "double": 137000,
+          "triple": 137000,
+          "single": 180000,
+          "child1": 115000,
+          "child2": 80000,
+          "baby": 25000
+        },
+        "why": "Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet."
+      },
+      {
+        "id": "tilia",
+        "name": "Hôtel Tilia 4★",
+        "prices": {
+          "double": 142000,
+          "triple": 142000,
+          "single": 189000,
+          "child1": 115000,
+          "child2": 85000,
+          "baby": 25000
+        },
+        "why": "Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet. Visa turc non inclus."
+      }
+    ],
+    "extras": []
+  }
+}

@@ -1,0 +1,1622 @@
+{
+  "meta": {
+    "title": "Tunisie — Alliance Travel · 2026",
+    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 36.000 DA.",
+    "ogTitle": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
+    "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
+    "themeColor": "#19B5B0",
+    "ogImage": "og-default.jpg"
+  },
+  "accent": {
+    "color": "#19B5B0",
+    "dim": "rgba(25,181,176,.13)",
+    "glow": "rgba(25,181,176,.22)",
+    "heroGradient": "linear-gradient(145deg,#04120f 0%,#06201d 55%,#03100e 100%)"
+  },
+  "slug": "tunisie",
+  "jsonLd": {
+    "breadcrumbName": "Tunisie"
+  },
+  "seo": {
+    "tripName": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
+    "tripDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
+    "offerPrice": "36000",
+    "faqJsonLd": [
+      {
+        "name": "Faut-il un visa pour la Tunisie ?",
+        "text": "Non. Les ressortissants algériens entrent en Tunisie sans visa, avec une carte nationale d'identité (CNI) en cours de validité ou un passeport. Aucune démarche consulaire n'est nécessaire."
+      },
+      {
+        "name": "Que comprend la formule demi-pension ?",
+        "text": "La demi-pension comprend le petit-déjeuner et le dîner sous forme de buffet à l'hôtel chaque jour. Les déjeuners sont libres — vous profitez des restaurants et adresses locales à votre rythme."
+      },
+      {
+        "name": "Comment se déroule le voyage en bus ?",
+        "text": "Le transport se fait en bus climatisé aller-retour depuis Alger et Oran, avec passage du poste-frontière algéro-tunisien. Le bus est inclus dans tous les prix — aucun frais supplémentaire."
+      },
+      {
+        "name": "Les enfants paient combien ?",
+        "text": "Les tarifs enfants dépendent de l'hôtel choisi. Le 1er enfant partageant la chambre de 2 adultes bénéficie d'un tarif réduit (à partir de 5.000 DA), le 2e enfant d'un second tarif, et le bébé (0–2 ans) voyage gratuitement ou à tarif minime selon l'hôtel."
+      }
+    ]
+  },
+  "region": "tunisie",
+  "dataPage": "tunisie",
+  "k": {
+    "navAttrs": "",
+    "navListRole": "",
+    "heroKeys": "\n         data-eyebrow-key=\"tnHeroEyebrow\"\n         data-title-pre-key=\"tnHeroTitlePre\"\n         data-title-post-key=\"tnHeroTitlePost\"\n         data-date-key=\"tnHeroDate\"",
+    "heroH1": " data-i18n-html=\"tnHeroH1\"",
+    "heroLede": " data-i18n=\"tnHeroLede\"",
+    "heroPriceUnit": " data-i18n=\"tnHeroPriceUnit\"",
+    "heroFineprint": " data-i18n=\"tnHeroFineprint\"",
+    "heroCtaCalc": " data-i18n=\"tnHeroCtaCalc\"",
+    "hlSection": "",
+    "itinSection": "",
+    "itinPhase": " data-i18n=\"tnPhase1\"",
+    "itinEyebrow": " data-i18n=\"tnItinEyebrow\"",
+    "itinTitle": " data-i18n-html=\"tnItinTitle\"",
+    "mapEyebrow": " data-i18n=\"tnMapEyebrow\"",
+    "mapTitle": " data-i18n-html=\"tnMapTitle\"",
+    "mapSub": " data-i18n=\"tnMapSub\"",
+    "mapLoading": " data-i18n=\"tnMapLoading\"",
+    "legendHotels": " data-i18n=\"tnMapLegend1\"",
+    "legendSites": " data-i18n=\"tnMapLegend2\"",
+    "legendTours": " data-i18n=\"tnMapLegend3\"",
+    "trustEyebrow": " data-i18n=\"tnTrustEyebrow\"",
+    "trustTitle": " data-i18n-html=\"tnTrustTitle\"",
+    "inclEyebrow": " data-i18n=\"tnInclusEyebrow\"",
+    "inclTitle": " data-i18n-html=\"tnInclusTitle\"",
+    "inclSub": " data-i18n=\"tnInclusSub\"",
+    "inclColTitle": " data-i18n-html=\"tnInclusColYesTitle\"",
+    "inclColCount": " data-i18n=\"tnInclusColYesCount\"",
+    "exclColTitle": " data-i18n-html=\"tnInclusColNoTitle\"",
+    "exclColCount": " data-i18n=\"tnInclusColNoCount\"",
+    "faqSection": "",
+    "faqEyebrow": " data-i18n=\"tnFaqEyebrow\"",
+    "faqTitle": " data-i18n-html=\"tnFaqTitle\"",
+    "hotelsSection": "",
+    "hotelsPhase": " data-i18n=\"tnPhase2\"",
+    "hotelsEyebrow": " data-i18n=\"tnHotelsEyebrow\"",
+    "hotelsTitle": " data-i18n-html=\"tnHotelsTitle\"",
+    "hotelsSub": " data-i18n=\"tnHotelsSub\"",
+    "tierTabsAria": "",
+    "hotelGridAttrs": "",
+    "calcSection": "",
+    "calcPhase": " data-i18n=\"tnPhase3\"",
+    "calcEyebrow": " data-i18n=\"tnCalcEyebrow\"",
+    "calcTitle": " data-i18n-html=\"tnCalcTitle\"",
+    "calcFormAttrs": "",
+    "calcDateLabel": " data-i18n=\"tnCalcDateLabel\"",
+    "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
+    "dateHintAttrs": " class=\"fs-caption u-text-3 u-mt-sp2\" data-i18n=\"tnCalcDateHint\"",
+    "calcSelectLabel": " data-i18n=\"tnCalcHotelLabel\"",
+    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
+    "calcRoomLabel": " data-i18n=\"tnCalcRoomLabel\"",
+    "segmentedAttrs": "",
+    "calcTravLabel": " data-i18n=\"tnCalcTravelersLabel\"",
+    "breakdownAttrs": "",
+    "recap": " data-i18n=\"tnRecap\"",
+    "recapEmpty": " data-i18n=\"tnRecapEmpty\"",
+    "totalLabel": " data-i18n=\"tnTotalEstime\"",
+    "whyAttrs": "",
+    "continueA": " data-i18n-html=\"tnContinue\"",
+    "continue": "",
+    "nextStep": " data-i18n=\"tnNextStep\"",
+    "infoEyebrow": " data-i18n=\"tnInfoEyebrow\"",
+    "infoTitle": " data-i18n-html=\"tnInfoTitle\"",
+    "infoSub": " data-i18n=\"tnInfoSub\"",
+    "relEyebrow": " data-i18n=\"tnRelatedEyebrow\"",
+    "relTitle": " data-i18n-html=\"tnRelatedTitle\"",
+    "finalSection": "",
+    "finalScarcity": "",
+    "finalTitle": " data-i18n-html=\"tnFinalTitle\"",
+    "finalSub": " data-i18n=\"tnFinalSub\"",
+    "footerAttrs": "",
+    "stickyAria": "",
+    "stickyLabel": " data-i18n=\"tnTotalEstime\"",
+    "stickyCta": " data-i18n=\"tnReserver\""
+  },
+  "nav": {
+    "ctaHtml": "Réserver"
+  },
+  "hero": {
+    "bg": "../assets/images/heroes-v2/hero__tunisie--bg.jpg",
+    "fg": "../assets/images/heroes-v2/hero__tunisie--fg.jpg",
+    "titlePre": "Tunisie",
+    "titlePost": "Soleil & Méditerranée",
+    "eyebrow": "Voyage en bus · Demi-pension · Été 2026",
+    "date": "6 nuits · Demi-pension · Sans visa",
+    "prompt": "Faites défiler pour découvrir",
+    "skip": "Passer",
+    "h1Pre": "Tunisie ",
+    "h1Em": "Soleil & Méditerranée",
+    "lede": "Le balnéaire à portée de bus. Choisissez Hammamet, Sousse ou Djerba — plages privées, piscines et soleil de la Méditerranée. 6 nuits en demi-pension, voyage en bus depuis Alger et Oran. Aucun visa pour les Algériens.",
+    "priceFrom": "36.000 DA",
+    "priceUnit": "par personne · chambre double · dès",
+    "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — transport en bus aller-retour inclus."
+  },
+  "highlights": [
+    {
+      "iconSvg": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"11\" rx=\"2\"/><path d=\"M3 11h18\"/><circle cx=\"7.5\" cy=\"18.5\" r=\"1.5\"/><circle cx=\"16.5\" cy=\"18.5\" r=\"1.5\"/>",
+      "kLabel": " data-i18n=\"tnHl1Label\"",
+      "label": "Transport inclus",
+      "kTitle": " data-i18n=\"tnHl1Title\"",
+      "title": "Bus aller-retour inclus",
+      "kBody": " data-i18n=\"tnHl1Body\"",
+      "body": "Bus climatisé A/R depuis Alger et Oran, passage du poste-frontière. Le transport est compris dans tous les prix."
+    },
+    {
+      "iconSvg": "<path d=\"M3 11h18M5 11V7a7 7 0 0 1 14 0v4M6 11v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6\"/>",
+      "kLabel": " data-i18n=\"tnHl2Label\"",
+      "label": "Restauration",
+      "kTitle": " data-i18n=\"tnHl2Title\"",
+      "title": "Demi-pension buffet",
+      "kBody": " data-i18n=\"tnHl2Body\"",
+      "body": "Petit-déjeuner et dîner en buffet à l'hôtel chaque jour. Déjeuners libres pour profiter des adresses locales."
+    },
+    {
+      "iconSvg": "<path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>",
+      "kLabel": " data-i18n=\"tnHl3Label\"",
+      "label": "Au choix",
+      "kTitle": " data-i18n=\"tnHl3Title\"",
+      "title": "3 destinations",
+      "kBody": " data-i18n=\"tnHl3Body\"",
+      "body": "Hammamet, Sousse ou Djerba — 9 hôtels triés selon votre budget et votre style de séjour."
+    },
+    {
+      "iconSvg": "<path d=\"M2 18c1.5 0 2-1 3.5-1s2 1 3.5 1 2-1 3.5-1 2 1 3.5 1 2-1 3.5-1\"/><path d=\"M2 14c1.5 0 2-1 3.5-1s2 1 3.5 1 2-1 3.5-1 2 1 3.5 1 2-1 3.5-1\"/><path d=\"M12 11V3M12 3c2 1 3 2.5 3 4M12 3c-2 1-3 2.5-3 4\"/>",
+      "kLabel": " data-i18n=\"tnHl4Label\"",
+      "label": "Détente",
+      "kTitle": " data-i18n-html=\"tnHl4Title\"",
+      "title": "Plage privée &amp; piscines",
+      "kBody": " data-i18n=\"tnHl4Body\"",
+      "body": "Plages aménagées, piscines et animations à l'hôtel. Soleil de la Méditerranée tout l'été."
+    }
+  ],
+  "itinerary": {
+    "phaseLabel": "Découvrir",
+    "eyebrow": "7 jours · 6 nuits",
+    "titleHtml": "Votre <em>programme</em>",
+    "days": [
+      {
+        "active": true,
+        "kNode": "",
+        "node": "J1",
+        "kLabel": " data-i18n=\"tnDayLabel1\"",
+        "dayLabel": "Jour 1",
+        "kTitle": " data-i18n=\"tnDay1Title\"",
+        "title": "Départ Alger / Oran en bus de nuit",
+        "kAct": " data-i18n=\"tnDay1Body\"",
+        "activities": "Rassemblement et départ en bus climatisé depuis Alger et Oran. Route de nuit, passage du poste-frontière algéro-tunisien, puis arrivée à l'hôtel.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay1Tag1\"",
+            "t": "Bus de nuit"
+          },
+          {
+            "k": " data-i18n=\"tnDay1Tag2\"",
+            "t": "Poste-frontière"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 0,
+        "kNode": "",
+        "node": "J2",
+        "kLabel": " data-i18n=\"tnDayLabel2\"",
+        "dayLabel": "Jour 2",
+        "kTitle": " data-i18n-html=\"tnDay2Title\"",
+        "title": "Arrivée &amp; installation",
+        "kAct": " data-i18n=\"tnDay2Body\"",
+        "activities": "Arrivée à l'hôtel (Hammamet, Sousse ou Djerba selon votre choix), installation, déjeuner libre. Premier après-midi détente à la plage et à la piscine. Dîner buffet à l'hôtel.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay2Tag1\"",
+            "t": "Check-in"
+          },
+          {
+            "k": " data-i18n=\"tnDay2Tag2\"",
+            "t": "Plage"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 80,
+        "kNode": "",
+        "node": "J3",
+        "kLabel": " data-i18n=\"tnDayLabel3\"",
+        "dayLabel": "Jour 3",
+        "kTitle": " data-i18n=\"tnDay3Title\"",
+        "title": "Journée balnéaire",
+        "kAct": " data-i18n=\"tnDay3Body\"",
+        "activities": "Journée libre en demi-pension : plage privée, piscines et animations de l'hôtel. Possibilité d'excursion optionnelle (catamaran, jet-ski) selon la station.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay3Tag1\"",
+            "t": "Demi-pension"
+          },
+          {
+            "k": " data-i18n=\"tnDay3Tag2\"",
+            "t": "Piscines"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 160,
+        "kNode": "",
+        "node": "J4",
+        "kLabel": " data-i18n=\"tnDayLabel4\"",
+        "dayLabel": "Jour 4",
+        "kTitle": " data-i18n-html=\"tnDay4Title\"",
+        "title": "Visite de la ville &amp; médina",
+        "kAct": " data-i18n=\"tnDay4Body\"",
+        "activities": "Découverte de la médina et du centre : Sousse et sa médina classée, Hammamet et son fort, ou Houmt Souk à Djerba. Souks, artisanat et farniente l'après-midi.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay4Tag1\"",
+            "t": "Médina"
+          },
+          {
+            "k": " data-i18n=\"tnDay4Tag2\"",
+            "t": "Souks"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 240,
+        "kNode": "",
+        "node": "J5",
+        "kLabel": " data-i18n=\"tnDayLabel5\"",
+        "dayLabel": "Jour 5",
+        "kTitle": " data-i18n=\"tnDay5Title\"",
+        "title": "Excursion en option",
+        "kAct": " data-i18n=\"tnDay5Body\"",
+        "activities": "Journée libre ou excursion optionnelle : Sidi Bou Saïd et Carthage depuis Hammamet, parc Carthage Land, ou découverte de l'île de Djerba. Retour à l'hôtel pour le dîner.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay5Tag1\"",
+            "t": "Sidi Bou Saïd"
+          },
+          {
+            "k": " data-i18n=\"tnDay5Tag2\"",
+            "t": "Carthage"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 320,
+        "kNode": "",
+        "node": "J6",
+        "kLabel": " data-i18n=\"tnDayLabel6\"",
+        "dayLabel": "Jour 6",
+        "kTitle": " data-i18n=\"tnDay6Title\"",
+        "title": "Dernière journée détente",
+        "kAct": " data-i18n=\"tnDay6Body\"",
+        "activities": "Dernière journée balnéaire : plage, piscine, shopping et derniers achats. Soirée et dîner buffet à l'hôtel avant le départ.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay6Tag1\"",
+            "t": "Plage privée"
+          },
+          {
+            "k": " data-i18n=\"tnDay6Tag2\"",
+            "t": "Shopping"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 400,
+        "kNode": "",
+        "node": "J7",
+        "kLabel": " data-i18n=\"tnDayLabel7\"",
+        "dayLabel": "Jour 7",
+        "kTitle": " data-i18n=\"tnDay7Title\"",
+        "title": "Retour en bus vers l'Algérie",
+        "kAct": " data-i18n=\"tnDay7Body\"",
+        "activities": "Petit-déjeuner, check-out et départ en bus. Passage du poste-frontière et retour vers Alger et Oran.",
+        "tags": [
+          {
+            "k": " data-i18n=\"tnDay7Tag1\"",
+            "t": "Retour bus"
+          }
+        ]
+      }
+    ]
+  },
+  "tripMap": {
+    "eyebrow": "Votre voyage en un coup d'œil",
+    "titleHtml": "L'itinéraire <em>sur la carte</em>",
+    "subHead": "Alger et Oran, le poste-frontière, puis Hammamet, Sousse ou Djerba — la route de votre séjour balnéaire en bus.",
+    "ariaLabel": "Carte de l'itinéraire Tunisie",
+    "subFallback": "Alger · Oran · Hammamet · Sousse · Djerba",
+    "legendHotels": "Stations balnéaires",
+    "legendSites": "Villes de départ",
+    "legendTours": "Route en bus",
+    "data": {
+      "name": "Tunisie · Hammamet, Sousse & Djerba",
+      "hotels": [
+        {
+          "id": "hammamet",
+          "name": "Hammamet",
+          "loc": [
+            10.6167,
+            36.4
+          ],
+          "stars": 4,
+          "area": "Station balnéaire"
+        },
+        {
+          "id": "sousse",
+          "name": "Sousse",
+          "loc": [
+            10.6411,
+            35.8256
+          ],
+          "stars": 4,
+          "area": "Station balnéaire"
+        },
+        {
+          "id": "djerba",
+          "name": "Djerba",
+          "loc": [
+            10.8451,
+            33.8076
+          ],
+          "stars": 4,
+          "area": "Île balnéaire"
+        }
+      ],
+      "sites": [],
+      "tours": [],
+      "hubs": [
+        {
+          "name": "Alger",
+          "loc": [
+            3.0588,
+            36.7538
+          ],
+          "days": "Départ"
+        },
+        {
+          "name": "Oran",
+          "loc": [
+            -0.6331,
+            35.6971
+          ],
+          "days": "Départ"
+        }
+      ],
+      "routes": [
+        {
+          "from": [
+            3.0588,
+            36.7538
+          ],
+          "to": [
+            10.6167,
+            36.4
+          ],
+          "label": "Alger → Tunisie",
+          "type": "road"
+        },
+        {
+          "from": [
+            -0.6331,
+            35.6971
+          ],
+          "to": [
+            10.6167,
+            36.4
+          ],
+          "label": "Oran → Tunisie",
+          "type": "road",
+          "lift": 0.3
+        },
+        {
+          "from": [
+            10.6167,
+            36.4
+          ],
+          "to": [
+            10.6411,
+            35.8256
+          ],
+          "label": "Hammamet → Sousse",
+          "type": "road"
+        },
+        {
+          "from": [
+            10.6411,
+            35.8256
+          ],
+          "to": [
+            10.8451,
+            33.8076
+          ],
+          "label": "Sousse → Djerba",
+          "type": "road"
+        }
+      ]
+    }
+  },
+  "trust": {
+    "stats": [
+      {
+        "kNum": "",
+        "num": "1.2K+",
+        "k": " data-i18n=\"tnStat1\"",
+        "label": "Voyageurs guidés depuis 2019"
+      },
+      {
+        "kNum": "",
+        "num": "98%",
+        "k": " data-i18n=\"tnStat2\"",
+        "label": "Taux de satisfaction"
+      },
+      {
+        "kNum": " data-i18n=\"tnStat3Num\"",
+        "num": "Hebdo.",
+        "k": " data-i18n=\"tnStat3\"",
+        "label": "Départs chaque semaine en été 2026"
+      },
+      {
+        "kNum": "",
+        "num": "9",
+        "k": " data-i18n=\"tnStat4\"",
+        "label": "Hôtels triés au choix"
+      }
+    ],
+    "testimonials": [
+      {
+        "kText": " data-i18n=\"tnTesti1\"",
+        "text": "\"Hammamet en famille, c'était parfait. Le bus confortable, la plage privée à deux pas de l'hôtel, et le dîner buffet chaque soir. Les enfants ne voulaient plus rentrer.\"",
+        "initials": "RH",
+        "name": "Rania H.",
+        "kTrip": " data-i18n=\"tnTesti1Trip\"",
+        "trip": "Bordj Bou Arreridj · Voyage Tunisie 2026"
+      },
+      {
+        "kText": " data-i18n=\"tnTesti2\"",
+        "text": "\"Sans visa, juste la carte d'identité — on a réservé en quelques jours. Le départ d'Oran était bien organisé, le passage de la frontière sans stress. Sousse et sa médina valent le détour.\"",
+        "initials": "MT",
+        "name": "Mohamed T.",
+        "kTrip": " data-i18n=\"tnTesti2Trip\"",
+        "trip": "Constantine · Voyage Tunisie 2026"
+      },
+      {
+        "kText": " data-i18n=\"tnTesti3\"",
+        "text": "\"Séjour en couple à Djerba. Hôtel impeccable, piscines magnifiques et la mer turquoise. Le rapport qualité-prix est imbattable pour un voyage tout compris en bus.\"",
+        "initials": "LK",
+        "name": "Leïla K.",
+        "kTrip": " data-i18n=\"tnTesti3Trip\"",
+        "trip": "Annaba · Voyage Tunisie 2026"
+      }
+    ]
+  },
+  "inclus": {
+    "includedCount": "5 prestations couvertes",
+    "included": [
+      {
+        "k": " data-i18n-html=\"tnInclusYes1\"",
+        "t": "<strong>Transport en bus aller-retour</strong> depuis Alger et Oran, climatisé"
+      },
+      {
+        "k": " data-i18n-html=\"tnInclusYes2\"",
+        "t": "<strong>6 nuits en demi-pension</strong> (petit-déjeuner + dîner buffet)"
+      },
+      {
+        "k": " data-i18n-html=\"tnInclusYes3\"",
+        "t": "<strong>Hôtel au choix</strong> à Hammamet, Sousse ou Djerba"
+      },
+      {
+        "k": " data-i18n-html=\"tnInclusYes4\"",
+        "t": "Animations, piscines et <strong>plage privée</strong> de l'hôtel"
+      },
+      {
+        "k": " data-i18n=\"tnInclusYes5\"",
+        "t": "Accompagnateur Alliance Travel durant le voyage"
+      }
+    ],
+    "excludedCount": "5 éléments hors forfait",
+    "excluded": [
+      {
+        "k": " data-i18n=\"tnInclusNo1\"",
+        "t": "Déjeuners — la formule est en demi-pension (petit-déjeuner + dîner)"
+      },
+      {
+        "k": " data-i18n=\"tnInclusNo2\"",
+        "t": "Excursions optionnelles (Carthage Land, catamaran, jet-ski)"
+      },
+      {
+        "k": " data-i18n=\"tnInclusNo3\"",
+        "t": "Taxe de séjour à régler sur place selon la réglementation tunisienne"
+      },
+      {
+        "k": " data-i18n=\"tnInclusNo4\"",
+        "t": "Dépenses personnelles"
+      },
+      {
+        "k": " data-i18n=\"tnInclusNo5\"",
+        "t": "Assurance voyage personnelle"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "open": true,
+      "kBtn": "",
+      "kQ": " data-i18n=\"tnFaqQ1\"",
+      "question": "Faut-il un visa pour la Tunisie ?",
+      "kA": " data-i18n-html=\"tnFaqA1\"",
+      "answerHtml": "<strong>Non.</strong> Les ressortissants algériens entrent en Tunisie <strong>sans visa</strong>, avec une carte nationale d'identité (CNI) en cours de validité ou un passeport. Aucune démarche consulaire n'est nécessaire."
+    },
+    {
+      "open": false,
+      "aosDelay": 0,
+      "kBtn": "",
+      "kQ": " data-i18n=\"tnFaqQ2\"",
+      "question": "Que comprend la formule demi-pension ?",
+      "kA": " data-i18n-html=\"tnFaqA2\"",
+      "answerHtml": "La <strong>demi-pension</strong> comprend le petit-déjeuner et le dîner sous forme de buffet à l'hôtel chaque jour. Les déjeuners sont libres — vous profitez des restaurants et adresses locales à votre rythme."
+    },
+    {
+      "open": false,
+      "aosDelay": 50,
+      "kBtn": "",
+      "kQ": " data-i18n=\"tnFaqQ3\"",
+      "question": "Comment se déroule le voyage en bus ?",
+      "kA": " data-i18n-html=\"tnFaqA3\"",
+      "answerHtml": "Le transport se fait en <strong>bus climatisé aller-retour</strong> depuis Alger et Oran, avec passage du poste-frontière algéro-tunisien. Le bus est inclus dans tous les prix — aucun frais supplémentaire."
+    },
+    {
+      "open": false,
+      "aosDelay": 100,
+      "kBtn": "",
+      "kQ": " data-i18n=\"tnFaqQ4\"",
+      "question": "Les enfants paient combien ?",
+      "kA": " data-i18n-html=\"tnFaqA4\"",
+      "answerHtml": "Les tarifs enfants dépendent de l'hôtel choisi. Le <strong>1er enfant</strong> partageant la chambre de 2 adultes bénéficie d'un tarif réduit (dès <strong>5.000 DA</strong>), le <strong>2e enfant</strong> d'un second tarif, et le <strong>bébé (0–2 ans)</strong> voyage gratuitement ou à tarif minime selon l'hôtel."
+    }
+  ],
+  "hotelsSection": {
+    "phaseLabel": "Comparer les hôtels",
+    "eyebrow": "Hébergement · 6 nuits",
+    "titleHtml": "9 hôtels · <em>3 destinations</em>",
+    "sub": "Séjour en demi-pension (petit-déjeuner + dîner buffet). Transport en bus aller-retour depuis Alger et Oran inclus dans chaque prix.",
+    "tierTabs": [
+      {
+        "active": true,
+        "tier": "all",
+        "tier2": "all",
+        "k": " data-i18n=\"tnTabAll\"",
+        "label": "Tous"
+      },
+      {
+        "active": false,
+        "tier": "hammamet",
+        "tier2": "hammamet",
+        "k": "",
+        "label": "Hammamet"
+      },
+      {
+        "active": false,
+        "tier": "sousse",
+        "tier2": "sousse",
+        "k": "",
+        "label": "Sousse"
+      },
+      {
+        "active": false,
+        "tier": "djerba",
+        "tier2": "djerba",
+        "k": "",
+        "label": "Djerba"
+      }
+    ],
+    "hint": false
+  },
+  "hotels": [
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "yasmine-beach",
+      "tier": "hammamet",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__yasmine-beach.jpg",
+      "alt": "Hôtel Yasmine Beach Hammamet",
+      "ribbonClass": "medium",
+      "kRibbon": "",
+      "ribbon": "4★ · Hammamet",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hôtel Yasmine Beach",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillPlagePrivee\"",
+          "t": "Plage privée"
+        },
+        {
+          "k": " data-i18n=\"tnPillDemiPension\"",
+          "t": "Demi-pension"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "40.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "menara-hammamet",
+      "tier": "hammamet",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__menara-hammamet.jpg",
+      "alt": "Hôtel Menara Hammamet",
+      "ribbonClass": "medium",
+      "kRibbon": "",
+      "ribbon": "4★ · Hammamet",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hôtel Menara",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillPiscines\"",
+          "t": "Piscines"
+        },
+        {
+          "k": " data-i18n=\"tnPillDemiPension\"",
+          "t": "Demi-pension"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "43.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": "",
+      "calcId": "prestige-imperial-park",
+      "tier": "hammamet",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__prestige-imperial-park.jpg",
+      "alt": "Prestige Imperial Park Hammamet",
+      "ribbonClass": "economique",
+      "kRibbon": "",
+      "ribbon": "3★ · Hammamet",
+      "stars": 3,
+      "starsHtml": "★★★",
+      "name": "Prestige Imperial Park",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillPlage\"",
+          "t": "Plage"
+        },
+        {
+          "k": " data-i18n=\"tnPillAnimations\"",
+          "t": "Animations"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "43.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "royal-beach-sousse",
+      "tier": "sousse",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__royal-beach-sousse.jpg",
+      "alt": "Royal Beach Sousse",
+      "ribbonClass": "economique",
+      "kRibbon": "",
+      "ribbon": "3★ · Sousse",
+      "stars": 3,
+      "starsHtml": "★★★",
+      "name": "Royal Beach",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillBordDeMer\"",
+          "t": "Bord de mer"
+        },
+        {
+          "k": " data-i18n=\"tnPillDemiPension\"",
+          "t": "Demi-pension"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "36.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "houria-palace",
+      "tier": "sousse",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__houria-palace.jpg",
+      "alt": "Houria Palace Sousse",
+      "ribbonClass": "medium",
+      "kRibbon": "",
+      "ribbon": "4★ · Sousse",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Houria Palace",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillPlagePrivee\"",
+          "t": "Plage privée"
+        },
+        {
+          "k": " data-i18n=\"tnPillSpa\"",
+          "t": "Spa"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "42.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": "",
+      "calcId": "kanta-sousse",
+      "tier": "sousse",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__kanta-sousse.jpg",
+      "alt": "Kanta Sousse",
+      "ribbonClass": "medium",
+      "kRibbon": "",
+      "ribbon": "4★ · Sousse",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Kanta",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillPiscines\"",
+          "t": "Piscines"
+        },
+        {
+          "k": " data-i18n=\"tnPillAnimations\"",
+          "t": "Animations"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "51.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 180,
+      "kRole": "",
+      "calcId": "hannibal-palace",
+      "tier": "sousse",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__hannibal-palace.jpg",
+      "alt": "Hannibal Palace Sousse",
+      "ribbonClass": "premium",
+      "kRibbon": "",
+      "ribbon": "4★ · Sousse",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hannibal Palace",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillBordDeMer\"",
+          "t": "Bord de mer"
+        },
+        {
+          "k": " data-i18n=\"tnPillSpa\"",
+          "t": "Spa"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "57.000 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "sidi-mansour-djerba",
+      "tier": "djerba",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__sidi-mansour-djerba.jpg",
+      "alt": "Sidi Mansour Resort & Spa Djerba",
+      "ribbonClass": "premium",
+      "kRibbon": "",
+      "ribbon": "4★ · Djerba",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Sidi Mansour Resort &amp; Spa",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillResort\"",
+          "t": "Resort"
+        },
+        {
+          "k": " data-i18n=\"tnPillSpa\"",
+          "t": "Spa"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "58.800 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "joya-paradise-djerba",
+      "tier": "djerba",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__joya-paradise-djerba.jpg",
+      "alt": "Joya Paradise Djerba",
+      "ribbonClass": "luxe",
+      "kRibbon": "",
+      "ribbon": "4★ · Djerba",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Joya Paradise",
+      "amenities": [
+        {
+          "k": " data-i18n=\"tnPillResort\"",
+          "t": "Resort"
+        },
+        {
+          "k": " data-i18n=\"tnPillPlagePrivee\"",
+          "t": "Plage privée"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "70.800 DA",
+      "kMeta": " data-i18n=\"tnPriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"tnSelect\""
+    }
+  ],
+  "calcUi": {
+    "phaseLabel": "Calculer mon prix",
+    "eyebrow": "Étape 1 · Configurez votre voyage",
+    "titleHtml": "Choisissez <em>votre formule</em>",
+    "dateLabel": "Date de départ",
+    "dateChips": [
+      {
+        "active": true,
+        "value": "13 – 20 Juin 2026",
+        "k": "",
+        "label": "13–20 Juin 2026"
+      },
+      {
+        "active": false,
+        "value": "20 – 27 Juin 2026",
+        "k": "",
+        "label": "20–27 Juin 2026"
+      },
+      {
+        "active": false,
+        "value": "27 Juin – 04 Juillet 2026",
+        "k": "",
+        "label": "27 Juin–4 Juil 2026"
+      },
+      {
+        "active": false,
+        "value": "04 – 11 Juillet 2026",
+        "k": "",
+        "label": "4–11 Juil 2026"
+      },
+      {
+        "active": false,
+        "value": "11 – 18 Juillet 2026",
+        "k": "",
+        "label": "11–18 Juil 2026"
+      }
+    ],
+    "dateHint": "Départs chaque semaine de juin à septembre, depuis Alger et Oran.",
+    "selectLabel": "Hôtel",
+    "optionsHtml": "            <option value=\"royal-beach-sousse\">Royal Beach 3★ — Sousse — dès 36.000 DA</option>\n            <option value=\"yasmine-beach\">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 42.000 DA</option>\n            <option value=\"menara-hammamet\">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"prestige-imperial-park\">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"kanta-sousse\">Kanta 4★ — Sousse — dès 51.000 DA</option>\n            <option value=\"hannibal-palace\">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>\n            <option value=\"sidi-mansour-djerba\">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>\n            <option value=\"joya-paradise-djerba\">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>\n",
+    "roomLabel": "Type de chambre",
+    "roomOptions": [
+      {
+        "active": true,
+        "room": "double",
+        "k": " data-i18n=\"tnRoomDouble\"",
+        "label": "Double"
+      },
+      {
+        "active": false,
+        "room": "triple",
+        "k": " data-i18n=\"tnRoomTriple\"",
+        "label": "Triple"
+      },
+      {
+        "active": false,
+        "room": "single",
+        "k": " data-i18n=\"tnRoomSingle\"",
+        "label": "Individuelle"
+      }
+    ],
+    "travellersLabel": "Voyageurs",
+    "steppersHtml": "\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"tnStepAdults\">Adultes</h4><p data-i18n=\"tnStepAdultsHint\">À partir de 12 ans</p></div>\n              <div class=\"stepper\"><button class=\"stepper__btn\" id=\"adults-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'adultes\">−</button><span class=\"stepper__val\" id=\"adults-val\">2</span><button class=\"stepper__btn\" id=\"adults-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'adultes\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"tnStepChild1\">1er enfant</h4><p data-i18n=\"tnStepChild1Hint\">partage la chambre de 2 adultes</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_b\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 1ᵉʳ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 1ᵉʳ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"tnStepChild2\">2e enfant</h4><p data-i18n=\"tnStepChild2Hint\">partage la chambre de 2 adultes</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_a\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 2ᵉ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 2ᵉ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"tnStepBaby\">Bébé</h4><p data-i18n=\"tnStepBabyHint\">0–2 ans</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"baby\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de bébé\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de bébé\">+</button></div>\n            </div>",
+    "noteHtml": "",
+    "emptyMsg": "Configurez votre voyage pour voir le prix.",
+    "whyHtml": "<details><summary data-i18n=\"tnWhy\">Pourquoi ce prix ?</summary><p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\">Prix par personne en chambre double, transport en bus aller-retour depuis Alger et Oran inclus, 6 nuits en demi-pension (petit-déjeuner + dîner buffet), hôtel au choix à Hammamet, Sousse ou Djerba, animations, piscines et plage privée, et accompagnateur Alliance Travel. Aucun visa requis pour les Algériens.</p></details>",
+    "continueLabel": "Continuer vers la réservation",
+    "nextStep": "Étape suivante : remplissez votre dossier ci-dessous"
+  },
+  "infoBlocks": [
+    {
+      "open": true,
+      "iconSvg": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>",
+      "kTitle": " data-i18n=\"tnInfo1Title\"",
+      "title": "Conditions de paiement",
+      "list": [
+        {
+          "k": " data-i18n-html=\"tnInfo1Li1\"",
+          "t": "<strong>Acompte de réservation</strong> · 30 % du montant total au moment de la confirmation, à régler dans les 48 h après accord par WhatsApp."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo1Li2\"",
+          "t": "<strong>Solde</strong> · 70 % restants au plus tard <strong>21 jours avant le départ</strong>."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo1Li3\"",
+          "t": "<strong>Modes acceptés</strong> · Virement bancaire (BNA, BEA, CPA), versement en agence, espèces. Pas de carte bancaire en ligne pour le moment."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo1Li4\"",
+          "t": "<strong>Reçu</strong> · Reçu officiel Alliance Travel remis à chaque versement."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo1Li5\"",
+          "t": "<strong>Devis valable</strong> 7 jours · Les prix peuvent évoluer selon la disponibilité des hôtels et des places."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/>",
+      "kTitle": " data-i18n=\"tnInfo2Title\"",
+      "title": "Conditions d'annulation",
+      "ledeHtml": "Annulation par le client (selon le délai avant départ) :</p>\n            <ul class=\"info-list info-list--tiered\">\n              <li data-i18n-html=\"tnInfo2Li1\"><strong>≥ 60 jours avant départ</strong> · Remboursement intégral moins frais de dossier (5 000 DA).</li>\n              <li data-i18n-html=\"tnInfo2Li2\"><strong>30 à 59 jours</strong> · Retenue de 30 % du montant total.</li>\n              <li data-i18n-html=\"tnInfo2Li3\"><strong>14 à 29 jours</strong> · Retenue de 60 % du montant total.</li>\n              <li data-i18n-html=\"tnInfo2Li4\"><strong>7 à 13 jours</strong> · Retenue de 80 %.</li>\n              <li data-i18n-html=\"tnInfo2Li5\"><strong>&lt; 7 jours</strong> · Pas de remboursement (frais de transport et hôteliers définitifs).</li>\n            </ul>\n            <p class=\"info-card__note\" data-i18n-html=\"tnInfo2Note\">\n              <strong>Annulation par le transporteur ou l'hôtel</strong> · Remboursement intégral ou solution de remplacement sans frais supplémentaires de notre part.\n              <br>\n              <strong>Modification de date</strong> possible jusqu'à 30 jours avant départ, sous réserve de disponibilité et du différentiel tarifaire.\n            </p>\n          </div>\n        </details>\n\n\n        <details class=\"info-card\">\n          <summary class=\"info-card__head\">\n            <span class=\"info-card__icon\" aria-hidden=\"true\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M7 21v-1a5 5 0 0 1 10 0v1\"/></svg>\n            </span>\n            <span class=\"info-card__title\" data-i18n=\"tnInfo3Title\">Formalités · Sans visa</span>\n            <svg class=\"info-card__chevron\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>\n          </summary>\n          <div class=\"info-card__body\">\n            <p class=\"info-card__lede\" data-i18n-html=\"tnInfo3Lede\"><strong>Tunisie — aucun visa pour les Algériens</strong>",
+      "kLede": " data-i18n=\"tnInfo2Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"tnInfo3Li1\"",
+          "t": "<strong>Entrée</strong> · Les ressortissants algériens entrent en Tunisie <strong>sans visa</strong>, avec une <strong>carte nationale d'identité (CNI)</strong> en cours de validité ou un passeport."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo3Li2\"",
+          "t": "<strong>Voyage en bus</strong> · Le trajet se fait en bus depuis Alger et Oran, avec passage du <strong>poste-frontière algéro-tunisien</strong>."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo3Li3\"",
+          "t": "<strong>Validité du document</strong> · CNI ou passeport en cours de validité couvrant toute la durée du séjour."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo3Li4\"",
+          "t": "<strong>Mineurs</strong> · Pour un enfant voyageant sans l'un de ses parents, une <strong>autorisation parentale</strong> de sortie du territoire peut être demandée."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo3Li5\"",
+          "t": "<strong>Aucune démarche consulaire</strong> · Pas de rendez-vous, pas de frais de visa — il suffit d'avoir une pièce d'identité valide."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kTitle": " data-i18n=\"tnInfo4Title\"",
+      "title": "Assurance voyage",
+      "ledeHtml": "\n              L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> pour voyager l'esprit tranquille.\n            ",
+      "kLede": " data-i18n-html=\"tnInfo4Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"tnInfo4Li1\"",
+          "t": "<strong>Couverture conseillée</strong> · Frais médicaux d'urgence, rapatriement sanitaire, perte/vol de bagages, annulation voyage."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo4Li2\"",
+          "t": "<strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo4Li3\"",
+          "t": "<strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance)."
+        },
+        {
+          "k": " data-i18n-html=\"tnInfo4Li4\"",
+          "t": "<strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage."
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "slug": "istanbul",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#080610\"/>\n<radialGradient id=\"ist-istanbul-g\" cx=\"50%\" cy=\"70%\" r=\"60%\"><stop offset=\"0\" stop-color=\"#3a1a0a\" stop-opacity=\".8\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#ist-istanbul-g)\"/>\n<ellipse cx=\"50\" cy=\"50\" rx=\"22\" ry=\"18\" fill=\"#1a0820\"/>\n<rect x=\"22\" y=\"40\" width=\"4\" height=\"35\" rx=\"2\" fill=\"#1a0820\"/>\n<rect x=\"74\" y=\"40\" width=\"4\" height=\"35\" rx=\"2\" fill=\"#1a0820\"/>\n<rect x=\"0\" y=\"74\" width=\"100\" height=\"26\" fill=\"#08121e\"/>\n<ellipse cx=\"50\" cy=\"78\" rx=\"44\" ry=\"2\" fill=\"#5B9EC9\" fill-opacity=\".15\"/>\n</svg>",
+      "color": "#5B9EC9",
+      "kFlag": " data-i18n=\"tnRelIstanbulFlag\"",
+      "flag": "Septembre–Novembre 2026 · Départ Constantine",
+      "kTitle": "",
+      "title": "Istanbul",
+      "kPrice": "",
+      "priceHtml": "<span data-i18n=\"tnRelFrom\">À partir de</span> <strong>129.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": " data-i18n=\"tnRelSee\""
+    },
+    {
+      "slug": "egypte",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#0d0a05\"/>\n<radialGradient id=\"cs-cairo-sharm-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#C9872E\" stop-opacity=\".4\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#cs-cairo-sharm-g)\"/>\n<polygon points=\"50,15 85,85 15,85\" fill=\"#8B6520\" fill-opacity=\".55\"/>\n<polygon points=\"78,40 95,85 60,85\" fill=\"#7A5818\" fill-opacity=\".5\"/>\n<rect x=\"0\" y=\"80\" width=\"100\" height=\"20\" fill=\"#5C3D12\" fill-opacity=\".4\"/>\n<circle cx=\"80\" cy=\"20\" r=\"6\" fill=\"#FFF4D6\" fill-opacity=\".15\"/>\n</svg>",
+      "color": "#C9872E",
+      "kFlag": " data-i18n=\"tnRelCairoFlag\"",
+      "flag": "Égypte · Juin 2026",
+      "kTitle": "",
+      "title": "Le Caire & Sharm El Sheikh",
+      "kPrice": "",
+      "priceHtml": "<span data-i18n=\"tnRelFrom\">À partir de</span> <strong>190.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": " data-i18n=\"tnRelSee\""
+    }
+  ],
+  "finalCta": {
+    "scarcityHtml": "<span data-i18n=\"tnFinalScarcity\">Départs chaque semaine en été 2026 · Places limitées</span>",
+    "titleHtml": "Cap sur la<br><em>Tunisie balnéaire</em>",
+    "sub": "Hammamet, Sousse ou Djerba — plages privées, piscines et soleil de la Méditerranée. 6 nuits en demi-pension, en bus depuis Alger et Oran, sans visa.",
+    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20voyage%20Tunisie%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\" data-i18n=\"tnFinalWaCta\">Réserver via WhatsApp</a>\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
+    "contactHtml": "<div class=\"contact-item\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg><span data-i18n=\"tnFinalAddress\">Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville</span></div>"
+  },
+  "footer": {
+    "html": "<div class=\"container\"><div class=\"footer-grid\"><div class=\"footer-brand\"><span class=\"footer-logo\">Alliance<span>Travel</span></span><p class=\"footer-tagline\" data-i18n=\"footer.tagline\">Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.</p>\n        <div class=\"footer-social\">\n          <a href=\"https://www.instagram.com/alliance_travel34/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>\n          </a>\n          <a href=\"https://web.facebook.com/Alliance.Mebarkia\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://web.facebook.com/visa.bba.9\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel — Visa BBA\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://www.tiktok.com/@visa.bba34\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z\"/></svg>\n          </a>\n        </div></div><div class=\"footer-col\"><h4>Nos Voyages</h4><a href=\"../egypte/\">Égypte</a><a href=\"../tunisie/\">Tunisie</a><a href=\"../azerbaidjan/\">Azerbaïdjan</a><a href=\"../istanbul/\">Istanbul</a><a href=\"../kuala-lumpur/\">Kuala Lumpur &amp; Langkawi</a><a href=\"../bali/\">Bali</a><a href=\"../vietnam/\">Vietnam</a></div><div class=\"footer-col\"><h4 data-i18n=\"footer.col_contact\">Contact</h4>\n        \n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span data-i18n=\"footer.wa_viber\">WhatsApp / Viber</span></p>\n          <a href=\"https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 860 617</a>\n          <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg><span data-i18n=\"footer.phone\">Téléphone</span></p>\n          <a href=\"https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 267</a>\n          <a href=\"https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 268</a>\n          <a href=\"https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 269</a>\n          <a href=\"https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 869 905</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><span data-i18n=\"footer.address_label\">Adresse</span></p>\n          <p class=\"fs-body-sm u-text-2 u-m-0\">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>\n        </div>\n      </div></div><div class=\"footer-bottom\"><p data-i18n=\"footer.copyright\">© 2026 Alliance Travel · Bordj Bou Arreridj</p><p data-i18n=\"footer.notice\">Prix en DA · Indicatifs · Confirmation à la réservation</p></div></div>"
+  },
+  "tripData": {
+    "name": "Tunisie 2026 · Hammamet, Sousse & Djerba",
+    "dates": [
+      "13 – 20 Juin 2026",
+      "20 – 27 Juin 2026",
+      "27 Juin – 04 Juillet 2026",
+      "04 – 11 Juillet 2026",
+      "11 – 18 Juillet 2026"
+    ],
+    "hotels": [
+      {
+        "id": "yasmine-beach",
+        "name": "Hôtel Yasmine Beach 4★ — Hammamet",
+        "prices": {
+          "double": 40000,
+          "triple": 37500,
+          "single": 57000,
+          "child1": 5000,
+          "child2": 24000,
+          "baby": 5000
+        },
+        "why": "Prix par personne, transport en bus aller-retour depuis Alger et Oran inclus, 6 nuits en demi-pension (petit-déjeuner + dîner buffet) à Hammamet, animations, piscines et plage privée, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "menara-hammamet",
+        "name": "Hôtel Menara 4★ — Hammamet",
+        "prices": {
+          "double": 43000,
+          "triple": 43000,
+          "single": 60000,
+          "child1": 5000,
+          "child2": 26000,
+          "baby": 5000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Hammamet, piscines, plage et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "prestige-imperial-park",
+        "name": "Prestige Imperial Park 3★ — Hammamet",
+        "prices": {
+          "double": 43000,
+          "triple": 43000,
+          "single": 60000,
+          "child1": 5000,
+          "child2": 26000,
+          "baby": 5000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Hammamet, plage et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "royal-beach-sousse",
+        "name": "Royal Beach 3★ — Sousse",
+        "prices": {
+          "double": 36000,
+          "triple": 34500,
+          "single": 48000,
+          "child1": 8000,
+          "child2": 27000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, hôtel bord de mer, piscines et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "houria-palace",
+        "name": "Houria Palace 4★ — Sousse",
+        "prices": {
+          "double": 42000,
+          "triple": 39000,
+          "single": 54000,
+          "child1": 8000,
+          "child2": 28000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "kanta-sousse",
+        "name": "Kanta 4★ — Sousse",
+        "prices": {
+          "double": 51000,
+          "triple": 51000,
+          "single": 73000,
+          "child1": 8000,
+          "child2": 32000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, piscines et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "hannibal-palace",
+        "name": "Hannibal Palace 4★ — Sousse",
+        "prices": {
+          "double": 57000,
+          "triple": 57000,
+          "single": 79000,
+          "child1": 8000,
+          "child2": 36000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, hôtel bord de mer, spa et plage privée, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "sidi-mansour-djerba",
+        "name": "Sidi Mansour Resort & Spa 4★ — Djerba",
+        "prices": {
+          "double": 58800,
+          "triple": 58800,
+          "single": 73800,
+          "child1": 0,
+          "child2": 35000,
+          "baby": 0
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec spa, piscines et plage, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "joya-paradise-djerba",
+        "name": "Joya Paradise 4★ — Djerba",
+        "prices": {
+          "double": 70800,
+          "triple": 70800,
+          "single": 94800,
+          "child1": 35000,
+          "child2": 54900,
+          "baby": 0
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec plage privée et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      }
+    ],
+    "extras": []
+  },
+  "i18n": {
+    "en": {
+      "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
+      "tnHeroEyebrow": "Bus trip · Half-board · Summer 2026",
+      "tnHeroTitlePre": "Tunisia",
+      "tnHeroTitlePost": "Sun & Mediterranean",
+      "tnHeroDate": "6 nights · Half-board · No visa",
+      "tnHeroH1": "Tunisia <em>Sun & Mediterranean</em>",
+      "tnHeroLede": "Beach holidays just a bus ride away. Choose Hammamet, Sousse or Djerba — private beaches, pools and Mediterranean sun. 6 nights half-board, by bus from Algiers and Oran. No visa needed for Algerians.",
+      "tnHeroPriceUnit": "per person · double room · from",
+      "tnHeroFineprint": "Based on a double room, subject to availability — round-trip bus transport included.",
+      "tnHeroCtaCalc": "Calculate my price",
+      "tnHl1Label": "Transport included",
+      "tnHl1Title": "Round-trip bus included",
+      "tnHl1Body": "Air-conditioned round-trip bus from Algiers and Oran, with border crossing. Transport is included in every price.",
+      "tnHl2Label": "Dining",
+      "tnHl2Title": "Half-board buffet",
+      "tnHl2Body": "Breakfast and dinner buffet at the hotel every day. Lunches free so you can enjoy local spots.",
+      "tnHl3Label": "Your choice",
+      "tnHl3Title": "3 destinations",
+      "tnHl3Body": "Hammamet, Sousse or Djerba — 9 hotels sorted by your budget and travel style.",
+      "tnHl4Label": "Relax",
+      "tnHl4Title": "Private beach &amp; pools",
+      "tnHl4Body": "Landscaped beaches, pools and hotel entertainment. Mediterranean sun all summer long.",
+      "tnPhase1": "Discover",
+      "tnItinEyebrow": "7 days · 6 nights",
+      "tnItinTitle": "Your <em>itinerary</em>",
+      "tnDayLabel1": "Day 1",
+      "tnDay1Title": "Departure from Algiers / Oran by night bus",
+      "tnDay1Body": "Gathering and departure by air-conditioned bus from Algiers and Oran. Overnight drive, crossing of the Algerian-Tunisian border post, then arrival at the hotel.",
+      "tnDay1Tag1": "Night bus",
+      "tnDay1Tag2": "Border post",
+      "tnDayLabel2": "Day 2",
+      "tnDay2Title": "Arrival &amp; check-in",
+      "tnDay2Body": "Arrival at the hotel (Hammamet, Sousse or Djerba, your choice), check-in, free lunch. First afternoon relaxing on the beach and by the pool. Buffet dinner at the hotel.",
+      "tnDay2Tag1": "Check-in",
+      "tnDay2Tag2": "Beach",
+      "tnDayLabel3": "Day 3",
+      "tnDay3Title": "Beach day",
+      "tnDay3Body": "Free day on half-board: private beach, pools and hotel entertainment. Optional excursion possible (catamaran, jet-ski) depending on the resort.",
+      "tnDay3Tag1": "Half-board",
+      "tnDay3Tag2": "Pools",
+      "tnDayLabel4": "Day 4",
+      "tnDay4Title": "City &amp; medina visit",
+      "tnDay4Body": "Explore the medina and the centre: Sousse and its listed medina, Hammamet and its fort, or Houmt Souk in Djerba. Souks, crafts and downtime in the afternoon.",
+      "tnDay4Tag1": "Medina",
+      "tnDay4Tag2": "Souks",
+      "tnDayLabel5": "Day 5",
+      "tnDay5Title": "Optional excursion",
+      "tnDay5Body": "Free day or optional excursion: Sidi Bou Saïd and Carthage from Hammamet, Carthage Land park, or a tour of Djerba island. Back to the hotel for dinner.",
+      "tnDay5Tag1": "Sidi Bou Saïd",
+      "tnDay5Tag2": "Carthage",
+      "tnDayLabel6": "Day 6",
+      "tnDay6Title": "Final relaxation day",
+      "tnDay6Body": "Last beach day: beach, pool, shopping and final purchases. Evening and buffet dinner at the hotel before departure.",
+      "tnDay6Tag1": "Private beach",
+      "tnDay6Tag2": "Shopping",
+      "tnDayLabel7": "Day 7",
+      "tnDay7Title": "Return by bus to Algeria",
+      "tnDay7Body": "Breakfast, check-out and departure by bus. Border crossing and return to Algiers and Oran.",
+      "tnDay7Tag1": "Return bus",
+      "tnMapEyebrow": "Your trip at a glance",
+      "tnMapTitle": "The route <em>on the map</em>",
+      "tnMapSub": "Algiers and Oran, the border post, then Hammamet, Sousse or Djerba — the route of your beach holiday by bus.",
+      "tnMapLoading": "Loading the map…",
+      "tnMapLegend1": "Beach resorts",
+      "tnMapLegend2": "Departure cities",
+      "tnMapLegend3": "Bus route",
+      "tnTrustEyebrow": "Over 1,200 travellers guided",
+      "tnTrustTitle": "They put their <em>trust in us</em>",
+      "tnStat1": "Travellers guided since 2019",
+      "tnStat2": "Satisfaction rate",
+      "tnStat3Num": "Weekly",
+      "tnStat3": "Departures every week in summer 2026",
+      "tnStat4": "Hand-picked hotels to choose from",
+      "tnTesti1": "\"Hammamet as a family was perfect. The comfortable bus, the private beach steps from the hotel, and the buffet dinner every evening. The kids didn't want to leave.\"",
+      "tnTesti1Trip": "Bordj Bou Arreridj · Tunisia trip 2026",
+      "tnTesti2": "\"No visa, just an ID card — we booked in a few days. The departure from Oran was well organised, the border crossing stress-free. Sousse and its medina are worth the trip.\"",
+      "tnTesti2Trip": "Constantine · Tunisia trip 2026",
+      "tnTesti3": "\"A couple's getaway to Djerba. Immaculate hotel, magnificent pools and turquoise sea. Unbeatable value for an all-inclusive bus trip.\"",
+      "tnTesti3Trip": "Annaba · Tunisia trip 2026",
+      "tnInclusEyebrow": "Everything spelled out, nothing hidden",
+      "tnInclusTitle": "What's <em>included</em>, and what isn't",
+      "tnInclusSub": "No surprises on arrival. Here's exactly what your package covers — and what you'll plan for on top.",
+      "tnInclusColYesTitle": "Included in the <em>package</em>",
+      "tnInclusColYesCount": "5 services covered",
+      "tnInclusYes1": "<strong>Round-trip bus transport</strong> from Algiers and Oran, air-conditioned",
+      "tnInclusYes2": "<strong>6 nights half-board</strong> (breakfast + buffet dinner)",
+      "tnInclusYes3": "<strong>Hotel of your choice</strong> in Hammamet, Sousse or Djerba",
+      "tnInclusYes4": "Entertainment, pools and the hotel's <strong>private beach</strong>",
+      "tnInclusYes5": "Alliance Travel guide throughout the trip",
+      "tnInclusColNoTitle": "To <em>budget</em> separately",
+      "tnInclusColNoCount": "5 items outside the package",
+      "tnInclusNo1": "Lunches — the package is half-board (breakfast + dinner)",
+      "tnInclusNo2": "Optional excursions (Carthage Land, catamaran, jet-ski)",
+      "tnInclusNo3": "Tourist tax payable locally under Tunisian regulations",
+      "tnInclusNo4": "Personal expenses",
+      "tnInclusNo5": "Personal travel insurance",
+      "tnFaqEyebrow": "FAQ",
+      "tnFaqTitle": "Frequently asked <em>questions</em>",
+      "tnFaqQ1": "Do I need a visa for Tunisia?",
+      "tnFaqA1": "<strong>No.</strong> Algerian nationals enter Tunisia <strong>without a visa</strong>, with a valid national ID card (CNI) or a passport. No consular procedure is required.",
+      "tnFaqQ2": "What does the half-board plan include?",
+      "tnFaqA2": "<strong>Half-board</strong> includes breakfast and dinner served buffet-style at the hotel every day. Lunches are free — enjoy local restaurants and spots at your own pace.",
+      "tnFaqQ3": "How does the bus trip work?",
+      "tnFaqA3": "Transport is by <strong>air-conditioned round-trip bus</strong> from Algiers and Oran, crossing the Algerian-Tunisian border post. The bus is included in all prices — no extra charge.",
+      "tnFaqQ4": "How much do children pay?",
+      "tnFaqA4": "Children's rates depend on the chosen hotel. The <strong>1st child</strong> sharing a room with 2 adults gets a reduced rate (from <strong>5,000 DA</strong>), the <strong>2nd child</strong> a second rate, and the <strong>baby (0–2 years)</strong> travels free or at a minimal rate depending on the hotel.",
+      "tnPhase2": "Compare the hotels",
+      "tnHotelsEyebrow": "Accommodation · 6 nights",
+      "tnHotelsTitle": "9 hotels · <em>3 destinations</em>",
+      "tnHotelsSub": "Half-board stay (breakfast + buffet dinner). Round-trip bus transport from Algiers and Oran included in every price.",
+      "tnTabAll": "All",
+      "tnPillPlagePrivee": "Private beach",
+      "tnPillDemiPension": "Half-board",
+      "tnPillPiscines": "Pools",
+      "tnPillPlage": "Beach",
+      "tnPillAnimations": "Entertainment",
+      "tnPillBordDeMer": "Seafront",
+      "tnPillSpa": "Spa",
+      "tnPillResort": "Resort",
+      "tnPriceFrom": "From",
+      "tnPriceMeta": "Double room · per person",
+      "tnSelect": "Select",
+      "tnPhase3": "Calculate my price",
+      "tnCalcEyebrow": "Step 1 · Configure your trip",
+      "tnCalcTitle": "Choose <em>your package</em>",
+      "tnCalcDateLabel": "Departure date",
+      "tnCalcDateHint": "Departures every week from June to September, from Algiers and Oran.",
+      "tnCalcHotelLabel": "Hotel",
+      "tnCalcRoomLabel": "Room type",
+      "tnRoomDouble": "Double",
+      "tnRoomTriple": "Triple",
+      "tnRoomSingle": "Single",
+      "tnCalcTravelersLabel": "Travellers",
+      "tnStepAdults": "Adults",
+      "tnStepAdultsHint": "From 12 years old",
+      "tnStepChild1": "1st child",
+      "tnStepChild1Hint": "shares the room of 2 adults",
+      "tnStepChild2": "2nd child",
+      "tnStepChild2Hint": "shares the room of 2 adults",
+      "tnStepBaby": "Baby",
+      "tnStepBabyHint": "0–2 years",
+      "tnRecap": "Summary",
+      "tnRecapEmpty": "Configure your trip to see the price.",
+      "tnTotalEstime": "Estimated total",
+      "tnWhy": "Why this price?",
+      "tnContinue": "Continue to booking\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>",
+      "tnNextStep": "Next step: fill in your file below",
+      "tnInfoEyebrow": "Before you go",
+      "tnInfoTitle": "Everything you <em>need to know</em>",
+      "tnInfoSub": "Payment, cancellation, visa formalities, insurance — transparency in four blocks.",
+      "tnInfo1Title": "Payment terms",
+      "tnInfo1Li1": "<strong>Booking deposit</strong> · 30% of the total at confirmation, payable within 48h after agreement on WhatsApp.",
+      "tnInfo1Li2": "<strong>Balance</strong> · remaining 70% no later than <strong>21 days before departure</strong>.",
+      "tnInfo1Li3": "<strong>Accepted methods</strong> · Bank transfer (BNA, BEA, CPA), payment at the agency, cash. No online card payment for now.",
+      "tnInfo1Li4": "<strong>Receipt</strong> · Official Alliance Travel receipt issued for every payment.",
+      "tnInfo1Li5": "<strong>Quote valid</strong> 7 days · Prices may change depending on hotel and seat availability.",
+      "tnInfo2Title": "Cancellation terms",
+      "tnInfo2Lede": "Cancellation by the client (depending on the notice before departure):",
+      "tnInfo2Li1": "<strong>≥ 60 days before departure</strong> · Full refund minus processing fee (5,000 DA).",
+      "tnInfo2Li2": "<strong>30 to 59 days</strong> · 30% of the total retained.",
+      "tnInfo2Li3": "<strong>14 to 29 days</strong> · 60% of the total retained.",
+      "tnInfo2Li4": "<strong>7 to 13 days</strong> · 80% retained.",
+      "tnInfo2Li5": "<strong>&lt; 7 days</strong> · No refund (transport and hotel costs final).",
+      "tnInfo2Note": "<strong>Cancellation by the carrier or hotel</strong> · Full refund or replacement solution at no extra cost on our part.<br><strong>Date change</strong> possible up to 30 days before departure, subject to availability and the fare difference.",
+      "tnInfo3Title": "Formalities · No visa",
+      "tnInfo3Lede": "<strong>Tunisia — no visa for Algerians</strong>",
+      "tnInfo3Li1": "<strong>Entry</strong> · Algerian nationals enter Tunisia <strong>without a visa</strong>, with a valid <strong>national ID card (CNI)</strong> or a passport.",
+      "tnInfo3Li2": "<strong>Bus travel</strong> · The journey is by bus from Algiers and Oran, crossing the <strong>Algerian-Tunisian border post</strong>.",
+      "tnInfo3Li3": "<strong>Document validity</strong> · CNI or passport valid for the entire duration of the stay.",
+      "tnInfo3Li4": "<strong>Minors</strong> · For a child travelling without one of their parents, a <strong>parental authorisation</strong> to leave the territory may be required.",
+      "tnInfo3Li5": "<strong>No consular procedure</strong> · No appointment, no visa fee — a valid ID is all you need.",
+      "tnInfo4Title": "Travel insurance",
+      "tnInfo4Lede": "Travel insurance is <strong>not included</strong> in the package but it is <strong>strongly recommended</strong> so you can travel with peace of mind.",
+      "tnInfo4Li1": "<strong>Recommended cover</strong> · Emergency medical costs, medical repatriation, lost/stolen luggage, trip cancellation.",
+      "tnInfo4Li2": "<strong>Indicative cost</strong> · 1,500 to 4,000 DA per person depending on duration and destination.",
+      "tnInfo4Li3": "<strong>Where to buy</strong> · Algerian insurers (CAAR, SAA, CAAT) or international companies (Mondial Assistance, Europ Assistance).",
+      "tnInfo4Li4": "<strong>On request</strong>, Alliance Travel can point you to an insurance partner offering travel plans.",
+      "tnRelatedEyebrow": "You might also like",
+      "tnRelatedTitle": "Continue your <em>discovery</em>",
+      "tnRelIstanbulFlag": "September–November 2026 · From Constantine",
+      "tnRelCairoFlag": "Egypt · June 2026",
+      "tnRelFrom": "From",
+      "tnRelSee": "See this trip",
+      "tnFinalScarcity": "Departures every week in summer 2026 · Limited seats",
+      "tnFinalTitle": "Head for<br><em>coastal Tunisia</em>",
+      "tnFinalSub": "Hammamet, Sousse or Djerba — private beaches, pools and Mediterranean sun. 6 nights half-board, by bus from Algiers and Oran, no visa.",
+      "tnFinalWaCta": "Book via WhatsApp",
+      "tnFinalAddress": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
+      "tnReserver": "Book"
+    },
+    "ar": {
+      "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
+      "tnHeroEyebrow": "رحلة بالحافلة · نصف إقامة · صيف 2026",
+      "tnHeroTitlePre": "تونس",
+      "tnHeroTitlePost": "شمس والبحر الأبيض المتوسط",
+      "tnHeroDate": "6 ليالٍ · نصف إقامة · بدون تأشيرة",
+      "tnHeroH1": "تونس <em>شمس والبحر الأبيض المتوسط</em>",
+      "tnHeroLede": "عطلة شاطئية على بُعد رحلة حافلة. اختر الحمامات أو سوسة أو جربة — شواطئ خاصة ومسابح وشمس البحر الأبيض المتوسط. 6 ليالٍ بنظام نصف الإقامة، بالحافلة من الجزائر العاصمة ووهران. بدون تأشيرة للجزائريين.",
+      "tnHeroPriceUnit": "للشخص · غرفة مزدوجة · ابتداءً من",
+      "tnHeroFineprint": "على أساس غرفة مزدوجة، رهناً بالتوفّر — النقل بالحافلة ذهاباً وإياباً مشمول.",
+      "tnHeroCtaCalc": "احسب سعري",
+      "tnHl1Label": "النقل مشمول",
+      "tnHl1Title": "الحافلة ذهاباً وإياباً مشمولة",
+      "tnHl1Body": "حافلة مكيّفة ذهاباً وإياباً من الجزائر العاصمة ووهران، مع عبور المركز الحدودي. النقل مشمول في جميع الأسعار.",
+      "tnHl2Label": "المطعم",
+      "tnHl2Title": "نصف إقامة بوفيه",
+      "tnHl2Body": "فطور وعشاء بوفيه في الفندق كل يوم. وجبات الغداء حرة للاستمتاع بالأماكن المحلية.",
+      "tnHl3Label": "حسب اختيارك",
+      "tnHl3Title": "3 وجهات",
+      "tnHl3Body": "الحمامات أو سوسة أو جربة — 9 فنادق منتقاة حسب ميزانيتك وأسلوب إقامتك.",
+      "tnHl4Label": "استرخاء",
+      "tnHl4Title": "شاطئ خاص ومسابح",
+      "tnHl4Body": "شواطئ مهيّأة ومسابح وأنشطة ترفيهية في الفندق. شمس البحر الأبيض المتوسط طوال الصيف.",
+      "tnPhase1": "اكتشف",
+      "tnItinEyebrow": "7 أيام · 6 ليالٍ",
+      "tnItinTitle": "<em>برنامجك</em>",
+      "tnDayLabel1": "اليوم 1",
+      "tnDay1Title": "الانطلاق من الجزائر العاصمة / وهران بحافلة ليلية",
+      "tnDay1Body": "التجمّع والانطلاق بحافلة مكيّفة من الجزائر العاصمة ووهران. طريق ليلي، عبور المركز الحدودي الجزائري التونسي، ثم الوصول إلى الفندق.",
+      "tnDay1Tag1": "حافلة ليلية",
+      "tnDay1Tag2": "المركز الحدودي",
+      "tnDayLabel2": "اليوم 2",
+      "tnDay2Title": "الوصول والتسجيل",
+      "tnDay2Body": "الوصول إلى الفندق (الحمامات أو سوسة أو جربة حسب اختيارك)، التسجيل، غداء حر. أول ظهيرة استرخاء على الشاطئ وفي المسبح. عشاء بوفيه في الفندق.",
+      "tnDay2Tag1": "تسجيل الدخول",
+      "tnDay2Tag2": "شاطئ",
+      "tnDayLabel3": "اليوم 3",
+      "tnDay3Title": "يوم شاطئي",
+      "tnDay3Body": "يوم حر بنظام نصف الإقامة: شاطئ خاص ومسابح وأنشطة الفندق. إمكانية رحلة اختيارية (كاتاماران، جت سكي) حسب المنتجع.",
+      "tnDay3Tag1": "نصف إقامة",
+      "tnDay3Tag2": "مسابح",
+      "tnDayLabel4": "اليوم 4",
+      "tnDay4Title": "زيارة المدينة والمدينة العتيقة",
+      "tnDay4Body": "اكتشاف المدينة العتيقة والمركز: سوسة ومدينتها العتيقة المصنّفة، الحمامات وحصنها، أو حومة السوق في جربة. أسواق وحرف يدوية واسترخاء بعد الظهر.",
+      "tnDay4Tag1": "المدينة العتيقة",
+      "tnDay4Tag2": "أسواق",
+      "tnDayLabel5": "اليوم 5",
+      "tnDay5Title": "رحلة اختيارية",
+      "tnDay5Body": "يوم حر أو رحلة اختيارية: سيدي بوسعيد وقرطاج من الحمامات، حديقة كارثاج لاند، أو اكتشاف جزيرة جربة. العودة إلى الفندق للعشاء.",
+      "tnDay5Tag1": "سيدي بوسعيد",
+      "tnDay5Tag2": "قرطاج",
+      "tnDayLabel6": "اليوم 6",
+      "tnDay6Title": "يوم الاسترخاء الأخير",
+      "tnDay6Body": "آخر يوم شاطئي: شاطئ ومسبح وتسوّق ومشتريات أخيرة. سهرة وعشاء بوفيه في الفندق قبل المغادرة.",
+      "tnDay6Tag1": "شاطئ خاص",
+      "tnDay6Tag2": "تسوّق",
+      "tnDayLabel7": "اليوم 7",
+      "tnDay7Title": "العودة بالحافلة إلى الجزائر",
+      "tnDay7Body": "فطور، إنهاء الإقامة والمغادرة بالحافلة. عبور المركز الحدودي والعودة إلى الجزائر العاصمة ووهران.",
+      "tnDay7Tag1": "حافلة العودة",
+      "tnMapEyebrow": "رحلتك في لمحة",
+      "tnMapTitle": "المسار <em>على الخريطة</em>",
+      "tnMapSub": "الجزائر العاصمة ووهران، المركز الحدودي، ثم الحمامات أو سوسة أو جربة — مسار عطلتك الشاطئية بالحافلة.",
+      "tnMapLoading": "جارٍ تحميل الخريطة…",
+      "tnMapLegend1": "منتجعات شاطئية",
+      "tnMapLegend2": "مدن الانطلاق",
+      "tnMapLegend3": "مسار الحافلة",
+      "tnTrustEyebrow": "أكثر من 1200 مسافر مُرافَق",
+      "tnTrustTitle": "لقد <em>وثقوا بنا</em>",
+      "tnStat1": "مسافرون مُرافَقون منذ 2019",
+      "tnStat2": "معدّل الرضا",
+      "tnStat3Num": "أسبوعياً",
+      "tnStat3": "انطلاقات كل أسبوع في صيف 2026",
+      "tnStat4": "فنادق منتقاة للاختيار",
+      "tnTesti1": "«الحمامات مع العائلة كانت مثالية. الحافلة مريحة، الشاطئ الخاص على بُعد خطوات من الفندق، والعشاء بوفيه كل مساء. الأطفال لم يرغبوا في العودة.»",
+      "tnTesti1Trip": "برج بوعريريج · رحلة تونس 2026",
+      "tnTesti2": "«بدون تأشيرة، فقط بطاقة الهوية — حجزنا في أيام قليلة. الانطلاق من وهران كان منظَّماً جيداً، وعبور الحدود دون توتّر. سوسة ومدينتها العتيقة تستحق الزيارة.»",
+      "tnTesti2Trip": "قسنطينة · رحلة تونس 2026",
+      "tnTesti3": "«إقامة لزوجين في جربة. فندق نظيف، مسابح رائعة وبحر فيروزي. القيمة مقابل السعر لا تُضاهى لرحلة شاملة بالحافلة.»",
+      "tnTesti3Trip": "عنابة · رحلة تونس 2026",
+      "tnInclusEyebrow": "كل شيء موضَّح، لا شيء مخفي",
+      "tnInclusTitle": "ما هو <em>مشمول</em>، وما هو غير مشمول",
+      "tnInclusSub": "لا مفاجآت عند الوصول. إليك بالضبط ما تغطّيه باقتك — وما ستحتاج إلى تدبيره إضافياً.",
+      "tnInclusColYesTitle": "مشمول في <em>الباقة</em>",
+      "tnInclusColYesCount": "5 خدمات مغطّاة",
+      "tnInclusYes1": "<strong>النقل بالحافلة ذهاباً وإياباً</strong> من الجزائر العاصمة ووهران، مكيّفة",
+      "tnInclusYes2": "<strong>6 ليالٍ بنظام نصف الإقامة</strong> (فطور + عشاء بوفيه)",
+      "tnInclusYes3": "<strong>فندق حسب اختيارك</strong> في الحمامات أو سوسة أو جربة",
+      "tnInclusYes4": "أنشطة ترفيهية ومسابح و<strong>شاطئ خاص</strong> للفندق",
+      "tnInclusYes5": "مُرافِق من أليانس ترافل طوال الرحلة",
+      "tnInclusColNoTitle": "يُدبَّر <em>إضافياً</em>",
+      "tnInclusColNoCount": "5 عناصر خارج الباقة",
+      "tnInclusNo1": "وجبات الغداء — الباقة بنظام نصف الإقامة (فطور + عشاء)",
+      "tnInclusNo2": "الرحلات الاختيارية (كارثاج لاند، كاتاماران، جت سكي)",
+      "tnInclusNo3": "رسم الإقامة يُدفع على عين المكان وفق التنظيم التونسي",
+      "tnInclusNo4": "المصاريف الشخصية",
+      "tnInclusNo5": "تأمين السفر الشخصي",
+      "tnFaqEyebrow": "الأسئلة الشائعة",
+      "tnFaqTitle": "أسئلة <em>متكرّرة</em>",
+      "tnFaqQ1": "هل تلزم تأشيرة لتونس؟",
+      "tnFaqA1": "<strong>لا.</strong> يدخل المواطنون الجزائريون تونس <strong>بدون تأشيرة</strong>، ببطاقة التعريف الوطنية سارية المفعول أو جواز سفر. لا حاجة لأي إجراء قنصلي.",
+      "tnFaqQ2": "ماذا تشمل صيغة نصف الإقامة؟",
+      "tnFaqA2": "تشمل <strong>نصف الإقامة</strong> الفطور والعشاء على شكل بوفيه في الفندق كل يوم. وجبات الغداء حرة — تستمتع بالمطاعم والأماكن المحلية على وتيرتك.",
+      "tnFaqQ3": "كيف تتم الرحلة بالحافلة؟",
+      "tnFaqA3": "يتم النقل بـ<strong>حافلة مكيّفة ذهاباً وإياباً</strong> من الجزائر العاصمة ووهران، مع عبور المركز الحدودي الجزائري التونسي. الحافلة مشمولة في جميع الأسعار — بدون أي رسوم إضافية.",
+      "tnFaqQ4": "كم يدفع الأطفال؟",
+      "tnFaqA4": "تعتمد أسعار الأطفال على الفندق المختار. يحصل <strong>الطفل الأول</strong> المشارك في غرفة بالغَين على سعر مخفّض (ابتداءً من <strong>5000 دج</strong>)، و<strong>الطفل الثاني</strong> على سعر ثانٍ، ويسافر <strong>الرضيع (0–2 سنة)</strong> مجاناً أو بسعر زهيد حسب الفندق.",
+      "tnPhase2": "قارن الفنادق",
+      "tnHotelsEyebrow": "الإقامة · 6 ليالٍ",
+      "tnHotelsTitle": "9 فنادق · <em>3 وجهات</em>",
+      "tnHotelsSub": "إقامة بنظام نصف الإقامة (فطور + عشاء بوفيه). النقل بالحافلة ذهاباً وإياباً من الجزائر العاصمة ووهران مشمول في كل سعر.",
+      "tnTabAll": "الكل",
+      "tnPillPlagePrivee": "شاطئ خاص",
+      "tnPillDemiPension": "نصف إقامة",
+      "tnPillPiscines": "مسابح",
+      "tnPillPlage": "شاطئ",
+      "tnPillAnimations": "أنشطة ترفيهية",
+      "tnPillBordDeMer": "على البحر",
+      "tnPillSpa": "سبا",
+      "tnPillResort": "منتجع",
+      "tnPriceFrom": "ابتداءً من",
+      "tnPriceMeta": "غرفة مزدوجة · للشخص",
+      "tnSelect": "اختيار",
+      "tnPhase3": "احسب سعري",
+      "tnCalcEyebrow": "الخطوة 1 · هيّئ رحلتك",
+      "tnCalcTitle": "اختر <em>باقتك</em>",
+      "tnCalcDateLabel": "تاريخ الانطلاق",
+      "tnCalcDateHint": "انطلاقات كل أسبوع من جوان إلى سبتمبر، من الجزائر العاصمة ووهران.",
+      "tnCalcHotelLabel": "الفندق",
+      "tnCalcRoomLabel": "نوع الغرفة",
+      "tnRoomDouble": "مزدوجة",
+      "tnRoomTriple": "ثلاثية",
+      "tnRoomSingle": "فردية",
+      "tnCalcTravelersLabel": "المسافرون",
+      "tnStepAdults": "بالغون",
+      "tnStepAdultsHint": "ابتداءً من 12 سنة",
+      "tnStepChild1": "الطفل الأول",
+      "tnStepChild1Hint": "يشارك غرفة بالغَين",
+      "tnStepChild2": "الطفل الثاني",
+      "tnStepChild2Hint": "يشارك غرفة بالغَين",
+      "tnStepBaby": "رضيع",
+      "tnStepBabyHint": "0–2 سنة",
+      "tnRecap": "ملخّص",
+      "tnRecapEmpty": "هيّئ رحلتك لرؤية السعر.",
+      "tnTotalEstime": "الإجمالي التقديري",
+      "tnWhy": "لماذا هذا السعر؟",
+      "tnContinue": "المتابعة إلى الحجز\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>",
+      "tnNextStep": "الخطوة التالية: املأ ملفك أدناه",
+      "tnInfoEyebrow": "قبل السفر",
+      "tnInfoTitle": "كل ما <em>يجب معرفته</em>",
+      "tnInfoSub": "الدفع، الإلغاء، إجراءات التأشيرة، التأمين — الشفافية في أربع كتل.",
+      "tnInfo1Title": "شروط الدفع",
+      "tnInfo1Li1": "<strong>عربون الحجز</strong> · 30٪ من المبلغ الإجمالي عند التأكيد، يُدفع خلال 48 ساعة بعد الاتفاق عبر واتساب.",
+      "tnInfo1Li2": "<strong>الرصيد</strong> · 70٪ المتبقية في موعد أقصاه <strong>21 يوماً قبل الانطلاق</strong>.",
+      "tnInfo1Li3": "<strong>الوسائل المقبولة</strong> · تحويل بنكي (BNA، BEA، CPA)، دفع في الوكالة، نقداً. لا دفع ببطاقة عبر الإنترنت حالياً.",
+      "tnInfo1Li4": "<strong>الإيصال</strong> · إيصال رسمي من أليانس ترافل يُسلَّم عند كل دفعة.",
+      "tnInfo1Li5": "<strong>عرض السعر صالح</strong> 7 أيام · قد تتغيّر الأسعار حسب توفّر الفنادق والمقاعد.",
+      "tnInfo2Title": "شروط الإلغاء",
+      "tnInfo2Lede": "الإلغاء من قبل العميل (حسب المهلة قبل الانطلاق):",
+      "tnInfo2Li1": "<strong>≥ 60 يوماً قبل الانطلاق</strong> · استرداد كامل ناقص رسوم الملف (5000 دج).",
+      "tnInfo2Li2": "<strong>من 30 إلى 59 يوماً</strong> · اقتطاع 30٪ من المبلغ الإجمالي.",
+      "tnInfo2Li3": "<strong>من 14 إلى 29 يوماً</strong> · اقتطاع 60٪ من المبلغ الإجمالي.",
+      "tnInfo2Li4": "<strong>من 7 إلى 13 يوماً</strong> · اقتطاع 80٪.",
+      "tnInfo2Li5": "<strong>&lt; 7 أيام</strong> · لا استرداد (مصاريف النقل والفنادق نهائية).",
+      "tnInfo2Note": "<strong>الإلغاء من قبل الناقل أو الفندق</strong> · استرداد كامل أو حل بديل دون مصاريف إضافية من جانبنا.<br><strong>تغيير التاريخ</strong> ممكن حتى 30 يوماً قبل الانطلاق، رهناً بالتوفّر وفرق السعر.",
+      "tnInfo3Title": "الإجراءات · بدون تأشيرة",
+      "tnInfo3Lede": "<strong>تونس — بدون تأشيرة للجزائريين</strong>",
+      "tnInfo3Li1": "<strong>الدخول</strong> · يدخل المواطنون الجزائريون تونس <strong>بدون تأشيرة</strong>، بـ<strong>بطاقة تعريف وطنية</strong> سارية المفعول أو جواز سفر.",
+      "tnInfo3Li2": "<strong>السفر بالحافلة</strong> · يتم التنقّل بالحافلة من الجزائر العاصمة ووهران، مع عبور <strong>المركز الحدودي الجزائري التونسي</strong>.",
+      "tnInfo3Li3": "<strong>صلاحية الوثيقة</strong> · بطاقة التعريف أو جواز السفر ساري المفعول طوال مدة الإقامة.",
+      "tnInfo3Li4": "<strong>القُصّر</strong> · بالنسبة لطفل يسافر دون أحد والدَيه، قد يُطلب <strong>ترخيص أبوي</strong> بالخروج من التراب الوطني.",
+      "tnInfo3Li5": "<strong>لا إجراء قنصلي</strong> · لا موعد، لا رسوم تأشيرة — يكفي امتلاك وثيقة هوية سارية.",
+      "tnInfo4Title": "تأمين السفر",
+      "tnInfo4Lede": "تأمين السفر <strong>غير مشمول</strong> في الباقة لكنه <strong>مُوصى به بشدّة</strong> للسفر براحة بال.",
+      "tnInfo4Li1": "<strong>التغطية المنصوح بها</strong> · المصاريف الطبية الطارئة، الإجلاء الصحي، فقدان/سرقة الأمتعة، إلغاء السفر.",
+      "tnInfo4Li2": "<strong>التكلفة التقديرية</strong> · من 1500 إلى 4000 دج للشخص حسب المدّة والوجهة.",
+      "tnInfo4Li3": "<strong>أين تُكتتب</strong> · شركات تأمين جزائرية (CAAR، SAA، CAAT) أو شركات دولية (Mondial Assistance، Europ Assistance).",
+      "tnInfo4Li4": "<strong>عند الطلب</strong>، يمكن لأليانس ترافل توجيهك إلى شريك تأمين يقترح صيغ سفر.",
+      "tnRelatedEyebrow": "قد يعجبك أيضاً",
+      "tnRelatedTitle": "واصل <em>اكتشافك</em>",
+      "tnRelIstanbulFlag": "سبتمبر–نوفمبر 2026 · انطلاق من قسنطينة",
+      "tnRelCairoFlag": "مصر · جوان 2026",
+      "tnRelFrom": "ابتداءً من",
+      "tnRelSee": "شاهد هذه الرحلة",
+      "tnFinalScarcity": "انطلاقات كل أسبوع في صيف 2026 · مقاعد محدودة",
+      "tnFinalTitle": "وجهتك<br><em>تونس الشاطئية</em>",
+      "tnFinalSub": "الحمامات أو سوسة أو جربة — شواطئ خاصة ومسابح وشمس البحر الأبيض المتوسط. 6 ليالٍ بنظام نصف الإقامة، بالحافلة من الجزائر العاصمة ووهران، بدون تأشيرة.",
+      "tnFinalWaCta": "احجز عبر واتساب",
+      "tnFinalAddress": "حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
+      "tnReserver": "احجز"
+    }
+  }
+}

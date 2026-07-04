@@ -1,0 +1,2515 @@
+{
+  "meta": {
+    "title": "Égypte 2026 · 5 programmes — Alliance Travel",
+    "description": "Égypte 2026 : 5 programmes au choix entre Le Caire, Hurghada et Sharm El Sheikh. Charters & vols réguliers, All Inclusive en Mer Rouge. Départs été 2026 depuis Alger. Dès 169.000 DA.",
+    "ogTitle": "Égypte 2026 · 5 programmes — Alliance Travel",
+    "ogDescription": "5 programmes au choix : Caire & Hurghada, charters Hurghada & Sharm, Caire & Sharm, ou Sharm depuis Constantine. All Inclusive en Mer Rouge & Pyramides. Été 2026.",
+    "themeColor": "#C9872E",
+    "ogImage": "og-cairo-sharm.jpg"
+  },
+  "accent": {
+    "color": "#B2E89C",
+    "dim": "rgba(178,232,156,.13)",
+    "glow": "rgba(178,232,156,.22)",
+    "heroGradient": "linear-gradient(145deg,#130900 0%,#0d0a05 55%,#060810 100%)"
+  },
+  "slug": "egypte",
+  "jsonLd": {
+    "breadcrumbName": "Égypte 2026 · 5 programmes"
+  },
+  "seo": {
+    "tripName": "Égypte 2026 · 5 programmes — Alliance Travel",
+    "tripDescription": "5 programmes au choix entre Le Caire, Hurghada et Sharm El Sheikh. Charters & vols réguliers, All Inclusive en Mer Rouge & Pyramides. Départs été 2026 depuis Alger.",
+    "offerPrice": "169000",
+    "faqJsonLd": [
+      {
+        "name": "Quelle est la différence entre les 5 programmes ?",
+        "text": "Caire & Hurghada combine 2 nuits au Caire et un séjour balnéaire à Hurghada. Les charters Hurghada et Sharm sont des vols directs vers la Mer Rouge en formule balnéaire. Caire & Sharm associe Le Caire et Sharm El Sheikh en vol régulier. Enfin, Sharm depuis Constantine est un départ charter au départ de Constantine. Choisissez la formule, puis l'hôtel, et le calculateur affiche le prix exact."
+      },
+      {
+        "name": "Est-ce que le visa est inclus ?",
+        "text": "Alliance Travel fournit une lettre de garantie pour le visa. La taxe de visa égyptien se règle directement à l'arrivée, par le client, selon le tarif fixé par l'autorité compétente. Cette démarche est 100% encadrée et expliquée par notre accompagnateur."
+      },
+      {
+        "name": "Comment payer ? Le CCP est-il accepté ?",
+        "text": "Oui. Paiement par virement CCP, espèces à l'agence (Bordj Bou Arreridj), ou par versement bancaire. Inscription par téléphone / WhatsApp possible. Un acompte suffit pour bloquer votre place."
+      },
+      {
+        "name": "À quelle heure est le check-in à l'hôtel ?",
+        "text": "Le check-in est toujours à 14h00 , quelle que soit l'heure d'arrivée. Si vous arrivez plus tôt, vos bagages sont gardés et vous pouvez profiter des espaces communs de l'hôtel dès l'arrivée."
+      },
+      {
+        "name": "Combien coûte la place pour un bébé ou un enfant ?",
+        "text": "Les tarifs enfants et bébés varient selon le programme et l'hôtel choisis. Le bébé (0–2 ans) voyage sans lit à un tarif réduit. Utilisez le calculateur pour obtenir le total exact selon votre formule et votre hôtel."
+      },
+      {
+        "name": "Que comprend exactement le \"All Inclusive Soft\" ?",
+        "text": "La formule All Inclusive Soft couvre tous les repas (petit-déjeuner, déjeuner, dîner) et la plupart des boissons. Les boissons alcoolisées et certaines activités payantes (plongée, excursions optionnelles) sont à la charge du client. Au Caire, l'hébergement est en petit-déjeuner."
+      }
+    ]
+  },
+  "region": "egypt",
+  "dataPage": "egypte",
+  "k": {
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\"",
+    "navListRole": " role=\"list\"",
+    "heroKeys": "\n         data-eyebrow-key=\"egHeroEyebrow\"\n         data-title-pre-key=\"egHeroTitlePre\"\n         data-title-post-key=\"egHeroTitlePost\"\n         data-date-key=\"egHeroDate\"",
+    "heroH1": " data-i18n-html=\"egHeroH1\"",
+    "heroLede": " data-i18n=\"egHeroLede\"",
+    "heroPriceUnit": " data-i18n=\"egHeroPriceUnit\"",
+    "heroFineprint": " data-i18n=\"egHeroFineprint\"",
+    "heroCtaCalc": " data-i18n=\"egHeroCtaCalc\"",
+    "hlSection": " aria-label=\"Points forts du voyage\"",
+    "itinSection": " aria-label=\"Programme du voyage\"",
+    "itinPhase": " data-i18n=\"egItinPhase\"",
+    "itinEyebrow": " data-i18n=\"egItinEyebrow\"",
+    "itinTitle": " data-i18n-html=\"egItinTitle\"",
+    "itinSub": " data-i18n-html=\"egItinSub\"",
+    "mapEyebrow": " data-i18n=\"egMapEyebrow\"",
+    "mapTitle": " data-i18n-html=\"egMapTitle\"",
+    "mapSub": " data-i18n=\"egMapSub\"",
+    "mapLoading": " data-i18n=\"egMapLoading\"",
+    "legendHotels": " data-i18n=\"egMapLegendHotels\"",
+    "legendSites": " data-i18n=\"egMapLegendSites\"",
+    "legendTours": " data-i18n=\"egMapLegendTours\"",
+    "trustEyebrow": " data-i18n=\"egTrustEyebrow\"",
+    "trustTitle": " data-i18n-html=\"egTrustTitle\"",
+    "inclEyebrow": " data-i18n=\"egInclEyebrow\"",
+    "inclTitle": " data-i18n-html=\"egInclTitle\"",
+    "inclSub": " data-i18n=\"egInclSub\"",
+    "inclColTitle": " data-i18n-html=\"egInclColTitle\"",
+    "inclColCount": " data-i18n=\"egInclColCount\"",
+    "exclColTitle": " data-i18n-html=\"egExclColTitle\"",
+    "exclColCount": " data-i18n=\"egExclColCount\"",
+    "faqSection": " aria-label=\"Questions fréquentes\"",
+    "faqEyebrow": " data-i18n=\"egFaqEyebrow\"",
+    "faqTitle": " data-i18n-html=\"egFaqTitle\"",
+    "hotelsSection": " aria-label=\"Choisissez votre hôtel\"",
+    "hotelsPhase": " data-i18n=\"egHotelsPhase\"",
+    "hotelsEyebrow": " data-i18n=\"egHotelsEyebrow\"",
+    "hotelsTitle": " data-i18n-html=\"egHotelsTitle\"",
+    "hotelsSub": " data-i18n=\"egHotelsSub\"",
+    "tierTabsAria": " aria-label=\"Filtrer par programme\"",
+    "hotelsHint": " data-i18n=\"egHotelsHint\"",
+    "hotelGridAttrs": " role=\"list\"",
+    "calcSection": " aria-label=\"Calculateur de prix\"",
+    "calcPhase": " data-i18n=\"egCalcPhase\"",
+    "calcEyebrow": " data-i18n=\"egCalcEyebrow\"",
+    "calcTitle": " data-i18n-html=\"egCalcTitle\"",
+    "calcSub": " data-i18n=\"egCalcSub\"",
+    "calcFormAttrs": " role=\"form\" aria-label=\"Formulaire de calcul\"",
+    "calcDateLabel": " data-i18n=\"egCalcDateLabel\"",
+    "dateChipsRole": " role=\"group\" aria-label=\"Dates disponibles\"",
+    "dateHintAttrs": " class=\"fs-caption u-text-3 u-mt-sp3\" data-i18n=\"egCalcDatesNote\"",
+    "calcSelectLabel": " data-i18n=\"egCalcHotelLabel\"",
+    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer; appearance:none\" aria-label=\"Choisissez un hôtel\"",
+    "calcRoomLabel": " data-i18n=\"egCalcRoomLabel\"",
+    "segmentedAttrs": " role=\"group\" aria-label=\"Type de chambre\"",
+    "calcTravLabel": " data-i18n=\"egCalcGroupLabel\"",
+    "breakdownAttrs": " aria-label=\"Récapitulatif du prix\"",
+    "recap": " data-i18n=\"egRecap\"",
+    "recapEmpty": " data-i18n=\"egRecapEmpty\"",
+    "totalLabel": " data-i18n=\"egTotalLabel\"",
+    "whyAttrs": " id=\"breakdown-why\"",
+    "continueA": "",
+    "continue": " data-i18n=\"egContinue\"",
+    "nextStep": " data-i18n=\"egNextStep\"",
+    "infoEyebrow": " data-i18n=\"egInfoEyebrow\"",
+    "infoTitle": " data-i18n-html=\"egInfoTitle\"",
+    "infoSub": " data-i18n=\"egInfoSub\"",
+    "relEyebrow": " data-i18n=\"egRelatedEyebrow\"",
+    "relTitle": " data-i18n-html=\"egRelatedTitle\"",
+    "finalSection": " aria-label=\"Réservation finale\"",
+    "finalScarcity": " role=\"alert\"",
+    "finalTitle": " data-i18n-html=\"egFinalTitle\"",
+    "finalSub": " data-i18n=\"egFinalSub\"",
+    "footerAttrs": " role=\"contentinfo\"",
+    "stickyAria": " aria-label=\"Total estimé\"",
+    "stickyLabel": " data-i18n=\"egStickyLabel\"",
+    "stickyCta": " data-i18n=\"egStickyCta\""
+  },
+  "nav": {
+    "ctaHtml": "\n    <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg>\n    Réserver\n  "
+  },
+  "hero": {
+    "bg": "../assets/images/heroes-v2/hero__cairo-sharm--bg.jpg",
+    "fg": "../assets/images/heroes-v2/hero__cairo-sharm--fg.jpg",
+    "titlePre": "Égypte",
+    "titlePost": "Mer Rouge & Pyramides · 5 programmes",
+    "eyebrow": "Le Caire · Hurghada · Sharm El Sheikh · 2026",
+    "date": "Charters & vols réguliers · Été 2026",
+    "prompt": "Faites défiler pour découvrir",
+    "skip": "Passer",
+    "h1Pre": "Égypte ",
+    "h1Em": "Mer Rouge &amp; Pyramides · 5 programmes",
+    "lede": "Un seul pays, cinq formules au choix. Caire &amp; Hurghada, charters vol direct vers Hurghada ou Sharm, Caire &amp; Sharm en vol régulier, ou Sharm au départ de Constantine. All Inclusive en Mer Rouge, excursions guidées au Caire.",
+    "priceFrom": "169.000 DA",
+    "priceUnit": "par personne · dès · selon programme",
+    "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation."
+  },
+  "highlights": [
+    {
+      "iconSvg": "<polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/>",
+      "kLabel": " data-i18n=\"egHl1Label\"",
+      "label": "Monuments",
+      "kTitle": " data-i18n-html=\"egHl1Title\"",
+      "title": "Pyramides &amp; Sphinx",
+      "kBody": " data-i18n=\"egHl1Body\"",
+      "body": "Guizeh, Khan El-Khalili, Mosquée Al-Azhar, croisière sur le Nil — sur les formules avec étape au Caire."
+    },
+    {
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4l3 3\"/>",
+      "kLabel": " data-i18n=\"egHl2Label\"",
+      "label": "Balnéaire",
+      "kTitle": " data-i18n-html=\"egHl2Title\"",
+      "title": "Mer Rouge · Hurghada &amp; Sharm",
+      "kBody": " data-i18n=\"egHl2Body\"",
+      "body": "Séjour All Inclusive sur les plages d'Hurghada ou de Sharm El Sheikh selon le programme choisi."
+    },
+    {
+      "iconSvg": "<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19.5 2.5 18 1 16 1 14.5 2.5L11 6 2.8 4.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 6.2 7.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>",
+      "kLabel": " data-i18n=\"egHl3Label\"",
+      "label": "Transport",
+      "kTitle": " data-i18n-html=\"egHl3Title\"",
+      "title": "Charters &amp; vols réguliers",
+      "kBody": " data-i18n=\"egHl3Body\"",
+      "body": "Vol direct charter vers Hurghada ou Sharm, ou vol régulier via Le Caire selon le programme. Départs Alger &amp; Constantine."
+    },
+    {
+      "iconSvg": "<path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><polyline points=\"9 22 9 12 15 12 15 22\"/>",
+      "kLabel": " data-i18n=\"egHl4Label\"",
+      "label": "Hébergement",
+      "kTitle": " data-i18n=\"egHl4Title\"",
+      "title": "25 hôtels au choix",
+      "kBody": " data-i18n=\"egHl4Body\"",
+      "body": "De 4★ à 5★ Luxe, répartis sur les 5 programmes. Comparez et choisissez votre confort."
+    }
+  ],
+  "itinerary": {
+    "phaseLabel": "Découvrir",
+    "eyebrow": "Pyramides &amp; Mer Rouge",
+    "titleHtml": "Votre <em>programme</em>",
+    "sub": "Un aperçu type de l'expérience égyptienne — visites guidées au Caire et séjour balnéaire All-Inclusive en Mer Rouge. <strong>Programme détaillé variable selon la formule choisie.</strong>",
+    "days": [
+      {
+        "active": true,
+        "kNode": " aria-hidden=\"true\"",
+        "node": "①",
+        "kLabel": " data-i18n=\"egStep1Label\"",
+        "dayLabel": "Le Caire",
+        "kTitle": " data-i18n-html=\"egStep1Title\"",
+        "title": "Pyramides de Guizeh &amp; Sphinx",
+        "kAct": " data-i18n-html=\"egStep1Act\"",
+        "activities": "Plateau de Guizeh (Pyramides &amp; Sphinx), Mosquée Al-Azhar, Bazar Khan El-Khalili et croisière sur le Nil — sur les formules avec étape au Caire.",
+        "tags": [
+          {
+            "k": " data-i18n=\"egStep1Tag1\"",
+            "t": "Pyramides"
+          },
+          {
+            "k": " data-i18n=\"egStep1Tag2\"",
+            "t": "Sphinx"
+          },
+          {
+            "k": " data-i18n=\"egStep1Tag3\"",
+            "t": "Khan El-Khalili"
+          },
+          {
+            "k": " data-i18n=\"egStep1Tag4\"",
+            "t": "Croisière Nil"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 80,
+        "kNode": " aria-hidden=\"true\"",
+        "node": "②",
+        "kLabel": " data-i18n=\"egStep2Label\"",
+        "dayLabel": "Mer Rouge",
+        "kTitle": " data-i18n=\"egStep2Title\"",
+        "title": "Séjour balnéaire All-Inclusive",
+        "kAct": " data-i18n=\"egStep2Act\"",
+        "activities": "Séjour balnéaire en formule All-Inclusive à Hurghada ou Sharm El Sheikh selon le programme. Plages, Aqua Park, détente et excursions optionnelles.",
+        "tags": [
+          {
+            "k": " data-i18n=\"egStep2Tag1\"",
+            "t": "Hurghada"
+          },
+          {
+            "k": " data-i18n=\"egStep2Tag2\"",
+            "t": "Sharm El Sheikh"
+          },
+          {
+            "k": " data-i18n=\"egStep2Tag3\"",
+            "t": "All-Inclusive"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 160,
+        "kNode": " aria-hidden=\"true\"",
+        "node": "③",
+        "kLabel": " data-i18n=\"egStep3Label\"",
+        "dayLabel": "Transferts &amp; vols",
+        "kTitle": " data-i18n=\"egStep3Title\"",
+        "title": "Tout est organisé",
+        "kAct": " data-i18n=\"egStep3Act\"",
+        "activities": "Vol direct charter vers Hurghada ou Sharm, ou vol régulier via Le Caire selon la formule. Transferts aéroport ↔ hôtel et accompagnateur Alliance Travel inclus.",
+        "tags": [
+          {
+            "k": " data-i18n=\"egStep3Tag1\"",
+            "t": "Charter direct"
+          },
+          {
+            "k": " data-i18n=\"egStep3Tag2\"",
+            "t": "Vol régulier"
+          },
+          {
+            "k": " data-i18n=\"egStep3Tag3\"",
+            "t": "Transferts inclus"
+          }
+        ]
+      }
+    ]
+  },
+  "tripMap": {
+    "eyebrow": "Votre voyage en un coup d'œil",
+    "titleHtml": "L'Égypte <em>sur la carte</em>",
+    "subHead": "Les trois pôles de nos programmes — Le Caire, Hurghada et Sharm El Sheikh — et les sites incontournables, géolocalisés.",
+    "ariaLabel": "Carte des programmes Égypte : Le Caire, Hurghada, Sharm El Sheikh",
+    "subFallback": "Le Caire · Hurghada · Sharm El Sheikh · Pyramides de Guizeh",
+    "legendHotels": "Hôtels au choix",
+    "legendSites": "Sites visités",
+    "legendTours": "Excursions guidées",
+    "data": {
+      "name": "Égypte · 5 programmes",
+      "hotels": [
+        {
+          "name": "Hôtels Sharm El Sheikh",
+          "loc": [
+            34.428,
+            27.962
+          ],
+          "stars": 5,
+          "area": "Nabq Bay & Sharks Bay, Sharm El Sheikh"
+        },
+        {
+          "name": "Hôtels Hurghada",
+          "loc": [
+            33.84,
+            27.18
+          ],
+          "stars": 5,
+          "area": "Hurghada & Soma Bay, Mer Rouge"
+        },
+        {
+          "name": "Hôtels Le Caire",
+          "loc": [
+            31.25,
+            30.064
+          ],
+          "stars": 5,
+          "area": "Le Caire"
+        }
+      ],
+      "sites": [
+        {
+          "name": "Pyramides de Guizeh",
+          "loc": [
+            31.134,
+            29.978
+          ],
+          "featured": true
+        },
+        {
+          "name": "Sphinx",
+          "loc": [
+            31.137,
+            29.975
+          ],
+          "featured": true
+        },
+        {
+          "name": "Mosquée Al-Azhar",
+          "loc": [
+            31.262,
+            30.046
+          ]
+        },
+        {
+          "name": "Khan El-Khalili",
+          "loc": [
+            31.262,
+            30.048
+          ]
+        },
+        {
+          "name": "Naama Bay",
+          "loc": [
+            34.33,
+            27.91
+          ]
+        },
+        {
+          "name": "Old Market",
+          "loc": [
+            34.297,
+            27.864
+          ]
+        },
+        {
+          "name": "Marina d'Hurghada",
+          "loc": [
+            33.836,
+            27.228
+          ]
+        }
+      ],
+      "tours": [
+        {
+          "name": "Croisière sur le Nil",
+          "loc": [
+            31.225,
+            30.045
+          ],
+          "note": "Dîner et spectacle — formules avec Le Caire"
+        }
+      ],
+      "hubs": [
+        {
+          "name": "Le Caire",
+          "loc": [
+            31.235,
+            30.044
+          ]
+        },
+        {
+          "name": "Hurghada",
+          "loc": [
+            33.84,
+            27.255
+          ]
+        },
+        {
+          "name": "Sharm El Sheikh",
+          "loc": [
+            34.33,
+            27.97
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "from": [
+            3.215,
+            36.7
+          ],
+          "to": [
+            33.799,
+            27.18
+          ],
+          "label": "Charter ALG → Hurghada",
+          "type": "flight",
+          "lift": 0.2
+        },
+        {
+          "from": [
+            3.215,
+            36.7
+          ],
+          "to": [
+            34.395,
+            27.977
+          ],
+          "label": "Charter ALG → Sharm",
+          "type": "flight",
+          "lift": 0.32
+        },
+        {
+          "from": [
+            3.215,
+            36.7
+          ],
+          "to": [
+            31.405,
+            30.121
+          ],
+          "label": "Vol régulier ALG → Le Caire",
+          "type": "flight"
+        }
+      ]
+    }
+  },
+  "trust": {
+    "stats": [
+      {
+        "kNum": "",
+        "num": "1.2K+",
+        "k": " data-i18n=\"egStat1\"",
+        "label": "Voyageurs guidés depuis 2019"
+      },
+      {
+        "kNum": "",
+        "num": "98%",
+        "k": " data-i18n=\"egStat2\"",
+        "label": "Taux de satisfaction"
+      },
+      {
+        "kNum": "",
+        "num": "5",
+        "k": " data-i18n=\"egStat3\"",
+        "label": "Programmes Égypte été 2026"
+      },
+      {
+        "kNum": "",
+        "num": "25",
+        "k": " data-i18n=\"egStat4\"",
+        "label": "Hôtels triés au choix"
+      }
+    ],
+    "testimonials": [
+      {
+        "kText": " data-i18n=\"egTesti1Text\"",
+        "text": "\"Tout était parfaitement organisé. Les pyramides au lever du soleil, le Nil le soir — je n'aurais jamais pu faire ça seul. Alliance Travel a pensé à tout.\"",
+        "initials": "YB",
+        "name": "Yacine B.",
+        "kTrip": " data-i18n=\"egTesti1Trip\"",
+        "trip": "Bordj Bou Arreridj · Voyage Égypte 2024"
+      },
+      {
+        "kText": " data-i18n=\"egTesti2Text\"",
+        "text": "\"L'hôtel Rehana Royal Beach était exceptionnel. La Mer Rouge est incroyable. Le prix affiché était le vrai prix — pas de mauvaises surprises.\"",
+        "initials": "SM",
+        "name": "Sarah M.",
+        "kTrip": " data-i18n=\"egTesti2Trip\"",
+        "trip": "Constantine · Voyage Sharm 2025"
+      },
+      {
+        "kText": " data-i18n=\"egTesti3Text\"",
+        "text": "\"Famille de 4. Nos enfants ont adoré l'Aqua Park. L'accompagnateur était disponible 24h/24. On repart avec Alliance Travel l'été prochain.\"",
+        "initials": "KA",
+        "name": "Karim A.",
+        "kTrip": " data-i18n=\"egTesti3Trip\"",
+        "trip": "Alger · Voyage Égypte 2025"
+      }
+    ]
+  },
+  "inclus": {
+    "includedCount": "7 prestations couvertes",
+    "included": [
+      {
+        "k": " data-i18n-html=\"egInclItem1\"",
+        "t": "Vol aller-retour — <strong>régulier ou charter selon le programme</strong> (Alger ou Constantine)"
+      },
+      {
+        "k": " data-i18n-html=\"egInclItem2\"",
+        "t": "Hébergement — <strong>All Inclusive Soft</strong> en Mer Rouge / <strong>petit-déjeuner</strong> au Caire"
+      },
+      {
+        "k": " data-i18n=\"egInclItem3\"",
+        "t": "Transferts aéroport ↔ hôtel ↔ aéroport"
+      },
+      {
+        "k": " data-i18n=\"egInclItem4\"",
+        "t": "Excursions guidées au Caire (pour les formules avec étape au Caire)"
+      },
+      {
+        "k": " data-i18n=\"egInclItem5\"",
+        "t": "Lettre de garantie pour le visa"
+      },
+      {
+        "k": " data-i18n=\"egInclItem6\"",
+        "t": "Accompagnateur Alliance Travel sur place"
+      }
+    ],
+    "excludedCount": "6 éléments hors forfait",
+    "excluded": [
+      {
+        "k": " data-i18n=\"egExclItem1\"",
+        "t": "Visa égyptien — à régler à l'arrivée, selon le tarif de l'autorité compétente"
+      },
+      {
+        "k": " data-i18n-html=\"egExclItem2\"",
+        "t": "Déjeuners &amp; dîners hors formule All-Inclusive"
+      },
+      {
+        "k": " data-i18n-html=\"egExclItem3\"",
+        "t": "Boissons alcoolisées &amp; activités optionnelles (plongée, quad, parapente)"
+      },
+      {
+        "k": " data-i18n=\"egExclItem4\"",
+        "t": "Pourboires (personnel hôtel · guides · chauffeurs)"
+      },
+      {
+        "k": " data-i18n=\"egExclItem5\"",
+        "t": "Assurance voyage personnelle"
+      },
+      {
+        "k": " data-i18n=\"egExclItem6\"",
+        "t": "Dépenses personnelles"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "open": true,
+      "kBtn": "",
+      "kQ": " data-i18n=\"egFaq1Q\"",
+      "question": "Quelle est la différence entre les 5 programmes ?",
+      "kA": " data-i18n-html=\"egFaq1A\"",
+      "answerHtml": "<strong>Caire &amp; Hurghada</strong> combine une étape au Caire et un séjour balnéaire à Hurghada. Les <strong>charters Hurghada</strong> et <strong>charters Sharm</strong> sont des vols directs vers la Mer Rouge en formule balnéaire. <strong>Caire &amp; Sharm</strong> associe Le Caire et Sharm El Sheikh en vol régulier. Enfin, <strong>Sharm depuis Constantine</strong> est un départ charter au départ de Constantine. Choisissez la formule puis l'hôtel : le calculateur affiche le prix exact."
+    },
+    {
+      "open": false,
+      "aosDelay": 0,
+      "kBtn": "",
+      "kQ": " data-i18n=\"egFaq2Q\"",
+      "question": "Est-ce que le visa est inclus ?",
+      "kA": " data-i18n-html=\"egFaq2A\"",
+      "answerHtml": "Alliance Travel fournit une <strong>lettre de garantie pour le visa</strong>. La taxe de visa égyptien se règle directement à l'arrivée par le client, <strong>selon le tarif fixé par l'autorité compétente</strong>. Cette démarche est 100% encadrée et expliquée par notre accompagnateur."
+    },
+    {
+      "open": false,
+      "aosDelay": 0,
+      "kBtn": "",
+      "kQ": " data-i18n=\"egFaq3Q\"",
+      "question": "Comment payer ? Le CCP est-il accepté ?",
+      "kA": " data-i18n=\"egFaq3A\"",
+      "answerHtml": "Oui. Paiement par virement CCP, espèces à l'agence (Bordj Bou Arreridj), ou par versement bancaire. Inscription par téléphone / WhatsApp possible. Un acompte suffit pour bloquer votre place."
+    },
+    {
+      "open": false,
+      "aosDelay": 50,
+      "kBtn": "",
+      "kQ": " data-i18n=\"egFaq4Q\"",
+      "question": "À quelle heure est le check-in à l'hôtel ?",
+      "kA": " data-i18n-html=\"egFaq4A\"",
+      "answerHtml": "Le check-in est toujours à <strong>14h00</strong>, quelle que soit l'heure d'arrivée. Si vous arrivez plus tôt, vos bagages sont gardés et vous pouvez profiter des espaces communs de l'hôtel dès l'arrivée."
+    },
+    {
+      "open": false,
+      "aosDelay": 100,
+      "kBtn": "",
+      "kQ": " data-i18n=\"egFaq5Q\"",
+      "question": "Combien coûte la place pour un bébé ou un enfant ?",
+      "kA": " data-i18n-html=\"egFaq5A\"",
+      "answerHtml": "Les tarifs enfants et bébés varient selon le <strong>programme</strong> et l'<strong>hôtel</strong> choisis. Le bébé (0–2 ans) voyage sans lit à un tarif réduit. Utilisez le <strong>calculateur</strong> pour obtenir le total exact selon votre formule et votre hôtel."
+    },
+    {
+      "open": false,
+      "aosDelay": 150,
+      "kBtn": "",
+      "kQ": " data-i18n=\"egFaq6Q\"",
+      "question": "Que comprend exactement le \"All Inclusive Soft\" ?",
+      "kA": " data-i18n=\"egFaq6A\"",
+      "answerHtml": "La formule All Inclusive Soft couvre tous les repas (petit-déjeuner, déjeuner, dîner) et la plupart des boissons en Mer Rouge. Au Caire, l'hébergement est en petit-déjeuner. Les boissons alcoolisées et certaines activités payantes (plongée, excursions optionnelles) sont à la charge du client."
+    }
+  ],
+  "hotelsSection": {
+    "phaseLabel": "Comparer les programmes &amp; hôtels",
+    "eyebrow": "Le bon programme, le bon hôtel",
+    "titleHtml": "5 programmes · <em>un seul pays</em>",
+    "sub": "Choisissez d'abord votre formule — Caire &amp; Hurghada, charters vol direct Hurghada ou Sharm, Caire &amp; Sharm en EgyptAir, ou Sharm au départ de Constantine — puis l'hôtel. Le calculateur affiche aussitôt le prix exact.",
+    "tierTabs": [
+      {
+        "active": true,
+        "tier": "all",
+        "tier2": "all",
+        "k": " data-i18n=\"egTierAll\"",
+        "label": "Tous"
+      },
+      {
+        "active": false,
+        "tier": "caire-hurghada",
+        "tier2": "caire-hurghada",
+        "k": " data-i18n-html=\"egTierCaireHurghada\"",
+        "label": "Caire &amp; Hurghada"
+      },
+      {
+        "active": false,
+        "tier": "charter-hurghada",
+        "tier2": "charter-hurghada",
+        "k": " data-i18n=\"egTierCharterHurghada\"",
+        "label": "Charter Hurghada"
+      },
+      {
+        "active": false,
+        "tier": "charter-sharm",
+        "tier2": "charter-sharm",
+        "k": " data-i18n=\"egTierCharterSharm\"",
+        "label": "Charter Sharm"
+      },
+      {
+        "active": false,
+        "tier": "caire-sharm",
+        "tier2": "caire-sharm",
+        "k": " data-i18n-html=\"egTierCaireSharm\"",
+        "label": "Caire &amp; Sharm"
+      },
+      {
+        "active": false,
+        "tier": "sharm-constantine",
+        "tier2": "sharm-constantine",
+        "k": " data-i18n=\"egTierSharmConstantine\"",
+        "label": "Sharm · Constantine"
+      }
+    ],
+    "hint": "Astuce : cliquez un onglet de programme pour ne voir que ses hôtels, puis sélectionnez une carte pour calculer votre prix."
+  },
+  "hotels": [
+    {
+      "aosDelay": 0,
+      "kRole": " role=\"listitem\"",
+      "calcId": "caire-hurghada-blend",
+      "tier": "caire-hurghada",
+      "kAria": " aria-label=\"Hôtel Blend Club Aqua Resort 4★ — Hurghada — Caire &amp; Hurghada\"",
+      "image": "../assets/images/hotels/hotel__blend-club.jpg",
+      "alt": "Blend Club Aqua Resort",
+      "ribbonClass": "medium",
+      "kRibbon": " data-i18n-html=\"egTierCaireHurghada\"",
+      "ribbon": "Caire &amp; Hurghada",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Blend Club Aqua Resort 4★ — Hurghada",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillHurghada\"",
+          "t": "Hurghada"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "220.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": " role=\"listitem\"",
+      "calcId": "caire-hurghada-pyra",
+      "tier": "caire-hurghada",
+      "kAria": " aria-label=\"Hôtel Pyramisa 5★ — Le Caire — Caire &amp; Hurghada\"",
+      "image": "../assets/images/hotels/hotel__pyramisa-cairo.jpg",
+      "alt": "Pyramisa",
+      "ribbonClass": "medium",
+      "kRibbon": " data-i18n-html=\"egTierCaireHurghada\"",
+      "ribbon": "Caire &amp; Hurghada",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Pyramisa 5★ — Le Caire",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillHurghada\"",
+          "t": "Hurghada"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "220.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": " role=\"listitem\"",
+      "calcId": "charterhrg-blend",
+      "tier": "charter-hurghada",
+      "kAria": " aria-label=\"Hôtel Blend Club Aqua Park 4★ — Charter Hurghada\"",
+      "image": "../assets/images/hotels/hotel__blend-club.jpg",
+      "alt": "Blend Club Aqua Park",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterHurghada\"",
+      "ribbon": "Charter Hurghada",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Blend Club Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillHurghada\"",
+          "t": "Hurghada"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "245.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 180,
+      "kRole": " role=\"listitem\"",
+      "calcId": "charterhrg-amarina",
+      "tier": "charter-hurghada",
+      "kAria": " aria-label=\"Hôtel Amarina Soma Bay 5★ — Charter Hurghada\"",
+      "image": "../assets/images/hotels/hotel__amarina-soma-bay.jpg",
+      "alt": "Amarina Soma Bay",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterHurghada\"",
+      "ribbon": "Charter Hurghada",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Amarina Soma Bay 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillSomaBay\"",
+          "t": "Soma Bay"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "275.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 240,
+      "kRole": " role=\"listitem\"",
+      "calcId": "charterhrg-jaz",
+      "tier": "charter-hurghada",
+      "kAria": " aria-label=\"Hôtel Jaz Aqua Viva 5★ — Charter Hurghada\"",
+      "image": "../assets/images/hotels/hotel__jaz-aqua-viva.jpg",
+      "alt": "Jaz Aqua Viva",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterHurghada\"",
+      "ribbon": "Charter Hurghada",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Jaz Aqua Viva 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillHurghada\"",
+          "t": "Hurghada"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "305.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 300,
+      "kRole": " role=\"listitem\"",
+      "calcId": "chartersharm-verginia",
+      "tier": "charter-sharm",
+      "kAria": " aria-label=\"Hôtel Verginia Aqua Park 4★ — Charter Sharm\"",
+      "image": "../assets/images/hotels/hotel__verginia.jpg",
+      "alt": "Verginia Aqua Park",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterSharm\"",
+      "ribbon": "Charter Sharm",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Verginia Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "218.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 360,
+      "kRole": " role=\"listitem\"",
+      "calcId": "chartersharm-rehana",
+      "tier": "charter-sharm",
+      "kAria": " aria-label=\"Hôtel Rehana Aqua Park 4★ — Charter Sharm\"",
+      "image": "../assets/images/hotels/hotel__rehana-4star.jpg",
+      "alt": "Rehana Aqua Park",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterSharm\"",
+      "ribbon": "Charter Sharm",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rehana Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "246.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 420,
+      "kRole": " role=\"listitem\"",
+      "calcId": "chartersharm-rehanaroyal",
+      "tier": "charter-sharm",
+      "kAria": " aria-label=\"Hôtel Rehana Royal Beach 5★ — Charter Sharm\"",
+      "image": "../assets/images/hotels/hotel__rehana-royal.jpg",
+      "alt": "Rehana Royal Beach",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterSharm\"",
+      "ribbon": "Charter Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rehana Royal Beach 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillPlagePrivee\"",
+          "t": "Plage privée"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "291.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 0,
+      "kRole": " role=\"listitem\"",
+      "calcId": "chartersharm-cleopatra",
+      "tier": "charter-sharm",
+      "kAria": " aria-label=\"Hôtel Cleopatra Luxury 5★ — Charter Sharm\"",
+      "image": "../assets/images/hotels/hotel__cleopatra.jpg",
+      "alt": "Cleopatra Luxury",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterSharm\"",
+      "ribbon": "Charter Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Cleopatra Luxury 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillLuxury\"",
+          "t": "Luxury"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "305.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": " role=\"listitem\"",
+      "calcId": "chartersharm-pickalbatros",
+      "tier": "charter-sharm",
+      "kAria": " aria-label=\"Hôtel Pickalbatros 5★ — Charter Sharm\"",
+      "image": "../assets/images/hotels/hotel__pickalbatros.jpg",
+      "alt": "Pickalbatros",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterSharm\"",
+      "ribbon": "Charter Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Pickalbatros 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillUltraLuxe\"",
+          "t": "Ultra Luxe"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "403.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": " role=\"listitem\"",
+      "calcId": "chartersharm-rixos",
+      "tier": "charter-sharm",
+      "kAria": " aria-label=\"Hôtel Rixos Sharm El Sheikh 5★ — Charter Sharm\"",
+      "image": "../assets/images/hotels/hotel__rixos-sharm.jpg",
+      "alt": "Rixos Sharm El Sheikh",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"egTierCharterSharm\"",
+      "ribbon": "Charter Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rixos Sharm El Sheikh 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCharterDirect\"",
+          "t": "Charter direct"
+        },
+        {
+          "k": " data-i18n=\"egPillUltraLuxe\"",
+          "t": "Ultra Luxe"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "593.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 180,
+      "kRole": " role=\"listitem\"",
+      "calcId": "cairesharm-verginia",
+      "tier": "caire-sharm",
+      "kAria": " aria-label=\"Hôtel Verginia Aqua Park 4★ — Caire &amp; Sharm\"",
+      "image": "../assets/images/hotels/hotel__verginia.jpg",
+      "alt": "Verginia Aqua Park",
+      "ribbonClass": "luxe",
+      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
+      "ribbon": "Caire &amp; Sharm",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Verginia Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillEgyptAir\"",
+          "t": "EgyptAir"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "235.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 240,
+      "kRole": " role=\"listitem\"",
+      "calcId": "cairesharm-rehana",
+      "tier": "caire-sharm",
+      "kAria": " aria-label=\"Hôtel Rehana Aqua Park 4★ — Caire &amp; Sharm\"",
+      "image": "../assets/images/hotels/hotel__rehana-4star.jpg",
+      "alt": "Rehana Aqua Park",
+      "ribbonClass": "luxe",
+      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
+      "ribbon": "Caire &amp; Sharm",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rehana Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "259.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 300,
+      "kRole": " role=\"listitem\"",
+      "calcId": "cairesharm-rehanaroyal",
+      "tier": "caire-sharm",
+      "kAria": " aria-label=\"Hôtel Rehana Royal Beach 5★ — Caire &amp; Sharm\"",
+      "image": "../assets/images/hotels/hotel__rehana-royal.jpg",
+      "alt": "Rehana Royal Beach",
+      "ribbonClass": "luxe",
+      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
+      "ribbon": "Caire &amp; Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rehana Royal Beach 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillPlagePrivee\"",
+          "t": "Plage privée"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "295.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 360,
+      "kRole": " role=\"listitem\"",
+      "calcId": "cairesharm-cleopatra",
+      "tier": "caire-sharm",
+      "kAria": " aria-label=\"Hôtel Cleopatra Luxury 5★ — Caire &amp; Sharm\"",
+      "image": "../assets/images/hotels/hotel__cleopatra.jpg",
+      "alt": "Cleopatra Luxury",
+      "ribbonClass": "luxe",
+      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
+      "ribbon": "Caire &amp; Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Cleopatra Luxury 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillLuxury\"",
+          "t": "Luxury"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "320.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 420,
+      "kRole": " role=\"listitem\"",
+      "calcId": "cairesharm-pickalbatros",
+      "tier": "caire-sharm",
+      "kAria": " aria-label=\"Hôtel Pickalbatros Palace 5★ — Caire &amp; Sharm\"",
+      "image": "../assets/images/hotels/hotel__pickalbatros.jpg",
+      "alt": "Pickalbatros Palace",
+      "ribbonClass": "luxe",
+      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
+      "ribbon": "Caire &amp; Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Pickalbatros Palace 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillUltraLuxe\"",
+          "t": "Ultra Luxe"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "390.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 0,
+      "kRole": " role=\"listitem\"",
+      "calcId": "cairesharm-swissotel",
+      "tier": "caire-sharm",
+      "kAria": " aria-label=\"Hôtel Swissôtel Resort 5★ — Caire &amp; Sharm\"",
+      "image": "../assets/images/hotels/hotel__swissotel-sharm.jpg",
+      "alt": "Swissôtel Resort",
+      "ribbonClass": "luxe",
+      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
+      "ribbon": "Caire &amp; Sharm",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Swissôtel Resort 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillCaire\"",
+          "t": "Le Caire"
+        },
+        {
+          "k": " data-i18n=\"egPillResort\"",
+          "t": "Resort"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "460.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-tivoli",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Tivoli &amp; Aqua Park 4★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__tivoli.jpg",
+      "alt": "Tivoli &amp; Aqua Park",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Tivoli &amp; Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "169.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-bride",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Sharm Bride Aqua Park 4★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__sharm-bride.jpg",
+      "alt": "Sharm Bride Aqua Park",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Sharm Bride Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "179.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 180,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-rehana",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Rehana Aqua Park 4★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__rehana-4star.jpg",
+      "alt": "Rehana Aqua Park",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rehana Aqua Park 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "220.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 240,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-rehanaroyal",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Rehana Royal Beach 5★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__rehana-royal.jpg",
+      "alt": "Rehana Royal Beach",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Rehana Royal Beach 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillPlagePrivee\"",
+          "t": "Plage privée"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "248.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 300,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-coralaqua",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Coral Sea Aqua Club 4★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__coral-sea-aqua.jpg",
+      "alt": "Coral Sea Aqua Club",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 4,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Coral Sea Aqua Club 4★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillSharm\"",
+          "t": "Sharm"
+        },
+        {
+          "k": " data-i18n=\"egPillAquaPark\"",
+          "t": "Aqua Park"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "265.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 360,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-cleopatra",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Cleopatra Luxury 5★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__cleopatra.jpg",
+      "alt": "Cleopatra Luxury",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Cleopatra Luxury 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillLuxury\"",
+          "t": "Luxury"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "300.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 420,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-coralholiday",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Coral Sea Holiday 5★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__coral-sea-holiday.jpg",
+      "alt": "Coral Sea Holiday",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Coral Sea Holiday 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillResort\"",
+          "t": "Resort"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "315.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    },
+    {
+      "aosDelay": 0,
+      "kRole": " role=\"listitem\"",
+      "calcId": "sharmcz-coralwater",
+      "tier": "sharm-constantine",
+      "kAria": " aria-label=\"Hôtel Coral Sea Water World 5★ — Sharm · Constantine\"",
+      "image": "../assets/images/hotels/hotel__coral-sea-water-world.jpg",
+      "alt": "Coral Sea Water World",
+      "ribbonClass": "economique",
+      "kRibbon": " data-i18n=\"egTierSharmConstantine\"",
+      "ribbon": "Sharm · Constantine",
+      "stars": 5,
+      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
+      "name": "Coral Sea Water World 5★",
+      "amenities": [
+        {
+          "k": " data-i18n=\"egPillConstantine\"",
+          "t": "Constantine"
+        },
+        {
+          "k": " data-i18n=\"egPillWaterWorld\"",
+          "t": "Water World"
+        },
+        {
+          "k": " data-i18n=\"egPill5star\"",
+          "t": "5★"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"egFromLabel\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "332.000 DA",
+      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
+      "priceMeta": "par pers. en double",
+      "kCta": " data-i18n=\"egSelect\""
+    }
+  ],
+  "calcUi": {
+    "phaseLabel": "Calculer mon prix",
+    "eyebrow": "Étape 1 · Configurez votre voyage",
+    "titleHtml": "Choisissez <em>votre formule</em>",
+    "sub": "Chaque dinar est expliqué. Choisissez votre configuration et obtenez le total exact, sans surprise.",
+    "dateLabel": "Date de départ",
+    "dateChips": [
+      {
+        "active": true,
+        "value": "16 – 23 Juillet 2026",
+        "k": "",
+        "label": "16 – 23 Juillet 2026"
+      },
+      {
+        "active": false,
+        "value": "24 Juillet – 02 Août 2026",
+        "k": "",
+        "label": "24 Juillet – 02 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "02 – 11 Août 2026",
+        "k": "",
+        "label": "02 – 11 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "09 – 18 Août 2026",
+        "k": "",
+        "label": "09 – 18 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "16 – 25 Août 2026",
+        "k": "",
+        "label": "16 – 25 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "22 – 31 Août 2026",
+        "k": "",
+        "label": "22 – 31 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "29 Août – 06 Septembre 2026",
+        "k": "",
+        "label": "29 Août – 06 Septembre 2026"
+      }
+    ],
+    "dateHint": "Dates indicatives — confirmées selon le programme choisi.",
+    "selectLabel": "Hôtel sélectionné",
+    "optionsHtml": "            <optgroup label=\"Caire &amp; Hurghada\">\n              <option value=\"caire-hurghada-blend\">Blend Club Aqua Resort 4★ — Hurghada — dès 220.000 DA</option>\n              <option value=\"caire-hurghada-pyra\">Pyramisa 5★ — Le Caire — dès 220.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Charter Hurghada\">\n              <option value=\"charterhrg-blend\">Blend Club Aqua Park 4★ — dès 245.000 DA</option>\n              <option value=\"charterhrg-amarina\">Amarina Soma Bay 5★ — dès 275.000 DA</option>\n              <option value=\"charterhrg-jaz\">Jaz Aqua Viva 5★ — dès 305.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Charter Sharm\">\n              <option value=\"chartersharm-verginia\">Verginia Aqua Park 4★ — dès 218.000 DA</option>\n              <option value=\"chartersharm-rehana\">Rehana Aqua Park 4★ — dès 246.000 DA</option>\n              <option value=\"chartersharm-rehanaroyal\">Rehana Royal Beach 5★ — dès 291.000 DA</option>\n              <option value=\"chartersharm-cleopatra\">Cleopatra Luxury 5★ — dès 305.000 DA</option>\n              <option value=\"chartersharm-pickalbatros\">Pickalbatros 5★ — dès 403.000 DA</option>\n              <option value=\"chartersharm-rixos\">Rixos Sharm El Sheikh 5★ — dès 593.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Caire &amp; Sharm\">\n              <option value=\"cairesharm-verginia\">Verginia Aqua Park 4★ — dès 235.000 DA</option>\n              <option value=\"cairesharm-rehana\">Rehana Aqua Park 4★ — dès 259.000 DA</option>\n              <option value=\"cairesharm-rehanaroyal\">Rehana Royal Beach 5★ — dès 295.000 DA</option>\n              <option value=\"cairesharm-cleopatra\">Cleopatra Luxury 5★ — dès 320.000 DA</option>\n              <option value=\"cairesharm-pickalbatros\">Pickalbatros Palace 5★ — dès 390.000 DA</option>\n              <option value=\"cairesharm-swissotel\">Swissôtel Resort 5★ — dès 460.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Sharm · Constantine\">\n              <option value=\"sharmcz-tivoli\">Tivoli &amp; Aqua Park 4★ — dès 169.000 DA</option>\n              <option value=\"sharmcz-bride\">Sharm Bride Aqua Park 4★ — dès 179.000 DA</option>\n              <option value=\"sharmcz-rehana\">Rehana Aqua Park 4★ — dès 220.000 DA</option>\n              <option value=\"sharmcz-rehanaroyal\">Rehana Royal Beach 5★ — dès 248.000 DA</option>\n              <option value=\"sharmcz-coralaqua\">Coral Sea Aqua Club 4★ — dès 265.000 DA</option>\n              <option value=\"sharmcz-cleopatra\">Cleopatra Luxury 5★ — dès 300.000 DA</option>\n              <option value=\"sharmcz-coralholiday\">Coral Sea Holiday 5★ — dès 315.000 DA</option>\n              <option value=\"sharmcz-coralwater\">Coral Sea Water World 5★ — dès 332.000 DA</option>\n            </optgroup>\n",
+    "roomLabel": "Type de chambre",
+    "roomOptions": [
+      {
+        "active": true,
+        "room": "double",
+        "k": " data-i18n=\"egRoomDouble\"",
+        "label": "Double"
+      },
+      {
+        "active": false,
+        "room": "triple",
+        "k": " data-i18n=\"egRoomTriple\"",
+        "label": "Triple"
+      },
+      {
+        "active": false,
+        "room": "single",
+        "k": " data-i18n=\"egRoomSingle\"",
+        "label": "Individuelle"
+      }
+    ],
+    "travellersLabel": "Composition du groupe",
+    "steppersHtml": "\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\">\n                <h4 data-i18n=\"egStepAdultsH\">Adultes</h4>\n                <p data-i18n=\"egStepAdultsP\">À partir de 12 ans</p>\n              </div>\n              <div class=\"stepper\" role=\"group\" aria-label=\"Nombre d'adultes\">\n                <button class=\"stepper__btn\" id=\"adults-minus\" aria-label=\"Réduire adultes\">−</button>\n                <span class=\"stepper__val\" id=\"adults-val\" aria-live=\"polite\">2</span>\n                <button class=\"stepper__btn\" id=\"adults-plus\" aria-label=\"Augmenter adultes\">+</button>\n              </div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\">\n                <h4 data-i18n=\"egStepChild1H\">1er enfant</h4>\n                <p data-i18n=\"egStepChild1P\">2 à 11.99 ans · avec lit</p>\n              </div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_b\" role=\"group\" aria-label=\"Nombre — 1er enfant\">\n                <button class=\"stepper__btn kid-minus\" aria-label=\"Réduire 1er enfant\">−</button>\n                <span class=\"stepper__val kid-val\" aria-live=\"polite\">0</span>\n                <button class=\"stepper__btn kid-plus\" aria-label=\"Augmenter 1er enfant\">+</button>\n              </div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\">\n                <h4 data-i18n=\"egStepChild2H\">2e enfant</h4>\n                <p data-i18n=\"egStepChild2P\">2 à 11.99 ans · avec lit</p>\n              </div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_a\" role=\"group\" aria-label=\"Nombre — 2e enfant\">\n                <button class=\"stepper__btn kid-minus\" aria-label=\"Réduire 2e enfant\">−</button>\n                <span class=\"stepper__val kid-val\" aria-live=\"polite\">0</span>\n                <button class=\"stepper__btn kid-plus\" aria-label=\"Augmenter 2e enfant\">+</button>\n              </div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\">\n                <h4 data-i18n=\"egStepBabyH\">Bébé</h4>\n                <p data-i18n=\"egStepBabyP\">0 à 2 ans · sans lit</p>\n              </div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"baby\" role=\"group\" aria-label=\"Nombre de bébés\">\n                <button class=\"stepper__btn kid-minus\" aria-label=\"Réduire bébés\">−</button>\n                <span class=\"stepper__val kid-val\" aria-live=\"polite\">0</span>\n                <button class=\"stepper__btn kid-plus\" aria-label=\"Augmenter bébés\">+</button>\n              </div>\n            </div>",
+    "noteHtml": "        <div class=\"calc-form-group\">\n          <label class=\"calc-form-label\" data-i18n=\"egCalcTipLabel\">Bon à savoir</label>\n          <p class=\"fs-caption u-text-3\" data-i18n=\"egCalcTipText\">Le visa égyptien se règle à l'arrivée selon le tarif de l'autorité compétente. Les excursions optionnelles (plongée, quad…) ne sont pas comprises.</p>\n        </div>\n",
+    "emptyMsg": "Sélectionnez un hôtel ci-dessus pour voir le détail.",
+    "whyHtml": "\n            <details>\n              <summary>\n                <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4M12 8h.01\"/></svg>\n                <span data-i18n=\"egWhySummary\">Pourquoi ce prix ?</span>\n              </summary>\n              <p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\" data-i18n=\"egWhyDetails\">\n                Prix par personne en chambre double — vol (régulier ou charter selon le programme), hébergement All Inclusive Soft en Mer Rouge (petit-déjeuner au Caire), transferts et excursions guidées au Caire pour les formules concernées.\n              </p>\n            </details>\n          ",
+    "continueLabel": "Continuer vers la réservation",
+    "nextStep": "Étape suivante : remplissez votre dossier ci-dessous"
+  },
+  "infoBlocks": [
+    {
+      "open": true,
+      "iconSvg": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>",
+      "kTitle": " data-i18n=\"egInfo1Title\"",
+      "title": "Conditions de paiement",
+      "list": [
+        {
+          "k": " data-i18n-html=\"egInfo1Li1\"",
+          "t": "<strong>Acompte de réservation</strong> · 30 % du montant total au moment de la confirmation, à régler dans les 48 h après accord par WhatsApp."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo1Li2\"",
+          "t": "<strong>Solde</strong> · 70 % restants au plus tard <strong>21 jours avant le départ</strong>."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo1Li3\"",
+          "t": "<strong>Modes acceptés</strong> · Virement bancaire (BNA, BEA, CPA), versement en agence, espèces. Pas de carte bancaire en ligne pour le moment."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo1Li4\"",
+          "t": "<strong>Reçu</strong> · Reçu officiel Alliance Travel remis à chaque versement."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo1Li5\"",
+          "t": "<strong>Devis valable</strong> 7 jours · Les prix peuvent évoluer selon la disponibilité aérienne et le taux de change."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/>",
+      "kTitle": " data-i18n=\"egInfo2Title\"",
+      "title": "Conditions d'annulation",
+      "ledeHtml": "Annulation par le client (selon le délai avant départ) :</p>\n            <ul class=\"info-list info-list--tiered\">\n              <li data-i18n-html=\"egInfo2Li1\"><strong>≥ 60 jours avant départ</strong> · Remboursement intégral moins frais de dossier (5 000 DA).</li>\n              <li data-i18n-html=\"egInfo2Li2\"><strong>30 à 59 jours</strong> · Retenue de 30 % du montant total.</li>\n              <li data-i18n-html=\"egInfo2Li3\"><strong>14 à 29 jours</strong> · Retenue de 60 % du montant total.</li>\n              <li data-i18n-html=\"egInfo2Li4\"><strong>7 à 13 jours</strong> · Retenue de 80 %.</li>\n              <li data-i18n-html=\"egInfo2Li5\"><strong>&lt; 7 jours</strong> · Pas de remboursement (frais aériens et hôteliers définitifs).</li>\n            </ul>\n            <p class=\"info-card__note\" data-i18n-html=\"egInfo2Note\">\n              <strong>Annulation par la compagnie aérienne ou l'hôtel</strong> · Remboursement intégral ou re-routing sans frais supplémentaires de notre part.\n              <br>\n              <strong>Modification de date</strong> possible jusqu'à 30 jours avant départ, sous réserve de disponibilité et du différentiel tarifaire.\n            </p>\n          </div>\n        </details>\n\n\n        <details class=\"info-card\">\n          <summary class=\"info-card__head\">\n            <span class=\"info-card__icon\" aria-hidden=\"true\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M7 21v-1a5 5 0 0 1 10 0v1\"/></svg>\n            </span>\n            <span class=\"info-card__title\" data-i18n=\"egInfo3Title\">Formalités · Visa Égypte</span>\n            <svg class=\"info-card__chevron\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>\n          </summary>\n          <div class=\"info-card__body\">\n            <p class=\"info-card__lede\" data-i18n-html=\"egInfo3Lede\"><strong>Visa égyptien — démarche encadrée</strong>",
+      "kLede": " data-i18n=\"egInfo2Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"egInfo3Li1\"",
+          "t": "<strong>Lettre de garantie</strong> · Alliance Travel fournit la lettre de garantie nécessaire à votre dossier."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo3Li2\"",
+          "t": "<strong>Visa à l'arrivée</strong> · Le visa égyptien se règle directement à l'arrivée, par le client, selon le tarif fixé par l'autorité compétente."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo3Li3\"",
+          "t": "<strong>Passeport</strong> · Validité minimum <strong>6 mois après la date de retour</strong>, 2 pages vierges minimum."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo3Li4\"",
+          "t": "<strong>Documents</strong> · Passeport + billet retour. Le formulaire d'immigration est rempli dans l'avion ou à l'arrivée."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo3Li5\"",
+          "t": "<strong>Bébés / enfants</strong> · Mêmes conditions. Les enfants doivent figurer sur leur propre passeport."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kTitle": " data-i18n=\"egInfo4Title\"",
+      "title": "Assurance voyage",
+      "ledeHtml": "\n              L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> — surtout pour les voyages long-courrier.\n            ",
+      "kLede": " data-i18n-html=\"egInfo4Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"egInfo4Li1\"",
+          "t": "<strong>Couverture conseillée</strong> · Frais médicaux d'urgence (≥ 100 000 €), rapatriement sanitaire, perte/vol de bagages, annulation voyage."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo4Li2\"",
+          "t": "<strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo4Li3\"",
+          "t": "<strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance)."
+        },
+        {
+          "k": " data-i18n-html=\"egInfo4Li4\"",
+          "t": "<strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage."
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "slug": "tunisie",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#02110f\"/>\n<radialGradient id=\"tn-tunisie-g\" cx=\"50%\" cy=\"60%\" r=\"60%\"><stop offset=\"0\" stop-color=\"#19B5B0\" stop-opacity=\".32\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#tn-tunisie-g)\"/>\n<rect x=\"0\" y=\"62\" width=\"100\" height=\"38\" fill=\"#04161a\"/>\n<rect x=\"20\" y=\"34\" width=\"26\" height=\"28\" fill=\"#0a2730\" fill-opacity=\".85\"/>\n<rect x=\"54\" y=\"42\" width=\"20\" height=\"20\" fill=\"#0a2730\" fill-opacity=\".7\"/>\n<path d=\"M20 34 L33 22 L46 34 Z\" fill=\"#0a2730\" fill-opacity=\".85\"/>\n<ellipse cx=\"50\" cy=\"64\" rx=\"46\" ry=\"2\" fill=\"#19B5B0\" fill-opacity=\".18\"/>\n<circle cx=\"80\" cy=\"20\" r=\"7\" fill=\"#FFF8F0\" fill-opacity=\".1\"/>\n</svg>",
+      "color": "#19B5B0",
+      "kFlag": " data-i18n=\"egRel1Flag\"",
+      "flag": "Été 2026",
+      "kTitle": " data-i18n-html=\"egRel1Title\"",
+      "title": "Tunisie · Mer &amp; soleil",
+      "kPrice": " data-i18n-html=\"egRel1Price\"",
+      "priceHtml": "À partir de <strong>36.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": " data-i18n=\"egRelCta\""
+    },
+    {
+      "slug": "azerbaidjan",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#060a16\"/>\n<radialGradient id=\"az-azerbaidjan-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#3AAFAF\" stop-opacity=\".35\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#az-azerbaidjan-g)\"/>\n<path d=\"M30 88 Q33 30 38 22 Q42 15 46 22 Q51 30 54 88 Z\" fill=\"#1a2d5a\" fill-opacity=\".85\"/>\n<path d=\"M48 88 Q51 38 56 30 Q60 24 63 30 Q68 38 71 88 Z\" fill=\"#3AAFAF\" fill-opacity=\".55\"/>\n<path d=\"M65 88 Q68 45 72 38 Q75 33 77 38 Q81 45 84 88 Z\" fill=\"#1a2d5a\" fill-opacity=\".75\"/>\n</svg>",
+      "color": "#3AAFAF",
+      "kFlag": " data-i18n=\"egRel2Flag\"",
+      "flag": "Juin–Octobre 2026",
+      "kTitle": " data-i18n=\"egRel2Title\"",
+      "title": "Azerbaïdjan · Bakou & Gabala",
+      "kPrice": " data-i18n-html=\"egRel2Price\"",
+      "priceHtml": "À partir de <strong>249.900 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": " data-i18n=\"egRelCta\""
+    }
+  ],
+  "finalCta": {
+    "scarcityHtml": "<span data-i18n=\"egFinalScarcity\">Places limitées · Les départs de l'été se remplissent vite</span>",
+    "titleHtml": "Prêt à voir les<br><em>Pyramides</em> ?",
+    "sub": "Choisissez votre programme, bloquez votre place en moins de 5 minutes. Notre équipe vous confirme la disponibilité immédiatement via WhatsApp.",
+    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20un%20voyage%20en%20Égypte%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\">\n        <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg>\n        <span data-i18n=\"egFinalWa\">Réserver via WhatsApp</span>\n      </a>\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>\n      <a href=\"https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" target=\"_blank\" rel=\"noopener\">0561 616 268</a>",
+    "contactHtml": "\n      <div class=\"contact-item\">\n        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>\n        <span data-i18n=\"egFinalAddress\">Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville</span>\n      </div>\n      <div class=\"contact-item\">\n        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z\"/></svg>\n        <a href=\"https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\" class=\"contact-phone-link\">0560 869 905</a> · <a href=\"https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\" class=\"contact-phone-link\">0560 860 617</a> · <a href=\"https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\" class=\"contact-phone-link\">0561 616 269</a>\n      </div>\n    "
+  },
+  "footer": {
+    "html": "\n  <div class=\"container\">\n    <div class=\"footer-grid\">\n      <div class=\"footer-brand\">\n        <span class=\"footer-logo\">Alliance<span>Travel</span></span>\n        <p class=\"footer-tagline\" data-i18n=\"footer.tagline\">Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.</p>\n        <div class=\"footer-social\">\n          <a href=\"https://www.instagram.com/alliance_travel34/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>\n          </a>\n          <a href=\"https://web.facebook.com/Alliance.Mebarkia\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://web.facebook.com/visa.bba.9\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel — Visa BBA\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://www.tiktok.com/@visa.bba34\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z\"/></svg>\n          </a>\n        </div>\n      </div>\n      <div class=\"footer-col\">\n        <h4>Nos Voyages</h4><a href=\"../egypte/\">Égypte · 5 programmes</a><a href=\"../tunisie/\">Tunisie</a><a href=\"../azerbaidjan/\">Azerbaïdjan</a><a href=\"../istanbul/\">Istanbul</a><a href=\"../kuala-lumpur/\">Kuala Lumpur &amp; Langkawi</a><a href=\"../bali/\">Bali</a><a href=\"../vietnam/\">Vietnam</a></div>\n      <div class=\"footer-col\">\n        <h4 data-i18n=\"footer.col_contact\">Contact</h4>\n\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span data-i18n=\"footer.wa_viber\">WhatsApp / Viber</span></p>\n          <a href=\"https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 860 617</a>\n          <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg><span data-i18n=\"footer.phone\">Téléphone</span></p>\n          <a href=\"https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 267</a>\n          <a href=\"https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 268</a>\n          <a href=\"https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 269</a>\n          <a href=\"https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 869 905</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><span data-i18n=\"footer.address_label\">Adresse</span></p>\n          <p class=\"fs-body-sm u-text-2 u-m-0\">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>\n        </div>\n      </div>\n    </div>\n    <div class=\"footer-bottom\">\n      <p data-i18n=\"footer.copyright\">© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie</p>\n      <p data-i18n=\"footer.notice\">Prix en Dinar Algérien (DA) · Indicatifs · Confirmation à la réservation</p>\n    </div>\n  </div>\n"
+  },
+  "tripData": {
+    "name": "Égypte 2026 · 5 programmes",
+    "dates": [
+      "16 – 23 Juillet 2026",
+      "24 Juillet – 02 Août 2026",
+      "02 – 11 Août 2026",
+      "09 – 18 Août 2026",
+      "16 – 25 Août 2026",
+      "22 – 31 Août 2026",
+      "29 Août – 06 Septembre 2026"
+    ],
+    "hotels": [
+      {
+        "id": "caire-hurghada-blend",
+        "name": "Blend Club Aqua Resort 4★ — Hurghada — Caire & Hurghada",
+        "prices": {
+          "double": 220000,
+          "triple": 215000,
+          "single": 295000,
+          "child1": 125000,
+          "child2": 180000,
+          "baby": 30000
+        },
+        "why": "Vol régulier inclus, 2 nuits au Caire en petit-déjeuner puis séjour balnéaire All Inclusive Soft à Hurghada, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "caire-hurghada-pyra",
+        "name": "Pyramisa 5★ — Le Caire — Caire & Hurghada",
+        "prices": {
+          "double": 220000,
+          "triple": 215000,
+          "single": 295000,
+          "child1": 125000,
+          "child2": 180000,
+          "baby": 30000
+        },
+        "why": "Vol régulier inclus, séjour combiné Le Caire (petit-déjeuner) et Hurghada (All Inclusive Soft), transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "charterhrg-blend",
+        "name": "Blend Club Aqua Park 4★ — Charter Hurghada",
+        "prices": {
+          "double": 245000,
+          "triple": 240000,
+          "single": 340000,
+          "child1": 120000,
+          "child2": 180000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Hurghada inclus, séjour balnéaire en formule All Inclusive Soft, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "charterhrg-amarina",
+        "name": "Amarina Soma Bay 5★ — Charter Hurghada",
+        "prices": {
+          "double": 275000,
+          "triple": 270000,
+          "single": 380000,
+          "child1": 120000,
+          "child2": 180000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Hurghada inclus, séjour All Inclusive Soft à Soma Bay, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "charterhrg-jaz",
+        "name": "Jaz Aqua Viva 5★ — Charter Hurghada",
+        "prices": {
+          "double": 305000,
+          "triple": 300000,
+          "single": 430000,
+          "child1": 120000,
+          "child2": 180000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Hurghada inclus, séjour All Inclusive Soft avec grand parc aquatique, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "chartersharm-verginia",
+        "name": "Verginia Aqua Park 4★ — Charter Sharm",
+        "prices": {
+          "double": 218000,
+          "triple": 216000,
+          "single": 299000,
+          "child1": 124000,
+          "child2": 166000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Sharm El Sheikh inclus, séjour balnéaire All Inclusive Soft, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "chartersharm-rehana",
+        "name": "Rehana Aqua Park 4★ — Charter Sharm",
+        "prices": {
+          "double": 246000,
+          "triple": 243000,
+          "single": 323000,
+          "child1": 124000,
+          "child2": 166000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Sharm El Sheikh inclus, séjour familial All Inclusive Soft avec parc aquatique, transferts inclus."
+      },
+      {
+        "id": "chartersharm-rehanaroyal",
+        "name": "Rehana Royal Beach 5★ — Charter Sharm",
+        "prices": {
+          "double": 291000,
+          "triple": 289000,
+          "single": 391000,
+          "child1": 124000,
+          "child2": 166000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Sharm El Sheikh inclus, séjour 5★ All Inclusive Soft avec plage privée, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "chartersharm-cleopatra",
+        "name": "Cleopatra Luxury 5★ — Charter Sharm",
+        "prices": {
+          "double": 305000,
+          "triple": 302000,
+          "single": 452000,
+          "child1": 124000,
+          "child2": 166000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Sharm El Sheikh inclus, séjour 5★ Luxury en All Inclusive Soft, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "chartersharm-pickalbatros",
+        "name": "Pickalbatros 5★ — Charter Sharm",
+        "prices": {
+          "double": 403000,
+          "triple": 401000,
+          "single": 621000,
+          "child1": 124000,
+          "child2": 166000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Sharm El Sheikh inclus, séjour 5★ haut de gamme en All Inclusive Soft, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "chartersharm-rixos",
+        "name": "Rixos Sharm El Sheikh 5★ — Charter Sharm",
+        "prices": {
+          "double": 593000,
+          "triple": 581000,
+          "single": 831000,
+          "child1": 124000,
+          "child2": 166000,
+          "baby": 30000
+        },
+        "why": "Vol charter direct vers Sharm El Sheikh inclus, séjour 5★ ultra-luxe en All Inclusive, transferts aéroport ↔ hôtel inclus. Le sommet du programme."
+      },
+      {
+        "id": "cairesharm-verginia",
+        "name": "Verginia Aqua Park 4★ — Caire & Sharm",
+        "prices": {
+          "double": 235000,
+          "triple": 232000,
+          "single": 299000,
+          "child1": 153000,
+          "child2": 185000,
+          "baby": 30000
+        },
+        "why": "Vol régulier EgyptAir inclus, étape au Caire (petit-déjeuner) puis Sharm El Sheikh en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "cairesharm-rehana",
+        "name": "Rehana Aqua Park 4★ — Caire & Sharm",
+        "prices": {
+          "double": 259000,
+          "triple": 256000,
+          "single": 340000,
+          "child1": 153000,
+          "child2": 185000,
+          "baby": 30000
+        },
+        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "cairesharm-rehanaroyal",
+        "name": "Rehana Royal Beach 5★ — Caire & Sharm",
+        "prices": {
+          "double": 295000,
+          "triple": 292000,
+          "single": 435000,
+          "child1": 153000,
+          "child2": 185000,
+          "baby": 30000
+        },
+        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh 5★ en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "cairesharm-cleopatra",
+        "name": "Cleopatra Luxury 5★ — Caire & Sharm",
+        "prices": {
+          "double": 320000,
+          "triple": 320000,
+          "single": 440000,
+          "child1": 153000,
+          "child2": 185000,
+          "baby": 30000
+        },
+        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh 5★ Luxury en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "cairesharm-pickalbatros",
+        "name": "Pickalbatros Palace 5★ — Caire & Sharm",
+        "prices": {
+          "double": 390000,
+          "triple": 388000,
+          "single": 565000,
+          "child1": 153000,
+          "child2": 185000,
+          "baby": 30000
+        },
+        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh 5★ haut de gamme en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "cairesharm-swissotel",
+        "name": "Swissôtel Resort 5★ — Caire & Sharm",
+        "prices": {
+          "double": 460000,
+          "triple": 448000,
+          "single": 630000,
+          "child1": 153000,
+          "child2": 185000,
+          "baby": 30000
+        },
+        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh dans un resort 5★ en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+      },
+      {
+        "id": "sharmcz-tivoli",
+        "name": "Tivoli & Aqua Park 4★ — Sharm · Constantine",
+        "prices": {
+          "double": 169000,
+          "triple": 165000,
+          "single": 195000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour balnéaire All Inclusive Soft à Sharm El Sheikh, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "sharmcz-bride",
+        "name": "Sharm Bride Aqua Park 4★ — Sharm · Constantine",
+        "prices": {
+          "double": 179000,
+          "triple": 175000,
+          "single": 215000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour balnéaire All Inclusive Soft à Sharm El Sheikh, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "sharmcz-rehana",
+        "name": "Rehana Aqua Park 4★ — Sharm · Constantine",
+        "prices": {
+          "double": 220000,
+          "triple": 215000,
+          "single": 270000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour familial All Inclusive Soft à Sharm El Sheikh, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "sharmcz-rehanaroyal",
+        "name": "Rehana Royal Beach 5★ — Sharm · Constantine",
+        "prices": {
+          "double": 248000,
+          "triple": 243000,
+          "single": 308000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour 5★ All Inclusive Soft avec plage privée à Sharm El Sheikh, transferts inclus."
+      },
+      {
+        "id": "sharmcz-coralaqua",
+        "name": "Coral Sea Aqua Club 4★ — Sharm · Constantine",
+        "prices": {
+          "double": 265000,
+          "triple": 260000,
+          "single": 390000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour All Inclusive Soft au Coral Sea Aqua Club à Sharm El Sheikh, transferts inclus."
+      },
+      {
+        "id": "sharmcz-cleopatra",
+        "name": "Cleopatra Luxury 5★ — Sharm · Constantine",
+        "prices": {
+          "double": 300000,
+          "triple": 297000,
+          "single": 425000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour 5★ Luxury All Inclusive Soft à Sharm El Sheikh, transferts aéroport ↔ hôtel inclus."
+      },
+      {
+        "id": "sharmcz-coralholiday",
+        "name": "Coral Sea Holiday 5★ — Sharm · Constantine",
+        "prices": {
+          "double": 315000,
+          "triple": 312000,
+          "single": 445000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour 5★ All Inclusive Soft au Coral Sea Holiday à Sharm El Sheikh, transferts inclus."
+      },
+      {
+        "id": "sharmcz-coralwater",
+        "name": "Coral Sea Water World 5★ — Sharm · Constantine",
+        "prices": {
+          "double": 332000,
+          "triple": 327000,
+          "single": 477000,
+          "child1": 115000,
+          "child2": 138000,
+          "baby": 30000
+        },
+        "why": "Vol charter au départ de Constantine inclus, séjour 5★ All Inclusive Soft au Coral Sea Water World à Sharm El Sheikh, transferts inclus."
+      }
+    ],
+    "extras": []
+  },
+  "i18n": {
+    "en": {
+      "calcWhyGeneric": "Price per person for the selected room type — flight, accommodation and the listed transfers and excursions are included in your chosen programme. See the inclusions section for the full list.",
+      "egHeroEyebrow": "Cairo · Hurghada · Sharm El Sheikh · 2026",
+      "egHeroTitlePre": "Egypt",
+      "egHeroTitlePost": "Red Sea & Pyramids · 5 programmes",
+      "egHeroDate": "Charters & scheduled flights · Summer 2026",
+      "egHeroH1": "Egypt <em>Red Sea &amp; Pyramids · 5 programmes</em>",
+      "egHeroLede": "One country, five packages to choose from. Cairo &amp; Hurghada, direct-charter to Hurghada or Sharm, Cairo &amp; Sharm on a scheduled flight, or Sharm departing from Constantine. All Inclusive on the Red Sea, guided excursions in Cairo.",
+      "egHeroPriceUnit": "per person · from · by programme",
+      "egHeroFineprint": "Based on a double room, subject to availability — DZD/USD rate set at booking.",
+      "egHeroCtaCalc": "Calculate my price",
+      "egHl1Label": "Monuments",
+      "egHl1Title": "Pyramids &amp; Sphinx",
+      "egHl1Body": "Giza, Khan El-Khalili, Al-Azhar Mosque, a Nile cruise — on the packages with a Cairo stop.",
+      "egHl2Label": "Beach",
+      "egHl2Title": "Red Sea · Hurghada &amp; Sharm",
+      "egHl2Body": "All Inclusive stay on the beaches of Hurghada or Sharm El Sheikh, depending on the chosen programme.",
+      "egHl3Label": "Transport",
+      "egHl3Title": "Charters &amp; scheduled flights",
+      "egHl3Body": "Direct charter flight to Hurghada or Sharm, or a scheduled flight via Cairo depending on the programme. Departures from Algiers &amp; Constantine.",
+      "egHl4Label": "Accommodation",
+      "egHl4Title": "25 hotels to choose from",
+      "egHl4Body": "From 4★ to 5★ Luxe, spread across the 5 programmes. Compare and choose your comfort.",
+      "egItinPhase": "Discover",
+      "egItinEyebrow": "Pyramids &amp; Red Sea",
+      "egItinTitle": "Your <em>itinerary</em>",
+      "egItinSub": "A typical glimpse of the Egyptian experience — guided visits in Cairo and an All-Inclusive beach stay on the Red Sea. <strong>Detailed programme varies with the chosen package.</strong>",
+      "egStep1Label": "Cairo",
+      "egStep1Title": "Pyramids of Giza &amp; Sphinx",
+      "egStep1Act": "Giza Plateau (Pyramids &amp; Sphinx), Al-Azhar Mosque, Khan El-Khalili Bazaar and a Nile cruise — on the packages with a Cairo stop.",
+      "egStep1Tag1": "Pyramids",
+      "egStep1Tag2": "Sphinx",
+      "egStep1Tag3": "Khan El-Khalili",
+      "egStep1Tag4": "Nile cruise",
+      "egStep2Label": "Red Sea",
+      "egStep2Title": "All-Inclusive beach stay",
+      "egStep2Act": "All-Inclusive beach stay in Hurghada or Sharm El Sheikh depending on the programme. Beaches, Aqua Park, relaxation and optional excursions.",
+      "egStep2Tag1": "Hurghada",
+      "egStep2Tag2": "Sharm El Sheikh",
+      "egStep2Tag3": "All-Inclusive",
+      "egStep3Label": "Transfers &amp; flights",
+      "egStep3Title": "Everything is organised",
+      "egStep3Act": "Direct charter flight to Hurghada or Sharm, or a scheduled flight via Cairo depending on the package. Airport ↔ hotel transfers and an Alliance Travel tour leader included.",
+      "egStep3Tag1": "Direct charter",
+      "egStep3Tag2": "Scheduled flight",
+      "egStep3Tag3": "Transfers included",
+      "egMapEyebrow": "Your trip at a glance",
+      "egMapTitle": "Egypt <em>on the map</em>",
+      "egMapSub": "The three hubs of our programmes — Cairo, Hurghada and Sharm El Sheikh — and the must-see sites, geolocated.",
+      "egMapLoading": "Loading the map…",
+      "egMapLegendHotels": "Hotels to choose from",
+      "egMapLegendSites": "Sites visited",
+      "egMapLegendTours": "Guided excursions",
+      "egTrustEyebrow": "Over 1,200 travellers guided",
+      "egTrustTitle": "They <em>trusted us</em>",
+      "egStat1": "Travellers guided since 2019",
+      "egStat2": "Satisfaction rate",
+      "egStat3": "Egypt programmes summer 2026",
+      "egStat4": "Hand-picked hotels to choose from",
+      "egTesti1Text": "\"Everything was perfectly organised. The pyramids at sunrise, the Nile in the evening — I could never have done that on my own. Alliance Travel thought of everything.\"",
+      "egTesti1Trip": "Bordj Bou Arreridj · Egypt trip 2024",
+      "egTesti2Text": "\"The Rehana Royal Beach hotel was exceptional. The Red Sea is incredible. The price shown was the real price — no bad surprises.\"",
+      "egTesti2Trip": "Constantine · Sharm trip 2025",
+      "egTesti3Text": "\"Family of 4. Our kids loved the Aqua Park. The tour leader was available 24/7. We're travelling with Alliance Travel again next summer.\"",
+      "egTesti3Trip": "Algiers · Egypt trip 2025",
+      "egInclEyebrow": "All said, nothing hidden",
+      "egInclTitle": "What's <em>included</em>, what isn't",
+      "egInclSub": "No surprises on arrival. Here's exactly what your package covers — and what you'll plan for on top.",
+      "egInclColTitle": "Included in the <em>package</em>",
+      "egInclColCount": "7 services covered",
+      "egInclItem1": "Round-trip flight — <strong>scheduled or charter depending on the programme</strong> (Algiers or Constantine)",
+      "egInclItem2": "Accommodation — <strong>All Inclusive Soft</strong> on the Red Sea / <strong>breakfast</strong> in Cairo",
+      "egInclItem3": "Airport ↔ hotel ↔ airport transfers",
+      "egInclItem4": "Guided excursions in Cairo (for packages with a Cairo stop)",
+      "egInclItem5": "Guarantee letter for the visa",
+      "egInclItem6": "Alliance Travel tour leader on site",
+      "egExclColTitle": "To <em>plan</em> for on top",
+      "egExclColCount": "6 items outside the package",
+      "egExclItem1": "Egyptian visa — payable on arrival, at the rate set by the competent authority",
+      "egExclItem2": "Lunches &amp; dinners outside the All-Inclusive package",
+      "egExclItem3": "Alcoholic drinks &amp; optional activities (diving, quad biking, paragliding)",
+      "egExclItem4": "Tips (hotel staff · guides · drivers)",
+      "egExclItem5": "Personal travel insurance",
+      "egExclItem6": "Personal expenses",
+      "egFaqEyebrow": "FAQ",
+      "egFaqTitle": "Frequently asked <em>questions</em>",
+      "egFaq1Q": "What's the difference between the 5 programmes?",
+      "egFaq1A": "<strong>Cairo &amp; Hurghada</strong> combines a Cairo stop and a beach stay in Hurghada. The <strong>Hurghada charters</strong> and <strong>Sharm charters</strong> are direct flights to the Red Sea in a beach package. <strong>Cairo &amp; Sharm</strong> pairs Cairo and Sharm El Sheikh on a scheduled flight. Finally, <strong>Sharm from Constantine</strong> is a charter departing from Constantine. Pick the package, then the hotel: the calculator shows the exact price.",
+      "egFaq2Q": "Is the visa included?",
+      "egFaq2A": "Alliance Travel provides a <strong>guarantee letter for the visa</strong>. The Egyptian visa fee is paid directly on arrival by the client, <strong>at the rate set by the competent authority</strong>. This process is fully supported and explained by our tour leader.",
+      "egFaq3Q": "How do I pay? Is CCP accepted?",
+      "egFaq3A": "Yes. Payment by CCP transfer, cash at the branch (Bordj Bou Arreridj), or bank transfer. Sign-up by phone / WhatsApp is possible. A deposit is enough to hold your seat.",
+      "egFaq4Q": "What time is hotel check-in?",
+      "egFaq4A": "Check-in is always at <strong>2:00 pm</strong>, whatever your arrival time. If you arrive earlier, your luggage is kept and you can enjoy the hotel's common areas from arrival.",
+      "egFaq5Q": "How much is a seat for a baby or a child?",
+      "egFaq5A": "Child and infant rates vary with the <strong>programme</strong> and <strong>hotel</strong> chosen. The infant (0–2 years) travels without a bed at a reduced rate. Use the <strong>calculator</strong> to get the exact total for your package and hotel.",
+      "egFaq6Q": "What exactly does \"All Inclusive Soft\" cover?",
+      "egFaq6A": "The All Inclusive Soft package covers all meals (breakfast, lunch, dinner) and most drinks on the Red Sea. In Cairo, accommodation is breakfast-only. Alcoholic drinks and some paid activities (diving, optional excursions) are at the client's expense.",
+      "egHotelsPhase": "Compare the programmes &amp; hotels",
+      "egHotelsEyebrow": "The right programme, the right hotel",
+      "egHotelsTitle": "5 programmes · <em>one country</em>",
+      "egHotelsSub": "First choose your package — Cairo &amp; Hurghada, direct-charter Hurghada or Sharm, Cairo &amp; Sharm on EgyptAir, or Sharm departing from Constantine — then the hotel. The calculator instantly shows the exact price.",
+      "egTierAll": "All",
+      "egTierCaireHurghada": "Cairo &amp; Hurghada",
+      "egTierCharterHurghada": "Charter Hurghada",
+      "egTierCharterSharm": "Charter Sharm",
+      "egTierCaireSharm": "Cairo &amp; Sharm",
+      "egTierSharmConstantine": "Sharm · Constantine",
+      "egHotelsHint": "Tip: click a programme tab to see only its hotels, then select a card to calculate your price.",
+      "egFromLabel": "From",
+      "egPriceMetaDouble": "per pers. in a double",
+      "egSelect": "Select",
+      "egPillCaire": "Cairo",
+      "egPillHurghada": "Hurghada",
+      "egPillAquaPark": "Aqua Park",
+      "egPillCharterDirect": "Direct charter",
+      "egPillSharm": "Sharm",
+      "egPill5star": "5★",
+      "egPillSomaBay": "Soma Bay",
+      "egPillLuxury": "Luxury",
+      "egPillUltraLuxe": "Ultra Luxe",
+      "egPillEgyptAir": "EgyptAir",
+      "egPillPlagePrivee": "Private beach",
+      "egPillResort": "Resort",
+      "egPillConstantine": "Constantine",
+      "egPillWaterWorld": "Water World",
+      "egCalcPhase": "Calculate my price",
+      "egCalcEyebrow": "Step 1 · Configure your trip",
+      "egCalcTitle": "Choose <em>your package</em>",
+      "egCalcSub": "Every dinar is explained. Choose your configuration and get the exact total, no surprises.",
+      "egCalcDateLabel": "Departure date",
+      "egCalcDatesNote": "Indicative dates — confirmed by the chosen programme.",
+      "egCalcHotelLabel": "Selected hotel",
+      "egCalcRoomLabel": "Room type",
+      "egRoomDouble": "Double",
+      "egRoomTriple": "Triple",
+      "egRoomSingle": "Single",
+      "egCalcGroupLabel": "Group composition",
+      "egStepAdultsH": "Adults",
+      "egStepAdultsP": "From 12 years old",
+      "egStepChild1H": "1st child",
+      "egStepChild1P": "2 to 11.99 years · with bed",
+      "egStepChild2H": "2nd child",
+      "egStepChild2P": "2 to 11.99 years · with bed",
+      "egStepBabyH": "Infant",
+      "egStepBabyP": "0 to 2 years · without bed",
+      "egCalcTipLabel": "Good to know",
+      "egCalcTipText": "The Egyptian visa is paid on arrival at the rate set by the competent authority. Optional excursions (diving, quad biking…) are not included.",
+      "egRecap": "Summary",
+      "egRecapEmpty": "Select a hotel above to see the breakdown.",
+      "egTotalLabel": "Estimated total",
+      "egWhySummary": "Why this price?",
+      "egWhyDetails": "Price per person in a double room — flight (scheduled or charter depending on the programme), All Inclusive Soft accommodation on the Red Sea (breakfast in Cairo), transfers and guided excursions in Cairo for the relevant packages.",
+      "egContinue": "Continue to booking",
+      "egNextStep": "Next step: fill in your booking below",
+      "egInfoEyebrow": "Before you go",
+      "egInfoTitle": "Everything you <em>need to know</em>",
+      "egInfoSub": "Payment, cancellation, visa formalities, insurance — transparency in four blocks.",
+      "egInfo1Title": "Payment terms",
+      "egInfo1Li1": "<strong>Booking deposit</strong> · 30% of the total at confirmation, payable within 48h of agreement on WhatsApp.",
+      "egInfo1Li2": "<strong>Balance</strong> · remaining 70% no later than <strong>21 days before departure</strong>.",
+      "egInfo1Li3": "<strong>Accepted methods</strong> · Bank transfer (BNA, BEA, CPA), in-branch payment, cash. No online card payment for now.",
+      "egInfo1Li4": "<strong>Receipt</strong> · An official Alliance Travel receipt is issued for every payment.",
+      "egInfo1Li5": "<strong>Quote valid</strong> 7 days · Prices may change with flight availability and the exchange rate.",
+      "egInfo2Title": "Cancellation terms",
+      "egInfo2Lede": "Cancellation by the client (by the lead time before departure):",
+      "egInfo2Li1": "<strong>≥ 60 days before departure</strong> · Full refund minus a processing fee (5,000 DA).",
+      "egInfo2Li2": "<strong>30 to 59 days</strong> · 30% of the total withheld.",
+      "egInfo2Li3": "<strong>14 to 29 days</strong> · 60% of the total withheld.",
+      "egInfo2Li4": "<strong>7 to 13 days</strong> · 80% withheld.",
+      "egInfo2Li5": "<strong>&lt; 7 days</strong> · No refund (flight and hotel charges final).",
+      "egInfo2Note": "<strong>Cancellation by the airline or hotel</strong> · Full refund or re-routing at no extra cost on our part.<br><strong>Date changes</strong> possible up to 30 days before departure, subject to availability and the fare difference.",
+      "egInfo3Title": "Formalities · Egypt visa",
+      "egInfo3Lede": "<strong>Egyptian visa — a supported process</strong>",
+      "egInfo3Li1": "<strong>Guarantee letter</strong> · Alliance Travel provides the guarantee letter your file needs.",
+      "egInfo3Li2": "<strong>Visa on arrival</strong> · The Egyptian visa is paid directly on arrival, by the client, at the rate set by the competent authority.",
+      "egInfo3Li3": "<strong>Passport</strong> · Valid for at least <strong>6 months after the return date</strong>, minimum 2 blank pages.",
+      "egInfo3Li4": "<strong>Documents</strong> · Passport + return ticket. The immigration form is filled in on the plane or on arrival.",
+      "egInfo3Li5": "<strong>Infants / children</strong> · Same conditions. Children must appear on their own passport.",
+      "egInfo4Title": "Travel insurance",
+      "egInfo4Lede": "Travel insurance <strong>is not included</strong> in the package but is <strong>strongly recommended</strong> — especially for long-haul trips.",
+      "egInfo4Li1": "<strong>Recommended cover</strong> · Emergency medical costs (≥ €100,000), medical repatriation, loss/theft of luggage, trip cancellation.",
+      "egInfo4Li2": "<strong>Indicative cost</strong> · 1,500 to 4,000 DA per person depending on duration and destination.",
+      "egInfo4Li3": "<strong>Where to buy</strong> · Algerian insurers (CAAR, SAA, CAAT) or international companies (Mondial Assistance, Europ Assistance).",
+      "egInfo4Li4": "<strong>On request</strong>, Alliance Travel can point you to an insurance partner offering travel plans.",
+      "egRelatedEyebrow": "You might also like",
+      "egRelatedTitle": "Continue your <em>discovery</em>",
+      "egRel1Flag": "Summer 2026",
+      "egRel1Title": "Tunisia · Sea &amp; sun",
+      "egRel1Price": "From <strong>36,000 DA</strong>",
+      "egRel2Flag": "June–October 2026",
+      "egRel2Title": "Azerbaijan · Baku & Gabala",
+      "egRel2Price": "From <strong>249,900 DA</strong>",
+      "egRelCta": "See this trip",
+      "egFinalScarcity": "Limited seats · Summer departures fill up fast",
+      "egFinalTitle": "Ready to see the<br><em>Pyramids</em>?",
+      "egFinalSub": "Choose your programme, hold your seat in under 5 minutes. Our team confirms availability immediately via WhatsApp.",
+      "egFinalWa": "Book via WhatsApp",
+      "egFinalAddress": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
+      "egStickyLabel": "Estimated total",
+      "egStickyCta": "Book"
+    },
+    "ar": {
+      "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل الطيران والإقامة والتنقّلات والزيارات المذكورة ضمن البرنامج المختار. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
+      "egHeroEyebrow": "القاهرة · الغردقة · شرم الشيخ · 2026",
+      "egHeroTitlePre": "مصر",
+      "egHeroTitlePost": "البحر الأحمر والأهرامات · 5 برامج",
+      "egHeroDate": "رحلات عارضة ومنتظمة · صيف 2026",
+      "egHeroH1": "مصر <em>البحر الأحمر والأهرامات · 5 برامج</em>",
+      "egHeroLede": "بلد واحد، وخمس صيغ للاختيار. القاهرة والغردقة، رحلات عارضة مباشرة إلى الغردقة أو شرم الشيخ، القاهرة وشرم الشيخ برحلة منتظمة، أو شرم الشيخ انطلاقاً من قسنطينة. نظام شامل في البحر الأحمر، وجولات مُرافَقة في القاهرة.",
+      "egHeroPriceUnit": "للشخص · ابتداءً من · حسب البرنامج",
+      "egHeroFineprint": "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
+      "egHeroCtaCalc": "احسب سعري",
+      "egHl1Label": "المعالم",
+      "egHl1Title": "الأهرامات وأبو الهول",
+      "egHl1Body": "الجيزة وخان الخليلي وجامع الأزهر ورحلة على النيل — في الصيغ التي تتضمّن محطّة بالقاهرة.",
+      "egHl2Label": "شاطئي",
+      "egHl2Title": "البحر الأحمر · الغردقة وشرم الشيخ",
+      "egHl2Body": "إقامة بنظام شامل على شواطئ الغردقة أو شرم الشيخ حسب البرنامج المختار.",
+      "egHl3Label": "النقل",
+      "egHl3Title": "رحلات عارضة ومنتظمة",
+      "egHl3Body": "رحلة عارضة مباشرة إلى الغردقة أو شرم الشيخ، أو رحلة منتظمة عبر القاهرة حسب البرنامج. مغادرات من الجزائر وقسنطينة.",
+      "egHl4Label": "الإقامة",
+      "egHl4Title": "25 فندقاً للاختيار",
+      "egHl4Body": "من 4★ إلى 5★ فاخر، موزّعة على البرامج الخمسة. قارن واختر مستوى راحتك.",
+      "egItinPhase": "اكتشِف",
+      "egItinEyebrow": "الأهرامات والبحر الأحمر",
+      "egItinTitle": "<em>برنامجك</em>",
+      "egItinSub": "لمحة نموذجية عن التجربة المصرية — زيارات مُرافَقة في القاهرة وإقامة شاطئية بنظام شامل على البحر الأحمر. <strong>البرنامج المفصَّل يختلف حسب الصيغة المختارة.</strong>",
+      "egStep1Label": "القاهرة",
+      "egStep1Title": "أهرامات الجيزة وأبو الهول",
+      "egStep1Act": "هضبة الجيزة (الأهرامات وأبو الهول)، وجامع الأزهر، وبازار خان الخليلي، ورحلة على النيل — في الصيغ التي تتضمّن محطّة بالقاهرة.",
+      "egStep1Tag1": "الأهرامات",
+      "egStep1Tag2": "أبو الهول",
+      "egStep1Tag3": "خان الخليلي",
+      "egStep1Tag4": "رحلة النيل",
+      "egStep2Label": "البحر الأحمر",
+      "egStep2Title": "إقامة شاطئية بنظام شامل",
+      "egStep2Act": "إقامة شاطئية بنظام شامل في الغردقة أو شرم الشيخ حسب البرنامج. شواطئ ومدينة ألعاب مائية واسترخاء وجولات اختيارية.",
+      "egStep2Tag1": "الغردقة",
+      "egStep2Tag2": "شرم الشيخ",
+      "egStep2Tag3": "نظام شامل",
+      "egStep3Label": "التنقّلات والرحلات",
+      "egStep3Title": "كل شيء منظَّم",
+      "egStep3Act": "رحلة عارضة مباشرة إلى الغردقة أو شرم الشيخ، أو رحلة منتظمة عبر القاهرة حسب الصيغة. التنقّلات من المطار إلى الفندق ومُرافِق أليانس ترافل مشمولة.",
+      "egStep3Tag1": "رحلة عارضة مباشرة",
+      "egStep3Tag2": "رحلة منتظمة",
+      "egStep3Tag3": "التنقّلات مشمولة",
+      "egMapEyebrow": "رحلتك في لمحة",
+      "egMapTitle": "مصر <em>على الخريطة</em>",
+      "egMapSub": "أقطاب برامجنا الثلاثة — القاهرة والغردقة وشرم الشيخ — والمواقع التي لا تُفوَّت، مُحدَّدة جغرافياً.",
+      "egMapLoading": "جارٍ تحميل الخريطة…",
+      "egMapLegendHotels": "فنادق للاختيار",
+      "egMapLegendSites": "المواقع المُزارة",
+      "egMapLegendTours": "الجولات المُرافَقة",
+      "egTrustEyebrow": "أكثر من 1200 مسافر مُرافَق",
+      "egTrustTitle": "لقد <em>وثقوا بنا</em>",
+      "egStat1": "مسافرون مُرافَقون منذ 2019",
+      "egStat2": "نسبة الرضا",
+      "egStat3": "برامج مصر صيف 2026",
+      "egStat4": "فنادق منتقاة للاختيار",
+      "egTesti1Text": "«كان كل شيء منظَّماً بإتقان. الأهرامات عند الشروق، والنيل في المساء — ما كنت لأفعل ذلك بمفردي أبداً. أليانس ترافل فكّرت في كل شيء.»",
+      "egTesti1Trip": "برج بوعريريج · رحلة مصر 2024",
+      "egTesti2Text": "«كان فندق ريحانة رويال بيتش استثنائياً. البحر الأحمر مذهل. السعر المعروض كان السعر الحقيقي — لا مفاجآت سيّئة.»",
+      "egTesti2Trip": "قسنطينة · رحلة شرم الشيخ 2025",
+      "egTesti3Text": "«عائلة من 4 أفراد. أحبّ أطفالنا مدينة الألعاب المائية. كان المُرافِق متاحاً على مدار الساعة. سنسافر مع أليانس ترافل من جديد الصيف المقبل.»",
+      "egTesti3Trip": "الجزائر · رحلة مصر 2025",
+      "egInclEyebrow": "كل شيء واضح، لا شيء مخفيّ",
+      "egInclTitle": "ما هو <em>مشمول</em> وما ليس كذلك",
+      "egInclSub": "لا مفاجآت عند الوصول. إليك بالضبط ما يغطّيه عرضك — وما عليك توقّعه إضافةً إليه.",
+      "egInclColTitle": "مشمول في <em>الباقة</em>",
+      "egInclColCount": "7 خدمات مغطّاة",
+      "egInclItem1": "رحلة ذهاب وإياب — <strong>منتظمة أو عارضة حسب البرنامج</strong> (الجزائر أو قسنطينة)",
+      "egInclItem2": "الإقامة — <strong>نظام شامل (سوفت)</strong> في البحر الأحمر / <strong>إفطار</strong> في القاهرة",
+      "egInclItem3": "تنقّلات المطار ↔ الفندق ↔ المطار",
+      "egInclItem4": "جولات مُرافَقة في القاهرة (للصيغ التي تتضمّن محطّة بالقاهرة)",
+      "egInclItem5": "رسالة ضمان للتأشيرة",
+      "egInclItem6": "مُرافِق أليانس ترافل في الموقع",
+      "egExclColTitle": "يُتوقَّع <em>إضافةً</em> إلى ذلك",
+      "egExclColCount": "6 عناصر خارج الباقة",
+      "egExclItem1": "التأشيرة المصرية — تُدفع عند الوصول، حسب التعرفة التي تحدّدها السلطة المختصّة",
+      "egExclItem2": "الغداء والعشاء خارج باقة النظام الشامل",
+      "egExclItem3": "المشروبات الكحولية والأنشطة الاختيارية (غوص، دراجات رباعية، طيران مظلّي)",
+      "egExclItem4": "الإكراميات (طاقم الفندق · المرشدون · السائقون)",
+      "egExclItem5": "تأمين سفر شخصي",
+      "egExclItem6": "النفقات الشخصية",
+      "egFaqEyebrow": "الأسئلة الشائعة",
+      "egFaqTitle": "أسئلة <em>متكرّرة</em>",
+      "egFaq1Q": "ما الفرق بين البرامج الخمسة؟",
+      "egFaq1A": "<strong>القاهرة والغردقة</strong> تجمع محطّةً بالقاهرة وإقامةً شاطئية في الغردقة. أمّا <strong>رحلات الغردقة العارضة</strong> و<strong>رحلات شرم الشيخ العارضة</strong> فهي رحلات مباشرة إلى البحر الأحمر بصيغة شاطئية. و<strong>القاهرة وشرم الشيخ</strong> تجمع القاهرة وشرم الشيخ برحلة منتظمة. وأخيراً، <strong>شرم الشيخ من قسنطينة</strong> هي مغادرة عارضة انطلاقاً من قسنطينة. اختر الصيغة ثم الفندق: تعرض الحاسبة السعر الدقيق.",
+      "egFaq2Q": "هل التأشيرة مشمولة؟",
+      "egFaq2A": "تقدّم أليانس ترافل <strong>رسالة ضمان للتأشيرة</strong>. وتُدفع رسوم التأشيرة المصرية مباشرةً عند الوصول من قِبل العميل، <strong>حسب التعرفة التي تحدّدها السلطة المختصّة</strong>. هذا الإجراء مُؤطَّر بالكامل ويشرحه مُرافِقنا.",
+      "egFaq3Q": "كيف أدفع؟ هل يُقبل الحساب البريدي (CCP)؟",
+      "egFaq3A": "نعم. الدفع عبر تحويل بريدي (CCP)، أو نقداً في الوكالة (برج بوعريريج)، أو بتحويل بنكي. التسجيل عبر الهاتف / واتساب ممكن. عربون يكفي لحجز مكانك.",
+      "egFaq4Q": "في أيّ ساعة يكون تسجيل الدخول إلى الفندق؟",
+      "egFaq4A": "تسجيل الدخول دائماً في <strong>الساعة 14:00</strong>، أيّاً كان وقت الوصول. وإذا وصلت أبكر، تُحفَظ أمتعتك ويمكنك التمتّع بالمرافق المشتركة للفندق منذ الوصول.",
+      "egFaq5Q": "كم يكلّف مقعد الرضيع أو الطفل؟",
+      "egFaq5A": "تختلف أسعار الأطفال والرضّع حسب <strong>البرنامج</strong> و<strong>الفندق</strong> المختارين. يسافر الرضيع (0–2 سنة) بدون سرير بسعر مخفَّض. استخدم <strong>الحاسبة</strong> للحصول على الإجمالي الدقيق حسب صيغتك وفندقك.",
+      "egFaq6Q": "ماذا يشمل بالضبط نظام «الشامل سوفت»؟",
+      "egFaq6A": "تغطّي باقة الشامل سوفت جميع الوجبات (إفطار، غداء، عشاء) ومعظم المشروبات في البحر الأحمر. أمّا في القاهرة فالإقامة بنظام الإفطار. والمشروبات الكحولية وبعض الأنشطة المدفوعة (الغوص، الجولات الاختيارية) على حساب العميل.",
+      "egHotelsPhase": "قارن بين البرامج والفنادق",
+      "egHotelsEyebrow": "البرنامج المناسب، الفندق المناسب",
+      "egHotelsTitle": "5 برامج · <em>بلد واحد</em>",
+      "egHotelsSub": "اختر أولاً صيغتك — القاهرة والغردقة، رحلات عارضة مباشرة إلى الغردقة أو شرم الشيخ، القاهرة وشرم الشيخ مع مصر للطيران، أو شرم الشيخ انطلاقاً من قسنطينة — ثم الفندق. تعرض الحاسبة فوراً السعر الدقيق.",
+      "egTierAll": "الكل",
+      "egTierCaireHurghada": "القاهرة والغردقة",
+      "egTierCharterHurghada": "رحلة عارضة الغردقة",
+      "egTierCharterSharm": "رحلة عارضة شرم الشيخ",
+      "egTierCaireSharm": "القاهرة وشرم الشيخ",
+      "egTierSharmConstantine": "شرم الشيخ · قسنطينة",
+      "egHotelsHint": "نصيحة: اضغط على تبويب برنامج لرؤية فنادقه فقط، ثم اختر بطاقة لحساب سعرك.",
+      "egFromLabel": "ابتداءً من",
+      "egPriceMetaDouble": "للشخص في غرفة مزدوجة",
+      "egSelect": "اختر",
+      "egPillCaire": "القاهرة",
+      "egPillHurghada": "الغردقة",
+      "egPillAquaPark": "مدينة ألعاب مائية",
+      "egPillCharterDirect": "رحلة عارضة مباشرة",
+      "egPillSharm": "شرم الشيخ",
+      "egPill5star": "5★",
+      "egPillSomaBay": "سوما باي",
+      "egPillLuxury": "فاخر",
+      "egPillUltraLuxe": "فاخر للغاية",
+      "egPillEgyptAir": "مصر للطيران",
+      "egPillPlagePrivee": "شاطئ خاص",
+      "egPillResort": "منتجع",
+      "egPillConstantine": "قسنطينة",
+      "egPillWaterWorld": "عالَم الماء",
+      "egCalcPhase": "احسب سعري",
+      "egCalcEyebrow": "الخطوة 1 · جهّز رحلتك",
+      "egCalcTitle": "اختر <em>صيغتك</em>",
+      "egCalcSub": "كل دينار مشروح. اختر إعداداتك واحصل على الإجمالي الدقيق دون مفاجآت.",
+      "egCalcDateLabel": "تاريخ المغادرة",
+      "egCalcDatesNote": "تواريخ إرشادية — تُؤكَّد حسب البرنامج المختار.",
+      "egCalcHotelLabel": "الفندق المختار",
+      "egCalcRoomLabel": "نوع الغرفة",
+      "egRoomDouble": "مزدوجة",
+      "egRoomTriple": "ثلاثية",
+      "egRoomSingle": "فردية",
+      "egCalcGroupLabel": "تركيبة المجموعة",
+      "egStepAdultsH": "البالغون",
+      "egStepAdultsP": "ابتداءً من 12 سنة",
+      "egStepChild1H": "الطفل الأول",
+      "egStepChild1P": "من 2 إلى 11.99 سنة · بسرير",
+      "egStepChild2H": "الطفل الثاني",
+      "egStepChild2P": "من 2 إلى 11.99 سنة · بسرير",
+      "egStepBabyH": "رضيع",
+      "egStepBabyP": "من 0 إلى 2 سنة · بدون سرير",
+      "egCalcTipLabel": "معلومة مفيدة",
+      "egCalcTipText": "تُدفع التأشيرة المصرية عند الوصول حسب التعرفة التي تحدّدها السلطة المختصّة. الجولات الاختيارية (غوص، دراجات رباعية…) غير مشمولة.",
+      "egRecap": "الملخّص",
+      "egRecapEmpty": "اختر فندقاً أعلاه لرؤية التفاصيل.",
+      "egTotalLabel": "الإجمالي التقديري",
+      "egWhySummary": "لماذا هذا السعر؟",
+      "egWhyDetails": "السعر للشخص في غرفة مزدوجة — الطيران (منتظم أو عارض حسب البرنامج)، الإقامة بنظام شامل (سوفت) في البحر الأحمر (إفطار في القاهرة)، التنقّلات والجولات المُرافَقة في القاهرة للصيغ المعنيّة.",
+      "egContinue": "المتابعة إلى الحجز",
+      "egNextStep": "الخطوة التالية: املأ ملفّك أدناه",
+      "egInfoEyebrow": "قبل المغادرة",
+      "egInfoTitle": "كل ما <em>يجب معرفته</em>",
+      "egInfoSub": "الدفع، الإلغاء، إجراءات التأشيرة، التأمين — الشفافية في أربع كتل.",
+      "egInfo1Title": "شروط الدفع",
+      "egInfo1Li1": "<strong>عربون الحجز</strong> · 30% من المبلغ الإجمالي عند التأكيد، يُدفع خلال 48 ساعة بعد الاتفاق عبر واتساب.",
+      "egInfo1Li2": "<strong>الرصيد</strong> · 70% المتبقّية في موعد أقصاه <strong>21 يوماً قبل المغادرة</strong>.",
+      "egInfo1Li3": "<strong>طرق الدفع المقبولة</strong> · تحويل بنكي (BNA, BEA, CPA)، دفع في الوكالة، نقداً. لا دفع بالبطاقة عبر الإنترنت حالياً.",
+      "egInfo1Li4": "<strong>الإيصال</strong> · يُسلَّم إيصال رسمي من أليانس ترافل عند كل دفعة.",
+      "egInfo1Li5": "<strong>عرض السعر صالح</strong> 7 أيام · قد تتغيّر الأسعار حسب توفّر المقاعد الجوية وسعر الصرف.",
+      "egInfo2Title": "شروط الإلغاء",
+      "egInfo2Lede": "الإلغاء من قِبل العميل (حسب المهلة قبل المغادرة):",
+      "egInfo2Li1": "<strong>≥ 60 يوماً قبل المغادرة</strong> · استرداد كامل ما عدا رسوم المعالجة (5.000 دج).",
+      "egInfo2Li2": "<strong>30 إلى 59 يوماً</strong> · اقتطاع 30% من المبلغ الإجمالي.",
+      "egInfo2Li3": "<strong>14 إلى 29 يوماً</strong> · اقتطاع 60% من المبلغ الإجمالي.",
+      "egInfo2Li4": "<strong>7 إلى 13 يوماً</strong> · اقتطاع 80%.",
+      "egInfo2Li5": "<strong>&lt; 7 أيام</strong> · لا استرداد (رسوم الطيران والفنادق نهائية).",
+      "egInfo2Note": "<strong>الإلغاء من قِبل شركة الطيران أو الفندق</strong> · استرداد كامل أو إعادة توجيه دون رسوم إضافية من جانبنا.<br><strong>تعديل التاريخ</strong> ممكن حتى 30 يوماً قبل المغادرة، رهناً بالتوفّر وفارق السعر.",
+      "egInfo3Title": "الإجراءات · تأشيرة مصر",
+      "egInfo3Lede": "<strong>التأشيرة المصرية — إجراء مُؤطَّر</strong>",
+      "egInfo3Li1": "<strong>رسالة الضمان</strong> · تقدّم أليانس ترافل رسالة الضمان اللازمة لملفّك.",
+      "egInfo3Li2": "<strong>التأشيرة عند الوصول</strong> · تُدفع التأشيرة المصرية مباشرةً عند الوصول، من قِبل العميل، حسب التعرفة التي تحدّدها السلطة المختصّة.",
+      "egInfo3Li3": "<strong>جواز السفر</strong> · صالح لمدّة <strong>6 أشهر على الأقل بعد تاريخ العودة</strong>، وصفحتان فارغتان كحدّ أدنى.",
+      "egInfo3Li4": "<strong>الوثائق</strong> · جواز السفر + تذكرة العودة. تُملأ استمارة الهجرة في الطائرة أو عند الوصول.",
+      "egInfo3Li5": "<strong>الرضّع / الأطفال</strong> · الشروط نفسها. يجب أن يظهر الأطفال في جواز سفرهم الخاص.",
+      "egInfo4Title": "تأمين السفر",
+      "egInfo4Lede": "تأمين السفر <strong>غير مشمول</strong> في الباقة لكنّه <strong>موصى به بشدّة</strong> — خاصّةً للرحلات الطويلة المدى.",
+      "egInfo4Li1": "<strong>التغطية الموصى بها</strong> · نفقات طبية طارئة (≥ 100.000 يورو)، إجلاء طبّي، فقدان/سرقة الأمتعة، إلغاء الرحلة.",
+      "egInfo4Li2": "<strong>التكلفة التقديرية</strong> · من 1.500 إلى 4.000 دج للشخص حسب المدّة والوجهة.",
+      "egInfo4Li3": "<strong>أين تشترك</strong> · مؤمّنون جزائريون (CAAR, SAA, CAAT) أو شركات دولية (Mondial Assistance, Europ Assistance).",
+      "egInfo4Li4": "<strong>عند الطلب</strong>، يمكن لأليانس ترافل أن تُرشدك إلى شريك تأمين يقدّم صيغ سفر.",
+      "egRelatedEyebrow": "قد يعجبك أيضاً",
+      "egRelatedTitle": "واصل <em>اكتشافك</em>",
+      "egRel1Flag": "صيف 2026",
+      "egRel1Title": "تونس · بحر وشمس",
+      "egRel1Price": "ابتداءً من <strong>36.000 دج</strong>",
+      "egRel2Flag": "جوان–أكتوبر 2026",
+      "egRel2Title": "أذربيجان · باكو وغابالا",
+      "egRel2Price": "ابتداءً من <strong>249.900 دج</strong>",
+      "egRelCta": "شاهد هذه الرحلة",
+      "egFinalScarcity": "المقاعد محدودة · مغادرات الصيف تمتلئ بسرعة",
+      "egFinalTitle": "مستعدّ لرؤية<br><em>الأهرامات</em>؟",
+      "egFinalSub": "اختر برنامجك، واحجز مكانك في أقلّ من 5 دقائق. يؤكّد فريقنا التوفّر فوراً عبر واتساب.",
+      "egFinalWa": "احجز عبر واتساب",
+      "egFinalAddress": "حيّ 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
+      "egStickyLabel": "الإجمالي التقديري",
+      "egStickyCta": "احجز"
+    }
+  }
+}

@@ -1,0 +1,1446 @@
+{
+  "meta": {
+    "title": "Azerbaïdjan — Alliance Travel · 2026",
+    "description": "Voyage guidé en Azerbaïdjan. 7 nuits à Bakou & Gabala, vol Turkish Airlines, visa inclus. Départs juin–octobre 2026 depuis Alger. Dès 227.000 DA.",
+    "ogTitle": "Azerbaïdjan · Bakou & Gabala — Alliance Travel",
+    "ogDescription": "La Cité du Feu et les montagnes du Caucase. 5 nuits Bakou + 2 nuits Gabala, vol Turkish Airlines, visa électronique inclus. Départs avr-juil 2026.",
+    "themeColor": "#3AAFAF",
+    "ogImage": "og-azerbaidjan.jpg"
+  },
+  "accent": {
+    "color": "#3AAFAF",
+    "dim": "rgba(58,175,175,.13)",
+    "glow": "rgba(58,175,175,.22)",
+    "heroGradient": "linear-gradient(145deg,#050a14 0%,#080e1a 55%,#050810 100%)"
+  },
+  "slug": "azerbaidjan",
+  "jsonLd": {
+    "breadcrumbName": "Azerbaïdjan · Bakou & Gabala"
+  },
+  "seo": {
+    "tripName": "Azerbaïdjan · Bakou & Gabala — Alliance Travel",
+    "tripDescription": "La Cité du Feu et les montagnes du Caucase. 5 nuits Bakou + 2 nuits Gabala, vol Turkish Airlines, visa électronique inclus. Départs avr-juil 2026.",
+    "offerPrice": "219000",
+    "faqJsonLd": [
+      {
+        "name": "Comment fonctionne le visa électronique ?",
+        "text": "L'Azerbaïdjan délivre un visa électronique (e-Visa) très facilement. Alliance Travel prend en charge toute la procédure et le coût du visa est inclus dans votre package. Vous n'avez rien à faire."
+      },
+      {
+        "name": "Que comprend la formule petit-déjeuner ?",
+        "text": "Le programme est en pension petit-déjeuner dans les deux hôtels. Les déjeuners et dîners sont libres — l'accompagnateur vous guide vers les meilleures adresses locales à des prix très abordables."
+      },
+      {
+        "name": "Comment se font les transferts entre villes ?",
+        "text": "Tous les transferts (aéroport–hôtel, Bakou–Sheki–Gabala–Shahdag) se font en bus touristique climatisé avec guide. Aucun frais supplémentaire — tout est inclus dans le package."
+      },
+      {
+        "name": "Combien paient les enfants ?",
+        "text": "Enfant –5 ans partageant la chambre de 2 adultes : 129.000 DA . Enfant –12 ans (lit supplémentaire inclus) : 213.000 DA . Nouveau-né (0–2 ans) : 35.000 DA ."
+      }
+    ]
+  },
+  "region": "azerbaijan",
+  "dataPage": "azerbaidjan",
+  "k": {
+    "navAttrs": "",
+    "navListRole": "",
+    "heroKeys": "\n         data-eyebrow-key=\"azHeroEyebrow\"\n         data-title-pre-key=\"azHeroTitlePre\"\n         data-title-post-key=\"azHeroTitlePost\"\n         data-date-key=\"azHeroDate\"",
+    "heroH1": " data-i18n-html=\"azHeroH1\"",
+    "heroLede": " data-i18n=\"azHeroLede\"",
+    "heroPriceUnit": " data-i18n=\"azHeroPriceUnit\"",
+    "heroFineprint": "",
+    "heroCtaCalc": "",
+    "hlSection": "",
+    "itinSection": "",
+    "itinPhase": " data-i18n=\"azPhase1\"",
+    "itinEyebrow": " data-i18n=\"azItinEyebrow\"",
+    "itinTitle": " data-i18n-html=\"azItinTitle\"",
+    "mapEyebrow": " data-i18n=\"azMapEyebrow\"",
+    "mapTitle": " data-i18n-html=\"azMapTitle\"",
+    "mapSub": " data-i18n=\"azMapSub\"",
+    "mapLoading": " data-i18n=\"azMapLoading\"",
+    "legendHotels": " data-i18n=\"azMapLegHotels\"",
+    "legendSites": " data-i18n=\"azMapLegSites\"",
+    "legendTours": " data-i18n=\"azMapLegTours\"",
+    "trustEyebrow": " data-i18n=\"azTrustEyebrow\"",
+    "trustTitle": " data-i18n-html=\"azTrustTitle\"",
+    "inclEyebrow": " data-i18n=\"azInclEyebrow\"",
+    "inclTitle": " data-i18n-html=\"azInclTitle\"",
+    "inclSub": " data-i18n=\"azInclSub\"",
+    "inclColTitle": " data-i18n-html=\"azInclColTitle\"",
+    "inclColCount": " data-i18n=\"azInclColCount\"",
+    "exclColTitle": " data-i18n-html=\"azExclColTitle\"",
+    "exclColCount": " data-i18n=\"azExclColCount\"",
+    "faqSection": "",
+    "faqEyebrow": " data-i18n=\"azFaqEyebrow\"",
+    "faqTitle": " data-i18n-html=\"azFaqTitle\"",
+    "hotelsSection": "",
+    "hotelsPhase": " data-i18n=\"azPhase2\"",
+    "hotelsEyebrow": " data-i18n=\"azHotelsEyebrow\"",
+    "hotelsTitle": " data-i18n-html=\"azHotelsTitle\"",
+    "hotelsSub": " data-i18n=\"azHotelsSub\"",
+    "tierTabsAria": "",
+    "hotelGridAttrs": "",
+    "calcSection": "",
+    "calcPhase": " data-i18n=\"azPhase3\"",
+    "calcEyebrow": " data-i18n=\"azCalcEyebrow\"",
+    "calcTitle": " data-i18n-html=\"azCalcTitle\"",
+    "calcFormAttrs": "",
+    "calcDateLabel": " data-i18n=\"azCalcDateLabel\"",
+    "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
+    "calcSelectLabel": " data-i18n=\"azCalcHotelLabel\"",
+    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
+    "calcRoomLabel": " data-i18n=\"azCalcRoomLabel\"",
+    "segmentedAttrs": "",
+    "calcTravLabel": " data-i18n=\"azCalcTravellersLabel\"",
+    "breakdownAttrs": "",
+    "recap": " data-i18n=\"azBreakdownHeader\"",
+    "recapEmpty": " data-i18n=\"azBreakdownEmpty\"",
+    "totalLabel": " data-i18n=\"azBreakdownTotal\"",
+    "whyAttrs": "",
+    "continueA": " data-i18n-html=\"azCalcContinue\"",
+    "continue": "",
+    "nextStep": " data-i18n=\"azCalcNextStep\"",
+    "infoEyebrow": " data-i18n=\"azInfoEyebrow\"",
+    "infoTitle": " data-i18n-html=\"azInfoTitle\"",
+    "infoSub": " data-i18n=\"azInfoSub\"",
+    "relEyebrow": " data-i18n=\"azRelatedEyebrow\"",
+    "relTitle": " data-i18n-html=\"azRelatedTitle\"",
+    "finalSection": "",
+    "finalScarcity": " data-i18n-html=\"azFinalScarcity\"",
+    "finalTitle": " data-i18n-html=\"azFinalTitle\"",
+    "finalSub": " data-i18n=\"azFinalSub\"",
+    "footerAttrs": "",
+    "stickyAria": "",
+    "stickyLabel": " data-i18n=\"azStickyLabel\"",
+    "stickyCta": " data-i18n=\"azStickyCta\""
+  },
+  "nav": {
+    "ctaHtml": "Réserver"
+  },
+  "hero": {
+    "bg": "../assets/images/heroes-v2/hero__azerbaidjan--bg.jpg",
+    "fg": "../assets/images/heroes-v2/hero__azerbaidjan--fg.jpg",
+    "titlePre": "Bakou",
+    "titlePost": "& Gabala",
+    "eyebrow": "Voyage guidé · Départ Alger · 2026",
+    "date": "7 nuits · 5 Bakou + 2 Gabala · Visa inclus",
+    "prompt": "Faites défiler pour découvrir",
+    "skip": "Passer",
+    "h1Pre": "Azerbaïdjan ",
+    "h1Em": "Bakou & Gabala",
+    "lede": "La Cité du Feu rencontre les montagnes du Caucase. 5 nuits dans la capitale moderne de Bakou, 2 nuits au cœur des sommets de Gabala. Visa électronique inclus.",
+    "priceFrom": "249.900 DA",
+    "priceUnit": "par personne · chambre double",
+    "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation."
+  },
+  "highlights": [
+    {
+      "iconSvg": "<path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>",
+      "kLabel": " data-i18n=\"azHl1Label\"",
+      "label": "Ville moderne",
+      "kTitle": " data-i18n=\"azHl1Title\"",
+      "title": "Bakou — 5 nuits",
+      "kBody": " data-i18n=\"azHl1Body\"",
+      "body": "Vieille Ville, Maiden Tower, Heydar Aliyev Center, Baku Boulevard, Little Venice Baku."
+    },
+    {
+      "iconSvg": "<path d=\"M8 3H2l3 7H2l10 11-2-9h3z\"/>",
+      "kLabel": " data-i18n=\"azHl2Label\"",
+      "label": "Feu Éternel",
+      "kTitle": " data-i18n-html=\"azHl2Title\"",
+      "title": "Yanar Dag &amp; Ateshgah",
+      "kBody": " data-i18n=\"azHl2Body\"",
+      "body": "Temple du Feu Ateshgah, Montagne de Feu (Yanar Dag), volcans de boue de Gobustan."
+    },
+    {
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kLabel": " data-i18n=\"azHl3Label\"",
+      "label": "Montagnes",
+      "kTitle": " data-i18n=\"azHl3Title\"",
+      "title": "Gabala — 2 nuits",
+      "kBody": " data-i18n=\"azHl3Body\"",
+      "body": "Téléphérique de Tufandag, lac de Nohur, Sheki Khan's Palace, Caravanserai historique."
+    },
+    {
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4l3 3\"/>",
+      "kLabel": " data-i18n=\"azHl4Label\"",
+      "label": "Shahdag",
+      "kTitle": " data-i18n=\"azHl4Title\"",
+      "title": "Téléphérique inclus",
+      "kBody": " data-i18n=\"azHl4Body\"",
+      "body": "Transfert + téléphérique Shahdag Mountain Resort inclus dans le programme."
+    }
+  ],
+  "itinerary": {
+    "phaseLabel": "Découvrir",
+    "eyebrow": "8 jours · 7 nuits",
+    "titleHtml": "Votre <em>programme</em>",
+    "days": [
+      {
+        "active": true,
+        "kNode": "",
+        "node": "J1",
+        "kLabel": " data-i18n=\"azDay1Label\"",
+        "dayLabel": "Jour 1",
+        "kTitle": " data-i18n=\"azDay1Title\"",
+        "title": "Arrivée à Bakou",
+        "kAct": " data-i18n=\"azDay1Acts\"",
+        "activities": "Vol ALG–IST–GYD. Accueil, transfert Hilton Garden Inn. Check-in et repos."
+      },
+      {
+        "active": false,
+        "aosDelay": 0,
+        "kNode": "",
+        "node": "J2",
+        "kLabel": " data-i18n=\"azDay2Label\"",
+        "dayLabel": "Jour 2",
+        "kTitle": " data-i18n=\"azDay2Title\"",
+        "title": "Bakou Centre",
+        "kAct": " data-i18n=\"azDay2Acts\"",
+        "activities": "Nizami Street, Fountain Square, Icherisheher (Vieille Ville), Maiden Tower, Palace of the Shirvanshahs, Baku Boulevard, Little Venice Baku.",
+        "tags": [
+          {
+            "k": " data-i18n=\"azDay2Tag1\"",
+            "t": "Vieille Ville"
+          },
+          {
+            "k": "",
+            "t": "Maiden Tower"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 80,
+        "kNode": "",
+        "node": "J3",
+        "kLabel": " data-i18n=\"azDay3Label\"",
+        "dayLabel": "Jour 3",
+        "kTitle": " data-i18n-html=\"azDay3Title\"",
+        "title": "Heydar Aliyev Center &amp; Shopping",
+        "kAct": " data-i18n=\"azDay3Acts\"",
+        "activities": "Upland Park (vue panoramique), Heydar Aliyev Center, Deniz Mall."
+      },
+      {
+        "active": false,
+        "aosDelay": 160,
+        "kNode": "",
+        "node": "J4",
+        "kLabel": " data-i18n=\"azDay4Label\"",
+        "dayLabel": "Jour 4",
+        "kTitle": " data-i18n-html=\"azDay4Title\"",
+        "title": "Péninsule d'Absheron &amp; Gobustan",
+        "kAct": " data-i18n=\"azDay4Acts\"",
+        "activities": "Ateshgah Fire Temple (Temple du Feu), Yanar Dag (Montagne de Feu), Gobustan National Park, Gobustan Mud Volcanoes.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Yanar Dag"
+          },
+          {
+            "k": "",
+            "t": "Gobustan"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 240,
+        "kNode": "",
+        "node": "J5",
+        "kLabel": " data-i18n=\"azDay5Label\"",
+        "dayLabel": "Jour 5",
+        "kTitle": " data-i18n=\"azDay5Title\"",
+        "title": "Sortie Sheki",
+        "kAct": " data-i18n=\"azDay5Acts\"",
+        "activities": "Sheki Khan's Palace, Sheki Caravanserai, Panorama Park, boutiques de sucreries traditionnelles de Sheki.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Sheki Palace"
+          },
+          {
+            "k": "",
+            "t": "Caravanserai"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 320,
+        "kNode": "",
+        "node": "J6",
+        "kLabel": " data-i18n=\"azDay6Label\"",
+        "dayLabel": "Jour 6–7",
+        "kTitle": " data-i18n-html=\"azDay6Title\"",
+        "title": "Gabala &amp; Shahdag",
+        "kAct": " data-i18n=\"azDay6Acts\"",
+        "activities": "Transfert à Gabala – Yengice Hotel 5★. Tufandag Mountain Resort (téléphérique inclus), lac de Nohur. Excursion Shahdag Resort.",
+        "tags": [
+          {
+            "k": "",
+            "t": "Téléphérique"
+          },
+          {
+            "k": "",
+            "t": "Nohur Lake"
+          },
+          {
+            "k": "",
+            "t": "Shahdag"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 400,
+        "kNode": "",
+        "node": "J8",
+        "kLabel": " data-i18n=\"azDay8Label\"",
+        "dayLabel": "Jour 8",
+        "kTitle": " data-i18n=\"azDay8Title\"",
+        "title": "Retour à Alger",
+        "kAct": " data-i18n=\"azDay8Acts\"",
+        "activities": "Petit-déjeuner, transfert aéroport de Bakou, vol GYD–IST–ALG."
+      }
+    ]
+  },
+  "tripMap": {
+    "eyebrow": "Votre voyage en un coup d'œil",
+    "titleHtml": "L'itinéraire <em>sur la carte</em>",
+    "subHead": "Bakou, Sheki, Gabala — tous les hôtels, sites et excursions de votre programme de 8 jours.",
+    "ariaLabel": "Carte de l'itinéraire Azerbaïdjan",
+    "subFallback": "Bakou · Vieille Ville · Yanar Dag · Sheki · Gabala · Tufandag",
+    "legendHotels": "Hôtels",
+    "legendSites": "Sites visités",
+    "legendTours": "Excursions guidées",
+    "data": {
+      "name": "Azerbaïdjan · Bakou & Gabala",
+      "hotels": [
+        {
+          "id": "hilton",
+          "name": "Hilton Garden Inn Bakou",
+          "loc": [
+            49.847,
+            40.371
+          ],
+          "stars": 4,
+          "area": "Centre de Bakou"
+        },
+        {
+          "id": "yengice",
+          "name": "Yengice Hotel",
+          "loc": [
+            47.84,
+            40.971
+          ],
+          "stars": 5,
+          "area": "Gabala"
+        }
+      ],
+      "sites": [
+        {
+          "name": "Maiden Tower",
+          "loc": [
+            49.838,
+            40.366
+          ],
+          "day": 2,
+          "featured": true
+        },
+        {
+          "name": "Palace of the Shirvanshahs",
+          "loc": [
+            49.834,
+            40.366
+          ],
+          "day": 2
+        },
+        {
+          "name": "Fountain Square",
+          "loc": [
+            49.836,
+            40.371
+          ],
+          "day": 2
+        },
+        {
+          "name": "Nizami Street",
+          "loc": [
+            49.851,
+            40.371
+          ],
+          "day": 2
+        },
+        {
+          "name": "Baku Boulevard",
+          "loc": [
+            49.84,
+            40.358
+          ],
+          "day": 2
+        },
+        {
+          "name": "Little Venice Baku",
+          "loc": [
+            49.853,
+            40.355
+          ],
+          "day": 2
+        },
+        {
+          "name": "Heydar Aliyev Center",
+          "loc": [
+            49.867,
+            40.395
+          ],
+          "day": 3,
+          "featured": true
+        },
+        {
+          "name": "Upland Park (vue panoramique)",
+          "loc": [
+            49.84,
+            40.355
+          ],
+          "day": 3
+        },
+        {
+          "name": "Yanar Dag (Montagne de Feu)",
+          "loc": [
+            49.89,
+            40.502
+          ],
+          "day": 4,
+          "featured": true
+        },
+        {
+          "name": "Ateshgah Fire Temple",
+          "loc": [
+            50.008,
+            40.413
+          ],
+          "day": 4
+        },
+        {
+          "name": "Gobustan National Park",
+          "loc": [
+            49.402,
+            40.121
+          ],
+          "day": 4,
+          "featured": true
+        },
+        {
+          "name": "Gobustan Mud Volcanoes",
+          "loc": [
+            49.456,
+            40.09
+          ],
+          "day": 4
+        },
+        {
+          "name": "Sheki Khan's Palace",
+          "loc": [
+            47.198,
+            41.198
+          ],
+          "day": 5,
+          "featured": true
+        },
+        {
+          "name": "Sheki Caravanserai",
+          "loc": [
+            47.197,
+            41.197
+          ],
+          "day": 5
+        },
+        {
+          "name": "Lac de Nohur",
+          "loc": [
+            47.872,
+            40.911
+          ],
+          "day": "6-7"
+        },
+        {
+          "name": "Shahdag Mountain Resort",
+          "loc": [
+            48,
+            41.265
+          ],
+          "day": "6-7"
+        }
+      ],
+      "tours": [
+        {
+          "name": "Tufandag Téléphérique",
+          "loc": [
+            47.823,
+            40.984
+          ],
+          "day": "6-7",
+          "note": "Téléphérique panoramique inclus"
+        }
+      ],
+      "hubs": [
+        {
+          "name": "Bakou",
+          "loc": [
+            49.867,
+            40.395
+          ],
+          "days": "J1–J5"
+        },
+        {
+          "name": "Gabala",
+          "loc": [
+            47.84,
+            40.971
+          ],
+          "days": "J6–J7"
+        }
+      ],
+      "routes": [
+        {
+          "from": [
+            49.847,
+            40.371
+          ],
+          "to": [
+            47.84,
+            40.971
+          ],
+          "label": "Bakou → Gabala",
+          "type": "road"
+        },
+        {
+          "from": [
+            49.847,
+            40.371
+          ],
+          "to": [
+            47.198,
+            41.198
+          ],
+          "label": "Excursion Sheki",
+          "type": "road",
+          "lift": 0.3
+        }
+      ]
+    }
+  },
+  "trust": {
+    "stats": [
+      {
+        "kNum": "",
+        "num": "1.2K+",
+        "k": " data-i18n=\"azStat1\"",
+        "label": "Voyageurs guidés depuis 2019"
+      },
+      {
+        "kNum": "",
+        "num": "98%",
+        "k": " data-i18n=\"azStat2\"",
+        "label": "Taux de satisfaction"
+      },
+      {
+        "kNum": "",
+        "num": "11",
+        "k": " data-i18n=\"azStat3\"",
+        "label": "Départs Bakou en 2026"
+      },
+      {
+        "kNum": "",
+        "num": "5",
+        "k": " data-i18n=\"azStat4\"",
+        "label": "Hôtels triés au choix"
+      }
+    ],
+    "testimonials": [
+      {
+        "kText": " data-i18n=\"azTesti1Text\"",
+        "text": "\"Bakou nous a bluffés — la vieille ville, les Tours de Flamme la nuit, Gabala dans la montagne. Tout était cadré, on n'a jamais eu à chercher quoi que ce soit.\"",
+        "initials": "RH",
+        "name": "Rania H.",
+        "kTrip": " data-i18n=\"azTesti1Trip\"",
+        "trip": "Bordj Bou Arreridj · Voyage Azerbaïdjan 2025"
+      },
+      {
+        "kText": " data-i18n=\"azTesti2Text\"",
+        "text": "\"Premier voyage hors d'Algérie. Le visa électronique géré, les transferts impeccables, l'accompagnateur francophone toujours disponible. Une vraie tranquillité.\"",
+        "initials": "MT",
+        "name": "Mohamed T.",
+        "kTrip": " data-i18n=\"azTesti2Trip\"",
+        "trip": "Constantine · Voyage Bakou 2025"
+      },
+      {
+        "kText": " data-i18n=\"azTesti3Text\"",
+        "text": "\"Voyage en couple. Hôtel Boulevard parfait, vue mer Caspienne. Les excursions à Gabala et Shamakhi étaient un highlight. Le rapport qualité-prix est imbattable.\"",
+        "initials": "LK",
+        "name": "Leïla K.",
+        "kTrip": " data-i18n=\"azTesti3Trip\"",
+        "trip": "Sétif · Voyage Azerbaïdjan 2024"
+      }
+    ]
+  },
+  "inclus": {
+    "includedCount": "10 prestations couvertes",
+    "included": [
+      {
+        "k": " data-i18n-html=\"azInclItem1\"",
+        "t": "Vol <strong>Turkish Airlines</strong> via Istanbul ALG–IST–GYD aller-retour"
+      },
+      {
+        "k": " data-i18n-html=\"azInclItem2\"",
+        "t": "<strong>Visa électronique</strong> entièrement inclus"
+      },
+      {
+        "k": " data-i18n=\"azInclItem3\"",
+        "t": "Tous les transferts en bus touristique climatisé"
+      },
+      {
+        "k": " data-i18n-html=\"azInclHotel1\"",
+        "t": "<strong>5 nuits</strong> Bakou — Hilton Garden Inn 4★ (petit-déjeuner)"
+      },
+      {
+        "k": " data-i18n-html=\"azInclHotel2\"",
+        "t": "<strong>2 nuits</strong> Gabala — Yengice Hotel 5★ (petit-déjeuner)"
+      },
+      {
+        "k": " data-i18n=\"azInclItem6\"",
+        "t": "Excursions Bakou : Vieille Ville · Maiden Tower · Heydar Aliyev Center · Baku Boulevard"
+      },
+      {
+        "k": " data-i18n=\"azInclItem7\"",
+        "t": "Sortie Gobustan : National Park · Volcans de boue · Yanar Dag"
+      },
+      {
+        "k": " data-i18n=\"azInclItem8\"",
+        "t": "Sortie Sheki : Khan's Palace · Caravanserai · Panorama Park"
+      },
+      {
+        "k": " data-i18n-html=\"azInclItem9\"",
+        "t": "<strong>Sortie Shahdag</strong> : transfert + téléphérique inclus"
+      },
+      {
+        "k": " data-i18n=\"azInclItem10\"",
+        "t": "Accompagnateur Alliance Travel + guide local arabophone"
+      }
+    ],
+    "excludedCount": "6 éléments hors forfait",
+    "excluded": [
+      {
+        "k": " data-i18n=\"azExclItem1\"",
+        "t": "Repas (déjeuner et dîner) — formule petit-déjeuner uniquement"
+      },
+      {
+        "k": " data-i18n=\"azExclItem2\"",
+        "t": "Boissons"
+      },
+      {
+        "k": " data-i18n=\"azExclItem3\"",
+        "t": "Pourboires"
+      },
+      {
+        "k": " data-i18n=\"azExclItem4\"",
+        "t": "Excursions optionnelles supplémentaires (selon saison)"
+      },
+      {
+        "k": " data-i18n=\"azExclItem5\"",
+        "t": "Assurance voyage personnelle"
+      },
+      {
+        "k": " data-i18n=\"azExclItem6\"",
+        "t": "Dépenses personnelles"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "open": true,
+      "kBtn": " data-i18n=\"azFaqQ1\"",
+      "kQ": "",
+      "question": "Comment fonctionne le visa électronique ?",
+      "kA": " data-i18n-html=\"azFaqA1\"",
+      "answerHtml": "L'Azerbaïdjan délivre un visa électronique (e-Visa) très facilement. Alliance Travel prend en charge toute la procédure et le coût du visa est <strong>inclus</strong> dans votre package. Vous n'avez rien à faire."
+    },
+    {
+      "open": false,
+      "aosDelay": 0,
+      "kBtn": " data-i18n=\"azFaqQ2\"",
+      "kQ": "",
+      "question": "Que comprend la formule petit-déjeuner ?",
+      "kA": " data-i18n-html=\"azFaqA2\"",
+      "answerHtml": "Le programme est en <strong>pension petit-déjeuner</strong> dans les deux hôtels. Les déjeuners et dîners sont libres — l'accompagnateur vous guide vers les meilleures adresses locales à des prix très abordables."
+    },
+    {
+      "open": false,
+      "aosDelay": 50,
+      "kBtn": " data-i18n=\"azFaqQ3\"",
+      "kQ": "",
+      "question": "Comment se font les transferts entre villes ?",
+      "kA": " data-i18n-html=\"azFaqA3\"",
+      "answerHtml": "Tous les transferts (aéroport–hôtel, Bakou–Sheki–Gabala–Shahdag) se font en <strong>bus touristique climatisé</strong> avec guide. Aucun frais supplémentaire — tout est inclus dans le package."
+    },
+    {
+      "open": false,
+      "aosDelay": 100,
+      "kBtn": " data-i18n=\"azFaqQ4\"",
+      "kQ": "",
+      "question": "Combien paient les enfants ?",
+      "kA": " data-i18n-html=\"azFaqA4\"",
+      "answerHtml": "Enfant –5 ans partageant la chambre de 2 adultes : <strong>129.000 DA</strong>. Enfant –12 ans (lit supplémentaire inclus) : <strong>213.000 DA</strong>. Nouveau-né (0–2 ans) : <strong>35.000 DA</strong>."
+    }
+  ],
+  "hotelsSection": {
+    "phaseLabel": "Comparer les hôtels",
+    "eyebrow": "Hébergement · 7 nuits",
+    "titleHtml": "5 nuits Bakou · <em>2 nuits Gabala</em>",
+    "sub": "Programme en pension petit-déjeuner. Tous les transferts inter-villes en bus touristique inclus.",
+    "tierTabs": [
+      {
+        "active": true,
+        "tier": "all",
+        "tier2": "all",
+        "k": " data-i18n=\"azTierAll\"",
+        "label": "Tous les hôtels"
+      },
+      {
+        "active": false,
+        "tier": "medium",
+        "tier2": "medium",
+        "k": " data-i18n=\"azTierMedium\"",
+        "label": "4★ Bakou"
+      },
+      {
+        "active": false,
+        "tier": "premium",
+        "tier2": "premium",
+        "k": " data-i18n=\"azTierPremium\"",
+        "label": "5★ Gabala"
+      }
+    ],
+    "hint": false
+  },
+  "hotels": [
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "hilton",
+      "tier": "medium",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__hilton-garden-inn-baku.jpg",
+      "alt": "Hilton Garden Inn Bakou",
+      "ribbonClass": "medium",
+      "kRibbon": " data-i18n=\"azCard1Ribbon\"",
+      "ribbon": "4★ · Bakou",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Hilton Garden Inn",
+      "amenities": [
+        {
+          "k": " data-i18n=\"azCard1Amen1\"",
+          "t": "Centre-ville"
+        },
+        {
+          "k": " data-i18n=\"azAmenBreakfast\"",
+          "t": "Petit-déj."
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"azCardFrom\"",
+      "priceLabel": "À partir de",
+      "kPrice": "",
+      "priceFrom": "249.900 DA",
+      "kMeta": " data-i18n=\"azCard1PriceMeta\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"azCardSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "yengice",
+      "tier": "premium",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__yengice-gabala.jpg",
+      "alt": "Yengice Hotel",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"azCard2Ribbon\"",
+      "ribbon": "5★ · Gabala",
+      "stars": 5,
+      "starsHtml": "★★★★★",
+      "name": "Yengice Hotel",
+      "amenities": [
+        {
+          "k": " data-i18n=\"azCard2Amen1\"",
+          "t": "Vue Montagne"
+        },
+        {
+          "k": " data-i18n=\"azCard2Amen2\"",
+          "t": "Resort"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"azCard2PriceLabel\"",
+      "priceLabel": "Inclus dans le package",
+      "kPrice": " data-i18n=\"azCard2PriceVal\"",
+      "priceFrom": "2 nuits Gabala",
+      "kMeta": " data-i18n=\"azCard2PriceMeta\"",
+      "priceMeta": "tarif unifié — voir calculateur",
+      "kCta": " data-i18n=\"azCardSelect\""
+    }
+  ],
+  "calcUi": {
+    "phaseLabel": "Calculer mon prix",
+    "eyebrow": "Étape 1 · Configurez votre voyage",
+    "titleHtml": "Choisissez <em>votre formule</em>",
+    "dateLabel": "Date de départ",
+    "dateChips": [
+      {
+        "active": true,
+        "value": "03 – 11 Juillet 2026",
+        "k": "",
+        "label": "3–11 Juil 2026"
+      },
+      {
+        "active": false,
+        "value": "10 – 18 Juillet 2026",
+        "k": "",
+        "label": "10–18 Juil 2026"
+      },
+      {
+        "active": false,
+        "value": "17 – 25 Juillet 2026",
+        "k": "",
+        "label": "17–25 Juil 2026"
+      },
+      {
+        "active": false,
+        "value": "24 Juillet – 01 Août 2026",
+        "k": "",
+        "label": "24 Juil–1 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "31 Juillet – 08 Août 2026",
+        "k": "",
+        "label": "31 Juil–8 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "07 – 15 Août 2026",
+        "k": "",
+        "label": "7–15 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "14 – 22 Août 2026",
+        "k": "",
+        "label": "14–22 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "21 – 29 Août 2026",
+        "k": "",
+        "label": "21–29 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "28 Août – 05 Septembre 2026",
+        "k": "",
+        "label": "28 Août–5 Sep 2026"
+      },
+      {
+        "active": false,
+        "value": "04 – 12 Septembre 2026",
+        "k": "",
+        "label": "4–12 Sep 2026"
+      },
+      {
+        "active": false,
+        "value": "10 – 18 Septembre 2026",
+        "k": "",
+        "label": "10–18 Sep 2026"
+      }
+    ],
+    "selectLabel": "Hôtel",
+    "optionsHtml": "            <option value=\"hilton\">Hilton Garden Inn 4★ Bakou + Yengice Thermal 5★ Gabala — 249.900 DA</option>\n",
+    "roomLabel": "Type de chambre",
+    "roomOptions": [
+      {
+        "active": true,
+        "room": "double",
+        "k": " data-i18n=\"azRoomDouble\"",
+        "label": "Double"
+      },
+      {
+        "active": false,
+        "room": "triple",
+        "k": " data-i18n=\"azRoomTriple\"",
+        "label": "Triple"
+      },
+      {
+        "active": false,
+        "room": "single",
+        "k": " data-i18n=\"azRoomSingle\"",
+        "label": "Individuelle"
+      }
+    ],
+    "travellersLabel": "Voyageurs",
+    "steppersHtml": "\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"azStepAdultsTitle\">Adultes</h4><p data-i18n=\"azStepAdultsHint\">À partir de 12 ans</p></div>\n              <div class=\"stepper\"><button class=\"stepper__btn\" id=\"adults-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'adultes\">−</button><span class=\"stepper__val\" id=\"adults-val\">2</span><button class=\"stepper__btn\" id=\"adults-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'adultes\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"azStepChildTitle\">Enfants</h4><p data-i18n=\"azStepChildHint\">−12 ans · lit suppl. · 213.000 DA</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_b\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 1ᵉʳ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 1ᵉʳ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"azStepChild5Title\">Enfants –5 ans</h4><p data-i18n=\"azStepChild5Hint\">–5 ans avec 2 adultes · 129.000 DA</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_a\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 2ᵉ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 2ᵉ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"azStepBabyTitle\">Nouveau-né</h4><p data-i18n=\"azStepBabyHint\">0–2 ans · 35.000 DA</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"baby\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de bébé\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de bébé\">+</button></div>\n            </div>",
+    "noteHtml": "",
+    "emptyMsg": "Configurez votre voyage pour voir le prix.",
+    "whyHtml": "<details><summary data-i18n=\"azBreakdownWhy\">Pourquoi ce prix ?</summary><p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\" data-i18n=\"azBreakdownWhyText\">Prix par personne en chambre double, vol Turkish Airlines via Istanbul ALG–IST–GYD–IST–ALG inclus, visa électronique inclus, 7 nuits petit-déjeuner, tous les transferts en bus touristique, guide arabophone et accompagnateur Alliance Travel.</p></details>",
+    "continueLabel": "Continuer vers la réservation",
+    "nextStep": "Étape suivante : remplissez votre dossier ci-dessous"
+  },
+  "infoBlocks": [
+    {
+      "open": true,
+      "iconSvg": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>",
+      "kTitle": " data-i18n=\"azInfoCard1Title\"",
+      "title": "Conditions de paiement",
+      "list": [
+        {
+          "k": " data-i18n-html=\"azInfoCard1Li1\"",
+          "t": "<strong>Acompte de réservation</strong> · 30 % du montant total au moment de la confirmation, à régler dans les 48 h après accord par WhatsApp."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard1Li2\"",
+          "t": "<strong>Solde</strong> · 70 % restants au plus tard <strong>21 jours avant le départ</strong>."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard1Li3\"",
+          "t": "<strong>Modes acceptés</strong> · Virement bancaire (BNA, BEA, CPA), versement en agence, espèces. Pas de carte bancaire en ligne pour le moment."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard1Li4\"",
+          "t": "<strong>Reçu</strong> · Reçu officiel Alliance Travel remis à chaque versement."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard1Li5\"",
+          "t": "<strong>Devis valable</strong> 7 jours · Les prix peuvent évoluer selon la disponibilité aérienne et le taux de change."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/>",
+      "kTitle": " data-i18n=\"azInfoCard2Title\"",
+      "title": "Conditions d'annulation",
+      "ledeHtml": "Annulation par le client (selon le délai avant départ) :</p>\n            <ul class=\"info-list info-list--tiered\">\n              <li data-i18n-html=\"azInfoCard2Li1\"><strong>≥ 60 jours avant départ</strong> · Remboursement intégral moins frais de dossier (5 000 DA).</li>\n              <li data-i18n-html=\"azInfoCard2Li2\"><strong>30 à 59 jours</strong> · Retenue de 30 % du montant total.</li>\n              <li data-i18n-html=\"azInfoCard2Li3\"><strong>14 à 29 jours</strong> · Retenue de 60 % du montant total.</li>\n              <li data-i18n-html=\"azInfoCard2Li4\"><strong>7 à 13 jours</strong> · Retenue de 80 %.</li>\n              <li data-i18n-html=\"azInfoCard2Li5\"><strong>&lt; 7 jours</strong> · Pas de remboursement (frais aériens et hôteliers définitifs).</li>\n            </ul>\n            <p class=\"info-card__note\" data-i18n-html=\"azInfoCard2Note\">\n              <strong>Annulation par la compagnie aérienne ou l'hôtel</strong> · Remboursement intégral ou re-routing sans frais supplémentaires de notre part.\n              <br>\n              <strong>Modification de date</strong> possible jusqu'à 30 jours avant départ, sous réserve de disponibilité et du différentiel tarifaire.\n            </p>\n          </div>\n        </details>\n\n\n        <details class=\"info-card\">\n          <summary class=\"info-card__head\">\n            <span class=\"info-card__icon\" aria-hidden=\"true\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M7 21v-1a5 5 0 0 1 10 0v1\"/></svg>\n            </span>\n            <span class=\"info-card__title\" data-i18n-html=\"azInfoCard3Title\">Formalités &amp; visa</span>\n            <svg class=\"info-card__chevron\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>\n          </summary>\n          <div class=\"info-card__body\">\n            <p class=\"info-card__lede\" data-i18n-html=\"azInfoCard3Lede\"><strong>Visa électronique Azerbaïdjan — INCLUS</strong>",
+      "kLede": " data-i18n=\"azInfoCard2Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"azInfoCard3Li1\"",
+          "t": "<strong>Visa</strong> · <strong>e-Visa ASAN inclus dans le forfait.</strong> Alliance Travel s'occupe de la demande et vous transmet le visa par email."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard3Li2\"",
+          "t": "<strong>Délai</strong> · Délai de traitement <strong>3 à 5 jours ouvrés</strong>. Nous demandons les copies de passeport au plus tard 21 jours avant le départ."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard3Li3\"",
+          "t": "<strong>Coût visa</strong> · Inclus — vous n'avez rien à payer en plus pour le visa."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard3Li4\"",
+          "t": "<strong>Passeport</strong> · Validité minimum <strong>6 mois après le retour</strong>, 2 pages vierges minimum."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard3Li5\"",
+          "t": "<strong>Documents requis</strong> · Copie scan/photo du passeport en couleur (page d'identité) — c'est tout. Aucun rendez-vous consulaire."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kTitle": " data-i18n=\"azInfoCard4Title\"",
+      "title": "Assurance voyage",
+      "ledeHtml": "\n              L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> — surtout pour les voyages long-courrier.\n            ",
+      "kLede": " data-i18n-html=\"azInfoCard4Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"azInfoCard4Li1\"",
+          "t": "<strong>Couverture conseillée</strong> · Frais médicaux d'urgence (≥ 100 000 €), rapatriement sanitaire, perte/vol de bagages, annulation voyage."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard4Li2\"",
+          "t": "<strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard4Li3\"",
+          "t": "<strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance)."
+        },
+        {
+          "k": " data-i18n-html=\"azInfoCard4Li4\"",
+          "t": "<strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage."
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "slug": "istanbul",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#080610\"/>\n<radialGradient id=\"ist-istanbul-g\" cx=\"50%\" cy=\"70%\" r=\"60%\"><stop offset=\"0\" stop-color=\"#3a1a0a\" stop-opacity=\".8\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#ist-istanbul-g)\"/>\n<ellipse cx=\"50\" cy=\"50\" rx=\"22\" ry=\"18\" fill=\"#1a0820\"/>\n<rect x=\"22\" y=\"40\" width=\"4\" height=\"35\" rx=\"2\" fill=\"#1a0820\"/>\n<rect x=\"74\" y=\"40\" width=\"4\" height=\"35\" rx=\"2\" fill=\"#1a0820\"/>\n<rect x=\"0\" y=\"74\" width=\"100\" height=\"26\" fill=\"#08121e\"/>\n<ellipse cx=\"50\" cy=\"78\" rx=\"44\" ry=\"2\" fill=\"#5B9EC9\" fill-opacity=\".15\"/>\n</svg>",
+      "color": "#5B9EC9",
+      "kFlag": " data-i18n=\"azRelated1Flag\"",
+      "flag": "Septembre–Novembre 2026 · Départ Constantine",
+      "kTitle": "",
+      "title": "Istanbul",
+      "kPrice": " data-i18n-html=\"azRelated1Price\"",
+      "priceHtml": "À partir de <strong>123.000 DA</strong>",
+      "kCtaOuter": " data-i18n-html=\"azRelatedCta\"",
+      "kCta": ""
+    },
+    {
+      "slug": "egypte",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#0d0a05\"/>\n<radialGradient id=\"cs-cairo-sharm-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#C9872E\" stop-opacity=\".4\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#cs-cairo-sharm-g)\"/>\n<polygon points=\"50,15 85,85 15,85\" fill=\"#8B6520\" fill-opacity=\".55\"/>\n<polygon points=\"78,40 95,85 60,85\" fill=\"#7A5818\" fill-opacity=\".5\"/>\n<rect x=\"0\" y=\"80\" width=\"100\" height=\"20\" fill=\"#5C3D12\" fill-opacity=\".4\"/>\n<circle cx=\"80\" cy=\"20\" r=\"6\" fill=\"#FFF4D6\" fill-opacity=\".15\"/>\n</svg>",
+      "color": "#C9872E",
+      "kFlag": " data-i18n=\"azRelated2Flag\"",
+      "flag": "Égypte · Juin 2026",
+      "kTitle": " data-i18n=\"azRelated2Title\"",
+      "title": "Le Caire & Sharm El Sheikh",
+      "kPrice": " data-i18n-html=\"azRelated2Price\"",
+      "priceHtml": "À partir de <strong>190.000 DA</strong>",
+      "kCtaOuter": " data-i18n-html=\"azRelatedCta\"",
+      "kCta": ""
+    }
+  ],
+  "finalCta": {
+    "scarcityHtml": "11 départs en 2026 · Places limitées",
+    "titleHtml": "Découvrez la<br><em>Cité du Feu</em>",
+    "sub": "Bakou by night, les volcans de boue de Gobustan, et le téléphérique de Shahdag — tout ça en 8 jours depuis Alger.",
+    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20voyage%20Azerbaïdjan%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\" data-i18n=\"azFinalWaCta\">Réserver via WhatsApp</a>\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
+    "contactHtml": "<div class=\"contact-item\" data-i18n-html=\"azFinalAddress\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville</div>"
+  },
+  "footer": {
+    "html": "<div class=\"container\"><div class=\"footer-grid\"><div class=\"footer-brand\"><span class=\"footer-logo\">Alliance<span>Travel</span></span><p class=\"footer-tagline\" data-i18n=\"footer.tagline\">Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.</p>\n        <div class=\"footer-social\">\n          <a href=\"https://www.instagram.com/alliance_travel34/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>\n          </a>\n          <a href=\"https://web.facebook.com/Alliance.Mebarkia\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://web.facebook.com/visa.bba.9\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel — Visa BBA\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://www.tiktok.com/@visa.bba34\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z\"/></svg>\n          </a>\n        </div></div><div class=\"footer-col\"><h4>Nos Voyages</h4><a href=\"../egypte/\">Égypte</a><a href=\"../tunisie/\">Tunisie</a><a href=\"../azerbaidjan/\">Azerbaïdjan</a><a href=\"../istanbul/\">Istanbul</a><a href=\"../kuala-lumpur/\">Kuala Lumpur &amp; Langkawi</a><a href=\"../bali/\">Bali</a><a href=\"../vietnam/\">Vietnam</a></div><div class=\"footer-col\"><h4 data-i18n=\"footer.col_contact\">Contact</h4>\n        \n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span data-i18n=\"footer.wa_viber\">WhatsApp / Viber</span></p>\n          <a href=\"https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 860 617</a>\n          <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg><span data-i18n=\"footer.phone\">Téléphone</span></p>\n          <a href=\"https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 267</a>\n          <a href=\"https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 268</a>\n          <a href=\"https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 269</a>\n          <a href=\"https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 869 905</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><span data-i18n=\"footer.address_label\">Adresse</span></p>\n          <p class=\"fs-body-sm u-text-2 u-m-0\">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>\n        </div>\n      </div></div><div class=\"footer-bottom\"><p data-i18n=\"footer.copyright\">© 2026 Alliance Travel · Bordj Bou Arreridj</p><p data-i18n=\"footer.notice\">Prix en DA · Indicatifs · Confirmation à la réservation</p></div></div>"
+  },
+  "tripData": {
+    "name": "Azerbaïdjan 2026 · Bakou & Gabala",
+    "dates": [
+      "03 – 11 Juillet 2026",
+      "10 – 18 Juillet 2026",
+      "17 – 25 Juillet 2026",
+      "24 Juillet – 01 Août 2026",
+      "31 Juillet – 08 Août 2026",
+      "07 – 15 Août 2026",
+      "14 – 22 Août 2026",
+      "21 – 29 Août 2026",
+      "28 Août – 05 Septembre 2026",
+      "04 – 12 Septembre 2026",
+      "10 – 18 Septembre 2026"
+    ],
+    "hotels": [
+      {
+        "id": "hilton",
+        "name": "Hilton Garden Inn 4★ Bakou + Yengice Thermal 5★ Gabala",
+        "prices": {
+          "double": 249900,
+          "triple": 245000,
+          "single": 311000,
+          "child1": 213000,
+          "child2": 129000,
+          "baby": 35000
+        },
+        "why": "Prix par personne, vol Turkish Airlines via Istanbul inclus, visa électronique inclus, 7 nuits petit-déjeuner (5N Hilton Garden Inn Bakou + 2N Yengice Thermal Gabala), tous transferts en bus touristique, guide arabophone, excursions Bakou/Gobustan/Sheki/Shahdag (téléphérique inclus). Enfant −12 ans avec lit supplémentaire 213.000 ; enfant −5 ans partageant la chambre de 2 adultes 129.000."
+      },
+      {
+        "id": "yengice",
+        "name": "Yengice Thermal 5★ Gabala",
+        "prices": {
+          "double": 249900,
+          "triple": 245000,
+          "single": 311000,
+          "child1": 213000,
+          "child2": 129000,
+          "baby": 35000
+        },
+        "why": "Hôtel inclus dans le package global (5N Bakou + 2N Gabala). Prix identique au package standard."
+      }
+    ],
+    "extras": []
+  },
+  "i18n": {
+    "en": {
+      "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
+      "azHeroEyebrow": "Guided tour · Departure from Algiers · 2026",
+      "azHeroTitlePre": "Baku",
+      "azHeroTitlePost": "& Gabala",
+      "azHeroDate": "7 nights · 5 Baku + 2 Gabala · Visa included",
+      "azHeroH1": "Azerbaijan <em>Baku & Gabala</em>",
+      "azHeroLede": "Where the City of Fire meets the Caucasus mountains. 5 nights in the modern capital of Baku, 2 nights in the heart of the Gabala peaks. Electronic visa included.",
+      "azHeroPriceUnit": "per person · double room",
+      "azHl1Label": "Modern city",
+      "azHl1Title": "Baku — 5 nights",
+      "azHl1Body": "Old City, Maiden Tower, Heydar Aliyev Center, Baku Boulevard, Little Venice Baku.",
+      "azHl2Label": "Eternal Fire",
+      "azHl2Title": "Yanar Dag &amp; Ateshgah",
+      "azHl2Body": "Ateshgah Fire Temple, Fire Mountain (Yanar Dag), Gobustan mud volcanoes.",
+      "azHl3Label": "Mountains",
+      "azHl3Title": "Gabala — 2 nights",
+      "azHl3Body": "Tufandag cable car, Nohur Lake, Sheki Khan's Palace, historic Caravanserai.",
+      "azHl4Label": "Shahdag",
+      "azHl4Title": "Cable car included",
+      "azHl4Body": "Transfer + Shahdag Mountain Resort cable car included in the program.",
+      "azPhase1": "Discover",
+      "azItinEyebrow": "8 days · 7 nights",
+      "azItinTitle": "Your <em>program</em>",
+      "azDay1Label": "Day 1",
+      "azDay1Title": "Arrival in Baku",
+      "azDay1Acts": "Flight ALG–IST–GYD. Welcome, transfer to Hilton Garden Inn. Check-in and rest.",
+      "azDay2Label": "Day 2",
+      "azDay2Title": "Central Baku",
+      "azDay2Acts": "Nizami Street, Fountain Square, Icherisheher (Old City), Maiden Tower, Palace of the Shirvanshahs, Baku Boulevard, Little Venice Baku.",
+      "azDay2Tag1": "Old City",
+      "azDay3Label": "Day 3",
+      "azDay3Title": "Heydar Aliyev Center &amp; Shopping",
+      "azDay3Acts": "Upland Park (panoramic view), Heydar Aliyev Center, Deniz Mall.",
+      "azDay4Label": "Day 4",
+      "azDay4Title": "Absheron Peninsula &amp; Gobustan",
+      "azDay4Acts": "Ateshgah Fire Temple, Yanar Dag (Fire Mountain), Gobustan National Park, Gobustan Mud Volcanoes.",
+      "azDay5Label": "Day 5",
+      "azDay5Title": "Sheki day trip",
+      "azDay5Acts": "Sheki Khan's Palace, Sheki Caravanserai, Panorama Park, traditional Sheki sweet shops.",
+      "azDay6Label": "Day 6–7",
+      "azDay6Title": "Gabala &amp; Shahdag",
+      "azDay6Acts": "Transfer to Gabala – Yengice Hotel 5★. Tufandag Mountain Resort (cable car included), Nohur Lake. Shahdag Resort excursion.",
+      "azDay8Label": "Day 8",
+      "azDay8Title": "Return to Algiers",
+      "azDay8Acts": "Breakfast, transfer to Baku airport, flight GYD–IST–ALG.",
+      "azMapEyebrow": "Your trip at a glance",
+      "azMapTitle": "The itinerary <em>on the map</em>",
+      "azMapSub": "Baku, Sheki, Gabala — all the hotels, sites and excursions of your 8-day program.",
+      "azMapLoading": "Loading the map…",
+      "azMapLegHotels": "Hotels",
+      "azMapLegSites": "Sites visited",
+      "azMapLegTours": "Guided excursions",
+      "azTrustEyebrow": "Over 1,200 travelers guided",
+      "azTrustTitle": "They <em>trusted us</em>",
+      "azStat1": "Travelers guided since 2019",
+      "azStat2": "Satisfaction rate",
+      "azStat3": "Baku departures in 2026",
+      "azStat4": "Hand-picked hotels to choose from",
+      "azTesti1Text": "\"Baku blew us away — the old city, the Flame Towers at night, Gabala up in the mountains. Everything was organized, we never had to figure anything out ourselves.\"",
+      "azTesti1Trip": "Bordj Bou Arreridj · Azerbaijan trip 2025",
+      "azTesti2Text": "\"First trip outside Algeria. The e-visa handled, flawless transfers, the French-speaking guide always available. Real peace of mind.\"",
+      "azTesti2Trip": "Constantine · Baku trip 2025",
+      "azTesti3Text": "\"A trip as a couple. Boulevard Hotel perfect, Caspian Sea view. The excursions to Gabala and Shamakhi were a highlight. The value for money is unbeatable.\"",
+      "azTesti3Trip": "Sétif · Azerbaijan trip 2024",
+      "azInclEyebrow": "Everything stated, nothing hidden",
+      "azInclTitle": "What's <em>included</em>, what isn't",
+      "azInclSub": "No surprises on arrival. Here is exactly what your package covers — and what you should plan for on top.",
+      "azInclColTitle": "Included in the <em>package</em>",
+      "azInclColCount": "10 services covered",
+      "azInclItem1": "<strong>Turkish Airlines</strong> flight via Istanbul ALG–IST–GYD round trip",
+      "azInclItem2": "<strong>Electronic visa</strong> fully included",
+      "azInclItem3": "All transfers by air-conditioned tourist coach",
+      "azInclHotel1": "<strong>5 nights</strong> Baku — Hilton Garden Inn 4★ (breakfast)",
+      "azInclHotel2": "<strong>2 nights</strong> Gabala — Yengice Hotel 5★ (breakfast)",
+      "azInclItem6": "Baku excursions: Old City · Maiden Tower · Heydar Aliyev Center · Baku Boulevard",
+      "azInclItem7": "Gobustan outing: National Park · Mud volcanoes · Yanar Dag",
+      "azInclItem8": "Sheki outing: Khan's Palace · Caravanserai · Panorama Park",
+      "azInclItem9": "<strong>Shahdag outing</strong>: transfer + cable car included",
+      "azInclItem10": "Alliance Travel tour leader + local Arabic-speaking guide",
+      "azExclColTitle": "To <em>plan</em> on top",
+      "azExclColCount": "6 items outside the package",
+      "azExclItem1": "Meals (lunch and dinner) — breakfast only plan",
+      "azExclItem2": "Drinks",
+      "azExclItem3": "Tips",
+      "azExclItem4": "Additional optional excursions (seasonal)",
+      "azExclItem5": "Personal travel insurance",
+      "azExclItem6": "Personal expenses",
+      "azFaqEyebrow": "FAQ",
+      "azFaqTitle": "Frequently <em>asked questions</em>",
+      "azFaqQ1": "How does the electronic visa work?",
+      "azFaqA1": "Azerbaijan issues an electronic visa (e-Visa) very easily. Alliance Travel handles the entire procedure and the visa cost is <strong>included</strong> in your package. You have nothing to do.",
+      "azFaqQ2": "What does the breakfast plan include?",
+      "azFaqA2": "The program is on a <strong>breakfast plan</strong> in both hotels. Lunches and dinners are free — the tour leader guides you to the best local spots at very affordable prices.",
+      "azFaqQ3": "How are the transfers between cities handled?",
+      "azFaqA3": "All transfers (airport–hotel, Baku–Sheki–Gabala–Shahdag) are by <strong>air-conditioned tourist coach</strong> with a guide. No extra charge — everything is included in the package.",
+      "azFaqQ4": "How much do children pay?",
+      "azFaqA4": "Child under 5 sharing the room of 2 adults: <strong>129,000 DA</strong>. Child under 12 (extra bed included): <strong>213,000 DA</strong>. Newborn (0–2 years): <strong>35,000 DA</strong>.",
+      "azPhase2": "Compare the hotels",
+      "azHotelsEyebrow": "Accommodation · 7 nights",
+      "azHotelsTitle": "5 nights Baku · <em>2 nights Gabala</em>",
+      "azHotelsSub": "Breakfast-plan program. All inter-city transfers by tourist coach included.",
+      "azTierAll": "All hotels",
+      "azTierMedium": "4★ Baku",
+      "azTierPremium": "5★ Gabala",
+      "azCard1Ribbon": "4★ · Baku",
+      "azCard1Amen1": "City center",
+      "azAmenBreakfast": "Breakfast",
+      "azCardFrom": "From",
+      "azCard1PriceMeta": "Double room · per person",
+      "azCardSelect": "Select",
+      "azCard2Ribbon": "5★ · Gabala",
+      "azCard2Amen1": "Mountain View",
+      "azCard2Amen2": "Resort",
+      "azCard2PriceLabel": "Included in the package",
+      "azCard2PriceVal": "2 nights Gabala",
+      "azCard2PriceMeta": "unified rate — see calculator",
+      "azPhase3": "Calculate my price",
+      "azCalcEyebrow": "Step 1 · Configure your trip",
+      "azCalcTitle": "Choose <em>your package</em>",
+      "azCalcDateLabel": "Departure date",
+      "azCalcHotelLabel": "Hotel",
+      "azCalcRoomLabel": "Room type",
+      "azRoomDouble": "Double",
+      "azRoomTriple": "Triple",
+      "azRoomSingle": "Single",
+      "azCalcTravellersLabel": "Travelers",
+      "azStepAdultsTitle": "Adults",
+      "azStepAdultsHint": "Aged 12 and over",
+      "azStepChildTitle": "Children",
+      "azStepChildHint": "Under 12 · extra bed · 213,000 DA",
+      "azStepChild5Title": "Children under 5",
+      "azStepChild5Hint": "Under 5 with 2 adults · 129,000 DA",
+      "azStepBabyTitle": "Newborn",
+      "azStepBabyHint": "0–2 years · 35,000 DA",
+      "azBreakdownHeader": "Summary",
+      "azBreakdownEmpty": "Configure your trip to see the price.",
+      "azBreakdownTotal": "Estimated total",
+      "azBreakdownWhy": "Why this price?",
+      "azBreakdownWhyText": "Price per person in a double room, Turkish Airlines flight via Istanbul ALG–IST–GYD–IST–ALG included, electronic visa included, 7 nights breakfast, all transfers by tourist coach, Arabic-speaking guide and Alliance Travel tour leader.",
+      "azCalcContinue": "Continue to booking <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>",
+      "azCalcNextStep": "Next step: fill in your file below",
+      "azInfoEyebrow": "Before you go",
+      "azInfoTitle": "Everything you <em>need to know</em>",
+      "azInfoSub": "Payment, cancellation, visa formalities, insurance — transparency in four blocks.",
+      "azInfoCard1Title": "Payment terms",
+      "azInfoCard1Li1": "<strong>Booking deposit</strong> · 30% of the total amount at confirmation, payable within 48 h after agreement via WhatsApp.",
+      "azInfoCard1Li2": "<strong>Balance</strong> · remaining 70% no later than <strong>21 days before departure</strong>.",
+      "azInfoCard1Li3": "<strong>Accepted methods</strong> · Bank transfer (BNA, BEA, CPA), in-agency payment, cash. No online card payment for now.",
+      "azInfoCard1Li4": "<strong>Receipt</strong> · Official Alliance Travel receipt issued for each payment.",
+      "azInfoCard1Li5": "<strong>Quote valid</strong> 7 days · Prices may change depending on flight availability and exchange rate.",
+      "azInfoCard2Title": "Cancellation terms",
+      "azInfoCard2Lede": "Cancellation by the client (depending on the time before departure):",
+      "azInfoCard2Li1": "<strong>≥ 60 days before departure</strong> · Full refund minus processing fee (5,000 DA).",
+      "azInfoCard2Li2": "<strong>30 to 59 days</strong> · 30% of the total amount withheld.",
+      "azInfoCard2Li3": "<strong>14 to 29 days</strong> · 60% of the total amount withheld.",
+      "azInfoCard2Li4": "<strong>7 to 13 days</strong> · 80% withheld.",
+      "azInfoCard2Li5": "<strong>&lt; 7 days</strong> · No refund (flight and hotel costs final).",
+      "azInfoCard2Note": "<strong>Cancellation by the airline or hotel</strong> · Full refund or re-routing at no extra charge on our side.<br><strong>Date change</strong> possible up to 30 days before departure, subject to availability and the fare difference.",
+      "azInfoCard3Title": "Formalities &amp; visa",
+      "azInfoCard3Lede": "<strong>Azerbaijan electronic visa — INCLUDED</strong>",
+      "azInfoCard3Li1": "<strong>Visa</strong> · <strong>ASAN e-Visa included in the package.</strong> Alliance Travel handles the application and sends you the visa by email.",
+      "azInfoCard3Li2": "<strong>Processing time</strong> · <strong>3 to 5 working days</strong>. We request passport copies no later than 21 days before departure.",
+      "azInfoCard3Li3": "<strong>Visa cost</strong> · Included — you pay nothing extra for the visa.",
+      "azInfoCard3Li4": "<strong>Passport</strong> · Minimum validity <strong>6 months after return</strong>, at least 2 blank pages.",
+      "azInfoCard3Li5": "<strong>Required documents</strong> · Color scan/photo of the passport (identity page) — that's all. No consular appointment.",
+      "azInfoCard4Title": "Travel insurance",
+      "azInfoCard4Lede": "Travel insurance is <strong>not included</strong> in the package but it is <strong>strongly recommended</strong> — especially for long-haul trips.",
+      "azInfoCard4Li1": "<strong>Recommended coverage</strong> · Emergency medical expenses (≥ €100,000), medical repatriation, loss/theft of luggage, trip cancellation.",
+      "azInfoCard4Li2": "<strong>Indicative cost</strong> · 1,500 to 4,000 DA per person depending on duration and destination.",
+      "azInfoCard4Li3": "<strong>Where to subscribe</strong> · Algerian insurers (CAAR, SAA, CAAT) or international companies (Mondial Assistance, Europ Assistance).",
+      "azInfoCard4Li4": "<strong>On request</strong>, Alliance Travel can refer you to a partner insurer offering travel plans.",
+      "azRelatedEyebrow": "You may also like",
+      "azRelatedTitle": "Continue your <em>discovery</em>",
+      "azRelated1Flag": "September–November 2026 · Departure from Constantine",
+      "azRelated1Price": "From <strong>123,000 DA</strong>",
+      "azRelatedCta": "See this trip <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>",
+      "azRelated2Flag": "Egypt · June 2026",
+      "azRelated2Title": "Cairo & Sharm El Sheikh",
+      "azRelated2Price": "From <strong>190,000 DA</strong>",
+      "azFinalScarcity": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 departures in 2026 · Limited spots",
+      "azFinalTitle": "Discover the<br><em>City of Fire</em>",
+      "azFinalSub": "Baku by night, the Gobustan mud volcanoes, and the Shahdag cable car — all in 8 days from Algiers.",
+      "azFinalWaCta": "Book via WhatsApp",
+      "azFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
+      "azStickyLabel": "Estimated total",
+      "azStickyCta": "Book"
+    },
+    "ar": {
+      "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
+      "azHeroEyebrow": "رحلة مصحوبة بمرشد · انطلاق من الجزائر · 2026",
+      "azHeroTitlePre": "باكو",
+      "azHeroTitlePost": "وغابالا",
+      "azHeroDate": "7 ليالٍ · 5 باكو + 2 غابالا · التأشيرة مشمولة",
+      "azHeroH1": "أذربيجان <em>باكو وغابالا</em>",
+      "azHeroLede": "حيث تلتقي مدينة النار بجبال القوقاز. 5 ليالٍ في العاصمة الحديثة باكو، وليلتان في قلب قمم غابالا. التأشيرة الإلكترونية مشمولة.",
+      "azHeroPriceUnit": "للشخص · غرفة مزدوجة",
+      "azHl1Label": "مدينة حديثة",
+      "azHl1Title": "باكو — 5 ليالٍ",
+      "azHl1Body": "المدينة القديمة، برج العذراء، مركز حيدر علييف، شارع باكو، البندقية الصغيرة في باكو.",
+      "azHl2Label": "النار الأبدية",
+      "azHl2Title": "يانار داغ <em>وأتشغاه</em>",
+      "azHl2Body": "معبد النار أتشغاه، جبل النار (يانار داغ)، براكين الطين في غوبستان.",
+      "azHl3Label": "الجبال",
+      "azHl3Title": "غابالا — ليلتان",
+      "azHl3Body": "تلفريك توفانداغ، بحيرة نوهور، قصر خان شكي، الكارفانسراي التاريخي.",
+      "azHl4Label": "شاهداغ",
+      "azHl4Title": "التلفريك مشمول",
+      "azHl4Body": "النقل + تلفريك منتجع شاهداغ الجبلي مشمولان في البرنامج.",
+      "azPhase1": "اكتشف",
+      "azItinEyebrow": "8 أيام · 7 ليالٍ",
+      "azItinTitle": "<em>برنامجك</em>",
+      "azDay1Label": "اليوم 1",
+      "azDay1Title": "الوصول إلى باكو",
+      "azDay1Acts": "رحلة ALG–IST–GYD. الاستقبال، النقل إلى فندق هيلتون غاردن إن. تسجيل الدخول والراحة.",
+      "azDay2Label": "اليوم 2",
+      "azDay2Title": "وسط باكو",
+      "azDay2Acts": "شارع نظامي، ساحة النوافير، إيتشيري شهر (المدينة القديمة)، برج العذراء، قصر الشروانشاهيين، شارع باكو، البندقية الصغيرة في باكو.",
+      "azDay2Tag1": "المدينة القديمة",
+      "azDay3Label": "اليوم 3",
+      "azDay3Title": "مركز حيدر علييف <em>والتسوق</em>",
+      "azDay3Acts": "أبلاند بارك (إطلالة بانورامية)، مركز حيدر علييف، دينيز مول.",
+      "azDay4Label": "اليوم 4",
+      "azDay4Title": "شبه جزيرة أبشيرون <em>وغوبستان</em>",
+      "azDay4Acts": "معبد النار أتشغاه، يانار داغ (جبل النار)، حديقة غوبستان الوطنية، براكين الطين في غوبستان.",
+      "azDay5Label": "اليوم 5",
+      "azDay5Title": "رحلة إلى شكي",
+      "azDay5Acts": "قصر خان شكي، كارفانسراي شكي، حديقة بانوراما، محلات الحلويات التقليدية في شكي.",
+      "azDay6Label": "اليوم 6–7",
+      "azDay6Title": "غابالا <em>وشاهداغ</em>",
+      "azDay6Acts": "النقل إلى غابالا – فندق ينجيجة 5★. منتجع توفانداغ الجبلي (التلفريك مشمول)، بحيرة نوهور. رحلة إلى منتجع شاهداغ.",
+      "azDay8Label": "اليوم 8",
+      "azDay8Title": "العودة إلى الجزائر",
+      "azDay8Acts": "الإفطار، النقل إلى مطار باكو، رحلة GYD–IST–ALG.",
+      "azMapEyebrow": "رحلتك بنظرة واحدة",
+      "azMapTitle": "المسار <em>على الخريطة</em>",
+      "azMapSub": "باكو، شكي، غابالا — جميع الفنادق والمواقع والرحلات في برنامجك الممتد على 8 أيام.",
+      "azMapLoading": "جارٍ تحميل الخريطة…",
+      "azMapLegHotels": "الفنادق",
+      "azMapLegSites": "المواقع المُزارة",
+      "azMapLegTours": "الرحلات المصحوبة بمرشد",
+      "azTrustEyebrow": "أكثر من 1200 مسافر بصحبة مرشد",
+      "azTrustTitle": "لقد <em>وثقوا بنا</em>",
+      "azStat1": "مسافرون بصحبة مرشد منذ 2019",
+      "azStat2": "معدل الرضا",
+      "azStat3": "رحلات إلى باكو في 2026",
+      "azStat4": "فنادق منتقاة للاختيار من بينها",
+      "azTesti1Text": "«أبهرتنا باكو — المدينة القديمة، أبراج اللهب ليلاً، غابالا في الجبال. كان كل شيء منظَّماً، ولم نضطر قط للبحث عن أي شيء بأنفسنا.»",
+      "azTesti1Trip": "برج بوعريريج · رحلة أذربيجان 2025",
+      "azTesti2Text": "«أول رحلة خارج الجزائر. التأشيرة الإلكترونية مُدارة، عمليات النقل لا تشوبها شائبة، والمرشد الناطق بالفرنسية متاح دائماً. راحة بال حقيقية.»",
+      "azTesti2Trip": "قسنطينة · رحلة باكو 2025",
+      "azTesti3Text": "«رحلة لشخصين. فندق بولفار مثالي، إطلالة على بحر قزوين. كانت الرحلات إلى غابالا وشماخي من أبرز اللحظات. القيمة مقابل السعر لا تُضاهى.»",
+      "azTesti3Trip": "سطيف · رحلة أذربيجان 2024",
+      "azInclEyebrow": "كل شيء مذكور، لا شيء مخفي",
+      "azInclTitle": "ما هو <em>مشمول</em>، وما هو غير مشمول",
+      "azInclSub": "لا مفاجآت عند الوصول. إليك بالضبط ما يغطيه برنامجك — وما ينبغي أن تخطط له إضافةً إلى ذلك.",
+      "azInclColTitle": "مشمول في <em>الباقة</em>",
+      "azInclColCount": "10 خدمات مشمولة",
+      "azInclItem1": "رحلة <strong>الخطوط الجوية التركية</strong> عبر إسطنبول ALG–IST–GYD ذهاباً وإياباً",
+      "azInclItem2": "<strong>التأشيرة الإلكترونية</strong> مشمولة بالكامل",
+      "azInclItem3": "جميع عمليات النقل بحافلة سياحية مكيّفة",
+      "azInclHotel1": "<strong>5 ليالٍ</strong> باكو — هيلتون غاردن إن 4★ (إفطار)",
+      "azInclHotel2": "<strong>ليلتان</strong> غابالا — فندق ينجيجة 5★ (إفطار)",
+      "azInclItem6": "رحلات باكو: المدينة القديمة · برج العذراء · مركز حيدر علييف · شارع باكو",
+      "azInclItem7": "جولة غوبستان: الحديقة الوطنية · براكين الطين · يانار داغ",
+      "azInclItem8": "جولة شكي: قصر الخان · الكارفانسراي · حديقة بانوراما",
+      "azInclItem9": "<strong>جولة شاهداغ</strong>: النقل + التلفريك مشمولان",
+      "azInclItem10": "مرافق من Alliance Travel + مرشد محلي ناطق بالعربية",
+      "azExclColTitle": "<em>للتخطيط</em> إضافةً",
+      "azExclColCount": "6 عناصر خارج الباقة",
+      "azExclItem1": "الوجبات (الغداء والعشاء) — نظام الإفطار فقط",
+      "azExclItem2": "المشروبات",
+      "azExclItem3": "الإكراميات",
+      "azExclItem4": "رحلات اختيارية إضافية (حسب الموسم)",
+      "azExclItem5": "تأمين سفر شخصي",
+      "azExclItem6": "المصاريف الشخصية",
+      "azFaqEyebrow": "الأسئلة الشائعة",
+      "azFaqTitle": "الأسئلة <em>المتكررة</em>",
+      "azFaqQ1": "كيف تعمل التأشيرة الإلكترونية؟",
+      "azFaqA1": "تُصدر أذربيجان تأشيرة إلكترونية (e-Visa) بسهولة كبيرة. تتولى Alliance Travel كامل الإجراء، وتكلفة التأشيرة <strong>مشمولة</strong> في باقتك. ليس عليك فعل أي شيء.",
+      "azFaqQ2": "ماذا يشمل نظام الإفطار؟",
+      "azFaqA2": "البرنامج على <strong>نظام إفطار</strong> في كلا الفندقين. وجبات الغداء والعشاء حرة — يرشدك المرافق إلى أفضل العناوين المحلية بأسعار معقولة جداً.",
+      "azFaqQ3": "كيف تتم عمليات النقل بين المدن؟",
+      "azFaqA3": "تتم جميع عمليات النقل (المطار–الفندق، باكو–شكي–غابالا–شاهداغ) بـ<strong>حافلة سياحية مكيّفة</strong> مع مرشد. لا رسوم إضافية — كل شيء مشمول في الباقة.",
+      "azFaqQ4": "كم يدفع الأطفال؟",
+      "azFaqA4": "طفل دون 5 سنوات يشارك غرفة شخصين بالغين: <strong>129.000 دج</strong>. طفل دون 12 سنة (سرير إضافي مشمول): <strong>213.000 دج</strong>. مولود جديد (0–2 سنة): <strong>35.000 دج</strong>.",
+      "azPhase2": "قارن بين الفنادق",
+      "azHotelsEyebrow": "الإقامة · 7 ليالٍ",
+      "azHotelsTitle": "5 ليالٍ باكو · <em>ليلتان غابالا</em>",
+      "azHotelsSub": "برنامج بنظام الإفطار. جميع عمليات النقل بين المدن بحافلة سياحية مشمولة.",
+      "azTierAll": "كل الفنادق",
+      "azTierMedium": "4★ باكو",
+      "azTierPremium": "5★ غابالا",
+      "azCard1Ribbon": "4★ · باكو",
+      "azCard1Amen1": "وسط المدينة",
+      "azAmenBreakfast": "إفطار",
+      "azCardFrom": "ابتداءً من",
+      "azCard1PriceMeta": "غرفة مزدوجة · للشخص",
+      "azCardSelect": "اختيار",
+      "azCard2Ribbon": "5★ · غابالا",
+      "azCard2Amen1": "إطلالة جبلية",
+      "azCard2Amen2": "منتجع",
+      "azCard2PriceLabel": "مشمول في الباقة",
+      "azCard2PriceVal": "ليلتان غابالا",
+      "azCard2PriceMeta": "سعر موحّد — انظر الحاسبة",
+      "azPhase3": "احسب سعري",
+      "azCalcEyebrow": "الخطوة 1 · جهّز رحلتك",
+      "azCalcTitle": "اختر <em>باقتك</em>",
+      "azCalcDateLabel": "تاريخ المغادرة",
+      "azCalcHotelLabel": "الفندق",
+      "azCalcRoomLabel": "نوع الغرفة",
+      "azRoomDouble": "مزدوجة",
+      "azRoomTriple": "ثلاثية",
+      "azRoomSingle": "فردية",
+      "azCalcTravellersLabel": "المسافرون",
+      "azStepAdultsTitle": "البالغون",
+      "azStepAdultsHint": "من 12 سنة فأكثر",
+      "azStepChildTitle": "الأطفال",
+      "azStepChildHint": "دون 12 سنة · سرير إضافي · 213.000 دج",
+      "azStepChild5Title": "الأطفال دون 5 سنوات",
+      "azStepChild5Hint": "دون 5 سنوات مع بالغين · 129.000 دج",
+      "azStepBabyTitle": "مولود جديد",
+      "azStepBabyHint": "0–2 سنة · 35.000 دج",
+      "azBreakdownHeader": "الملخص",
+      "azBreakdownEmpty": "جهّز رحلتك لرؤية السعر.",
+      "azBreakdownTotal": "الإجمالي التقديري",
+      "azBreakdownWhy": "لماذا هذا السعر؟",
+      "azBreakdownWhyText": "السعر للشخص في غرفة مزدوجة، رحلة الخطوط الجوية التركية عبر إسطنبول ALG–IST–GYD–IST–ALG مشمولة، التأشيرة الإلكترونية مشمولة، 7 ليالٍ مع إفطار، جميع عمليات النقل بحافلة سياحية، مرشد ناطق بالعربية ومرافق من Alliance Travel.",
+      "azCalcContinue": "المتابعة إلى الحجز <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>",
+      "azCalcNextStep": "الخطوة التالية: املأ ملفك أدناه",
+      "azInfoEyebrow": "قبل أن تسافر",
+      "azInfoTitle": "كل ما <em>يجب معرفته</em>",
+      "azInfoSub": "الدفع، الإلغاء، إجراءات التأشيرة، التأمين — الشفافية في أربع كتل.",
+      "azInfoCard1Title": "شروط الدفع",
+      "azInfoCard1Li1": "<strong>عربون الحجز</strong> · 30% من المبلغ الإجمالي عند التأكيد، يُدفع خلال 48 ساعة بعد الاتفاق عبر واتساب.",
+      "azInfoCard1Li2": "<strong>الرصيد</strong> · 70% المتبقية في موعد أقصاه <strong>21 يوماً قبل المغادرة</strong>.",
+      "azInfoCard1Li3": "<strong>الوسائل المقبولة</strong> · تحويل بنكي (BNA، BEA، CPA)، دفع في الوكالة، نقداً. لا دفع بالبطاقة عبر الإنترنت حالياً.",
+      "azInfoCard1Li4": "<strong>الإيصال</strong> · إيصال رسمي من Alliance Travel يُسلَّم عند كل دفعة.",
+      "azInfoCard1Li5": "<strong>عرض السعر صالح</strong> 7 أيام · قد تتغير الأسعار حسب توفر الرحلات وسعر الصرف.",
+      "azInfoCard2Title": "شروط الإلغاء",
+      "azInfoCard2Lede": "الإلغاء من قبل العميل (حسب المهلة قبل المغادرة):",
+      "azInfoCard2Li1": "<strong>≥ 60 يوماً قبل المغادرة</strong> · استرداد كامل ناقص رسوم المعالجة (5.000 دج).",
+      "azInfoCard2Li2": "<strong>30 إلى 59 يوماً</strong> · اقتطاع 30% من المبلغ الإجمالي.",
+      "azInfoCard2Li3": "<strong>14 إلى 29 يوماً</strong> · اقتطاع 60% من المبلغ الإجمالي.",
+      "azInfoCard2Li4": "<strong>7 إلى 13 يوماً</strong> · اقتطاع 80%.",
+      "azInfoCard2Li5": "<strong>&lt; 7 أيام</strong> · لا استرداد (تكاليف الطيران والفنادق نهائية).",
+      "azInfoCard2Note": "<strong>الإلغاء من قبل شركة الطيران أو الفندق</strong> · استرداد كامل أو إعادة توجيه دون رسوم إضافية من جانبنا.<br><strong>تغيير التاريخ</strong> ممكن حتى 30 يوماً قبل المغادرة، رهناً بالتوفر وفرق السعر.",
+      "azInfoCard3Title": "الإجراءات <em>والتأشيرة</em>",
+      "azInfoCard3Lede": "<strong>التأشيرة الإلكترونية لأذربيجان — مشمولة</strong>",
+      "azInfoCard3Li1": "<strong>التأشيرة</strong> · <strong>تأشيرة ASAN الإلكترونية مشمولة في الباقة.</strong> تتولى Alliance Travel الطلب وترسل لك التأشيرة عبر البريد الإلكتروني.",
+      "azInfoCard3Li2": "<strong>المهلة</strong> · مدة المعالجة <strong>3 إلى 5 أيام عمل</strong>. نطلب نسخ جواز السفر في موعد أقصاه 21 يوماً قبل المغادرة.",
+      "azInfoCard3Li3": "<strong>تكلفة التأشيرة</strong> · مشمولة — لا تدفع أي شيء إضافي مقابل التأشيرة.",
+      "azInfoCard3Li4": "<strong>جواز السفر</strong> · صلاحية لا تقل عن <strong>6 أشهر بعد العودة</strong>، صفحتان فارغتان على الأقل.",
+      "azInfoCard3Li5": "<strong>الوثائق المطلوبة</strong> · نسخة ممسوحة/صورة ملوّنة من جواز السفر (صفحة الهوية) — هذا كل شيء. لا موعد قنصلي.",
+      "azInfoCard4Title": "تأمين السفر",
+      "azInfoCard4Lede": "تأمين السفر <strong>غير مشمول</strong> في الباقة لكنه <strong>موصى به بشدة</strong> — خاصة للرحلات الطويلة.",
+      "azInfoCard4Li1": "<strong>التغطية الموصى بها</strong> · نفقات طبية طارئة (≥ 100.000 €)، إعادة طبية للوطن، فقدان/سرقة الأمتعة، إلغاء الرحلة.",
+      "azInfoCard4Li2": "<strong>تكلفة إرشادية</strong> · من 1.500 إلى 4.000 دج للشخص حسب المدة والوجهة.",
+      "azInfoCard4Li3": "<strong>أين تشترك</strong> · شركات تأمين جزائرية (CAAR، SAA، CAAT) أو شركات دولية (Mondial Assistance، Europ Assistance).",
+      "azInfoCard4Li4": "<strong>عند الطلب</strong>، يمكن لـ Alliance Travel توجيهك إلى شريك تأمين يقدّم صيغ سفر.",
+      "azRelatedEyebrow": "قد يعجبك أيضاً",
+      "azRelatedTitle": "واصل <em>اكتشافك</em>",
+      "azRelated1Flag": "سبتمبر–نوفمبر 2026 · انطلاق من قسنطينة",
+      "azRelated1Price": "ابتداءً من <strong>123.000 دج</strong>",
+      "azRelatedCta": "شاهد هذه الرحلة <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>",
+      "azRelated2Flag": "مصر · يونيو 2026",
+      "azRelated2Title": "القاهرة وشرم الشيخ",
+      "azRelated2Price": "ابتداءً من <strong>190.000 دج</strong>",
+      "azFinalScarcity": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 رحلات في 2026 · أماكن محدودة",
+      "azFinalTitle": "اكتشف<br><em>مدينة النار</em>",
+      "azFinalSub": "باكو ليلاً، براكين الطين في غوبستان، وتلفريك شاهداغ — كل ذلك في 8 أيام من الجزائر.",
+      "azFinalWaCta": "احجز عبر واتساب",
+      "azFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
+      "azStickyLabel": "الإجمالي التقديري",
+      "azStickyCta": "احجز"
+    }
+  }
+}

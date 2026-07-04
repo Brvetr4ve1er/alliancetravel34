@@ -1,0 +1,1543 @@
+{
+  "meta": {
+    "title": "Vietnam — Alliance Travel · 2026",
+    "description": "Circuit Vietnam Été 2026. 12 jours : Ho Chi Minh, Phu Quoc, Hanoï et croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Dès 439.000 DA.",
+    "ogTitle": "Vietnam · De Saïgon à la baie d'Ha Long — Alliance Travel",
+    "ogDescription": "Circuit Vietnam 12 jours : 2N Ho Chi Minh, 5N Phu Quoc, 2N Hanoï, croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Été 2026.",
+    "themeColor": "#15A88E",
+    "ogImage": "og-default.jpg"
+  },
+  "accent": {
+    "color": "#15A88E",
+    "dim": "rgba(21,168,142,.13)",
+    "glow": "rgba(21,168,142,.22)",
+    "heroGradient": "linear-gradient(145deg,#04130f 0%,#06190f 55%,#04110d 100%)"
+  },
+  "slug": "vietnam",
+  "jsonLd": {
+    "breadcrumbName": "Vietnam"
+  },
+  "seo": {
+    "tripName": "Vietnam · De Saïgon à la baie d'Ha Long — Alliance Travel",
+    "tripDescription": "Circuit Vietnam 12 jours : 2N Ho Chi Minh, 5N Phu Quoc, 2N Hanoï et croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Été 2026.",
+    "offerPrice": "439000",
+    "faqJsonLd": [
+      {
+        "name": "Faut-il un visa pour le Vietnam ?",
+        "text": "Oui. Les voyageurs algériens ont besoin d'un e-visa électronique pour le Vietnam, à demander en ligne avant le départ. Alliance Travel accompagne chaque voyageur dans la constitution et la soumission de son dossier. Le passeport doit être valide au moins 6 mois après la date de retour."
+      },
+      {
+        "name": "Quelles sont les étapes du circuit Vietnam ?",
+        "text": "Le circuit complet dure 12 jours : 2 nuits à Ho Chi Minh (Saïgon), 5 nuits à Phu Quoc, 2 nuits à Hanoï et 1 nuit en croisière dans la baie d'Ha Long. Une formule alternative Kuala Lumpur & Phu Quoc est également proposée."
+      },
+      {
+        "name": "Quelle compagnie aérienne dessert le voyage ?",
+        "text": "Le voyage s'effectue avec Qatar Airways au départ d'Alger via Doha jusqu'à Saïgon. Les vols intérieurs nécessaires au circuit (notamment vers Phu Quoc et Hanoï) sont également inclus."
+      },
+      {
+        "name": "Les repas sont-ils inclus ?",
+        "text": "Le programme est en formule petit-déjeuner pendant les 10 nuits d'hôtel. La nuit de croisière dans la baie d'Ha Long est en demi-pension (petit-déjeuner et un repas à bord). Les autres déjeuners et dîners restent libres."
+      }
+    ]
+  },
+  "region": "vietnam",
+  "dataPage": "vietnam",
+  "k": {
+    "navAttrs": "",
+    "navListRole": "",
+    "heroKeys": "\n         data-eyebrow-key=\"vnHeroEyebrow\"\n         data-title-pre-key=\"vnHeroTitlePre\"\n         data-title-post-key=\"vnHeroTitlePost\"\n         data-date-key=\"vnHeroDate\"",
+    "heroH1": " data-i18n-html=\"vnHeroH1\"",
+    "heroLede": " data-i18n=\"vnHeroLede\"",
+    "heroPriceUnit": " data-i18n=\"vnHeroPriceUnit\"",
+    "heroFineprint": " data-i18n=\"vnHeroFineprint\"",
+    "heroCtaCalc": " data-i18n=\"vnHeroCtaCalc\"",
+    "hlSection": "",
+    "itinSection": "",
+    "itinPhase": " data-i18n=\"vnItinPhase\"",
+    "itinEyebrow": " data-i18n=\"vnItinEyebrow\"",
+    "itinTitle": " data-i18n-html=\"vnItinTitle\"",
+    "mapEyebrow": " data-i18n=\"vnMapEyebrow\"",
+    "mapTitle": " data-i18n-html=\"vnMapTitle\"",
+    "mapSub": " data-i18n=\"vnMapSub\"",
+    "mapLoading": " data-i18n=\"vnMapLoading\"",
+    "legendHotels": " data-i18n=\"vnMapLegendHotels\"",
+    "legendSites": " data-i18n=\"vnMapLegendSites\"",
+    "legendTours": " data-i18n=\"vnMapLegendTours\"",
+    "trustEyebrow": " data-i18n=\"vnTrustEyebrow\"",
+    "trustTitle": " data-i18n-html=\"vnTrustTitle\"",
+    "inclEyebrow": " data-i18n=\"vnInclEyebrow\"",
+    "inclTitle": " data-i18n-html=\"vnInclTitle\"",
+    "inclSub": " data-i18n=\"vnInclSub\"",
+    "inclColTitle": " data-i18n-html=\"vnInclColTitle\"",
+    "inclColCount": " data-i18n=\"vnInclColCount\"",
+    "exclColTitle": " data-i18n-html=\"vnExclColTitle\"",
+    "exclColCount": " data-i18n=\"vnExclColCount\"",
+    "faqSection": "",
+    "faqEyebrow": " data-i18n=\"vnFaqEyebrow\"",
+    "faqTitle": " data-i18n-html=\"vnFaqTitle\"",
+    "hotelsSection": "",
+    "hotelsPhase": " data-i18n=\"vnHotelsPhase\"",
+    "hotelsEyebrow": " data-i18n=\"vnHotelsEyebrow\"",
+    "hotelsTitle": " data-i18n-html=\"vnHotelsTitle\"",
+    "hotelsSub": " data-i18n=\"vnHotelsSub\"",
+    "tierTabsAria": "",
+    "hotelGridAttrs": "",
+    "calcSection": "",
+    "calcPhase": " data-i18n=\"vnCalcPhase\"",
+    "calcEyebrow": " data-i18n=\"vnCalcEyebrow\"",
+    "calcTitle": " data-i18n-html=\"vnCalcTitle\"",
+    "calcFormAttrs": "",
+    "calcDateLabel": " data-i18n=\"vnCalcDateLabel\"",
+    "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
+    "calcSelectLabel": " data-i18n=\"vnCalcFormuleLabel\"",
+    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
+    "calcRoomLabel": " data-i18n=\"vnCalcRoomLabel\"",
+    "segmentedAttrs": "",
+    "calcTravLabel": " data-i18n=\"vnCalcTravellersLabel\"",
+    "breakdownAttrs": "",
+    "recap": " data-i18n=\"vnRecap\"",
+    "recapEmpty": " data-i18n=\"vnRecapEmpty\"",
+    "totalLabel": " data-i18n=\"vnTotalLabel\"",
+    "whyAttrs": "",
+    "continueA": "",
+    "continue": " data-i18n=\"vnContinue\"",
+    "nextStep": " data-i18n=\"vnNextStep\"",
+    "infoEyebrow": " data-i18n=\"vnInfoEyebrow\"",
+    "infoTitle": " data-i18n-html=\"vnInfoTitle\"",
+    "infoSub": " data-i18n=\"vnInfoSub\"",
+    "relEyebrow": " data-i18n=\"vnRelatedEyebrow\"",
+    "relTitle": " data-i18n-html=\"vnRelatedTitle\"",
+    "finalSection": "",
+    "finalScarcity": "",
+    "finalTitle": " data-i18n-html=\"vnFinalTitle\"",
+    "finalSub": " data-i18n=\"vnFinalSub\"",
+    "footerAttrs": "",
+    "stickyAria": "",
+    "stickyLabel": " data-i18n=\"vnStickyLabel\"",
+    "stickyCta": " data-i18n=\"vnStickyCta\""
+  },
+  "nav": {
+    "ctaHtml": "Réserver"
+  },
+  "hero": {
+    "bg": "../assets/images/heroes-v2/hero__vietnam--bg.jpg",
+    "fg": "../assets/images/heroes-v2/hero__vietnam--fg.jpg",
+    "titlePre": "Vietnam",
+    "titlePost": "De Saïgon à la baie d'Ha Long",
+    "eyebrow": "Voyage organisé · Qatar Airways · Été 2026",
+    "date": "12 jours · 4 étapes · 2 départs",
+    "prompt": "Faites défiler pour découvrir",
+    "skip": "Passer",
+    "h1Pre": "Vietnam ",
+    "h1Em": "De Saïgon à la baie d'Ha Long",
+    "lede": "Un grand circuit en 4 étapes : l'effervescence de Ho Chi Minh, les plages de Phu Quoc, le charme du vieux Hanoï, et une nuit en croisière au milieu des pitons karstiques de la baie d'Ha Long. Vol Qatar Airways depuis Alger.",
+    "priceFrom": "439.000 DA",
+    "priceUnit": "par personne · chambre double · circuit complet",
+    "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation."
+  },
+  "highlights": [
+    {
+      "iconSvg": "<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>",
+      "kLabel": " data-i18n=\"vnHl1Label\"",
+      "label": "Aérien",
+      "kTitle": " data-i18n=\"vnHl1Title\"",
+      "title": "Vol Qatar Airways",
+      "kBody": " data-i18n=\"vnHl1Body\"",
+      "body": "ALG–Doha–Saïgon avec Qatar Airways, plus les vols intérieurs nécessaires au circuit."
+    },
+    {
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kLabel": " data-i18n=\"vnHl2Label\"",
+      "label": "Itinéraire",
+      "kTitle": " data-i18n=\"vnHl2Title\"",
+      "title": "4 étapes en 1 voyage",
+      "kBody": " data-i18n=\"vnHl2Body\"",
+      "body": "Ho Chi Minh, Phu Quoc, Hanoï et la baie d'Ha Long enchaînés en un seul circuit guidé."
+    },
+    {
+      "iconSvg": "<path d=\"M2 20a6 6 0 0 0 10 0 6 6 0 0 0 10 0\"/><path d=\"M4 18 4 9l8-4 8 4v9\"/><path d=\"M12 5V2\"/>",
+      "kLabel": " data-i18n=\"vnHl3Label\"",
+      "label": "Croisière",
+      "kTitle": " data-i18n=\"vnHl3Title\"",
+      "title": "Croisière baie d'Ha Long",
+      "kBody": " data-i18n=\"vnHl3Body\"",
+      "body": "Une nuit à bord en demi-pension au milieu des pitons karstiques classés au patrimoine mondial."
+    },
+    {
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41\"/>",
+      "kLabel": " data-i18n=\"vnHl4Label\"",
+      "label": "Détente",
+      "kTitle": " data-i18n=\"vnHl4Title\"",
+      "title": "Plages de Phu Quoc",
+      "kBody": " data-i18n=\"vnHl4Body\"",
+      "body": "5 nuits sur la plus belle île du Vietnam : plages, mer chaude et farniente entre deux étapes."
+    }
+  ],
+  "itinerary": {
+    "phaseLabel": "Découvrir",
+    "eyebrow": "12 jours · 4 étapes",
+    "titleHtml": "Votre <em>programme</em>",
+    "days": [
+      {
+        "active": true,
+        "kNode": "",
+        "node": "J1",
+        "kLabel": " data-i18n=\"vnDay1Label\"",
+        "dayLabel": "Jour 1",
+        "kTitle": " data-i18n=\"vnDay1Title\"",
+        "title": "Vol Alger – Saïgon",
+        "kAct": " data-i18n=\"vnDay1Act\"",
+        "activities": "Vol Qatar Airways ALG–Doha–Saïgon (Ho Chi Minh-Ville). Accueil à l'aéroport et transfert à l'hôtel."
+      },
+      {
+        "active": false,
+        "aosDelay": 0,
+        "kNode": "",
+        "node": "J2",
+        "kLabel": " data-i18n=\"vnDay2Label\"",
+        "dayLabel": "Jour 2–3",
+        "kTitle": " data-i18n=\"vnDay2Title\"",
+        "title": "Ho Chi Minh-Ville",
+        "kAct": " data-i18n=\"vnDay2Act\"",
+        "activities": "Découverte de Saïgon : tunnels de Cu Chi, excursion dans le delta du Mékong, marchés et grands boulevards de l'ancienne capitale du Sud.",
+        "tags": [
+          {
+            "k": " data-i18n=\"vnDay2Tag1\"",
+            "t": "Cu Chi"
+          },
+          {
+            "k": " data-i18n=\"vnDay2Tag2\"",
+            "t": "Delta du Mékong"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 80,
+        "kNode": "",
+        "node": "J4",
+        "kLabel": " data-i18n=\"vnDay3Label\"",
+        "dayLabel": "Jour 4–8",
+        "kTitle": " data-i18n=\"vnDay3Title\"",
+        "title": "Phu Quoc",
+        "kAct": " data-i18n=\"vnDay3Act\"",
+        "activities": "Vol intérieur vers l'île de Phu Quoc. Cinq nuits de détente : plages de sable blanc, mer chaude, couchers de soleil et temps libre.",
+        "tags": [
+          {
+            "k": " data-i18n=\"vnDay3Tag1\"",
+            "t": "Plage"
+          },
+          {
+            "k": " data-i18n=\"vnDay3Tag2\"",
+            "t": "Détente"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 160,
+        "kNode": "",
+        "node": "J9",
+        "kLabel": " data-i18n=\"vnDay4Label\"",
+        "dayLabel": "Jour 9–10",
+        "kTitle": " data-i18n=\"vnDay4Title\"",
+        "title": "Hanoï",
+        "kAct": " data-i18n=\"vnDay4Act\"",
+        "activities": "Vol vers la capitale. Visite du vieux quartier, du lac Hoan Kiem, du temple de la Littérature et des ruelles animées de la vieille ville.",
+        "tags": [
+          {
+            "k": " data-i18n=\"vnDay4Tag1\"",
+            "t": "Vieux quartier"
+          },
+          {
+            "k": " data-i18n=\"vnDay4Tag2\"",
+            "t": "Lac Hoan Kiem"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 240,
+        "kNode": "",
+        "node": "J11",
+        "kLabel": " data-i18n=\"vnDay5Label\"",
+        "dayLabel": "Jour 11",
+        "kTitle": " data-i18n=\"vnDay5Title\"",
+        "title": "Croisière baie d'Ha Long",
+        "kAct": " data-i18n=\"vnDay5Act\"",
+        "activities": "Route vers la baie d'Ha Long et embarquement. Nuit à bord en demi-pension au milieu des pitons karstiques, baignade et grottes.",
+        "tags": [
+          {
+            "k": " data-i18n=\"vnDay5Tag1\"",
+            "t": "Croisière"
+          },
+          {
+            "k": " data-i18n=\"vnDay5Tag2\"",
+            "t": "Nuit à bord"
+          },
+          {
+            "k": " data-i18n=\"vnDay5Tag3\"",
+            "t": "Demi-pension"
+          }
+        ]
+      },
+      {
+        "active": false,
+        "aosDelay": 320,
+        "kNode": "",
+        "node": "J12",
+        "kLabel": " data-i18n=\"vnDay6Label\"",
+        "dayLabel": "Jour 12",
+        "kTitle": " data-i18n=\"vnDay6Title\"",
+        "title": "Retour à Alger",
+        "kAct": " data-i18n=\"vnDay6Act\"",
+        "activities": "Débarquement, transfert à l'aéroport de Hanoï et vol retour Qatar Airways via Doha vers Alger."
+      }
+    ]
+  },
+  "tripMap": {
+    "eyebrow": "Votre voyage en un coup d'œil",
+    "titleHtml": "L'itinéraire <em>sur la carte</em>",
+    "subHead": "Ho Chi Minh, Phu Quoc, Hanoï, baie d'Ha Long — les quatre étapes de votre circuit de 12 jours, du départ d'Alger au retour.",
+    "ariaLabel": "Carte de l'itinéraire Vietnam",
+    "subFallback": "Ho Chi Minh · Phu Quoc · Hanoï · Baie d'Ha Long",
+    "legendHotels": "Hôtels",
+    "legendSites": "Sites visités",
+    "legendTours": "Excursions guidées",
+    "data": {
+      "name": "Vietnam · De Saïgon à la baie d'Ha Long",
+      "hotels": [
+        {
+          "id": "hcm",
+          "name": "Ho Chi Minh-Ville",
+          "loc": [
+            106.6297,
+            10.8231
+          ],
+          "stars": 4,
+          "area": "2 nuits"
+        },
+        {
+          "id": "phuquoc",
+          "name": "Phu Quoc",
+          "loc": [
+            103.984,
+            10.2899
+          ],
+          "stars": 5,
+          "area": "5 nuits"
+        },
+        {
+          "id": "hanoi",
+          "name": "Hanoï",
+          "loc": [
+            105.8342,
+            21.0278
+          ],
+          "stars": 4,
+          "area": "2 nuits"
+        },
+        {
+          "id": "halong",
+          "name": "Croisière baie d'Ha Long",
+          "loc": [
+            107,
+            20.91
+          ],
+          "stars": 5,
+          "area": "1 nuit à bord"
+        }
+      ],
+      "sites": [
+        {
+          "name": "Ho Chi Minh-Ville (Saïgon)",
+          "loc": [
+            106.6297,
+            10.8231
+          ],
+          "day": 2,
+          "featured": true
+        },
+        {
+          "name": "Tunnels de Cu Chi",
+          "loc": [
+            106.464,
+            11.145
+          ],
+          "day": 2
+        },
+        {
+          "name": "Delta du Mékong",
+          "loc": [
+            106.36,
+            10.35
+          ],
+          "day": 3,
+          "featured": true
+        },
+        {
+          "name": "Plages de Phu Quoc",
+          "loc": [
+            103.984,
+            10.2899
+          ],
+          "day": "4-8",
+          "featured": true
+        },
+        {
+          "name": "Vieux quartier de Hanoï",
+          "loc": [
+            105.85,
+            21.0333
+          ],
+          "day": 9,
+          "featured": true
+        },
+        {
+          "name": "Lac Hoan Kiem",
+          "loc": [
+            105.8525,
+            21.0287
+          ],
+          "day": 9
+        },
+        {
+          "name": "Baie d'Ha Long",
+          "loc": [
+            107,
+            20.91
+          ],
+          "day": 11,
+          "featured": true
+        }
+      ],
+      "tours": [
+        {
+          "name": "Croisière baie d'Ha Long",
+          "loc": [
+            107,
+            20.91
+          ],
+          "day": 11,
+          "note": "Nuit à bord en demi-pension"
+        }
+      ],
+      "hubs": [
+        {
+          "name": "Ho Chi Minh",
+          "loc": [
+            106.6297,
+            10.8231
+          ],
+          "days": "J1–J3"
+        },
+        {
+          "name": "Phu Quoc",
+          "loc": [
+            103.984,
+            10.2899
+          ],
+          "days": "J4–J8"
+        },
+        {
+          "name": "Hanoï",
+          "loc": [
+            105.8342,
+            21.0278
+          ],
+          "days": "J9–J10"
+        },
+        {
+          "name": "Ha Long",
+          "loc": [
+            107,
+            20.91
+          ],
+          "days": "J11"
+        }
+      ],
+      "routes": [
+        {
+          "from": [
+            3.0588,
+            36.7538
+          ],
+          "to": [
+            106.6297,
+            10.8231
+          ],
+          "label": "Alger → Saïgon",
+          "type": "flight"
+        },
+        {
+          "from": [
+            106.6297,
+            10.8231
+          ],
+          "to": [
+            103.984,
+            10.2899
+          ],
+          "label": "Saïgon → Phu Quoc",
+          "type": "flight"
+        },
+        {
+          "from": [
+            103.984,
+            10.2899
+          ],
+          "to": [
+            105.8342,
+            21.0278
+          ],
+          "label": "Phu Quoc → Hanoï",
+          "type": "flight"
+        },
+        {
+          "from": [
+            105.8342,
+            21.0278
+          ],
+          "to": [
+            107,
+            20.91
+          ],
+          "label": "Hanoï → Ha Long",
+          "type": "road"
+        }
+      ]
+    }
+  },
+  "trust": {
+    "stats": [
+      {
+        "kNum": "",
+        "num": "1.2K+",
+        "k": " data-i18n=\"vnStat1\"",
+        "label": "Voyageurs guidés depuis 2019"
+      },
+      {
+        "kNum": "",
+        "num": "98%",
+        "k": " data-i18n=\"vnStat2\"",
+        "label": "Taux de satisfaction"
+      },
+      {
+        "kNum": "",
+        "num": "2",
+        "k": " data-i18n=\"vnStat3\"",
+        "label": "Formules au choix en 2026"
+      },
+      {
+        "kNum": "",
+        "num": "4",
+        "k": " data-i18n=\"vnStat4\"",
+        "label": "Étapes en un seul circuit"
+      }
+    ],
+    "testimonials": [
+      {
+        "kText": " data-i18n=\"vnTesti1Text\"",
+        "text": "\"Le Vietnam en un seul voyage — Saïgon, les plages de Phu Quoc, puis Hanoï et la baie d'Ha Long. Tout était organisé de bout en bout, on n'a jamais eu à se soucier de rien.\"",
+        "initials": "RH",
+        "name": "Rania H.",
+        "kTrip": " data-i18n=\"vnTesti1Trip\"",
+        "trip": "Bordj Bou Arreridj · Voyage Vietnam 2025"
+      },
+      {
+        "kText": " data-i18n=\"vnTesti2Text\"",
+        "text": "\"Premier long-courrier en famille. L'e-visa accompagné par l'agence, les vols Qatar Airways nickel, l'accompagnateur francophone toujours disponible. Une vraie tranquillité.\"",
+        "initials": "MT",
+        "name": "Mohamed T.",
+        "kTrip": " data-i18n=\"vnTesti2Trip\"",
+        "trip": "Constantine · Voyage Vietnam 2025"
+      },
+      {
+        "kText": " data-i18n=\"vnTesti3Text\"",
+        "text": "\"La nuit en croisière dans la baie d'Ha Long restera notre meilleur souvenir. Les cinq nuits à Phu Quoc avant, c'était le repos parfait. Rapport qualité-prix imbattable.\"",
+        "initials": "LK",
+        "name": "Leïla K.",
+        "kTrip": " data-i18n=\"vnTesti3Trip\"",
+        "trip": "Alger · Voyage Vietnam 2024"
+      }
+    ]
+  },
+  "inclus": {
+    "includedCount": "8 prestations couvertes",
+    "included": [
+      {
+        "k": " data-i18n-html=\"vnInclItem1\"",
+        "t": "Vols internationaux <strong>Qatar Airways</strong> ALG–Doha–Saïgon aller-retour"
+      },
+      {
+        "k": " data-i18n-html=\"vnInclItem2\"",
+        "t": "<strong>Vols intérieurs</strong> du circuit (Phu Quoc, Hanoï)"
+      },
+      {
+        "k": " data-i18n-html=\"vnInclItem3\"",
+        "t": "<strong>10 nuits</strong> d'hôtel en petit-déjeuner (2N Ho Chi Minh · 5N Phu Quoc · 2N Hanoï · 1N croisière)"
+      },
+      {
+        "k": " data-i18n-html=\"vnInclItem4\"",
+        "t": "<strong>Croisière baie d'Ha Long</strong> : nuit à bord en demi-pension"
+      },
+      {
+        "k": " data-i18n-html=\"vnInclItem5\"",
+        "t": "Tous les <strong>transferts</strong> aéroports et inter-étapes"
+      },
+      {
+        "k": " data-i18n=\"vnInclItem6\"",
+        "t": "Excursions guidées : Cu Chi · delta du Mékong · vieux Hanoï · baie d'Ha Long"
+      },
+      {
+        "k": " data-i18n=\"vnInclItem7\"",
+        "t": "Accompagnateur Alliance Travel + guides locaux francophones"
+      },
+      {
+        "k": " data-i18n=\"vnInclItem8\"",
+        "t": "Assistance Alliance Travel pour la demande d'e-visa Vietnam"
+      }
+    ],
+    "excludedCount": "5 éléments hors forfait",
+    "excluded": [
+      {
+        "k": " data-i18n-html=\"vnExclItem1\"",
+        "t": "<strong>E-visa Vietnam</strong> — Alliance Travel vous accompagne dans la démarche"
+      },
+      {
+        "k": " data-i18n=\"vnExclItem2\"",
+        "t": "Déjeuners et dîners hors croisière — formule petit-déjeuner"
+      },
+      {
+        "k": " data-i18n=\"vnExclItem3\"",
+        "t": "Boissons et pourboires"
+      },
+      {
+        "k": " data-i18n=\"vnExclItem4\"",
+        "t": "Assurance voyage personnelle"
+      },
+      {
+        "k": " data-i18n=\"vnExclItem5\"",
+        "t": "Dépenses personnelles"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "open": true,
+      "kBtn": "",
+      "kQ": " data-i18n=\"vnFaq1Q\"",
+      "question": "Faut-il un visa pour le Vietnam ?",
+      "kA": " data-i18n-html=\"vnFaq1A\"",
+      "answerHtml": "Oui. Les voyageurs algériens ont besoin d'un <strong>e-visa électronique</strong> pour le Vietnam, à demander en ligne avant le départ. Alliance Travel accompagne chaque voyageur dans la constitution et la soumission de son dossier. Le passeport doit être valide au moins <strong>6 mois</strong> après la date de retour."
+    },
+    {
+      "open": false,
+      "aosDelay": 0,
+      "kBtn": "",
+      "kQ": " data-i18n=\"vnFaq2Q\"",
+      "question": "Quelles sont les étapes du circuit Vietnam ?",
+      "kA": " data-i18n-html=\"vnFaq2A\"",
+      "answerHtml": "Le circuit complet dure <strong>12 jours</strong> : 2 nuits à Ho Chi Minh (Saïgon), 5 nuits à Phu Quoc, 2 nuits à Hanoï et 1 nuit en croisière dans la baie d'Ha Long. Une formule alternative <strong>Kuala Lumpur &amp; Phu Quoc</strong> est également proposée."
+    },
+    {
+      "open": false,
+      "aosDelay": 50,
+      "kBtn": "",
+      "kQ": " data-i18n=\"vnFaq3Q\"",
+      "question": "Quelle compagnie aérienne dessert le voyage ?",
+      "kA": " data-i18n-html=\"vnFaq3A\"",
+      "answerHtml": "Le voyage s'effectue avec <strong>Qatar Airways</strong> au départ d'Alger via Doha jusqu'à Saïgon. Les <strong>vols intérieurs</strong> nécessaires au circuit (notamment vers Phu Quoc et Hanoï) sont également inclus."
+    },
+    {
+      "open": false,
+      "aosDelay": 100,
+      "kBtn": "",
+      "kQ": " data-i18n=\"vnFaq4Q\"",
+      "question": "Les repas sont-ils inclus ?",
+      "kA": " data-i18n-html=\"vnFaq4A\"",
+      "answerHtml": "Le programme est en formule <strong>petit-déjeuner</strong> pendant les 10 nuits d'hôtel. La nuit de croisière dans la baie d'Ha Long est en <strong>demi-pension</strong> (petit-déjeuner et un repas à bord). Les autres déjeuners et dîners restent libres."
+    }
+  ],
+  "hotelsSection": {
+    "phaseLabel": "Comparer les hôtels",
+    "eyebrow": "Hébergement · 10 nuits",
+    "titleHtml": "Vos hôtels, <em>étape par étape</em>",
+    "sub": "Deux formules au choix. Programme en petit-déjeuner — la nuit de croisière en baie d'Ha Long est en demi-pension. Tous les transferts inter-étapes inclus.",
+    "tierTabs": [
+      {
+        "active": true,
+        "tier": "all",
+        "tier2": "all",
+        "k": " data-i18n=\"vnTierAll\"",
+        "label": "Tous"
+      },
+      {
+        "active": false,
+        "tier": "circuit",
+        "tier2": "circuit",
+        "k": " data-i18n=\"vnTierCircuit\"",
+        "label": "Circuit Vietnam"
+      },
+      {
+        "active": false,
+        "tier": "klphuquoc",
+        "tier2": "klphuquoc",
+        "k": " data-i18n-html=\"vnTierKl\"",
+        "label": "KL &amp; Phu Quoc"
+      }
+    ],
+    "hint": false
+  },
+  "hotels": [
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "circuit",
+      "tier": "circuit",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__liberty-central-saigon.jpg",
+      "alt": "Liberty Central Saïgon",
+      "ribbonClass": "medium",
+      "kRibbon": " data-i18n=\"vnCard1Ribbon\"",
+      "ribbon": "4★ · Ho Chi Minh",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Liberty Central Saïgon",
+      "amenities": [
+        {
+          "k": " data-i18n=\"vnCard1Pill1\"",
+          "t": "Centre-ville"
+        },
+        {
+          "k": " data-i18n=\"vnPill2Nuits\"",
+          "t": "2 nuits"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"vnCard1PriceLabel\"",
+      "priceLabel": "Circuit Vietnam · dès",
+      "kPrice": "",
+      "priceFrom": "439.000 DA",
+      "kMeta": " data-i18n=\"vnPriceMetaDouble\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"vnSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "circuit",
+      "tier": "circuit",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__grand-wyndham-phuquoc.jpg",
+      "alt": "Grand Wyndham Phu Quoc",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"vnCard2Ribbon\"",
+      "ribbon": "5★ · Phu Quoc",
+      "stars": 5,
+      "starsHtml": "★★★★★",
+      "name": "Grand Wyndham Phu Quoc",
+      "amenities": [
+        {
+          "k": " data-i18n=\"vnPillPlage\"",
+          "t": "Plage"
+        },
+        {
+          "k": " data-i18n=\"vnPill5Nuits\"",
+          "t": "5 nuits"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"vnInclCircuit\"",
+      "priceLabel": "Inclus dans le circuit",
+      "kPrice": " data-i18n=\"vnCard2Strong\"",
+      "priceFrom": "5 nuits Phu Quoc",
+      "kMeta": " data-i18n=\"vnTarifUnifie\"",
+      "priceMeta": "tarif unifié — voir calculateur",
+      "kCta": " data-i18n=\"vnSelect\""
+    },
+    {
+      "aosDelay": 120,
+      "kRole": "",
+      "calcId": "circuit",
+      "tier": "circuit",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__le-jardin-hanoi.jpg",
+      "alt": "Le Jardin Hanoï",
+      "ribbonClass": "medium",
+      "kRibbon": " data-i18n=\"vnCard3Ribbon\"",
+      "ribbon": "4★ · Hanoï",
+      "stars": 4,
+      "starsHtml": "★★★★",
+      "name": "Le Jardin Hanoï",
+      "amenities": [
+        {
+          "k": " data-i18n=\"vnPillVieuxQuartier\"",
+          "t": "Vieux quartier"
+        },
+        {
+          "k": " data-i18n=\"vnPill2Nuits\"",
+          "t": "2 nuits"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"vnInclCircuit\"",
+      "priceLabel": "Inclus dans le circuit",
+      "kPrice": " data-i18n=\"vnCard3Strong\"",
+      "priceFrom": "2 nuits Hanoï",
+      "kMeta": " data-i18n=\"vnTarifUnifie\"",
+      "priceMeta": "tarif unifié — voir calculateur",
+      "kCta": " data-i18n=\"vnSelect\""
+    },
+    {
+      "aosDelay": 180,
+      "kRole": "",
+      "calcId": "circuit",
+      "tier": "circuit",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__erina-cruise-halong.jpg",
+      "alt": "Erina Cruise — baie d'Ha Long",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"vnCard4Ribbon\"",
+      "ribbon": "5★ · Baie d'Ha Long",
+      "stars": 5,
+      "starsHtml": "★★★★★",
+      "name": "Erina Cruise",
+      "amenities": [
+        {
+          "k": " data-i18n=\"vnPillCroisiere\"",
+          "t": "Croisière"
+        },
+        {
+          "k": " data-i18n=\"vnPillDemiPension\"",
+          "t": "Demi-pension"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"vnInclCircuit\"",
+      "priceLabel": "Inclus dans le circuit",
+      "kPrice": " data-i18n=\"vnCard4Strong\"",
+      "priceFrom": "1 nuit à bord",
+      "kMeta": " data-i18n=\"vnCard4Meta\"",
+      "priceMeta": "demi-pension — voir calculateur",
+      "kCta": " data-i18n=\"vnSelect\""
+    },
+    {
+      "aosDelay": 0,
+      "kRole": "",
+      "calcId": "kl-phuquoc",
+      "tier": "klphuquoc",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__the-face-style-kl.jpg",
+      "alt": "The Face Style — Kuala Lumpur",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"vnCard5Ribbon\"",
+      "ribbon": "5★ · Kuala Lumpur",
+      "stars": 5,
+      "starsHtml": "★★★★★",
+      "name": "The Face Style",
+      "amenities": [
+        {
+          "k": " data-i18n=\"vnCard5Pill1\"",
+          "t": "Centre KL"
+        },
+        {
+          "k": " data-i18n=\"vnPill4Nuits\"",
+          "t": "4 nuits"
+        }
+      ],
+      "kPriceLabel": " data-i18n-html=\"vnCard5PriceLabel\"",
+      "priceLabel": "Formule KL &amp; Phu Quoc · dès",
+      "kPrice": "",
+      "priceFrom": "420.000 DA",
+      "kMeta": " data-i18n=\"vnPriceMetaDouble\"",
+      "priceMeta": "Chambre double · par personne",
+      "kCta": " data-i18n=\"vnSelect\""
+    },
+    {
+      "aosDelay": 60,
+      "kRole": "",
+      "calcId": "kl-phuquoc",
+      "tier": "klphuquoc",
+      "kAria": "",
+      "image": "../assets/images/hotels/hotel__grand-wyndham-phuquoc.jpg",
+      "alt": "Wyndham Grand Phu Quoc",
+      "ribbonClass": "premium",
+      "kRibbon": " data-i18n=\"vnCard6Ribbon\"",
+      "ribbon": "5★ · Phu Quoc",
+      "stars": 5,
+      "starsHtml": "★★★★★",
+      "name": "Wyndham Grand Phu Quoc",
+      "amenities": [
+        {
+          "k": " data-i18n=\"vnPillPlage\"",
+          "t": "Plage"
+        },
+        {
+          "k": " data-i18n=\"vnPill5Nuits\"",
+          "t": "5 nuits"
+        }
+      ],
+      "kPriceLabel": " data-i18n=\"vnInclFormule\"",
+      "priceLabel": "Inclus dans la formule",
+      "kPrice": " data-i18n=\"vnCard2Strong\"",
+      "priceFrom": "5 nuits Phu Quoc",
+      "kMeta": " data-i18n=\"vnTarifUnifie\"",
+      "priceMeta": "tarif unifié — voir calculateur",
+      "kCta": " data-i18n=\"vnSelect\""
+    }
+  ],
+  "calcUi": {
+    "phaseLabel": "Calculer mon prix",
+    "eyebrow": "Étape 1 · Configurez votre voyage",
+    "titleHtml": "Choisissez <em>votre formule</em>",
+    "dateLabel": "Date de départ",
+    "dateChips": [
+      {
+        "active": true,
+        "value": "12 – 23 Août 2026",
+        "k": " data-i18n=\"vnChip1\"",
+        "label": "12–23 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "31 Août – 12 Septembre 2026",
+        "k": " data-i18n=\"vnChip2\"",
+        "label": "31 Août–12 Sep 2026"
+      },
+      {
+        "active": false,
+        "value": "24 Juillet – 03 Août 2026",
+        "k": " data-i18n=\"vnChip3\"",
+        "label": "24 Juil–3 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "08 – 18 Août 2026",
+        "k": " data-i18n=\"vnChip4\"",
+        "label": "8–18 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "16 – 26 Août 2026",
+        "k": " data-i18n=\"vnChip5\"",
+        "label": "16–26 Août 2026"
+      }
+    ],
+    "selectLabel": "Formule",
+    "optionsHtml": "            <option value=\"circuit\" data-i18n=\"vnOptCircuit\">Circuit Vietnam — HCM · Phu Quoc · Hanoï · Ha Long (12j) — dès 439.000 DA</option>\n            <option value=\"kl-phuquoc\" data-i18n-html=\"vnOptKl\">Formule Kuala Lumpur &amp; Phu Quoc (10j) — dès 420.000 DA</option>\n",
+    "roomLabel": "Type de chambre",
+    "roomOptions": [
+      {
+        "active": true,
+        "room": "double",
+        "k": " data-i18n=\"vnRoomDouble\"",
+        "label": "Double"
+      },
+      {
+        "active": false,
+        "room": "triple",
+        "k": " data-i18n=\"vnRoomTriple\"",
+        "label": "Triple"
+      },
+      {
+        "active": false,
+        "room": "single",
+        "k": " data-i18n=\"vnRoomSingle\"",
+        "label": "Individuelle"
+      }
+    ],
+    "travellersLabel": "Voyageurs",
+    "steppersHtml": "\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"vnStepAdultsH\">Adultes</h4><p data-i18n=\"vnStepAdultsP\">À partir de 12 ans</p></div>\n              <div class=\"stepper\"><button class=\"stepper__btn\" id=\"adults-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'adultes\">−</button><span class=\"stepper__val\" id=\"adults-val\">2</span><button class=\"stepper__btn\" id=\"adults-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'adultes\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"vnStepChildBH\">Enfant avec lit</h4><p data-i18n=\"vnStepChildBP\">Enfant avec lit dédié · selon la formule</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_b\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'enfant avec lit\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'enfant avec lit\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"vnStepChildAH\">Enfant sans lit</h4><p data-i18n=\"vnStepChildAP\">Enfant partageant la chambre · selon la formule</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_a\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'enfant sans lit\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'enfant sans lit\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h4 data-i18n=\"vnStepBabyH\">Bébé</h4><p data-i18n=\"vnStepBabyP\">0–2 ans · selon la formule</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"baby\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de bébé\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de bébé\">+</button></div>\n            </div>",
+    "noteHtml": "",
+    "emptyMsg": "Configurez votre voyage pour voir le prix.",
+    "whyHtml": "<details><summary data-i18n=\"vnWhySummary\">Pourquoi ce prix ?</summary><p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\" data-i18n=\"vnWhyDetails\">Prix par personne en chambre double, vols Qatar Airways ALG–Doha–Saïgon et vols intérieurs inclus, 10 nuits petit-déjeuner (croisière baie d'Ha Long en demi-pension), tous les transferts, excursions guidées et accompagnateur Alliance Travel. L'e-visa Vietnam reste à prévoir — Alliance Travel vous accompagne dans la démarche.</p></details>",
+    "continueLabel": "Continuer vers la réservation",
+    "nextStep": "Étape suivante : remplissez votre dossier ci-dessous"
+  },
+  "infoBlocks": [
+    {
+      "open": true,
+      "iconSvg": "<rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/>",
+      "kTitle": " data-i18n=\"vnInfo1Title\"",
+      "title": "Conditions de paiement",
+      "list": [
+        {
+          "k": " data-i18n-html=\"vnInfo1Li1\"",
+          "t": "<strong>Acompte de réservation</strong> · 30 % du montant total au moment de la confirmation, à régler dans les 48 h après accord par WhatsApp."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo1Li2\"",
+          "t": "<strong>Solde</strong> · 70 % restants au plus tard <strong>21 jours avant le départ</strong>."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo1Li3\"",
+          "t": "<strong>Modes acceptés</strong> · Virement bancaire (BNA, BEA, CPA), versement en agence, espèces. Pas de carte bancaire en ligne pour le moment."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo1Li4\"",
+          "t": "<strong>Reçu</strong> · Reçu officiel Alliance Travel remis à chaque versement."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo1Li5\"",
+          "t": "<strong>Devis valable</strong> 7 jours · Les prix peuvent évoluer selon la disponibilité aérienne et le taux de change."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"4.93\" y1=\"4.93\" x2=\"19.07\" y2=\"19.07\"/>",
+      "kTitle": " data-i18n=\"vnInfo2Title\"",
+      "title": "Conditions d'annulation",
+      "ledeHtml": "Annulation par le client (selon le délai avant départ) :</p>\n            <ul class=\"info-list info-list--tiered\">\n              <li data-i18n-html=\"vnInfo2Li1\"><strong>≥ 60 jours avant départ</strong> · Remboursement intégral moins frais de dossier (5 000 DA).</li>\n              <li data-i18n-html=\"vnInfo2Li2\"><strong>30 à 59 jours</strong> · Retenue de 30 % du montant total.</li>\n              <li data-i18n-html=\"vnInfo2Li3\"><strong>14 à 29 jours</strong> · Retenue de 60 % du montant total.</li>\n              <li data-i18n-html=\"vnInfo2Li4\"><strong>7 à 13 jours</strong> · Retenue de 80 %.</li>\n              <li data-i18n-html=\"vnInfo2Li5\"><strong>&lt; 7 jours</strong> · Pas de remboursement (frais aériens et hôteliers définitifs).</li>\n            </ul>\n            <p class=\"info-card__note\" data-i18n-html=\"vnInfo2Note\">\n              <strong>Annulation par la compagnie aérienne ou l'hôtel</strong> · Remboursement intégral ou re-routing sans frais supplémentaires de notre part.\n              <br>\n              <strong>Modification de date</strong> possible jusqu'à 30 jours avant départ, sous réserve de disponibilité et du différentiel tarifaire.\n            </p>\n          </div>\n        </details>\n\n\n        <details class=\"info-card\">\n          <summary class=\"info-card__head\">\n            <span class=\"info-card__icon\" aria-hidden=\"true\">\n              <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M7 21v-1a5 5 0 0 1 10 0v1\"/></svg>\n            </span>\n            <span class=\"info-card__title\" data-i18n=\"vnInfo3Title\">Formalités · e-visa Vietnam</span>\n            <svg class=\"info-card__chevron\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polyline points=\"6 9 12 15 18 9\"/></svg>\n          </summary>\n          <div class=\"info-card__body\">\n            <p class=\"info-card__lede\" data-i18n-html=\"vnInfo3Lede\"><strong>E-visa électronique requis pour le Vietnam</strong>",
+      "kLede": " data-i18n=\"vnInfo2Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"vnInfo3Li1\"",
+          "t": "<strong>Visa</strong> · Un <strong>e-visa électronique</strong> est requis pour les passeports algériens. La demande se fait <strong>en ligne</strong> avant le départ."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo3Li2\"",
+          "t": "<strong>Accompagnement</strong> · Alliance Travel vous <strong>accompagne</strong> dans la constitution et la soumission de votre dossier e-visa, étape par étape."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo3Li3\"",
+          "t": "<strong>Coût &amp; délai</strong> · Frais et délai de traitement <strong>selon l'autorité compétente</strong>. Nous demandons vos documents bien en amont du départ."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo3Li4\"",
+          "t": "<strong>Passeport</strong> · Validité minimum <strong>6 mois après le retour</strong>, 2 pages vierges minimum."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo3Li5\"",
+          "t": "<strong>Documents requis</strong> · Copie couleur du passeport (page d'identité) et photo d'identité aux normes. Aucun rendez-vous consulaire requis."
+        }
+      ]
+    },
+    {
+      "open": false,
+      "iconSvg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+      "kTitle": " data-i18n=\"vnInfo4Title\"",
+      "title": "Assurance voyage",
+      "ledeHtml": "\n              L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> — surtout pour les voyages long-courrier.\n            ",
+      "kLede": " data-i18n-html=\"vnInfo4Lede\"",
+      "list": [
+        {
+          "k": " data-i18n-html=\"vnInfo4Li1\"",
+          "t": "<strong>Couverture conseillée</strong> · Frais médicaux d'urgence (≥ 100 000 €), rapatriement sanitaire, perte/vol de bagages, annulation voyage."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo4Li2\"",
+          "t": "<strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo4Li3\"",
+          "t": "<strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance)."
+        },
+        {
+          "k": " data-i18n-html=\"vnInfo4Li4\"",
+          "t": "<strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage."
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "slug": "tunisie",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#04100f\"/>\n<radialGradient id=\"tn-tunisie-g\" cx=\"50%\" cy=\"70%\" r=\"70%\"><stop offset=\"0\" stop-color=\"#19B5B0\" stop-opacity=\".35\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#tn-tunisie-g)\"/>\n<rect x=\"0\" y=\"62\" width=\"100\" height=\"38\" fill=\"#0a1f24\"/>\n<rect x=\"18\" y=\"34\" width=\"30\" height=\"28\" fill=\"#0e2a2c\"/>\n<polygon points=\"18,34 33,22 48,34\" fill=\"#0e2a2c\"/>\n<circle cx=\"68\" cy=\"30\" r=\"9\" fill=\"#19B5B0\" fill-opacity=\".25\"/>\n<ellipse cx=\"50\" cy=\"66\" rx=\"46\" ry=\"2\" fill=\"#19B5B0\" fill-opacity=\".18\"/>\n</svg>",
+      "color": "#19B5B0",
+      "kFlag": " data-i18n=\"vnRel1Flag\"",
+      "flag": "Tunisie · Été 2026",
+      "kTitle": "",
+      "title": "Tunisie",
+      "kPrice": " data-i18n-html=\"vnRel1Price\"",
+      "priceHtml": "À partir de <strong>36.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": " data-i18n=\"vnRelCta\""
+    },
+    {
+      "slug": "bali",
+      "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#100b05\"/>\n<radialGradient id=\"bl-bali-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#D98E48\" stop-opacity=\".4\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#bl-bali-g)\"/>\n<polygon points=\"50,20 72,72 28,72\" fill=\"#7A5526\" fill-opacity=\".55\"/>\n<rect x=\"0\" y=\"72\" width=\"100\" height=\"28\" fill=\"#23150a\"/>\n<circle cx=\"74\" cy=\"26\" r=\"7\" fill=\"#FFE6C2\" fill-opacity=\".18\"/>\n<ellipse cx=\"50\" cy=\"76\" rx=\"46\" ry=\"2\" fill=\"#D98E48\" fill-opacity=\".2\"/>\n</svg>",
+      "color": "#D98E48",
+      "kFlag": " data-i18n=\"vnRel2Flag\"",
+      "flag": "Indonésie · Été 2026",
+      "kTitle": "",
+      "title": "Bali",
+      "kPrice": " data-i18n-html=\"vnRel2Price\"",
+      "priceHtml": "À partir de <strong>419.000 DA</strong>",
+      "kCtaOuter": "",
+      "kCta": " data-i18n=\"vnRelCta\""
+    }
+  ],
+  "finalCta": {
+    "scarcityHtml": "<span data-i18n=\"vnFinalScarcity\">2 départs en 2026 · Places limitées</span>",
+    "titleHtml": "Cap sur le<br><em>Vietnam</em>",
+    "sub": "De Saïgon à la baie d'Ha Long, en passant par les plages de Phu Quoc et le vieux Hanoï — 12 jours, 4 étapes, un seul voyage au départ d'Alger.",
+    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20circuit%20Vietnam%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\" data-i18n=\"vnFinalWa\">Réserver via WhatsApp</a>\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
+    "contactHtml": "<div class=\"contact-item\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg><span data-i18n=\"vnFinalAddress\">Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville</span></div>"
+  },
+  "footer": {
+    "html": "<div class=\"container\"><div class=\"footer-grid\"><div class=\"footer-brand\"><span class=\"footer-logo\">Alliance<span>Travel</span></span><p class=\"footer-tagline\" data-i18n=\"footer.tagline\">Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.</p>\n        <div class=\"footer-social\">\n          <a href=\"https://www.instagram.com/alliance_travel34/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Instagram Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg>\n          </a>\n          <a href=\"https://web.facebook.com/Alliance.Mebarkia\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://web.facebook.com/visa.bba.9\" target=\"_blank\" rel=\"noopener\" aria-label=\"Facebook Alliance Travel — Visa BBA\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z\"/></svg></a>\n          <a href=\"https://www.tiktok.com/@visa.bba34\" target=\"_blank\" rel=\"noopener\" aria-label=\"TikTok Alliance Travel\">\n            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z\"/></svg>\n          </a>\n        </div></div><div class=\"footer-col\"><h4>Nos Voyages</h4><a href=\"../egypte/\">Égypte</a><a href=\"../tunisie/\">Tunisie</a><a href=\"../azerbaidjan/\">Azerbaïdjan</a><a href=\"../istanbul/\">Istanbul</a><a href=\"../kuala-lumpur/\">Kuala Lumpur &amp; Langkawi</a><a href=\"../bali/\">Bali</a><a href=\"../vietnam/\">Vietnam</a></div><div class=\"footer-col\"><h4 data-i18n=\"footer.col_contact\">Contact</h4>\n        \n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span data-i18n=\"footer.wa_viber\">WhatsApp / Viber</span></p>\n          <a href=\"https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 860 617</a>\n          <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg><span data-i18n=\"footer.phone\">Téléphone</span></p>\n          <a href=\"https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 267</a>\n          <a href=\"https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 268</a>\n          <a href=\"https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0561 616 269</a>\n          <a href=\"https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" target=\"_blank\" rel=\"noopener\">0560 869 905</a>\n        </div>\n        <div class=\"phone-group\">\n          <p class=\"phone-group__head\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><span data-i18n=\"footer.address_label\">Adresse</span></p>\n          <p class=\"fs-body-sm u-text-2 u-m-0\">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>\n        </div>\n      </div></div><div class=\"footer-bottom\"><p data-i18n=\"footer.copyright\">© 2026 Alliance Travel · Bordj Bou Arreridj</p><p data-i18n=\"footer.notice\">Prix en DA · Indicatifs · Confirmation à la réservation</p></div></div>"
+  },
+  "tripData": {
+    "name": "Vietnam 2026 · Circuit & Formules",
+    "dates": [
+      "12 – 23 Août 2026",
+      "31 Août – 12 Septembre 2026",
+      "24 Juillet – 03 Août 2026",
+      "08 – 18 Août 2026",
+      "16 – 26 Août 2026"
+    ],
+    "hotels": [
+      {
+        "id": "circuit",
+        "name": "Circuit Vietnam — HCM · Phu Quoc · Hanoï · Ha Long (12j)",
+        "prices": {
+          "double": 439000,
+          "triple": 439000,
+          "single": 575000,
+          "child1": 399000,
+          "child2": 349000,
+          "baby": 58000
+        },
+        "why": "Vol Qatar Airways ALG–Doha–Saïgon + vols intérieurs inclus, 10 nuits, petit-déjeuner (croisière Ha Long en demi-pension), transferts et excursions guidées. Enfant avec lit 399.000 ; enfant sans lit 349.000."
+      },
+      {
+        "id": "kl-phuquoc",
+        "name": "Formule Kuala Lumpur & Phu Quoc (10j)",
+        "prices": {
+          "double": 420000,
+          "triple": 420000,
+          "single": 450000,
+          "child1": 409000,
+          "child2": 299000,
+          "baby": 52000
+        },
+        "why": "Vol Qatar Airways via Doha + vol intérieur KL–Phu Quoc inclus, 9 nuits petit-déjeuner, transferts, City Tour Kuala Lumpur. Enfant avec lit 409.000 ; enfant sans lit 299.000."
+      }
+    ],
+    "extras": []
+  },
+  "i18n": {
+    "en": {
+      "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
+      "vnHeroEyebrow": "Organized tour · Qatar Airways · Summer 2026",
+      "vnHeroTitlePre": "Vietnam",
+      "vnHeroTitlePost": "From Saigon to Ha Long Bay",
+      "vnHeroDate": "12 days · 4 stops · 2 departures",
+      "vnHeroH1": "Vietnam <em>From Saigon to Ha Long Bay</em>",
+      "vnHeroLede": "A grand 4-stop circuit: the buzz of Ho Chi Minh City, the beaches of Phu Quoc, the charm of old Hanoi, and a night cruising among the limestone peaks of Ha Long Bay. Qatar Airways flight from Algiers.",
+      "vnHeroPriceUnit": "per person · double room · full circuit",
+      "vnHeroFineprint": "Based on a double room, subject to availability — DZD/USD rate set at booking.",
+      "vnHeroCtaCalc": "Calculate my price",
+      "vnHl1Label": "Flights",
+      "vnHl1Title": "Qatar Airways flight",
+      "vnHl1Body": "ALG–Doha–Saigon with Qatar Airways, plus the domestic flights the circuit requires.",
+      "vnHl2Label": "Itinerary",
+      "vnHl2Title": "4 stops in 1 trip",
+      "vnHl2Body": "Ho Chi Minh, Phu Quoc, Hanoi and Ha Long Bay strung together in a single guided circuit.",
+      "vnHl3Label": "Cruise",
+      "vnHl3Title": "Ha Long Bay cruise",
+      "vnHl3Body": "One night aboard, half-board, among the World-Heritage limestone karsts.",
+      "vnHl4Label": "Relaxation",
+      "vnHl4Title": "Phu Quoc beaches",
+      "vnHl4Body": "5 nights on Vietnam's most beautiful island: beaches, warm sea and downtime between stops.",
+      "vnItinPhase": "Discover",
+      "vnItinEyebrow": "12 days · 4 stops",
+      "vnItinTitle": "Your <em>itinerary</em>",
+      "vnDay1Label": "Day 1",
+      "vnDay1Title": "Algiers – Saigon flight",
+      "vnDay1Act": "Qatar Airways flight ALG–Doha–Saigon (Ho Chi Minh City). Airport welcome and transfer to the hotel.",
+      "vnDay2Label": "Day 2–3",
+      "vnDay2Title": "Ho Chi Minh City",
+      "vnDay2Act": "Exploring Saigon: the Cu Chi tunnels, a Mekong Delta excursion, markets and the grand boulevards of the old southern capital.",
+      "vnDay2Tag1": "Cu Chi",
+      "vnDay2Tag2": "Mekong Delta",
+      "vnDay3Label": "Day 4–8",
+      "vnDay3Title": "Phu Quoc",
+      "vnDay3Act": "Domestic flight to Phu Quoc island. Five nights of relaxation: white-sand beaches, warm sea, sunsets and free time.",
+      "vnDay3Tag1": "Beach",
+      "vnDay3Tag2": "Relaxation",
+      "vnDay4Label": "Day 9–10",
+      "vnDay4Title": "Hanoi",
+      "vnDay4Act": "Flight to the capital. Visit the Old Quarter, Hoan Kiem Lake, the Temple of Literature and the lively lanes of the old town.",
+      "vnDay4Tag1": "Old Quarter",
+      "vnDay4Tag2": "Hoan Kiem Lake",
+      "vnDay5Label": "Day 11",
+      "vnDay5Title": "Ha Long Bay cruise",
+      "vnDay5Act": "Road to Ha Long Bay and boarding. A night aboard, half-board, among the limestone peaks, with swimming and caves.",
+      "vnDay5Tag1": "Cruise",
+      "vnDay5Tag2": "Night aboard",
+      "vnDay5Tag3": "Half-board",
+      "vnDay6Label": "Day 12",
+      "vnDay6Title": "Return to Algiers",
+      "vnDay6Act": "Disembarkation, transfer to Hanoi airport and Qatar Airways return flight via Doha to Algiers.",
+      "vnMapEyebrow": "Your trip at a glance",
+      "vnMapTitle": "The itinerary <em>on the map</em>",
+      "vnMapSub": "Ho Chi Minh, Phu Quoc, Hanoi, Ha Long Bay — the four stops of your 12-day circuit, from departure in Algiers to return.",
+      "vnMapLoading": "Loading the map…",
+      "vnMapLegendHotels": "Hotels",
+      "vnMapLegendSites": "Sites visited",
+      "vnMapLegendTours": "Guided excursions",
+      "vnTrustEyebrow": "Over 1,200 travellers guided",
+      "vnTrustTitle": "They <em>trusted us</em>",
+      "vnStat1": "Travellers guided since 2019",
+      "vnStat2": "Satisfaction rate",
+      "vnStat3": "Packages to choose from in 2026",
+      "vnStat4": "Stops in a single circuit",
+      "vnTesti1Text": "\"Vietnam in a single trip — Saigon, the Phu Quoc beaches, then Hanoi and Ha Long Bay. Everything was organised end to end; we never had to worry about a thing.\"",
+      "vnTesti1Trip": "Bordj Bou Arreridj · Vietnam trip 2025",
+      "vnTesti2Text": "\"First long-haul trip as a family. The e-visa handled by the agency, the Qatar Airways flights flawless, the French-speaking guide always on hand. Real peace of mind.\"",
+      "vnTesti2Trip": "Constantine · Vietnam trip 2025",
+      "vnTesti3Text": "\"The night cruising Ha Long Bay will stay our best memory. The five nights in Phu Quoc beforehand were the perfect rest. Unbeatable value for money.\"",
+      "vnTesti3Trip": "Algiers · Vietnam trip 2024",
+      "vnInclEyebrow": "All said, nothing hidden",
+      "vnInclTitle": "What's <em>included</em>, what isn't",
+      "vnInclSub": "No surprises on arrival. Here's exactly what your package covers — and what you'll plan for on top.",
+      "vnInclColTitle": "Included in the <em>package</em>",
+      "vnInclColCount": "8 services covered",
+      "vnInclItem1": "International <strong>Qatar Airways</strong> flights ALG–Doha–Saigon round-trip",
+      "vnInclItem2": "<strong>Domestic flights</strong> of the circuit (Phu Quoc, Hanoi)",
+      "vnInclItem3": "<strong>10 nights</strong> of hotel with breakfast (2N Ho Chi Minh · 5N Phu Quoc · 2N Hanoi · 1N cruise)",
+      "vnInclItem4": "<strong>Ha Long Bay cruise</strong>: a night aboard, half-board",
+      "vnInclItem5": "All <strong>transfers</strong> — airports and between stops",
+      "vnInclItem6": "Guided excursions: Cu Chi · Mekong Delta · old Hanoi · Ha Long Bay",
+      "vnInclItem7": "Alliance Travel tour leader + local French-speaking guides",
+      "vnInclItem8": "Alliance Travel assistance with your Vietnam e-visa application",
+      "vnExclColTitle": "To <em>plan</em> for on top",
+      "vnExclColCount": "5 items outside the package",
+      "vnExclItem1": "<strong>Vietnam e-visa</strong> — Alliance Travel guides you through the process",
+      "vnExclItem2": "Lunches and dinners outside the cruise — breakfast-only package",
+      "vnExclItem3": "Drinks and tips",
+      "vnExclItem4": "Personal travel insurance",
+      "vnExclItem5": "Personal expenses",
+      "vnFaqEyebrow": "FAQ",
+      "vnFaqTitle": "Frequently asked <em>questions</em>",
+      "vnFaq1Q": "Do I need a visa for Vietnam?",
+      "vnFaq1A": "Yes. Algerian travellers need an <strong>electronic e-visa</strong> for Vietnam, to be applied for online before departure. Alliance Travel assists every traveller in assembling and submitting their file. The passport must be valid for at least <strong>6 months</strong> after the return date.",
+      "vnFaq2Q": "What are the stops on the Vietnam circuit?",
+      "vnFaq2A": "The full circuit runs <strong>12 days</strong>: 2 nights in Ho Chi Minh (Saigon), 5 nights in Phu Quoc, 2 nights in Hanoi and 1 night cruising Ha Long Bay. An alternative <strong>Kuala Lumpur &amp; Phu Quoc</strong> package is also offered.",
+      "vnFaq3Q": "Which airline operates the trip?",
+      "vnFaq3A": "The trip is flown with <strong>Qatar Airways</strong> from Algiers via Doha to Saigon. The <strong>domestic flights</strong> needed for the circuit (notably to Phu Quoc and Hanoi) are also included.",
+      "vnFaq4Q": "Are meals included?",
+      "vnFaq4A": "The programme is <strong>breakfast-only</strong> across the 10 hotel nights. The Ha Long Bay cruise night is <strong>half-board</strong> (breakfast and one meal aboard). Other lunches and dinners are at your own choice.",
+      "vnHotelsPhase": "Compare the hotels",
+      "vnHotelsEyebrow": "Accommodation · 10 nights",
+      "vnHotelsTitle": "Your hotels, <em>stop by stop</em>",
+      "vnHotelsSub": "Two packages to choose from. Breakfast-only programme — the Ha Long Bay cruise night is half-board. All inter-stop transfers included.",
+      "vnTierAll": "All",
+      "vnTierCircuit": "Vietnam circuit",
+      "vnTierKl": "KL &amp; Phu Quoc",
+      "vnCard1Ribbon": "4★ · Ho Chi Minh",
+      "vnCard1Pill1": "City centre",
+      "vnCard1PriceLabel": "Vietnam circuit · from",
+      "vnPriceMetaDouble": "Double room · per person",
+      "vnSelect": "Select",
+      "vnPill2Nuits": "2 nights",
+      "vnPill4Nuits": "4 nights",
+      "vnPill5Nuits": "5 nights",
+      "vnPillPlage": "Beach",
+      "vnPillVieuxQuartier": "Old Quarter",
+      "vnPillCroisiere": "Cruise",
+      "vnPillDemiPension": "Half-board",
+      "vnInclCircuit": "Included in the circuit",
+      "vnInclFormule": "Included in the package",
+      "vnTarifUnifie": "unified rate — see calculator",
+      "vnCard2Ribbon": "5★ · Phu Quoc",
+      "vnCard2Strong": "5 nights Phu Quoc",
+      "vnCard3Ribbon": "4★ · Hanoi",
+      "vnCard3Strong": "2 nights Hanoi",
+      "vnCard4Ribbon": "5★ · Ha Long Bay",
+      "vnCard4Strong": "1 night aboard",
+      "vnCard4Meta": "half-board — see calculator",
+      "vnCard5Ribbon": "5★ · Kuala Lumpur",
+      "vnCard5Pill1": "KL centre",
+      "vnCard5PriceLabel": "KL &amp; Phu Quoc package · from",
+      "vnCard6Ribbon": "5★ · Phu Quoc",
+      "vnCalcPhase": "Calculate my price",
+      "vnCalcEyebrow": "Step 1 · Configure your trip",
+      "vnCalcTitle": "Choose <em>your package</em>",
+      "vnCalcDateLabel": "Departure date",
+      "vnChip1": "12–23 Aug 2026",
+      "vnChip2": "31 Aug–12 Sep 2026",
+      "vnChip3": "24 Jul–3 Aug 2026",
+      "vnChip4": "8–18 Aug 2026",
+      "vnChip5": "16–26 Aug 2026",
+      "vnCalcFormuleLabel": "Package",
+      "vnOptCircuit": "Vietnam Circuit — HCM · Phu Quoc · Hanoi · Ha Long (12d) — from 439,000 DA",
+      "vnOptKl": "Kuala Lumpur &amp; Phu Quoc package (10d) — from 420,000 DA",
+      "vnCalcRoomLabel": "Room type",
+      "vnRoomDouble": "Double",
+      "vnRoomTriple": "Triple",
+      "vnRoomSingle": "Single",
+      "vnCalcTravellersLabel": "Travellers",
+      "vnStepAdultsH": "Adults",
+      "vnStepAdultsP": "From 12 years old",
+      "vnStepChildBH": "Child with bed",
+      "vnStepChildBP": "Child with a dedicated bed · depending on package",
+      "vnStepChildAH": "Child without bed",
+      "vnStepChildAP": "Child sharing the room · depending on package",
+      "vnStepBabyH": "Infant",
+      "vnStepBabyP": "0–2 years · depending on package",
+      "vnRecap": "Summary",
+      "vnRecapEmpty": "Configure your trip to see the price.",
+      "vnTotalLabel": "Estimated total",
+      "vnWhySummary": "Why this price?",
+      "vnWhyDetails": "Price per person in a double room, Qatar Airways flights ALG–Doha–Saigon and domestic flights included, 10 nights breakfast (Ha Long Bay cruise half-board), all transfers, guided excursions and an Alliance Travel tour leader. The Vietnam e-visa remains to be planned — Alliance Travel guides you through the process.",
+      "vnContinue": "Continue to booking",
+      "vnNextStep": "Next step: fill in your booking below",
+      "vnInfoEyebrow": "Before you go",
+      "vnInfoTitle": "Everything you <em>need to know</em>",
+      "vnInfoSub": "Payment, cancellation, visa formalities, insurance — transparency in four blocks.",
+      "vnInfo1Title": "Payment terms",
+      "vnInfo1Li1": "<strong>Booking deposit</strong> · 30% of the total at confirmation, payable within 48h of agreement on WhatsApp.",
+      "vnInfo1Li2": "<strong>Balance</strong> · remaining 70% no later than <strong>21 days before departure</strong>.",
+      "vnInfo1Li3": "<strong>Accepted methods</strong> · Bank transfer (BNA, BEA, CPA), in-branch payment, cash. No online card payment for now.",
+      "vnInfo1Li4": "<strong>Receipt</strong> · An official Alliance Travel receipt is issued for every payment.",
+      "vnInfo1Li5": "<strong>Quote valid</strong> 7 days · Prices may change with flight availability and the exchange rate.",
+      "vnInfo2Title": "Cancellation terms",
+      "vnInfo2Lede": "Cancellation by the client (by the lead time before departure):",
+      "vnInfo2Li1": "<strong>≥ 60 days before departure</strong> · Full refund minus a processing fee (5,000 DA).",
+      "vnInfo2Li2": "<strong>30 to 59 days</strong> · 30% of the total withheld.",
+      "vnInfo2Li3": "<strong>14 to 29 days</strong> · 60% of the total withheld.",
+      "vnInfo2Li4": "<strong>7 to 13 days</strong> · 80% withheld.",
+      "vnInfo2Li5": "<strong>&lt; 7 days</strong> · No refund (flight and hotel charges final).",
+      "vnInfo2Note": "<strong>Cancellation by the airline or hotel</strong> · Full refund or re-routing at no extra cost on our part.<br><strong>Date changes</strong> possible up to 30 days before departure, subject to availability and the fare difference.",
+      "vnInfo3Title": "Formalities · Vietnam e-visa",
+      "vnInfo3Lede": "<strong>Electronic e-visa required for Vietnam</strong>",
+      "vnInfo3Li1": "<strong>Visa</strong> · An <strong>electronic e-visa</strong> is required for Algerian passports. The application is done <strong>online</strong> before departure.",
+      "vnInfo3Li2": "<strong>Support</strong> · Alliance Travel <strong>guides</strong> you through assembling and submitting your e-visa file, step by step.",
+      "vnInfo3Li3": "<strong>Cost &amp; time</strong> · Fees and processing time <strong>as set by the competent authority</strong>. We request your documents well ahead of departure.",
+      "vnInfo3Li4": "<strong>Passport</strong> · Valid for at least <strong>6 months after return</strong>, minimum 2 blank pages.",
+      "vnInfo3Li5": "<strong>Required documents</strong> · Colour copy of the passport (ID page) and a regulation ID photo. No consular appointment required.",
+      "vnInfo4Title": "Travel insurance",
+      "vnInfo4Lede": "Travel insurance <strong>is not included</strong> in the package but is <strong>strongly recommended</strong> — especially for long-haul trips.",
+      "vnInfo4Li1": "<strong>Recommended cover</strong> · Emergency medical costs (≥ €100,000), medical repatriation, loss/theft of luggage, trip cancellation.",
+      "vnInfo4Li2": "<strong>Indicative cost</strong> · 1,500 to 4,000 DA per person depending on duration and destination.",
+      "vnInfo4Li3": "<strong>Where to buy</strong> · Algerian insurers (CAAR, SAA, CAAT) or international companies (Mondial Assistance, Europ Assistance).",
+      "vnInfo4Li4": "<strong>On request</strong>, Alliance Travel can point you to an insurance partner offering travel plans.",
+      "vnRelatedEyebrow": "You might also like",
+      "vnRelatedTitle": "Continue your <em>discovery</em>",
+      "vnRel1Flag": "Tunisia · Summer 2026",
+      "vnRel1Price": "From <strong>36,000 DA</strong>",
+      "vnRel2Flag": "Indonesia · Summer 2026",
+      "vnRel2Price": "From <strong>419,000 DA</strong>",
+      "vnRelCta": "See this trip",
+      "vnFinalScarcity": "2 departures in 2026 · Limited seats",
+      "vnFinalTitle": "Off to<br><em>Vietnam</em>",
+      "vnFinalSub": "From Saigon to Ha Long Bay, by way of the Phu Quoc beaches and old Hanoi — 12 days, 4 stops, a single trip departing Algiers.",
+      "vnFinalWa": "Book via WhatsApp",
+      "vnFinalAddress": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
+      "vnStickyLabel": "Estimated total",
+      "vnStickyCta": "Book"
+    },
+    "ar": {
+      "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
+      "vnHeroEyebrow": "رحلة منظمة · الخطوط الجوية القطرية · صيف 2026",
+      "vnHeroTitlePre": "فيتنام",
+      "vnHeroTitlePost": "من سايغون إلى خليج ها لونغ",
+      "vnHeroDate": "12 يوماً · 4 محطات · رحلتان",
+      "vnHeroH1": "فيتنام <em>من سايغون إلى خليج ها لونغ</em>",
+      "vnHeroLede": "جولة كبرى من 4 محطات: صخب مدينة هو تشي منه، وشواطئ فو كووك، وسحر هانوي القديمة، وليلة على متن رحلة بحرية بين القمم الجيرية في خليج ها لونغ. رحلة الخطوط الجوية القطرية من الجزائر.",
+      "vnHeroPriceUnit": "للشخص · غرفة مزدوجة · الجولة الكاملة",
+      "vnHeroFineprint": "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
+      "vnHeroCtaCalc": "احسب سعري",
+      "vnHl1Label": "الطيران",
+      "vnHl1Title": "رحلة الخطوط الجوية القطرية",
+      "vnHl1Body": "الجزائر–الدوحة–سايغون مع الخطوط الجوية القطرية، إضافةً إلى الرحلات الداخلية اللازمة للجولة.",
+      "vnHl2Label": "المسار",
+      "vnHl2Title": "4 محطات في رحلة واحدة",
+      "vnHl2Body": "هو تشي منه وفو كووك وهانوي وخليج ها لونغ متتالية في جولة مُرافَقة واحدة.",
+      "vnHl3Label": "رحلة بحرية",
+      "vnHl3Title": "رحلة بحرية في خليج ها لونغ",
+      "vnHl3Body": "ليلة على متن السفينة بنظام نصف الإقامة بين القمم الجيرية المُدرَجة في التراث العالمي.",
+      "vnHl4Label": "استرخاء",
+      "vnHl4Title": "شواطئ فو كووك",
+      "vnHl4Body": "5 ليالٍ في أجمل جزر فيتنام: شواطئ وبحر دافئ واسترخاء بين المحطات.",
+      "vnItinPhase": "اكتشِف",
+      "vnItinEyebrow": "12 يوماً · 4 محطات",
+      "vnItinTitle": "<em>برنامجك</em>",
+      "vnDay1Label": "اليوم 1",
+      "vnDay1Title": "رحلة الجزائر – سايغون",
+      "vnDay1Act": "رحلة الخطوط الجوية القطرية الجزائر–الدوحة–سايغون (مدينة هو تشي منه). استقبال في المطار ونقل إلى الفندق.",
+      "vnDay2Label": "اليوم 2–3",
+      "vnDay2Title": "مدينة هو تشي منه",
+      "vnDay2Act": "اكتشاف سايغون: أنفاق كو تشي، رحلة إلى دلتا الميكونغ، الأسواق والجادات الكبرى للعاصمة الجنوبية القديمة.",
+      "vnDay2Tag1": "كو تشي",
+      "vnDay2Tag2": "دلتا الميكونغ",
+      "vnDay3Label": "اليوم 4–8",
+      "vnDay3Title": "فو كووك",
+      "vnDay3Act": "رحلة داخلية إلى جزيرة فو كووك. خمس ليالٍ من الاسترخاء: شواطئ رملية بيضاء وبحر دافئ وغروب الشمس ووقت حر.",
+      "vnDay3Tag1": "شاطئ",
+      "vnDay3Tag2": "استرخاء",
+      "vnDay4Label": "اليوم 9–10",
+      "vnDay4Title": "هانوي",
+      "vnDay4Act": "رحلة إلى العاصمة. زيارة الحيّ القديم وبحيرة هوان كيم ومعبد الأدب والأزقّة النابضة بالحياة في المدينة القديمة.",
+      "vnDay4Tag1": "الحيّ القديم",
+      "vnDay4Tag2": "بحيرة هوان كيم",
+      "vnDay5Label": "اليوم 11",
+      "vnDay5Title": "رحلة بحرية في خليج ها لونغ",
+      "vnDay5Act": "الطريق إلى خليج ها لونغ والصعود إلى السفينة. ليلة على المتن بنظام نصف الإقامة بين القمم الجيرية، مع السباحة وزيارة الكهوف.",
+      "vnDay5Tag1": "رحلة بحرية",
+      "vnDay5Tag2": "ليلة على المتن",
+      "vnDay5Tag3": "نصف إقامة",
+      "vnDay6Label": "اليوم 12",
+      "vnDay6Title": "العودة إلى الجزائر",
+      "vnDay6Act": "النزول من السفينة، النقل إلى مطار هانوي ورحلة العودة مع الخطوط الجوية القطرية عبر الدوحة إلى الجزائر.",
+      "vnMapEyebrow": "رحلتك في لمحة",
+      "vnMapTitle": "المسار <em>على الخريطة</em>",
+      "vnMapSub": "هو تشي منه وفو كووك وهانوي وخليج ها لونغ — المحطات الأربع لجولتك التي تمتدّ 12 يوماً، من المغادرة في الجزائر حتى العودة.",
+      "vnMapLoading": "جارٍ تحميل الخريطة…",
+      "vnMapLegendHotels": "الفنادق",
+      "vnMapLegendSites": "المواقع المُزارة",
+      "vnMapLegendTours": "الجولات المُرافَقة",
+      "vnTrustEyebrow": "أكثر من 1200 مسافر مُرافَق",
+      "vnTrustTitle": "لقد <em>وثقوا بنا</em>",
+      "vnStat1": "مسافرون مُرافَقون منذ 2019",
+      "vnStat2": "نسبة الرضا",
+      "vnStat3": "صيغتان للاختيار في 2026",
+      "vnStat4": "محطات في جولة واحدة",
+      "vnTesti1Text": "«فيتنام في رحلة واحدة — سايغون وشواطئ فو كووك ثم هانوي وخليج ها لونغ. كان كل شيء منظَّماً من البداية إلى النهاية، ولم نقلق على أيّ شيء قطّ.»",
+      "vnTesti1Trip": "برج بوعريريج · رحلة فيتنام 2025",
+      "vnTesti2Text": "«أوّل رحلة طويلة المدى مع العائلة. التأشيرة الإلكترونية مُرافَقة من الوكالة، رحلات الخطوط الجوية القطرية ممتازة، والمُرافِق الناطق بالفرنسية متاح دائماً. راحة بال حقيقية.»",
+      "vnTesti2Trip": "قسنطينة · رحلة فيتنام 2025",
+      "vnTesti3Text": "«ليلة الرحلة البحرية في خليج ها لونغ ستبقى أجمل ذكرياتنا. الليالي الخمس في فو كووك قبلها كانت راحة مثالية. قيمة لا تُضاهى مقابل السعر.»",
+      "vnTesti3Trip": "الجزائر · رحلة فيتنام 2024",
+      "vnInclEyebrow": "كل شيء واضح، لا شيء مخفيّ",
+      "vnInclTitle": "ما هو <em>مشمول</em> وما ليس كذلك",
+      "vnInclSub": "لا مفاجآت عند الوصول. إليك بالضبط ما يغطّيه باقتك — وما عليك توقّعه إضافةً إليه.",
+      "vnInclColTitle": "مشمول في <em>الباقة</em>",
+      "vnInclColCount": "8 خدمات مغطّاة",
+      "vnInclItem1": "رحلات دولية مع <strong>الخطوط الجوية القطرية</strong> الجزائر–الدوحة–سايغون ذهاباً وإياباً",
+      "vnInclItem2": "<strong>الرحلات الداخلية</strong> ضمن الجولة (فو كووك، هانوي)",
+      "vnInclItem3": "<strong>10 ليالٍ</strong> فندقية مع الإفطار (ليلتان هو تشي منه · 5 ليالٍ فو كووك · ليلتان هانوي · ليلة رحلة بحرية)",
+      "vnInclItem4": "<strong>رحلة بحرية في خليج ها لونغ</strong>: ليلة على المتن بنظام نصف الإقامة",
+      "vnInclItem5": "جميع <strong>التنقّلات</strong> — المطارات وبين المحطات",
+      "vnInclItem6": "جولات مُرافَقة: كو تشي · دلتا الميكونغ · هانوي القديمة · خليج ها لونغ",
+      "vnInclItem7": "مُرافِق أليانس ترافل + مرشدون محليّون ناطقون بالفرنسية",
+      "vnInclItem8": "مساعدة أليانس ترافل في طلب التأشيرة الإلكترونية لفيتنام",
+      "vnExclColTitle": "يُتوقَّع <em>إضافةً</em> إلى ذلك",
+      "vnExclColCount": "5 عناصر خارج الباقة",
+      "vnExclItem1": "<strong>التأشيرة الإلكترونية لفيتنام</strong> — أليانس ترافل تُرافِقك في الإجراء",
+      "vnExclItem2": "الغداء والعشاء خارج الرحلة البحرية — باقة بنظام الإفطار",
+      "vnExclItem3": "المشروبات والإكراميات",
+      "vnExclItem4": "تأمين سفر شخصي",
+      "vnExclItem5": "النفقات الشخصية",
+      "vnFaqEyebrow": "الأسئلة الشائعة",
+      "vnFaqTitle": "أسئلة <em>متكرّرة</em>",
+      "vnFaq1Q": "هل أحتاج إلى تأشيرة لفيتنام؟",
+      "vnFaq1A": "نعم. يحتاج المسافرون الجزائريون إلى <strong>تأشيرة إلكترونية</strong> لفيتنام، تُطلَب عبر الإنترنت قبل المغادرة. تُساعد أليانس ترافل كل مسافر في إعداد ملفّه وتقديمه. ويجب أن يكون جواز السفر صالحاً لمدّة <strong>6 أشهر</strong> على الأقل بعد تاريخ العودة.",
+      "vnFaq2Q": "ما هي محطات جولة فيتنام؟",
+      "vnFaq2A": "تمتدّ الجولة الكاملة <strong>12 يوماً</strong>: ليلتان في هو تشي منه (سايغون)، و5 ليالٍ في فو كووك، وليلتان في هانوي، وليلة في رحلة بحرية بخليج ها لونغ. كما تُقدَّم صيغة بديلة <strong>كوالا لمبور وفو كووك</strong>.",
+      "vnFaq3Q": "أيّ شركة طيران تُشغّل الرحلة؟",
+      "vnFaq3A": "تتمّ الرحلة مع <strong>الخطوط الجوية القطرية</strong> انطلاقاً من الجزائر عبر الدوحة حتى سايغون. كما تشمل <strong>الرحلات الداخلية</strong> اللازمة للجولة (لا سيّما نحو فو كووك وهانوي).",
+      "vnFaq4Q": "هل الوجبات مشمولة؟",
+      "vnFaq4A": "البرنامج بنظام <strong>الإفطار</strong> طوال الليالي العشر الفندقية. أمّا ليلة الرحلة البحرية في خليج ها لونغ فهي بنظام <strong>نصف الإقامة</strong> (إفطار ووجبة على المتن). وتبقى باقي وجبات الغداء والعشاء حرّة.",
+      "vnHotelsPhase": "قارن بين الفنادق",
+      "vnHotelsEyebrow": "الإقامة · 10 ليالٍ",
+      "vnHotelsTitle": "فنادقك، <em>محطّةً تلو الأخرى</em>",
+      "vnHotelsSub": "صيغتان للاختيار. برنامج بنظام الإفطار — وليلة الرحلة البحرية في خليج ها لونغ بنظام نصف الإقامة. جميع التنقّلات بين المحطات مشمولة.",
+      "vnTierAll": "الكل",
+      "vnTierCircuit": "جولة فيتنام",
+      "vnTierKl": "كوالا لمبور وفو كووك",
+      "vnCard1Ribbon": "4★ · هو تشي منه",
+      "vnCard1Pill1": "وسط المدينة",
+      "vnCard1PriceLabel": "جولة فيتنام · ابتداءً من",
+      "vnPriceMetaDouble": "غرفة مزدوجة · للشخص",
+      "vnSelect": "اختر",
+      "vnPill2Nuits": "ليلتان",
+      "vnPill4Nuits": "4 ليالٍ",
+      "vnPill5Nuits": "5 ليالٍ",
+      "vnPillPlage": "شاطئ",
+      "vnPillVieuxQuartier": "الحيّ القديم",
+      "vnPillCroisiere": "رحلة بحرية",
+      "vnPillDemiPension": "نصف إقامة",
+      "vnInclCircuit": "مشمول في الجولة",
+      "vnInclFormule": "مشمول في الصيغة",
+      "vnTarifUnifie": "سعر موحَّد — راجع الحاسبة",
+      "vnCard2Ribbon": "5★ · فو كووك",
+      "vnCard2Strong": "5 ليالٍ فو كووك",
+      "vnCard3Ribbon": "4★ · هانوي",
+      "vnCard3Strong": "ليلتان هانوي",
+      "vnCard4Ribbon": "5★ · خليج ها لونغ",
+      "vnCard4Strong": "ليلة على المتن",
+      "vnCard4Meta": "نصف إقامة — راجع الحاسبة",
+      "vnCard5Ribbon": "5★ · كوالا لمبور",
+      "vnCard5Pill1": "وسط كوالا لمبور",
+      "vnCard5PriceLabel": "صيغة كوالا لمبور وفو كووك · ابتداءً من",
+      "vnCard6Ribbon": "5★ · فو كووك",
+      "vnCalcPhase": "احسب سعري",
+      "vnCalcEyebrow": "الخطوة 1 · جهّز رحلتك",
+      "vnCalcTitle": "اختر <em>صيغتك</em>",
+      "vnCalcDateLabel": "تاريخ المغادرة",
+      "vnChip1": "12–23 أوت 2026",
+      "vnChip2": "31 أوت–12 سبتمبر 2026",
+      "vnChip3": "24 جويلية–3 أوت 2026",
+      "vnChip4": "8–18 أوت 2026",
+      "vnChip5": "16–26 أوت 2026",
+      "vnCalcFormuleLabel": "الصيغة",
+      "vnOptCircuit": "جولة فيتنام — هو تشي منه · فو كووك · هانوي · ها لونغ (12 يوماً) — ابتداءً من 439.000 دج",
+      "vnOptKl": "صيغة كوالا لمبور وفو كووك (10 أيام) — ابتداءً من 420.000 دج",
+      "vnCalcRoomLabel": "نوع الغرفة",
+      "vnRoomDouble": "مزدوجة",
+      "vnRoomTriple": "ثلاثية",
+      "vnRoomSingle": "فردية",
+      "vnCalcTravellersLabel": "المسافرون",
+      "vnStepAdultsH": "البالغون",
+      "vnStepAdultsP": "ابتداءً من 12 سنة",
+      "vnStepChildBH": "طفل بسرير",
+      "vnStepChildBP": "طفل بسرير مخصّص · حسب الصيغة",
+      "vnStepChildAH": "طفل بدون سرير",
+      "vnStepChildAP": "طفل يشارك الغرفة · حسب الصيغة",
+      "vnStepBabyH": "رضيع",
+      "vnStepBabyP": "0–2 سنة · حسب الصيغة",
+      "vnRecap": "الملخّص",
+      "vnRecapEmpty": "جهّز رحلتك لرؤية السعر.",
+      "vnTotalLabel": "الإجمالي التقديري",
+      "vnWhySummary": "لماذا هذا السعر؟",
+      "vnWhyDetails": "السعر للشخص في غرفة مزدوجة، رحلات الخطوط الجوية القطرية الجزائر–الدوحة–سايغون والرحلات الداخلية مشمولة، 10 ليالٍ بنظام الإفطار (رحلة خليج ها لونغ البحرية بنظام نصف الإقامة)، جميع التنقّلات والجولات المُرافَقة ومُرافِق أليانس ترافل. تبقى التأشيرة الإلكترونية لفيتنام لتُتوقَّع — وأليانس ترافل تُرافِقك في الإجراء.",
+      "vnContinue": "المتابعة إلى الحجز",
+      "vnNextStep": "الخطوة التالية: املأ ملفّك أدناه",
+      "vnInfoEyebrow": "قبل المغادرة",
+      "vnInfoTitle": "كل ما <em>يجب معرفته</em>",
+      "vnInfoSub": "الدفع، الإلغاء، إجراءات التأشيرة، التأمين — الشفافية في أربع كتل.",
+      "vnInfo1Title": "شروط الدفع",
+      "vnInfo1Li1": "<strong>عربون الحجز</strong> · 30% من المبلغ الإجمالي عند التأكيد، يُدفع خلال 48 ساعة بعد الاتفاق عبر واتساب.",
+      "vnInfo1Li2": "<strong>الرصيد</strong> · 70% المتبقّية في موعد أقصاه <strong>21 يوماً قبل المغادرة</strong>.",
+      "vnInfo1Li3": "<strong>طرق الدفع المقبولة</strong> · تحويل بنكي (BNA, BEA, CPA)، دفع في الوكالة، نقداً. لا دفع بالبطاقة عبر الإنترنت حالياً.",
+      "vnInfo1Li4": "<strong>الإيصال</strong> · يُسلَّم إيصال رسمي من أليانس ترافل عند كل دفعة.",
+      "vnInfo1Li5": "<strong>عرض السعر صالح</strong> 7 أيام · قد تتغيّر الأسعار حسب توفّر المقاعد الجوية وسعر الصرف.",
+      "vnInfo2Title": "شروط الإلغاء",
+      "vnInfo2Lede": "الإلغاء من قِبل العميل (حسب المهلة قبل المغادرة):",
+      "vnInfo2Li1": "<strong>≥ 60 يوماً قبل المغادرة</strong> · استرداد كامل ما عدا رسوم المعالجة (5.000 دج).",
+      "vnInfo2Li2": "<strong>30 إلى 59 يوماً</strong> · اقتطاع 30% من المبلغ الإجمالي.",
+      "vnInfo2Li3": "<strong>14 إلى 29 يوماً</strong> · اقتطاع 60% من المبلغ الإجمالي.",
+      "vnInfo2Li4": "<strong>7 إلى 13 يوماً</strong> · اقتطاع 80%.",
+      "vnInfo2Li5": "<strong>&lt; 7 أيام</strong> · لا استرداد (رسوم الطيران والفنادق نهائية).",
+      "vnInfo2Note": "<strong>الإلغاء من قِبل شركة الطيران أو الفندق</strong> · استرداد كامل أو إعادة توجيه دون رسوم إضافية من جانبنا.<br><strong>تعديل التاريخ</strong> ممكن حتى 30 يوماً قبل المغادرة، رهناً بالتوفّر وفارق السعر.",
+      "vnInfo3Title": "الإجراءات · التأشيرة الإلكترونية لفيتنام",
+      "vnInfo3Lede": "<strong>تأشيرة إلكترونية مطلوبة لفيتنام</strong>",
+      "vnInfo3Li1": "<strong>التأشيرة</strong> · <strong>تأشيرة إلكترونية</strong> مطلوبة لجوازات السفر الجزائرية. ويتمّ الطلب <strong>عبر الإنترنت</strong> قبل المغادرة.",
+      "vnInfo3Li2": "<strong>المرافقة</strong> · تُرافِقك أليانس ترافل في إعداد ملفّ التأشيرة الإلكترونية وتقديمه، خطوةً بخطوة.",
+      "vnInfo3Li3": "<strong>التكلفة والمدّة</strong> · الرسوم ومدّة المعالجة <strong>حسب السلطة المختصّة</strong>. نطلب وثائقك قبل المغادرة بوقت كافٍ.",
+      "vnInfo3Li4": "<strong>جواز السفر</strong> · صالح لمدّة <strong>6 أشهر على الأقل بعد العودة</strong>، وصفحتان فارغتان كحدّ أدنى.",
+      "vnInfo3Li5": "<strong>الوثائق المطلوبة</strong> · نسخة ملوّنة من جواز السفر (صفحة الهوية) وصورة شخصية وفق المعايير. لا يلزم موعد قنصلي.",
+      "vnInfo4Title": "تأمين السفر",
+      "vnInfo4Lede": "تأمين السفر <strong>غير مشمول</strong> في الباقة لكنّه <strong>موصى به بشدّة</strong> — خاصّةً للرحلات الطويلة المدى.",
+      "vnInfo4Li1": "<strong>التغطية الموصى بها</strong> · نفقات طبية طارئة (≥ 100.000 يورو)، إجلاء طبّي، فقدان/سرقة الأمتعة، إلغاء الرحلة.",
+      "vnInfo4Li2": "<strong>التكلفة التقديرية</strong> · من 1.500 إلى 4.000 دج للشخص حسب المدّة والوجهة.",
+      "vnInfo4Li3": "<strong>أين تشترك</strong> · مؤمّنون جزائريون (CAAR, SAA, CAAT) أو شركات دولية (Mondial Assistance, Europ Assistance).",
+      "vnInfo4Li4": "<strong>عند الطلب</strong>، يمكن لأليانس ترافل أن تُرشدك إلى شريك تأمين يقدّم صيغ سفر.",
+      "vnRelatedEyebrow": "قد يعجبك أيضاً",
+      "vnRelatedTitle": "واصل <em>اكتشافك</em>",
+      "vnRel1Flag": "تونس · صيف 2026",
+      "vnRel1Price": "ابتداءً من <strong>36.000 دج</strong>",
+      "vnRel2Flag": "إندونيسيا · صيف 2026",
+      "vnRel2Price": "ابتداءً من <strong>419.000 دج</strong>",
+      "vnRelCta": "شاهد هذه الرحلة",
+      "vnFinalScarcity": "رحلتان في 2026 · المقاعد محدودة",
+      "vnFinalTitle": "وجهتنا<br><em>فيتنام</em>",
+      "vnFinalSub": "من سايغون إلى خليج ها لونغ، مروراً بشواطئ فو كووك وهانوي القديمة — 12 يوماً، 4 محطات، رحلة واحدة انطلاقاً من الجزائر.",
+      "vnFinalWa": "احجز عبر واتساب",
+      "vnFinalAddress": "حيّ 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
+      "vnStickyLabel": "الإجمالي التقديري",
+      "vnStickyCta": "احجز"
+    }
+  }
+}

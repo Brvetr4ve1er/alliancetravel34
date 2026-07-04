@@ -1,0 +1,12 @@
+{
+  "$comment": "Publishing gate for tools/build.mjs. A trip's HTML is generated into site/<outputDir>/index.html ONLY when enabled=true. Each trip below was migrated via tools/extract-trip.mjs with a verified round-trip (docs/ADMIN-DASHBOARD-PLAN.md Phase 1). outputDir defaults to the slug when null.",
+  "trips": {
+    "istanbul": { "enabled": true, "outputDir": null },
+    "azerbaidjan": { "enabled": true, "outputDir": null },
+    "bali": { "enabled": true, "outputDir": null },
+    "kuala-lumpur": { "enabled": true, "outputDir": null },
+    "tunisie": { "enabled": true, "outputDir": null },
+    "vietnam": { "enabled": true, "outputDir": null },
+    "egypte": { "enabled": true, "outputDir": null }
+  }
+}
