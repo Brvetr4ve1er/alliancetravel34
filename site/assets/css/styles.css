@@ -9153,7 +9153,9 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Extended coverage 2026-06-03: every numeric surface across calc, booking,
    sticky bars, trip cards, date chips, agency stats, related cards, etc. */
 :root[lang="ar"] .date-chip,
-:root[lang="ar"] .breakdown__line strong,
+:root[lang="ar"] .breakdown__line span:last-child,
+:root[lang="ar"] .breakdown__total-amount,
+:root[lang="ar"] .breakdown__usd,
 :root[lang="ar"] .sticky-total__amount,
 :root[lang="ar"] .trip-sticky-bar__price-num,
 :root[lang="ar"] .trip-card__from strong,
