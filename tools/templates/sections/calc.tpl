@@ -1,6 +1,6 @@
 <section class="calc-section section" id="calculator"{{k.calcSection}}>
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-head--center">
       <span class="phase-marker"><span class="phase-marker__num">3</span><span class="phase-marker__label"{{k.calcPhase}}>{{calcUi.phaseLabel}}</span></span>{{?calcUi.eyebrow}}<p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400"{{k.calcEyebrow}}>{{calcUi.eyebrow}}</p>{{/?}}
       <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500"{{k.calcTitle}}>{{calcUi.titleHtml}}</h2>{{?calcUi.sub}}
       <p class="section-head__sub"{{k.calcSub}}>{{calcUi.sub}}</p>{{/?}}
@@ -41,7 +41,7 @@
           <div class="breakdown__why"{{k.whyAttrs}}>{{calcUi.whyHtml}}</div>
           <div class="breakdown__ctas">
             <a href="#booking" class="btn btn--primary btn--full" data-track-event="calc_continue_to_booking"{{k.continueA}}>
-              <span{{k.continue}}>{{calcUi.continueLabel}}</span>
+              {{?k.continue}}<span{{k.continue}}>{{calcUi.continueLabel}}</span>{{:}}{{calcUi.continueLabel}}{{/?}}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
           </div>
