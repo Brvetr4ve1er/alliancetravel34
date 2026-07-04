@@ -1,6 +1,6 @@
 <section class="inclus-section section" aria-label="Ce qui est inclus et non inclus">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-head--center">
       <p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400"{{k.inclEyebrow}}>Tout est dit, rien n'est caché</p>
       <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500"{{k.inclTitle}}>Ce qui est <em>inclus</em>, ce qui ne l'est pas</h2>
       <p class="section-head__sub"{{k.inclSub}}>Aucune surprise à l'arrivée. Voici exactement ce que couvre votre forfait — et ce que vous prévoirez en plus.</p>

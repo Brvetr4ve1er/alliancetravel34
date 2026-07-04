@@ -1,6 +1,6 @@
 <section class="trust-bg section" id="confiance" aria-label="Témoignages et confiance">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-head--center">
       <p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400"{{k.trustEyebrow}}>Plus de 1.200 voyageurs guidés</p>
       <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500"{{k.trustTitle}}>Ils nous ont <em>fait confiance</em></h2>
     </div>
