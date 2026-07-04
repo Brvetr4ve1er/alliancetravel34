@@ -193,6 +193,7 @@
       {
         "active": false,
         "aosDelay": 0,
+        "wrapperAos": true,
         "kNode": "",
         "node": "J2",
         "kLabel": "",
