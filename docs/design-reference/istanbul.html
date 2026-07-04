@@ -250,36 +250,31 @@
   window.TRIP_MAP_DATA = {
     name: 'Istanbul',
     hotels: [
-      { id: 'river',  name: 'Hotel River',       loc: [28.965, 41.013], stars: 3, area: 'Aksaray, Istanbul' },
-      { id: 'ozer',   name: 'Hotel Ozer Palace', loc: [28.972, 41.011], stars: 4, area: 'Aksaray, Istanbul' },
-      { id: 'alpin',  name: 'Hotel Alpin Due',   loc: [28.968, 41.014], stars: 4, area: 'Aksaray, Istanbul' },
-      { id: 'tilia',  name: 'Hôtel Tilia',       loc: [28.974, 41.015], stars: 5, area: 'Sultanahmet, Istanbul' }
+      { id: 'river', name: 'Hotel River', loc: [28.965, 41.013], stars: 3, area: 'Aksaray, Istanbul' },
+      { id: 'ozer', name: 'Hotel Ozer Palace', loc: [28.972, 41.011], stars: 4, area: 'Aksaray, Istanbul' },
+      { id: 'alpin', name: 'Hotel Alpin Due', loc: [28.968, 41.014], stars: 4, area: 'Aksaray, Istanbul' },
+      { id: 'tilia', name: 'Hôtel Tilia', loc: [28.974, 41.015], stars: 5, area: 'Sultanahmet, Istanbul' }
     ],
     sites: [
-      // J2 — Sultanahmet à pied
-      { name: 'Mosquée Bleue (Sultanahmet)',   loc: [28.977, 41.005], day: 2, featured: true },
-      { name: 'Aya Sofya',                      loc: [28.980, 41.008], day: 2, featured: true },
-      { name: 'Grand Bazar',                    loc: [28.967, 41.011], day: 2 },
-      // J3 — Croisière Mer de Marmara
-      { name: 'Îles des Princes (Büyükada)',    loc: [29.119, 40.872], day: 3, featured: true },
-      // J4 — Ortaköy, Florya, Olivium
-      { name: 'Mosquée d\'Ortaköy',             loc: [29.027, 41.047], day: 4 },
-      { name: 'Aqua Florya Mall',               loc: [28.793, 40.978], day: 4 },
-      { name: 'Mall Olivium',                   loc: [28.836, 40.992], day: 4 },
-      // J5 — Côté asiatique
-      { name: 'Palais Beylerbeyi',              loc: [29.041, 41.051], day: 5 },
-      { name: 'Tour de la Jeune Fille',         loc: [29.005, 41.021], day: 5 },
-      { name: 'Üsküdar',                        loc: [29.015, 41.024], day: 5 },
-      { name: 'Çamlıca (panorama)',             loc: [29.067, 41.029], day: 5, featured: true }
+      { name: 'Mosquée Bleue (Sultanahmet)', loc: [28.977, 41.005], day: 2, featured: true },
+      { name: 'Aya Sofya', loc: [28.98, 41.008], day: 2, featured: true },
+      { name: 'Grand Bazar', loc: [28.967, 41.011], day: 2 },
+      { name: 'Îles des Princes (Büyükada)', loc: [29.119, 40.872], day: 3, featured: true },
+      { name: 'Mosquée d\'Ortaköy', loc: [29.027, 41.047], day: 4 },
+      { name: 'Aqua Florya Mall', loc: [28.793, 40.978], day: 4 },
+      { name: 'Mall Olivium', loc: [28.836, 40.992], day: 4 },
+      { name: 'Palais Beylerbeyi', loc: [29.041, 41.051], day: 5 },
+      { name: 'Tour de la Jeune Fille', loc: [29.005, 41.021], day: 5 },
+      { name: 'Üsküdar', loc: [29.015, 41.024], day: 5 },
+      { name: 'Çamlıca (panorama)', loc: [29.067, 41.029], day: 5, featured: true }
     ],
     tours: [
-      { name: 'Croisière Mer de Marmara',       loc: [29.020, 40.965], day: 3, note: 'Déjeuner inclus à bord' }
+      { name: 'Croisière Mer de Marmara', loc: [29.02, 40.965], day: 3, note: 'Déjeuner inclus à bord' }
     ],
     hubs: [
       { name: 'Istanbul', loc: [28.978, 41.014], days: 'J1–J8' }
     ],
     routes: [
-      // Boat trip arc to Princes' Islands (visual flourish)
       { from: [29.005, 41.021], to: [29.119, 40.872], label: 'Croisière → Îles des Princes', type: 'sea', lift: 0.18 }
     ]
   };
