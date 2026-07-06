@@ -4,8 +4,7 @@
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bali (Indonésie) — Alliance Travel · 2026</title>
   <meta name="description" content="Voyage organisé à Bali. 9 nuits tout en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates, petit-déjeuner. Départs été 2026 depuis Alger. Dès 419.000 DA."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&display=swap" rel="stylesheet"/>
@@ -195,7 +194,7 @@
   </div>
 </section>
 
-<!-- slim intro strip: lede + fineprint -->
+<!-- slim intro strip: lede + fineprint (carries baHeroLede / baHeroFineprint) -->
 <section class="hero-intro" id="hero-intro" data-region="bali" aria-label="Présentation du voyage">
   <div class="container hero-intro__inner">
     <p class="hero-intro__lede" data-i18n="baHeroLede">Rizières en terrasses, temples sacrés et plages de rêve. 3 nuits à Kuta, 3 nuits au cœur d'Ubud, 3 nuits à Nusa Dua — tout en hôtels 5★, petit-déjeuner. Vol Qatar Airways ou Emirates depuis Alger.</p>
@@ -249,36 +248,32 @@
   window.TRIP_MAP_DATA = {
     name: 'Bali · Circuit & Combiné',
     hotels: [
-      { id: 'kuta',     name: 'Kuta 5★',     loc: [115.1683, -8.7215], stars: 5, area: 'Kuta' },
-      { id: 'ubud',     name: 'Ubud 5★',     loc: [115.2624, -8.5069], stars: 5, area: 'Ubud' },
-      { id: 'nusadua',  name: 'Nusa Dua 5★', loc: [115.2280, -8.7950], stars: 5, area: 'Nusa Dua' },
-      { id: 'kl',       name: 'Kuala Lumpur 5★', loc: [101.6869, 3.1390], stars: 5, area: 'Kuala Lumpur (Combiné)' }
+      { id: 'kuta', name: 'Kuta 5★', loc: [115.1683, -8.7215], stars: 5, area: 'Kuta' },
+      { id: 'ubud', name: 'Ubud 5★', loc: [115.2624, -8.5069], stars: 5, area: 'Ubud' },
+      { id: 'nusadua', name: 'Nusa Dua 5★', loc: [115.228, -8.795], stars: 5, area: 'Nusa Dua' },
+      { id: 'kl', name: 'Kuala Lumpur 5★', loc: [101.6869, 3.139], stars: 5, area: 'Kuala Lumpur (Combiné)' }
     ],
     sites: [
-      // Kuta — J2-4
-      { name: 'Plage de Kuta',          loc: [115.1683, -8.7215], day: '2-4', featured: true },
-      { name: 'Temple de Tanah Lot',    loc: [115.0865, -8.6212], day: '2-4', featured: true },
-      { name: 'Seminyak',               loc: [115.1611, -8.6907], day: '2-4' },
-      // Ubud — J5-7
-      { name: 'Rizières de Tegallalang', loc: [115.2790, -8.4316], day: '5-7', featured: true },
+      { name: 'Plage de Kuta', loc: [115.1683, -8.7215], day: '2-4', featured: true },
+      { name: 'Temple de Tanah Lot', loc: [115.0865, -8.6212], day: '2-4', featured: true },
+      { name: 'Seminyak', loc: [115.1611, -8.6907], day: '2-4' },
+      { name: 'Rizières de Tegallalang', loc: [115.279, -8.4316], day: '5-7', featured: true },
       { name: 'Forêt des singes (Monkey Forest)', loc: [115.2585, -8.5188], day: '5-7' },
-      { name: 'Temples d\'Ubud',        loc: [115.2624, -8.5069], day: '5-7' },
-      // Nusa Dua — J8-10
-      { name: 'Plage de Nusa Dua',      loc: [115.2280, -8.7950], day: '8-10', featured: true },
-      // Kuala Lumpur (Combiné)
-      { name: 'City Tour Kuala Lumpur', loc: [101.6869, 3.1390], day: 'Combiné' }
+      { name: 'Temples d\'Ubud', loc: [115.2624, -8.5069], day: '5-7' },
+      { name: 'Plage de Nusa Dua', loc: [115.228, -8.795], day: '8-10', featured: true },
+      { name: 'City Tour Kuala Lumpur', loc: [101.6869, 3.139], day: 'Combiné' }
     ],
     tours: [
-      { name: 'Excursion rizières & temples', loc: [115.2790, -8.4316], day: '5-7', note: 'Excursion guidée incluse' }
+      { name: 'Excursion rizières & temples', loc: [115.279, -8.4316], day: '5-7', note: 'Excursion guidée incluse' }
     ],
     hubs: [
-      { name: 'Kuta',     loc: [115.1683, -8.7215], days: 'J1–J4' },
-      { name: 'Ubud',     loc: [115.2624, -8.5069], days: 'J5–J7' },
-      { name: 'Nusa Dua', loc: [115.2280, -8.7950], days: 'J8–J10' }
+      { name: 'Kuta', loc: [115.1683, -8.7215], days: 'J1–J4' },
+      { name: 'Ubud', loc: [115.2624, -8.5069], days: 'J5–J7' },
+      { name: 'Nusa Dua', loc: [115.228, -8.795], days: 'J8–J10' }
     ],
     routes: [
       { from: [115.1683, -8.7215], to: [115.2624, -8.5069], label: 'Kuta → Ubud', type: 'road' },
-      { from: [115.2624, -8.5069], to: [115.2280, -8.7950], label: 'Ubud → Nusa Dua', type: 'road' }
+      { from: [115.2624, -8.5069], to: [115.228, -8.795], label: 'Ubud → Nusa Dua', type: 'road' }
     ]
   };
 </script>
@@ -431,8 +426,7 @@
 <section class="hotels section" id="hotels">
   <div class="container">
     <div class="section-head section-head--center">
-      <span class="phase-marker"><span class="phase-marker__num">2</span><span class="phase-marker__label" data-i18n="baPhase2">Choisir la formule</span></span>
-      <p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400" data-i18n="baHotelsEyebrow">Hébergement · 9 nuits en 5★</p>
+      <span class="phase-marker"><span class="phase-marker__num">2</span><span class="phase-marker__label" data-i18n="baPhase2">Choisir la formule</span></span><p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400" data-i18n="baHotelsEyebrow">Hébergement · 9 nuits en 5★</p>
       <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500" data-i18n-html="baHotelsTitle">Circuit Bali · <em>ou Combiné Kuala Lumpur</em></h2>
       <p class="section-head__sub" data-i18n="baHotelsSub">Tout en hôtels 5★, formule petit-déjeuner. Tous les transferts et excursions guidées inclus.</p>
     </div>
@@ -442,11 +436,9 @@
       <button class="tier-tab" role="tab" aria-pressed="false" data-tier="balikl" data-track-event="tier_filter" data-track-label="balikl" data-i18n="baTierBaliKl">Bali &amp; Kuala Lumpur</button>
     </div>
     <div class="hotel-grid">
+
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="0" data-aos-duration="550" data-hotel-id="bali" data-tier="bali" tabindex="0">
-        <div class="hotel-card__img">
-          <img class="hotel-card__photo" src="../assets/images/hotels/hotel__discovery-kartika.jpg" alt="Discovery Kartika Plaza, Kuta" loading="lazy" width="800" height="600" decoding="async"/>
-          <span class="hotel-card__ribbon premium">5★ · Kuta</span>
-        </div>
+        <div class="hotel-card__img"><img class="hotel-card__photo" src="../assets/images/hotels/hotel__discovery-kartika.jpg" alt="Discovery Kartika Plaza, Kuta" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon premium">5★ · Kuta</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="5 étoiles">★★★★★</div>
           <h3 class="hotel-card__name">Discovery Kartika Plaza</h3>
@@ -459,11 +451,9 @@
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="baSelect">Sélectionner</button>
         </div>
       </article>
+
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="60" data-aos-duration="550" data-hotel-id="bali" data-tier="bali" tabindex="0">
-        <div class="hotel-card__img">
-          <img class="hotel-card__photo" src="../assets/images/hotels/hotel__sangraloka-ubud.jpg" alt="Sangraloka, Ubud" loading="lazy" width="800" height="600" decoding="async"/>
-          <span class="hotel-card__ribbon premium">5★ · Ubud</span>
-        </div>
+        <div class="hotel-card__img"><img class="hotel-card__photo" src="../assets/images/hotels/hotel__sangraloka-ubud.jpg" alt="Sangraloka, Ubud" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon premium">5★ · Ubud</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="5 étoiles">★★★★★</div>
           <h3 class="hotel-card__name">Sangraloka</h3>
@@ -476,11 +466,9 @@
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="baSelect">Sélectionner</button>
         </div>
       </article>
+
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="120" data-aos-duration="550" data-hotel-id="bali" data-tier="bali" tabindex="0">
-        <div class="hotel-card__img">
-          <img class="hotel-card__photo" src="../assets/images/hotels/hotel__merusaka-nusadua.jpg" alt="Merusaka, Nusa Dua" loading="lazy" width="800" height="600" decoding="async"/>
-          <span class="hotel-card__ribbon premium">5★ · Nusa Dua</span>
-        </div>
+        <div class="hotel-card__img"><img class="hotel-card__photo" src="../assets/images/hotels/hotel__merusaka-nusadua.jpg" alt="Merusaka, Nusa Dua" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon premium">5★ · Nusa Dua</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="5 étoiles">★★★★★</div>
           <h3 class="hotel-card__name">Merusaka</h3>
@@ -493,11 +481,9 @@
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="baSelect">Sélectionner</button>
         </div>
       </article>
+
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="0" data-aos-duration="550" data-hotel-id="bali-kl" data-tier="balikl" tabindex="0">
-        <div class="hotel-card__img">
-          <img class="hotel-card__photo" src="../assets/images/hotels/hotel__discovery-kartika.jpg" alt="Discovery Kartika, Kuta" loading="lazy" width="800" height="600" decoding="async"/>
-          <span class="hotel-card__ribbon premium">5★ · Kuta</span>
-        </div>
+        <div class="hotel-card__img"><img class="hotel-card__photo" src="../assets/images/hotels/hotel__discovery-kartika.jpg" alt="Discovery Kartika, Kuta" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon premium">5★ · Kuta</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="5 étoiles">★★★★★</div>
           <h3 class="hotel-card__name">Discovery Kartika</h3>
@@ -510,11 +496,9 @@
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="baSelect">Sélectionner</button>
         </div>
       </article>
+
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="60" data-aos-duration="550" data-hotel-id="bali-kl" data-tier="balikl" tabindex="0">
-        <div class="hotel-card__img">
-          <img class="hotel-card__photo" src="../assets/images/hotels/hotel__sangraloka-ubud.jpg" alt="Sangralloka, Ubud" loading="lazy" width="800" height="600" decoding="async"/>
-          <span class="hotel-card__ribbon premium">5★ · Ubud</span>
-        </div>
+        <div class="hotel-card__img"><img class="hotel-card__photo" src="../assets/images/hotels/hotel__sangraloka-ubud.jpg" alt="Sangralloka, Ubud" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon premium">5★ · Ubud</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="5 étoiles">★★★★★</div>
           <h3 class="hotel-card__name">Sangralloka</h3>
@@ -527,11 +511,9 @@
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="baSelect">Sélectionner</button>
         </div>
       </article>
+
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="120" data-aos-duration="550" data-hotel-id="bali-kl" data-tier="balikl" tabindex="0">
-        <div class="hotel-card__img">
-          <img class="hotel-card__photo" src="../assets/images/hotels/hotel__renaissance-kl.jpg" alt="Renaissance, Kuala Lumpur" loading="lazy" width="800" height="600" decoding="async"/>
-          <span class="hotel-card__ribbon premium">5★ · Kuala Lumpur</span>
-        </div>
+        <div class="hotel-card__img"><img class="hotel-card__photo" src="../assets/images/hotels/hotel__renaissance-kl.jpg" alt="Renaissance, Kuala Lumpur" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon premium">5★ · Kuala Lumpur</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="5 étoiles">★★★★★</div>
           <h3 class="hotel-card__name">Renaissance</h3>
@@ -544,6 +526,7 @@
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="baSelect">Sélectionner</button>
         </div>
       </article>
+
     </div>
   </div>
 </section>
@@ -802,8 +785,7 @@
       <p data-i18n="footer.cta_sub">Écrivez-nous sur WhatsApp, réponse le jour même.</p>
     </div>
     <a class="btn btn--primary footer-cta__btn" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" data-i18n="footer.cta_btn">Discuter sur WhatsApp</a>
-  </div>
-  <div class="footer-grid"><div class="footer-brand"><span class="footer-logo">Alliance<span>Travel</span></span><p class="footer-tagline" data-i18n="footer.tagline">Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.</p>
+  </div><div class="footer-grid"><div class="footer-brand"><span class="footer-logo">Alliance<span>Travel</span></span><p class="footer-tagline" data-i18n="footer.tagline">Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/alliance_travel34/" target="_blank" rel="noopener" aria-label="Instagram Alliance Travel">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -838,442 +820,395 @@
 <script>
 window.TRIP_DATA = {
   name: 'Bali 2026 · Circuit & Combiné',
-  dates: ['28 Août – 08 Septembre 2026','06 – 17 Septembre 2026','29 Juillet – 11 Août 2026','09 – 22 Août 2026','21 Août – 03 Septembre 2026'],
+  dates: ['28 Août – 08 Septembre 2026', '06 – 17 Septembre 2026', '29 Juillet – 11 Août 2026', '09 – 22 Août 2026', '21 Août – 03 Septembre 2026'],
   hotels: [
-    { id:'bali', name:'Circuit Bali — Kuta · Ubud · Nusa Dua (5★)',
-      prices:{ double:419000, triple:419000, single:569000, child1:275000, child2:409000, baby:52000 },
-      why:'Vol Qatar Airways / Emirates ALG–Denpasar inclus, 9 nuits en 5★ petit-déjeuner, transferts et excursions (rizières, temples, plages). Visa à l\'arrivée inclus.' },
-    { id:'bali-kl', name:'Combiné Bali & Kuala Lumpur (5★)',
-      prices:{ double:459000, triple:459000, single:619000, child1:299000, child2:439000, baby:52000 },
-      why:'Vol Emirates / Qatar via Dubaï ou Doha, 4N Kuta + 2N Ubud (Bali) + 6N Kuala Lumpur, hôtels 5★ petit-déjeuner, transferts et City Tour KL.' },
+    { id: 'bali', name: 'Circuit Bali — Kuta · Ubud · Nusa Dua (5★)', prices: { double: 419000, triple: 419000, single: 569000, child1: 275000, child2: 409000, baby: 52000 }, why: 'Vol Qatar Airways / Emirates ALG–Denpasar inclus, 9 nuits en 5★ petit-déjeuner, transferts et excursions (rizières, temples, plages). Visa à l\'arrivée inclus.' },
+    { id: 'bali-kl', name: 'Combiné Bali & Kuala Lumpur (5★)', prices: { double: 459000, triple: 459000, single: 619000, child1: 299000, child2: 439000, baby: 52000 }, why: 'Vol Emirates / Qatar via Dubaï ou Doha, 4N Kuta + 2N Ubud (Bali) + 6N Kuala Lumpur, hôtels 5★ petit-déjeuner, transferts et City Tour KL.' }
   ],
-  extras: [],
+  extras: []
 };
 </script>
 <script>
 /* Page-local EN/AR translations. French stays in the DOM as the baseline.
-   Keys map to data-i18n / data-i18n-html attributes + the hero *-key attrs.
-   Arabic is Modern Standard Arabic; the i18n engine sets dir="rtl". */
+   Keys map to data-i18n / data-i18n-html attributes + the hero *-key attrs. */
 window.AL_PAGE_I18N = {
   en: {
-    calcWhyGeneric: "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
-    /* ── HERO ── */
-    baHeroEyebrow: "Organized tour · Qatar / Emirates · Summer 2026",
-    baHeroTitlePre: "Bali",
-    baHeroTitlePost: "Island of the gods",
-    baHeroDate: "9 nights · 5★ hotels · Kuta · Ubud · Nusa Dua",
-    baHeroH1: "Bali <em>Island of the gods</em>",
-    baHeroLede: "Terraced rice paddies, sacred temples and dream beaches. 3 nights in Kuta, 3 nights in the heart of Ubud, 3 nights in Nusa Dua — all in 5★ hotels, breakfast included. Qatar Airways or Emirates flight from Algiers.",
-    baHeroPriceUnit: "per person · double room · 5★ circuit",
-      heroFrom: "From",
-      baHeroCtaCalc: "Calculate my price",
-      baHeroFineprint: "Based on a double room, subject to availability — DZD/USD rate set at booking.",
-    /* ── HIGHLIGHTS ── */
-    baHlAccomLabel: "Accommodation",
-    baHlAccomTitle: "All in 5★ hotels",
-    baHlAccomBody: "9 nights in 5★ resorts in Kuta, Ubud and Nusa Dua, breakfast included.",
-    baHlStepsLabel: "3 stops",
-    baHlStepsTitle: "Kuta · Ubud · Nusa Dua",
-    baHlStepsBody: "The lively beach of Kuta, the cultural heart of Ubud, the peaceful shores of Nusa Dua.",
-    baHlNatureLabel: "Nature & culture",
-    baHlNatureTitle: "Rice paddies & temples",
-    baHlNatureBody: "Tegallalang rice terraces, Tanah Lot temple, the Monkey Forest — the magic of Bali.",
-    baHlFlightLabel: "International flight",
-    baHlFlightTitle: "Qatar / Emirates flight",
-    baHlFlightBody: "ALG–Denpasar flight via Doha (Qatar Airways) or Dubai (Emirates), round trip included.",
-    /* ── ITINERARY ── */
-    baPhase1: "Discover",
-    baItinEyebrow: "11 days · 9 nights",
-    baItinTitle: "Your <em>itinerary</em>",
-    baDay1Label: "Day 1",
-    baDay1Title: "ALG–Denpasar flight",
-    baDay1Act: "Qatar Airways flight via Doha or Emirates via Dubai, ALG–Denpasar. Airport welcome, transfer and check-in in Kuta.",
-    baDay2Label: "Day 2–4",
-    baDay2Title: "Kuta — beach & Tanah Lot",
-    baDay2Act: "Relax on Kuta beach, sunset at the Tanah Lot temple perched on its rock, stroll through Seminyak and the local markets.",
-    baDay2Tag1: "Kuta beach",
-    baDay2Tag2: "Tanah Lot",
-    baDay5Label: "Day 5–7",
-    baDay5Title: "Ubud — rice paddies & temples",
-    baDay5Act: "Tegallalang terraced rice paddies, sacred temples, the Monkey Forest, artisan villages and jungle swings.",
-    baDay5Tag1: "Tegallalang",
-    baDay5Tag2: "Temples",
-    baDay5Tag3: "Monkey Forest",
-    baDay8Label: "Day 8–10",
-    baDay8Title: "Nusa Dua — beach & relaxation",
-    baDay8Act: "The pristine beaches of Nusa Dua, relaxation at the 5★ resort, lagoons and water activities, free time facing the Indian Ocean.",
-    baDay8Tag1: "Beach",
-    baDay8Tag2: "Relaxation",
-    baDay11Label: "Day 11",
-    baDay11Title: "Return to Algiers",
-    baDay11Act: "Breakfast, transfer to Denpasar airport, return flight via Doha or Dubai to Algiers.",
-    /* ── MAP ── */
-    baMapEyebrow: "Your trip at a glance",
-    baMapTitle: "The itinerary <em>on the map</em>",
-    baMapSub: "Kuta, Ubud, Nusa Dua — and the Kuala Lumpur option: all the hotels, sites and excursions of your 11-day trip.",
-    baMapLoading: "Loading the map…",
-    baLegendHotels: "Hotels",
-    baLegendSites: "Sites visited",
-    baLegendTours: "Guided excursions",
-    /* ── TRUST ── */
-    baTrustEyebrow: "Over 1,200 travellers guided",
-    baTrustTitle: "They put their <em>trust in us</em>",
-    baStat1: "Travellers guided since 2019",
-    baStat2: "Satisfaction rate",
-    baStat3: "Bali departures in 2026",
-    baStat4: "All hotels rated 5 stars",
-    baTesti1: "\"Bali blew us away — the Ubud rice paddies, the sunset at Tanah Lot, the Nusa Dua beaches. Everything was organized, we never had to look for anything.\"",
-    baTesti1Trip: "Bordj Bou Arreridj · Bali trip 2025",
-    baTesti2: "\"First trip to Asia. The visa on arrival handled, flawless transfers, the French-speaking guide always available. True peace of mind.\"",
-    baTesti2Trip: "Constantine · Bali trip 2025",
-    baTesti3: "\"A couple's trip. The 5★ resort in Nusa Dua was perfect, ocean view. The combo with Kuala Lumpur was a highlight. Unbeatable value for money.\"",
-    baTesti3Trip: "Algiers · Bali & KL trip 2024",
-    /* ── INCLUDED / NOT INCLUDED ── */
-    baInclEyebrow: "Everything stated, nothing hidden",
-    baInclTitle: "What's <em>included</em>, and what isn't",
-    baInclSub: "No surprises on arrival. Here's exactly what your package covers — and what you'll need to plan for in addition.",
-    baInclColTitle: "Included in the <em>package</em>",
-    baInclColCount: "8 services covered",
-    baInclItem1: "International flight <strong>Qatar Airways</strong> or <strong>Emirates</strong> ALG–Denpasar round trip",
-    baInclItem2: "<strong>9 nights</strong> all in 5★ hotels (Kuta · Ubud · Nusa Dua), breakfast",
-    baInclItem3: "All transfers in air-conditioned vehicle with guide",
-    baInclItem4: "Guided excursions: Tegallalang rice paddies · temples · beaches",
-    baInclItem5: "Sunset at the <strong>Tanah Lot</strong> temple",
-    baInclItem6: "<strong>Visa on arrival</strong> included (Bali circuit)",
-    baInclItem7: "Monkey Forest & Ubud artisan villages",
-    baInclItem8: "Alliance Travel tour leader + local French-speaking guide",
-    baExclColTitle: "To <em>plan</em> for in addition",
-    baExclColCount: "5 items outside the package",
-    baExclItem1: "Lunches and dinners — breakfast plan only",
-    baExclItem2: "Optional excursions (Nusa Penida, Bali Swing…)",
-    baExclItem3: "Local tourist tax (where applicable)",
-    baExclItem4: "Personal expenses",
-    baExclItem5: "Personal travel insurance",
-    /* ── FAQ ── */
-    baFaqEyebrow: "FAQ",
-    baFaqTitle: "Frequently asked <em>questions</em>",
-    baFaqQ1: "How does the visa work for Bali (Indonesia)?",
-    baFaqA1: "Indonesia issues a <strong>visa on arrival (VoA)</strong> / e-VOA to Algerian travellers. For the <strong>Bali circuit, the visa is included</strong> in the package — Alliance Travel guides you through the formality. Your passport must be valid for at least 6 months after your return.",
-    baFaqQ2: "What does the breakfast plan include?",
-    baFaqA2: "The programme is on a <strong>breakfast plan</strong> in all 5★ hotels. Lunches and dinners are free — the tour leader points you to the best local spots in Kuta, Ubud and Nusa Dua.",
-    baFaqQ3: "How are the transfers between stops handled?",
-    baFaqA3: "All transfers (airport–hotel, Kuta–Ubud–Nusa Dua) are in an <strong>air-conditioned vehicle</strong> with a French-speaking guide. No extra charge — everything is included in the package.",
-    baFaqQ4: "What's the difference between the Bali Circuit and the Bali & Kuala Lumpur Combo?",
-    baFaqA4: "The <strong>Bali Circuit</strong> (from 419,000 DA) offers 9 nights in Bali in 5★ hotels (Kuta, Ubud, Nusa Dua). The <strong>Bali & Kuala Lumpur Combo</strong> (from 459,000 DA) adds a city stop: 4 nights Kuta + 2 nights Ubud in Bali, then 6 nights in Kuala Lumpur, 5★ hotels and a KL City Tour.",
-    /* ── HOTELS ── */
-    baPhase2: "Choose your package",
-    baHotelsEyebrow: "Accommodation · 9 nights in 5★",
-    baHotelsTitle: "Bali Circuit · <em>or Kuala Lumpur Combo</em>",
-    baHotelsSub: "All in 5★ hotels, breakfast plan. All transfers and guided excursions included.",
-    baTierAll: "All",
-    baTierBali: "Bali Circuit",
-    baTierBaliKl: "Bali & Kuala Lumpur",
-    baAmKutaBeach: "Kuta beach",
-    baAmBreakfast: "Breakfast",
-    baAmRice: "Rice paddies",
-    baAmResort: "Resort",
-    baAmSeaside: "Seaside",
-    baAmCityTour: "KL City Tour",
-    baNights3Kuta: "3 nights · Kuta",
-    baNights3Ubud: "3 nights · Ubud",
-    baNights3Nusa: "3 nights · Nusa Dua",
-    baNights4Kuta: "4 nights · Kuta",
-    baNights2Ubud: "2 nights · Ubud",
-    baNights6Kl: "6 nights · Kuala Lumpur",
-    baPriceMeta: "5★ · breakfast",
-    baSelect: "Select",
-    /* ── CALCULATOR ── */
-    baPhase3: "Calculate my price",
-    baCalcEyebrow: "Step 1 · Configure your trip",
-    baCalcTitle: "Choose <em>your package</em>",
-    baCalcDate: "Departure date",
-    baCalcHotel: "Package",
-    baCalcOptBali: "Bali Circuit — Kuta · Ubud · Nusa Dua (5★) — from 419,000 DA",
-    baCalcOptBaliKl: "Bali & Kuala Lumpur Combo (5★) — from 459,000 DA",
-    baCalcRoom: "Room type",
-    baRoomDouble: "Double",
-    baRoomTriple: "Triple",
-    baRoomSingle: "Single",
-    baCalcTravellers: "Travellers",
-    baStepAdults: "Adults",
-    baStepAdultsHint: "Aged 12 and over",
-    baStepChild1: "1st child",
-    baStepChild1Hint: "Sharing the room of 2 adults · from 275,000 DA",
-    baStepChild2: "2nd child",
-    baStepChild2Hint: "With extra bed · from 409,000 DA",
-    baStepBaby: "Infant",
-    baStepBabyHint: "0–2 years · 52,000 DA",
-    baRecap: "Summary",
-    baRecapEmpty: "Configure your trip to see the price.",
-    baTotalLabel: "Estimated total",
-    baWhy: "Why this price?",
-    baWhyDetails: "Price per person in a double room, Qatar Airways or Emirates ALG–Denpasar flight included, 9 nights all in 5★ hotels with breakfast, all transfers and guided excursions (rice paddies, temples, beaches), Alliance Travel tour leader and French-speaking guide. Visa on arrival included for the Bali circuit.",
-    baContinueCta: "Continue to booking",
-    baNextStep: "Next step: fill in your booking form below",
-    /* ── INFO / CONDITIONS ── */
-    baInfoEyebrow: "Before you go",
-    baInfoTitle: "Everything you <em>need to know</em>",
-    baInfoSub: "Payment, cancellation, visa formalities, insurance — transparency in four blocks.",
-    baPayTitle: "Payment terms",
-    baPayItem1: "<strong>Booking deposit</strong> · 30% of the total amount at confirmation, payable within 48 h after agreement via WhatsApp.",
-    baPayItem2: "<strong>Balance</strong> · remaining 70% no later than <strong>21 days before departure</strong>.",
-    baPayItem3: "<strong>Accepted methods</strong> · Bank transfer (BNA, BEA, CPA), payment at the agency, cash. No online card payment for now.",
-    baPayItem4: "<strong>Receipt</strong> · Official Alliance Travel receipt issued for each payment.",
-    baPayItem5: "<strong>Quote valid</strong> 7 days · Prices may change depending on flight availability and the exchange rate.",
-    baCancelTitle: "Cancellation terms",
-    baCancelLede: "Cancellation by the client (depending on the time before departure):",
-    baCancelItem1: "<strong>≥ 60 days before departure</strong> · Full refund minus processing fee (5,000 DA).",
-    baCancelItem2: "<strong>30 to 59 days</strong> · 30% of the total amount withheld.",
-    baCancelItem3: "<strong>14 to 29 days</strong> · 60% of the total amount withheld.",
-    baCancelItem4: "<strong>7 to 13 days</strong> · 80% withheld.",
-    baCancelItem5: "<strong>&lt; 7 days</strong> · No refund (flight and hotel costs final).",
-    baCancelNote: "<strong>Cancellation by the airline or hotel</strong> · Full refund or re-routing at no extra cost on our side.<br><strong>Date change</strong> possible up to 30 days before departure, subject to availability and the fare difference.",
-    baVisaTitle: "Formalities · Visa on arrival",
-    baVisaLede: "<strong>Visa on arrival (VoA) / e-VOA Indonesia</strong>",
-    baVisaItem1: "<strong>Visa</strong> · Indonesia issues a <strong>visa on arrival (VoA)</strong> or <strong>e-VOA</strong> for Algerian passports. Alliance Travel guides you through the formality.",
-    baVisaItem2: "<strong>Bali Circuit</strong> · The visa is <strong>included in the package</strong> — you have nothing to handle.",
-    baVisaItem3: "<strong>Passport</strong> · Minimum validity <strong>6 months after return</strong>, at least 2 blank pages.",
-    baVisaItem4: "<strong>Required documents</strong> · Colour scan/photo copy of the passport (identity page). No consular appointment.",
-    baInsuranceTitle: "Travel insurance",
-    baInsuranceLede: "Travel insurance <strong>is not included</strong> in the package but is <strong>strongly recommended</strong> — especially for long-haul trips.",
-    baInsuranceItem1: "<strong>Recommended cover</strong> · Emergency medical expenses (≥ €100,000), medical repatriation, lost/stolen luggage, trip cancellation.",
-    baInsuranceItem2: "<strong>Indicative cost</strong> · 1,500 to 4,000 DA per person depending on duration and destination.",
-    baInsuranceItem3: "<strong>Where to subscribe</strong> · Algerian insurers (CAAR, SAA, CAAT) or international companies (Mondial Assistance, Europ Assistance).",
-    baInsuranceItem4: "<strong>On request</strong>, Alliance Travel can point you to a partner insurer offering travel plans.",
-    /* ── RELATED ── */
-    baRelatedEyebrow: "You might also like",
-    baRelatedTitle: "Continue your <em>discovery</em>",
-    baRelVnFlag: "Vietnam · Summer 2026",
-    baRelVnPrice: "From <strong>439,000 DA</strong>",
-    baRelTnFlag: "Tunisia · Summer 2026",
-    baRelTnPrice: "From <strong>36,000 DA</strong>",
-    baRelCta: "View this trip",
-    /* ── FINAL CTA ── */
-    baFinalScarcity: "5 departures in 2026 · Limited places",
-    baFinalTitle: "Discover<br><em>the island of the gods</em>",
-    baFinalSub: "The rice paddies of Ubud, the sacred temples, the beaches of Nusa Dua — all in 11 days, all in 5★ hotels, from Algiers.",
-    baFinalWaBtn: "Book via WhatsApp",
-    baFinalAddress: "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of the town centre",
-    baStickyBook: "Book",
-    /* ── FOOTER CTA ── */
-    footer: {
-      cta_title: "Ready to go?",
-      cta_sub: "Message us on WhatsApp — same-day reply.",
-      cta_btn: "Chat on WhatsApp"
-    }
+    calcWhyGeneric: 'Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.',
+    baHeroEyebrow: 'Organized tour · Qatar / Emirates · Summer 2026',
+    baHeroTitlePre: 'Bali',
+    baHeroTitlePost: 'Island of the gods',
+    baHeroDate: '9 nights · 5★ hotels · Kuta · Ubud · Nusa Dua',
+    baHeroH1: 'Bali <em>Island of the gods</em>',
+    baHeroLede: 'Terraced rice paddies, sacred temples and dream beaches. 3 nights in Kuta, 3 nights in the heart of Ubud, 3 nights in Nusa Dua — all in 5★ hotels, breakfast included. Qatar Airways or Emirates flight from Algiers.',
+    baHeroPriceUnit: 'per person · double room · 5★ circuit',
+    baHlAccomLabel: 'Accommodation',
+    baHlAccomTitle: 'All in 5★ hotels',
+    baHlAccomBody: '9 nights in 5★ resorts in Kuta, Ubud and Nusa Dua, breakfast included.',
+    baHlStepsLabel: '3 stops',
+    baHlStepsTitle: 'Kuta · Ubud · Nusa Dua',
+    baHlStepsBody: 'The lively beach of Kuta, the cultural heart of Ubud, the peaceful shores of Nusa Dua.',
+    baHlNatureLabel: 'Nature & culture',
+    baHlNatureTitle: 'Rice paddies & temples',
+    baHlNatureBody: 'Tegallalang rice terraces, Tanah Lot temple, the Monkey Forest — the magic of Bali.',
+    baHlFlightLabel: 'International flight',
+    baHlFlightTitle: 'Qatar / Emirates flight',
+    baHlFlightBody: 'ALG–Denpasar flight via Doha (Qatar Airways) or Dubai (Emirates), round trip included.',
+    baPhase1: 'Discover',
+    baItinEyebrow: '11 days · 9 nights',
+    baItinTitle: 'Your <em>itinerary</em>',
+    baDay1Label: 'Day 1',
+    baDay1Title: 'ALG–Denpasar flight',
+    baDay1Act: 'Qatar Airways flight via Doha or Emirates via Dubai, ALG–Denpasar. Airport welcome, transfer and check-in in Kuta.',
+    baDay2Label: 'Day 2–4',
+    baDay2Title: 'Kuta — beach & Tanah Lot',
+    baDay2Act: 'Relax on Kuta beach, sunset at the Tanah Lot temple perched on its rock, stroll through Seminyak and the local markets.',
+    baDay2Tag1: 'Kuta beach',
+    baDay2Tag2: 'Tanah Lot',
+    baDay5Label: 'Day 5–7',
+    baDay5Title: 'Ubud — rice paddies & temples',
+    baDay5Act: 'Tegallalang terraced rice paddies, sacred temples, the Monkey Forest, artisan villages and jungle swings.',
+    baDay5Tag1: 'Tegallalang',
+    baDay5Tag2: 'Temples',
+    baDay5Tag3: 'Monkey Forest',
+    baDay8Label: 'Day 8–10',
+    baDay8Title: 'Nusa Dua — beach & relaxation',
+    baDay8Act: 'The pristine beaches of Nusa Dua, relaxation at the 5★ resort, lagoons and water activities, free time facing the Indian Ocean.',
+    baDay8Tag1: 'Beach',
+    baDay8Tag2: 'Relaxation',
+    baDay11Label: 'Day 11',
+    baDay11Title: 'Return to Algiers',
+    baDay11Act: 'Breakfast, transfer to Denpasar airport, return flight via Doha or Dubai to Algiers.',
+    baMapEyebrow: 'Your trip at a glance',
+    baMapTitle: 'The itinerary <em>on the map</em>',
+    baMapSub: 'Kuta, Ubud, Nusa Dua — and the Kuala Lumpur option: all the hotels, sites and excursions of your 11-day trip.',
+    baMapLoading: 'Loading the map…',
+    baLegendHotels: 'Hotels',
+    baLegendSites: 'Sites visited',
+    baLegendTours: 'Guided excursions',
+    baTrustEyebrow: 'Over 1,200 travellers guided',
+    baTrustTitle: 'They put their <em>trust in us</em>',
+    baStat1: 'Travellers guided since 2019',
+    baStat2: 'Satisfaction rate',
+    baStat3: 'Bali departures in 2026',
+    baStat4: 'All hotels rated 5 stars',
+    baTesti1: '"Bali blew us away — the Ubud rice paddies, the sunset at Tanah Lot, the Nusa Dua beaches. Everything was organized, we never had to look for anything."',
+    baTesti1Trip: 'Bordj Bou Arreridj · Bali trip 2025',
+    baTesti2: '"First trip to Asia. The visa on arrival handled, flawless transfers, the French-speaking guide always available. True peace of mind."',
+    baTesti2Trip: 'Constantine · Bali trip 2025',
+    baTesti3: '"A couple\'s trip. The 5★ resort in Nusa Dua was perfect, ocean view. The combo with Kuala Lumpur was a highlight. Unbeatable value for money."',
+    baTesti3Trip: 'Algiers · Bali & KL trip 2024',
+    baInclEyebrow: 'Everything stated, nothing hidden',
+    baInclTitle: 'What\'s <em>included</em>, and what isn\'t',
+    baInclSub: 'No surprises on arrival. Here\'s exactly what your package covers — and what you\'ll need to plan for in addition.',
+    baInclColTitle: 'Included in the <em>package</em>',
+    baInclColCount: '8 services covered',
+    baInclItem1: 'International flight <strong>Qatar Airways</strong> or <strong>Emirates</strong> ALG–Denpasar round trip',
+    baInclItem2: '<strong>9 nights</strong> all in 5★ hotels (Kuta · Ubud · Nusa Dua), breakfast',
+    baInclItem3: 'All transfers in air-conditioned vehicle with guide',
+    baInclItem4: 'Guided excursions: Tegallalang rice paddies · temples · beaches',
+    baInclItem5: 'Sunset at the <strong>Tanah Lot</strong> temple',
+    baInclItem6: '<strong>Visa on arrival</strong> included (Bali circuit)',
+    baInclItem7: 'Monkey Forest & Ubud artisan villages',
+    baInclItem8: 'Alliance Travel tour leader + local French-speaking guide',
+    baExclColTitle: 'To <em>plan</em> for in addition',
+    baExclColCount: '5 items outside the package',
+    baExclItem1: 'Lunches and dinners — breakfast plan only',
+    baExclItem2: 'Optional excursions (Nusa Penida, Bali Swing…)',
+    baExclItem3: 'Local tourist tax (where applicable)',
+    baExclItem4: 'Personal expenses',
+    baExclItem5: 'Personal travel insurance',
+    baFaqEyebrow: 'FAQ',
+    baFaqTitle: 'Frequently asked <em>questions</em>',
+    baFaqQ1: 'How does the visa work for Bali (Indonesia)?',
+    baFaqA1: 'Indonesia issues a <strong>visa on arrival (VoA)</strong> / e-VOA to Algerian travellers. For the <strong>Bali circuit, the visa is included</strong> in the package — Alliance Travel guides you through the formality. Your passport must be valid for at least 6 months after your return.',
+    baFaqQ2: 'What does the breakfast plan include?',
+    baFaqA2: 'The programme is on a <strong>breakfast plan</strong> in all 5★ hotels. Lunches and dinners are free — the tour leader points you to the best local spots in Kuta, Ubud and Nusa Dua.',
+    baFaqQ3: 'How are the transfers between stops handled?',
+    baFaqA3: 'All transfers (airport–hotel, Kuta–Ubud–Nusa Dua) are in an <strong>air-conditioned vehicle</strong> with a French-speaking guide. No extra charge — everything is included in the package.',
+    baFaqQ4: 'What\'s the difference between the Bali Circuit and the Bali & Kuala Lumpur Combo?',
+    baFaqA4: 'The <strong>Bali Circuit</strong> (from 419,000 DA) offers 9 nights in Bali in 5★ hotels (Kuta, Ubud, Nusa Dua). The <strong>Bali & Kuala Lumpur Combo</strong> (from 459,000 DA) adds a city stop: 4 nights Kuta + 2 nights Ubud in Bali, then 6 nights in Kuala Lumpur, 5★ hotels and a KL City Tour.',
+    baPhase2: 'Choose your package',
+    baHotelsEyebrow: 'Accommodation · 9 nights in 5★',
+    baHotelsTitle: 'Bali Circuit · <em>or Kuala Lumpur Combo</em>',
+    baHotelsSub: 'All in 5★ hotels, breakfast plan. All transfers and guided excursions included.',
+    baTierAll: 'All',
+    baTierBali: 'Bali Circuit',
+    baTierBaliKl: 'Bali & Kuala Lumpur',
+    baAmKutaBeach: 'Kuta beach',
+    baAmBreakfast: 'Breakfast',
+    baAmRice: 'Rice paddies',
+    baAmResort: 'Resort',
+    baAmSeaside: 'Seaside',
+    baAmCityTour: 'KL City Tour',
+    baNights3Kuta: '3 nights · Kuta',
+    baNights3Ubud: '3 nights · Ubud',
+    baNights3Nusa: '3 nights · Nusa Dua',
+    baNights4Kuta: '4 nights · Kuta',
+    baNights2Ubud: '2 nights · Ubud',
+    baNights6Kl: '6 nights · Kuala Lumpur',
+    baPriceMeta: '5★ · breakfast',
+    baSelect: 'Select',
+    baPhase3: 'Calculate my price',
+    baCalcEyebrow: 'Step 1 · Configure your trip',
+    baCalcTitle: 'Choose <em>your package</em>',
+    baCalcDate: 'Departure date',
+    baCalcHotel: 'Package',
+    baCalcOptBali: 'Bali Circuit — Kuta · Ubud · Nusa Dua (5★) — from 419,000 DA',
+    baCalcOptBaliKl: 'Bali & Kuala Lumpur Combo (5★) — from 459,000 DA',
+    baCalcRoom: 'Room type',
+    baRoomDouble: 'Double',
+    baRoomTriple: 'Triple',
+    baRoomSingle: 'Single',
+    baCalcTravellers: 'Travellers',
+    baStepAdults: 'Adults',
+    baStepAdultsHint: 'Aged 12 and over',
+    baStepChild1: '1st child',
+    baStepChild1Hint: 'Sharing the room of 2 adults · from 275,000 DA',
+    baStepChild2: '2nd child',
+    baStepChild2Hint: 'With extra bed · from 409,000 DA',
+    baStepBaby: 'Infant',
+    baStepBabyHint: '0–2 years · 52,000 DA',
+    baRecap: 'Summary',
+    baRecapEmpty: 'Configure your trip to see the price.',
+    baTotalLabel: 'Estimated total',
+    baWhy: 'Why this price?',
+    baWhyDetails: 'Price per person in a double room, Qatar Airways or Emirates ALG–Denpasar flight included, 9 nights all in 5★ hotels with breakfast, all transfers and guided excursions (rice paddies, temples, beaches), Alliance Travel tour leader and French-speaking guide. Visa on arrival included for the Bali circuit.',
+    baContinueCta: 'Continue to booking',
+    baNextStep: 'Next step: fill in your booking form below',
+    baInfoEyebrow: 'Before you go',
+    baInfoTitle: 'Everything you <em>need to know</em>',
+    baInfoSub: 'Payment, cancellation, visa formalities, insurance — transparency in four blocks.',
+    baPayTitle: 'Payment terms',
+    baPayItem1: '<strong>Booking deposit</strong> · 30% of the total amount at confirmation, payable within 48 h after agreement via WhatsApp.',
+    baPayItem2: '<strong>Balance</strong> · remaining 70% no later than <strong>21 days before departure</strong>.',
+    baPayItem3: '<strong>Accepted methods</strong> · Bank transfer (BNA, BEA, CPA), payment at the agency, cash. No online card payment for now.',
+    baPayItem4: '<strong>Receipt</strong> · Official Alliance Travel receipt issued for each payment.',
+    baPayItem5: '<strong>Quote valid</strong> 7 days · Prices may change depending on flight availability and the exchange rate.',
+    baCancelTitle: 'Cancellation terms',
+    baCancelLede: 'Cancellation by the client (depending on the time before departure):',
+    baCancelItem1: '<strong>≥ 60 days before departure</strong> · Full refund minus processing fee (5,000 DA).',
+    baCancelItem2: '<strong>30 to 59 days</strong> · 30% of the total amount withheld.',
+    baCancelItem3: '<strong>14 to 29 days</strong> · 60% of the total amount withheld.',
+    baCancelItem4: '<strong>7 to 13 days</strong> · 80% withheld.',
+    baCancelItem5: '<strong>&lt; 7 days</strong> · No refund (flight and hotel costs final).',
+    baCancelNote: '<strong>Cancellation by the airline or hotel</strong> · Full refund or re-routing at no extra cost on our side.<br><strong>Date change</strong> possible up to 30 days before departure, subject to availability and the fare difference.',
+    baVisaTitle: 'Formalities · Visa on arrival',
+    baVisaLede: '<strong>Visa on arrival (VoA) / e-VOA Indonesia</strong>',
+    baVisaItem1: '<strong>Visa</strong> · Indonesia issues a <strong>visa on arrival (VoA)</strong> or <strong>e-VOA</strong> for Algerian passports. Alliance Travel guides you through the formality.',
+    baVisaItem2: '<strong>Bali Circuit</strong> · The visa is <strong>included in the package</strong> — you have nothing to handle.',
+    baVisaItem3: '<strong>Passport</strong> · Minimum validity <strong>6 months after return</strong>, at least 2 blank pages.',
+    baVisaItem4: '<strong>Required documents</strong> · Colour scan/photo copy of the passport (identity page). No consular appointment.',
+    baInsuranceTitle: 'Travel insurance',
+    baInsuranceLede: 'Travel insurance <strong>is not included</strong> in the package but is <strong>strongly recommended</strong> — especially for long-haul trips.',
+    baInsuranceItem1: '<strong>Recommended cover</strong> · Emergency medical expenses (≥ €100,000), medical repatriation, lost/stolen luggage, trip cancellation.',
+    baInsuranceItem2: '<strong>Indicative cost</strong> · 1,500 to 4,000 DA per person depending on duration and destination.',
+    baInsuranceItem3: '<strong>Where to subscribe</strong> · Algerian insurers (CAAR, SAA, CAAT) or international companies (Mondial Assistance, Europ Assistance).',
+    baInsuranceItem4: '<strong>On request</strong>, Alliance Travel can point you to a partner insurer offering travel plans.',
+    baRelatedEyebrow: 'You might also like',
+    baRelatedTitle: 'Continue your <em>discovery</em>',
+    baRelVnFlag: 'Vietnam · Summer 2026',
+    baRelVnPrice: 'From <strong>439,000 DA</strong>',
+    baRelTnFlag: 'Tunisia · Summer 2026',
+    baRelTnPrice: 'From <strong>36,000 DA</strong>',
+    baRelCta: 'View this trip',
+    baFinalScarcity: '5 departures in 2026 · Limited places',
+    baFinalTitle: 'Discover<br><em>the island of the gods</em>',
+    baFinalSub: 'The rice paddies of Ubud, the sacred temples, the beaches of Nusa Dua — all in 11 days, all in 5★ hotels, from Algiers.',
+    baFinalWaBtn: 'Book via WhatsApp',
+    baFinalAddress: 'Cité 5 Juillet, Bd. de l\'ALN · Bordj Bou Arreridj · In the heart of the town centre',
+    baStickyBook: 'Book'
   },
   ar: {
-    calcWhyGeneric: "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
-    /* ── HERO ── */
-    baHeroEyebrow: "رحلة منظَّمة · القطرية / الإمارات · صيف 2026",
-    baHeroTitlePre: "بالي",
-    baHeroTitlePost: "جزيرة الآلهة",
-    baHeroDate: "9 ليالٍ · فنادق 5 نجوم · كوتا · أوبود · نوسا دوا",
-    baHeroH1: "بالي <em>جزيرة الآلهة</em>",
-    baHeroLede: "مدرَّجات أرز خضراء، ومعابد مقدَّسة، وشواطئ حالمة. 3 ليالٍ في كوتا، و3 ليالٍ في قلب أوبود، و3 ليالٍ في نوسا دوا — كلها في فنادق 5 نجوم مع الفطور. رحلة الخطوط القطرية أو الإمارات من الجزائر.",
-    baHeroPriceUnit: "للشخص · غرفة مزدوجة · جولة 5 نجوم",
-      heroFrom: "ابتداءً من",
-      baHeroCtaCalc: "احسب سعري",
-      baHeroFineprint: "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
-    /* ── HIGHLIGHTS ── */
-    baHlAccomLabel: "الإقامة",
-    baHlAccomTitle: "كلها في فنادق 5 نجوم",
-    baHlAccomBody: "9 ليالٍ في منتجعات 5 نجوم في كوتا وأوبود ونوسا دوا، مع الفطور.",
-    baHlStepsLabel: "3 محطات",
-    baHlStepsTitle: "كوتا · أوبود · نوسا دوا",
-    baHlStepsBody: "شاطئ كوتا النابض بالحياة، وقلب أوبود الثقافي، وسواحل نوسا دوا الهادئة.",
-    baHlNatureLabel: "طبيعة وثقافة",
-    baHlNatureTitle: "مدرَّجات الأرز والمعابد",
-    baHlNatureBody: "مدرَّجات أرز تيغالالانغ، ومعبد تاناه لوت، وغابة القرود — سحر بالي.",
-    baHlFlightLabel: "رحلة دولية",
-    baHlFlightTitle: "رحلة القطرية / الإمارات",
-    baHlFlightBody: "رحلة الجزائر–دنباسار عبر الدوحة (القطرية) أو دبي (الإمارات)، ذهاباً وإياباً مشمولة.",
-    /* ── ITINERARY ── */
-    baPhase1: "اكتشف",
-    baItinEyebrow: "11 يوماً · 9 ليالٍ",
-    baItinTitle: "<em>برنامجك</em>",
-    baDay1Label: "اليوم 1",
-    baDay1Title: "رحلة الجزائر–دنباسار",
-    baDay1Act: "رحلة الخطوط القطرية عبر الدوحة أو الإمارات عبر دبي، الجزائر–دنباسار. الاستقبال في المطار، والتنقّل وتسجيل الدخول في كوتا.",
-    baDay2Label: "اليوم 2–4",
-    baDay2Title: "كوتا — الشاطئ ومعبد تاناه لوت",
-    baDay2Act: "استرخاء على شاطئ كوتا، ومشاهدة غروب الشمس عند معبد تاناه لوت القائم على صخرته، وتجوّل في سيمينياك والأسواق المحلية.",
-    baDay2Tag1: "شاطئ كوتا",
-    baDay2Tag2: "تاناه لوت",
-    baDay5Label: "اليوم 5–7",
-    baDay5Title: "أوبود — مدرَّجات الأرز والمعابد",
-    baDay5Act: "مدرَّجات أرز تيغالالانغ، والمعابد المقدَّسة، وغابة القرود، وقرى الحِرَفيين، وأراجيح الغابة.",
-    baDay5Tag1: "تيغالالانغ",
-    baDay5Tag2: "المعابد",
-    baDay5Tag3: "غابة القرود",
-    baDay8Label: "اليوم 8–10",
-    baDay8Title: "نوسا دوا — الشاطئ والاسترخاء",
-    baDay8Act: "شواطئ نوسا دوا النقيّة، والاسترخاء في منتجع 5 نجوم، والبحيرات والأنشطة المائية، ووقت حرّ أمام المحيط الهندي.",
-    baDay8Tag1: "الشاطئ",
-    baDay8Tag2: "الاسترخاء",
-    baDay11Label: "اليوم 11",
-    baDay11Title: "العودة إلى الجزائر",
-    baDay11Act: "الفطور، والتنقّل إلى مطار دنباسار، ورحلة العودة عبر الدوحة أو دبي إلى الجزائر.",
-    /* ── MAP ── */
-    baMapEyebrow: "رحلتك في لمحة",
-    baMapTitle: "المسار <em>على الخريطة</em>",
-    baMapSub: "كوتا، أوبود، نوسا دوا — وخيار كوالالمبور: كل الفنادق والمواقع والجولات في رحلتك التي تمتد 11 يوماً.",
-    baMapLoading: "جارٍ تحميل الخريطة…",
-    baLegendHotels: "الفنادق",
-    baLegendSites: "المواقع المزارة",
-    baLegendTours: "الجولات المصحوبة بمرشد",
-    /* ── TRUST ── */
-    baTrustEyebrow: "أكثر من 1.200 مسافر مرافَق",
-    baTrustTitle: "لقد <em>وثقوا بنا</em>",
-    baStat1: "مسافرون مرافَقون منذ 2019",
-    baStat2: "نسبة الرضا",
-    baStat3: "رحلات بالي في 2026",
-    baStat4: "كل الفنادق 5 نجوم",
-    baTesti1: "«بالي أبهرتنا — مدرَّجات أرز أوبود، وغروب الشمس في تاناه لوت، وشواطئ نوسا دوا. كان كل شيء منظَّماً، ولم نضطر أبداً للبحث عن أي شيء.»",
-    baTesti1Trip: "برج بوعريريج · رحلة بالي 2025",
-    baTesti2: "«أول رحلة إلى آسيا. التأشيرة عند الوصول مُدارة، والتنقّلات بلا أخطاء، والمرافِق الناطق بالفرنسية متاح دائماً. راحة بال حقيقية.»",
-    baTesti2Trip: "قسنطينة · رحلة بالي 2025",
-    baTesti3: "«رحلة لزوجين. المنتجع 5 نجوم في نوسا دوا كان مثالياً بإطلالة على المحيط. الدمج مع كوالالمبور كان من أبرز اللحظات. قيمة مقابل السعر لا تُضاهى.»",
-    baTesti3Trip: "الجزائر · رحلة بالي وكوالالمبور 2024",
-    /* ── INCLUDED / NOT INCLUDED ── */
-    baInclEyebrow: "كل شيء واضح، لا شيء مخفيّ",
-    baInclTitle: "ما هو <em>مشمول</em> وما هو غير مشمول",
-    baInclSub: "لا مفاجآت عند الوصول. إليك بالضبط ما تغطّيه باقتك — وما عليك توقّعه إضافةً إلى ذلك.",
-    baInclColTitle: "مشمول في <em>الباقة</em>",
-    baInclColCount: "8 خدمات مغطّاة",
-    baInclItem1: "رحلة دولية <strong>الخطوط القطرية</strong> أو <strong>الإمارات</strong> الجزائر–دنباسار ذهاباً وإياباً",
-    baInclItem2: "<strong>9 ليالٍ</strong> كلها في فنادق 5 نجوم (كوتا · أوبود · نوسا دوا)، مع الفطور",
-    baInclItem3: "كل التنقّلات بمركبة مكيَّفة مع مرشد",
-    baInclItem4: "جولات مصحوبة بمرشد: مدرَّجات أرز تيغالالانغ · المعابد · الشواطئ",
-    baInclItem5: "غروب الشمس عند معبد <strong>تاناه لوت</strong>",
-    baInclItem6: "<strong>التأشيرة عند الوصول</strong> مشمولة (جولة بالي)",
-    baInclItem7: "غابة القرود وقرى الحِرَفيين في أوبود",
-    baInclItem8: "مرافِق من أليانس ترافل + مرشد محلي ناطق بالفرنسية",
-    baExclColTitle: "يُتوقَّع <em>إضافةً</em> إلى ذلك",
-    baExclColCount: "5 عناصر خارج الباقة",
-    baExclItem1: "الغداء والعشاء — باقة الفطور فقط",
-    baExclItem2: "جولات اختيارية (نوسا بينيدا، بالي سوينغ…)",
-    baExclItem3: "ضريبة الإقامة المحلية (عند الاقتضاء)",
-    baExclItem4: "المصاريف الشخصية",
-    baExclItem5: "تأمين السفر الشخصي",
-    /* ── FAQ ── */
-    baFaqEyebrow: "الأسئلة الشائعة",
-    baFaqTitle: "الأسئلة <em>الشائعة</em>",
-    baFaqQ1: "كيف تعمل التأشيرة إلى بالي (إندونيسيا)؟",
-    baFaqA1: "تُصدر إندونيسيا <strong>تأشيرة عند الوصول (VoA)</strong> / e-VOA للمسافرين الجزائريين. بالنسبة لـ<strong>جولة بالي، التأشيرة مشمولة</strong> في الباقة — وأليانس ترافل ترافقك في هذا الإجراء. يجب أن يكون جواز سفرك صالحاً لمدة 6 أشهر على الأقل بعد العودة.",
-    baFaqQ2: "ماذا تشمل باقة الفطور؟",
-    baFaqA2: "البرنامج بنظام <strong>إقامة مع الفطور</strong> في جميع فنادق 5 نجوم. الغداء والعشاء حرّان — ويرشدك المرافِق إلى أفضل العناوين المحلية في كوتا وأوبود ونوسا دوا.",
-    baFaqQ3: "كيف تتم التنقّلات بين المحطات؟",
-    baFaqA3: "كل التنقّلات (المطار–الفندق، كوتا–أوبود–نوسا دوا) تتم بـ<strong>مركبة مكيَّفة</strong> مع مرشد ناطق بالفرنسية. لا رسوم إضافية — كل شيء مشمول في الباقة.",
-    baFaqQ4: "ما الفرق بين جولة بالي ودمج بالي وكوالالمبور؟",
-    baFaqA4: "تقدّم <strong>جولة بالي</strong> (ابتداءً من 419.000 دج) 9 ليالٍ في بالي في فنادق 5 نجوم (كوتا، أوبود، نوسا دوا). أما <strong>دمج بالي وكوالالمبور</strong> (ابتداءً من 459.000 دج) فيضيف محطة مدينة: 4 ليالٍ في كوتا + ليلتان في أوبود ببالي، ثم 6 ليالٍ في كوالالمبور، فنادق 5 نجوم وجولة مدينة كوالالمبور.",
-    /* ── HOTELS ── */
-    baPhase2: "اختر باقتك",
-    baHotelsEyebrow: "الإقامة · 9 ليالٍ في 5 نجوم",
-    baHotelsTitle: "جولة بالي · <em>أو دمج كوالالمبور</em>",
-    baHotelsSub: "كلها في فنادق 5 نجوم، باقة الفطور. كل التنقّلات والجولات المصحوبة بمرشد مشمولة.",
-    baTierAll: "الكل",
-    baTierBali: "جولة بالي",
-    baTierBaliKl: "بالي وكوالالمبور",
-    baAmKutaBeach: "شاطئ كوتا",
-    baAmBreakfast: "فطور",
-    baAmRice: "مدرَّجات الأرز",
-    baAmResort: "منتجع",
-    baAmSeaside: "على البحر",
-    baAmCityTour: "جولة مدينة كوالالمبور",
-    baNights3Kuta: "3 ليالٍ · كوتا",
-    baNights3Ubud: "3 ليالٍ · أوبود",
-    baNights3Nusa: "3 ليالٍ · نوسا دوا",
-    baNights4Kuta: "4 ليالٍ · كوتا",
-    baNights2Ubud: "ليلتان · أوبود",
-    baNights6Kl: "6 ليالٍ · كوالالمبور",
-    baPriceMeta: "5 نجوم · فطور",
-    baSelect: "اختيار",
-    /* ── CALCULATOR ── */
-    baPhase3: "احسب سعري",
-    baCalcEyebrow: "الخطوة 1 · جهِّز رحلتك",
-    baCalcTitle: "اختر <em>باقتك</em>",
-    baCalcDate: "تاريخ المغادرة",
-    baCalcHotel: "الباقة",
-    baCalcOptBali: "جولة بالي — كوتا · أوبود · نوسا دوا (5 نجوم) — ابتداءً من 419.000 دج",
-    baCalcOptBaliKl: "دمج بالي وكوالالمبور (5 نجوم) — ابتداءً من 459.000 دج",
-    baCalcRoom: "نوع الغرفة",
-    baRoomDouble: "مزدوجة",
-    baRoomTriple: "ثلاثية",
-    baRoomSingle: "فردية",
-    baCalcTravellers: "المسافرون",
-    baStepAdults: "البالغون",
-    baStepAdultsHint: "من 12 سنة فما فوق",
-    baStepChild1: "الطفل الأول",
-    baStepChild1Hint: "يشارك غرفة بالغَين · ابتداءً من 275.000 دج",
-    baStepChild2: "الطفل الثاني",
-    baStepChild2Hint: "بسرير إضافي · ابتداءً من 409.000 دج",
-    baStepBaby: "رضيع",
-    baStepBabyHint: "0–2 سنة · 52.000 دج",
-    baRecap: "الملخّص",
-    baRecapEmpty: "جهِّز رحلتك لرؤية السعر.",
-    baTotalLabel: "الإجمالي التقديري",
-    baWhy: "لماذا هذا السعر؟",
-    baWhyDetails: "السعر للشخص في غرفة مزدوجة، رحلة الخطوط القطرية أو الإمارات الجزائر–دنباسار مشمولة، 9 ليالٍ كلها في فنادق 5 نجوم مع الفطور، كل التنقّلات والجولات المصحوبة بمرشد (مدرَّجات الأرز، المعابد، الشواطئ)، مرافِق من أليانس ترافل ومرشد ناطق بالفرنسية. التأشيرة عند الوصول مشمولة لجولة بالي.",
-    baContinueCta: "المتابعة إلى الحجز",
-    baNextStep: "الخطوة التالية: املأ ملفّك أدناه",
-    /* ── INFO / CONDITIONS ── */
-    baInfoEyebrow: "قبل السفر",
-    baInfoTitle: "كل ما <em>يجب معرفته</em>",
-    baInfoSub: "الدفع، الإلغاء، إجراءات التأشيرة، التأمين — الشفافية في أربع كتل.",
-    baPayTitle: "شروط الدفع",
-    baPayItem1: "<strong>عربون الحجز</strong> · 30٪ من المبلغ الإجمالي عند التأكيد، يُدفع خلال 48 ساعة بعد الاتفاق عبر واتساب.",
-    baPayItem2: "<strong>الرصيد</strong> · 70٪ المتبقية في موعد أقصاه <strong>21 يوماً قبل المغادرة</strong>.",
-    baPayItem3: "<strong>طرق الدفع المقبولة</strong> · تحويل بنكي (BNA، BEA، CPA)، الدفع في الوكالة، نقداً. لا دفع ببطاقة عبر الإنترنت حالياً.",
-    baPayItem4: "<strong>الإيصال</strong> · إيصال رسمي من أليانس ترافل يُسلَّم عند كل دفعة.",
-    baPayItem5: "<strong>عرض السعر صالح</strong> 7 أيام · قد تتغيّر الأسعار حسب توفّر المقاعد وسعر الصرف.",
-    baCancelTitle: "شروط الإلغاء",
-    baCancelLede: "الإلغاء من قِبَل العميل (حسب المدة قبل المغادرة):",
-    baCancelItem1: "<strong>≥ 60 يوماً قبل المغادرة</strong> · استرداد كامل ناقص رسوم الملف (5.000 دج).",
-    baCancelItem2: "<strong>من 30 إلى 59 يوماً</strong> · حجز 30٪ من المبلغ الإجمالي.",
-    baCancelItem3: "<strong>من 14 إلى 29 يوماً</strong> · حجز 60٪ من المبلغ الإجمالي.",
-    baCancelItem4: "<strong>من 7 إلى 13 يوماً</strong> · حجز 80٪.",
-    baCancelItem5: "<strong>&lt; 7 أيام</strong> · لا استرداد (رسوم الطيران والفنادق نهائية).",
-    baCancelNote: "<strong>الإلغاء من قِبَل شركة الطيران أو الفندق</strong> · استرداد كامل أو إعادة توجيه دون رسوم إضافية من جانبنا.<br><strong>تغيير التاريخ</strong> ممكن حتى 30 يوماً قبل المغادرة، رهناً بالتوفّر وفرق السعر.",
-    baVisaTitle: "الإجراءات · التأشيرة عند الوصول",
-    baVisaLede: "<strong>التأشيرة عند الوصول (VoA) / e-VOA إندونيسيا</strong>",
-    baVisaItem1: "<strong>التأشيرة</strong> · تُصدر إندونيسيا <strong>تأشيرة عند الوصول (VoA)</strong> أو <strong>e-VOA</strong> لجوازات السفر الجزائرية. وأليانس ترافل ترافقك في هذا الإجراء.",
-    baVisaItem2: "<strong>جولة بالي</strong> · التأشيرة <strong>مشمولة في الباقة</strong> — لا شيء عليك إدارته.",
-    baVisaItem3: "<strong>جواز السفر</strong> · صلاحية لا تقل عن <strong>6 أشهر بعد العودة</strong>، وصفحتان فارغتان على الأقل.",
-    baVisaItem4: "<strong>المستندات المطلوبة</strong> · نسخة ممسوحة/صورة ملوّنة من جواز السفر (صفحة الهوية). لا موعد قنصلي.",
-    baInsuranceTitle: "تأمين السفر",
-    baInsuranceLede: "تأمين السفر <strong>غير مشمول</strong> في الباقة لكنه <strong>موصى به بشدّة</strong> — خاصةً للرحلات الطويلة.",
-    baInsuranceItem1: "<strong>التغطية الموصى بها</strong> · نفقات طبية طارئة (≥ 100.000 يورو)، إجلاء طبي، فقدان/سرقة الأمتعة، إلغاء الرحلة.",
-    baInsuranceItem2: "<strong>التكلفة التقديرية</strong> · من 1.500 إلى 4.000 دج للشخص حسب المدة والوجهة.",
-    baInsuranceItem3: "<strong>أين تشترك</strong> · شركات تأمين جزائرية (CAAR، SAA، CAAT) أو شركات دولية (Mondial Assistance، Europ Assistance).",
-    baInsuranceItem4: "<strong>عند الطلب</strong>، يمكن لأليانس ترافل توجيهك إلى شريك تأمين يقدّم باقات سفر.",
-    /* ── RELATED ── */
-    baRelatedEyebrow: "قد يعجبك أيضاً",
-    baRelatedTitle: "واصل <em>اكتشافك</em>",
-    baRelVnFlag: "فيتنام · صيف 2026",
-    baRelVnPrice: "ابتداءً من <strong>439.000 دج</strong>",
-    baRelTnFlag: "تونس · صيف 2026",
-    baRelTnPrice: "ابتداءً من <strong>36.000 دج</strong>",
-    baRelCta: "عرض هذه الرحلة",
-    /* ── FINAL CTA ── */
-    baFinalScarcity: "5 رحلات في 2026 · أماكن محدودة",
-    baFinalTitle: "اكتشف<br><em>جزيرة الآلهة</em>",
-    baFinalSub: "مدرَّجات أرز أوبود، والمعابد المقدَّسة، وشواطئ نوسا دوا — كل ذلك في 11 يوماً، كلها في فنادق 5 نجوم، من الجزائر.",
-    baFinalWaBtn: "احجز عبر واتساب",
-    baFinalAddress: "حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
-    baStickyBook: "احجز",
-    /* ── FOOTER CTA ── */
-    footer: {
-      cta_title: "جاهز للسفر؟",
-      cta_sub: "راسلنا على واتساب، رد في نفس اليوم.",
-      cta_btn: "الدردشة على واتساب"
-    }
+    calcWhyGeneric: 'السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.',
+    baHeroEyebrow: 'رحلة منظَّمة · القطرية / الإمارات · صيف 2026',
+    baHeroTitlePre: 'بالي',
+    baHeroTitlePost: 'جزيرة الآلهة',
+    baHeroDate: '9 ليالٍ · فنادق 5 نجوم · كوتا · أوبود · نوسا دوا',
+    baHeroH1: 'بالي <em>جزيرة الآلهة</em>',
+    baHeroLede: 'مدرَّجات أرز خضراء، ومعابد مقدَّسة، وشواطئ حالمة. 3 ليالٍ في كوتا، و3 ليالٍ في قلب أوبود، و3 ليالٍ في نوسا دوا — كلها في فنادق 5 نجوم مع الفطور. رحلة الخطوط القطرية أو الإمارات من الجزائر.',
+    baHeroPriceUnit: 'للشخص · غرفة مزدوجة · جولة 5 نجوم',
+    baHlAccomLabel: 'الإقامة',
+    baHlAccomTitle: 'كلها في فنادق 5 نجوم',
+    baHlAccomBody: '9 ليالٍ في منتجعات 5 نجوم في كوتا وأوبود ونوسا دوا، مع الفطور.',
+    baHlStepsLabel: '3 محطات',
+    baHlStepsTitle: 'كوتا · أوبود · نوسا دوا',
+    baHlStepsBody: 'شاطئ كوتا النابض بالحياة، وقلب أوبود الثقافي، وسواحل نوسا دوا الهادئة.',
+    baHlNatureLabel: 'طبيعة وثقافة',
+    baHlNatureTitle: 'مدرَّجات الأرز والمعابد',
+    baHlNatureBody: 'مدرَّجات أرز تيغالالانغ، ومعبد تاناه لوت، وغابة القرود — سحر بالي.',
+    baHlFlightLabel: 'رحلة دولية',
+    baHlFlightTitle: 'رحلة القطرية / الإمارات',
+    baHlFlightBody: 'رحلة الجزائر–دنباسار عبر الدوحة (القطرية) أو دبي (الإمارات)، ذهاباً وإياباً مشمولة.',
+    baPhase1: 'اكتشف',
+    baItinEyebrow: '11 يوماً · 9 ليالٍ',
+    baItinTitle: '<em>برنامجك</em>',
+    baDay1Label: 'اليوم 1',
+    baDay1Title: 'رحلة الجزائر–دنباسار',
+    baDay1Act: 'رحلة الخطوط القطرية عبر الدوحة أو الإمارات عبر دبي، الجزائر–دنباسار. الاستقبال في المطار، والتنقّل وتسجيل الدخول في كوتا.',
+    baDay2Label: 'اليوم 2–4',
+    baDay2Title: 'كوتا — الشاطئ ومعبد تاناه لوت',
+    baDay2Act: 'استرخاء على شاطئ كوتا، ومشاهدة غروب الشمس عند معبد تاناه لوت القائم على صخرته، وتجوّل في سيمينياك والأسواق المحلية.',
+    baDay2Tag1: 'شاطئ كوتا',
+    baDay2Tag2: 'تاناه لوت',
+    baDay5Label: 'اليوم 5–7',
+    baDay5Title: 'أوبود — مدرَّجات الأرز والمعابد',
+    baDay5Act: 'مدرَّجات أرز تيغالالانغ، والمعابد المقدَّسة، وغابة القرود، وقرى الحِرَفيين، وأراجيح الغابة.',
+    baDay5Tag1: 'تيغالالانغ',
+    baDay5Tag2: 'المعابد',
+    baDay5Tag3: 'غابة القرود',
+    baDay8Label: 'اليوم 8–10',
+    baDay8Title: 'نوسا دوا — الشاطئ والاسترخاء',
+    baDay8Act: 'شواطئ نوسا دوا النقيّة، والاسترخاء في منتجع 5 نجوم، والبحيرات والأنشطة المائية، ووقت حرّ أمام المحيط الهندي.',
+    baDay8Tag1: 'الشاطئ',
+    baDay8Tag2: 'الاسترخاء',
+    baDay11Label: 'اليوم 11',
+    baDay11Title: 'العودة إلى الجزائر',
+    baDay11Act: 'الفطور، والتنقّل إلى مطار دنباسار، ورحلة العودة عبر الدوحة أو دبي إلى الجزائر.',
+    baMapEyebrow: 'رحلتك في لمحة',
+    baMapTitle: 'المسار <em>على الخريطة</em>',
+    baMapSub: 'كوتا، أوبود، نوسا دوا — وخيار كوالالمبور: كل الفنادق والمواقع والجولات في رحلتك التي تمتد 11 يوماً.',
+    baMapLoading: 'جارٍ تحميل الخريطة…',
+    baLegendHotels: 'الفنادق',
+    baLegendSites: 'المواقع المزارة',
+    baLegendTours: 'الجولات المصحوبة بمرشد',
+    baTrustEyebrow: 'أكثر من 1.200 مسافر مرافَق',
+    baTrustTitle: 'لقد <em>وثقوا بنا</em>',
+    baStat1: 'مسافرون مرافَقون منذ 2019',
+    baStat2: 'نسبة الرضا',
+    baStat3: 'رحلات بالي في 2026',
+    baStat4: 'كل الفنادق 5 نجوم',
+    baTesti1: '«بالي أبهرتنا — مدرَّجات أرز أوبود، وغروب الشمس في تاناه لوت، وشواطئ نوسا دوا. كان كل شيء منظَّماً، ولم نضطر أبداً للبحث عن أي شيء.»',
+    baTesti1Trip: 'برج بوعريريج · رحلة بالي 2025',
+    baTesti2: '«أول رحلة إلى آسيا. التأشيرة عند الوصول مُدارة، والتنقّلات بلا أخطاء، والمرافِق الناطق بالفرنسية متاح دائماً. راحة بال حقيقية.»',
+    baTesti2Trip: 'قسنطينة · رحلة بالي 2025',
+    baTesti3: '«رحلة لزوجين. المنتجع 5 نجوم في نوسا دوا كان مثالياً بإطلالة على المحيط. الدمج مع كوالالمبور كان من أبرز اللحظات. قيمة مقابل السعر لا تُضاهى.»',
+    baTesti3Trip: 'الجزائر · رحلة بالي وكوالالمبور 2024',
+    baInclEyebrow: 'كل شيء واضح، لا شيء مخفيّ',
+    baInclTitle: 'ما هو <em>مشمول</em> وما هو غير مشمول',
+    baInclSub: 'لا مفاجآت عند الوصول. إليك بالضبط ما تغطّيه باقتك — وما عليك توقّعه إضافةً إلى ذلك.',
+    baInclColTitle: 'مشمول في <em>الباقة</em>',
+    baInclColCount: '8 خدمات مغطّاة',
+    baInclItem1: 'رحلة دولية <strong>الخطوط القطرية</strong> أو <strong>الإمارات</strong> الجزائر–دنباسار ذهاباً وإياباً',
+    baInclItem2: '<strong>9 ليالٍ</strong> كلها في فنادق 5 نجوم (كوتا · أوبود · نوسا دوا)، مع الفطور',
+    baInclItem3: 'كل التنقّلات بمركبة مكيَّفة مع مرشد',
+    baInclItem4: 'جولات مصحوبة بمرشد: مدرَّجات أرز تيغالالانغ · المعابد · الشواطئ',
+    baInclItem5: 'غروب الشمس عند معبد <strong>تاناه لوت</strong>',
+    baInclItem6: '<strong>التأشيرة عند الوصول</strong> مشمولة (جولة بالي)',
+    baInclItem7: 'غابة القرود وقرى الحِرَفيين في أوبود',
+    baInclItem8: 'مرافِق من أليانس ترافل + مرشد محلي ناطق بالفرنسية',
+    baExclColTitle: 'يُتوقَّع <em>إضافةً</em> إلى ذلك',
+    baExclColCount: '5 عناصر خارج الباقة',
+    baExclItem1: 'الغداء والعشاء — باقة الفطور فقط',
+    baExclItem2: 'جولات اختيارية (نوسا بينيدا، بالي سوينغ…)',
+    baExclItem3: 'ضريبة الإقامة المحلية (عند الاقتضاء)',
+    baExclItem4: 'المصاريف الشخصية',
+    baExclItem5: 'تأمين السفر الشخصي',
+    baFaqEyebrow: 'الأسئلة الشائعة',
+    baFaqTitle: 'الأسئلة <em>الشائعة</em>',
+    baFaqQ1: 'كيف تعمل التأشيرة إلى بالي (إندونيسيا)؟',
+    baFaqA1: 'تُصدر إندونيسيا <strong>تأشيرة عند الوصول (VoA)</strong> / e-VOA للمسافرين الجزائريين. بالنسبة لـ<strong>جولة بالي، التأشيرة مشمولة</strong> في الباقة — وأليانس ترافل ترافقك في هذا الإجراء. يجب أن يكون جواز سفرك صالحاً لمدة 6 أشهر على الأقل بعد العودة.',
+    baFaqQ2: 'ماذا تشمل باقة الفطور؟',
+    baFaqA2: 'البرنامج بنظام <strong>إقامة مع الفطور</strong> في جميع فنادق 5 نجوم. الغداء والعشاء حرّان — ويرشدك المرافِق إلى أفضل العناوين المحلية في كوتا وأوبود ونوسا دوا.',
+    baFaqQ3: 'كيف تتم التنقّلات بين المحطات؟',
+    baFaqA3: 'كل التنقّلات (المطار–الفندق، كوتا–أوبود–نوسا دوا) تتم بـ<strong>مركبة مكيَّفة</strong> مع مرشد ناطق بالفرنسية. لا رسوم إضافية — كل شيء مشمول في الباقة.',
+    baFaqQ4: 'ما الفرق بين جولة بالي ودمج بالي وكوالالمبور؟',
+    baFaqA4: 'تقدّم <strong>جولة بالي</strong> (ابتداءً من 419.000 دج) 9 ليالٍ في بالي في فنادق 5 نجوم (كوتا، أوبود، نوسا دوا). أما <strong>دمج بالي وكوالالمبور</strong> (ابتداءً من 459.000 دج) فيضيف محطة مدينة: 4 ليالٍ في كوتا + ليلتان في أوبود ببالي، ثم 6 ليالٍ في كوالالمبور، فنادق 5 نجوم وجولة مدينة كوالالمبور.',
+    baPhase2: 'اختر باقتك',
+    baHotelsEyebrow: 'الإقامة · 9 ليالٍ في 5 نجوم',
+    baHotelsTitle: 'جولة بالي · <em>أو دمج كوالالمبور</em>',
+    baHotelsSub: 'كلها في فنادق 5 نجوم، باقة الفطور. كل التنقّلات والجولات المصحوبة بمرشد مشمولة.',
+    baTierAll: 'الكل',
+    baTierBali: 'جولة بالي',
+    baTierBaliKl: 'بالي وكوالالمبور',
+    baAmKutaBeach: 'شاطئ كوتا',
+    baAmBreakfast: 'فطور',
+    baAmRice: 'مدرَّجات الأرز',
+    baAmResort: 'منتجع',
+    baAmSeaside: 'على البحر',
+    baAmCityTour: 'جولة مدينة كوالالمبور',
+    baNights3Kuta: '3 ليالٍ · كوتا',
+    baNights3Ubud: '3 ليالٍ · أوبود',
+    baNights3Nusa: '3 ليالٍ · نوسا دوا',
+    baNights4Kuta: '4 ليالٍ · كوتا',
+    baNights2Ubud: 'ليلتان · أوبود',
+    baNights6Kl: '6 ليالٍ · كوالالمبور',
+    baPriceMeta: '5 نجوم · فطور',
+    baSelect: 'اختيار',
+    baPhase3: 'احسب سعري',
+    baCalcEyebrow: 'الخطوة 1 · جهِّز رحلتك',
+    baCalcTitle: 'اختر <em>باقتك</em>',
+    baCalcDate: 'تاريخ المغادرة',
+    baCalcHotel: 'الباقة',
+    baCalcOptBali: 'جولة بالي — كوتا · أوبود · نوسا دوا (5 نجوم) — ابتداءً من 419.000 دج',
+    baCalcOptBaliKl: 'دمج بالي وكوالالمبور (5 نجوم) — ابتداءً من 459.000 دج',
+    baCalcRoom: 'نوع الغرفة',
+    baRoomDouble: 'مزدوجة',
+    baRoomTriple: 'ثلاثية',
+    baRoomSingle: 'فردية',
+    baCalcTravellers: 'المسافرون',
+    baStepAdults: 'البالغون',
+    baStepAdultsHint: 'من 12 سنة فما فوق',
+    baStepChild1: 'الطفل الأول',
+    baStepChild1Hint: 'يشارك غرفة بالغَين · ابتداءً من 275.000 دج',
+    baStepChild2: 'الطفل الثاني',
+    baStepChild2Hint: 'بسرير إضافي · ابتداءً من 409.000 دج',
+    baStepBaby: 'رضيع',
+    baStepBabyHint: '0–2 سنة · 52.000 دج',
+    baRecap: 'الملخّص',
+    baRecapEmpty: 'جهِّز رحلتك لرؤية السعر.',
+    baTotalLabel: 'الإجمالي التقديري',
+    baWhy: 'لماذا هذا السعر؟',
+    baWhyDetails: 'السعر للشخص في غرفة مزدوجة، رحلة الخطوط القطرية أو الإمارات الجزائر–دنباسار مشمولة، 9 ليالٍ كلها في فنادق 5 نجوم مع الفطور، كل التنقّلات والجولات المصحوبة بمرشد (مدرَّجات الأرز، المعابد، الشواطئ)، مرافِق من أليانس ترافل ومرشد ناطق بالفرنسية. التأشيرة عند الوصول مشمولة لجولة بالي.',
+    baContinueCta: 'المتابعة إلى الحجز',
+    baNextStep: 'الخطوة التالية: املأ ملفّك أدناه',
+    baInfoEyebrow: 'قبل السفر',
+    baInfoTitle: 'كل ما <em>يجب معرفته</em>',
+    baInfoSub: 'الدفع، الإلغاء، إجراءات التأشيرة، التأمين — الشفافية في أربع كتل.',
+    baPayTitle: 'شروط الدفع',
+    baPayItem1: '<strong>عربون الحجز</strong> · 30٪ من المبلغ الإجمالي عند التأكيد، يُدفع خلال 48 ساعة بعد الاتفاق عبر واتساب.',
+    baPayItem2: '<strong>الرصيد</strong> · 70٪ المتبقية في موعد أقصاه <strong>21 يوماً قبل المغادرة</strong>.',
+    baPayItem3: '<strong>طرق الدفع المقبولة</strong> · تحويل بنكي (BNA، BEA، CPA)، الدفع في الوكالة، نقداً. لا دفع ببطاقة عبر الإنترنت حالياً.',
+    baPayItem4: '<strong>الإيصال</strong> · إيصال رسمي من أليانس ترافل يُسلَّم عند كل دفعة.',
+    baPayItem5: '<strong>عرض السعر صالح</strong> 7 أيام · قد تتغيّر الأسعار حسب توفّر المقاعد وسعر الصرف.',
+    baCancelTitle: 'شروط الإلغاء',
+    baCancelLede: 'الإلغاء من قِبَل العميل (حسب المدة قبل المغادرة):',
+    baCancelItem1: '<strong>≥ 60 يوماً قبل المغادرة</strong> · استرداد كامل ناقص رسوم الملف (5.000 دج).',
+    baCancelItem2: '<strong>من 30 إلى 59 يوماً</strong> · حجز 30٪ من المبلغ الإجمالي.',
+    baCancelItem3: '<strong>من 14 إلى 29 يوماً</strong> · حجز 60٪ من المبلغ الإجمالي.',
+    baCancelItem4: '<strong>من 7 إلى 13 يوماً</strong> · حجز 80٪.',
+    baCancelItem5: '<strong>&lt; 7 أيام</strong> · لا استرداد (رسوم الطيران والفنادق نهائية).',
+    baCancelNote: '<strong>الإلغاء من قِبَل شركة الطيران أو الفندق</strong> · استرداد كامل أو إعادة توجيه دون رسوم إضافية من جانبنا.<br><strong>تغيير التاريخ</strong> ممكن حتى 30 يوماً قبل المغادرة، رهناً بالتوفّر وفرق السعر.',
+    baVisaTitle: 'الإجراءات · التأشيرة عند الوصول',
+    baVisaLede: '<strong>التأشيرة عند الوصول (VoA) / e-VOA إندونيسيا</strong>',
+    baVisaItem1: '<strong>التأشيرة</strong> · تُصدر إندونيسيا <strong>تأشيرة عند الوصول (VoA)</strong> أو <strong>e-VOA</strong> لجوازات السفر الجزائرية. وأليانس ترافل ترافقك في هذا الإجراء.',
+    baVisaItem2: '<strong>جولة بالي</strong> · التأشيرة <strong>مشمولة في الباقة</strong> — لا شيء عليك إدارته.',
+    baVisaItem3: '<strong>جواز السفر</strong> · صلاحية لا تقل عن <strong>6 أشهر بعد العودة</strong>، وصفحتان فارغتان على الأقل.',
+    baVisaItem4: '<strong>المستندات المطلوبة</strong> · نسخة ممسوحة/صورة ملوّنة من جواز السفر (صفحة الهوية). لا موعد قنصلي.',
+    baInsuranceTitle: 'تأمين السفر',
+    baInsuranceLede: 'تأمين السفر <strong>غير مشمول</strong> في الباقة لكنه <strong>موصى به بشدّة</strong> — خاصةً للرحلات الطويلة.',
+    baInsuranceItem1: '<strong>التغطية الموصى بها</strong> · نفقات طبية طارئة (≥ 100.000 يورو)، إجلاء طبي، فقدان/سرقة الأمتعة، إلغاء الرحلة.',
+    baInsuranceItem2: '<strong>التكلفة التقديرية</strong> · من 1.500 إلى 4.000 دج للشخص حسب المدة والوجهة.',
+    baInsuranceItem3: '<strong>أين تشترك</strong> · شركات تأمين جزائرية (CAAR، SAA، CAAT) أو شركات دولية (Mondial Assistance، Europ Assistance).',
+    baInsuranceItem4: '<strong>عند الطلب</strong>، يمكن لأليانس ترافل توجيهك إلى شريك تأمين يقدّم باقات سفر.',
+    baRelatedEyebrow: 'قد يعجبك أيضاً',
+    baRelatedTitle: 'واصل <em>اكتشافك</em>',
+    baRelVnFlag: 'فيتنام · صيف 2026',
+    baRelVnPrice: 'ابتداءً من <strong>439.000 دج</strong>',
+    baRelTnFlag: 'تونس · صيف 2026',
+    baRelTnPrice: 'ابتداءً من <strong>36.000 دج</strong>',
+    baRelCta: 'عرض هذه الرحلة',
+    baFinalScarcity: '5 رحلات في 2026 · أماكن محدودة',
+    baFinalTitle: 'اكتشف<br><em>جزيرة الآلهة</em>',
+    baFinalSub: 'مدرَّجات أرز أوبود، والمعابد المقدَّسة، وشواطئ نوسا دوا — كل ذلك في 11 يوماً، كلها في فنادق 5 نجوم، من الجزائر.',
+    baFinalWaBtn: 'احجز عبر واتساب',
+    baFinalAddress: 'حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة',
+    baStickyBook: 'احجز'
   }
 };
 </script>
-<!-- scroll-hero.js removed — Aurora hero (v27) is pure CSS -->
 <script src="../assets/js/calculator.js" defer></script>
 <script src="../assets/js/booking-form.js" defer></script>
+<script src="../assets/js/lead-config.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
   </body>

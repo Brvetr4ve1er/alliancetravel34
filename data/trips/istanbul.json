@@ -123,6 +123,7 @@
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__istanbul--bg.jpg",
     "fg": "../assets/images/heroes-v2/hero__istanbul--fg.jpg",
+    "aria": "Istanbul — Entre deux continents",
     "titlePre": "Istanbul",
     "titlePost": "Entre deux continents",
     "eyebrow": "Départ Constantine · Turkish Airlines · Septembre–Novembre 2026",

@@ -135,6 +135,7 @@
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__cairo-sharm--bg.jpg",
     "fg": "../assets/images/heroes-v2/hero__cairo-sharm--fg.jpg",
+    "aria": "Égypte — Mer Rouge & Pyramides",
     "titlePre": "Égypte",
     "titlePost": "Mer Rouge & Pyramides · 5 programmes",
     "eyebrow": "Le Caire · Hurghada · Sharm El Sheikh · 2026",

@@ -82,6 +82,7 @@ function validateTrip(file, data, enabled) {
   req(file, data, "hero.bg", isStr, "chemin image");
   // hero.fg (foreground cutout) is optional — the Aurora hero uses hero.bg full-bleed only.
   req(file, data, "hero.titlePre", isStr, "string");
+  req(file, data, "hero.aria", isStr, "string (aria-label du hero, ex: \"Istanbul — Entre deux continents\")");
   req(file, data, "hero.priceFrom", isStr, "string (ex: \"129.000 DA\")");
 
   // The calculator payload drives the page's core feature.

@@ -123,6 +123,7 @@
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__tunisie--bg.jpg",
     "fg": "../assets/images/heroes-v2/hero__tunisie--fg.jpg",
+    "aria": "Tunisie — Soleil & Méditerranée",
     "titlePre": "Tunisie",
     "titlePost": "Soleil & Méditerranée",
     "eyebrow": "Voyage en bus · Demi-pension · Été 2026",

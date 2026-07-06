@@ -1,5 +1,5 @@
 <!-- ── HERO · Horizon Aurora (v27 full-bleed) ───────────────────────────────── -->
-<section class="aurora-hero" data-region="{{region}}" aria-label="{{=d.hero.titlePre + ' — ' + d.hero.titlePost}}">
+<section class="aurora-hero" data-region="{{region}}" aria-label="{{hero.aria}}">
   <div class="aurora-hero__sky" aria-hidden="true"></div>
   <picture class="aurora-hero__photo">
     <source type="image/avif" media="(max-width:768px)" srcset="{{=d.hero.bg.replace('--bg.jpg','--bg--mobile.avif')}}"/>

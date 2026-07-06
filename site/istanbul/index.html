@@ -250,36 +250,31 @@
   window.TRIP_MAP_DATA = {
     name: 'Istanbul',
     hotels: [
-      { id: 'river',  name: 'Hotel River',       loc: [28.965, 41.013], stars: 3, area: 'Aksaray, Istanbul' },
-      { id: 'ozer',   name: 'Hotel Ozer Palace', loc: [28.972, 41.011], stars: 4, area: 'Aksaray, Istanbul' },
-      { id: 'alpin',  name: 'Hotel Alpin Due',   loc: [28.968, 41.014], stars: 4, area: 'Aksaray, Istanbul' },
-      { id: 'tilia',  name: 'Hôtel Tilia',       loc: [28.974, 41.015], stars: 5, area: 'Sultanahmet, Istanbul' }
+      { id: 'river', name: 'Hotel River', loc: [28.965, 41.013], stars: 3, area: 'Aksaray, Istanbul' },
+      { id: 'ozer', name: 'Hotel Ozer Palace', loc: [28.972, 41.011], stars: 4, area: 'Aksaray, Istanbul' },
+      { id: 'alpin', name: 'Hotel Alpin Due', loc: [28.968, 41.014], stars: 4, area: 'Aksaray, Istanbul' },
+      { id: 'tilia', name: 'Hôtel Tilia', loc: [28.974, 41.015], stars: 5, area: 'Sultanahmet, Istanbul' }
     ],
     sites: [
-      // J2 — Sultanahmet à pied
-      { name: 'Mosquée Bleue (Sultanahmet)',   loc: [28.977, 41.005], day: 2, featured: true },
-      { name: 'Aya Sofya',                      loc: [28.980, 41.008], day: 2, featured: true },
-      { name: 'Grand Bazar',                    loc: [28.967, 41.011], day: 2 },
-      // J3 — Croisière Mer de Marmara
-      { name: 'Îles des Princes (Büyükada)',    loc: [29.119, 40.872], day: 3, featured: true },
-      // J4 — Ortaköy, Florya, Olivium
-      { name: 'Mosquée d\'Ortaköy',             loc: [29.027, 41.047], day: 4 },
-      { name: 'Aqua Florya Mall',               loc: [28.793, 40.978], day: 4 },
-      { name: 'Mall Olivium',                   loc: [28.836, 40.992], day: 4 },
-      // J5 — Côté asiatique
-      { name: 'Palais Beylerbeyi',              loc: [29.041, 41.051], day: 5 },
-      { name: 'Tour de la Jeune Fille',         loc: [29.005, 41.021], day: 5 },
-      { name: 'Üsküdar',                        loc: [29.015, 41.024], day: 5 },
-      { name: 'Çamlıca (panorama)',             loc: [29.067, 41.029], day: 5, featured: true }
+      { name: 'Mosquée Bleue (Sultanahmet)', loc: [28.977, 41.005], day: 2, featured: true },
+      { name: 'Aya Sofya', loc: [28.98, 41.008], day: 2, featured: true },
+      { name: 'Grand Bazar', loc: [28.967, 41.011], day: 2 },
+      { name: 'Îles des Princes (Büyükada)', loc: [29.119, 40.872], day: 3, featured: true },
+      { name: 'Mosquée d\'Ortaköy', loc: [29.027, 41.047], day: 4 },
+      { name: 'Aqua Florya Mall', loc: [28.793, 40.978], day: 4 },
+      { name: 'Mall Olivium', loc: [28.836, 40.992], day: 4 },
+      { name: 'Palais Beylerbeyi', loc: [29.041, 41.051], day: 5 },
+      { name: 'Tour de la Jeune Fille', loc: [29.005, 41.021], day: 5 },
+      { name: 'Üsküdar', loc: [29.015, 41.024], day: 5 },
+      { name: 'Çamlıca (panorama)', loc: [29.067, 41.029], day: 5, featured: true }
     ],
     tours: [
-      { name: 'Croisière Mer de Marmara',       loc: [29.020, 40.965], day: 3, note: 'Déjeuner inclus à bord' }
+      { name: 'Croisière Mer de Marmara', loc: [29.02, 40.965], day: 3, note: 'Déjeuner inclus à bord' }
     ],
     hubs: [
       { name: 'Istanbul', loc: [28.978, 41.014], days: 'J1–J8' }
     ],
     routes: [
-      // Boat trip arc to Princes' Islands (visual flourish)
       { from: [29.005, 41.021], to: [29.119, 40.872], label: 'Croisière → Îles des Princes', type: 'sea', lift: 0.18 }
     ]
   };
@@ -810,60 +805,54 @@
           <p class="phone-group__head"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="footer.address_label">Adresse</span></p>
           <p class="fs-body-sm u-text-2 u-m-0">Cité 5 Juillet, Bd. de l'ALN<br>Bordj Bou Arreridj, Algérie</p>
         </div>
-      </div></div><div class="footer-bottom"><p>© 2026 Alliance Travel · Bordj Bou Arreridj</p><p>Prix en DA · Visa non inclus pour Istanbul · Indicatifs</p></div></div></footer>
+      </div></div><div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 Alliance Travel · Bordj Bou Arreridj</p><p data-i18n="footer.notice">Prix en DA · Visa non inclus pour Istanbul · Indicatifs</p></div></div></footer>
 
 <div class="sticky-total" id="sticky-total-bar"><div><p class="sticky-total__label">Total estimé</p><p class="sticky-total__amount" id="sticky-total-amount">—</p></div><button class="btn btn--primary btn--sm" id="sticky-cta-btn" data-track-event="sticky_cta_book">Réserver</button></div>
 
 <script>
 window.TRIP_DATA = {
   name: 'Istanbul 2026 · Départ Constantine',
-  dates: ['3 Septembre 2026','10 Septembre 2026','17 Septembre 2026','1 Octobre 2026','15 Octobre 2026','5 Novembre 2026'],
+  dates: ['3 Septembre 2026', '10 Septembre 2026', '17 Septembre 2026', '1 Octobre 2026', '15 Octobre 2026', '5 Novembre 2026'],
   hotels: [
-    { id: 'river', name: 'Hotel River 3★',      prices: { double: 129000, triple: 129000, single: 170000, child1: 105000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK Constantine–Istanbul inclus, 7 nuits petit-déjeuner, 4 jours excursions guidées + transferts.' },
-    { id: 'ozer',  name: 'Hotel Ozer Palace 4★', prices: { double: 135000, triple: 135000, single: 175000, child1: 110000, child2: 80000,  baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
-    { id: 'alpin', name: 'Hotel Alpin Due 4★',   prices: { double: 137000, triple: 137000, single: 180000, child1: 115000, child2: 80000,  baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
-    { id: 'tilia', name: 'Hôtel Tilia 4★',       prices: { double: 142000, triple: 142000, single: 189000, child1: 115000, child2: 85000,  baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet. Visa turc non inclus.' },
+    { id: 'river', name: 'Hotel River 3★', prices: { double: 129000, triple: 129000, single: 170000, child1: 105000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK Constantine–Istanbul inclus, 7 nuits petit-déjeuner, 4 jours excursions guidées + transferts.' },
+    { id: 'ozer', name: 'Hotel Ozer Palace 4★', prices: { double: 135000, triple: 135000, single: 175000, child1: 110000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
+    { id: 'alpin', name: 'Hotel Alpin Due 4★', prices: { double: 137000, triple: 137000, single: 180000, child1: 115000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
+    { id: 'tilia', name: 'Hôtel Tilia 4★', prices: { double: 142000, triple: 142000, single: 189000, child1: 115000, child2: 85000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet. Visa turc non inclus.' }
   ],
-  extras: [],
+  extras: []
 };
 </script>
-<!-- v27: scroll-hero.js removed — Horizon Aurora hero is full-bleed and needs no scrub engine. -->
-<script src="../assets/js/calculator.js" defer></script>
-<script src="../assets/js/booking-form.js" defer></script>
 <script>
+/* Page-local EN/AR translations. French stays in the DOM as the baseline.
+   Keys map to data-i18n / data-i18n-html attributes + the hero *-key attrs. */
 window.AL_PAGE_I18N = {
   en: {
-    heroFrom: "From",
-    istHeroEyebrow: "From Constantine · Turkish Airlines · September–November 2026",
-    istHeroH1: "Istanbul <em>Where two continents meet</em>",
-    istHeroDate: "8 days · 7 nights · Hotel River 3★",
-    istHeroPriceUnit: "per person · double room · Hotel River 3★",
-    istHeroCtaCalc: "Calculate my price",
-    istHeroLede: "Hagia Sophia, the Grand Bazaar, the Princes’ Islands and the Bosphorus at sunset. 8 days of complete discovery from Constantine airport, every week.",
-    istHeroFineprint: "Based on a double room, subject to availability — DZD/USD rate set at booking.",
-    footer: {
-      cta_title: "Ready to go?",
-      cta_sub: "Message us on WhatsApp — same-day reply.",
-      cta_btn: "Chat on WhatsApp"
-    }
+    heroFrom: 'From',
+    istHeroEyebrow: 'From Constantine · Turkish Airlines · September–November 2026',
+    istHeroH1: 'Istanbul <em>Where two continents meet</em>',
+    istHeroDate: '8 days · 7 nights · Hotel River 3★',
+    istHeroPriceUnit: 'per person · double room · Hotel River 3★',
+    istHeroCtaCalc: 'Calculate my price',
+    istHeroLede: 'Hagia Sophia, the Grand Bazaar, the Princes’ Islands and the Bosphorus at sunset. 8 days of complete discovery from Constantine airport, every week.',
+    istHeroFineprint: 'Based on a double room, subject to availability — DZD/USD rate set at booking.',
+    footer: { cta_title: 'Ready to go?', cta_sub: 'Message us on WhatsApp — same-day reply.', cta_btn: 'Chat on WhatsApp' }
   },
   ar: {
-    heroFrom: "ابتداءً من",
-    istHeroEyebrow: "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
-    istHeroH1: "إسطنبول <em>حيث تلتقي القارتان</em>",
-    istHeroDate: "8 أيام · 7 ليالٍ · فندق River 3★",
-    istHeroPriceUnit: "للشخص · غرفة مزدوجة · فندق River 3★",
-    istHeroCtaCalc: "احسب سعري",
-    istHeroLede: "آيا صوفيا، البازار الكبير، جزر الأمراء، والبسفور عند الغروب. 8 أيام من الاكتشاف الكامل انطلاقًا من مطار قسنطينة، كل أسبوع.",
-    istHeroFineprint: "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
-    footer: {
-      cta_title: "جاهز للسفر؟",
-      cta_sub: "راسلنا على واتساب، رد في نفس اليوم.",
-      cta_btn: "الدردشة على واتساب"
-    }
+    heroFrom: 'ابتداءً من',
+    istHeroEyebrow: 'انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026',
+    istHeroH1: 'إسطنبول <em>حيث تلتقي القارتان</em>',
+    istHeroDate: '8 أيام · 7 ليالٍ · فندق River 3★',
+    istHeroPriceUnit: 'للشخص · غرفة مزدوجة · فندق River 3★',
+    istHeroCtaCalc: 'احسب سعري',
+    istHeroLede: 'آيا صوفيا، البازار الكبير، جزر الأمراء، والبسفور عند الغروب. 8 أيام من الاكتشاف الكامل انطلاقًا من مطار قسنطينة، كل أسبوع.',
+    istHeroFineprint: 'على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.',
+    footer: { cta_title: 'جاهز للسفر؟', cta_sub: 'راسلنا على واتساب، رد في نفس اليوم.', cta_btn: 'الدردشة على واتساب' }
   }
 };
 </script>
+<script src="../assets/js/calculator.js" defer></script>
+<script src="../assets/js/booking-form.js" defer></script>
+<script src="../assets/js/lead-config.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
   </body>
