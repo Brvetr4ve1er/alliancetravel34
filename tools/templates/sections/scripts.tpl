@@ -2,11 +2,9 @@
 
 <script>{{&tripData}}</script>
 {{?i18n}}<script>{{&pageI18n}}</script>
-{{/?}}<script src="../assets/js/scroll-hero.js" defer></script>
-<script src="../assets/js/calculator.js" defer></script>
+{{/?}}<script src="../assets/js/calculator.js" defer></script>
 <script src="../assets/js/booking-form.js" defer></script>
 <script src="../assets/js/lead-config.js" defer></script>
-<script src="../assets/js/lead-capture.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
   </body>

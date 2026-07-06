@@ -812,53 +812,47 @@
 <script>
 window.TRIP_DATA = {
   name: 'Istanbul 2026 · Départ Constantine',
-  dates: ['3 Septembre 2026','10 Septembre 2026','17 Septembre 2026','1 Octobre 2026','15 Octobre 2026','5 Novembre 2026'],
+  dates: ['3 Septembre 2026', '10 Septembre 2026', '17 Septembre 2026', '1 Octobre 2026', '15 Octobre 2026', '5 Novembre 2026'],
   hotels: [
-    { id: 'river', name: 'Hotel River 3★',      prices: { double: 129000, triple: 129000, single: 170000, child1: 105000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK Constantine–Istanbul inclus, 7 nuits petit-déjeuner, 4 jours excursions guidées + transferts.' },
-    { id: 'ozer',  name: 'Hotel Ozer Palace 4★', prices: { double: 135000, triple: 135000, single: 175000, child1: 110000, child2: 80000,  baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
-    { id: 'alpin', name: 'Hotel Alpin Due 4★',   prices: { double: 137000, triple: 137000, single: 180000, child1: 115000, child2: 80000,  baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
-    { id: 'tilia', name: 'Hôtel Tilia 4★',       prices: { double: 142000, triple: 142000, single: 189000, child1: 115000, child2: 85000,  baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet. Visa turc non inclus.' },
+    { id: 'river', name: 'Hotel River 3★', prices: { double: 129000, triple: 129000, single: 170000, child1: 105000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK Constantine–Istanbul inclus, 7 nuits petit-déjeuner, 4 jours excursions guidées + transferts.' },
+    { id: 'ozer', name: 'Hotel Ozer Palace 4★', prices: { double: 135000, triple: 135000, single: 175000, child1: 110000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
+    { id: 'alpin', name: 'Hotel Alpin Due 4★', prices: { double: 137000, triple: 137000, single: 180000, child1: 115000, child2: 80000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet.' },
+    { id: 'tilia', name: 'Hôtel Tilia 4★', prices: { double: 142000, triple: 142000, single: 189000, child1: 115000, child2: 85000, baby: 25000 }, why: 'Prix par personne en chambre double, vol TK inclus, 7 nuits petit-déjeuner, programme complet. Visa turc non inclus.' }
   ],
-  extras: [],
+  extras: []
 };
 </script>
-<!-- v27: scroll-hero.js removed — Horizon Aurora hero is full-bleed and needs no scrub engine. -->
-<script src="../assets/js/calculator.js" defer></script>
-<script src="../assets/js/booking-form.js" defer></script>
 <script>
+/* Page-local EN/AR translations. French stays in the DOM as the baseline.
+   Keys map to data-i18n / data-i18n-html attributes + the hero *-key attrs. */
 window.AL_PAGE_I18N = {
   en: {
-    heroFrom: "From",
-    istHeroEyebrow: "From Constantine · Turkish Airlines · September–November 2026",
-    istHeroH1: "Istanbul <em>Where two continents meet</em>",
-    istHeroDate: "8 days · 7 nights · Hotel River 3★",
-    istHeroPriceUnit: "per person · double room · Hotel River 3★",
-    istHeroCtaCalc: "Calculate my price",
-    istHeroLede: "Hagia Sophia, the Grand Bazaar, the Princes’ Islands and the Bosphorus at sunset. 8 days of complete discovery from Constantine airport, every week.",
-    istHeroFineprint: "Based on a double room, subject to availability — DZD/USD rate set at booking.",
-    footer: {
-      cta_title: "Ready to go?",
-      cta_sub: "Message us on WhatsApp — same-day reply.",
-      cta_btn: "Chat on WhatsApp"
-    }
+    heroFrom: 'From',
+    istHeroEyebrow: 'From Constantine · Turkish Airlines · September–November 2026',
+    istHeroH1: 'Istanbul <em>Where two continents meet</em>',
+    istHeroDate: '8 days · 7 nights · Hotel River 3★',
+    istHeroPriceUnit: 'per person · double room · Hotel River 3★',
+    istHeroCtaCalc: 'Calculate my price',
+    istHeroLede: 'Hagia Sophia, the Grand Bazaar, the Princes’ Islands and the Bosphorus at sunset. 8 days of complete discovery from Constantine airport, every week.',
+    istHeroFineprint: 'Based on a double room, subject to availability — DZD/USD rate set at booking.',
+    footer: { cta_title: 'Ready to go?', cta_sub: 'Message us on WhatsApp — same-day reply.', cta_btn: 'Chat on WhatsApp' }
   },
   ar: {
-    heroFrom: "ابتداءً من",
-    istHeroEyebrow: "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
-    istHeroH1: "إسطنبول <em>حيث تلتقي القارتان</em>",
-    istHeroDate: "8 أيام · 7 ليالٍ · فندق River 3★",
-    istHeroPriceUnit: "للشخص · غرفة مزدوجة · فندق River 3★",
-    istHeroCtaCalc: "احسب سعري",
-    istHeroLede: "آيا صوفيا، البازار الكبير، جزر الأمراء، والبسفور عند الغروب. 8 أيام من الاكتشاف الكامل انطلاقًا من مطار قسنطينة، كل أسبوع.",
-    istHeroFineprint: "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
-    footer: {
-      cta_title: "جاهز للسفر؟",
-      cta_sub: "راسلنا على واتساب، رد في نفس اليوم.",
-      cta_btn: "الدردشة على واتساب"
-    }
+    heroFrom: 'ابتداءً من',
+    istHeroEyebrow: 'انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026',
+    istHeroH1: 'إسطنبول <em>حيث تلتقي القارتان</em>',
+    istHeroDate: '8 أيام · 7 ليالٍ · فندق River 3★',
+    istHeroPriceUnit: 'للشخص · غرفة مزدوجة · فندق River 3★',
+    istHeroCtaCalc: 'احسب سعري',
+    istHeroLede: 'آيا صوفيا، البازار الكبير، جزر الأمراء، والبسفور عند الغروب. 8 أيام من الاكتشاف الكامل انطلاقًا من مطار قسنطينة، كل أسبوع.',
+    istHeroFineprint: 'على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.',
+    footer: { cta_title: 'جاهز للسفر؟', cta_sub: 'راسلنا على واتساب، رد في نفس اليوم.', cta_btn: 'الدردشة على واتساب' }
   }
 };
 </script>
+<script src="../assets/js/calculator.js" defer></script>
+<script src="../assets/js/booking-form.js" defer></script>
+<script src="../assets/js/lead-config.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
   </body>
