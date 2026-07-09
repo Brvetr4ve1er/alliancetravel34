@@ -14,10 +14,20 @@ function headers() {
 
 export async function getFile({ path }) {
   const url = `${API}/repos/${repo()}/contents/${path}?ref=${encodeURIComponent(branch())}`;
-  const res = await fetch(url, { headers: headers() });
+  let res;
+  try {
+    res = await fetch(url, { headers: headers() });
+  } catch (e) {
+    throw Object.assign(new Error("github unreachable"), { status: 502 });
+  }
   if (res.status === 404) { const e = new Error("not found"); e.status = 404; throw e; }
   if (!res.ok) { const e = new Error(`github ${res.status}`); e.status = 502; throw e; }
-  const json = await res.json();
+  let json;
+  try {
+    json = await res.json();
+  } catch (e) {
+    throw Object.assign(new Error("github bad response"), { status: 502 });
+  }
   const content = Buffer.from(json.content || "", "base64").toString("utf8");
   return { content, sha: json.sha };
 }
@@ -30,9 +40,19 @@ export async function putFile({ path, content, sha, message }) {
     branch: branch(),
     ...(sha ? { sha } : {}),
   };
-  const res = await fetch(url, { method: "PUT", headers: headers(), body: JSON.stringify(body) });
+  let res;
+  try {
+    res = await fetch(url, { method: "PUT", headers: headers(), body: JSON.stringify(body) });
+  } catch (e) {
+    throw Object.assign(new Error("github unreachable"), { status: 502 });
+  }
   if (res.status === 409) { const e = new Error("stale sha"); e.status = 409; throw e; }
   if (!res.ok) { const e = new Error(`github ${res.status}`); e.status = 502; throw e; }
-  const json = await res.json();
+  let json;
+  try {
+    json = await res.json();
+  } catch (e) {
+    throw Object.assign(new Error("github bad response"), { status: 502 });
+  }
   return { commitUrl: json.commit && json.commit.html_url };
 }

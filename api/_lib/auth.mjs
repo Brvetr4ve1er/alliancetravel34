@@ -22,13 +22,18 @@ export async function verifyAdmin(req) {
   let res;
   try {
     res = await fetch(`${base}/auth/v1/user`, {
-      headers: { Authorization: `Bearer ${token}`, apikey: token },
+      headers: { Authorization: `Bearer ${token}`, apikey: process.env.SUPABASE_ANON_KEY },
     });
   } catch (e) {
     return { ok: false, status: 502, error: "auth server unreachable" };
   }
   if (!res.ok) return { ok: false, status: 401, error: "invalid session" };
-  const user = await res.json();
+  let user;
+  try {
+    user = await res.json();
+  } catch (e) {
+    return { ok: false, status: 502, error: "auth bad response" };
+  }
   const email = user && user.email;
   if (!isAllowed(email)) return { ok: false, status: 403, error: "not authorized" };
   return { ok: true, email };
