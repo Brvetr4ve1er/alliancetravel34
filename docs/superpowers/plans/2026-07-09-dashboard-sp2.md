@@ -16,7 +16,7 @@
 - **`leads` column limits (clamp to these):** `name`≤200, `phone`≤40, `city`≤120, `trip`≤200, `hotel`≤200, `date`≤80, `room`≤40, `adults`0–50, `kids`0–50, `total_da`0–100000000, `channel`∈{`whatsapp`,`email`,`copy`}, `page`≤200, `notes`≤2000.
 - **Output convention** for any regenerated page: UTF-8 BOM + LF + single trailing newline (handled by `tools/build.mjs`; never hand-edit `site/<slug>/index.html`).
 - **Supabase project:** ref `vxblgxiamtphabfswnxb`, url `https://vxblgxiamtphabfswnxb.supabase.co`. Anon key is public (in `site/assets/js/lead-config.js`).
-- **Env vars (Vercel, set by owner):** `SUPABASE_URL`, `GITHUB_TOKEN`, `GITHUB_REPO` (`owner/name`), `GITHUB_BRANCH` (`integrate/unified-admin` for now, `main` after merge), `ADMIN_EMAILS`.
+- **Env vars (Vercel, set by owner):** `SUPABASE_URL`, `SUPABASE_ANON_KEY` (public — same value as in `lead-config.js`; used as the `apikey` when verifying tokens against `/auth/v1/user`), `GITHUB_TOKEN`, `GITHUB_REPO` (`owner/name`), `GITHUB_BRANCH` (`integrate/unified-admin` for now, `main` after merge), `ADMIN_EMAILS`.
 - Branch: work on `integrate/unified-admin`. Commit after every task.
 
 ---
@@ -1134,11 +1134,12 @@ In GitHub → Settings → Developer settings → Fine-grained tokens: new token
 - [ ] **Step 2: Set Vercel env vars** (Preview + Production scopes)
 
 ```
-SUPABASE_URL   = https://vxblgxiamtphabfswnxb.supabase.co
-GITHUB_TOKEN   = <the fine-grained PAT>
-GITHUB_REPO    = <owner>/<repo>
-GITHUB_BRANCH  = integrate/unified-admin
-ADMIN_EMAILS   = brvetr4veler@gmail.com
+SUPABASE_URL      = https://vxblgxiamtphabfswnxb.supabase.co
+SUPABASE_ANON_KEY = <the public anon key — copy from site/assets/js/lead-config.js>
+GITHUB_TOKEN      = <the fine-grained PAT>
+GITHUB_REPO       = <owner>/<repo>
+GITHUB_BRANCH     = integrate/unified-admin
+ADMIN_EMAILS      = brvetr4veler@gmail.com
 ```
 
 - [ ] **Step 3: Configure Supabase Auth redirect URLs**
