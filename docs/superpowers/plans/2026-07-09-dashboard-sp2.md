@@ -665,7 +665,7 @@ Expected: exit 0.
 
 Run (proves the function's validate+render pipeline works against a real trip, exactly as it will server-side):
 ```bash
-node --input-type=module -e "import { validateTrip } from './tools/validate-trip.mjs'; import { renderTrip } from './tools/templates/trip2.mjs'; import { readFileSync } from 'node:fs'; const d = JSON.parse(readFileSync('data/trips/istanbul.json','utf8')); const { errors } = validateTrip('x', d, { checkImages:false }); console.log('errors', errors.length); console.log('html', renderTrip(d).length, 'bytes');"
+node --input-type=module -e "import { validateTrip } from './tools/validate-trip.mjs'; import { renderTrip } from './tools/templates/trip2.mjs'; import { readFileSync } from 'node:fs'; const d = JSON.parse(readFileSync('data/trips/istanbul.json','utf8')); const { errors } = validateTrip('data/trips/istanbul.json', d, { checkImages:false }); console.log('errors', errors.length); console.log('html', renderTrip(d).length, 'bytes');"
 ```
 Expected: `errors 0` and a positive byte count (render succeeds).
 
