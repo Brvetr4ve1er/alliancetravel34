@@ -574,8 +574,8 @@
           description: "Eight days across Cairo (Giza pyramids) and Sharm El Sheikh (Red Sea). EgyptAir flight, 4★/5★ hotels, Egyptian visa and excursions included. Departures from Algiers, June 2026."
         },
         azerbaidjan: {
-          title: "Azerbaijan 2026 · Baku & Gabala from DZD 227,000 — Alliance Travel",
-          description: "Seven nights in Baku and Gabala. Turkish Airlines flight, e-visa, Arabic-speaking guide. June–October 2026 departures from Algiers. From DZD 227,000."
+          title: "Azerbaijan 2026 · Baku & Gabala from DZD 249,900 — Alliance Travel",
+          description: "Seven nights in Baku and Gabala. Turkish Airlines flight, e-visa, Arabic-speaking guide. June–October 2026 departures from Algiers. From DZD 249,900."
         },
         istanbul: {
           title: "Istanbul from Constantine · from DZD 123,000 — Alliance Travel",
@@ -900,8 +900,8 @@
           description: 'القاهرة (أهرامات الجيزة) وشرم الشيخ (البحر الأحمر) في ثمانية أيام. طيران EgyptAir، فنادق 4★/5★، التأشيرة والجولات مشمولة. انطلاقات جوان 2026 من الجزائر.'
         },
         azerbaidjan: {
-          title: 'رحلة أذربيجان · باكو وقَبَلَة ابتداءً من 227.000 دينار جزائري — أليانس',
-          description: 'سبع ليالٍ بين باكو وقَبَلَة، طيران Turkish Airlines، التأشيرة الإلكترونية مشمولة، مُرافِق ناطق بالعربية. انطلاقات بين جوان وأكتوبر 2026 من الجزائر. ابتداءً من 227.000 د.ج.'
+          title: 'رحلة أذربيجان · باكو وقَبَلَة ابتداءً من 249.900 دينار جزائري — أليانس',
+          description: 'سبع ليالٍ بين باكو وقَبَلَة، طيران Turkish Airlines، التأشيرة الإلكترونية مشمولة، مُرافِق ناطق بالعربية. انطلاقات بين جوان وأكتوبر 2026 من الجزائر. ابتداءً من 249.900 د.ج.'
         },
         istanbul: {
           title: 'رحلة إسطنبول من قسنطينة ابتداءً من 123.000 دينار جزائري — أليانس',

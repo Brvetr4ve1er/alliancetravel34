@@ -278,21 +278,21 @@ class TripCalculator {
       currency: 'DA',
     });
 
-    // Children — first, second, baby per trip rules
-    let childIdx = 0;
+    // Children — priced by TYPE via kidPriceKey() so the charged amount always
+    // equals the amount advertised next to each stepper (see _updateKidPriceLabels).
+    // (Was insertion-order: a lone "2e enfant" got billed child1 while its label
+    // advertised child2. Keying off kid.type removes the contradiction.)
     this.state.kids.forEach(kid => {
-      if (kid.age < 2) {
+      if (kid.type === 'baby' || kid.age < 2) {
         lines.push({ label: 'Bébé (0–2 ans)', amount: hotel.prices.baby, currency: 'DA' });
       } else {
-        const isFirst = childIdx === 0;
-        const priceKey = isFirst ? 'child1' : 'child2';
-        const ageLabel = kid.type === 'child_a' ? '2–5 ans' : '2–11.99 ans';
+        const priceKey = this.kidPriceKey(kid.type);
+        const isFirst = kid.type === 'child_b';
         lines.push({
-          label: `${isFirst ? '1ᵉʳ' : (childIdx + 1) + 'ᵉ'} enfant (${ageLabel})`,
+          label: `${isFirst ? '1ᵉʳ' : '2ᵉ'} enfant (2–11.99 ans)`,
           amount: hotel.prices[priceKey] ?? hotel.prices.child1,
           currency: 'DA',
         });
-        childIdx++;
       }
     });
 
@@ -388,6 +388,15 @@ class TripCalculator {
     return { double: 'Double', triple: 'Triple', single: 'Individuelle' }[r] ?? r;
   }
 
+  // Single source of truth mapping a kid stepper TYPE to its hotel price key.
+  // Both calculate() (what is charged) and _updateKidPriceLabels() (what is
+  // advertised) go through this so the two can never diverge. child_b is the
+  // "1er enfant" stepper (child1 rate), child_a the "2e enfant" (child2),
+  // baby the infant (baby). Falls back to child1 for unknown types.
+  kidPriceKey(type) {
+    return { child_b: 'child1', child_a: 'child2', baby: 'baby' }[type] ?? 'child1';
+  }
+
   // Active UI language ('fr' | 'en' | 'ar'), read off <html lang>. Falls back to 'fr'.
   _lang() {
     const l = document.documentElement.getAttribute('lang') || 'fr';
@@ -456,17 +465,14 @@ class TripCalculator {
    * method replaces the <p> text with the real number per hotel.
    */
   _updateKidPriceLabels(hotel) {
-    const map = {
-      child_b: { age: '2–11.99 ans', priceKey: 'child1' },
-      child_a: { age: '2–11.99 ans', priceKey: 'child2' },
-      baby:    { age: '0–2 ans',     priceKey: 'baby'   },
-    };
+    const ageBand = { child_b: '2–11.99 ans', child_a: '2–11.99 ans', baby: '0–2 ans' };
     document.querySelectorAll('.stepper-item').forEach(item => {
       const kidStepper = item.querySelector('.kid-stepper');
       if (!kidStepper) return;
       const type = kidStepper.dataset.kidType;
-      const cfg = map[type];
-      if (!cfg) return;
+      const age = ageBand[type];
+      if (!age) return;
+      const cfg = { age, priceKey: this.kidPriceKey(type) };
       const price = hotel.prices[cfg.priceKey];
       if (price == null) return;
       const p = item.querySelector('.stepper-item__info p');

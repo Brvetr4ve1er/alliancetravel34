@@ -9,13 +9,13 @@ field definitions.
 | Page | slug | region | data-page | `--accent` | theme-color | from-price |
 |---|---|---|---|---|---|---|
 | **cairo-sharm** (ref) | `cairo-sharm` | `egypt` | `cairo_sharm` | `#B2E89C` | `#C9872E` | 190.000 DA |
-| Azerbaïdjan | `azerbaidjan` | `azerbaijan` | `azerbaidjan` | `#3AAFAF` | `#3AAFAF` | 219.000 / hero 227.000 |
-| Istanbul | `istanbul` | `istanbul` | `istanbul` | `#70b8e0` | `#5B9EC9` | 123.000 DA |
+| Azerbaïdjan | `azerbaidjan` | `azerbaijan` | `azerbaidjan` | `#3AAFAF` | `#3AAFAF` | 249.900 DA |
+| Istanbul | `istanbul` | `istanbul` | `istanbul` | `#70b8e0` | `#5B9EC9` | 129.000 DA |
 | Kuala Lumpur | `kuala-lumpur` | `malaysia` | `kuala_lumpur` | `#4CAF82` | `#4CAF82` | 211.000 DA |
 | Sharm·Constantine | `sharm-constantine` | `sharm` | `sharm_constantine` | `#28B4D4` | `#28B4D4` | 155.000 DA |
 
-Note: on **istanbul** the JSON-LD/hero price is `123000` but the OG title is "Istanbul" only.
-On **azerbaidjan** the JSON-LD Offer price (`219000`) ≠ the hero `priceFrom` (`227.000 DA`) — the cheapest *triple* rate is used for the schema price. Generator must allow `jsonLd.offerPrice` to differ from `hero.priceFrom`.
+Note: on **istanbul** the JSON-LD/hero price is `129000` but the OG title is "Istanbul" only.
+On **azerbaidjan** the hotel was upgraded PARKSIDE 4★ → Hilton Garden Inn 4★ (2026); the current double rate is `249900`. Hero, meta, JSON-LD Offer, related cards, i18n (EN/AR) and sitemap were reconciled to `249.900 DA` on 2026-07-09 (was: stale PARKSIDE meta `227.000`/JSON-LD `219000`). `jsonLd.offerPrice` now equals `hero.priceFrom`.
 
 ## Section presence
 

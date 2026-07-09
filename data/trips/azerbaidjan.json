@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Azerbaïdjan — Alliance Travel · 2026",
-    "description": "Voyage guidé en Azerbaïdjan. 7 nuits à Bakou & Gabala, vol Turkish Airlines, visa inclus. Départs juin–octobre 2026 depuis Alger. Dès 227.000 DA.",
+    "description": "Voyage guidé en Azerbaïdjan. 7 nuits à Bakou & Gabala, vol Turkish Airlines, visa inclus. Départs juin–octobre 2026 depuis Alger. Dès 249.900 DA.",
     "ogTitle": "Azerbaïdjan · Bakou & Gabala — Alliance Travel",
     "ogDescription": "La Cité du Feu et les montagnes du Caucase. 5 nuits Bakou + 2 nuits Gabala, vol Turkish Airlines, visa électronique inclus. Départs avr-juil 2026.",
     "themeColor": "#3AAFAF",
@@ -20,7 +20,7 @@
   "seo": {
     "tripName": "Azerbaïdjan · Bakou & Gabala — Alliance Travel",
     "tripDescription": "La Cité du Feu et les montagnes du Caucase. 5 nuits Bakou + 2 nuits Gabala, vol Turkish Airlines, visa électronique inclus. Départs avr-juil 2026.",
-    "offerPrice": "219000",
+    "offerPrice": "249900",
     "faqJsonLd": [
       {
         "name": "Comment fonctionne le visa électronique ?",
@@ -993,7 +993,7 @@
       "kTitle": "",
       "title": "Istanbul",
       "kPrice": " data-i18n-html=\"azRelated1Price\"",
-      "priceHtml": "À partir de <strong>123.000 DA</strong>",
+      "priceHtml": "À partir de <strong>129.000 DA</strong>",
       "kCtaOuter": " data-i18n-html=\"azRelatedCta\"",
       "kCta": ""
     },
@@ -1006,7 +1006,7 @@
       "kTitle": " data-i18n=\"azRelated2Title\"",
       "title": "Le Caire & Sharm El Sheikh",
       "kPrice": " data-i18n-html=\"azRelated2Price\"",
-      "priceHtml": "À partir de <strong>190.000 DA</strong>",
+      "priceHtml": "À partir de <strong>169.000 DA</strong>",
       "kCtaOuter": " data-i18n-html=\"azRelatedCta\"",
       "kCta": ""
     }
@@ -1015,7 +1015,7 @@
     "scarcityHtml": "11 départs en 2026 · Places limitées",
     "titleHtml": "Découvrez la<br><em>Cité du Feu</em>",
     "sub": "Bakou by night, les volcans de boue de Gobustan, et le téléphérique de Shahdag — tout ça en 8 jours depuis Alger.",
-    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20voyage%20Azerbaïdjan%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\" data-i18n=\"azFinalWaCta\">Réserver via WhatsApp</a>\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus.\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
+    "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20voyage%20Azerbaïdjan%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\" data-i18n=\"azFinalWaCta\">Réserver via WhatsApp</a>\n      <a href=\"tel:+213561616266\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
     "contactHtml": "<div class=\"contact-item\" data-i18n-html=\"azFinalAddress\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville</div>"
   },
   "footer": {
@@ -1242,11 +1242,11 @@
       "azRelatedEyebrow": "You may also like",
       "azRelatedTitle": "Continue your <em>discovery</em>",
       "azRelated1Flag": "September–November 2026 · Departure from Constantine",
-      "azRelated1Price": "From <strong>123,000 DA</strong>",
+      "azRelated1Price": "From <strong>129,000 DA</strong>",
       "azRelatedCta": "See this trip <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>",
       "azRelated2Flag": "Egypt · June 2026",
       "azRelated2Title": "Cairo & Sharm El Sheikh",
-      "azRelated2Price": "From <strong>190,000 DA</strong>",
+      "azRelated2Price": "From <strong>169,000 DA</strong>",
       "azFinalScarcity": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 departures in 2026 · Limited spots",
       "azFinalTitle": "Discover the<br><em>City of Fire</em>",
       "azFinalSub": "Baku by night, the Gobustan mud volcanoes, and the Shahdag cable car — all in 8 days from Algiers.",
@@ -1430,11 +1430,11 @@
       "azRelatedEyebrow": "قد يعجبك أيضاً",
       "azRelatedTitle": "واصل <em>اكتشافك</em>",
       "azRelated1Flag": "سبتمبر–نوفمبر 2026 · انطلاق من قسنطينة",
-      "azRelated1Price": "ابتداءً من <strong>123.000 دج</strong>",
+      "azRelated1Price": "ابتداءً من <strong>129.000 دج</strong>",
       "azRelatedCta": "شاهد هذه الرحلة <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>",
       "azRelated2Flag": "مصر · يونيو 2026",
       "azRelated2Title": "القاهرة وشرم الشيخ",
-      "azRelated2Price": "ابتداءً من <strong>190.000 دج</strong>",
+      "azRelated2Price": "ابتداءً من <strong>169.000 دج</strong>",
       "azFinalScarcity": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 رحلات في 2026 · أماكن محدودة",
       "azFinalTitle": "اكتشف<br><em>مدينة النار</em>",
       "azFinalSub": "باكو ليلاً، براكين الطين في غوبستان، وتلفريك شاهداغ — كل ذلك في 8 أيام من الجزائر.",

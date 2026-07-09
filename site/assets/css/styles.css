@@ -2726,8 +2726,17 @@ select {
   transition: opacity var(--t-fast);
 }
 
-.upload-thumb:hover .upload-thumb__remove {
+.upload-thumb:hover .upload-thumb__remove,
+.upload-thumb:focus-within .upload-thumb__remove,
+.upload-thumb__remove:focus-visible {
   opacity: 1;
+}
+
+/* Touch devices have no hover: keep the remove button always reachable */
+@media (hover: none) {
+  .upload-thumb__remove {
+    opacity: 1;
+  }
 }
 
 .upload-pdf-icon {
@@ -2965,14 +2974,14 @@ select {
    into the canonical .btn block above (lines ~1175). */
 
 /* ── Scroll reveal stagger ───────────────────────────────── */
-.reveal {
+html.js .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity var(--t-slow) var(--ease-spring),
     transform var(--t-slow) var(--ease-spring);
 }
 
-.reveal.visible {
+html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
