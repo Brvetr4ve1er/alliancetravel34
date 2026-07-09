@@ -6,6 +6,9 @@
   "outputDirectory": "site",
   "cleanUrls": true,
   "trailingSlash": true,
+  "functions": {
+    "api/save-trip.mjs": { "includeFiles": "tools/**", "maxDuration": 30 }
+  },
   "redirects": [
     { "source": "/sharm-constantine", "destination": "/egypte/", "permanent": true },
     { "source": "/azerbaijan", "destination": "/azerbaidjan/", "permanent": true },
