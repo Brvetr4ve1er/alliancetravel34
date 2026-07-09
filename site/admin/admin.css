@@ -1,0 +1,24 @@
+:root { --bg:#0f1115; --card:#171a21; --line:#2a2f3a; --txt:#e8eaed; --txt2:#9aa3b2; --accent:#c9872e; --danger:#e0525b; --ok:#3ecf8e; }
+* { box-sizing: border-box; }
+body { margin:0; font:15px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--txt); }
+.admin { max-width:1100px; margin:0 auto; padding:24px; }
+.card { max-width:420px; margin:12vh auto; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px; }
+.card h1 { margin:0 0 8px; font-size:1.4rem; }
+input, textarea, select { width:100%; padding:10px 12px; background:#0d0f14; border:1px solid var(--line); border-radius:9px; color:var(--txt); font:inherit; }
+textarea { min-height:220px; font-family:ui-monospace, monospace; font-size:13px; }
+.btn { padding:10px 16px; background:var(--accent); color:#fff; border:0; border-radius:9px; font:inherit; cursor:pointer; }
+.btn--ghost { background:transparent; border:1px solid var(--line); color:var(--txt); }
+.btn:disabled { opacity:.5; cursor:not-allowed; }
+form { display:flex; gap:8px; margin-top:14px; }
+.msg { color:var(--txt2); margin-top:12px; min-height:1.2em; }
+.msg.err { color:var(--danger); } .msg.ok { color:var(--ok); }
+.topbar { display:flex; align-items:center; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--line); margin-bottom:20px; }
+.spacer { flex:1; } .who { color:var(--txt2); font-size:.85rem; }
+.tabs { display:flex; gap:4px; } .tab { background:transparent; border:0; color:var(--txt2); padding:8px 12px; border-radius:8px; cursor:pointer; }
+.tab.is-active { background:var(--card); color:var(--txt); border:1px solid var(--line); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap; }
+th { color:var(--txt2); position:sticky; top:0; background:var(--bg); }
+.field { margin:14px 0; } .field label { display:block; color:var(--txt2); font-size:.8rem; margin-bottom:4px; }
+.row { display:flex; gap:12px; flex-wrap:wrap; } .row > * { flex:1; min-width:180px; }
+details.adv { margin-top:18px; border:1px dashed var(--line); border-radius:9px; padding:12px; }
