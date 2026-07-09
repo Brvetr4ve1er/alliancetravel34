@@ -45,7 +45,7 @@
           Prefer: 'return=minimal'
         },
         body: JSON.stringify(payload),
-        keepalive: true // completes even as the tab navigates to wa.me / mailto
+        keepalive: true // keepalive: don't cancel the POST if the click also triggers navigation
       }).catch(function () {});
     } catch (e) { /* never surface to the user */ }
   }
@@ -55,10 +55,24 @@
     return { name: q('bf-name'), phone: q('bf-phone'), city: q('bf-city'), notes: q('bf-notes') };
   }
 
+  function fieldsValid() {
+    // Mirror the booking form's own HTML constraints (required + minlength + pattern
+    // on #bf-name/#bf-phone/#bf-city). #bf-copy-btn has no gate in booking-form.js,
+    // so for the "copy" channel this is the sole guard against junk rows.
+    var ids = ['bf-name', 'bf-phone', 'bf-city'];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (!el) return false;
+      var ok = typeof el.checkValidity === 'function' ? el.checkValidity() : !!el.value.trim();
+      if (!ok) return false;
+    }
+    return true;
+  }
+
   var lastKey = null; // de-dupe identical consecutive sends
   function capture(channel) {
+    if (!fieldsValid()) return; // no junk rows — mirrors the form's required/minlength/pattern
     var f = readFields();
-    if (!f.name || !f.phone || !f.city) return; // mirror the form's required gate — no junk rows
     var payload = buildLeadPayload(window.__calcState, f, channel);
     var key = channel + '|' + f.phone + '|' + (payload.total_da || '') + '|' + (payload.hotel || '');
     if (key === lastKey) return;
