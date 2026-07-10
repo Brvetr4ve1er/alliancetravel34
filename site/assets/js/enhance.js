@@ -275,7 +275,7 @@
     { slug: 'egypte',       name: 'Égypte · Le Caire, Sharm & Hurghada', price: '169.000 DA', color: '#C9872E', sub: 'Égypte · 5 programmes 2026' },
     { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '249.900 DA', color: '#3AAFAF', sub: 'Juillet–Septembre 2026' },
     { slug: 'istanbul',     name: 'Istanbul',                            price: '129.000 DA', color: '#5B9EC9', sub: 'Septembre–Novembre 2026' },
-    { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '370.000 DA', color: '#4CAF82', sub: 'Malaisie · Été 2026' },
+    { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '339.000 DA', color: '#4CAF82', sub: 'Malaisie · Été 2026' },
     { slug: 'tunisie',      name: 'Tunisie · Hammamet, Sousse & Djerba', price: '36.000 DA',  color: '#19B5B0', sub: 'Été 2026' },
     { slug: 'bali',         name: 'Bali · Indonésie',                    price: '419.000 DA', color: '#D98E48', sub: 'Août–Septembre 2026' },
     { slug: 'vietnam',      name: 'Vietnam · Circuit',                   price: '439.000 DA', color: '#15A88E', sub: 'Août–Septembre 2026' },
@@ -354,41 +354,6 @@
         if (!target) return;
         e.preventDefault();
         target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-      });
-    });
-  }
-
-  /* ─── Subtle parallax on hero based on mouse (desktop) ── */
-  function initHeroMouseParallax() {
-    if (reduced) return;
-    const heroes = document.querySelectorAll('.hero__visual');
-    if (!heroes.length || window.innerWidth < 1024) return;
-
-    heroes.forEach(hero => {
-      // Cache the art node once (was re-queried on every pointer move) and
-      // read the hero rect on enter, not per-move, so the hot mousemove path
-      // does no DOM query and no forced layout. Writes are coalesced into one
-      // rAF tick — the transform itself is composited.
-      const art = hero.querySelector('.hero__visual-art > svg');
-      if (!art) return;
-      let rect = null, raf = 0, px = 0, py = 0;
-
-      hero.addEventListener('mouseenter', () => { rect = hero.getBoundingClientRect(); });
-      hero.addEventListener('mousemove', (e) => {
-        if (!rect) rect = hero.getBoundingClientRect();
-        px = e.clientX; py = e.clientY;
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          const x = ((px - rect.left) / rect.width  - 0.5) * 8;
-          const y = ((py - rect.top)  / rect.height - 0.5) * 8;
-          art.style.transform = `translate(${-x}px, ${-y}px)`;
-        });
-      });
-      hero.addEventListener('mouseleave', () => {
-        if (raf) { cancelAnimationFrame(raf); raf = 0; }
-        rect = null;
-        art.style.transform = '';
       });
     });
   }
@@ -485,9 +450,16 @@
     backdrop.addEventListener('click', () => setOpen(false));
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('nav-open')) {
-        setOpen(false);
-      }
+      if (!nav.classList.contains('nav-open')) return;
+      if (e.key === 'Escape') { setOpen(false); return; }
+      if (e.key !== 'Tab') return;
+      // Focus trap: keep Tab / Shift+Tab inside the modal drawer.
+      const f = [...drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+        .filter(el => el.offsetParent !== null);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
     // Auto-close when a nav link is tapped. Skip lang buttons + theme
@@ -754,7 +726,7 @@
     if (document.querySelector('.trip-sticky-bar')) return;
 
     const fullTitle = document.title || 'Voyage';
-    const tripName = fullTitle.split(/\s[—··]\s/)[0].trim();
+    const tripName = fullTitle.split(/\s[-–—·]\s/)[0].trim() || 'Voyage';
 
     const meta = document.querySelector('.hero__sub, .hero__lede, .hero__meta')?.textContent?.trim()?.slice(0, 60) || '';
 
@@ -1044,7 +1016,6 @@
     initTripCardShares();
     initTripSwitcher();
     initSmoothScroll();
-    initHeroMouseParallax();
     initNavDrawer();
 
     // v6 + v7 motion + industry layer

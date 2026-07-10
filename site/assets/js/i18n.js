@@ -81,7 +81,7 @@
       },
       voyages_section: {
         eyebrow: 'Programmes 2026',
-        title_l1: '5 destinations,',
+        title_l1: '7 destinations,',
         title_em: 'un seul standard',
         sub: 'Vol + visa + hôtel + accompagnateur arabophone : tout est dans le prix affiché. Choisissez la destination, lancez le calculateur — vous recevez votre devis sur WhatsApp en moins de 30 secondes.',
         filter_all: 'Toutes',
@@ -237,11 +237,11 @@
           title: "Alliance Travel · Agence de voyage à Bordj Bou Arreridj",
           description: "Agence de voyage à Bordj Bou Arreridj. Voyages organisés vers l'Égypte, Istanbul, Bakou, Kuala Lumpur et Sharm El Sheikh. Vol + visa + hôtel inclus dans le prix. 1 200+ voyageurs satisfaits depuis 2019.",
           og_title: "Alliance Travel · Voyages organisés depuis Bordj Bou Arreridj",
-          og_description: "Vol + visa + hôtel + accompagnateur arabophone, tout est compris. 5 destinations 2026 au départ d'Alger ou Constantine. Agence agréée à Bordj Bou Arreridj. 1 200+ voyageurs satisfaits."
+          og_description: "Vol + visa + hôtel + accompagnateur arabophone, tout est compris. 7 destinations 2026 au départ d'Alger ou Constantine. Agence agréée à Bordj Bou Arreridj. 1 200+ voyageurs satisfaits."
         },
         voyages: {
-          title: "Voyages organisés 2026 · 5 destinations dès 123 000 DA — Alliance Travel",
-          description: "5 voyages clé en main pour 2026 : Caire + Sharm, Bakou, Istanbul (depuis Constantine), Kuala Lumpur, Sharm El Sheikh (depuis Constantine). Vol + visa + hôtel compris. À partir de 123 000 DA."
+          title: "Voyages organisés 2026 · 7 destinations dès 36 000 DA — Alliance Travel",
+          description: "7 voyages clé en main pour 2026 : Égypte, Tunisie, Istanbul, Azerbaïdjan, Kuala Lumpur, Bali, Vietnam. Vol + visa + hôtel compris. À partir de 36 000 DA."
         },
         cairo_sharm: {
           title: "Voyage Égypte 2026 · Caire + Sharm El Sheikh dès 190 000 DA",
@@ -252,7 +252,7 @@
           description: "7 nuits entre Bakou et Gabala, vol Turkish Airlines, e-visa compris, accompagnateur arabophone sur place. Départs juin–octobre 2026 depuis Alger. À partir de 227 000 DA."
         },
         istanbul: {
-          title: "Voyage Istanbul depuis Constantine dès 123 000 DA — Alliance",
+          title: "Voyage Istanbul depuis Constantine dès 129 000 DA — Alliance",
           description: "Istanbul en 8 jours, vols directs Turkish Airlines depuis Constantine. Hôtel 4★, transferts inclus, guide arabophone. Départs hebdomadaires septembre–novembre 2026."
         },
         kuala_lumpur: {
@@ -413,7 +413,7 @@
       },
       voyages_section: {
         eyebrow: '2026 programme',
-        title_l1: 'Five trips,',
+        title_l1: 'Seven trips,',
         title_em: 'one standard throughout',
         sub: 'Flight, visa, hotel and an Arabic-speaking guide — all in the headline price. Pick a destination, run the calculator: your quote lands on WhatsApp in under a minute.',
         filter_all: 'All',
@@ -563,11 +563,11 @@
           title: "Alliance Travel · Guided trips from Bordj Bou Arreridj, Algeria",
           description: "Licensed Algerian travel agency in Bordj Bou Arreridj. All-inclusive guided trips to Egypt, Türkiye, Azerbaijan, Malaysia and the Red Sea. Flight, visa, hotel and Arabic-speaking guide in one price. 1,200+ travellers since 2019.",
           og_title: "Alliance Travel · Guided trips from Bordj Bou Arreridj",
-          og_description: "Flight, visa, hotel and Arabic-speaking guide — all in the headline price. Five 2026 destinations out of Algiers or Constantine. Licensed agency, three branches in BBA and M'Sila. 1,200+ travellers."
+          og_description: "Flight, visa, hotel and Arabic-speaking guide — all in the headline price. Seven 2026 destinations out of Algiers or Constantine. Licensed agency, three branches in BBA and M'Sila. 1,200+ travellers."
         },
         voyages: {
-          title: "2026 guided trips · Five destinations from DZD 123,000 — Alliance Travel",
-          description: "Our 2026 programme: Cairo + Sharm, Baku, Istanbul (from Constantine), Kuala Lumpur, Sharm (from Constantine). Flight, visa, hotel and Arabic-speaking guide included. From DZD 123,000."
+          title: "2026 guided trips · Seven destinations from DZD 36,000 — Alliance Travel",
+          description: "Our 2026 programme: Egypt, Tunisia, Istanbul, Azerbaijan, Kuala Lumpur, Bali, Vietnam. Flight, visa, hotel and Arabic-speaking guide included. From DZD 36,000."
         },
         cairo_sharm: {
           title: "Egypt 2026 · Cairo + Sharm El Sheikh from DZD 190,000",
@@ -578,7 +578,7 @@
           description: "Seven nights in Baku and Gabala. Turkish Airlines flight, e-visa, Arabic-speaking guide. June–October 2026 departures from Algiers. From DZD 249,900."
         },
         istanbul: {
-          title: "Istanbul from Constantine · from DZD 123,000 — Alliance Travel",
+          title: "Istanbul from Constantine · from DZD 129,000 — Alliance Travel",
           description: "Eight days in Istanbul, direct Turkish Airlines flights from Constantine. 4★ hotel, transfers, Arabic-speaking guide. Weekly departures, September–November 2026."
         },
         kuala_lumpur: {
@@ -739,7 +739,7 @@
       },
       voyages_section: {
         eyebrow: 'برامج 2026',
-        title_l1: 'خمس رحلات،',
+        title_l1: 'سبع رحلات،',
         title_em: 'بمعيارٍ واحد',
         sub: 'الطيران والتأشيرة والفندق ومُرافِق ناطق بالعربية: كل شيء داخل السعر. اختر وجهتك، شغِّل الحاسبة — يصلك العرض على واتساب خلال 30 ثانية.',
         filter_all: 'الكل',
@@ -889,11 +889,11 @@
           title: 'أليانس ترافل · وكالة سفر في بُرج بوعريريج، الجزائر',
           description: 'وكالة سفر في بُرج بوعريريج تُنظِّم رحلات مُرافَقة إلى مصر وإسطنبول وباكو وكوالا لمبور وشرم الشيخ. الطيران والتأشيرة والفندق مشمولة. أكثر من 1.200 مسافر راضٍ.',
           og_title: 'أليانس ترافل · رحلات مُرافَقة من بُرج بوعريريج',
-          og_description: 'الطيران والتأشيرة والفندق ومُرافِق ناطق بالعربية — كل شيء مشمول. خمس وجهات لسنة 2026 من الجزائر أو قسنطينة. وكالة معتمدة في بُرج بوعريريج. أكثر من 1.200 مسافر برفقتنا.'
+          og_description: 'الطيران والتأشيرة والفندق ومُرافِق ناطق بالعربية — كل شيء مشمول. سبع وجهات لسنة 2026 من الجزائر أو قسنطينة. وكالة معتمدة في بُرج بوعريريج. أكثر من 1.200 مسافر برفقتنا.'
         },
         voyages: {
-          title: 'رحلات منظَّمة 2026 · خمس وجهات ابتداءً من 123.000 دينار جزائري — أليانس ترافل',
-          description: 'خمس رحلات منظَّمة لسنة 2026: القاهرة وشرم، باكو، إسطنبول (من قسنطينة)، كوالا لمبور، شرم (من قسنطينة). الطيران والتأشيرة والفندق مشمولة. ابتداءً من 123.000 د.ج.'
+          title: 'رحلات منظَّمة 2026 · سبع وجهات ابتداءً من 36.000 دينار جزائري — أليانس ترافل',
+          description: 'سبع رحلات منظَّمة لسنة 2026: مصر، تونس، إسطنبول، أذربيجان، كوالا لمبور، بالي، فيتنام. الطيران والتأشيرة والفندق مشمولة. ابتداءً من 36.000 د.ج.'
         },
         cairo_sharm: {
           title: 'رحلة مصر 2026 · القاهرة وشرم الشيخ ابتداءً من 190.000 دينار جزائري',
@@ -904,7 +904,7 @@
           description: 'سبع ليالٍ بين باكو وقَبَلَة، طيران Turkish Airlines، التأشيرة الإلكترونية مشمولة، مُرافِق ناطق بالعربية. انطلاقات بين جوان وأكتوبر 2026 من الجزائر. ابتداءً من 249.900 د.ج.'
         },
         istanbul: {
-          title: 'رحلة إسطنبول من قسنطينة ابتداءً من 123.000 دينار جزائري — أليانس',
+          title: 'رحلة إسطنبول من قسنطينة ابتداءً من 129.000 دينار جزائري — أليانس',
           description: 'إسطنبول في ثمانية أيام، رحلات مباشرة بـTurkish Airlines من قسنطينة. فندق 4★، تنقّلات، مُرافِق ناطق بالعربية. انطلاقات أسبوعية بين سبتمبر ونوفمبر 2026.'
         },
         kuala_lumpur: {
@@ -1157,13 +1157,13 @@
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const val = resolve(el.dataset.i18n, lang, BASE.text);
-      if (val != null) el.textContent = val;
+      if (typeof val === 'string') el.textContent = val;
     });
 
     // innerHTML (allows embedded <em>, <strong>, etc. — strings should be trusted)
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const val = resolve(el.dataset.i18nHtml, lang, BASE.html);
-      if (val != null) el.innerHTML = val;
+      if (typeof val === 'string') el.innerHTML = val;
     });
 
     // attribute translations (aria-label / title / placeholder / alt)

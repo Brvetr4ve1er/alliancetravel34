@@ -14,8 +14,7 @@ const _FR_MONTHS = { 'janvier':0,'février':1,'fevrier':1,'mars':2,'avril':3,'ma
 function parseDepartureEnd(str) {
   if (!str) return null;
   const s = String(str).toLowerCase();
-  const ym = s.match(/(\d{4})/);
-  const year = ym ? +ym[1] : new Date().getFullYear();
+  const years = s.match(/\d{4}/g);
   const parts = s.split(/[–—-]/);                 // en/em dash or hyphen range
   const endPart = parts.length > 1 ? parts[parts.length - 1] : parts[0];
   const startPart = parts[0];
@@ -23,8 +22,13 @@ function parseDepartureEnd(str) {
   const day = dm ? +dm[1] : 1;
   const monthFrom = (txt) => { for (const k in _FR_MONTHS) if (txt.includes(k)) return _FR_MONTHS[k]; return null; };
   let month = monthFrom(endPart);
-  if (month == null) month = monthFrom(startPart);
+  const startMonth = monthFrom(startPart);
+  if (month == null) month = startMonth;
   if (month == null) return null;
+  // Use the LAST 4-digit run as the end year (cross-year ranges spell out both);
+  // if only one year is present and the end month wraps below the start, add 1.
+  let year = years && years.length ? +years[years.length - 1] : new Date().getFullYear();
+  if (years && years.length === 1 && startMonth != null && month < startMonth) year += 1;
   return new Date(year, month, day);
 }
 // Bookable if the departure's end date is today or later (client clock).
@@ -108,6 +112,7 @@ class TripCalculator {
     if (Array.isArray(this.trip.dates)) {
       const future = this.trip.dates.filter(isFutureDeparture);
       if (future.length) { this.trip.dates = future; this.state.date = this.state.date ?? future[0]; }
+      else { this.trip.dates = []; this.state.date = null; }
     }
   }
 
@@ -612,6 +617,7 @@ function initFAQ() {
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
+      if (!item) return;
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');

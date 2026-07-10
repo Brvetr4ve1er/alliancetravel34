@@ -847,22 +847,6 @@ select {
   margin-top: var(--s2);
 }
 
-/* Visual side of hero */
-.hero__visual {
-  position: relative;
-  height: clamp(340px, 45vw, 560px);
-  border-radius: var(--r4);
-  overflow: hidden;
-  background: var(--accent-dim);
-  border: 1px solid var(--border-hi);
-}
-
-.hero__visual-art {
-  width: 100%;
-  height: 100%;
-  background: var(--hero-art, linear-gradient(160deg, var(--accent-dim) 0%, transparent 60%));
-}
-
 /* v21 phase J.2.4: .hero__dep-card + .dep-pill + .dep-badge family
    deleted — the floating "departure card" overlay on v13 trip heroes
    that showed upcoming flight dates inline. v14 hero replaced this
@@ -2295,8 +2279,6 @@ select {
   .home-hero__inner {
     padding: calc(var(--nav-h) + var(--space-5)) var(--container-x) var(--section-y) !important;
   }
-
-  .hero__visual { display: none; }
 
   .hero__strip-inner {
     flex-direction: column;
@@ -4060,7 +4042,13 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
     left: 10px;
     right: 10px;
   }
-  .site-nav .nav-links { display: none; }
+  /* Direct-child scope only. `.nav-links` is MOVED into `.nav-drawer`
+     (which lives inside `.site-nav`) by initNavDrawer(); a descendant
+     selector here also matches `.nav-drawer .nav-links` and only fails to
+     hide it because of the `display:flex !important` at L669. Scope to the
+     inline slot (`>`) to match the sibling `> .nav-cta` / `> .theme-toggle`
+     rules below and the 900px block's own `.site-nav > .nav-links` hide. */
+  .site-nav > .nav-links { display: none; }
   .nav-logo svg { height: 32px !important; }
   /* Direct-child only: the drawer's moved-in .nav-cta / .theme-toggle must NOT
      inherit these mobile-nav-bar shrink sizes — they render full-size inside
@@ -4599,18 +4587,6 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
       rgba(251,248,241,.65) 30%,
       rgba(251,248,241,.30) 60%,
       rgba(251,248,241,.10) 100%);
-}
-
-/* The hero__visual side panel becomes redundant when the photo
-   is full-bleed. Soften it so it acts as a subtle frame instead */
-[data-region] .hero__visual {
-  background: rgba(0,0,0,0.18);
-  border-color: rgba(255,255,255,0.08);
-  backdrop-filter: blur(2px);
-}
-:root[data-theme="light"] [data-region] .hero__visual {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(0,44,81,0.10);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -7835,20 +7811,6 @@ section.section.phase-block + section.section:not(.phase-block) {
 .footer-social a svg {
   width: 16px;
   height: 16px;
-}
-
-/* ── P3-F · Tag/badge contrast harmonization ───────────────
-   .amenity-pill on hotel cards already uses accent-dim bg + accent text
-   from v12. Verify dep-badge has good contrast too. */
-.dep-badge {
-  /* Already styled in v5 via accent tokens. Add a fallback for older states. */
-  background: var(--accent-dim, rgba(156, 232, 178, .14));
-  color: var(--accent, var(--mint));
-  font-weight: 700;
-}
-:root[data-theme="light"] .dep-badge {
-  background: var(--accent-dim, rgba(35, 122, 74, .12));
-  color: var(--accent, #237a4a);
 }
 
 /* ── Mobile tuning ─────────────────────────────────────── */

@@ -100,7 +100,7 @@
     "calcSub": " data-i18n=\"egCalcSub\"",
     "calcFormAttrs": " role=\"form\" aria-label=\"Formulaire de calcul\"",
     "calcDateLabel": " data-i18n=\"egCalcDateLabel\"",
-    "dateChipsRole": " role=\"group\" aria-label=\"Dates disponibles\"",
+    "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
     "dateHintAttrs": " class=\"fs-caption u-text-3 u-mt-sp3\" data-i18n=\"egCalcDatesNote\"",
     "calcSelectLabel": " data-i18n=\"egCalcHotelLabel\"",
     "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer; appearance:none\" aria-label=\"Choisissez un hôtel\"",

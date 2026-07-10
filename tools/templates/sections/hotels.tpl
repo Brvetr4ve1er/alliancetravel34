@@ -5,8 +5,8 @@
       <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500"{{k.hotelsTitle}}>{{hotelsSection.titleHtml}}</h2>
       <p class="section-head__sub"{{k.hotelsSub}}>{{hotelsSection.sub}}</p>
     </div>
-{{?hotelsSection.tierTabs}}    <div class="tier-tabs" role="tablist"{{k.tierTabsAria}}>
-{{#hotelsSection.tierTabs}}      <button class="tier-tab" role="tab" aria-pressed="{{?.active}}true{{:}}false{{/?}}" data-tier="{{.tier}}" data-track-event="tier_filter" data-track-label="{{.tier2}}"{{.k}}>{{.label}}</button>
+{{?hotelsSection.tierTabs}}    <div class="tier-tabs" role="group"{{k.tierTabsAria}}>
+{{#hotelsSection.tierTabs}}      <button class="tier-tab" type="button" aria-pressed="{{?.active}}true{{:}}false{{/?}}" data-tier="{{.tier}}" data-track-event="tier_filter" data-track-label="{{.tier2}}"{{.k}}>{{.label}}</button>
 {{/hotelsSection.tierTabs}}    </div>
 {{/?}}{{?hotelsSection.hint}}    <p class="fs-caption u-text-3 u-mt-sp3" style="margin-bottom:var(--space-6)"{{k.hotelsHint}}>{{hotelsSection.hint}}</p>
 
