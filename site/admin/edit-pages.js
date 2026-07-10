@@ -97,7 +97,10 @@ async function save() {
     msg.className = "msg ok";
     msg.innerHTML = `Publié ✓ — la page sera à jour dans ~1 minute. ` +
       (r.data.commitUrl ? `<a href="${r.data.commitUrl}" target="_blank" rel="noopener">Voir le commit</a>` : "");
-    await loadTrip(current.slug); // refresh SHA for the next save
+    // Refresh the SHA for the next save WITHOUT wiping the form + this confirmation
+    // (a full loadTrip() would re-render the panel and hide the "Publié ✓" message).
+    const g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`);
+    if (g.ok) current.sha = g.data.sha;
   } else if (r.status === 422) {
     msg.className = "msg err";
     msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + e).join("<br>");
