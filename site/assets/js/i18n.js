@@ -293,7 +293,7 @@
         },
         countries: {
           eyebrow: 'Pays couverts',
-          title_l1: 'Dix pays,',
+          title_l1: 'Quinze pays,',
           title_em: 'un seul interlocuteur.',
           sub: "Cliquez sur un pays pour voir le centre de traitement (ambassade, VFS, BLS, Capago ou CVASC) et les niveaux de service que nous prenons en charge. La biométrie et les entretiens restent obligatoirement en présentiel — c'est le consulat qui décide.",
           chip: { tier1: 'RDV', tier2: 'Dossier', tier3: 'Dépôt' },
@@ -591,9 +591,9 @@
         },
       visa: {
         title: 'Visa Appointments & Dossier Service — Alliance Travel · BBA',
-        description: 'Embassy and VFS appointments, full dossier, drop-off where the consulate allows it. Ten countries served from Bordj Bou Arreridj — no Algiers trip.',
+        description: 'Embassy and VFS appointments, full dossier, drop-off where the consulate allows it. Fifteen countries served from Bordj Bou Arreridj — no Algiers trip.',
         og_title: 'Visa Appointments — Alliance Travel',
-        og_description: 'RDV, dossier, drop-off — we handle it from Bordj. Ten countries · 30-min WhatsApp reply.'
+        og_description: 'RDV, dossier, drop-off — we handle it from Bordj. Fifteen countries · 30-min WhatsApp reply.'
       },
       },
       visa: {
@@ -601,7 +601,7 @@
           eyebrow: 'Visa Appointment Service · Bordj Bou Arreridj',
           title_l1: 'Your visa appointment,',
           title_em: 'handled end-to-end.',
-          lede: 'We book your embassy or VFS appointment, prepare the full dossier, and — where the consulate allows it — drop the file off for you. You stay in Bordj; we make the trip. Ten countries covered. Personalised quote on WhatsApp.',
+          lede: 'We book your embassy or VFS appointment, prepare the full dossier, and — where the consulate allows it — drop the file off for you. You stay in Bordj; we make the trip. Fifteen countries covered. Personalised quote on WhatsApp.',
           cta_wa: 'Message an advisor',
           cta_form: 'Browse countries',
           trust_branches: "Three offices on the ground · BBA & M'Sila",
@@ -619,12 +619,17 @@
         },
         countries: {
           eyebrow: 'Countries covered',
-          title_l1: 'Ten countries,',
+          title_l1: 'Fifteen countries,',
           title_em: 'one point of contact.',
           sub: "Tap a country to see the processing centre (embassy, VFS, BLS, Capago or CVASC) and which service tiers we provide. Biometrics and interviews always remain in person — that's the consulate's call.",
           chip: { tier1: 'RDV', tier2: 'Dossier', tier3: 'Drop-off' },
           cta_wa: 'Message us about this country',
           a11y_tiers: 'Service tiers available',
+          qatar: { name: "Qatar", provider: "Hayya e-visa — official hayya.qa platform · A1 tourism category", notes: "A1 tourism e-visa via the Hayya platform · no visa-on-arrival for ordinary Algerian passports · fully online application, no biometrics or centre in Algeria. Valid 30 days, single entry, extendable once. Processing time set by the competent authority." },
+          emirats: { name: "United Arab Emirates", provider: "Visa sponsored in advance — airline (Emirates / flydubai / Etihad), approved hotel or a UAE agency · GDRFA (Dubai) / ICP portals", notes: "No visa-on-arrival for ordinary Algerian passports: a visit visa sponsored in advance by a UAE sponsor (airline, approved hotel, agency, or a resident relative taking responsibility). Processed via GDRFA (Dubai) or ICP. Security approval; processing time set by the competent authority. Overstay fines apply, with no grace period." },
+          indonesie: { name: "Indonesia", provider: "Online application via the official Indonesian immigration portal · or the Indonesian embassy depending on the purpose of stay", notes: "Ordinary Algerian passports are not on the exemption or visa-on-arrival list: a standard visit visa application is required, filed online or with the embassy depending on the case. Proof of accommodation, return ticket and financial means are usually requested. Processing time and conditions are set by the competent authority — we check your eligibility before starting the file." },
+          malaisie: { name: "Malaysia", provider: "eVisa via the official Malaysian immigration portal · or the Malaysian embassy depending on the purpose of stay", notes: "The eVisa application is fully online for most tourist stays, with no physical filing centre in Algeria. A valid passport, return ticket, proof of accommodation and financial means are usually requested. Validity, conditions and processing time are set by the competent authority — we prepare the file and follow up until the decision." },
+          vietnam: { name: "Vietnam", provider: "e-Visa via the official Vietnamese immigration portal · or the Vietnamese embassy depending on the purpose of stay", notes: "The e-Visa application is fully online, with no physical filing centre in Algeria for most tourist stays. A passport valid for at least 6 months, a compliant photo and proof of a return ticket are usually requested. Validity period, number of entries and processing time are set by the competent authority — we check your file before submission and follow up until the decision." },
           france:           { name: 'France',            provider: 'Capago — 4 official centres (Algiers · Oran · Annaba · Constantine)',                                  notes: 'Schengen C-type · biometrics required on-site · no e-visa. Standard 15-day Schengen Code window, up to 45 days at peak. Capago replaced VFS + TLScontact in April 2025.' },
           turkiye:          { name: 'Türkiye',           provider: 'Mosaic Visa — Türkiye Visa Application Centre, Algiers',                                               notes: 'Sticker visa · biometrics on-site · e-visa available for holders of a valid Schengen, UK, US or Ireland visa. Algerians under 15 or over 65 can enter visa-free up to 90 days.' },
           allemagne:        { name: 'Germany',           provider: 'VFS Global, Sidi Yahia (Hydra), Algiers',                                                                notes: 'Schengen C-type · online VIDEX form · biometrics on-site · 15-day standard decision subject to embassy, submit between 6 months and 15 days before travel.' },
@@ -917,9 +922,9 @@
         },
       visa: {
         title: 'خدمة موعد التأشيرة وتجهيز الملف — أليانس ترافل · برج بوعريريج',
-        description: 'نحجز مواعيد السفارات ومراكز VFS، نُعدّ الملف كاملاً، ونُودِعه نيابةً عنك حيث تسمح السفارة. عشر دول من برج بوعريريج — دون الحاجة للتنقّل إلى الجزائر العاصمة.',
+        description: 'نحجز مواعيد السفارات ومراكز VFS، نُعدّ الملف كاملاً، ونُودِعه نيابةً عنك حيث تسمح السفارة. خمس عشرة دولة من برج بوعريريج — دون الحاجة للتنقّل إلى الجزائر العاصمة.',
         og_title: 'خدمة موعد التأشيرة — أليانس ترافل',
-        og_description: 'الموعد، الملف، الإيداع — كلّه من برج. عشر دول · ردّ خلال 30 دقيقة على واتساب.'
+        og_description: 'الموعد، الملف، الإيداع — كلّه من برج. خمس عشرة دولة · ردّ خلال 30 دقيقة على واتساب.'
       },
       },
       visa: {
@@ -927,7 +932,7 @@
           eyebrow: 'خدمة مواعيد التأشيرة · برج بوعريريج',
           title_l1: 'نتكفّل بموعد تأشيرتك',
           title_em: 'من الألف إلى الياء.',
-          lede: 'نحجز لك موعدك في السفارة أو في مركز VFS، ونُعدّ ملفّك كاملاً، ونتولّى الإيداع نيابةً عنك حيث تسمح السفارة بذلك. أنت تبقى في برج، ونحن نتكفّل بالتنقّل. عشر دول مغطّاة. تقديرٌ مخصّص عبر واتساب.',
+          lede: 'نحجز لك موعدك في السفارة أو في مركز VFS، ونُعدّ ملفّك كاملاً، ونتولّى الإيداع نيابةً عنك حيث تسمح السفارة بذلك. أنت تبقى في برج، ونحن نتكفّل بالتنقّل. خمس عشرة دولة مغطّاة. تقديرٌ مخصّص عبر واتساب.',
           cta_wa: 'تواصل عبر واتساب',
           cta_form: 'استكشف الدول',
           trust_branches: 'ثلاثة مكاتب فعليّة · برج بوعريريج والمسيلة',
@@ -945,12 +950,17 @@
         },
         countries: {
           eyebrow: 'الدول المغطّاة',
-          title_l1: 'عشر دول،',
+          title_l1: 'خمس عشرة دولة،',
           title_em: 'ومركز اتصالٍ واحد.',
           sub: 'اضغط على دولة لمعرفة مركز المعالجة (السفارة، VFS، BLS، كاباغو أو CVASC) والمستويات التي نتكفّل بها. تبقى البصمات والمقابلات حضوريّةً وجوبيّاً — هذا قرار القنصلية.',
           chip: { tier1: 'الموعد', tier2: 'الملف', tier3: 'الإيداع' },
           cta_wa: 'تواصل عبر واتساب لهذه الدولة',
           a11y_tiers: 'مستويات الخدمة المتاحة',
+          qatar: { name: "قطر", provider: "تأشيرة إلكترونية Hayya — المنصة الرسمية hayya.qa · فئة A1 سياحة", notes: "تأشيرة سياحية إلكترونية من فئة A1 عبر منصة Hayya · لا تأشيرة عند الوصول لجوازات السفر الجزائرية العادية · الطلب بالكامل عبر الإنترنت، دون بصمات أو مركز في الجزائر. صالحة 30 يوماً، دخول واحد، قابلة للتمديد مرة واحدة. تُحدَّد مدة المعالجة من طرف الجهة المختصة." },
+          emirats: { name: "الإمارات العربية المتحدة", provider: "تأشيرة بكفالة مسبقة — شركة طيران (طيران الإمارات / فلاي دبي / الاتحاد)، فندق معتمد أو وكالة في الإمارات · بوابتا GDRFA (دبي) / ICP", notes: "لا تأشيرة عند الوصول لجوازات السفر الجزائرية العادية: تأشيرة زيارة بكفالة مسبقة من كفيل في الإمارات (شركة طيران، فندق معتمد، وكالة، أو قريب مقيم يتحمّل المسؤولية). المعالجة عبر GDRFA (دبي) أو ICP. موافقة أمنية؛ مدة المعالجة حسب الجهة المختصة. تُطبَّق غرامات تجاوز مدة الإقامة دون فترة سماح." },
+          indonesie: { name: "إندونيسيا", provider: "طلب عبر الموقع الرسمي للهجرة الإندونيسية · أو سفارة إندونيسيا حسب الغرض من الإقامة", notes: "جوازات السفر الجزائرية العادية غير مدرجة ضمن قائمة الإعفاء أو التأشيرة عند الوصول: يُطلب تقديم طلب تأشيرة زيارة عادية، إما عبر الإنترنت أو لدى السفارة حسب الحالة. عادةً ما تُطلب إثباتات السكن وتذكرة العودة والموارد المالية. تُحدَّد مدة المعالجة والشروط من طرف الجهة المختصة — نتحقق من أهليتكم قبل بدء الملف." },
+          malaisie: { name: "ماليزيا", provider: "تأشيرة إلكترونية عبر الموقع الرسمي للهجرة الماليزية · أو سفارة ماليزيا حسب الغرض من الإقامة", notes: "يتم تقديم طلب التأشيرة الإلكترونية بالكامل عبر الإنترنت لمعظم الإقامات السياحية، دون مركز إيداع فعلي في الجزائر. عادةً ما يُطلب جواز سفر ساري المفعول وتذكرة عودة وإثبات سكن وموارد مالية. تُحدَّد مدة الصلاحية والشروط ومدة المعالجة من طرف الجهة المختصة — نُحضّر الملف ونتابع الطلب إلى غاية صدور القرار." },
+          vietnam: { name: "فيتنام", provider: "تأشيرة إلكترونية عبر الموقع الرسمي للهجرة الفيتنامية · أو سفارة فيتنام حسب الغرض من الإقامة", notes: "يتم تقديم طلب التأشيرة الإلكترونية بالكامل عبر الإنترنت، دون مركز إيداع فعلي في الجزائر بالنسبة لمعظم الإقامات السياحية. عادةً ما يُطلب جواز سفر ساري المفعول لمدة 6 أشهر على الأقل وصورة مطابقة للمعايير وإثبات تذكرة العودة. تُحدَّد مدة الصلاحية وعدد مرات الدخول ومدة المعالجة من طرف الجهة المختصة — نتحقق من ملفكم قبل الإيداع ونتابعه إلى غاية صدور القرار." },
           france:          { name: 'فرنسا',                       provider: 'كاباغو — 4 مراكز رسمية (الجزائر · وهران · عنّابة · قسنطينة)',                              notes: 'تأشيرة شنغن C · البصمات إلزامية حضوريّاً · لا توجد تأشيرة إلكترونية. مدّة قياسية 15 يوماً حسب قانون شنغن، حتى 45 يوماً في موسم الذروة. كاباغو حلّ محلّ VFS و TLScontact في أبريل 2025.' },
           turkiye:         { name: 'تركيا',                       provider: 'مركز Mosaic Visa الرسمي لتأشيرات تركيا، الجزائر العاصمة',                                notes: 'تأشيرة لاصقة · بصمات حضوريّة · التأشيرة الإلكترونية متاحة لحاملي تأشيرة شنغن أو UK أو US أو إيرلندا سارية. المسافرون الجزائريّون دون 15 سنة أو فوق 65 سنة: دخول بدون تأشيرة لمدّة 90 يوماً.' },
           allemagne:       { name: 'ألمانيا',                     provider: 'VFS Global، حي سيدي يحيى (حيدرة)، الجزائر العاصمة',                                       notes: 'تأشيرة شنغن C · استمارة VIDEX إلكترونيّة · البصمات حضوريّة · القرار في 15 يوماً قياسيّاً حسب السفارة، الإيداع بين 6 أشهر و15 يوماً قبل السفر.' },
