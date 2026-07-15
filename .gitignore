@@ -41,3 +41,5 @@ scripts/_*-backup/
 
 # Editor metadata — never commit
 .obsidian/
+.vercel
+.env*
