@@ -23,23 +23,71 @@
     .hero__trust { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s4); font-size: .875rem; color: var(--txt-2); }
     .hero__trust li { position: relative; padding-left: 18px; }
     .hero__trust li::before { content: '✓'; position: absolute; left: 0; color: var(--mint); font-weight: 700; }
-    .visa-countries { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s4); }
-    .visa-country-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r3); overflow: hidden; transition: border-color var(--t-base); }
-    .visa-country-card[open], .visa-country-card:hover, .visa-country-card:focus-within { border-color: var(--border-hi); }
-    .visa-country-card__head { display: flex; align-items: center; gap: var(--s3); padding: var(--s4); cursor: pointer; min-height: 64px; list-style: none; }
+    /* ── Countries: premium cards ───────────────────────────── */
+    .visa-countries { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s4); }
+    .visa-country-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 42%), var(--bg-2);
+      border: 1px solid var(--border); border-radius: var(--r3); overflow: hidden;
+      transition: border-color var(--t-base), transform var(--t-base), box-shadow var(--t-base);
+    }
+    .visa-country-card::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity var(--t-base);
+    }
+    .visa-country-card:hover, .visa-country-card:focus-within {
+      border-color: var(--border-hi); transform: translateY(-2px);
+      box-shadow: 0 12px 34px -14px rgba(0,0,0,.55);
+    }
+    .visa-country-card[open] { border-color: rgba(178,232,156,.4); }
+    .visa-country-card[open]::before { opacity: .85; }
+    .visa-country-card__head { display: flex; align-items: center; gap: var(--s3); padding: var(--s4); cursor: pointer; min-height: 68px; list-style: none; }
     .visa-country-card__head::-webkit-details-marker { display: none; }
-    .visa-country-card__flag { display: inline-flex; width: 36px; height: 27px; border-radius: 4px; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,.05); }
+    .visa-country-card__flag {
+      display: inline-flex; width: 40px; height: 30px; border-radius: 6px; overflow: hidden; flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.09), 0 2px 6px rgba(0,0,0,.3);
+    }
     .visa-country-card__flag img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .visa-country-card__name { font-weight: 600; flex: 1; font-size: 1rem; }
-    .visa-country-card__tiers { display: inline-flex; gap: 4px; flex-shrink: 0; }
-    .visa-country-card__chip { font-size: .6875rem; padding: 3px 8px; border-radius: 999px; background: var(--mint-dim); color: var(--mint); font-weight: 600; }
-    .visa-country-card__chip--muted { background: rgba(255,255,255,.04); color: var(--txt-3); }
-    .visa-country-card__toggle { color: var(--txt-3); transition: transform var(--t-base); flex-shrink: 0; }
-    .visa-country-card[open] .visa-country-card__toggle { transform: rotate(180deg); }
-    .visa-country-card__body { padding: 0 var(--s4) var(--s4); border-top: 1px solid var(--border); padding-top: var(--s4); display: flex; flex-direction: column; gap: var(--s3); }
-    .visa-country-card__provider { font-size: .875rem; color: var(--txt-1); font-weight: 500; margin: 0; }
-    .visa-country-card__notes { font-size: .8125rem; color: var(--txt-2); line-height: 1.6; margin: 0; }
+    .visa-country-card__name { font-weight: 650; flex: 1; font-size: 1.03rem; letter-spacing: -.01em; }
+    .visa-country-card__tiers { display: inline-flex; gap: 5px; flex-shrink: 0; }
+    .visa-country-card__chip {
+      font-size: .6875rem; padding: 4px 9px; border-radius: 999px; letter-spacing: .02em;
+      background: var(--mint-dim); color: var(--mint); font-weight: 650;
+      border: 1px solid rgba(178,232,156,.22);
+    }
+    .visa-country-card__chip--muted { background: rgba(255,255,255,.04); color: var(--txt-3); border-color: var(--border); }
+    .visa-country-card__toggle { color: var(--txt-3); transition: transform var(--t-base), color var(--t-base); flex-shrink: 0; }
+    .visa-country-card:hover .visa-country-card__toggle { color: var(--txt-2); }
+    .visa-country-card[open] .visa-country-card__toggle { transform: rotate(180deg); color: var(--accent); }
+    .visa-country-card__body { padding: 0 var(--s4) var(--s4); border-top: 1px solid var(--border); padding-top: var(--s4); display: flex; flex-direction: column; gap: var(--s3); animation: visaReveal .3s var(--ease, ease); }
+    @keyframes visaReveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+    .visa-country-card__provider { font-size: .875rem; color: var(--txt-1); font-weight: 550; margin: 0; }
+    .visa-country-card__notes { font-size: .8125rem; color: var(--txt-2); line-height: 1.65; margin: 0; }
     .visa-country-card__body .btn { align-self: flex-start; font-size: .875rem; padding: 8px 16px; }
+    /* ── FAQ: premium accordion (page-scoped) ────────────────── */
+    #faq .faq-list { display: flex; flex-direction: column; gap: var(--s3); }
+    #faq .faq-item {
+      background: linear-gradient(180deg, rgba(255,255,255,.022), transparent 55%), var(--bg-2);
+      border: 1px solid var(--border); border-radius: var(--r3); overflow: hidden;
+      transition: border-color var(--t-base), box-shadow var(--t-base);
+    }
+    #faq .faq-item:hover { border-color: var(--border-hi); }
+    #faq .faq-item[open] { border-color: rgba(178,232,156,.4); box-shadow: 0 12px 34px -16px rgba(0,0,0,.55); }
+    #faq .faq-q {
+      display: flex; align-items: center; gap: var(--s3); width: 100%;
+      padding: var(--s4) var(--s5); cursor: pointer; list-style: none;
+      font-weight: 600; font-size: 1rem; color: var(--txt-1); line-height: 1.45;
+      transition: color var(--t-base);
+    }
+    #faq .faq-q::-webkit-details-marker { display: none; }
+    #faq .faq-q > span { flex: 1; }
+    #faq .faq-q svg { flex-shrink: 0; color: var(--txt-3); transition: transform var(--t-base), color var(--t-base); }
+    #faq .faq-q:hover { color: var(--accent); }
+    #faq .faq-item[open] .faq-q { color: var(--accent); }
+    #faq .faq-item[open] .faq-q svg { transform: rotate(180deg); color: var(--accent); }
+    #faq .faq-a { padding: 0 var(--s5) var(--s4); animation: visaReveal .3s var(--ease, ease); }
+    #faq .faq-a p { margin: 0; color: var(--txt-2); font-size: .9rem; line-height: 1.7; }
     #visa-map { height: clamp(380px, 60vh, 560px); border-radius: var(--r3); overflow: hidden; background: var(--bg-2); position: relative; }
     .visa-partners { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .visa-partners__disclaimer { color: var(--txt-3); font-size: .8125rem; max-width: 540px; line-height: 1.6; margin-block: var(--s3) var(--s5); }
