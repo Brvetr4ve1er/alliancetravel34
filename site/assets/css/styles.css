@@ -9413,3 +9413,79 @@ body { background: var(--bg); color: var(--txt-1); }
   .aurora-hero__actions{ flex-wrap:wrap; }
   .aurora-hero__actions .btn{ flex:1 1 100%; }
 }
+
+/* ══ FOOTER REDESIGN (site-wide) ══════════════════════════════════════════════
+   Fixes the broken layout: .footer-grid was 3 columns with 4 children, so the
+   Contact column wrapped to row 2 and left a large dead zone. Social now tucks
+   under the brand (class-based placement, no fragile nth-child), the contact
+   groups are compacted, and the whole block gets a tighter vertical rhythm.
+   Token-based + symmetric spacing => theme- and RTL-safe. */
+.site-footer { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 55%); }
+
+.footer-cta { padding-bottom: var(--space-6, 2rem); margin-bottom: var(--space-6, 2rem); }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.15fr;
+  /* row 1 hugs the brand block; row 2 absorbs the slack so the social row sits
+     directly under the tagline instead of being pushed down by the tall columns */
+  grid-template-rows: auto 1fr;
+  gap: var(--space-5, 1.5rem) var(--space-7, 3rem);
+  align-items: start;
+}
+.footer-grid > .footer-brand  { grid-column: 1; grid-row: 1; }
+.footer-grid > .footer-social { grid-column: 1; grid-row: 2; margin-top: .35rem; }
+.footer-grid > .footer-col    { grid-row: 1 / span 2; }
+.footer-tagline { max-width: 34ch; line-height: 1.65; }
+
+/* Social — refined pills */
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); color: var(--txt-2); background: transparent;
+  transition: color .18s ease, border-color .18s ease, transform .18s ease, background .18s ease;
+}
+.footer-social a:hover {
+  color: var(--accent); border-color: var(--accent);
+  background: var(--accent-dim, rgba(178,232,156,.12)); transform: translateY(-2px);
+}
+
+/* Column headings + links — tighter rhythm */
+.footer-col h4 {
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--txt-3); font-weight: 700; margin: 0 0 var(--space-4, 1rem);
+}
+.footer-col a { display: block; padding-block: 5px; font-size: .875rem; }
+
+/* Contact groups — compact */
+.phone-group { margin-bottom: var(--space-4, 1rem); }
+.phone-group:last-child { margin-bottom: 0; }
+.phone-group__head {
+  display: flex; align-items: center; gap: 7px; margin: 0 0 6px;
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--txt-3); font-weight: 700;
+}
+.phone-group a { display: block; padding-block: 3px; font-size: .875rem; color: var(--txt-2); }
+.phone-group a:hover { color: var(--accent); }
+
+/* Bottom bar */
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--space-4, 1rem);
+  margin-top: var(--space-7, 3rem); padding-block: var(--space-5, 1.5rem);
+  border-top: 1px solid var(--border);
+  font-size: .8125rem; color: var(--txt-3);
+}
+.footer-bottom p { margin: 0; }
+
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > .footer-brand,
+  .footer-grid > .footer-social { grid-column: 1 / -1; grid-row: auto; }
+  .footer-grid > .footer-col { grid-row: auto; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { justify-content: center; text-align: center; }
+}
