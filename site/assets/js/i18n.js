@@ -159,6 +159,9 @@
         recenter: 'Recentrer'
       },
       footer: {
+        cta_title: 'Prêt à partir ?',
+        cta_sub: 'Écrivez-nous sur WhatsApp, réponse le jour même.',
+        cta_btn: 'Discuter sur WhatsApp',
         tagline: 'Voyages organisés depuis Bordj Bou Arreridj. Vous faites la valise, on s\'occupe du reste — depuis 2019.',
         col_voyages: 'Voyages 2026',
         col_contact: 'Contact',
@@ -491,6 +494,9 @@
         recenter: 'Recentre'
       },
       footer: {
+        cta_title: 'Ready to go?',
+        cta_sub: 'Message us on WhatsApp — same-day reply.',
+        cta_btn: 'Chat on WhatsApp',
         tagline: 'Guided trips out of Bordj Bou Arreridj. 1,200+ travellers, one standard, since 2019.',
         col_voyages: 'Our 2026 trips',
         col_contact: 'Contact',
@@ -828,6 +834,9 @@
         recenter: 'إعادة التوسيط'
       },
       footer: {
+        cta_title: 'جاهز للسفر؟',
+        cta_sub: 'راسلنا على واتساب، رد في نفس اليوم.',
+        cta_btn: 'الدردشة على واتساب',
         tagline: 'رحلات مُرافَقة من بُرج بوعريريج. أكثر من 1.200 مسافر راضٍ منذ 2019.',
         col_voyages: 'رحلاتنا 2026',
         col_contact: 'تواصل',

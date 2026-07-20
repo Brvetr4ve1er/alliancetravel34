@@ -9139,6 +9139,15 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .phone-group a,
 :root[lang="ar"] time,
 :root[lang="ar"] [data-num],
+/* Extended coverage 2026-07-20: phone numbers rendered as link/button labels
+   (final-CTA ghost buttons on trip pages, .contact-phone-link) were still
+   reordering in Arabic — "0561 616 266" became "266 616 0561" because the
+   spaces between digit groups are bidi-neutral. Number links never carry
+   data-i18n (they aren't translated), so :not([data-i18n]) isolates them
+   without forcing LTR onto genuinely translated button text. */
+:root[lang="ar"] .contact-phone-link,
+:root[lang="ar"] a[href^="tel:"]:not([data-i18n]),
+:root[lang="ar"] a.btn--ghost[href*="wa.me"]:not([data-i18n]),
 :root[lang="ar"] .num-ltr {
   direction: ltr;
   unicode-bidi: isolate;
