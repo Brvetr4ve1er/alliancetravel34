@@ -26,11 +26,13 @@ Vercel → your project → **Settings** → **Environment Variables**. Add thes
 | `SUPABASE_URL` | `https://vxblgxiamtphabfswnxb.supabase.co` |
 | `SUPABASE_ANON_KEY` | the public anon key — copy the `anonKey` value from `site/assets/js/lead-config.js` |
 | `GITHUB_TOKEN` | the token from step 1 |
-| `GITHUB_REPO` | `owner/repo` (your GitHub owner + repository name) |
-| `GITHUB_BRANCH` | the branch Vercel deploys to production (usually `main`) |
+| `GITHUB_REPO` | `Brvetr4ve1er/alliancetravel34` |
+| `GITHUB_BRANCH` | `integrate/unified-admin` |
 | `ADMIN_EMAILS` | your login email (comma-separated if more than one person) |
 
 > **Important:** `GITHUB_BRANCH` must be the **same branch Vercel builds for production**. Edits are committed to this branch; if it doesn't match, your changes will save but never appear on the live site.
+>
+> For this project that branch is **`integrate/unified-admin`**, *not* `main`. All the site and admin work lives there; `main` has none of it. Check Vercel → Settings → Git → **Production Branch** and make it match before doing anything else.
 
 ### 4. Allow the login link to return to your dashboard
 Supabase → **Authentication** → **URL Configuration** → **Redirect URLs** → add:
@@ -57,11 +59,14 @@ Redeploy the site so the new environment variables take effect. Then go to **Par
 
 **What the messages mean:**
 - **Green "Publié ✓"** — saved. The page rebuilds and goes live in ~1 minute.
-- **Red "Refusé — l'édition casserait la page"** — your change would have broken the page (e.g. a required field left empty), so it was **not** saved and your live site is untouched. Read the reasons listed, fix them, and click Publier again. *This is the safety net — you cannot break the live site.*
+- **Red "Refusé — l'édition casserait la page"** — your change would have broken the page (e.g. a required field left empty), so it was **not** saved and your live site is untouched. Read the reasons listed, fix them, and click Publier again.
+
+> **What the safety net does and does not cover.** It checks that the page still *builds*: required fields present, valid structure, the page renders. It does **not** check that what you wrote is *true* or *consistent* — and it cannot see image files while saving (see the Avancé section below). Treat a green "Publié ✓" as "the page still works", not as "the change is correct".
 
 ### The "Avancé — JSON brut" panel
 Most edits use the simple fields above. The **Avancé** panel lets you edit everything else in raw form. Edit it carefully — if the text isn't valid, saving is refused.
-- **One caveat:** if you change an **image path** in this panel, make sure that image file actually exists on the site. The safety check can't see images while saving, so a wrong image path will save but the page won't go live until it's corrected. (Normal field edits — prices, text, dates — are never affected by this.)
+- **⚠️ Do not change image paths here.** The safety check cannot see image files while saving. A wrong image path saves with a green "Publié ✓" — and then **blocks the rebuild of the entire site**, so *every* page stops updating until a developer fixes it. Ask for an image change instead of doing it here. (Normal field edits — prices, text, dates — are never affected by this.)
+- **⚠️ Editing French text here does not update English or Arabic.** Those translations are stored separately. If you change a price, a date or a departure month, the English and Arabic versions of that page keep showing the **old** value, with no warning. Ask for translation updates whenever you change a number or a date.
 
 ### Leads tab
 The **Leads** tab shows everyone who submitted the booking form: name, phone, city, chosen trip/hotel/dates, party size, estimated total, and how they contacted you (WhatsApp / email / copy). Use the search box to filter, and **Exporter CSV** to download them for Excel.
