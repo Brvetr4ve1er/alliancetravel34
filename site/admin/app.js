@@ -70,9 +70,22 @@ async function enterApp(session) {
     // branch nor boot()'s no-session tail runs, so "Chargement…" stayed on
     // screen under the refusal message.
     showView("login");
-    $("login-msg").textContent = "Ce compte n'est pas autorisé.";
-    $("login-msg").className = "msg err";
-    await supabase.auth.signOut();
+    const msg = $("login-msg");
+    msg.className = "msg err";
+    // Only a real verdict from the API is grounds to destroy the session.
+    // A missing or broken API is NOT: on the local static preview /api/* is a
+    // 404, and this branch used to answer a *successful* login with
+    // "Ce compte n'est pas autorisé." + signOut — burning a session the owner
+    // had just paid an email for.
+    if (me.status === 401 || me.status === 403) {
+      msg.textContent = "Ce compte n'est pas autorisé.";
+      await supabase.auth.signOut();
+    } else if (me.status === 404) {
+      msg.textContent = "Connexion réussie, mais l'API admin n'existe pas sur cet hôte " +
+        "(aperçu local ?). Ouvrez le site déployé — la session est conservée.";
+    } else {
+      msg.textContent = `Erreur serveur (${me.status}) — la session est conservée, rechargez pour réessayer.`;
+    }
     return;
   }
   $("who").textContent = me.data.email;
