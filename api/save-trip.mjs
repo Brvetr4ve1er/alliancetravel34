@@ -2,7 +2,7 @@
 // Order: verify admin → validate (generator rules) → dry-run render (must not throw)
 // → commit data/trips/<slug>.json to GitHub. A bad edit is rejected, never committed.
 import { verifyAdmin } from "./_lib/auth.mjs";
-import { getFile, putFile } from "./_lib/github.mjs";
+import { getFile, putFile, listTree } from "./_lib/github.mjs";
 import { validateTrip } from "../tools/validate-trip.mjs";
 import { renderTrip } from "../tools/templates/trip2.mjs";
 
@@ -30,8 +30,21 @@ export default async function handler(req, res) {
   if (!content || typeof content !== "object") return res.status(400).json({ error: "missing content" });
   if (content.slug !== slug) return res.status(400).json({ error: "content.slug must equal slug" });
 
-  // 1. Schema validation (images skipped — not bundled; the real build still guards).
-  const { errors } = validateTrip(`data/trips/${slug}.json`, content, { enabled: true, checkImages: false });
+  // 1. Schema validation, including image references.
+  //
+  // site/ is not in the function bundle, so existence is checked against the
+  // GitHub tree of the branch we are about to commit to — the same view
+  // tools/build.mjs will resolve on disk. Skipping this check is not an option:
+  // build.mjs treats a missing image as a fatal error and exits 1, so an edit
+  // accepted here with a bad path would block the rebuild of *every* page.
+  // A truncated tree cannot prove absence, so fall back to structure-only
+  // rather than reject a valid edit.
+  let tree;
+  try { tree = await listTree(); }
+  catch (e) { return res.status(e.status || 502).json({ error: e.message }); }
+  const imageExists = tree.truncated ? null : (rel) => tree.paths.has(`site/${rel}`);
+
+  const { errors } = validateTrip(`data/trips/${slug}.json`, content, { enabled: true, imageExists });
   if (errors.length) return res.status(422).json({ errors: errors.map((e) => e.msg) });
 
   // 2. Dry-run render — renderTrip throws on any missing field/array/codec.

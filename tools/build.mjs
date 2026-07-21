@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 
 import { resolve, dirname, join, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validateTrip } from "./validate-trip.mjs";
+import { checkAdminFields } from "./check-admin-fields.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
@@ -94,6 +95,10 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
   if (!parsed.has(slug))
     err("data/build-manifest.json", `"${slug}" listé mais data/trips/${slug}.json introuvable`);
 }
+
+// Admin form fields must address data the templates actually render, or the
+// owner edits them to no effect. Caught here because nothing at runtime can.
+for (const e of checkAdminFields(ROOT)) errors.push(e);
 
 // ── Blog: load + validate (rendered after the error gate) ───────────
 const { loadPosts, renderPost, renderIndex } = await import(pathToFileURL(join(ROOT, "tools", "blog.mjs")).href);

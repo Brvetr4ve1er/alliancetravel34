@@ -32,6 +32,39 @@ export async function getFile({ path }) {
   return { content, sha: json.sha };
 }
 
+// Every file path on the target branch, as a Set.
+//
+// The function bundle ships `tools/**` only (vercel.json includeFiles), so it
+// cannot stat site/assets to check that a referenced image exists — while
+// tools/build.mjs does exactly that and exits 1 on a miss. Without this, a bad
+// image path saved with a green "Publié ✓" and then blocked the rebuild of
+// every page. Reading the tree of the branch we are about to commit to is the
+// same view the build will get.
+//
+// `truncated` is GitHub telling us the listing is incomplete (>100k entries).
+// This repo is ~430 files, so it should never happen — but absence cannot be
+// proven from a partial tree, so callers must skip the check rather than
+// reject a valid edit.
+export async function listTree() {
+  const url = `${API}/repos/${repo()}/git/trees/${encodeURIComponent(branch())}?recursive=1`;
+  let res;
+  try {
+    res = await fetch(url, { headers: headers() });
+  } catch (e) {
+    throw Object.assign(new Error("github unreachable"), { status: 502 });
+  }
+  if (!res.ok) { const e = new Error(`github ${res.status}`); e.status = 502; throw e; }
+  let json;
+  try {
+    json = await res.json();
+  } catch (e) {
+    throw Object.assign(new Error("github bad response"), { status: 502 });
+  }
+  const paths = new Set();
+  for (const node of json.tree || []) if (node.type === "blob") paths.add(node.path);
+  return { paths, truncated: json.truncated === true };
+}
+
 export async function putFile({ path, content, sha, message }) {
   const url = `${API}/repos/${repo()}/contents/${path}`;
   const body = {

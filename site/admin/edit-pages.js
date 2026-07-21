@@ -10,15 +10,27 @@ const setPath = (o, p, v) => { const k = p.split("."); let x = o; for (const s o
 const escHtml = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 // [label, json-path, type]
+//
+// Every path here MUST be read by a template in tools/templates/sections/.
+// A path the templates ignore is invisible when wrong: getPath returns
+// undefined so the input renders blank, and setPath happily *creates* the key
+// on save — the owner edits, sees "Publié ✓", and nothing changes. Two fields
+// shipped that way ("hero.titlePre", "finalCta.scarcity").
+// tools/check-admin-fields.mjs enforces the rule at build time.
 const FIELDS = [
   ["Titre SEO (<title>)", "meta.title", "text"],
   ["Meta description", "meta.description", "textarea"],
   ["Hero — sur-titre", "hero.eyebrow", "text"],
-  ["Hero — titre", "hero.titlePre", "text"],
+  // The H1 is two slots: hero.tpl renders {{hero.h1Pre}}<em>{{hero.h1Em}}</em>.
+  ["Hero — titre (1re partie)", "hero.h1Pre", "text"],
+  ["Hero — titre (partie colorée)", "hero.h1Em", "text"],
   ["Hero — dates/durée", "hero.date", "text"],
   ["Hero — prix « à partir de »", "hero.priceFrom", "text"],
   ["Hero — aria-label", "hero.aria", "text"],
-  ["CTA final — accroche urgence", "finalCta.scarcity", "text"],
+  // No CTA scarcity field: finalCta.scarcityHtml stores the sentence and its
+  // data-i18n binding in one string (plain text on istanbul, a bound <span> on
+  // the other six), so a plain input would let an edit silently unbind the
+  // translation. Re-add it once the i18n contract lands.
 ];
 
 function fieldInput(label, path, type, val) {
@@ -97,10 +109,18 @@ async function save() {
     msg.className = "msg ok";
     msg.innerHTML = `Publié ✓ — la page sera à jour dans ~1 minute. ` +
       (r.data.commitUrl ? `<a href="${r.data.commitUrl}" target="_blank" rel="noopener">Voir le commit</a>` : "");
-    // Refresh the SHA for the next save WITHOUT wiping the form + this confirmation
-    // (a full loadTrip() would re-render the panel and hide the "Publié ✓" message).
+    // Re-sync BOTH the SHA and the content, without wiping the form + this
+    // confirmation (a full loadTrip() would re-render the panel and hide the
+    // "Publié ✓"). Refreshing only the SHA used to leave the previous document
+    // in memory and armed: the next save would re-POST that stale body, and the
+    // 409 retry re-PUTs it against a fresh SHA — silently reverting whatever
+    // anyone else published in between.
     const g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`);
-    if (g.ok) current.sha = g.data.sha;
+    if (g.ok) {
+      current.sha = g.data.sha;
+      current.content = g.data.content;
+      el("ep-json").value = JSON.stringify(g.data.content, null, 2);
+    }
   } else if (r.status === 422) {
     msg.className = "msg err";
     msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + e).join("<br>");

@@ -26,11 +26,20 @@ function showTab(name) {
   document.dispatchEvent(new CustomEvent("admin:tab", { detail: name }));
 }
 
+let entered = false; // guards against getSession() and onAuthStateChange racing
+
 async function enterApp(session) {
+  if (entered) return;
+  entered = true;
   AT_ADMIN.session = session;
   AT_ADMIN.token = session.access_token;
   const me = await callApi("/api/me");
   if (!me.ok) {
+    entered = false;
+    // Hide the boot spinner here too: on the rejection path neither the success
+    // branch nor boot()'s no-session tail runs, so "Chargement…" stayed on
+    // screen under the refusal message.
+    show($("boot-msg"), false);
     show($("view-login"), true); show($("view-app"), false);
     $("login-msg").textContent = "Ce compte n'est pas autorisé.";
     $("login-msg").className = "msg err";
@@ -44,12 +53,25 @@ async function enterApp(session) {
 }
 
 async function boot() {
-  // Handle the magic-link redirect (token in URL hash) + existing sessions.
-  const { data } = await supabase.auth.getSession();
-  if (data.session) return enterApp(data.session);
-  show($("boot-msg"), false); show($("view-login"), true);
+  // Everything below the old `return enterApp(...)` never ran for a visitor who
+  // already had a stored session — which is every return visit. That left the
+  // auth listener unregistered (so the access token was captured once and went
+  // stale after ~1 h: every API call then failed with a bare "Erreur 401" and no
+  // prompt to sign in again) and the tab + logout handlers unbound (so those
+  // buttons did nothing). Register all of it first, unconditionally.
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (!session) {
+      if (event === "SIGNED_OUT") { AT_ADMIN.session = null; AT_ADMIN.token = null; entered = false; }
+      return;
+    }
+    // TOKEN_REFRESHED arrives here roughly hourly; keep the bearer current.
+    AT_ADMIN.session = session;
+    AT_ADMIN.token = session.access_token;
+    enterApp(session); // no-ops once entered
+  });
 
-  supabase.auth.onAuthStateChange((_e, session) => { if (session) enterApp(session); });
+  document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
+  $("logout").addEventListener("click", async () => { await supabase.auth.signOut(); location.reload(); });
 
   $("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -63,7 +85,9 @@ async function boot() {
     msg.className = error ? "msg err" : "msg ok";
   });
 
-  document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
-  $("logout").addEventListener("click", async () => { await supabase.auth.signOut(); location.reload(); });
+  // Handle the magic-link redirect (token in the URL hash) + existing sessions.
+  const { data } = await supabase.auth.getSession();
+  if (data.session) { await enterApp(data.session); return; }
+  show($("boot-msg"), false); show($("view-login"), true);
 }
 boot();

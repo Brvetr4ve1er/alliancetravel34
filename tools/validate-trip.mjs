@@ -22,7 +22,9 @@ function* strings(node, path = "") {
   }
 }
 
-export function validateTrip(file, data, { enabled = false, siteDir = null, checkImages = true } = {}) {
+// imageExists: optional (relPathUnderSite) => boolean. Supply it when there is
+// no filesystem to stat (serverless); it takes precedence over siteDir.
+export function validateTrip(file, data, { enabled = false, siteDir = null, checkImages = true, imageExists = null } = {}) {
   const errors = [];
   const warnings = [];
   const err = (f, m) => errors.push({ file: f, msg: m });
@@ -56,6 +58,13 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
   req(file, data, "hero.bg", isStr, "chemin image");
   // hero.fg (foreground cutout) is optional — the Aurora hero uses hero.bg full-bleed only.
   req(file, data, "hero.titlePre", isStr, "string");
+  // The visible H1 is hero.h1Pre + <em>hero.h1Em</em> (hero.tpl). Both are
+  // required: the engine's slot guard only rejects null/undefined, so an empty
+  // string renders <h1><em></em></h1> — a page with no heading, past every gate.
+  // (hero.titlePre above is legacy: still present in all 7 files, rendered by
+  // nothing. Left required so the data stays uniform until it is removed.)
+  req(file, data, "hero.h1Pre", isStr, "string (1re partie du titre H1)");
+  req(file, data, "hero.h1Em", isStr, "string (partie colorée du titre H1)");
   req(file, data, "hero.aria", isStr, "string (aria-label du hero, ex: \"Istanbul — Entre deux continents\")");
   req(file, data, "hero.priceFrom", isStr, "string (ex: \"129.000 DA\")");
 
@@ -154,14 +163,18 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
   });
 
   // Referenced local images must exist. Paths are relative to site/<slug>/.
-  if (checkImages && siteDir) {
+  // The build resolves them on disk; the save-trip function has no site/ in its
+  // bundle and passes imageExists backed by the GitHub tree instead. Same rule,
+  // two sources of truth about what exists.
+  const imgExists = imageExists || (checkImages && siteDir ? (rel) => existsSync(join(siteDir, rel)) : null);
+  if (imgExists) {
     for (const [path, value] of strings(data)) {
       if (path.startsWith("i18n.")) continue; // translations may cite examples
       // hero.fg (foreground cutout) is optional — the Aurora hero uses hero.bg full-bleed only.
       if (path === "hero.fg") continue;
       const m = value.match(/^(?:\.\.\/)+(assets\/[^\s"']+\.(?:jpe?g|png|webp|avif|svg))$/i);
       if (!m) continue;
-      if (!existsSync(join(siteDir, m[1]))) {
+      if (!imgExists(m[1])) {
         const msg = `image introuvable: "${value}" (champ ${path})`;
         enabled ? err(file, msg) : warn(file, msg);
       }
