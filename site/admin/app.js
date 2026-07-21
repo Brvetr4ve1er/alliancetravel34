@@ -27,6 +27,20 @@ const adminUrl = () => new URL("/admin/", location.origin).href;
 
 const LAST_EMAIL = "at_admin_email";
 
+// Supabase auth errors arrive as raw English strings. Translate the ones the
+// owner can actually encounter, with what-to-do-next; pass the rest through.
+function frAuthError(message) {
+  const m = String(message || "");
+  if (/invalid login credentials/i.test(m)) return "Email ou mot de passe incorrect.";
+  if (/rate limit/i.test(m))
+    return "Limite d'emails atteinte (elle se réinitialise sous ~1 heure). " +
+           "La connexion par mot de passe reste disponible — elle n'envoie aucun email.";
+  if (/email not confirmed/i.test(m)) return "Email non confirmé — utilisez le lien reçu par email une première fois.";
+  if (/password should be at least/i.test(m)) return "Mot de passe trop court.";
+  if (/same password/i.test(m)) return "Le nouveau mot de passe doit être différent de l'ancien.";
+  return m;
+}
+
 function showView(name) {
   show($("boot-msg"), false);
   show($("view-login"), name === "login");
@@ -113,9 +127,7 @@ async function boot() {
     btn.disabled = false;
     if (!error) { $("login-password").value = ""; return; } // onAuthStateChange takes over
     msg.className = "msg err";
-    msg.textContent = /invalid login credentials/i.test(error.message)
-      ? "Email ou mot de passe incorrect."
-      : error.message;
+    msg.textContent = frAuthError(error.message);
   });
 
   // Fallback for an owner who has not set a password yet.
@@ -126,7 +138,7 @@ async function boot() {
     msg.className = "msg"; msg.textContent = "Envoi…";
     const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: adminUrl() } });
     msg.className = error ? "msg err" : "msg ok";
-    msg.textContent = error ? error.message : "Lien envoyé — vérifiez votre boîte mail.";
+    msg.textContent = error ? frAuthError(error.message) : "Lien envoyé — vérifiez votre boîte mail.";
   });
 
   $("setpw-form").addEventListener("submit", async (e) => {
@@ -139,7 +151,7 @@ async function boot() {
     }
     msg.className = "msg"; msg.textContent = "Enregistrement…";
     const { error } = await supabase.auth.updateUser({ password: pw });
-    if (error) { msg.className = "msg err"; msg.textContent = error.message; return; }
+    if (error) { msg.className = "msg err"; msg.textContent = frAuthError(error.message); return; }
     $("setpw-new").value = $("setpw-confirm").value = "";
     msg.className = "msg ok";
     msg.textContent = "Mot de passe enregistré. Vous pouvez maintenant vous connecter directement.";
