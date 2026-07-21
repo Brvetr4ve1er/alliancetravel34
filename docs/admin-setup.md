@@ -34,10 +34,24 @@ Vercel → your project → **Settings** → **Environment Variables**. Add thes
 >
 > For this project that branch is **`integrate/unified-admin`**, *not* `main`. All the site and admin work lives there; `main` has none of it. Check Vercel → Settings → Git → **Production Branch** and make it match before doing anything else.
 
-### 4. Allow the login link to return to your dashboard
-Supabase → **Authentication** → **URL Configuration** → **Redirect URLs** → add:
-`https://<your-site>/admin/`
-(and the Vercel preview URL's `/admin/` if you test on previews). Without this, the emailed login link won't work.
+### 4. Point the email links at your site (not localhost)
+Supabase → **Authentication** → **URL Configuration**:
+
+- **Site URL** → `https://<your-site>` — it ships as `http://localhost:3000`, which is nobody's site.
+- **Redirect URLs** → add `https://<your-site>/admin/` (and your Vercel preview URL's `/admin/` if you test previews).
+
+Both matter, and the failure is silent: Supabase only honours a redirect that
+**exactly matches** an entry in Redirect URLs, and when it doesn't match it quietly
+substitutes Site URL instead of reporting an error. With the defaults in place the
+login link "works" — it signs you in and then drops you on `localhost:3000`, a page
+that doesn't exist. Password sign-in (Part B) is unaffected by all of this.
+
+### 4b. Recommended for production: your own SMTP
+Supabase → **Authentication** → **SMTP Settings**. The built-in mailer is capped at
+a few messages per hour project-wide, carries no delivery guarantee, and is shared
+by every email flow. Any real provider (Resend, Brevo, SendGrid, Gmail SMTP…) lifts
+that to a configurable limit. Not required to use the dashboard — only to make the
+email-based flows dependable.
 
 ### 5. Deploy
 Redeploy the site so the new environment variables take effect. Then go to **Part B**.
@@ -48,8 +62,32 @@ Redeploy the site so the new environment variables take effect. Then go to **Par
 
 ### Logging in
 1. Open **`https://<your-site>/admin/`**.
-2. Type your email, click **Recevoir le lien**.
-3. Check your inbox for the email, click the link — it brings you back, logged in. No password to remember.
+2. Enter your email and password, click **Se connecter**.
+
+That's it — no email, no link. Your browser can remember the password, and the
+session refreshes itself while you work.
+
+**If you don't have a password yet**, open *« Je n'ai pas encore de mot de passe »*
+and click **Recevoir un lien par email**. Once you're in, click **Mot de passe** in
+the top bar and choose one. From then on, use the form above.
+
+> **Why password rather than the email link.** Supabase's built-in mailer is
+> capped at a handful of messages per hour project-wide and is best-effort only —
+> Supabase says outright it isn't for production. Magic links, password resets and
+> confirmations all share that one bucket, so when it runs out you lose every way
+> in at once. Signing in with a password doesn't send mail and doesn't depend on
+> the redirect configuration below, so it keeps working regardless.
+
+### If you are ever locked out completely
+Set a password directly, with no email involved: Supabase → **SQL Editor** →
+```sql
+update auth.users
+set encrypted_password = extensions.crypt('YOUR-NEW-PASSWORD', extensions.gen_salt('bf')),
+    updated_at = now()
+where email = 'you@example.com';
+```
+Then sign in normally. (`gen_salt('bf')` is required — Supabase stores bcrypt, and
+a hash in any other format saves fine but fails every login.)
 
 ### Editing a page
 1. On the **Pages** tab, choose a trip from the dropdown.
