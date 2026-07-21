@@ -10,6 +10,10 @@ textarea { min-height:220px; font-family:ui-monospace, monospace; font-size:13px
 .btn--ghost { background:transparent; border:1px solid var(--line); color:var(--txt); }
 .btn:disabled { opacity:.5; cursor:not-allowed; }
 form { display:flex; gap:8px; margin-top:14px; }
+/* Login/password forms stack their fields instead of sitting on one row. */
+form.stack { display:block; }
+.btn--block { display:block; width:100%; margin-top:6px; }
+details.adv summary { cursor:pointer; color:var(--txt2); }
 .msg { color:var(--txt2); margin-top:12px; min-height:1.2em; }
 .msg.err { color:var(--danger); } .msg.ok { color:var(--ok); }
 .topbar { display:flex; align-items:center; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--line); margin-bottom:20px; }
