@@ -1,12 +1,13 @@
 // site/admin/app.js — Supabase magic-link auth, admin gate via /api/me, tab shell.
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+import { t, fmt, getLang, setLang, applyI18n } from "./i18n.js";
 
 const CFG = window.AT_LEADS || {};
 const supabase = createClient(CFG.url, CFG.anonKey);
 const $ = (id) => document.getElementById(id);
 const show = (el, on) => { el.hidden = !on; };
 
-const AT_ADMIN = { supabase, session: null, token: null, showTab };
+const AT_ADMIN = { supabase, session: null, token: null, showArea, status: null };
 window.AT_ADMIN = AT_ADMIN;
 
 async function callApi(path, opts = {}) {
@@ -48,11 +49,14 @@ function showView(name) {
   show($("view-setpw"), name === "setpw");
 }
 
-function showTab(name) {
-  document.querySelectorAll(".tab").forEach((b) => b.classList.toggle("is-active", b.dataset.tab === name));
-  show($("tab-pages"), name === "pages");
-  show($("tab-leads"), name === "leads");
-  document.dispatchEvent(new CustomEvent("admin:tab", { detail: name }));
+const AREAS = ["accueil", "demandes", "pages", "reglages"];
+function showArea(name) {
+  document.querySelectorAll(".navbtn").forEach((b) => b.classList.toggle("is-active", b.dataset.area === name));
+  for (const a of AREAS) show($("area-" + a), a === name);
+  document.dispatchEvent(new CustomEvent("admin:area", { detail: name }));
+  // Legacy bridge until leads.js / edit-pages.js migrate (Tasks 9-10):
+  if (name === "demandes") document.dispatchEvent(new CustomEvent("admin:tab", { detail: "leads" }));
+  if (name === "pages") document.dispatchEvent(new CustomEvent("admin:tab", { detail: "pages" }));
 }
 
 let entered = false;    // guards against getSession() and onAuthStateChange racing
@@ -91,11 +95,18 @@ async function enterApp(session) {
   $("who").textContent = me.data.email;
   try { localStorage.setItem(LAST_EMAIL, me.data.email); } catch { /* private mode */ }
   showView("app");
-  showTab("pages");
+  show($("change-pw"), true); show($("logout"), true);
+  showArea("accueil");
   document.dispatchEvent(new CustomEvent("admin:ready"));
+  callApi("/api/status").then((r) => {
+    if (r.ok) AT_ADMIN.status = r.data;
+    document.dispatchEvent(new CustomEvent("admin:status"));
+  });
 }
 
 async function boot() {
+  setLang(getLang()); // stamps lang+dir and fills every [data-i18n]
+
   // Everything below the old `return enterApp(...)` never ran for a visitor who
   // already had a stored session — which is every return visit. That left the
   // auth listener unregistered (so the access token was captured once and went
@@ -120,7 +131,13 @@ async function boot() {
     if (!recovering) enterApp(session); // no-ops once entered
   });
 
-  document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
+  document.querySelectorAll(".navbtn").forEach((b) => b.addEventListener("click", () => showArea(b.dataset.area)));
+  $("lang-toggle").addEventListener("click", () => {
+    const next = getLang() === "fr" ? "ar" : "fr";
+    setLang(next);
+    $("lang-toggle").textContent = next === "fr" ? "عربي" : "FR";
+  });
+  $("lang-toggle").textContent = getLang() === "fr" ? "عربي" : "FR";
   $("logout").addEventListener("click", async () => { await supabase.auth.signOut(); location.reload(); });
   $("change-pw").addEventListener("click", () => { $("setpw-msg").textContent = ""; showView("setpw"); });
   $("setpw-cancel").addEventListener("click", () => showView(entered ? "app" : "login"));
@@ -179,4 +196,50 @@ async function boot() {
   if (data.session && !recovering) { await enterApp(data.session); return; }
   if (!recovering) showView("login");
 }
+
+let reglagesInit = false;
+document.addEventListener("admin:area", async (e) => {
+  if (e.detail !== "reglages" || reglagesInit) return;
+  reglagesInit = true;
+  const c = $("area-reglages");
+  c.innerHTML = `
+    <div class="card">
+      <h2 data-i18n="settings.title"></h2>
+      <div class="field"><label data-i18n="settings.lang"></label>
+        <div class="chiprow">
+          <button class="chip" id="lang-fr">Français</button>
+          <button class="chip" id="lang-ar">العربية</button>
+        </div></div>
+      <button id="rg-pw" class="btn btn--ghost btn--block" data-i18n="settings.password"></button>
+      <button id="rg-logout" class="btn btn--ghost btn--block" data-i18n="settings.logout"></button>
+    </div>
+    <div class="card"><h2 data-i18n="settings.config"></h2><div class="cfg" id="cfg"></div></div>`;
+  applyI18n(c);
+  const mark = () => {
+    c.querySelector("#lang-fr").classList.toggle("is-on", getLang() === "fr");
+    c.querySelector("#lang-ar").classList.toggle("is-on", getLang() === "ar");
+  };
+  mark();
+  c.querySelector("#lang-fr").addEventListener("click", () => { setLang("fr"); $("lang-toggle").textContent = "عربي"; mark(); });
+  c.querySelector("#lang-ar").addEventListener("click", () => { setLang("ar"); $("lang-toggle").textContent = "FR"; mark(); });
+  c.querySelector("#rg-pw").addEventListener("click", () => { $("setpw-msg").textContent = ""; showView("setpw"); });
+  c.querySelector("#rg-logout").addEventListener("click", async () => { await supabase.auth.signOut(); location.reload(); });
+
+  const cfg = c.querySelector("#cfg");
+  const line = (labelKey, ok, extra) => {
+    const d = document.createElement("div");
+    const l = document.createElement("span"); l.textContent = t(labelKey);
+    const v = document.createElement("span");
+    v.textContent = extra ?? (ok ? t("settings.ok") : t("settings.ko"));
+    v.className = ok ? "ok" : "ko";
+    if (extra != null) v.classList.add("ltr");
+    d.append(l, v); cfg.appendChild(d);
+  };
+  line("settings.supabase", true); // being here required a working /api/me
+  const st = AT_ADMIN.status || (await window.AT_ADMIN.callApi("/api/status")).data || {};
+  AT_ADMIN.status = st;
+  line("settings.github", !!st.github);
+  if (st.branch) line("settings.branch", true, st.branch);
+});
+
 boot();
