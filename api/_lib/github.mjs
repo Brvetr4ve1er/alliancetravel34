@@ -89,3 +89,20 @@ export async function putFile({ path, content, sha, message }) {
   }
   return { commitUrl: json.commit && json.commit.html_url };
 }
+
+// Newest commits touching a path on the target branch (for /api/status).
+export async function listCommits({ path, perPage = 1 }) {
+  const url = `${API}/repos/${repo()}/commits?path=${encodeURIComponent(path)}&sha=${encodeURIComponent(branch())}&per_page=${perPage}`;
+  let res;
+  try {
+    res = await fetch(url, { headers: headers() });
+  } catch {
+    throw Object.assign(new Error("github unreachable"), { status: 502 });
+  }
+  if (!res.ok) { const e = new Error(`github ${res.status}`); e.status = 502; throw e; }
+  try {
+    return await res.json();
+  } catch {
+    throw Object.assign(new Error("github bad response"), { status: 502 });
+  }
+}
