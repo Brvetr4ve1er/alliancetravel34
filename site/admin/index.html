@@ -2,79 +2,77 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex" />
-  <title>Alliance Travel — Admin</title>
+  <title>Espace Alliance — Admin</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./admin.css" />
   <script src="../assets/js/lead-config.js" defer></script>
   <script type="module" src="./app.js"></script>
+  <script type="module" src="./accueil.js"></script>
   <script type="module" src="./leads.js"></script>
   <script type="module" src="./edit-pages.js"></script>
 </head>
 <body>
   <main id="app" class="admin">
-    <!-- Login view -->
-    <section id="view-login" class="card" hidden>
-      <h1>Espace administrateur</h1>
-      <p class="msg">Connectez-vous pour gérer vos pages et vos demandes.</p>
+
+    <section id="view-login" class="card card--auth" hidden>
+      <p class="brand"><span class="brand__name">Alliance</span>Travel</p>
+      <h1 data-i18n="login.title"></h1>
+      <p class="msg" data-i18n="login.sub"></p>
       <form id="login-form" class="stack">
-        <div class="field">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" placeholder="vous@exemple.com" required autocomplete="username" />
-        </div>
-        <div class="field">
-          <label for="login-password">Mot de passe</label>
-          <input type="password" id="login-password" required autocomplete="current-password" />
-        </div>
-        <button type="submit" class="btn btn--block">Se connecter</button>
+        <div class="field"><label for="login-email" data-i18n="login.email"></label>
+          <input type="email" id="login-email" required autocomplete="username" /></div>
+        <div class="field"><label for="login-password" data-i18n="login.password"></label>
+          <input type="password" id="login-password" required autocomplete="current-password" /></div>
+        <button type="submit" class="btn btn--block" data-i18n="login.submit"></button>
       </form>
       <p id="login-msg" class="msg" role="status" aria-live="polite"></p>
-      <details class="adv">
-        <summary>Je n'ai pas encore de mot de passe</summary>
-        <p class="msg">Recevez un lien de connexion à usage unique par email. Une fois
-          connecté, définissez un mot de passe pour ne plus avoir à passer par votre boîte mail.</p>
-        <button type="button" id="login-magic" class="btn btn--ghost btn--block">Recevoir un lien par email</button>
+      <details class="adv"><summary data-i18n="login.nopw"></summary>
+        <p class="msg" data-i18n="login.nopw.help"></p>
+        <button type="button" id="login-magic" class="btn btn--ghost btn--block" data-i18n="login.magic"></button>
       </details>
     </section>
 
-    <!-- Set / change password. Reached from the topbar, or automatically after
-         following a password-recovery link. -->
-    <section id="view-setpw" class="card" hidden>
-      <h1>Mot de passe</h1>
-      <p class="msg">Choisissez un mot de passe d'au moins 8 caractères.</p>
+    <section id="view-setpw" class="card card--auth" hidden>
+      <h1 data-i18n="setpw.title"></h1>
+      <p class="msg" data-i18n="setpw.sub"></p>
       <form id="setpw-form" class="stack">
-        <div class="field">
-          <label for="setpw-new">Nouveau mot de passe</label>
-          <input type="password" id="setpw-new" required minlength="8" autocomplete="new-password" />
-        </div>
-        <div class="field">
-          <label for="setpw-confirm">Confirmer</label>
-          <input type="password" id="setpw-confirm" required minlength="8" autocomplete="new-password" />
-        </div>
-        <button type="submit" class="btn btn--block">Enregistrer</button>
+        <div class="field"><label for="setpw-new" data-i18n="setpw.new"></label>
+          <input type="password" id="setpw-new" required minlength="8" autocomplete="new-password" /></div>
+        <div class="field"><label for="setpw-confirm" data-i18n="setpw.confirm"></label>
+          <input type="password" id="setpw-confirm" required minlength="8" autocomplete="new-password" /></div>
+        <button type="submit" class="btn btn--block" data-i18n="setpw.save"></button>
       </form>
       <p id="setpw-msg" class="msg" role="status" aria-live="polite"></p>
-      <button type="button" id="setpw-cancel" class="btn btn--ghost btn--block">Retour</button>
+      <button type="button" id="setpw-cancel" class="btn btn--ghost btn--block" data-i18n="setpw.back"></button>
     </section>
 
-    <!-- App view -->
     <section id="view-app" hidden>
       <header class="topbar">
-        <strong>Alliance Travel — Admin</strong>
-        <nav class="tabs">
-          <button data-tab="pages" class="tab is-active">Pages</button>
-          <button data-tab="leads" class="tab">Leads</button>
-        </nav>
+        <p class="brand brand--sm"><span class="brand__name">Alliance</span>Travel</p>
         <span class="spacer"></span>
-        <span id="who" class="who"></span>
-        <button id="change-pw" class="btn btn--ghost">Mot de passe</button>
-        <button id="logout" class="btn btn--ghost">Se déconnecter</button>
+        <button id="lang-toggle" class="pill" aria-label="Langue">عربي</button>
+        <span id="who" class="who ltr"></span>
+        <button id="change-pw" class="btn btn--ghost btn--sm" data-i18n="settings.password" hidden></button>
+        <button id="logout" class="btn btn--ghost btn--sm" data-i18n="settings.logout" hidden></button>
       </header>
-      <div id="tab-pages" class="tabpanel"></div>
-      <div id="tab-leads" class="tabpanel" hidden></div>
+
+      <div id="area-accueil" class="area"></div>
+      <div id="area-demandes" class="area" hidden></div>
+      <div id="area-pages" class="area" hidden></div>
+      <div id="area-reglages" class="area" hidden></div>
+
+      <nav class="bottomnav" aria-label="Navigation">
+        <button class="navbtn is-active" data-area="accueil"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21h-6v-6h-6v6H3z"/></svg><span data-i18n="nav.home"></span></button>
+        <button class="navbtn" data-area="demandes"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H8l-4 4z"/></svg><span data-i18n="nav.leads"></span><span id="nav-leads-badge" class="badge" hidden></span></button>
+        <button class="navbtn" data-area="pages"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/></svg><span data-i18n="nav.pages"></span></button>
+        <button class="navbtn" data-area="reglages"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.5-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.5 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.5 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.5-2-1.5c.1-.4.1-.8.1-1.2z"/></svg><span data-i18n="nav.settings"></span></button>
+      </nav>
     </section>
 
-    <p id="boot-msg" class="msg">Chargement…</p>
+    <p id="boot-msg" class="msg" data-i18n="common.loading"></p>
   </main>
 </body>
 </html>
