@@ -117,7 +117,7 @@ function renderEditor(container) {
 
 function collectInto(content) {
   // 1. structured fields
-  document.querySelectorAll("#tab-pages [data-path]").forEach((inp) => {
+  document.querySelectorAll("#area-pages [data-path]").forEach((inp) => {
     let v = inp.value;
     if (inp.dataset.int) { v = parseInt(v, 10); if (!Number.isFinite(v)) return; }
     setPath(content, inp.dataset.path, v);
