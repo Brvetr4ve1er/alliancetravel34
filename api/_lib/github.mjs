@@ -2,7 +2,7 @@
 const API = "https://api.github.com";
 
 function repo() { return process.env.GITHUB_REPO; }        // "owner/name"
-function branch() { return process.env.GITHUB_BRANCH || "main"; }
+export function branch() { return process.env.GITHUB_BRANCH || "main"; }
 function headers() {
   return {
     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
