@@ -156,7 +156,7 @@ async function save() {
     msg.textContent = t("pages.published");
     if (r.data.commitUrl) {
       const a = document.createElement("a");
-      a.href = r.data.commitUrl; a.textContent = "Voir le commit"; a.target = "_blank"; a.rel = "noopener";
+      a.href = r.data.commitUrl; a.textContent = t("pages.viewcommit"); a.target = "_blank"; a.rel = "noopener";
       msg.append(" ", a);
     }
     // Re-sync BOTH the SHA and the content, without wiping the form + this
@@ -183,4 +183,23 @@ async function save() {
 let inited = false;
 document.addEventListener("admin:area", (e) => {
   if (e.detail === "pages" && !inited) { inited = true; renderList(document.getElementById("area-pages")); }
+});
+
+// The /api/status prefetch can resolve after the Pages area first renders;
+// without this, the no-GitHub banner (and the disabled Publier) never appears
+// for an owner who opens Pages quickly. accueil.js listens the same way.
+document.addEventListener("admin:status", () => {
+  if (!inited) return;
+  const c = document.getElementById("area-pages");
+  const st = window.AT_ADMIN.status;
+  if (!c || !st || st.github) return;
+  if (c.querySelector(".banner")) return; // already shown
+  if (c.querySelector("#pg")) { renderList(c); return; } // list view: stateless re-render
+  // Editor view: mutate in place — re-rendering would discard in-progress edits.
+  const btn = c.querySelector("#ep-save");
+  if (btn) {
+    btn.disabled = true; // a disabled button no longer fires its click listener
+    const bn = document.createElement("p"); bn.className = "banner"; bn.textContent = t("pages.nogithub");
+    const msg = c.querySelector("#ep-msg"); if (msg) msg.after(bn);
+  }
 });
