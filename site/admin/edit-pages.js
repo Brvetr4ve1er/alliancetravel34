@@ -1,4 +1,6 @@
 // site/admin/edit-pages.js — pick a trip, edit high-value fields (+ raw JSON), save.
+import { t, applyI18n } from "./i18n.js";
+
 const SLUGS = ["istanbul", "bali", "tunisie", "vietnam", "azerbaidjan", "kuala-lumpur", "egypte"];
 let current = null; // { slug, content, sha }
 
@@ -50,23 +52,67 @@ function hotelPriceInputs(content) {
   }).join("");
 }
 
-function renderForm(container) {
+const GROUPS = [
+  { key: "pages.group.seo", test: (p) => p.startsWith("meta.") },
+  { key: "pages.group.hero", test: (p) => p.startsWith("hero.") },
+];
+
+function renderList(container) {
+  container.innerHTML = `<div class="card"><h2 data-i18n="pages.title"></h2><div class="pagegrid" id="pg"></div></div>
+    <div id="pages-banner"></div>`;
+  applyI18n(container);
+  const grid = container.querySelector("#pg");
+  for (const s of SLUGS) {
+    const b = document.createElement("button"); b.className = "pagecard";
+    const tt = document.createElement("span"); tt.className = "t"; tt.textContent = s;
+    const m = document.createElement("span"); m.className = "m"; m.textContent = t("pages.edit");
+    b.append(tt, m);
+    b.addEventListener("click", () => loadTrip(s));
+    grid.appendChild(b);
+  }
+  const visa = document.createElement("div"); visa.className = "pagecard is-locked";
+  const vt = document.createElement("span"); vt.className = "t"; vt.textContent = t("pages.visa");
+  const vm = document.createElement("span"); vm.className = "m"; vm.textContent = t("pages.soon");
+  visa.append(vt, vm); grid.appendChild(visa);
+  const st = window.AT_ADMIN.status;
+  if (st && !st.github) {
+    const bn = document.createElement("p"); bn.className = "banner"; bn.textContent = t("pages.nogithub");
+    container.querySelector("#pages-banner").appendChild(bn);
+  }
+}
+
+function renderEditor(container) {
   const c = current.content;
+  const grouped = GROUPS.map((g) => ({ ...g, html: FIELDS.filter(([, p]) => g.test(p)).map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join("") }));
+  const rest = FIELDS.filter(([, p]) => !GROUPS.some((g) => g.test(p))).map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join("");
   container.innerHTML = `
-    <div class="row" style="align-items:center;margin-bottom:14px">
-      <select id="ep-slug">${SLUGS.map((s) => `<option ${s === current.slug ? "selected" : ""}>${s}</option>`).join("")}</select>
-      <span class="spacer"></span>
-      <button id="ep-save" class="btn">Publier</button>
-    </div>
-    <p id="ep-msg" class="msg" role="status" aria-live="polite"></p>
-    ${FIELDS.map(([l, p, t]) => fieldInput(l, p, t, getPath(c, p))).join("")}
-    ${hotelPriceInputs(c)}
-    <details class="adv"><summary>Avancé — JSON brut (tout le reste)</summary>
-      <p class="msg">Modifiez avec précaution. La sauvegarde est refusée si le JSON est invalide.</p>
-      <textarea id="ep-json">${escHtml(JSON.stringify(c, null, 2))}</textarea>
-    </details>`;
-  el("ep-slug").addEventListener("change", (e) => loadTrip(e.target.value));
-  el("ep-save").addEventListener("click", save);
+    <button id="ep-back" class="btn btn--ghost btn--sm" data-i18n="pages.back"></button>
+    <div class="card">
+      <div class="row" style="align-items:center">
+        <h2 style="margin:0">${escHtml(current.slug)}</h2>
+        <span class="spacer"></span>
+        <button id="ep-save" class="btn" data-i18n="pages.publish"></button>
+      </div>
+      <p id="ep-msg" class="msg" role="status" aria-live="polite"></p>
+      ${grouped.map((g) => `<fieldset class="group"><legend>${escHtml(t(g.key))}</legend>${g.html}</fieldset>`).join("")}
+      ${rest}
+      <fieldset class="group"><legend>${escHtml(t("pages.group.prices"))}</legend>${hotelPriceInputs(c)}</fieldset>
+      <details class="adv"><summary data-i18n="pages.advanced"></summary>
+        <p class="msg" data-i18n="pages.advanced.warn"></p>
+        <textarea id="ep-json">${escHtml(JSON.stringify(c, null, 2))}</textarea>
+      </details>
+    </div>`;
+  applyI18n(container);
+  container.querySelector("#ep-back").addEventListener("click", () => renderList(container));
+  const st = window.AT_ADMIN.status;
+  if (st && !st.github) {
+    const btn = container.querySelector("#ep-save");
+    btn.disabled = true;
+    const bn = document.createElement("p"); bn.className = "banner"; bn.textContent = t("pages.nogithub");
+    container.querySelector("#ep-msg").after(bn);
+  } else {
+    container.querySelector("#ep-save").addEventListener("click", save);
+  }
 }
 
 function collectInto(content) {
@@ -80,12 +126,12 @@ function collectInto(content) {
 }
 
 async function loadTrip(slug) {
-  const c = el("tab-pages");
+  const c = document.getElementById("area-pages");
   c.innerHTML = `<p class="msg">Chargement de ${slug}…</p>`;
   const r = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(slug)}`);
   if (!r.ok) { c.innerHTML = `<p class="msg err">Erreur: ${r.data.error || r.status}</p>`; return; }
   current = { slug, content: r.data.content, sha: r.data.sha };
-  renderForm(c);
+  renderEditor(c);
 }
 
 async function save() {
@@ -98,7 +144,7 @@ async function save() {
   // keep the JSON panel in sync so the user sees exactly what will be saved
   el("ep-json").value = JSON.stringify(content, null, 2);
 
-  msg.className = "msg"; msg.textContent = "Publication…";
+  msg.className = "msg"; msg.textContent = t("pages.publishing");
   el("ep-save").disabled = true;
   const r = await window.AT_ADMIN.callApi("/api/save-trip", {
     method: "POST", headers: { "Content-Type": "application/json" },
@@ -107,8 +153,12 @@ async function save() {
   el("ep-save").disabled = false;
   if (r.ok) {
     msg.className = "msg ok";
-    msg.innerHTML = `Publié ✓ — la page sera à jour dans ~1 minute. ` +
-      (r.data.commitUrl ? `<a href="${r.data.commitUrl}" target="_blank" rel="noopener">Voir le commit</a>` : "");
+    msg.textContent = t("pages.published");
+    if (r.data.commitUrl) {
+      const a = document.createElement("a");
+      a.href = r.data.commitUrl; a.textContent = "Voir le commit"; a.target = "_blank"; a.rel = "noopener";
+      msg.append(" ", a);
+    }
     // Re-sync BOTH the SHA and the content, without wiping the form + this
     // confirmation (a full loadTrip() would re-render the panel and hide the
     // "Publié ✓"). Refreshing only the SHA used to leave the previous document
@@ -131,4 +181,6 @@ async function save() {
 }
 
 let inited = false;
-document.addEventListener("admin:tab", (e) => { if (e.detail === "pages" && !inited) { inited = true; loadTrip(SLUGS[0]); } });
+document.addEventListener("admin:area", (e) => {
+  if (e.detail === "pages" && !inited) { inited = true; renderList(document.getElementById("area-pages")); }
+});

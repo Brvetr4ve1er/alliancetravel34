@@ -54,8 +54,6 @@ function showArea(name) {
   document.querySelectorAll(".navbtn").forEach((b) => b.classList.toggle("is-active", b.dataset.area === name));
   for (const a of AREAS) show($("area-" + a), a === name);
   document.dispatchEvent(new CustomEvent("admin:area", { detail: name }));
-  // Legacy bridge until edit-pages.js migrates (Task 10):
-  if (name === "pages") document.dispatchEvent(new CustomEvent("admin:tab", { detail: "pages" }));
 }
 
 let entered = false;    // guards against getSession() and onAuthStateChange racing
