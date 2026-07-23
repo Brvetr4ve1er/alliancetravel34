@@ -112,13 +112,28 @@ Errors fail the build exactly like the existing validators, so a broken binding 
 | `hotels[i].priceFrom` | the linked calculator row's `prices.double` | `"129.000 DA"` |
 | `includedCount` | length of the inclusions list | integer |
 
-`hotels[]` (display cards) link to `tripData.hotels[]` (price rows) **many-to-one**: several cards can
-share one price row, and the link is by the card's hotel id. The mapping is derived at build time and
-recorded in the manifest, so the admin never has to guess — and a form can never assume 1:1, which
-would corrupt bali, vietnam and kuala-lumpur.
+**Correction (measured 2026-07-23, replacing an earlier claim in this spec):** there is **no id link
+between display cards and price rows on any trip — zero of 51 cards carry an `id`.** The two arrays
+are not two views of one thing:
 
-`hotels[].priceFrom` is **not always a price** — on vietnam it holds free text ("5 nuits Phu Quoc").
-Fields whose current value does not parse as currency are left alone and flagged, never overwritten.
+| trip | cards | rows | `priceFrom` is currency |
+|---|---|---|---|
+| istanbul / egypte / tunisie | 4 / 25 / 9 | same | all |
+| azerbaidjan | 2 | 2 | 1 of 2 |
+| vietnam | 6 | 2 | 2 of 6 |
+| kuala-lumpur | 3 | 2 | **0 of 3** |
+| bali | 6 | 2 | **0 of 6** |
+
+On bali and kuala-lumpur the cards are an **itinerary breakdown**, not priced options —
+`priceFrom` holds `"3 nuits · Kuta"`. Deriving a price into that field would destroy the itinerary.
+
+So `hotels[i].priceFrom` is derived **only when both conditions hold**: the card and row counts match
+(making a positional link meaningful), **and** the field's current value already parses as currency.
+Everything else is left untouched and reported as "not derivable" — never guessed. This reduces the
+fan-out to the four trips where it is provably safe, which is the correct scope.
+
+`hero.priceFrom` and `seo.offerPrice` derive from the cheapest `tripData.hotels[].prices.double` on
+every trip; those two are unambiguous everywhere.
 
 ### 4.2 What the owner sees
 
