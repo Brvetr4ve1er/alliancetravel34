@@ -6,6 +6,14 @@
 # CI (node --test), never in the deployed bundle.
 **/*.test.mjs
 
+# lead-autoreply's notify endpoint — dormant until the owner provisions Resend +
+# the Supabase INSERT webhook (see docs/admin-setup.md), so keeping it out of the
+# deploy costs nothing now. Also serves as an isolation test for the Vercel
+# function-build failure: if the deploy goes green with this excluded, this file
+# is implicated; if it still fails, the cause is elsewhere (config/account). Its
+# code + test stay in the repo; re-include this line when activating the feature.
+/api/notify-lead.mjs
+
 # Dev-only trees the build command and functions never read. tools/ and data/
 # are deliberately NOT excluded — `node tools/build.mjs` (buildCommand) and
 # save-trip.mjs's includeFiles: "tools/**" both need them at build time.
