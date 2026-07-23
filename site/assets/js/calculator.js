@@ -139,8 +139,9 @@ class TripCalculator {
     this.el.segOpts.forEach(opt => {
       opt.addEventListener('click', () => {
         this.state.room = opt.dataset.room;
-        this.el.segOpts.forEach(o => o.classList.remove('active'));
+        this.el.segOpts.forEach(o => { o.classList.remove('active'); o.setAttribute('aria-pressed', 'false'); });
         opt.classList.add('active');
+        opt.setAttribute('aria-pressed', 'true');
         this.render();
       });
     });
@@ -619,8 +620,15 @@ function initFAQ() {
       const item = btn.closest('.faq-item');
       if (!item) return;
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        const b = i.querySelector('.faq-q');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 }

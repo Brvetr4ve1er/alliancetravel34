@@ -22,7 +22,7 @@
         <div class="calc-form-group">
           <label class="calc-form-label"{{k.calcRoomLabel}}>{{calcUi.roomLabel}}</label>
           <div class="segmented"{{k.segmentedAttrs}}>
-{{#calcUi.roomOptions}}            <button class="seg-opt{{?.active}} active{{/?}}" data-room="{{.room}}"{{.k}}>{{.label}}</button>
+{{#calcUi.roomOptions}}            <button class="seg-opt{{?.active}} active{{/?}}" data-room="{{.room}}" aria-pressed="{{?.active}}true{{:}}false{{/?}}"{{.k}}>{{.label}}</button>
 {{/calcUi.roomOptions}}          </div>
         </div>
         <div class="calc-form-group">

@@ -92,7 +92,7 @@
     "calcSelectLabel": " data-i18n=\"vnCalcFormuleLabel\"",
     "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
     "calcRoomLabel": " data-i18n=\"vnCalcRoomLabel\"",
-    "segmentedAttrs": "",
+    "segmentedAttrs": " role=\"group\" aria-label=\"Type de chambre\"",
     "calcTravLabel": " data-i18n=\"vnCalcTravellersLabel\"",
     "breakdownAttrs": "",
     "recap": " data-i18n=\"vnRecap\"",

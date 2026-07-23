@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tunisie — Alliance Travel · 2026",
-    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 36.000 DA.",
+    "description": "Tunisie balnéaire en bus. 6 nuits demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs hebdo depuis Alger et Oran. Dès 36.000 DA.",
     "ogTitle": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
     "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
     "themeColor": "#19B5B0",
@@ -93,7 +93,7 @@
     "calcSelectLabel": " data-i18n=\"tnCalcHotelLabel\"",
     "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
     "calcRoomLabel": " data-i18n=\"tnCalcRoomLabel\"",
-    "segmentedAttrs": "",
+    "segmentedAttrs": " role=\"group\" aria-label=\"Type de chambre\"",
     "calcTravLabel": " data-i18n=\"tnCalcTravelersLabel\"",
     "breakdownAttrs": "",
     "recap": " data-i18n=\"tnRecap\"",
