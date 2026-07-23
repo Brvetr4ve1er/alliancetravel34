@@ -1065,13 +1065,34 @@
     return key.split('.').reduce((o, k) => (o && k in o) ? o[k] : null, dict);
   }
 
+  // Per-language pages live under /en/… or /ar/… (French is unprefixed). When
+  // the visitor is *on* such a URL, that language is authoritative — the page
+  // was server-rendered in it — so it must win over any stored/browser
+  // preference, otherwise a French-preferring visitor landing on /en/… would
+  // see it flip back to French on load.
+  function urlPrefixLang() {
+    const m = (location.pathname || '').match(/^\/(en|ar)\//);
+    return m ? m[1] : null;
+  }
+
   function getLang() {
+    const url = urlPrefixLang();
+    if (url) return url;
     let stored = null;
     try { stored = localStorage.getItem(STORAGE_KEY); } catch (_) { /* private mode */ }
     if (stored && SUPPORTED.includes(stored)) return stored;
     const nav = (navigator.language || DEFAULT_LANG).slice(0, 2).toLowerCase();
     if (SUPPORTED.includes(nav)) return nav;
     return DEFAULT_LANG;
+  }
+
+  // The same-slug URL for a language variant, derived from the current path:
+  // /en/azerbaidjan/ ⇄ /azerbaidjan/ ⇄ /ar/azerbaidjan/.
+  function siblingUrl(lang) {
+    const p = location.pathname || '/';
+    const m = p.match(/^\/(?:en|ar)(\/.*)$/);
+    const base = m ? m[1] : p;
+    return lang === DEFAULT_LANG ? base : '/' + lang + base;
   }
 
   function persistLang(lang) {
@@ -1275,8 +1296,19 @@
 
   function setLang(lang) {
     if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
-    if (lang === 'ar') ensureArabicFont();
     persistLang(lang);
+    // If this trip has a real server-rendered page for the chosen language,
+    // go to it (each language is its own indexable URL) instead of swapping
+    // text in place — which also avoids treating the current page's server
+    // language as the French baseline. Falls back to the in-place overlay for
+    // languages this trip hasn't published a URL for.
+    const urls = (typeof window !== 'undefined' && Array.isArray(window.AL_TRIP_LANGS)) ? window.AL_TRIP_LANGS : null;
+    const here = urlPrefixLang() || DEFAULT_LANG;
+    if (urls && urls.includes(lang) && lang !== here) {
+      location.assign(siblingUrl(lang));
+      return;
+    }
+    if (lang === 'ar') ensureArabicFont();
     setHtmlAttrs(lang);
     translate(lang);
     updateMeta(lang);
@@ -1300,7 +1332,11 @@
     setHtmlAttrs(lang);               // pre-set ASAP (prevents flash)
     if (lang === 'ar') ensureArabicFont();
     buildSwitcher();
-    translate(lang);
+    // On a /en/ or /ar/ page the server already rendered this language, so
+    // re-translating on load would be redundant and would capture the current
+    // (already-translated) DOM as the French baseline. Skip it; late-injected
+    // nodes still get localized via window.alTranslate.
+    if (!urlPrefixLang()) translate(lang);
     updateMeta(lang);
     reflectActive(lang);
   }

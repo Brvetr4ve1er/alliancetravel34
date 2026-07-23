@@ -72,8 +72,18 @@ function replaceHreflang(html, slug, langs) {
   return html.replace(current, hreflangCluster(slug, langs));
 }
 
+// Tells the client which languages this trip publishes as real URLs, so the
+// language switcher navigates between them (rather than swapping text in place).
+// Only emitted for multi-language trips, so single-language pages are untouched.
+function injectTripLangs(html, langs) {
+  const tag = `<script>window.AL_TRIP_LANGS=${JSON.stringify(langs)};</script>\n`;
+  const i = html.indexOf("</head>");
+  if (i === -1) throw new Error("langpage: </head> not found — head.tpl changed?");
+  return html.slice(0, i) + tag + html.slice(i);
+}
+
 export function injectHreflang(html, { slug, langs }) {
-  return replaceHreflang(html, slug, langs);
+  return injectTripLangs(replaceHreflang(html, slug, langs), langs);
 }
 
 /* ------------------------------------------------------- path depth fix */
@@ -174,6 +184,7 @@ export async function localizeVariant(html, { lang, slug, langs, data, globalT }
   const resolve = makeResolve(lang, data, globalT);
   let out = localizeHtml(html, resolve); // body + attribute data-i18n swap
   out = localizeHead(out, { lang, slug, data, globalT });
+  out = injectTripLangs(out, langs);
   out = rootAbsolutePaths(out);
   return out;
 }
