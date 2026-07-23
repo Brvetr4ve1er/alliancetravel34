@@ -1,12 +1,26 @@
 # I18N + SEO Strategy
 
-**Owner:** Agent 4 (v22) · revisited 2026-05-25. **Status:** REVISED — runtime engine ships, SEO posture unchanged.
+**Owner:** Agent 4 (v22) · revisited 2026-05-25 · **superseded 2026-07-23.** **Status:** MOVING TO SUBPATH MODEL — per-language URLs now render; Azerbaijan/EN is the first live variant.
 
-## Current decision (2026-05-25)
+## Current decision (2026-07-23) — Strategy (a), rolling out per trip
+
+We are moving from the FR-canonical/client-only posture below to **real per-language URLs** (Strategy (a) subpath model), because the EN/AR translations already exist and were earning zero organic visibility while they lived only client-side. Search engines don't run the language switcher, so they never saw them.
+
+How it works now:
+- **French stays unprefixed** (`/azerbaidjan/`) — already canonical and indexed, zero redirect risk.
+- **Other languages nest** under `/en/<slug>/` and `/ar/<slug>/`, server-rendered at build time from each trip's existing `i18n` block (see `tools/templates/langpage.mjs` + `localize.mjs`).
+- Each variant self-canonicalizes and the whole cluster carries reciprocal `hreflang` (fr / en / ar / x-default), generated from one manifest list so reciprocity holds by construction.
+- The client switcher now **navigates between these URLs** when they exist (each language is its own indexable page); for a trip that hasn't published a variant it falls back to the old in-place overlay.
+
+**Rollout is per trip, gated by `data/build-manifest.json` `langs`.** A trip with only `["fr"]` renders byte-for-byte as before — never passed through the localizer — so the change is provably regression-free until a language is switched on. Enable a language for a trip only once (a) its `i18n` block is complete and (b) its EN/AR SEO metadata (title/description) exists. First live: **Azerbaijan / EN** (`/en/azerbaidjan/`, enabled 2026-07-23). Istanbul is intentionally still French-only — its `i18n` dictionary is thin (~9 keys) and needs backfilling first.
+
+---
+
+## Superseded decision (2026-05-25) — kept for history
 
 Ship the runtime language switcher (`site/assets/js/i18n.js`) on every page. SEO posture stays Strategy (c) — FR canonical with `hreflang="x-default"` — for now. The switcher is a **user-facing UX surface**, not an SEO surface.
 
-This is a strict layer split:
+This was a strict layer split:
 - **Crawlers see:** one FR page per URL, declared canonical via `hreflang="x-default"`. No EN/AR subpath, no `?lang=` variants, no duplicate URLs.
 - **Visitors see:** a 3-button switcher pill in the navbar that swaps `<html lang>`, `<html dir>` (RTL for AR), lazy-loads Cairo + Tajawal on first AR pick, and persists choice in `localStorage` so it survives page navigation.
 
