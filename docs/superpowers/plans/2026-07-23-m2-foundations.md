@@ -224,28 +224,62 @@ Every existing EN/AR translation currently reads as `stale`, because no hash was
 in fact correct — they were written against today's French. Stamp them once so the warning reflects
 reality and the owner's first edit produces a *meaningful* stale mark.
 
-- [ ] **Step 1:** For each trip, for each key present in `i18n.en` / `i18n.ar` whose binding exists in
+- [x] **Step 1:** For each trip, for each key present in `i18n.en` / `i18n.ar` whose binding exists in
   the manifest, write `i18nHash.en[key] = frHash(currentFrench)` (same for `ar`).
-- [ ] **Step 2: Verify** — `node tools/build.mjs --check` warnings drop to *missing-only* (istanbul's 16,
-  and any genuinely untranslated keys elsewhere); zero `stale`.
-- [ ] **Step 3: Commit** — `chore(i18n): stamp existing translations against current French`
+- [x] **Step 2: Verify** — `node tools/build.mjs --check` warnings drop to *missing-only*; zero `stale`.
+  **Result:** ~1200 → 15 warnings. 1153 EN + 1153 AR stamped across 7 trips; 19 orphans deliberately
+  left unstamped so they keep surfacing.
+- [x] **Step 3: Commit** — `feat(i18n): stamp today's translations as the freshness baseline` (40d784e)
+
+**Found while verifying:** the staleness proof reported a warning the manifest contradicted. Cause was
+in the *gate*, not the stamps — `checkI18n` read the rendered page off disk, which is written later in
+the same script, so it compared today's French against yesterday's page and reported "fresh" exactly
+when something went stale. Fixed in 40befc8 by rendering into memory before the gates.
 
 ---
 
-### Task 6: Istanbul backfill
+### Task 6: Istanbul is a *binding* gap, not a translation gap
 
-**Files:** Modify `data/trips/istanbul.json`
+**Files:** Modify `data/trips/istanbul.json`; modify `tools/check-i18n.mjs` (unbindable-page warning)
 
-Istanbul renders 24 bindings and translates 8 (33%). English and Arabic visitors read French.
+**This task was rewritten after T5 measured the actual numbers.** The original draft said istanbul
+"renders 24 bindings and translates 8 (33%)" and prescribed translating the missing 16. Both figures
+were wrong, and the prescription would have produced translations that never appear on screen.
 
-- [ ] **Step 1:** From the manifest, list istanbul's `missing` keys with their French text.
-- [ ] **Step 2:** Translate each into EN and AR, matching the register used by the other six trips
-  (read vietnam's `i18n.en`/`i18n.ar` for tone). Preserve any inline markup in `-html` keys exactly.
-- [ ] **Step 3:** Write into `i18n.en` / `i18n.ar` plus matching `i18nHash` entries.
-- [ ] **Step 4: Verify** — manifest coverage for istanbul reaches parity with the other trips; rebuild;
-  load `/istanbul/` and switch to AR, confirming the page is genuinely Arabic and numerals are not
-  reordered.
-- [ ] **Step 5: Commit** — `fix(i18n): istanbul was 33% translated — English and Arabic read French`
+Measured after stamping:
+
+| trip | trip bindings | translated | coverage |
+|---|---|---|---|
+| vietnam | 207 | 207 | 100% |
+| egypte | 197 | 197 | 100% |
+| kuala-lumpur | 192 | 192 | 100% |
+| tunisie | 186 | 186 | 100% |
+| azerbaidjan | 185 | 183 | 99% |
+| bali | 183 | 181 | 99% |
+| **istanbul** | **7** | **7** | **100%** |
+
+Istanbul binds 7 elements — all in the hero — and all 7 are translated. Its 71-of-73 empty `k.*`
+slots are the cause: those slots inject the `data-i18n` attribute fragments, so an empty slot renders
+an element the runtime cannot see. Adding EN/AR strings changes nothing on screen; the attributes
+have to exist first.
+
+This also exposes a flaw in the coverage figure: **it reports 100% for the least translated page in
+the site**, because it measures translated-over-bound and istanbul bounds almost nothing. Coverage
+alone must never be shown to the owner without the binding count beside it (see T8 Step 5).
+
+- [ ] **Step 1:** Add a build warning for unbindable pages — when a trip's filled `k.*` slots fall far
+  below its peers, say so explicitly ("71 of 73 i18n slots empty — this page cannot be translated").
+  This is the signal that would have caught istanbul, and it is what makes this task verifiable.
+- [ ] **Step 2:** Fill istanbul's 71 empty `k.*` slots, using vietnam (54 of 72 filled) as the
+  reference for which slots map to which elements and for the key-naming convention (`ist` prefix,
+  per `keyPrefix`).
+- [ ] **Step 3: Verify bindings first** — rebuild; istanbul's trip-binding count rises from 7 toward
+  the ~180–200 band. Only then do the missing translations become real work.
+- [ ] **Step 4:** Translate the newly-bound keys into EN and AR, matching the register of the other
+  six trips. Preserve inline markup in `-html` keys exactly. Stamp `i18nHash` to match.
+- [ ] **Step 5: Verify** — load `/istanbul/`, switch to EN then AR, and confirm the body copy actually
+  changes language (not just the nav pill) and that Arabic numerals are not reordered.
+- [ ] **Step 6: Commit** — `fix(i18n): istanbul rendered 7 translatable elements, not 200`
 
 ---
 
@@ -273,7 +307,9 @@ Istanbul renders 24 bindings and translates 8 (33%). English and Arabic visitors
 - [ ] **Step 3:** On save, write `i18n.en[key]` / `i18n.ar[key]` and re-stamp `i18nHash` for languages
   the owner touched; leave stale marks for ones they did not.
 - [ ] **Step 4:** Publish summary line states what remains stale; it warns, never blocks.
-- [ ] **Step 5:** Page shows its coverage figure from the manifest.
+- [ ] **Step 5:** Page shows its coverage figure from the manifest — **always with the binding count
+  beside it** ("100% · 7 éléments traduisibles"). Coverage alone reads as reassuring on a page that
+  binds nothing; istanbul scored 100% while being the least translated page in the site.
 - [ ] **Step 6: Verify** — parity test green, FIELDS gate `GATE OK`, `build --check` OK, and a manual
   edit round-trip in the browser.
 - [ ] **Step 7: Commit** — `feat(admin): edit French, English and Arabic together`

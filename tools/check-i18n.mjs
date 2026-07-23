@@ -167,6 +167,37 @@ export function checkI18n(root, htmlBySlug = {}) {
     }
   }
 
+  // A page that binds almost nothing scores 100 % coverage, because coverage is
+  // translated-over-bound. Istanbul bound 7 elements against 183–207 on every
+  // other trip and reported a perfect score while being the least translated
+  // page on the site — the translations were fine, the `data-i18n` attributes
+  // were never rendered, so the runtime had nothing to swap.
+  //
+  // The comparison is against the other trips rather than a fixed threshold: no
+  // constant survives a redesign, whereas six sibling pages built from the same
+  // templates are a fair expectation. The limitation is real and accepted — if
+  // every trip lost its bindings at once, nothing here would fire. Coverage is
+  // never reported to the owner without this count beside it.
+  {
+    const counts = Object.entries(manifests).map(([slug, m]) => [
+      slug,
+      Object.values(m.keys).filter((k) => k.scope === "trip").length,
+    ]);
+    if (counts.length >= 3) {
+      const sorted = counts.map(([, n]) => n).sort((a, b) => a - b);
+      const median = sorted[Math.floor(sorted.length / 2)];
+      for (const [slug, n] of counts) {
+        if (n < median / 2) {
+          warnings.push({
+            file: `data/trips/${slug}.json`,
+            msg: `seulement ${n} élément(s) traduisible(s) sur la page (médiane ${median}) — ` +
+                 `les attributs data-i18n ne sont pas rendus, la traduction n'aura aucun effet visible`,
+          });
+        }
+      }
+    }
+  }
+
   return { errors, warnings, manifests };
 }
 
