@@ -111,8 +111,54 @@ The **Leads** tab shows everyone who submitted the booking form: name, phone, ci
 
 ---
 
+## Part C — Instant email alerts for new leads (optional, off by default)
+
+By default the dashboard collects leads silently — you see them when you open the **Leads** tab. This optional feature emails you the moment a lead lands, so none sits unseen. **It is dormant until you complete the steps below.** The endpoint `/api/notify-lead` ships with the site but sends nothing until these environment variables are set — with them unset it is a deliberate no-op (a call to it is acknowledged and ignored, no email attempted). Setting them up does **not** change anything the visitor sees, and it does not touch the existing lead capture.
+
+### C1. Create a Resend account and verify your sending domain
+1. Sign up at **resend.com** (free tier is enough for lead alerts).
+2. **Domains** → **Add Domain** → enter **`alliance-travel.dz`**.
+3. Resend shows a few DNS records (SPF / DKIM, and optionally DMARC). Add them at whoever hosts the `alliance-travel.dz` DNS, then click **Verify**. Until the domain is *Verified*, mail sent "from" it will be rejected.
+4. **API Keys** → **Create API Key** (Sending access is enough). Copy it — it starts with `re_…`. You'll paste it as `RESEND_API_KEY` below.
+
+*(Resend is not required — Brevo, SendGrid or Postmark work the same way. Switching providers is a small code change to the single request in `api/notify-lead.mjs`; the env vars and the webhook stay the same.)*
+
+### C2. Set the environment variables in Vercel
+Vercel → your project → **Settings** → **Environment Variables** → add to **Production** *and* **Preview**:
+
+| Name | Value |
+|---|---|
+| `RESEND_API_KEY` | the `re_…` key from step C1 |
+| `OWNER_NOTIFY_EMAIL` | the inbox that should receive the alerts (e.g. your Gmail) |
+| `LEAD_NOTIFY_SECRET` | a long random string you invent — a shared password between Supabase and this endpoint. Generate one, e.g. `openssl rand -hex 32`, and keep it secret. |
+| `LEAD_NOTIFY_FROM` | *(optional)* the "from" address; defaults to `notifications@alliance-travel.dz`. Must be on the domain you verified in C1. |
+
+> **All three of `RESEND_API_KEY`, `OWNER_NOTIFY_EMAIL` and `LEAD_NOTIFY_SECRET` are required to activate alerts.** With `LEAD_NOTIFY_SECRET` unset the endpoint rejects every call; with `RESEND_API_KEY` or `OWNER_NOTIFY_EMAIL` unset it stays a silent no-op. Redeploy after adding them.
+
+### C3. Create the Supabase Database Webhook
+This is what actually calls the endpoint when a lead is inserted.
+
+Supabase → your project → **Database** → **Webhooks** → **Create a new hook**:
+- **Name:** `lead-notify` (any name)
+- **Table:** `public.leads`
+- **Events:** tick **Insert** only
+- **Type:** *HTTP Request*
+- **Method:** `POST`
+- **URL:** `https://<your-site>/api/notify-lead`
+- **HTTP Headers:** add one header — **`x-notify-secret`** with the value = the exact `LEAD_NOTIFY_SECRET` you set in C2.
+
+Save. Supabase now POSTs `{ type:'INSERT', table:'leads', record:{…} }` to the endpoint on every new lead; the endpoint checks the secret header, formats the lead into a short French email (name, phone, city, trip, hotel, dates, party size, total in DA, channel, plus a one-tap **wa.me** WhatsApp reply link) and sends it through Resend to `OWNER_NOTIFY_EMAIL`.
+
+### C4. Test it
+Submit the booking form on your live site (or insert a test row into `leads`). Within a few seconds you should get an email. If not, see the notes below — nothing about this affects the site itself, so a misconfiguration here only means "no alert email", never a broken page.
+
+**Security note:** the endpoint is public (a Supabase webhook can't log in), so the `x-notify-secret` header is the only thing that stops a stranger from POSTing fake alerts to your inbox. Keep `LEAD_NOTIFY_SECRET` private and rotate it (change it in both Vercel and the Supabase webhook) if it ever leaks.
+
+---
+
 ## If something doesn't work
 - **"Ce compte n'est pas autorisé."** → your email isn't in `ADMIN_EMAILS` (Part A step 3), or the deploy predates adding it.
 - **Login link does nothing** → the `/admin/` URL isn't in Supabase Redirect URLs (Part A step 4).
 - **Leads tab is empty but you have leads** → your email isn't in `lead_readers` (Part A step 2).
 - **Edits save but the live page never changes** → `GITHUB_BRANCH` doesn't match Vercel's production branch (Part A step 3).
+- **No email alert for a new lead** → check, in order: all three of `RESEND_API_KEY` / `OWNER_NOTIFY_EMAIL` / `LEAD_NOTIFY_SECRET` are set in Vercel and the site was redeployed (Part C2); the Supabase webhook's `x-notify-secret` header exactly matches `LEAD_NOTIFY_SECRET` (Part C3); the `alliance-travel.dz` domain shows *Verified* in Resend (Part C1). This never affects the site or the Leads tab — it only means no alert email was sent.
