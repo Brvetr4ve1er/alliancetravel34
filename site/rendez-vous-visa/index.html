@@ -165,6 +165,36 @@
   }
   </script>
 
+  <!-- HowTo schema — parcours réel du service Rendez-vous Visa : contact/éligibilité,
+       réservation du RDV, préparation du dossier, dépôt, suivi. Reflète les 3 niveaux
+       de prestation (#services) et les sections Contact (#visa-form) / FAQ visibles
+       ci-dessous. FR canonique, comme la FAQPage. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Comment obtenir votre rendez-vous visa avec Alliance Travel",
+    "description": "Les étapes suivies par Alliance Travel, à Bordj Bou Arreridj, pour réserver votre rendez-vous à l'ambassade ou au centre de visas, préparer votre dossier complet, déposer la demande selon les règles du consulat et suivre le dossier jusqu'à la décision.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Contactez Alliance Travel et faites vérifier votre éligibilité",
+        "text": "Écrivez sur WhatsApp, appelez ou passez dans l'une des agences de Bordj Bou Arreridj et M'Sila pour recevoir un devis personnalisé. Nous vérifions votre éligibilité et déterminons le centre de traitement (ambassade, VFS, BLS, Capago ou CVASC) selon le pays de destination.",
+        "url": "https://alliance-travel.dz/rendez-vous-visa/#visa-form" },
+      { "@type": "HowToStep", "position": 2, "name": "Réservation du rendez-vous",
+        "text": "Nous bloquons votre créneau au consulat, à VFS, BLS, Capago ou CVASC selon le pays demandé. Vous recevez la confirmation du rendez-vous par WhatsApp, avec la liste des justificatifs à imprimer.",
+        "url": "https://alliance-travel.dz/rendez-vous-visa/#services" },
+      { "@type": "HowToStep", "position": 3, "name": "Préparation complète du dossier",
+        "text": "Nous relisons point par point chaque document : attestations, formulaires, traductions, photos aux normes et lettres d'invitation. Vous arrivez au guichet avec un dossier propre et complet.",
+        "url": "https://alliance-travel.dz/rendez-vous-visa/#services" },
+      { "@type": "HowToStep", "position": 4, "name": "Dépôt du dossier",
+        "text": "Là où le consulat l'autorise, nous déposons votre dossier au guichet à votre place. Lorsque la présence du demandeur est exigée (biométrie ou entretien), vous vous présentez en personne pour finaliser le dépôt.",
+        "url": "https://alliance-travel.dz/rendez-vous-visa/#services" },
+      { "@type": "HowToStep", "position": 5, "name": "Suivi du dossier jusqu'à la décision",
+        "text": "Nous suivons l'état de votre dossier via le site officiel du centre de visas ou de l'ambassade et vous tenons informé. La décision d'accorder ou de refuser le visa relève exclusivement de l'ambassade ou du consulat.",
+        "url": "https://alliance-travel.dz/rendez-vous-visa/#faq" }
+    ]
+  }
+  </script>
+
   <!-- FAQPage schema — mirrors the 21 visible faq-items rendered below.
        Each answer is the FR baseline; client-side i18n switches the rendered
        copy but Google indexes only the canonical FR. -->
