@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { validateTrip } from "./validate-trip.mjs";
 import { checkAdminFields } from "./check-admin-fields.mjs";
 import { checkValueGraph } from "./check-value-graph.mjs";
+import { checkI18n, writeManifest } from "./check-i18n.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
@@ -108,6 +109,20 @@ for (const e of checkAdminFields(ROOT)) errors.push(e);
   const vg = checkValueGraph(ROOT);
   for (const e of vg.errors) errors.push(e);
   for (const w of vg.warnings) warnings.push(w);
+}
+
+// Translation contract. Errors are the conditions that genuinely corrupt a
+// translation: one key bound to two different French strings, a page-local key
+// shadowing the shared dictionary, or an empty French source. Coverage and
+// staleness are warnings by design — the owner chose warn-and-allow, so fixing
+// one French price is never gated on producing three languages.
+// Also emits data/i18n-manifest.json, which the admin reads to show FR/EN/AR
+// side by side. Never written in --check mode: --check must not touch the tree.
+{
+  const i18n = checkI18n(ROOT);
+  for (const e of i18n.errors) errors.push(e);
+  for (const w of i18n.warnings) warnings.push(w);
+  if (!CHECK_ONLY) writeManifest(ROOT, i18n.manifests);
 }
 
 // ── Blog: load + validate (rendered after the error gate) ───────────
