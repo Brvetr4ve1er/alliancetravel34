@@ -6299,10 +6299,40 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   text-align: center;
   padding: var(--s7, 32px);
   background: linear-gradient(135deg, var(--bg-2, #0f1218), var(--bg, #0a0c12));
+  overflow: hidden;
   z-index: 1;
   transition: opacity var(--t-base) ease;
 }
-.tmap-fallback > * { max-width: 480px; }
+/* Shimmer sweep — animated skeleton band, same "moving highlight"
+   technique as the admin .skel loader, re-tinted with the public
+   site's own surface tokens instead of admin's cream/ground palette. */
+.tmap-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+    transparent 30%,
+    rgba(255, 255, 255, .05) 45%,
+    rgba(255, 255, 255, .10) 50%,
+    rgba(255, 255, 255, .05) 55%,
+    transparent 70%);
+  background-size: 200% 100%;
+  animation: tmap-shimmer 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+:root[data-theme="light"] .tmap-fallback::before {
+  background: linear-gradient(100deg,
+    transparent 30%,
+    rgba(0, 44, 81, .04) 45%,
+    rgba(0, 44, 81, .08) 50%,
+    rgba(0, 44, 81, .04) 55%,
+    transparent 70%);
+}
+@keyframes tmap-shimmer {
+  0%   { background-position: 160% 0; }
+  100% { background-position: -60% 0; }
+}
+.tmap-fallback > * { max-width: 480px; position: relative; z-index: 1; }
 .tmap-fallback__title {
   font-size: 1.125rem;
   font-weight: 700;
@@ -6315,8 +6345,36 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   line-height: 1.55;
   margin: 0;
 }
+/* Three pulsing dots (hotel/site/tour legend colors) — a small
+   skeleton cue that markers are about to populate the map. */
+.tmap-skel-dots {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 var(--s3, 16px);
+}
+.tmap-skel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: .35;
+  animation: tmap-skel-pulse 1.4s ease-in-out infinite;
+}
+.tmap-skel-dot--hotel { background: var(--mint); }
+.tmap-skel-dot--site  { background: var(--warn); animation-delay: .16s; }
+.tmap-skel-dot--tour  { background: #3aa3a8; animation-delay: .32s; }
+@keyframes tmap-skel-pulse {
+  0%, 100% { opacity: .3; transform: scale(.8); }
+  50%      { opacity: 1;  transform: scale(1.15); }
+}
 .trip-map--ready .tmap-fallback { opacity: 0; pointer-events: none; }
 .trip-map--fallback .tmap-fallback { opacity: 1 !important; pointer-events: auto !important; }
+@media (prefers-reduced-motion: reduce) {
+  .tmap-fallback::before { animation: none; opacity: .5; }
+  .tmap-skel-dot { animation: none; opacity: .4; transform: none; }
+}
 
 /* ─── Section wrapper around the map ───────────────────────── */
 .trip-map-section {

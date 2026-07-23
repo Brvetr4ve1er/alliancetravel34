@@ -7,6 +7,11 @@
     </div>
     <div id="trip-map" role="img" aria-label="{{tripMap.ariaLabel}}">
       <div class="tmap-fallback">
+        <div class="tmap-skel-dots" aria-hidden="true">
+          <span class="tmap-skel-dot tmap-skel-dot--hotel"></span>
+          <span class="tmap-skel-dot tmap-skel-dot--site"></span>
+          <span class="tmap-skel-dot tmap-skel-dot--tour"></span>
+        </div>
         <p class="tmap-fallback__title"{{k.mapLoading}}>Chargement de la carte…</p>
         <p class="tmap-fallback__sub">{{tripMap.subFallback}}</p>
       </div>
