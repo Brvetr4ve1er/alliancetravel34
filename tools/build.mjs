@@ -19,6 +19,7 @@ import { resolve, dirname, join, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validateTrip } from "./validate-trip.mjs";
 import { checkAdminFields } from "./check-admin-fields.mjs";
+import { checkValueGraph } from "./check-value-graph.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
@@ -99,6 +100,15 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
 // Admin form fields must address data the templates actually render, or the
 // owner edits them to no effect. Caught here because nothing at runtime can.
 for (const e of checkAdminFields(ROOT)) errors.push(e);
+
+// A price is stored in up to 7 places per trip. If the advertised copies stop
+// agreeing with the calculator they derive from, the page contradicts itself —
+// and that reaches Google. Fail the build rather than ship it.
+{
+  const vg = checkValueGraph(ROOT);
+  for (const e of vg.errors) errors.push(e);
+  for (const w of vg.warnings) warnings.push(w);
+}
 
 // ── Blog: load + validate (rendered after the error gate) ───────────
 const { loadPosts, renderPost, renderIndex } = await import(pathToFileURL(join(ROOT, "tools", "blog.mjs")).href);
