@@ -1,8 +1,12 @@
 // site/admin/accueil.js — the "how is my business doing" screen.
 // All dynamic values land via textContent (events/leads are untrusted input).
 import { t, fmt, applyI18n } from "./i18n.js";
+import { icon } from "./icons.js";
+import { emptyState } from "./illus.js";
+import { areaHead, cardHeading, help } from "./ui.js";
 
 const $ = (id) => document.getElementById(id);
+const KPI_ICON = { "kpi.visits": "eye", "kpi.clicks": "whatsapp", "kpi.leads": "inbox" };
 let DATA = null; // { daily: [], leads: [], leadCount7: n, leadCountPrev: n }
 
 const iso = (d) => d.toISOString().slice(0, 10);
@@ -44,10 +48,16 @@ function ago(ts) {
 }
 
 function kpiTile(labelKey, value, prev, breakdown, emptyKey) {
-  const tile = document.createElement("div"); tile.className = "kpi";
+  // A KPI is a button (keyboard-operable): tapping it toggles the breakdown.
+  const tile = document.createElement("button"); tile.type = "button";
+  tile.className = "kpi" + (labelKey === "kpi.leads" ? " kpi--gold" : "");
+  const head = document.createElement("div"); head.className = "kpi__head";
+  const ib = document.createElement("span"); ib.className = "kpi__icon";
+  ib.append(icon(KPI_ICON[labelKey] || "chart", { size: 20 }));
   const h = document.createElement("h3"); h.textContent = t(labelKey);
+  head.append(ib, h);
   const n = document.createElement("div"); n.className = "n ltr"; n.textContent = String(value);
-  tile.append(h, n);
+  tile.append(head, n);
   if (value === 0 && prev === 0) {
     const e = document.createElement("div"); e.className = "bd"; e.textContent = t(emptyKey);
     tile.appendChild(e);
@@ -93,9 +103,24 @@ function leadCard(r) {
   return card;
 }
 
+function funnelLegend() {
+  const l = document.createElement("div"); l.className = "funnel-legend";
+  for (const [cls, key] of [["f1", "funnel.legend.visits"], ["f2", "funnel.legend.clicks"], ["f3", "funnel.legend.leads"]]) {
+    const s = document.createElement("span");
+    const sw = document.createElement("i"); sw.className = cls;
+    const tx = document.createElement("span"); tx.textContent = t(key);
+    s.append(sw, tx); l.appendChild(s);
+  }
+  return l;
+}
+
 function render() {
   const c = $("area-accueil");
   c.replaceChildren();
+  c.appendChild(areaHead("home", "nav.home", "home.intro"));
+  // app.js owns the first-run card (it holds the dismissal state); Accueil just
+  // offers the slot, so neither file needs to know the other's internals.
+  document.dispatchEvent(new CustomEvent("admin:onboard-slot", { detail: c }));
   const { d7, d14 } = windows();
   const v7 = sums(DATA.daily, "view", d7), vPrev = sums(DATA.daily, "view", d14, d7);
   const c7 = sums(DATA.daily, "wa_click", d7), cPrev = sums(DATA.daily, "wa_click", d14, d7);
@@ -117,27 +142,37 @@ function render() {
     bar.append(f1, f2, f3);
     const cap = document.createElement("p"); cap.className = "msg";
     cap.textContent = fmt("funnel.caption", { v: v7, c: c7, l: DATA.leadCount7 });
-    card.append(bar, cap); c.appendChild(card);
+    card.append(bar, funnelLegend(), cap); c.appendChild(card);
   }
 
   const latest = document.createElement("div"); latest.className = "card";
-  const h = document.createElement("h2"); h.textContent = t("home.latest"); latest.appendChild(h);
-  if (!DATA.leads.length) { const p = document.createElement("p"); p.className = "msg"; p.textContent = t("empty.leads"); latest.appendChild(p); }
-  else for (const r of DATA.leads) latest.appendChild(leadCard(r));
+  latest.appendChild(cardHeading("inbox", "home.latest"));
+  if (!DATA.leads.length) {
+    latest.appendChild(emptyState("leads", { title: t("empty.leads.title"), body: t("empty.leads") }));
+  } else for (const r of DATA.leads) latest.appendChild(leadCard(r));
   c.appendChild(latest);
 
   const st = window.AT_ADMIN.status;
   const sc = document.createElement("div"); sc.className = "card";
-  const sh = document.createElement("h2"); sh.textContent = t("home.status"); sc.appendChild(sh);
-  const line = document.createElement("p"); line.className = "msg";
+  sc.appendChild(cardHeading("globe", "home.status", "help.status"));
   if (st && st.github && st.lastPublish) {
-    line.textContent = `${t("status.online")} · ${t("status.lastpub")}: ${new Date(st.lastPublish.date).toLocaleString(document.documentElement.lang)} ${t("status.by")} ${st.lastPublish.author}`;
+    const line = document.createElement("p"); line.className = "msg ok";
+    line.append(icon("check", { size: 18 }));
+    const tx = document.createElement("span");
+    tx.textContent = `${t("status.online")} · ${t("status.lastpub")}: ${new Date(st.lastPublish.date).toLocaleString(document.documentElement.lang)} ${t("status.by")} ${st.lastPublish.author}`;
+    line.append(tx); sc.appendChild(line);
   } else if (st && !st.github) {
-    line.className = "banner"; line.textContent = t("status.nogithub");
+    const line = document.createElement("p"); line.className = "banner";
+    line.append(icon("alert", { size: 18 }));
+    const tx = document.createElement("span"); tx.textContent = t("status.nogithub");
+    line.append(tx); sc.appendChild(line);
   } else {
-    line.textContent = t("status.online");
+    const line = document.createElement("p"); line.className = "msg ok";
+    line.append(icon("check", { size: 18 }));
+    const tx = document.createElement("span"); tx.textContent = t("status.online");
+    line.append(tx); sc.appendChild(line);
   }
-  sc.appendChild(line); c.appendChild(sc);
+  c.appendChild(sc);
 }
 
 async function load() {

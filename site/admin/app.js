@@ -1,6 +1,8 @@
 // site/admin/app.js — Supabase magic-link auth, admin gate via /api/me, tab shell.
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 import { t, fmt, getLang, setLang, applyI18n } from "./i18n.js";
+import { icon } from "./icons.js";
+import { areaHead } from "./ui.js";
 
 const CFG = window.AT_LEADS || {};
 const supabase = createClient(CFG.url, CFG.anonKey);
@@ -211,10 +213,17 @@ document.addEventListener("admin:area", async (e) => {
       <button id="rg-logout" class="btn btn--ghost btn--block" data-i18n="settings.logout"></button>
     </div>
     <div class="card"><h2 data-i18n="settings.config"></h2><div class="cfg" id="cfg"></div></div>`;
+  c.prepend(areaHead("settings", "nav.settings", "reglages.intro"));
   applyI18n(c);
+  c.querySelector("#rg-pw").prepend(icon("key", { size: 17 }));
+  c.querySelector("#rg-logout").prepend(icon("logout", { size: 17 }));
   const mark = () => {
-    c.querySelector("#lang-fr").classList.toggle("is-on", getLang() === "fr");
-    c.querySelector("#lang-ar").classList.toggle("is-on", getLang() === "ar");
+    for (const [id, lang] of [["#lang-fr", "fr"], ["#lang-ar", "ar"]]) {
+      const b = c.querySelector(id);
+      const on = getLang() === lang;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", String(on));
+    }
   };
   mark();
   c.querySelector("#lang-fr").addEventListener("click", () => { setLang("fr"); $("lang-toggle").textContent = "عربي"; mark(); });
@@ -223,20 +232,69 @@ document.addEventListener("admin:area", async (e) => {
   c.querySelector("#rg-logout").addEventListener("click", async () => { await supabase.auth.signOut(); location.reload(); });
 
   const cfg = c.querySelector("#cfg");
-  const line = (labelKey, ok, extra) => {
+  const line = (labelKey, ok, extra, iconName) => {
     const d = document.createElement("div");
-    const l = document.createElement("span"); l.textContent = t(labelKey);
+    const l = document.createElement("span");
+    l.style.display = "inline-flex"; l.style.alignItems = "center"; l.style.gap = "8px";
+    if (iconName) l.append(icon(iconName, { size: 17 }));
+    const lt = document.createElement("span"); lt.textContent = t(labelKey); l.append(lt);
     const v = document.createElement("span");
-    v.textContent = extra ?? (ok ? t("settings.ok") : t("settings.ko"));
     v.className = ok ? "ok" : "ko";
-    if (extra != null) v.classList.add("ltr");
+    // A tick/cross carries the state for anyone who cannot resolve red vs green.
+    if (extra == null) v.append(icon(ok ? "check" : "alert", { size: 16 }));
+    const vt = document.createElement("span");
+    vt.textContent = extra ?? (ok ? t("settings.ok") : t("settings.ko"));
+    if (extra != null) vt.className = "ltr";
+    v.append(vt);
     d.append(l, v); cfg.appendChild(d);
   };
-  line("settings.supabase", true); // being here required a working /api/me
+  line("settings.supabase", true, null, "database"); // being here required a working /api/me
   const st = AT_ADMIN.status || (await window.AT_ADMIN.callApi("/api/status")).data || {};
   AT_ADMIN.status = st;
-  line("settings.github", !!st.github);
-  if (st.branch) line("settings.branch", true, st.branch);
+  line("settings.github", !!st.github, null, "send");
+  if (st.branch) line("settings.branch", true, st.branch, "branch");
+});
+
+// ── First-run orientation ────────────────────────────────────────────
+// Four areas is not self-evident to someone who has never used a dashboard.
+// Shown once on Accueil, dismissible, remembered. Not a modal: a modal on a
+// phone is a wall, and this is guidance, not a decision.
+const SEEN = "at_admin_onboarded";
+function onboardCard() {
+  const card = document.createElement("section");
+  card.className = "card onboard";
+  const h = document.createElement("h2");
+  h.append(icon("sparkles", { size: 20 }));
+  const hs = document.createElement("span"); hs.textContent = t("onboard.title"); h.append(hs);
+  const grid = document.createElement("div"); grid.className = "onboard__grid";
+  for (const [ic, titleKey, bodyKey] of [
+    ["home", "nav.home", "onboard.home"],
+    ["inbox", "nav.leads", "onboard.leads"],
+    ["file", "nav.pages", "onboard.pages"],
+    ["settings", "nav.settings", "onboard.reglages"],
+  ]) {
+    const item = document.createElement("div"); item.className = "onboard__item";
+    item.append(icon(ic, { size: 22 }));
+    const txt = document.createElement("div");
+    const b = document.createElement("b"); b.textContent = t(titleKey);
+    const s = document.createElement("span"); s.textContent = t(bodyKey);
+    txt.append(b, s); item.append(txt); grid.appendChild(item);
+  }
+  const ok = document.createElement("button");
+  ok.className = "btn btn--block";
+  ok.append(icon("check", { size: 17 }));
+  const oks = document.createElement("span"); oks.textContent = t("common.gotit"); ok.append(oks);
+  ok.addEventListener("click", () => {
+    try { localStorage.setItem(SEEN, "1"); } catch { /* private mode */ }
+    card.remove();
+  });
+  card.append(h, grid, ok);
+  return card;
+}
+document.addEventListener("admin:onboard-slot", (e) => {
+  let seen = false;
+  try { seen = localStorage.getItem(SEEN) === "1"; } catch { /* private mode */ }
+  if (!seen) e.detail.appendChild(onboardCard());
 });
 
 boot();

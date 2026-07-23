@@ -2,6 +2,9 @@
 // SECURITY: lead values come from the PUBLIC insert path (attacker-controlled).
 // Every dynamic value is set via textContent / property assignment — never innerHTML.
 import { t, fmt, applyI18n } from "./i18n.js";
+import { icon } from "./icons.js";
+import { emptyState } from "./illus.js";
+import { areaHead } from "./ui.js";
 
 const COLS = ["created_at", "status", "name", "phone", "city", "trip", "hotel", "date", "room", "adults", "kids", "total_da", "channel", "page", "notes"];
 const STATUSES = ["nouveau", "contacté", "conclu"];
@@ -31,11 +34,18 @@ function paintChip(chip, status) {
   chip.textContent = t("leads.status." + (status || "nouveau"));
 }
 
+function statusClass(status) { return "lead-card lead-card--" + (status || "nouveau"); }
+
 function leadCard(r) {
-  const card = document.createElement("div"); card.className = "lead-card";
+  const card = document.createElement("div"); card.className = statusClass(r.status);
   const top = document.createElement("div"); top.className = "top";
-  const chip = document.createElement("button"); paintChip(chip, r.status);
-  chip.addEventListener("click", (e) => { e.stopPropagation(); cycleStatus(r, chip); });
+  const chip = document.createElement("button");
+  chip.setAttribute("aria-label", t("leads.status." + (r.status || "nouveau")));
+  paintChip(chip, r.status);
+  chip.addEventListener("click", (e) => {
+    e.stopPropagation();
+    cycleStatus(r, chip).then(() => { card.className = statusClass(r.status); });
+  });
   const name = document.createElement("span"); name.className = "name"; name.textContent = r.name || "—";
   const age = document.createElement("span"); age.className = "age"; age.textContent = ago(r.created_at);
   top.append(chip, name, age);
@@ -44,12 +54,17 @@ function leadCard(r) {
     r.total_da ? Number(r.total_da).toLocaleString("fr-DZ") + " DA" : null].filter(Boolean).join(" · ");
   const actions = document.createElement("div"); actions.className = "actions";
   if (r.phone) {
-    const call = document.createElement("a"); call.className = "btn btn--ghost btn--sm ltr";
-    call.href = "tel:" + encodeURIComponent(r.phone); call.textContent = "📞 " + r.phone;
+    const call = document.createElement("a"); call.className = "btn btn--ghost btn--sm";
+    call.href = "tel:" + encodeURIComponent(r.phone);
+    call.append(icon("phone", { size: 16 }));
+    const cn = document.createElement("span"); cn.className = "ltr"; cn.textContent = r.phone;
+    call.append(cn);
     call.addEventListener("click", (e) => e.stopPropagation());
     const wa = document.createElement("a"); wa.className = "btn btn--sm";
     wa.href = "https://wa.me/" + String(r.phone).replace(/^0/, "213").replace(/\D/g, "");
-    wa.target = "_blank"; wa.rel = "noopener"; wa.textContent = t("leads.wa");
+    wa.target = "_blank"; wa.rel = "noopener";
+    wa.append(icon("whatsapp", { size: 16 }));
+    const wn = document.createElement("span"); wn.textContent = t("leads.wa"); wa.append(wn);
     wa.addEventListener("click", (e) => e.stopPropagation());
     actions.append(call, wa);
   }
@@ -96,16 +111,22 @@ function render() {
   c.innerHTML = `
     <div class="card">
       <div class="row">
-        <input id="leads-search" data-i18n-ph="leads.search" />
-        <button id="leads-csv" class="btn btn--ghost" style="flex:0" data-i18n="leads.export"></button>
+        <input id="leads-search" type="search" data-i18n-ph="leads.search" />
+        <button id="leads-csv" class="btn btn--ghost" style="flex:0"><span data-i18n="leads.export"></span></button>
       </div>
-      <div class="chiprow" id="leads-filters" style="margin-top:var(--s2)"></div>
-      <p id="leads-count" class="msg"></p>
+      <div class="chiprow" id="leads-filters" style="margin-top:var(--s3)" role="group"></div>
+      <p id="leads-count" class="msg" role="status" aria-live="polite"></p>
     </div>
     <div id="leads-list" class="area"></div>`;
+  c.prepend(areaHead("inbox", "nav.leads", "demandes.intro"));
   applyI18n(c);
+  const csv = c.querySelector("#leads-csv");
+  csv.prepend(icon("download", { size: 17 }));
+  c.querySelector("#leads-search").setAttribute("aria-label", t("leads.search"));
   const filters = c.querySelector("#leads-filters");
-  const all = document.createElement("button"); all.className = "chip is-on"; all.textContent = t("leads.all");
+  filters.setAttribute("aria-label", t("leads.all"));
+  const all = document.createElement("button"); all.className = "chip chip--all is-on"; all.textContent = t("leads.all");
+  all.setAttribute("aria-pressed", "true");
   all.addEventListener("click", () => { statusFilter = null; markFilters(all); paint(); });
   filters.appendChild(all);
   for (const s of STATUSES) {
@@ -113,7 +134,13 @@ function render() {
     b.addEventListener("click", () => { statusFilter = s; markFilters(b); paint(); });
     filters.appendChild(b);
   }
-  function markFilters(on) { filters.querySelectorAll(".chip").forEach((x) => x.classList.toggle("is-on", x === on)); }
+  function markFilters(on) {
+    filters.querySelectorAll(".chip").forEach((x) => {
+      const isOn = x === on;
+      x.classList.toggle("is-on", isOn);
+      x.setAttribute("aria-pressed", String(isOn)); // state, not just colour
+    });
+  }
   c.querySelector("#leads-search").addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); paint(); });
   c.querySelector("#leads-csv").addEventListener("click", () => exportCsv(ROWS));
   paint();
@@ -139,7 +166,14 @@ async function load() {
     b.addEventListener("click", load); c.append(p, b); return;
   }
   ROWS = data || [];
-  if (!ROWS.length) { c.innerHTML = ""; const p = document.createElement("p"); p.className = "msg"; p.textContent = t("empty.leads"); c.appendChild(p); return; }
+  if (!ROWS.length) {
+    c.innerHTML = "";
+    c.append(
+      areaHead("inbox", "nav.leads", "demandes.intro"),
+      emptyState("leads", { title: t("empty.leads.title"), body: t("empty.leads") }),
+    );
+    return;
+  }
   render();
 }
 

@@ -1,5 +1,7 @@
 // site/admin/edit-pages.js — pick a trip, edit high-value fields (+ raw JSON), save.
 import { t, applyI18n } from "./i18n.js";
+import { icon } from "./icons.js";
+import { areaHead } from "./ui.js";
 
 const SLUGS = ["istanbul", "bali", "tunisie", "vietnam", "azerbaidjan", "kuala-lumpur", "egypte"];
 let current = null; // { slug, content, sha }
@@ -36,10 +38,14 @@ const FIELDS = [
 ];
 
 function fieldInput(label, path, type, val) {
+  // Associate the label with its control. Without for/id a screen reader
+  // announces the input as unlabelled, and tapping the label does nothing —
+  // the id is derived from the JSON path, which is unique per form.
+  const id = "f-" + path.replace(/[^a-zA-Z0-9]+/g, "-");
   const input = type === "textarea"
-    ? `<textarea data-path="${path}" style="min-height:70px">${escHtml(val)}</textarea>`
-    : `<input data-path="${path}" value="${escHtml(val)}" />`;
-  return `<div class="field"><label>${escHtml(label)}</label>${input}</div>`;
+    ? `<textarea id="${id}" data-path="${path}" style="min-height:70px">${escHtml(val)}</textarea>`
+    : `<input id="${id}" data-path="${path}" value="${escHtml(val)}" />`;
+  return `<div class="field"><label for="${id}">${escHtml(label)}</label>${input}</div>`;
 }
 
 function hotelPriceInputs(content) {
@@ -61,22 +67,30 @@ function renderList(container) {
   container.innerHTML = `<div class="card"><h2 data-i18n="pages.title"></h2><div class="pagegrid" id="pg"></div></div>
     <div id="pages-banner"></div>`;
   applyI18n(container);
+  container.prepend(areaHead("file", "nav.pages", "pages.intro"));
   const grid = container.querySelector("#pg");
   for (const s of SLUGS) {
     const b = document.createElement("button"); b.className = "pagecard";
+    const ic = document.createElement("span"); ic.className = "pagecard__icon";
+    ic.append(icon("file", { size: 22 }));
     const tt = document.createElement("span"); tt.className = "t"; tt.textContent = s;
     const m = document.createElement("span"); m.className = "m"; m.textContent = t("pages.edit");
-    b.append(tt, m);
+    b.append(ic, tt, m);
     b.addEventListener("click", () => loadTrip(s));
     grid.appendChild(b);
   }
   const visa = document.createElement("div"); visa.className = "pagecard is-locked";
+  const vic = document.createElement("span"); vic.className = "pagecard__icon";
+  vic.append(icon("calendar", { size: 22 }));
   const vt = document.createElement("span"); vt.className = "t"; vt.textContent = t("pages.visa");
   const vm = document.createElement("span"); vm.className = "m"; vm.textContent = t("pages.soon");
-  visa.append(vt, vm); grid.appendChild(visa);
+  visa.append(vic, vt, vm); grid.appendChild(visa);
   const st = window.AT_ADMIN.status;
   if (st && !st.github) {
-    const bn = document.createElement("p"); bn.className = "banner"; bn.textContent = t("pages.nogithub");
+    const bn = document.createElement("p"); bn.className = "banner";
+    bn.append(icon("alert", { size: 18 }));
+    const tx = document.createElement("span"); tx.textContent = t("pages.nogithub");
+    bn.append(tx);
     container.querySelector("#pages-banner").appendChild(bn);
   }
 }
@@ -103,12 +117,23 @@ function renderEditor(container) {
       </details>
     </div>`;
   applyI18n(container);
-  container.querySelector("#ep-back").addEventListener("click", () => renderList(container));
+  // Icons go in after innerHTML: icon() builds DOM nodes, not markup strings.
+  const back = container.querySelector("#ep-back");
+  back.prepend(icon("back", { size: 16 }));
+  container.querySelector("#ep-save").prepend(icon("send", { size: 17 }));
+  const legendIcon = { "pages.group.seo": "seo", "pages.group.hero": "sparkles", "pages.group.prices": "hotel" };
+  container.querySelectorAll("fieldset.group > legend").forEach((lg) => {
+    const key = Object.keys(legendIcon).find((k) => t(k) === lg.textContent.trim());
+    lg.prepend(icon(legendIcon[key] || "file", { size: 16 }));
+  });
   const st = window.AT_ADMIN.status;
   if (st && !st.github) {
     const btn = container.querySelector("#ep-save");
     btn.disabled = true;
-    const bn = document.createElement("p"); bn.className = "banner"; bn.textContent = t("pages.nogithub");
+    const bn = document.createElement("p"); bn.className = "banner";
+    bn.append(icon("alert", { size: 18 }));
+    const tx = document.createElement("span"); tx.textContent = t("pages.nogithub");
+    bn.append(tx);
     container.querySelector("#ep-msg").after(bn);
   } else {
     container.querySelector("#ep-save").addEventListener("click", save);
