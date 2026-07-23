@@ -198,7 +198,7 @@ async function save() {
     }
   } else if (r.status === 422) {
     msg.className = "msg err";
-    msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + e).join("<br>");
+    msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + escHtml(e)).join("<br>");
   } else {
     msg.className = "msg err";
     msg.textContent = `Erreur ${r.status}: ${r.data.error || "inconnue"}`;
