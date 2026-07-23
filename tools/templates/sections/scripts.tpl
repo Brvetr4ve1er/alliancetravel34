@@ -8,5 +8,6 @@
 <script src="../assets/js/lead-capture.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
+  <script type="module" src="../assets/js/beacon.js"></script>
   </body>
 </html>
