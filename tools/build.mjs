@@ -19,6 +19,8 @@ import { resolve, dirname, join, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validateTrip } from "./validate-trip.mjs";
 import { checkAdminFields } from "./check-admin-fields.mjs";
+import { localizeVariant, injectHreflang } from "./templates/langpage.mjs";
+import { loadGlobalI18n } from "./templates/global-i18n.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
@@ -40,19 +42,40 @@ function toOutput(html) {
   return "﻿" + lf.replace(/^﻿/, "");                  // UTF-8 BOM + LF
 }
 
-async function renderEnabled(slug, entry, data) {
-  const { renderTrip } = await import(pathToFileURL(join(ROOT, "tools", "templates", "trip2.mjs")).href);
-  const outDir = join(SITE_DIR, entry.outputDir || slug);
+function writeIfChanged(outDir, html) {
   const outFile = join(outDir, "index.html");
-  const html = toOutput(renderTrip(data));
-
+  const outHtml = toOutput(html);
   const current = existsSync(outFile) ? readFileSync(outFile, "utf8") : null;
-  if (current === html) return { outFile, changed: false };
-  if (!CHECK_ONLY) {
+  const changed = current !== outHtml;
+  if (changed && !CHECK_ONLY) {
     mkdirSync(outDir, { recursive: true });
-    writeFileSync(outFile, html);
+    writeFileSync(outFile, outHtml);
   }
-  return { outFile, changed: true };
+  return { outFile, changed };
+}
+
+// Renders every language variant a trip declares. The French page is rendered
+// exactly as before and — for a single-language trip — written untouched, so
+// FR output is provably identical unless the trip opts into another language.
+// Additional languages nest under site/<lang>/<dir>/ with a reciprocal hreflang
+// cluster; the French page of a multi-language trip gains that cluster too.
+async function renderVariants(slug, entry, data) {
+  const { renderTrip } = await import(pathToFileURL(join(ROOT, "tools", "templates", "trip2.mjs")).href);
+  const baseDir = entry.outputDir || slug;
+  const langs = Array.isArray(entry.langs) && entry.langs.length ? entry.langs : ["fr"];
+  const frHtml = renderTrip(data); // the French base — computed once, localized per language
+  const multi = langs.length > 1;
+  const globalT = multi ? loadGlobalI18n() : null;
+
+  const results = [];
+  for (const lang of langs) {
+    const outDir = lang === "fr" ? join(SITE_DIR, baseDir) : join(SITE_DIR, lang, baseDir);
+    const html = lang === "fr"
+      ? (multi ? injectHreflang(frHtml, { slug: baseDir, langs }) : frHtml)
+      : await localizeVariant(frHtml, { lang, slug: baseDir, langs, data, globalT });
+    results.push({ lang, ...writeIfChanged(outDir, html) });
+  }
+  return results;
 }
 
 /* --------------------------------------------------------------------- main */
@@ -98,19 +121,40 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
 
 // site/<dir>/index.html must trace back to a manifest-enabled trip or a known
 // static page. Anything else is a stale/orphaned page — e.g. a leftover local
-// file swept into a commit by a broad `git add` — that would otherwise sit on
-// the live site indefinitely with no generator ever touching it again.
+// file swept into a commit by a broad `git add`, or a localized variant left
+// behind after a language was turned off — that would otherwise sit on the live
+// site indefinitely with no generator ever touching it again.
 {
-  const knownOutputDirs = new Set(
-    Object.entries(manifest.trips ?? {})
-      .filter(([, e]) => e?.enabled === true)
-      .map(([slug, e]) => e.outputDir || slug)
-  );
+  const enabled = Object.entries(manifest.trips ?? {}).filter(([, e]) => e?.enabled === true);
+  const outputDir = (slug, e) => e.outputDir || slug;
+  // French pages live at site/<dir>/; each enabled non-fr language nests under
+  // site/<lang>/<dir>/. Build the expected set per language root.
+  const frDirs = new Set(enabled.map(([slug, e]) => outputDir(slug, e)));
+  const langDirs = new Map(); // lang -> Set(outputDir) that enable it
+  for (const [slug, e] of enabled) {
+    for (const lang of (e.langs || ["fr"])) {
+      if (lang === "fr") continue;
+      if (!langDirs.has(lang)) langDirs.set(lang, new Set());
+      langDirs.get(lang).add(outputDir(slug, e));
+    }
+  }
   const STATIC_SITE_DIRS = new Set(["admin", "assets", "blog", "voyages", "rendez-vous-visa"]);
+  const flag = (rel) => err(rel, "page orpheline — aucune entrée data/build-manifest.json ne pointe ici; supprimer le dossier ou l'ajouter au manifest");
+
   for (const name of readdirSync(SITE_DIR, { withFileTypes: true })) {
-    if (!name.isDirectory() || STATIC_SITE_DIRS.has(name.name) || knownOutputDirs.has(name.name)) continue;
-    if (existsSync(join(SITE_DIR, name.name, "index.html")))
-      err(`site/${name.name}/index.html`, "page orpheline — aucune entrée data/build-manifest.json ne pointe ici; supprimer le dossier ou l'ajouter au manifest");
+    if (!name.isDirectory()) continue;
+    if (STATIC_SITE_DIRS.has(name.name) || frDirs.has(name.name)) continue;
+    if (langDirs.has(name.name)) {
+      // A language root (site/en, site/ar): every child must be a trip that
+      // still enables this language.
+      const expected = langDirs.get(name.name);
+      for (const sub of readdirSync(join(SITE_DIR, name.name), { withFileTypes: true })) {
+        if (sub.isDirectory() && !expected.has(sub.name) && existsSync(join(SITE_DIR, name.name, sub.name, "index.html")))
+          flag(`site/${name.name}/${sub.name}/index.html`);
+      }
+      continue;
+    }
+    if (existsSync(join(SITE_DIR, name.name, "index.html"))) flag(`site/${name.name}/index.html`);
   }
 }
 
@@ -136,10 +180,11 @@ let rendered = 0, unchanged = 0, skipped = 0;
 for (const [slug, data] of parsed) {
   const entry = manifest.trips?.[slug];
   if (entry?.enabled !== true) { skipped++; console.log(`⏭  ${slug} — désactivé dans le manifest (non publié)`); continue; }
-  const { outFile, changed } = await renderEnabled(slug, entry, data);
-  const relOut = outFile.slice(ROOT.length + 1);
-  if (changed) { rendered++; console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${slug} → ${relOut}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`); }
-  else { unchanged++; console.log(`✅ ${slug} → ${relOut} (déjà à jour)`); }
+  for (const { outFile, changed } of await renderVariants(slug, entry, data)) {
+    const relOut = outFile.slice(ROOT.length + 1);
+    if (changed) { rendered++; console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${slug} → ${relOut}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`); }
+    else { unchanged++; console.log(`✅ ${slug} → ${relOut} (déjà à jour)`); }
+  }
 }
 
 // ── Blog: render published posts + index + sitemap injection ────────
