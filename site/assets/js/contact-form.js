@@ -219,7 +219,21 @@
     });
   }
 
-  function init() { wireForm(); wireAdvisors(); }
+  /* The status line is written once, in whatever language was active at the
+     time, and i18n.js cannot retranslate it because it carries no data-i18n
+     key. Switching language therefore left an Arabic confirmation sitting under
+     a French form. It refers to a WhatsApp window that has already opened, so
+     clearing it is both correct and simpler than re-rendering it. */
+  function wireLangReset() {
+    var status = document.getElementById('cf-status');
+    if (!status) return;
+    document.addEventListener('langchange', function () {
+      status.textContent = '';
+      status.className = 'contact-form__status';
+    });
+  }
+
+  function init() { wireForm(); wireAdvisors(); wireLangReset(); }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

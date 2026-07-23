@@ -9504,6 +9504,11 @@ body { background: var(--bg); color: var(--txt-1); }
   flex-direction: column;
   gap: 6px;
 }
+/* [hidden] must win over this. The attribute's display:none comes from the UA
+   stylesheet, and ANY author rule that sets display beats the whole UA sheet
+   regardless of specificity — so `display: flex` here silently un-hid the four
+   collapsed advisors while their `hidden` attribute still said otherwise. The
+   attribute selector below restores the intent. */
 .advisor {
   display: flex;
   align-items: center;
@@ -9513,6 +9518,9 @@ body { background: var(--bg); color: var(--txt-1); }
   border: 1px solid var(--border);
   border-radius: var(--r2, 8px);
   background: var(--bg);
+}
+.advisor[hidden] {
+  display: none;
 }
 .advisor__num {
   font-variant-numeric: tabular-nums;
