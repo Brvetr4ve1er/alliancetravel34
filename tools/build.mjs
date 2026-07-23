@@ -42,16 +42,11 @@ function toOutput(html) {
   return "﻿" + lf.replace(/^﻿/, "");                  // UTF-8 BOM + LF
 }
 
-async function renderEnabled(slug, entry, data) {
-  const { renderTrip } = await import(pathToFileURL(join(ROOT, "tools", "templates", "trip2.mjs")).href);
-  const outDir = join(SITE_DIR, entry.outputDir || slug);
-  const outFile = join(outDir, "index.html");
-  const html = toOutput(renderTrip(data));
-
+function writeRendered(outFile, html) {
   const current = existsSync(outFile) ? readFileSync(outFile, "utf8") : null;
   if (current === html) return { outFile, changed: false };
   if (!CHECK_ONLY) {
-    mkdirSync(outDir, { recursive: true });
+    mkdirSync(dirname(outFile), { recursive: true });
     writeFileSync(outFile, html);
   }
   return { outFile, changed: true };
@@ -111,6 +106,31 @@ for (const e of checkAdminFields(ROOT)) errors.push(e);
   for (const w of vg.warnings) warnings.push(w);
 }
 
+// Render enabled trips into memory BEFORE the i18n gate — nothing is written
+// yet. The gate reads the rendered page, and reading it off disk meant reading
+// what the PREVIOUS build left there: a French edit looked unchanged until the
+// next run, so the manifest reported "fresh" at exactly the moment a
+// translation went stale. Checking the in-memory render removes that lag and
+// makes --check validate the page that *would* be written.
+// Skipped entirely when the build is already failing: renderTrip assumes
+// validated data, and a crash there would only bury the real error.
+const renders = new Map(); // slug -> { outFile, html }
+if (!errors.length) {
+  const { renderTrip } = await import(pathToFileURL(join(ROOT, "tools", "templates", "trip2.mjs")).href);
+  for (const [slug, data] of parsed) {
+    const entry = manifest.trips?.[slug];
+    if (entry?.enabled !== true) continue;
+    try {
+      renders.set(slug, {
+        outFile: join(SITE_DIR, entry.outputDir || slug, "index.html"),
+        html: toOutput(renderTrip(data)),
+      });
+    } catch (e) {
+      err(`data/trips/${slug}.json`, `rendu impossible: ${e.message}`);
+    }
+  }
+}
+
 // Translation contract. Errors are the conditions that genuinely corrupt a
 // translation: one key bound to two different French strings, a page-local key
 // shadowing the shared dictionary, or an empty French source. Coverage and
@@ -118,11 +138,14 @@ for (const e of checkAdminFields(ROOT)) errors.push(e);
 // one French price is never gated on producing three languages.
 // Also emits data/i18n-manifest.json, which the admin reads to show FR/EN/AR
 // side by side. Never written in --check mode: --check must not touch the tree.
+let i18nManifests = null;
 {
-  const i18n = checkI18n(ROOT);
+  const htmlBySlug = {};
+  for (const [slug, r] of renders) htmlBySlug[slug] = r.html;
+  const i18n = checkI18n(ROOT, htmlBySlug);
   for (const e of i18n.errors) errors.push(e);
   for (const w of i18n.warnings) warnings.push(w);
-  if (!CHECK_ONLY) writeManifest(ROOT, i18n.manifests);
+  i18nManifests = i18n.manifests; // written after the gate, never on a failed build
 }
 
 // ── Blog: load + validate (rendered after the error gate) ───────────
@@ -139,11 +162,15 @@ if (errors.length) {
   process.exit(1);
 }
 
+// The gate is past: the pages rendered above are now safe to write, and the
+// manifest describes exactly what is being written.
+if (!CHECK_ONLY) writeManifest(ROOT, i18nManifests);
+
 let rendered = 0, unchanged = 0, skipped = 0;
-for (const [slug, data] of parsed) {
-  const entry = manifest.trips?.[slug];
-  if (entry?.enabled !== true) { skipped++; console.log(`⏭  ${slug} — désactivé dans le manifest (non publié)`); continue; }
-  const { outFile, changed } = await renderEnabled(slug, entry, data);
+for (const [slug] of parsed) {
+  const r = renders.get(slug);
+  if (!r) { skipped++; console.log(`⏭  ${slug} — désactivé dans le manifest (non publié)`); continue; }
+  const { outFile, changed } = writeRendered(r.outFile, r.html);
   const relOut = outFile.slice(ROOT.length + 1);
   if (changed) { rendered++; console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${slug} → ${relOut}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`); }
   else { unchanged++; console.log(`✅ ${slug} → ${relOut} (déjà à jour)`); }

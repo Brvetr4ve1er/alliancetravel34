@@ -72,7 +72,14 @@ export function loadSharedKeys(root) {
   }
 }
 
-export function checkI18n(root) {
+/**
+ * @param root         repository root
+ * @param htmlBySlug   freshly-rendered pages, keyed by slug. The build passes
+ *   what it is about to write; anything absent falls back to the copy on disk.
+ *   Without this the gate compared today's French against yesterday's page and
+ *   reported "fresh" for the very translation that had just gone stale.
+ */
+export function checkI18n(root, htmlBySlug = {}) {
   const errors = [];
   const warnings = [];
   const manifests = {};
@@ -91,11 +98,15 @@ export function checkI18n(root) {
       errors.push({ file: rel, msg: `JSON invalide: ${e.message}` });
       continue;
     }
-    try {
-      html = readFileSync(join(root, "site", slug, "index.html"), "utf8");
-    } catch {
-      // Not every trip JSON is necessarily rendered (manifest-gated). Silent.
-      continue;
+    if (Object.prototype.hasOwnProperty.call(htmlBySlug, slug)) {
+      html = htmlBySlug[slug];
+    } else {
+      try {
+        html = readFileSync(join(root, "site", slug, "index.html"), "utf8");
+      } catch {
+        // Not every trip JSON is necessarily rendered (manifest-gated). Silent.
+        continue;
+      }
     }
 
     const bindings = extractBindings(html);
