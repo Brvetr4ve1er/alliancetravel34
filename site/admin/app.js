@@ -58,17 +58,37 @@ function showArea(name) {
   document.dispatchEvent(new CustomEvent("admin:area", { detail: name }));
 }
 
-let entered = false;    // guards against getSession() and onAuthStateChange racing
-let recovering = false; // holding a recovery-link session: set a password, don't enter
+let entered = false;      // the app view is currently shown
+let enteredUser = null;   // user id that owns the current app view
+let pendingToken = null;  // access_token whose /api/me is still in flight
+let recovering = false;   // holding a recovery-link session: set a password, don't enter
 
 async function enterApp(session) {
-  if (entered) return;
-  entered = true;
+  const uid = session.user && session.user.id;
+  // Already inside for THIS account: an hourly TOKEN_REFRESHED or a repeat
+  // SIGNED_IN must not re-enter, or the owner is thrown back to Accueil
+  // mid-task.
+  if (entered && enteredUser === uid) return;
+
+  const tok = session.access_token;
+  pendingToken = tok;
   AT_ADMIN.session = session;
-  AT_ADMIN.token = session.access_token;
+  AT_ADMIN.token = tok;
   const me = await callApi("/api/me");
+
+  // A newer sign-in started while this /api/me was in flight, so this verdict
+  // is stale: it must not touch the UI and must not sign anyone out.
+  //
+  // This is the bug that stranded people on "Se connecter". A boolean guard
+  // (`if (entered) return`) let an expired session claim entry, drop the fresh
+  // login that arrived while it waited, and then — on its own 403 — sign the
+  // NEW session out. Changing the owner's email made every browser holding the
+  // old session reproduce it on the first try.
+  if (pendingToken !== tok) return;
+  pendingToken = null;
+
   if (!me.ok) {
-    entered = false;
+    entered = false; enteredUser = null;
     // Hide the boot spinner here too: on the rejection path neither the success
     // branch nor boot()'s no-session tail runs, so "Chargement…" stayed on
     // screen under the refusal message.
@@ -91,6 +111,7 @@ async function enterApp(session) {
     }
     return;
   }
+  entered = true; enteredUser = uid;
   $("who").textContent = me.data.email;
   try { localStorage.setItem(LAST_EMAIL, me.data.email); } catch { /* private mode */ }
   showView("app");
@@ -121,7 +142,10 @@ async function boot() {
       return;
     }
     if (!session) {
-      if (event === "SIGNED_OUT") { AT_ADMIN.session = null; AT_ADMIN.token = null; entered = false; }
+      if (event === "SIGNED_OUT") {
+        AT_ADMIN.session = null; AT_ADMIN.token = null;
+        entered = false; enteredUser = null; pendingToken = null;
+      }
       return;
     }
     // TOKEN_REFRESHED arrives here roughly hourly; keep the bearer current.
