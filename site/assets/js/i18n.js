@@ -37,6 +37,7 @@
   const T = {
     /* ─── FRENCH (default — source of truth) ───────────────────── */
     fr: {
+      heroFrom: 'À partir de',
       lang: {
         label: 'Langue',
         switch_to: 'Changer la langue',
@@ -373,6 +374,7 @@
     },
     /* ─── ENGLISH ──────────────────────────────────────────────── */
     en: {
+      heroFrom: 'From',
       lang: {
         label: 'Language',
         switch_to: 'Switch language',
@@ -713,6 +715,7 @@
     },
     /* ─── ARABIC (Modern Standard Arabic) ──────────────────────── */
     ar: {
+      heroFrom: 'ابتداءً من',
       lang: {
         label: 'اللغة',
         switch_to: 'تغيير اللغة',

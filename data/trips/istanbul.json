@@ -1085,9 +1085,7 @@
     "extras": []
   },
   "i18n": {
-    "en": {
-      "heroFrom": "From",
-      "istHeroEyebrow": "From Constantine · Turkish Airlines · September–November 2026",
+    "en": {      "istHeroEyebrow": "From Constantine · Turkish Airlines · September–November 2026",
       "istHeroH1": "Istanbul <em>Where two continents meet</em>",
       "istHeroDate": "8 days · 7 nights · Hotel River 3★",
       "istHeroPriceUnit": "per person · double room · Hotel River 3★",
@@ -1100,9 +1098,7 @@
         "cta_btn": "Chat on WhatsApp"
       }
     },
-    "ar": {
-      "heroFrom": "ابتداءً من",
-      "istHeroEyebrow": "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
+    "ar": {      "istHeroEyebrow": "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
       "istHeroH1": "إسطنبول <em>حيث تلتقي القارتان</em>",
       "istHeroDate": "8 أيام · 7 ليالٍ · فندق River 3★",
       "istHeroPriceUnit": "للشخص · غرفة مزدوجة · فندق River 3★",

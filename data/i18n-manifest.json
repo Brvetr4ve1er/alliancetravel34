@@ -4,8 +4,8 @@
     "azerbaidjan": {
       "slug": "azerbaidjan",
       "coverage": {
-        "en": 98,
-        "ar": 98
+        "en": 99,
+        "ar": 99
       },
       "keys": {
         "nav.skip": {
@@ -80,7 +80,7 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "scope": "trip",
+          "scope": "shared",
           "enState": "missing",
           "arState": "missing"
         },
@@ -1793,8 +1793,8 @@
     "bali": {
       "slug": "bali",
       "coverage": {
-        "en": 98,
-        "ar": 98
+        "en": 99,
+        "ar": 99
       },
       "keys": {
         "nav.skip": {
@@ -1869,7 +1869,7 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "scope": "trip",
+          "scope": "shared",
           "enState": "missing",
           "arState": "missing"
         },
@@ -3564,8 +3564,8 @@
     "egypte": {
       "slug": "egypte",
       "coverage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "keys": {
         "nav.skip": {
@@ -3640,7 +3640,7 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "scope": "trip",
+          "scope": "shared",
           "enState": "missing",
           "arState": "missing"
         },
@@ -5541,11 +5541,9 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "en": "From",
-          "ar": "ابتداءً من",
-          "scope": "trip",
-          "enState": "stale",
-          "arState": "stale"
+          "scope": "shared",
+          "enState": "missing",
+          "arState": "missing"
         },
         "istHeroPriceUnit": {
           "fr": "par personne · chambre double · Hotel River 3★",
@@ -5658,8 +5656,8 @@
     "kuala-lumpur": {
       "slug": "kuala-lumpur",
       "coverage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "keys": {
         "nav.skip": {
@@ -5734,7 +5732,7 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "scope": "trip",
+          "scope": "shared",
           "enState": "missing",
           "arState": "missing"
         },
@@ -7514,8 +7512,8 @@
     "tunisie": {
       "slug": "tunisie",
       "coverage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "keys": {
         "nav.skip": {
@@ -7590,7 +7588,7 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "scope": "trip",
+          "scope": "shared",
           "enState": "missing",
           "arState": "missing"
         },
@@ -9392,7 +9390,7 @@
         "heroFrom": {
           "fr": "À partir de",
           "frHash": "008fxzhe",
-          "scope": "trip",
+          "scope": "shared",
           "enState": "missing",
           "arState": "missing"
         },
