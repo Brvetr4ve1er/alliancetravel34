@@ -96,6 +96,24 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
     err("data/build-manifest.json", `"${slug}" listé mais data/trips/${slug}.json introuvable`);
 }
 
+// site/<dir>/index.html must trace back to a manifest-enabled trip or a known
+// static page. Anything else is a stale/orphaned page — e.g. a leftover local
+// file swept into a commit by a broad `git add` — that would otherwise sit on
+// the live site indefinitely with no generator ever touching it again.
+{
+  const knownOutputDirs = new Set(
+    Object.entries(manifest.trips ?? {})
+      .filter(([, e]) => e?.enabled === true)
+      .map(([slug, e]) => e.outputDir || slug)
+  );
+  const STATIC_SITE_DIRS = new Set(["admin", "assets", "blog", "voyages", "rendez-vous-visa"]);
+  for (const name of readdirSync(SITE_DIR, { withFileTypes: true })) {
+    if (!name.isDirectory() || STATIC_SITE_DIRS.has(name.name) || knownOutputDirs.has(name.name)) continue;
+    if (existsSync(join(SITE_DIR, name.name, "index.html")))
+      err(`site/${name.name}/index.html`, "page orpheline — aucune entrée data/build-manifest.json ne pointe ici; supprimer le dossier ou l'ajouter au manifest");
+  }
+}
+
 // Admin form fields must address data the templates actually render, or the
 // owner edits them to no effect. Caught here because nothing at runtime can.
 for (const e of checkAdminFields(ROOT)) errors.push(e);
