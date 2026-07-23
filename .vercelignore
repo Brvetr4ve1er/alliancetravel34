@@ -1,0 +1,16 @@
+# Files that must never be uploaded to Vercel.
+#
+# Test files were being deployed as serverless functions (every api/*.mjs
+# becomes a function): api/*.test.mjs import `node:test`, which the function
+# bundler can fail to resolve — failing the whole deployment. Tests belong in
+# CI (node --test), never in the deployed bundle.
+**/*.test.mjs
+
+# Dev-only trees the build command and functions never read. tools/ and data/
+# are deliberately NOT excluded — `node tools/build.mjs` (buildCommand) and
+# save-trip.mjs's includeFiles: "tools/**" both need them at build time.
+/docs
+/scripts
+/_archive
+/source of truth
+/.github
