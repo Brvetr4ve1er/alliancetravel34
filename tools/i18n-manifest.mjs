@@ -76,15 +76,14 @@ export function extractBindings(html) {
  * import. Exported for reuse by the staleness gate and the admin UI, which
  * both need to compare a stored hash against a freshly-extracted `fr` string.
  */
-export function frHash(text) {
-  const str = String(text);
-  let hash = 0x811c9dc5;
-  for (let i = 0; i < str.length; i++) {
-    hash ^= str.charCodeAt(i);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return (hash >>> 0).toString(36).padStart(8, "0");
-}
+// Defined in site/admin/i18n-bindings.js and re-exported here so the build and
+// the admin stamp identical digests. Two copies would be two chances to drift,
+// and the symptom — every translation reading stale forever — would look like a
+// data problem rather than a hashing one.
+// Imported, not just re-exported: buildManifest below calls it directly, and a
+// bare `export ... from` would not bind the name in this module's scope.
+import { frHash } from "../site/admin/i18n-bindings.js";
+export { frHash };
 
 function stateFor(value, storedHash, currentFrHash) {
   if (value == null || value === "") return "missing";

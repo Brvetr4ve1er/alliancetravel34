@@ -21,6 +21,7 @@ import { validateTrip } from "./validate-trip.mjs";
 import { checkAdminFields } from "./check-admin-fields.mjs";
 import { checkValueGraph } from "./check-value-graph.mjs";
 import { checkI18n, writeManifest } from "./check-i18n.mjs";
+import { checkI18nBindings } from "./check-i18n-bindings.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
@@ -147,6 +148,13 @@ let i18nManifests = null;
   for (const e of i18n.errors) errors.push(e);
   for (const w of i18n.warnings) warnings.push(w);
   i18nManifests = i18n.manifests; // written after the gate, never on a failed build
+
+  // The admin's field→key table must still describe the rendered pages, or the
+  // editor offers an EN/AR box wired to the wrong key: the owner types an
+  // English title, publishes, and some unrelated element becomes their title.
+  // Checked against the in-memory manifests, not the files on disk, so this
+  // validates the same data the run just computed.
+  for (const e of checkI18nBindings(ROOT, i18n.manifests)) errors.push(e);
 }
 
 // ── Blog: load + validate (rendered after the error gate) ───────────
