@@ -43,14 +43,58 @@ import { buildManifest, extractBindings } from "./i18n-manifest.mjs";
  * A parse failure degrades to "no shared keys" plus a warning rather than
  * failing the build, because every trip key would otherwise look like a shadow.
  */
+/**
+ * Blank string literals and drop comments, in one left-to-right pass.
+ *
+ * This replaced a pair of regexes, which got both halves wrong:
+ *
+ *   • Comments were not removed at all, so any `word:` inside one was harvested
+ *     as a key. A comment reading "carry no price: the figure lived in…" added
+ *     a phantom `contact.price`, and a trip that legitimately defined `price`
+ *     would then have been reported as shadowing the shared dictionary — a
+ *     false error, and errors here stop the deploy.
+ *   • Strings were blanked by regex, so an apostrophe inside a comment
+ *     ("don't") opened a string that ran on until the next quote, swallowing
+ *     real keys along the way.
+ *
+ * The two problems are entangled — you cannot strip comments before strings or
+ * strings before comments without the other's delimiters lying to you — so a
+ * single scanner that knows which state it is in is the only correct shape.
+ *
+ * Regex literals are not handled: this only ever parses an object of string
+ * constants, which contains none.
+ */
+function stripLiteralsAndComments(src) {
+  let out = "";
+  for (let i = 0; i < src.length;) {
+    const c = src[i], next = src[i + 1];
+    if (c === "/" && next === "/") {
+      while (i < src.length && src[i] !== "\n") i++;
+    } else if (c === "/" && next === "*") {
+      i += 2;
+      while (i < src.length && !(src[i] === "*" && src[i + 1] === "/")) i++;
+      i += 2;
+    } else if (c === "'" || c === '"' || c === "`") {
+      const quote = c;
+      i++;
+      while (i < src.length && src[i] !== quote) i += src[i] === "\\" ? 2 : 1;
+      i++;
+      out += "''"; // keep a well-formed empty literal so the skeleton still parses
+    } else {
+      out += c;
+      i++;
+    }
+  }
+  return out;
+}
+
 export function loadSharedKeys(root) {
   try {
     const src = readFileSync(join(root, "site", "assets", "js", "i18n.js"), "utf8");
     const m = src.match(/(?:const|var|let)\s+T\s*=\s*(\{[\s\S]*?\n\s{0,4}\};)/);
     if (!m) return { keys: new Set(), warning: "dictionnaire partagé introuvable dans i18n.js" };
 
-    // Blank every string literal, keeping the quotes so the skeleton stays valid.
-    const skeleton = m[1].replace(/'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*`/g, "''");
+    const skeleton = stripLiteralsAndComments(m[1]);
 
     const keys = new Set();
     const stack = [];

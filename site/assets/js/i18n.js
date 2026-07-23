@@ -145,7 +145,21 @@
         payment_cash: 'Espèces à l\'agence',
         payment_bank: 'Virement bancaire',
         signup_label: 'Inscription simple',
-        signup_lede: 'Par téléphone, sur WhatsApp ou en agence. Un acompte suffit pour bloquer votre place — le solde se règle avant le départ.'
+        signup_lede: 'Par téléphone, sur WhatsApp ou en agence. Un acompte suffit pour bloquer votre place — le solde se règle avant le départ.',
+        // Trip options. Deliberately carry no price: the price lived in the
+        // option label, duplicated from data/trips/*.json with nothing checking
+        // the two still agreed, and a <select> is a picker rather than a
+        // shop window. The trips grid above quotes the live figure.
+        trip_egypte: 'Égypte — Le Caire, Sharm & Hurghada',
+        trip_tunisie: 'Tunisie — Hammamet, Sousse & Djerba',
+        trip_istanbul: 'Istanbul',
+        trip_azerbaidjan: 'Azerbaïdjan — Bakou & Gabala',
+        trip_kuala_lumpur: 'Kuala Lumpur & Langkawi',
+        trip_bali: 'Bali',
+        trip_vietnam: 'Vietnam',
+        hours_note: 'Lignes ouvertes du dimanche au jeudi, 9 h – 18 h. Réponse WhatsApp sous 30 minutes en moyenne.',
+        advisors_show: 'Voir les 6 conseillers',
+        advisors_hide: 'Afficher moins'
       },
       map: {
         eyebrow: 'Notre réseau · Algérie',
@@ -481,7 +495,17 @@
         payment_cash: 'Cash at the branch',
         payment_bank: 'Bank transfer',
         signup_label: 'How to book',
-        signup_lede: 'By phone, on WhatsApp, or walk into any branch. A deposit holds your seat.'
+        signup_lede: 'By phone, on WhatsApp, or walk into any branch. A deposit holds your seat.',
+        trip_egypte: 'Egypt — Cairo, Sharm & Hurghada',
+        trip_tunisie: 'Tunisia — Hammamet, Sousse & Djerba',
+        trip_istanbul: 'Istanbul',
+        trip_azerbaidjan: 'Azerbaijan — Baku & Gabala',
+        trip_kuala_lumpur: 'Kuala Lumpur & Langkawi',
+        trip_bali: 'Bali',
+        trip_vietnam: 'Vietnam',
+        hours_note: 'Lines open Sunday to Thursday, 9am – 6pm. WhatsApp replies in about 30 minutes.',
+        advisors_show: 'Show all 6 advisors',
+        advisors_hide: 'Show fewer'
       },
       map: {
         eyebrow: 'The Alliance Travel network · Algeria',
@@ -822,7 +846,17 @@
         payment_cash: 'نقدًا في الوكالة',
         payment_bank: 'تحويل بنكي',
         signup_label: 'طرق التسجيل',
-        signup_lede: 'عبر الهاتف · واتساب · في الوكالة. يكفي عربون بسيط لحجز مكانك.'
+        signup_lede: 'عبر الهاتف · واتساب · في الوكالة. يكفي عربون بسيط لحجز مكانك.',
+        trip_egypte: 'مصر — القاهرة وشرم الشيخ والغردقة',
+        trip_tunisie: 'تونس — الحمامات وسوسة وجربة',
+        trip_istanbul: 'إسطنبول',
+        trip_azerbaidjan: 'أذربيجان — باكو وقبالة',
+        trip_kuala_lumpur: 'كوالالمبور ولنكاوي',
+        trip_bali: 'بالي',
+        trip_vietnam: 'فيتنام',
+        hours_note: 'الخطوط مفتوحة من الأحد إلى الخميس، من 9 صباحًا إلى 6 مساءً. الرد على واتساب خلال 30 دقيقة تقريبًا.',
+        advisors_show: 'عرض المستشارين الستّة',
+        advisors_hide: 'عرض أقل'
       },
       map: {
         eyebrow: 'شبكة أليانس ترافل · الجزائر',

@@ -203,9 +203,14 @@
     }
 
     /* Contact section */
+    /* Form first: it is the point of the section, so it gets the wider column.
+       An even 1fr 1fr gave the same weight to a four-field form and a stack of
+       reference cards, and the form ended up the narrower of the two once its
+       padding was counted. minmax(0,…) keeps long option labels from forcing
+       the column past its share. */
     .contact-section {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
       gap: var(--s9);
       align-items: start;
     }
@@ -928,217 +933,168 @@
   <!-- ── CONTACT ────────────────────────────────────────────────── -->
   <section class="section u-bg-2" id="contact" style="border-top:1px solid var(--border)">
     <div class="container">
+
+      <!-- Icons defined once and referenced with <use>. The WhatsApp glyph alone
+           used to be inlined seven times in this section — roughly 10 KB of
+           byte-identical markup shipped to every visitor. -->
+      <svg class="contact-sprite" aria-hidden="true" focusable="false">
+        <defs>
+          <symbol id="ico-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+          <symbol id="ico-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+          <symbol id="ico-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/></g></symbol>
+          <symbol id="ico-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l2.75 1.75"/></g></symbol>
+          <symbol id="ico-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V6.5A1.5 1.5 0 0 1 4.5 5h12"/><path d="M3 8h16a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M16.5 13.5h.01"/></g></symbol>
+        </defs>
+      </svg>
+
       <div class="contact-section">
-        <div>
+
+        <!-- ─────────────── the ask ─────────────── -->
+        <div class="contact-main">
           <p class="section-head__eyebrow u-mb-sp3" data-aos="fade-up" data-aos-duration="400" data-i18n="contact.eyebrow">Nous joindre</p>
-          <h2
-            class="u-font-display u-fw-400 u-text-1 u-mb-sp4" style="font-size:clamp(28px,4vw,48px); line-height:1.1">
-            <span data-i18n="contact.title_l1">Parlez-nous de</span><br><em style="color:var(--bronze)" data-i18n="contact.title_em">votre projet</em></h2>
-          <p class="fs-body u-text-2" style="margin-bottom:var(--s7)" data-i18n="contact.lede">Inscrivez-vous par
-            téléphone ou WhatsApp. Paiement par virement CCP ou en espèces à l'agence. Un acompte suffit pour bloquer
-            votre place.</p>
-        <form class="contact-form" id="contactForm" onsubmit="return submitContactForm(event)" aria-label="Formulaire de demande de devis">
-          <div class="contact-form__field">
-            <label for="cf-name" data-i18n="contact.form_name">Nom &amp; Prénom</label>
-            <input type="text" id="cf-name" name="name" required minlength="2" autocomplete="name" placeholder="Ahmed Benkhalifa"/>
-          </div>
-          <div class="contact-form__field">
-            <label for="cf-phone" data-i18n="contact.form_phone">Téléphone WhatsApp</label>
-            <input type="tel" id="cf-phone" name="phone" required pattern="^(\+213|0)[5-7][0-9 ]{8,}$" autocomplete="tel" inputmode="tel" placeholder="0561 616 266"/>
-          </div>
-          <div class="contact-form__field">
-            <label for="cf-city" data-i18n="contact.form_city">Wilaya / Ville</label>
-            <input type="text" id="cf-city" name="city" required minlength="2" autocomplete="address-level2" placeholder="Bordj Bou Arreridj"/>
-          </div>
-          <div class="contact-form__field">
-            <label for="cf-trip" data-i18n="contact.form_trip">Voyage qui vous intéresse</label>
-            <select id="cf-trip" name="trip">
-              <option value="" data-i18n="contact.form_trip_placeholder">— À déterminer —</option>
-              <option value="egypte">Égypte — Le Caire, Sharm &amp; Hurghada — dès 169 000 DA</option>
-              <option value="tunisie">Tunisie (Hammamet · Sousse · Djerba) — dès 36 000 DA</option>
-              <option value="istanbul">Istanbul — dès 129 000 DA</option>
-              <option value="azerbaidjan">Azerbaïdjan (Bakou + Gabala) — dès 249 900 DA</option>
-              <option value="kuala-lumpur">Kuala Lumpur &amp; Langkawi — dès 339 000 DA</option>
-              <option value="bali">Bali (Indonésie) — dès 419 000 DA</option>
-              <option value="vietnam">Vietnam (circuit) — dès 439 000 DA</option>
-            </select>
-          </div>
-          <div class="contact-form__submit-wrap">
-            <p class="contact-form__hint" data-i18n="contact.form_hint">Aucun envoi automatique : votre message s'ouvre dans WhatsApp prêt à envoyer.</p>
-            <button type="submit" class="btn btn--primary" data-track-event="contact_form_submit">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span data-i18n="contact.form_submit">Envoyer ma demande sur WhatsApp</span>
-            </button>
-          </div>
-        </form>
-        <script>
-        function submitContactForm(e) {
-          e.preventDefault();
-          const form = e.target;
-          const name = form.name.value.trim();
-          const phone = form.phone.value.trim();
-          const city = form.city.value.trim();
-          const trip = form.trip.value;
-          const tripLabels = {
-            'egypte': 'Égypte — Le Caire, Sharm & Hurghada',
-            'istanbul': 'Istanbul',
-            'azerbaidjan': 'Azerbaïdjan (Bakou + Gabala)',
-            'kuala-lumpur': 'Kuala Lumpur (Malaisie)',
-          };
-          const lines = [
-            'Bonjour Alliance Travel !',
-            '',
-            `Je m'appelle ${name}, je vous contacte depuis ${city}.`,
-            `📱 Mon numéro WhatsApp : ${phone}`,
-            '',
-            trip ? `Je suis intéressé(e) par le voyage : *${tripLabels[trip]}*` : `Je voudrais discuter d'un voyage avec vous.`,
-            '',
-            'Pourriez-vous me recontacter ? Merci !',
-          ];
-          const msg = lines.join('\n');
-          const url = 'https://wa.me/213560860617?text=' + encodeURIComponent(msg);
-          window.open(url, '_blank', 'noopener');
-          return false;
-        }
-        </script>
-          <div class="staff-phones" role="group" aria-labelledby="staff-phones-lead">
-            <p class="staff-phones__lead" id="staff-phones-lead">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span data-i18n="contact.staff_lead">Joindre un conseiller — direct</span>
-            </p>
-            <ul class="staff-phones__grid" role="list">
-              <li class="phone-card">
-                <span class="phone-card__label"><span data-i18n="contact.conseiller_prefix">Conseiller</span> 1</span>
-                <span class="phone-card__num">0561 616 266</span>
-                <div class="phone-card__actions">
-                  <a class="phone-card__btn phone-card__btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 266">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>WhatsApp</span>
-                  </a>
-                  <a class="phone-card__btn phone-card__btn--call" href="tel:+213561616266" aria-label="Appeler 0561 616 266">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span>Appel</span>
-                  </a>
-                </div>
+          <h2 class="contact-main__title u-font-display u-fw-400 u-text-1" id="contact-title">
+            <span data-i18n="contact.title_l1">Parlons de</span><br><em data-i18n="contact.title_em">votre prochain voyage</em>
+          </h2>
+          <p class="fs-body u-text-2 contact-main__lede" data-i18n="contact.lede">Un appel, un WhatsApp, ou un passage à l'agence — c'est vous qui choisissez. Paiement par virement CCP, virement bancaire, ou en espèces à l'agence. Un acompte suffit pour bloquer votre place.</p>
+
+          <form class="contact-form" id="contactForm" aria-labelledby="contact-title">
+            <div class="contact-form__grid">
+              <div class="contact-form__field">
+                <label for="cf-name" data-i18n="contact.form_name">Nom &amp; prénom</label>
+                <input type="text" id="cf-name" name="name" required minlength="2" autocomplete="name" placeholder="Ahmed Benkhalifa"/>
+              </div>
+              <div class="contact-form__field">
+                <label for="cf-phone" data-i18n="contact.form_phone">Numéro WhatsApp</label>
+                <input type="tel" id="cf-phone" name="phone" class="num-ltr" required pattern="^(\+213|0)[5-7][0-9 ]{8,}$" autocomplete="tel" inputmode="tel" placeholder="0561 616 266"/>
+              </div>
+              <div class="contact-form__field">
+                <label for="cf-city" data-i18n="contact.form_city">Wilaya ou ville</label>
+                <input type="text" id="cf-city" name="city" required minlength="2" autocomplete="address-level2" placeholder="Bordj Bou Arreridj"/>
+              </div>
+              <div class="contact-form__field">
+                <label for="cf-trip" data-i18n="contact.form_trip">Voyage qui vous intéresse</label>
+                <!-- No prices in these labels: they were copied from
+                     data/trips/*.json with nothing verifying the two still
+                     agreed, and the trips grid above already quotes the live
+                     figure. The submit handler reads the chosen option's own
+                     text, so this list can never disagree with the message the
+                     agency receives. -->
+                <select id="cf-trip" name="trip">
+                  <option value="" data-i18n="contact.form_trip_placeholder">— Je ne sais pas encore —</option>
+                  <option value="egypte" data-i18n="contact.trip_egypte">Égypte — Le Caire, Sharm &amp; Hurghada</option>
+                  <option value="tunisie" data-i18n="contact.trip_tunisie">Tunisie — Hammamet, Sousse &amp; Djerba</option>
+                  <option value="istanbul" data-i18n="contact.trip_istanbul">Istanbul</option>
+                  <option value="azerbaidjan" data-i18n="contact.trip_azerbaidjan">Azerbaïdjan — Bakou &amp; Gabala</option>
+                  <option value="kuala-lumpur" data-i18n="contact.trip_kuala_lumpur">Kuala Lumpur &amp; Langkawi</option>
+                  <option value="bali" data-i18n="contact.trip_bali">Bali</option>
+                  <option value="vietnam" data-i18n="contact.trip_vietnam">Vietnam</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="contact-form__submit-wrap">
+              <p class="contact-form__hint" data-i18n="contact.form_hint">Rien n'est envoyé automatiquement : votre message s'ouvre dans WhatsApp, prêt à partir.</p>
+              <button type="submit" class="btn btn--primary" data-track-event="contact_form_submit">
+                <svg class="ico" width="17" height="17" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg>
+                <span data-i18n="contact.form_submit">Recevoir mon devis sur WhatsApp</span>
+              </button>
+            </div>
+            <p class="contact-form__status" id="cf-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- ─────────────── the reassurance ─────────────── -->
+        <div class="contact-rail">
+
+          <div class="contact-card">
+            <h3 class="contact-card__title">
+              <svg class="ico" width="16" height="16" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg>
+              <span data-i18n="contact.staff_lead">Joindre un conseiller — ligne directe</span>
+            </h3>
+            <!-- Two numbers up front; the other four are `hidden`, which keeps
+                 them out of the tab order and the accessibility tree until the
+                 visitor asks. All six repeat the branches block further up the
+                 page, so showing every one twice was pure noise. -->
+            <ul class="advisor-list" id="advisor-list" role="list">
+              <li class="advisor">
+                <span class="advisor__num num-ltr">0561 616 266</span>
+                <span class="advisor__actions">
+                  <a class="advisor__btn advisor__btn--wa" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 266"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+                  <a class="advisor__btn" href="tel:+213561616266" aria-label="Appeler 0561 616 266"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg></a>
+                </span>
               </li>
-              <li class="phone-card">
-                <span class="phone-card__label"><span data-i18n="contact.conseiller_prefix">Conseiller</span> 2</span>
-                <span class="phone-card__num">0561 616 267</span>
-                <div class="phone-card__actions">
-                  <a class="phone-card__btn phone-card__btn--wa" href="https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 267">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>WhatsApp</span>
-                  </a>
-                  <a class="phone-card__btn phone-card__btn--call" href="tel:+213561616267" aria-label="Appeler 0561 616 267">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span>Appel</span>
-                  </a>
-                </div>
+              <li class="advisor">
+                <span class="advisor__num num-ltr">0561 616 267</span>
+                <span class="advisor__actions">
+                  <a class="advisor__btn advisor__btn--wa" href="https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 267"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+                  <a class="advisor__btn" href="tel:+213561616267" aria-label="Appeler 0561 616 267"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg></a>
+                </span>
               </li>
-              <li class="phone-card">
-                <span class="phone-card__label"><span data-i18n="contact.conseiller_prefix">Conseiller</span> 3</span>
-                <span class="phone-card__num">0561 616 268</span>
-                <div class="phone-card__actions">
-                  <a class="phone-card__btn phone-card__btn--wa" href="https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 268">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>WhatsApp</span>
-                  </a>
-                  <a class="phone-card__btn phone-card__btn--call" href="tel:+213561616268" aria-label="Appeler 0561 616 268">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span>Appel</span>
-                  </a>
-                </div>
+              <li class="advisor" data-advisor-extra hidden>
+                <span class="advisor__num num-ltr">0561 616 268</span>
+                <span class="advisor__actions">
+                  <a class="advisor__btn advisor__btn--wa" href="https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 268"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+                  <a class="advisor__btn" href="tel:+213561616268" aria-label="Appeler 0561 616 268"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg></a>
+                </span>
               </li>
-              <li class="phone-card">
-                <span class="phone-card__label"><span data-i18n="contact.conseiller_prefix">Conseiller</span> 4</span>
-                <span class="phone-card__num">0561 616 269</span>
-                <div class="phone-card__actions">
-                  <a class="phone-card__btn phone-card__btn--wa" href="https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 269">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>WhatsApp</span>
-                  </a>
-                  <a class="phone-card__btn phone-card__btn--call" href="tel:+213561616269" aria-label="Appeler 0561 616 269">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span>Appel</span>
-                  </a>
-                </div>
+              <li class="advisor" data-advisor-extra hidden>
+                <span class="advisor__num num-ltr">0561 616 269</span>
+                <span class="advisor__actions">
+                  <a class="advisor__btn advisor__btn--wa" href="https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0561 616 269"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+                  <a class="advisor__btn" href="tel:+213561616269" aria-label="Appeler 0561 616 269"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg></a>
+                </span>
               </li>
-              <li class="phone-card">
-                <span class="phone-card__label"><span data-i18n="contact.conseiller_prefix">Conseiller</span> 5</span>
-                <span class="phone-card__num">0560 869 905</span>
-                <div class="phone-card__actions">
-                  <a class="phone-card__btn phone-card__btn--wa" href="https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0560 869 905">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>WhatsApp</span>
-                  </a>
-                  <a class="phone-card__btn phone-card__btn--call" href="tel:+213560869905" aria-label="Appeler 0560 869 905">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span>Appel</span>
-                  </a>
-                </div>
+              <li class="advisor" data-advisor-extra hidden>
+                <span class="advisor__num num-ltr">0560 869 905</span>
+                <span class="advisor__actions">
+                  <a class="advisor__btn advisor__btn--wa" href="https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0560 869 905"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+                  <a class="advisor__btn" href="tel:+213560869905" aria-label="Appeler 0560 869 905"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg></a>
+                </span>
               </li>
-              <li class="phone-card">
-                <span class="phone-card__label"><span data-i18n="contact.conseiller_prefix">Conseiller</span> 6</span>
-                <span class="phone-card__num">0560 860 617</span>
-                <div class="phone-card__actions">
-                  <a class="phone-card__btn phone-card__btn--wa" href="https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0560 860 617">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>WhatsApp</span>
-                  </a>
-                  <a class="phone-card__btn phone-card__btn--call" href="tel:+213560860617" aria-label="Appeler 0560 860 617">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.15h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span>Appel</span>
-                  </a>
-                </div>
+              <li class="advisor" data-advisor-extra hidden>
+                <span class="advisor__num num-ltr">0560 860 617</span>
+                <span class="advisor__actions">
+                  <a class="advisor__btn advisor__btn--wa" href="https://wa.me/213560860617?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" aria-label="WhatsApp 0560 860 617"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-wa"/></svg></a>
+                  <a class="advisor__btn" href="tel:+213560860617" aria-label="Appeler 0560 860 617"><svg class="ico" width="15" height="15" aria-hidden="true" focusable="false"><use href="#ico-phone"/></svg></a>
+                </span>
               </li>
             </ul>
-            <p class="staff-phones__note">Lignes ouvertes du dimanche au jeudi · 9 h – 18 h. Réponse WhatsApp sous 30 min en moyenne.</p>
+            <button type="button" class="advisor-toggle" id="advisor-toggle" aria-expanded="false" aria-controls="advisor-list">
+              <span data-toggle-show data-i18n="contact.advisors_show">Voir les 6 conseillers</span>
+              <span data-toggle-hide hidden data-i18n="contact.advisors_hide">Afficher moins</span>
+            </button>
+            <p class="contact-card__note">
+              <svg class="ico" width="14" height="14" aria-hidden="true" focusable="false"><use href="#ico-clock"/></svg>
+              <span data-i18n="contact.hours_note">Lignes ouvertes du dimanche au jeudi, 9 h – 18 h. Réponse WhatsApp sous 30 minutes en moyenne.</span>
+            </p>
           </div>
-        </div>
-        <div
-          style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r3); padding:var(--s7); display:flex; flex-direction:column; gap:var(--space-4)">
-          <div style="display:flex; align-items:flex-start; gap:var(--space-4)">
-            <div
-              class="u-text-accent" style="width:40px; height:40px; border-radius:var(--r2); background:var(--accent-dim); display:grid; place-items:center; flex-shrink:0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="10" r="3" />
-                <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="fs-body-sm u-fw-500 u-text-1 u-mb-1" data-i18n="contact.addresses_label">Adresses</h4>
-              <p class="fs-body-sm u-text-2"><strong class="u-text-1 u-fw-600" data-i18n="contact.hq_label">Siège · BBA La Graf</strong><br>Boulevard Houari Boumediene<br><strong class="u-text-1 u-fw-600 u-inline-block u-mt-3" data-i18n="contact.branch_zehour_label">BBA Cité Zehour</strong><br>Route de Medjana<br><strong class="u-text-1 u-fw-600 u-inline-block u-mt-3" data-i18n="contact.branch_msila_label">M'Sila</strong><br><span data-i18n="contact.branch_msila_addr">Centre-ville</span><br><em class="u-text-3 u-inline-block u-mt-2" data-i18n="contact.addresses_note">3 agences en Algérie</em></p>
-            </div>
+
+          <div class="contact-card">
+            <h3 class="contact-card__title">
+              <svg class="ico" width="16" height="16" aria-hidden="true" focusable="false"><use href="#ico-pin"/></svg>
+              <span data-i18n="contact.addresses_label">Nos adresses</span>
+            </h3>
+            <ul class="branch-list" role="list">
+              <li><strong data-i18n="contact.hq_label">Siège · BBA La Graf</strong><span>Boulevard Houari Boumediene</span></li>
+              <li><strong data-i18n="contact.branch_zehour_label">BBA · Cité Zehour</strong><span>Route de Medjana</span></li>
+              <li><strong data-i18n="contact.branch_msila_label">M'Sila</strong><span data-i18n="contact.branch_msila_addr">Centre-ville</span></li>
+            </ul>
+            <p class="contact-card__note" data-i18n="contact.addresses_note">3 agences en Algérie</p>
           </div>
-          <div class="u-divider"></div>
-          <div>
-            <h4
-              class="fs-caption u-fw-600 u-letter-wide u-uppercase u-text-3 u-mb-sp4">
-              <span data-i18n="contact.payment_label">Paiement accepté</span></h4>
-            <div class="u-cluster--sm">
-              <span
-                class="fs-body-sm u-text-2" style="padding:var(--space-2) var(--space-3); background:var(--bg); border:1px solid var(--border); border-radius:var(--r1)" data-i18n="contact.payment_ccp">Virement
-                CCP</span>
-              <span
-                class="fs-body-sm u-text-2" style="padding:var(--space-2) var(--space-3); background:var(--bg); border:1px solid var(--border); border-radius:var(--r1)" data-i18n="contact.payment_cash">Espèces
-                agence</span>
-              <span
-                class="fs-body-sm u-text-2" style="padding:var(--space-2) var(--space-3); background:var(--bg); border:1px solid var(--border); border-radius:var(--r1)" data-i18n="contact.payment_bank">Virement
-                bancaire</span>
-            </div>
+
+          <div class="contact-card">
+            <h3 class="contact-card__title">
+              <svg class="ico" width="16" height="16" aria-hidden="true" focusable="false"><use href="#ico-wallet"/></svg>
+              <span data-i18n="contact.payment_label">Modes de paiement</span>
+            </h3>
+            <ul class="pay-list" role="list">
+              <li data-i18n="contact.payment_ccp">Virement CCP</li>
+              <li data-i18n="contact.payment_cash">Espèces à l'agence</li>
+              <li data-i18n="contact.payment_bank">Virement bancaire</li>
+            </ul>
+            <p class="contact-card__note"><strong class="u-text-1" data-i18n="contact.signup_label">Inscription simple</strong> <span data-i18n="contact.signup_lede">Par téléphone, sur WhatsApp ou en agence. Un acompte suffit pour bloquer votre place — le solde se règle avant le départ.</span></p>
           </div>
-          <div class="u-divider"></div>
-          <div>
-            <h4
-              class="fs-caption u-fw-600 u-letter-wide u-uppercase u-text-3 u-mb-sp4" data-i18n="contact.signup_label">
-              Inscription possible</h4>
-            <p class="fs-body-sm u-text-2" data-i18n="contact.signup_lede">Par téléphone · WhatsApp · En agence. Un acompte suffit pour
-              bloquer votre place.</p>
-          </div>
+
         </div>
       </div>
     </div>
@@ -1453,6 +1409,12 @@
   <script src="assets/js/hero-collage-lazy.js" defer></script>
   <script src="assets/js/map-base.js" defer></script>
   <script src="assets/js/algeria-map.js" defer></script>
+  <!-- Lead capture for the contact form. lead-config.js must come first: it
+       defines window.AT_LEADS, and `defer` guarantees the order. Every trip
+       page has loaded these for months; this page — the one with the actual
+       contact form — did not, so every enquiry sent from here was discarded. -->
+  <script src="assets/js/lead-config.js" defer></script>
+  <script src="assets/js/contact-form.js" defer></script>
   <script type="module" src="assets/js/beacon.js"></script>
 </body>
 

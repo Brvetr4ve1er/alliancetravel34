@@ -7713,9 +7713,13 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* ── P1-C · Homepage contact form ──────────────────────────
    Sits inside #contact section. Name + city + phone + voyage select.
    On submit, builds wa.me link with prefilled message. */
+/* Single column. The fields themselves now sit in .contact-form__grid, so the
+   form's own children are the field block, the submit row and the status line —
+   stacking them. This used to be repeat(auto-fit, minmax(240px,1fr)), which
+   would now drop the submit button beside the fields. */
 .contact-form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--s4, 16px);
   margin-top: var(--s5, 24px);
   padding: var(--s5, 24px);
@@ -7827,8 +7831,12 @@ section.section.phase-block + section.section:not(.phase-block) {
     flex-shrink: 0;
   }
   .contact-form {
-    grid-template-columns: 1fr;
     padding: var(--s4, 16px);
+  }
+  /* One field per row on phones — two 220px columns would otherwise survive
+     down to ~470px and squeeze the labels. */
+  .contact-form__grid {
+    grid-template-columns: 1fr;
   }
   .contact-form__submit-wrap {
     flex-direction: column;
@@ -8766,51 +8774,14 @@ body { background: var(--bg); color: var(--txt-1); }
 /* End v19 palette ──────────────────────────────────────────── */
 
 /* ══════════════════════════════════════════════════════════════
-   v19.1 — Homepage contact: staff phone grid
-   Replaces the vertical stack of 4 WhatsApp/Viber buttons under the
-   contact form with a clean 3×2 grid of 6 phone cards. Each card has:
-     • subtle role label (Conseiller N)
-     • formatted number (tabular-nums, large, readable)
-     • dual action row — WhatsApp (brand green) + Appel (neutral)
-
-   Responsive: 3 cols → 2 cols (≤720px) → 1 col (≤420px). On mobile the
-   actions stay side-by-side until the very narrow tier where they stack.
+   Phone cards — now used ONLY by /rendez-vous-visa/.
+   The homepage contact section used to render the same six numbers as a
+   3×2 grid of these cards, directly below the branches block that already
+   listed all six. It now shows two in the contact rail behind a disclosure
+   (see .advisor-list), so the .staff-phones wrapper rules that framed the
+   grid were deleted with it. The .phone-card rules below stay — the visa
+   page still renders them.
    ══════════════════════════════════════════════════════════════ */
-.staff-phones {
-  margin-top: var(--s6, 32px);
-  padding-top: var(--s6, 32px);
-  border-top: 1px solid var(--border);
-}
-.staff-phones__lead {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .6875rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--txt-3);
-  margin: 0 0 var(--s4, 16px);
-}
-.staff-phones__lead svg {
-  color: var(--accent);
-  flex-shrink: 0;
-}
-.staff-phones__grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-.staff-phones__note {
-  margin: var(--s4, 16px) 0 0;
-  font-size: .75rem;
-  color: var(--txt-3);
-  line-height: 1.5;
-  font-style: italic;
-}
 
 .phone-card {
   position: relative;
@@ -8890,22 +8861,13 @@ body { background: var(--bg); color: var(--txt-1); }
   color: var(--accent);
 }
 
-/* Responsive ladder for the staff phone grid */
-@media (max-width: 980px) {
-  .staff-phones__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 @media (max-width: 480px) {
-  .staff-phones__grid {
-    grid-template-columns: 1fr;
-  }
   .phone-card {
     padding: 12px 14px 12px;
   }
 }
 
-/* End v19.1 staff-phones ──────────────────────────────────── */
+/* End phone-card (visa page) ──────────────────────────────── */
 
 /* ══════════════════════════════════════════════════════════════
    v19.2 — Real agency network
@@ -9421,4 +9383,237 @@ body { background: var(--bg); color: var(--txt-1); }
 @media (max-width:380px){
   .aurora-hero__actions{ flex-wrap:wrap; }
   .aurora-hero__actions .btn{ flex:1 1 100%; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Homepage contact section — form-first layout
+   The form is the point of the section, so it takes the wider column and
+   the reference material (advisors, branches, payment) moves into a rail
+   of cards beside it. Previously the form sat in a half-width column with
+   six near-identical phone cards stacked underneath, repeating the six
+   numbers the branches block had already listed a screen earlier.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Holds the <symbol> defs. display:none would stop <use> resolving in some
+   engines, so the element is collapsed out of layout instead. */
+.contact-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Icons are sized by their width/height attributes; this only stops flex
+   containers from squashing them and keeps them optically centred on text. */
+.ico {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.contact-main__title {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.1;
+  margin: 0 0 var(--s4, 24px);
+}
+/* --accent, not --bronze. The old markup said color:var(--bronze) inline, but
+   Phase J deleted that token family, so the emphasis colour had silently
+   resolved to nothing and the accented half of the heading rendered in plain
+   body colour. 12.4:1 on --bg-2 dark, 4.7:1 light — both clear of the 3:1 that
+   large text needs. */
+.contact-main__title em {
+  color: var(--accent);
+  font-style: italic;
+}
+.contact-main__lede {
+  margin-bottom: var(--s6, 32px);
+}
+
+/* Two fields per row while there is room. 220px is the point at which the
+   longest label ("Voyage qui vous intéresse") still fits on one line. */
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s4, 16px);
+}
+
+/* Submit feedback. Empty by default and removed from layout so it does not
+   reserve a blank line — the old form gave no feedback at all, so a blocked
+   popup looked like a dead button. */
+.contact-form__status {
+  margin: 0;
+  font-size: .8125rem;
+  line-height: 1.5;
+}
+.contact-form__status:empty {
+  display: none;
+}
+.contact-form__status.is-ok {
+  color: var(--txt-2);
+}
+.contact-form__status.is-warn a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ── trust rail ── */
+.contact-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4, 16px);
+}
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r3, 14px);
+  padding: var(--s5, 24px);
+}
+.contact-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 var(--s4, 16px);
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--txt-3);
+}
+.contact-card__title .ico {
+  color: var(--accent);
+}
+.contact-card__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: var(--s4, 16px) 0 0;
+  font-size: .75rem;
+  line-height: 1.55;
+  color: var(--txt-3);
+}
+.contact-card__note .ico {
+  margin-top: .15em;
+}
+
+/* ── advisors ── */
+.advisor-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.advisor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r2, 8px);
+  background: var(--bg);
+}
+.advisor__num {
+  font-variant-numeric: tabular-nums;
+  font-size: .9375rem;
+  font-weight: 600;
+  color: var(--txt-1);
+}
+.advisor__actions {
+  display: flex;
+  gap: 6px;
+}
+/* 44px keeps these above the WCAG 2.5.8 target-size minimum; the icon inside
+   stays 15px so the button reads as compact while remaining tappable. */
+.advisor__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r2, 8px);
+  border: 1px solid var(--border-hi);
+  background: var(--bg-elev);
+  color: var(--txt-1);
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.advisor__btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.advisor__btn--wa {
+  background: #25d366;
+  border-color: #25d366;
+  color: #052e16;
+}
+.advisor__btn--wa:hover {
+  background: #20bf5b;
+  border-color: #20bf5b;
+  color: #052e16;
+}
+
+.advisor-toggle {
+  margin-top: 10px;
+  padding: 8px 4px;
+  min-height: 44px;
+  width: 100%;
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font: inherit;
+  font-size: .8125rem;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+}
+.advisor-toggle:hover {
+  text-decoration: underline;
+}
+
+/* ── branches / payment ── */
+.branch-list,
+.pay-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.branch-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: var(--txt-2);
+}
+.branch-list li + li {
+  margin-top: var(--space-3, 12px);
+}
+.branch-list strong {
+  color: var(--txt-1);
+  font-weight: 600;
+}
+.pay-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pay-list li {
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r1, 2px);
+  font-size: .8125rem;
+  color: var(--txt-2);
+}
+
+/* Below the 1024px breakpoint the section is already one column, so the rail
+   spreads its cards across the full width instead of running as a tall stack. */
+@media (max-width: 1024px) and (min-width: 721px) {
+  .contact-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .contact-rail > .contact-card {
+    flex: 1 1 260px;
+  }
 }
