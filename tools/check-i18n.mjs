@@ -25,7 +25,7 @@
 // Stale and missing translations are WARNINGS, never errors: the owner
 // explicitly chose warn-and-allow, so that a one-word French price fix does not
 // become a three-language task before anything can ship.
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { join, basename } from "node:path";
 import { buildManifest, extractBindings } from "./i18n-manifest.mjs";
 
@@ -201,10 +201,43 @@ export function checkI18n(root, htmlBySlug = {}) {
   return { errors, warnings, manifests };
 }
 
-/** Write the manifest the admin reads. Never called in --check mode. */
+/**
+ * Write the manifest the admin reads. Never called in --check mode.
+ *
+ * One file per trip, plus a small index. A single combined file reached 556 KB
+ * at seven trips (~60 KB each), and the admin fetches it through the GitHub
+ * contents API, which refuses files over 1 MB — so the editor would have
+ * started failing somewhere around the sixteenth trip, on whichever trip
+ * happened to be opened. Per-trip files also mean opening one editor transfers
+ * 60 KB instead of 556 KB.
+ *
+ * The index carries only what an overview needs: coverage and the binding
+ * count. Coverage is never shown without the count beside it, because a page
+ * that binds nothing scores 100 %.
+ */
 export function writeManifest(root, manifests) {
-  const out = { generated: "build", trips: manifests };
-  writeFileSync(join(root, "data", "i18n-manifest.json"), JSON.stringify(out, null, 2) + "\n");
+  const dir = join(root, "data", "i18n-manifest");
+  mkdirSync(dir, { recursive: true });
+
+  const index = { generated: "build", trips: {} };
+  for (const [slug, m] of Object.entries(manifests)) {
+    writeFileSync(join(dir, `${slug}.json`), JSON.stringify(m, null, 2) + "\n");
+    index.trips[slug] = {
+      coverage: m.coverage,
+      bindings: Object.values(m.keys).filter((k) => k.scope === "trip").length,
+    };
+  }
+  writeFileSync(join(dir, "_index.json"), JSON.stringify(index, null, 2) + "\n");
+
+  // Drop manifests for trips that no longer exist, so the admin cannot open a
+  // stale one. Scoped to this generated directory and to the names this
+  // function writes — nothing else is touched.
+  for (const f of readdirSync(dir)) {
+    if (!f.endsWith(".json") || f === "_index.json") continue;
+    if (!Object.prototype.hasOwnProperty.call(manifests, basename(f, ".json"))) {
+      rmSync(join(dir, f));
+    }
+  }
 }
 
 if (process.argv[1] && basename(process.argv[1]) === "check-i18n.mjs") {

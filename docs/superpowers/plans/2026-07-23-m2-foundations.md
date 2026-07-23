@@ -287,11 +287,17 @@ alone must never be shown to the owner without the binding count beside it (see 
 
 **Files:** Modify `api/get-trip.mjs`
 
-- [ ] **Step 1:** Read `data/i18n-manifest.json` from the repo via the existing GitHub client and return
-  `manifest` for the requested slug alongside `content` and `sha`. If the file is missing, return
-  `manifest: null` — never fail the editor over a missing manifest.
-- [ ] **Step 2:** Verify with a real token: `/api/get-trip?slug=istanbul` returns a `manifest` object.
-- [ ] **Step 3: Commit** — `feat(admin): serve the translation manifest with the trip`
+- [x] **Step 1:** Read the manifest via the existing GitHub client and return it alongside `content`
+  and `sha`. Missing manifest → `manifest: null`, never a failed editor.
+  **Changed during implementation:** the plan assumed one combined `data/i18n-manifest.json`. It
+  reached 556 KB at seven trips (~60 KB each) and the admin fetches it through the GitHub contents
+  API, which refuses files over 1 MB — the editor would have begun failing around the sixteenth trip.
+  Split into `data/i18n-manifest/<slug>.json` plus a small `_index.json` carrying coverage and
+  binding count per trip. Opening one editor now transfers 60 KB instead of 556 KB.
+- [x] **Step 2: Verify** — 8 handler cases against stubbed GitHub: manifest present, absent,
+  unparseable, and erroring (all → 200, never fatal); trip absent → 404; trip unparseable → explicit
+  500; and two rejected slugs (`../../etc/passwd`, `Istanbul`) → 400.
+- [x] **Step 3: Commit** — `feat(admin): serve the translation manifest with the trip`
 
 ---
 

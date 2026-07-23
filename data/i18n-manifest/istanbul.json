@@ -1,0 +1,205 @@
+{
+  "slug": "istanbul",
+  "coverage": {
+    "en": 100,
+    "ar": 100
+  },
+  "keys": {
+    "nav.skip": {
+      "fr": "Aller au contenu principal",
+      "frHash": "00tjwm6j",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "nav.trip_program": {
+      "fr": "Programme",
+      "frHash": "00dfvy9h",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "nav.trip_hotels": {
+      "fr": "Hôtels",
+      "frHash": "009pf2vb",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "nav.trip_faq": {
+      "fr": "FAQ",
+      "frHash": "00hfim9n",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "nav.trip_booking": {
+      "fr": "Réserver",
+      "frHash": "01b5gpyv",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "nav.visa_rdv": {
+      "fr": "Visa",
+      "frHash": "00k3jmpk",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "istHeroEyebrow": {
+      "fr": "Départ Constantine · Turkish Airlines · Septembre–Novembre 2026",
+      "frHash": "00mx2rq2",
+      "en": "From Constantine · Turkish Airlines · September–November 2026",
+      "ar": "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
+      "enHash": "00mx2rq2",
+      "arHash": "00mx2rq2",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "istHeroH1": {
+      "fr": "Istanbul <em>Entre deux continents</em>",
+      "frHash": "002unfob",
+      "en": "Istanbul <em>Where two continents meet</em>",
+      "ar": "إسطنبول <em>حيث تلتقي القارتان</em>",
+      "enHash": "002unfob",
+      "arHash": "002unfob",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "istHeroDate": {
+      "fr": "8 jours · 7 nuits · Hôtel River 3★",
+      "frHash": "01txo2tj",
+      "en": "8 days · 7 nights · Hotel River 3★",
+      "ar": "8 أيام · 7 ليالٍ · فندق River 3★",
+      "enHash": "01txo2tj",
+      "arHash": "01txo2tj",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "heroFrom": {
+      "fr": "À partir de",
+      "frHash": "008fxzhe",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "istHeroPriceUnit": {
+      "fr": "par personne · chambre double · Hotel River 3★",
+      "frHash": "00a356kx",
+      "en": "per person · double room · Hotel River 3★",
+      "ar": "للشخص · غرفة مزدوجة · فندق River 3★",
+      "enHash": "00a356kx",
+      "arHash": "00a356kx",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "istHeroCtaCalc": {
+      "fr": "Calculer mon prix",
+      "frHash": "01k75uan",
+      "en": "Calculate my price",
+      "ar": "احسب سعري",
+      "enHash": "01k75uan",
+      "arHash": "01k75uan",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "istHeroLede": {
+      "fr": "Aya Sofya, le Grand Bazar, les îles des Princes et le Bosphore au coucher du soleil. 8 jours de découverte totale depuis l'aéroport de Constantine, chaque semaine.",
+      "frHash": "00dle2kz",
+      "en": "Hagia Sophia, the Grand Bazaar, the Princes’ Islands and the Bosphorus at sunset. 8 days of complete discovery from Constantine airport, every week.",
+      "ar": "آيا صوفيا، البازار الكبير، جزر الأمراء، والبسفور عند الغروب. 8 أيام من الاكتشاف الكامل انطلاقًا من مطار قسنطينة، كل أسبوع.",
+      "enHash": "00dle2kz",
+      "arHash": "00dle2kz",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "istHeroFineprint": {
+      "fr": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation.",
+      "frHash": "00h8z0s3",
+      "en": "Based on a double room, subject to availability — DZD/USD rate set at booking.",
+      "ar": "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
+      "enHash": "00h8z0s3",
+      "arHash": "00h8z0s3",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "footer.cta_title": {
+      "fr": "Prêt à partir ?",
+      "frHash": "00hhwa6o",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.cta_sub": {
+      "fr": "Écrivez-nous sur WhatsApp, réponse le jour même.",
+      "frHash": "011n77ph",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.cta_btn": {
+      "fr": "Discuter sur WhatsApp",
+      "frHash": "00w9kd9q",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.tagline": {
+      "fr": "Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.",
+      "frHash": "01y3449q",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.col_contact": {
+      "fr": "Contact",
+      "frHash": "00w3fq2r",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.wa_viber": {
+      "fr": "WhatsApp / Viber",
+      "frHash": "00uliopw",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.phone": {
+      "fr": "Téléphone",
+      "frHash": "00p3xtrr",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.address_label": {
+      "fr": "Adresse",
+      "frHash": "008nb632",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.copyright": {
+      "fr": "© 2026 Alliance Travel · Bordj Bou Arreridj",
+      "frHash": "002p2a80",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.notice": {
+      "fr": "Prix en DA · Visa non inclus pour Istanbul · Indicatifs",
+      "frHash": "00ibuoi6",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    }
+  }
+}

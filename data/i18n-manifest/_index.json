@@ -1,0 +1,54 @@
+{
+  "generated": "build",
+  "trips": {
+    "azerbaidjan": {
+      "coverage": {
+        "en": 99,
+        "ar": 99
+      },
+      "bindings": 185
+    },
+    "bali": {
+      "coverage": {
+        "en": 99,
+        "ar": 99
+      },
+      "bindings": 183
+    },
+    "egypte": {
+      "coverage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 197
+    },
+    "istanbul": {
+      "coverage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 7
+    },
+    "kuala-lumpur": {
+      "coverage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 192
+    },
+    "tunisie": {
+      "coverage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 186
+    },
+    "vietnam": {
+      "coverage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 207
+    }
+  }
+}

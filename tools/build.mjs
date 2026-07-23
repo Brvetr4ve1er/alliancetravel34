@@ -136,8 +136,9 @@ if (!errors.length) {
 // shadowing the shared dictionary, or an empty French source. Coverage and
 // staleness are warnings by design — the owner chose warn-and-allow, so fixing
 // one French price is never gated on producing three languages.
-// Also emits data/i18n-manifest.json, which the admin reads to show FR/EN/AR
-// side by side. Never written in --check mode: --check must not touch the tree.
+// Also emits data/i18n-manifest/<slug>.json, which the admin reads to show
+// FR/EN/AR side by side. Never written in --check mode: --check must not touch
+// the tree.
 let i18nManifests = null;
 {
   const htmlBySlug = {};
