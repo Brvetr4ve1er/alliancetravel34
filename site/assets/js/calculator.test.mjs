@@ -148,6 +148,35 @@ test("roomLabelL()/_labels(): per-language strings, called with an explicit lang
   assert.equal(fallback.greeting("Bali"), fr.greeting("Bali"));
 });
 
+test("kidsSummary(): groups kids by category into a localized breakdown (fr/en/ar)", () => {
+  const c = calc({ hotels: [] }, {});
+  // child_b → 1st child, child_a → 2nd child, baby → baby (see kidPriceKey).
+  const kids = [{ type: "child_b" }, { type: "child_a" }, { type: "child_a" }, { type: "baby" }];
+  assert.equal(c.kidsSummary(kids, "fr"), "1ᵉʳ enfant ×1 · 2ᵉ enfant ×2 · Bébé ×1");
+  assert.equal(c.kidsSummary(kids, "en"), "1st child ×1 · 2nd child ×2 · Baby ×1");
+  assert.equal(c.kidsSummary(kids, "ar"), "الطفل الأول ×1 · الطفل الثاني ×2 · رضيع ×1");
+});
+
+test("kidsSummary(): keeps a stable 1st→2nd→baby order regardless of input order", () => {
+  const c = calc({ hotels: [] }, {});
+  const kids = [{ type: "baby" }, { type: "child_a" }, { type: "child_b" }];
+  assert.equal(c.kidsSummary(kids, "fr"), "1ᵉʳ enfant ×1 · 2ᵉ enfant ×1 · Bébé ×1");
+});
+
+test("kidsSummary(): unknown language falls back to the French label set", () => {
+  const c = calc({ hotels: [] }, {});
+  const kids = [{ type: "child_b" }, { type: "baby" }];
+  assert.equal(c.kidsSummary(kids, "xx-unknown"), c.kidsSummary(kids, "fr"));
+  assert.equal(c.kidsSummary(kids, "xx-unknown"), "1ᵉʳ enfant ×1 · Bébé ×1");
+});
+
+test("kidsSummary(): empty or missing kids returns an empty string (line is dropped)", () => {
+  const c = calc({ hotels: [] }, {});
+  assert.equal(c.kidsSummary([], "fr"), "");
+  assert.equal(c.kidsSummary(undefined, "en"), "");
+  assert.equal(c.kidsSummary(null, "ar"), "");
+});
+
 // parseDepartureEnd() returns a Date built with the vm context's OWN Date
 // constructor (a different realm from this test's), so it fails
 // assert.deepEqual/deepStrictEqual even when the value is correct — compare

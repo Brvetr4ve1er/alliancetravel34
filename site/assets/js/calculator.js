@@ -65,7 +65,6 @@ class TripCalculator {
       breakdown:    document.getElementById('breakdown-lines'),
       totalEl:      document.getElementById('breakdown-total'),
       usdEl:        document.getElementById('breakdown-usd'),
-      whatsappBtn:  document.getElementById('wa-book-btn'),
       stickyTotal:  document.getElementById('sticky-total-amount'),
       stickyBtn:    document.getElementById('sticky-cta-btn'),
       whyDetails:   document.getElementById('breakdown-why-details'),
@@ -203,8 +202,7 @@ class TripCalculator {
       this.render();
     });
 
-    // WhatsApp button
-    this.el.whatsappBtn?.addEventListener('click', () => this.openWhatsApp());
+    // WhatsApp CTA (sticky bar) — opens the pre-filled wa.me handoff.
     this.el.stickyBtn?.addEventListener('click', () => this.openWhatsApp());
 
     // Re-render when the language switches so dynamic strings (esp. the
@@ -434,7 +432,12 @@ class TripCalculator {
         room:     'Chambre',
         adults:   (n) => `${n} adulte${n > 1 ? 's' : ''}`,
         kids:     'Enfants/Bébés',
+        // Per-type child labels, keyed by hotel price key (child1/child2/baby)
+        // so kidsSummary() can map a kid's TYPE via kidPriceKey(). Wording
+        // reuses the existing calculate() copy ("1ᵉʳ enfant"/"2ᵉ enfant"/"Bébé").
+        kidTypes: { child1: '1ᵉʳ enfant', child2: '2ᵉ enfant', baby: 'Bébé' },
         total:    'Total estimé',
+        localTax: (usd) => `Taxe locale : ${usd} USD (sur place)`,
         thanks:   'Merci!',
         reserve:  'Réserver',
       },
@@ -445,7 +448,9 @@ class TripCalculator {
         room:     'Room',
         adults:   (n) => `${n} adult${n > 1 ? 's' : ''}`,
         kids:     'Children/Babies',
+        kidTypes: { child1: '1st child', child2: '2nd child', baby: 'Baby' },
         total:    'Estimated total',
+        localTax: (usd) => `Local tax: ${usd} USD (on site)`,
         thanks:   'Thank you!',
         reserve:  'Book',
       },
@@ -456,12 +461,38 @@ class TripCalculator {
         room:     'الغرفة',
         adults:   (n) => `${n} بالغ`,
         kids:     'أطفال/رضّع',
+        kidTypes: { child1: 'الطفل الأول', child2: 'الطفل الثاني', baby: 'رضيع' },
         total:    'الإجمالي التقديري',
+        localTax: (usd) => `الضريبة المحلية: ${usd} USD (في الموقع)`,
         thanks:   'شكراً!',
         reserve:  'احجز',
       },
     };
     return sets[lang] || sets.fr;
+  }
+
+  // Group the kids array by category and return a compact localized breakdown
+  // like "1ᵉʳ enfant ×1 · 2ᵉ enfant ×2 · Bébé ×1" — so the WhatsApp handoff is
+  // quote-ready (owner no longer has to ask "how many babies vs children?").
+  // Each kid's TYPE (child_b/child_a/baby) is mapped to its price key via the
+  // existing kidPriceKey() single-source-of-truth, then labelled from
+  // _labels().kidTypes. Empty/absent kids → '' so the caller drops the line
+  // (consistent with the old `kids.length ? … : ''` guard). Pure: pass `lang`
+  // explicitly to avoid any document access.
+  kidsSummary(kids, lang) {
+    lang = lang || this._lang();
+    if (!Array.isArray(kids) || kids.length === 0) return '';
+    const K = this._labels(lang).kidTypes;
+    const order = ['child1', 'child2', 'baby'];
+    const counts = {};
+    kids.forEach(k => {
+      const key = this.kidPriceKey(k && k.type); // type → child1|child2|baby
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    return order
+      .filter(key => counts[key])
+      .map(key => `${K[key]} ×${counts[key]}`)
+      .join(' · ');
   }
 
   /**
@@ -498,8 +529,9 @@ class TripCalculator {
       hotel    ? `${L.hotel} : ${hotel.name}` : '',
       this.state.date ? `${L.date} : ${this.state.date}` : '',
       `${L.room} : ${this.roomLabelL(this.state.room, lang)} — ${L.adults(this.state.adults)}`,
-      this.state.kids.length ? `${L.kids} : ${this.state.kids.length}` : '',
+      this.state.kids.length ? `${L.kids} : ${this.kidsSummary(this.state.kids, lang) || this.state.kids.length}` : '',
       `${L.total} : ${total}`,
+      (result && result.totalUSD > 0) ? L.localTax(result.totalUSD) : '',
       L.thanks,
     ].filter(Boolean).join('\n');
 

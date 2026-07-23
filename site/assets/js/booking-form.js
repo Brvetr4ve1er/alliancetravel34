@@ -25,6 +25,28 @@ function escapeHtml(s) {
     .replace(/'/g, '&#39;');
 }
 
+/* Group the calculator's kids array by category into a compact localized
+   breakdown ("1ᵉʳ enfant ×1 · 2ᵉ enfant ×2 · Bébé ×1"). Mirrors
+   calculator.js kidsSummary() so the booking message and the calculator
+   handoff agree. Each kid's TYPE (child_b/child_a/baby) maps to a price key
+   (child1/child2/baby) — same mapping as calculator.js kidPriceKey() — then
+   is labelled from the passed `kidTypes` set. Empty/untyped kids → '' so the
+   caller can fall back to the bare count. Pure (no DOM). */
+const KID_TYPE_KEY = { child_b: 'child1', child_a: 'child2', baby: 'baby' };
+function kidsSummary(kids, kidTypes) {
+  if (!Array.isArray(kids) || kids.length === 0) return '';
+  const order = ['child1', 'child2', 'baby'];
+  const counts = {};
+  kids.forEach(k => {
+    const key = KID_TYPE_KEY[k && k.type];
+    if (key) counts[key] = (counts[key] || 0) + 1;
+  });
+  return order
+    .filter(key => counts[key])
+    .map(key => `${kidTypes[key]} ×${counts[key]}`)
+    .join(' · ');
+}
+
 /* ─── HTML Template ───────────────────────────────────────────── */
 const FORM_HTML = `
 <div class="container">
@@ -462,6 +484,7 @@ class BookingForm {
         room:       'Chambre',
         adults:     'Adultes',
         kids:       'Enfants/Bébés',
+        kidTypes:   { child1: '1ᵉʳ enfant', child2: '2ᵉ enfant', baby: 'Bébé' },
         price:      'Prix estimé',
         localTax:   (usd) => `Taxe locale : ${usd} USD (sur place)`,
         ownerHead:  '👤 *RESPONSABLE DU DOSSIER*',
@@ -487,6 +510,7 @@ class BookingForm {
         room:       'Room',
         adults:     'Adults',
         kids:       'Children/Babies',
+        kidTypes:   { child1: '1st child', child2: '2nd child', baby: 'Baby' },
         price:      'Estimated price',
         localTax:   (usd) => `Local tax: ${usd} USD (on site)`,
         ownerHead:  '👤 *FILE HOLDER*',
@@ -512,6 +536,7 @@ class BookingForm {
         room:       'الغرفة',
         adults:     'البالغون',
         kids:       'أطفال/رضّع',
+        kidTypes:   { child1: 'الطفل الأول', child2: 'الطفل الثاني', baby: 'رضيع' },
         price:      'السعر التقديري',
         localTax:   (usd) => `الضريبة المحلية: ${usd} USD (في الموقع)`,
         ownerHead:  '👤 *صاحب الملف*',
@@ -553,7 +578,7 @@ class BookingForm {
       s.date   ? `• ${L.date} : ${s.date}`             : null,
       s.room   ? `• ${L.room} : ${s.room}`             : null,
       s.adults ? `• ${L.adults} : ${s.adults}`         : null,
-      (s.kids?.length) ? `• ${L.kids} : ${s.kids.length}` : null,
+      (s.kids?.length) ? `• ${L.kids} : ${kidsSummary(s.kids, L.kidTypes) || s.kids.length}` : null,
       s.totalDA ? `• ${L.price} : ${fmt(s.totalDA)}` : null,
       s.totalUSD ? `• ${L.localTax(s.totalUSD)}` : null,
       '',
