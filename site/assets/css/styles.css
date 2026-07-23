@@ -1354,7 +1354,7 @@ select {
   font-weight: 500;
   color: var(--txt-2);
   font-variant-numeric: tabular-nums;
-  margin-left: auto;
+  margin-inline-start: auto;
   white-space: nowrap;
 }
 
@@ -1398,13 +1398,13 @@ select {
 }
 
 .breakdown__line span {
-  text-align: right;
+  text-align: end;
   font-variant-numeric: tabular-nums;
 }
 /* The label (1st span) must wrap; only the amount (last span) stays on one
    line — otherwise a long package label nowraps past the panel on phones. */
 .breakdown__line span:first-child {
-  text-align: left;
+  text-align: start;
   min-width: 0;
   overflow-wrap: anywhere;
 }
@@ -3573,7 +3573,7 @@ html.js [data-aos].visible {
 .skip-link {
   position: absolute;
   top: -100px;
-  left: 8px;
+  inset-inline-start: 8px;
   background: var(--mint);
   color: var(--navy);
   font-weight: 600;
@@ -3910,12 +3910,12 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 /* Section eyebrow gets a regional accent dash */
 [data-region] .section-head__eyebrow {
   position: relative;
-  padding-left: 18px;
+  padding-inline-start: 18px;
 }
 [data-region] .section-head__eyebrow::before {
   content: '';
   position: absolute;
-  left: 0; top: 50%;
+  inset-inline-start: 0; top: 50%;
   width: 12px; height: 1px;
   background: var(--accent);
   transform: translateY(-50%);
@@ -3990,9 +3990,9 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 .site-nav .nav-links a:hover { opacity: 1; color: var(--mint); }
 
-/* Right group: first sibling among toggle/switcher/cta gets margin-left:auto */
+/* Trailing group: first sibling among toggle/switcher/cta gets margin-inline-start:auto */
 .site-nav > .theme-toggle {
-  margin-left: auto;
+  margin-inline-start: auto;
   grid-column: auto !important;
   grid-row: auto !important;
 }
@@ -4059,7 +4059,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
     font-size: 0.8125rem;
   }
   .site-nav > .theme-toggle { width: 32px; height: 32px; }
-  .site-nav > .theme-toggle { margin-left: auto; }
+  .site-nav > .theme-toggle { margin-inline-start: auto; }
 }
 
 /* Light mode: white-tinted pill */
@@ -7572,14 +7572,14 @@ section.section.phase-block + section.section:not(.phase-block) {
 }
 .info-list li {
   position: relative;
-  padding-left: 18px;
+  padding-inline-start: 18px;
   font-size: .9375rem;
   line-height: 1.6;
 }
 .info-list li::before {
   content: "";
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 9px;
   width: 6px;
   height: 6px;
@@ -7593,13 +7593,14 @@ section.section.phase-block + section.section:not(.phase-block) {
 
 /* Tiered list (annulation cancellation thresholds) */
 .info-list--tiered li {
-  padding: 10px 14px 10px 32px;
+  padding-block: 10px;
+  padding-inline: 32px 14px;
   background: rgba(255, 255, 255, .02);
   border-radius: 8px;
   border: 1px solid var(--border, var(--border));
 }
 .info-list--tiered li::before {
-  left: 14px;
+  inset-inline-start: 14px;
   top: 18px;
 }
 :root[data-theme="light"] .info-list--tiered li {
@@ -8372,7 +8373,9 @@ section.section.phase-block + section.section:not(.phase-block) {
 .trip-card__art {
   position: absolute;
   inset: 0;
-  background: #050609 !important;
+  /* Fallback only — cards set their own destination-tinted gradient via an
+     inline style; !important here would silently defeat every one of them. */
+  background: #050609;
   border-radius: 0 !important;
   overflow: hidden;
 }
