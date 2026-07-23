@@ -43,6 +43,7 @@ const ICONS = {
   close:     { p: ["m6 6 12 12", "M18 6 6 18"] },
   chevron:   { p: ["m9 6 6 6-6 6"] },
   sparkles:  { p: ["M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z", "M18.5 15l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9z"] },
+  copy:      { p: ["M9 9h11v11H9z", "M5 15V4h11"] },
 };
 
 export function icon(name, opts = {}) {

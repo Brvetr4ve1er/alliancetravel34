@@ -131,6 +131,7 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 4px var(--brand-dim);
 }
 textarea { min-height: 200px; font-family: ui-monospace, "Cascadia Mono", monospace; font-size: var(--fs-sm); line-height: 1.5; }
+textarea.notes { min-height: 90px; font-family: "DM Sans", system-ui, sans-serif; font-size: var(--fs); line-height: 1.55; }
 
 /* One visible focus treatment for everything keyboard-reachable. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
@@ -278,6 +279,27 @@ details.adv[open] summary { margin-bottom: var(--s2); }
 .lead-card .meta b { color: var(--ink); font-weight: 600; }
 .lead-card .actions { display: flex; gap: var(--s2); margin-top: var(--s1); flex-wrap: wrap; }
 .lead-card .actions .btn { flex: 1 1 140px; }
+/* The name/meta block is itself the "open detail" control — a real <button>,
+   not a click handler on the card div, so it never nests one interactive
+   element inside another (the card also holds real call/WhatsApp buttons). */
+.lead-card__open { all: unset; display: block; width: 100%; cursor: pointer; }
+.lead-card .statuschip { cursor: pointer; }
+
+/* ── Demandes: browse list + detail panel split ────────────── */
+.rowline { display: flex; align-items: center; gap: var(--s2); margin-bottom: var(--s2); flex-wrap: wrap; }
+.leads-split { display: grid; gap: var(--s3); }
+.leads-browse { display: grid; gap: var(--s3); }
+.leads-panel { padding: var(--s4); }
+.leads-panel[hidden], .leads-browse[hidden] { display: none; }
+@media (min-width: 900px) {
+  .leads-split { grid-template-columns: minmax(300px, 380px) 1fr; align-items: start; }
+  .leads-panel { position: sticky; top: var(--s3); max-height: calc(100vh - var(--s4)); overflow-y: auto; }
+}
+
+/* Full record view: plain-language field labels, never raw column names. */
+.detail-grid { display: grid; grid-template-columns: max-content 1fr; gap: 9px var(--s4); margin: var(--s3) 0; font-size: var(--fs-sm); }
+.detail-grid dt { color: var(--ink2); }
+.detail-grid dd { margin: 0; font-weight: 500; }
 
 /* ── Chips ──────────────────────────────────────────────────── */
 .chiprow { display: flex; gap: var(--s2); flex-wrap: wrap; }
