@@ -1,0 +1,13 @@
+{
+  "name": "alliancetravel34",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "build:check": "node tools/build.mjs --check",
+    "test": "node --test"
+  }
+}
