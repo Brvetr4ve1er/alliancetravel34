@@ -31,5 +31,6 @@ test("buildManifest marks stale, missing and shared keys", () => {
   assert.equal(m.keys.xA.arState, "stale");    // AR exists, no hash
   assert.equal(m.keys.xB.arState, "missing");  // no AR at all
   assert.equal(m.keys["nav.skip"].scope, "shared");
-  assert.equal(m.coverage.en, 50);             // shared keys excluded from the count
+  assert.equal(m.coverage.en, 100); // both trip keys HAVE English (xB is stale, not missing)
+  assert.equal(m.coverage.ar, 50);  // xA has Arabic, xB has none
 });

@@ -99,7 +99,7 @@ function stateFor(value, storedHash, currentFrHash) {
  * - scope: "shared" for keys translated once globally (nav.*, heroFrom, …),
  *   "trip" for everything specific to this trip page.
  * - enState/arState: "missing" | "stale" | "ok" (see stateFor).
- * - coverage.{en,ar}: % of trip-scope keys that are fully up to date ("ok").
+ * - coverage.{en,ar}: % of trip-scope keys PRESENT in that language (ok or stale).
  *   i18nHash is a new, currently-absent block on every trip's JSON, so on
  *   first run every existing translation reads as "stale" — expected, honest,
  *   and fixed by the stamping step that ships later in this milestone.
@@ -133,11 +133,18 @@ export function buildManifest({ slug, html, trip, sharedKeys }) {
     };
   }
 
+  // Coverage answers "how much of this page exists in that language", so a
+  // stale translation still counts — it is present, merely out of date.
+  // Freshness is reported separately, per key, via enState/arState.
+  //
+  // Counting only "ok" would read 0% on every trip until the one-time hash
+  // stamping lands, which would tell the owner egypte is untranslated when it
+  // is 92% translated — a worse lie than the staleness it was meant to expose.
   const tripKeys = Object.values(keys).filter((k) => k.scope === "trip");
   const pct = (state) =>
     tripKeys.length === 0
       ? 0
-      : Math.round((tripKeys.filter((k) => k[state] === "ok").length / tripKeys.length) * 100);
+      : Math.round((tripKeys.filter((k) => k[state] !== "missing").length / tripKeys.length) * 100);
 
   return {
     slug,
