@@ -211,6 +211,7 @@
         groups_text: 'Petits groupes pour une expérience humaine et personnalisée à chaque étape.'
       },
       trip_page: {
+        highlights: 'Points forts du voyage',
         included: 'Compris dans le prix',
         not_included: 'Non compris',
         itinerary: 'Programme jour par jour',
@@ -543,6 +544,7 @@
         groups_text: 'Small groups for a personal, human experience at every step.'
       },
       trip_page: {
+        highlights: 'Trip highlights',
         included: "What's included",
         not_included: 'Not included',
         itinerary: 'Itinerary',
@@ -883,6 +885,7 @@
         groups_text: 'مجموعات صغيرة لتجربة إنسانية وشخصية في كلّ مرحلة.'
       },
       trip_page: {
+        highlights: 'أبرز مميزات الرحلة',
         included: 'مشمول في السعر',
         not_included: 'غير مشمول',
         itinerary: 'البرنامج',
