@@ -155,6 +155,11 @@ textarea { min-height: 200px; font-family: ui-monospace, "Cascadia Mono", monosp
 .btn--sm { min-height: 40px; padding: 8px 14px; font-size: var(--fs-sm); }
 .btn--block { display: flex; width: 100%; margin-top: var(--s2); }
 .btn--danger { background: var(--danger); border-color: var(--danger); }
+/* "Annuler la dernière publication" — a recovery action, styled as a caution so
+   it never reads as a second primary button next to Publier. The .row > .ep-undo
+   specificity keeps it compact against the later `.row > *` flex:1 rule. */
+.row > .ep-undo { flex: none; }
+.btn--ghost.ep-undo:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-dim); }
 
 /* ── Messages ───────────────────────────────────────────────── */
 .msg { color: var(--ink2); margin-block: var(--s2); min-height: 1.2em; font-size: var(--fs-sm); }
