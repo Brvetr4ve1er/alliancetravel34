@@ -9650,7 +9650,7 @@ body { background: var(--bg); color: var(--txt-1); }
    classes (.footer-cta, .footer-col, .phone-group, .footer-social,
    .footer-bottom) and, being appended last, wins the cascade over the
    scattered "phase" rules above. New structural classes: .footer-main,
-   .footer-wordmark, .footer-nav, .footer-legal, .footer-top.
+   .footer-nav, .footer-legal, .footer-top.
    ══════════════════════════════════════════════════════════════ */
 .site-footer {
   padding-block: clamp(48px, 8vw, 96px) clamp(28px, 4vw, 40px);
@@ -9700,21 +9700,9 @@ body { background: var(--bg); color: var(--txt-1); }
   min-width: 0;
 }
 
-/* The editorial anchor: an oversized wordmark. Decorative (aria-hidden) —
-   the nav logo is the real home link — so it can be pure type. */
-.footer-wordmark {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2.75rem, 7vw, 5.25rem);
-  line-height: .9;
-  letter-spacing: -.03em;
-  color: var(--txt-1);
-  display: block;
-}
-.footer-wordmark em {
-  color: var(--accent);
-  font-style: normal;
-}
+/* The editorial anchor is now the full Alliance Travel logo (SVG) rather than a
+   text wordmark — see .footer-brand-logo / .footer-logo-svg near end of file.
+   The old .footer-wordmark type rules were removed with the element. */
 .footer-tagline {
   font-size: .9375rem;
   line-height: 1.6;
@@ -9867,7 +9855,6 @@ body { background: var(--bg); color: var(--txt-1); }
   .footer-cta { gap: var(--s4); }
   .footer-cta__btn { width: 100%; justify-content: center; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
-  .footer-wordmark { font-size: clamp(2.5rem, 13vw, 3.5rem); }
 }
 
 /* ── reduced motion: no lifts ── */
@@ -9875,3 +9862,18 @@ body { background: var(--bg); color: var(--txt-1); }
   .footer-social a:hover,
   .footer-top:hover { transform: none; }
 }
+
+/* ── Footer brand logo — the full Alliance Travel logo (replaces the text
+   wordmark). The source SVG hardcodes cream (#efe8df) + green (#9ce8b2) fills
+   for a dark background; the footer bg follows the theme (dark→light), so the
+   fills are re-themed here by the same attribute-selector trick the nav logo
+   uses. CSS `fill` overrides the presentation attribute while the attribute
+   value — and therefore the selector match — stays intact. ── */
+.footer-brand-logo { display: block; line-height: 0; }
+.footer-logo-svg {
+  width: clamp(190px, 22vw, 250px);
+  height: auto;
+  display: block;
+}
+.footer-logo-svg path[fill="#efe8df"] { fill: var(--txt-1); }
+.footer-logo-svg path[fill="#9ce8b2"] { fill: var(--accent); }
