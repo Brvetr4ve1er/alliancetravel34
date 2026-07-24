@@ -1,0 +1,87 @@
+# .github/workflows/backup-leads.yml
+# Weekly automated backup of the leads (customer inquiries) table to a workflow
+# artifact. Leads live only in Supabase and are otherwise backed up nowhere; this
+# is the safety net.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# REQUIRED REPO SECRET (Settings → Secrets and variables → Actions → New secret):
+#
+#   SUPABASE_SERVICE_ROLE_KEY   (REQUIRED — this is the ONLY thing that activates
+#                                the backup) The Supabase service-role key. It can
+#                                read the whole `leads` table past row-level
+#                                security. Keep it secret: it is NOT the public
+#                                anon key in site/assets/js/lead-config.js.
+#
+# OPTIONAL REPO SECRET:
+#
+#   SUPABASE_URL                (optional) The Supabase project URL. Defaults to the
+#                                known public project URL below if the secret is
+#                                empty, so most owners only need the key above.
+#
+# Until SUPABASE_SERVICE_ROLE_KEY is set, this workflow is a deliberate no-op: it
+# runs, warns that it is unconfigured, and exits 0 (green) — it never fails a run
+# just because the secret is missing. Secrets are passed through env only and are
+# never echoed; GitHub also masks them in logs automatically.
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Backup leads
+
+on:
+  schedule:
+    # Every Monday at 03:17 UTC. (Off-peak; odd minute to avoid the top-of-hour rush.)
+    - cron: "17 3 * * 1"
+  workflow_dispatch: {} # allow manual "Run workflow" from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check configuration
+        id: check
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "${SUPABASE_SERVICE_ROLE_KEY}" ]; then
+            echo "::warning::SUPABASE_SERVICE_ROLE_KEY is not set — skipping lead backup."
+            echo "This is expected until the owner adds the secret; the run is intentionally a no-op."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Service-role key present — proceeding with backup."
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Export leads to CSV
+        id: export
+        if: steps.check.outputs.configured == 'true'
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # Public project URL fallback; override with a SUPABASE_URL secret if the project moves.
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://vxblgxiamtphabfswnxb.supabase.co' }}
+        run: |
+          set -euo pipefail
+          DATE="$(date -u +%F)"
+          FILE="leads-${DATE}.csv"
+          # PostgREST returns CSV directly with Accept: text/csv (header row included,
+          # even for an empty table). --fail surfaces a real HTTP error (e.g. a bad key)
+          # as a non-zero exit; the secret is passed via header from env, never printed.
+          curl --fail --silent --show-error \
+            -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Accept: text/csv" \
+            "${SUPABASE_URL}/rest/v1/leads?select=*&order=created_at.desc" \
+            -o "${FILE}"
+          LINES="$(wc -l < "${FILE}" | tr -d ' ')"
+          echo "Wrote ${FILE} (${LINES} line(s) including the header)."
+          echo "file=${FILE}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload backup artifact
+        if: steps.check.outputs.configured == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: leads-backup-${{ github.run_id }}
+          path: ${{ steps.export.outputs.file }}
+          retention-days: 90
+          if-no-files-found: error
