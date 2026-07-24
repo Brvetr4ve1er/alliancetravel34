@@ -108,8 +108,10 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
     err(file, "calcUi.steppersHtml: bloc des compteurs voyageurs manquant");
   if (!isStr(get(data, "calcUi.whyHtml")))
     err(file, "calcUi.whyHtml: bloc « Pourquoi ce prix ? » manquant");
-  if (!isStr(get(data, "footer.html")) || !get(data, "footer.html").includes("footer.copyright"))
-    err(file, "footer.html: contenu du pied de page manquant ou sans clé footer.copyright");
+  // footer.html removed: the footer is now a single inline source in
+  // tools/templates/sections/footer.tpl (d6859b0), so the per-trip footer.html
+  // blob it once validated is gone. Validating a field nothing renders would
+  // force every trip to keep 6.7 KB of dead duplicated markup.
   if (!isStr(get(data, "finalCta.actionsHtml")) || !get(data, "finalCta.actionsHtml").includes("wa.me/"))
     err(file, "finalCta.actionsHtml: bloc d'actions sans lien WhatsApp");
   // Every room type offered must exist in every price grid.
