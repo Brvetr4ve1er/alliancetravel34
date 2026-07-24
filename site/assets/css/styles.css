@@ -1655,6 +1655,15 @@ select {
   color: var(--accent);
 }
 
+/* ── v28 · Itinerary day-node reveal ─────────────────────────────────
+   Each J1/J2… node carries data-aos="zoom-in" (staggered) in
+   itinerary.tpl, so the marker scale/pops as it enters view via the
+   existing observer — no per-day icon added (would crowd the spine).
+   `.tl-node` is the anime.js hook. Reduced-motion guard keeps it still. */
+@media (prefers-reduced-motion: reduce) {
+  html.js .tl-node[data-aos] { opacity: 1 !important; transform: none !important; }
+}
+
 .tl-content {
   padding-top: 4px;
 }
@@ -1871,6 +1880,36 @@ select {
   font-size: .8125rem;
   color: var(--txt-3);
   margin-top: var(--s1);
+}
+
+/* ── v28 · Trust stat icons ──────────────────────────────────────────
+   Small accent chip above each stat (icons are index-keyed in
+   trust.tpl). The card's own data-aos="zoom-in" reveals the chip on
+   scroll (baseline, works standalone); the anime.js pass can re-animate
+   the `.stat-card__icon` targets for a secondary staggered pop.
+   Hover micro-motion mirrors .hl-card__icon / .value-prop__icon. */
+.stat-card__icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto var(--s3);
+  border-radius: var(--r2);
+  background: var(--accent-dim);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  transition: transform var(--t-base) var(--ease-spring),
+    background var(--t-base) ease, color var(--t-base) ease;
+}
+.stat-card__icon svg { width: 20px; height: 20px; }
+.stat-card:hover .stat-card__icon {
+  transform: translateY(-2px) scale(1.06);
+}
+:root[data-theme="light"] .stat-card__icon {
+  background: var(--mint-dim);
+  color: var(--mint);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-card:hover .stat-card__icon { transform: none !important; }
 }
 
 .testimonials-grid {
@@ -3118,6 +3157,34 @@ html.js [data-aos].visible {
 .inclus-item strong {
   color: var(--txt-1);
   font-weight: 500;
+}
+
+/* ── v28 · Inclus/exclus "tick-in" reveal ────────────────────────────
+   Each check/cross (.inclus-check) scales + fades in, staggered, when
+   its column scrolls into view. Baseline rides the existing
+   .reveal → .visible observer (enhance.js) already on .inclus-col, so
+   it works before the anime.js pass; the anime.js agent can re-target
+   the same `.inclus-check` elements. --tick-i (set per item in
+   inclus.tpl) drives the stagger. Scoped to html.js so no-JS shows every
+   tick; RTL-safe (scale/opacity only, no directional transform). */
+html.js .inclus-col.reveal .inclus-check {
+  opacity: 0;
+  transform: scale(.4);
+  transform-origin: center;
+  transition: opacity var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-spring);
+  transition-delay: calc(var(--tick-i, 0) * 55ms);
+}
+html.js .inclus-col.reveal.visible .inclus-check {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .inclus-col.reveal .inclus-check {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════

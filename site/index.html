@@ -208,6 +208,25 @@
       margin-top: var(--s1);
     }
 
+    /* v28 · value-card icons — mirror .value-prop__icon; cards already
+       carry data-aos="zoom-in" for the scroll reveal. */
+    .value-card__icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto var(--s3);
+      border-radius: var(--r2);
+      background: var(--mint-dim, rgba(156, 232, 178, 0.12));
+      color: var(--mint);
+      display: grid;
+      place-items: center;
+      transition: transform var(--t-base) var(--ease-spring);
+    }
+    .value-card__icon svg { width: 22px; height: 22px; }
+    .value-card:hover .value-card__icon { transform: translateY(-2px) scale(1.06); }
+    @media (prefers-reduced-motion: reduce) {
+      .value-card:hover .value-card__icon { transform: none !important; }
+    }
+
     /* Contact section */
     .contact-section {
       display: grid;
@@ -833,18 +852,22 @@
         </div>
         <div class="values-grid">
           <div class="value-card" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="600">
+            <div class="value-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <div class="value-card__num" data-counter="1.2" data-counter-format="{n}K+">1.2K+</div>
             <p class="value-card__label" data-i18n="agency.value_travelers">Voyageurs guidés</p>
           </div>
           <div class="value-card" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
+            <div class="value-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <div class="value-card__num" data-counter="98" data-counter-format="{n}%">98%</div>
             <p class="value-card__label" data-i18n="agency.value_satisfaction">Satisfaction client</p>
           </div>
           <div class="value-card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
+            <div class="value-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div class="value-card__num" data-counter="5" data-counter-format="{n}">5</div>
             <p class="value-card__label" data-i18n="agency.value_destinations">Destinations 2026</p>
           </div>
           <div class="value-card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
+            <div class="value-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
             <div class="value-card__num" data-counter="7" data-counter-format="{n}+">7+</div>
             <p class="value-card__label" data-i18n="agency.value_experience">Ans d'expérience</p>
           </div>
