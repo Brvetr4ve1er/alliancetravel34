@@ -860,6 +860,17 @@ class BookingForm {
   }
 }
 
+/* ─── Test hook ───────────────────────────────────────────────────
+   Expose the pure, security-relevant helpers so the HTML-escaping of
+   user input can be regression-tested without a DOM (see
+   site/assets/js/booking-form.test.mjs). Mirrors lead-capture.js's
+   window.AT_buildLeadPayload. Inert in the browser: two pure functions,
+   no side effects — the guard against escapeHtml/renderPassportEntry
+   silently losing their escaping lives here. */
+if (typeof window !== 'undefined') {
+  window.AT_bookingInternals = { escapeHtml, renderPassportEntry };
+}
+
 /* ─── Boot ────────────────────────────────────────────────────── */
 function boot() {
   const mount = document.getElementById('booking');
