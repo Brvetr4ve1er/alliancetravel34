@@ -9550,3 +9550,98 @@ body { background: var(--bg); color: var(--txt-1); }
   .aurora-hero__actions{ flex-wrap:wrap; }
   .aurora-hero__actions .btn{ flex:1 1 100%; }
 }
+
+/* ── "Nos destinations" globe (homepage-only three.js showpiece) ──────────────
+   Mount = #globe-stage, a capstone below the trip cards in #voyages (below the
+   fold — never competes with the hero LCP). The stage is always sized via
+   aspect-ratio, so swapping the WebGL canvas ⇄ static fallback never shifts
+   layout. Default state shows the fallback; globe.js adds .globe-stage--live
+   only after a successful first frame (canvas in, fallback out). If the globe
+   is skipped (phone / reduced-motion / Save-Data / low RAM) or fails, the
+   tasteful fallback simply stays. Motion here is opt-in via
+   prefers-reduced-motion:no-preference, so motion-averse users get it static. */
+.globe-stage{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  margin:var(--s9) auto 0;
+  aspect-ratio:1/1;
+  isolation:isolate;
+}
+/* Canvas stays hidden until the 3D globe has rendered its first frame. */
+.globe-stage__canvas{
+  position:absolute;
+  inset:0;
+  display:none;
+  width:100%;
+  height:100%;
+  touch-action:pan-y;          /* let vertical page scroll pass through a drag */
+  cursor:grab;
+}
+.globe-stage__canvas:active{ cursor:grabbing; }
+.globe-stage--live .globe-stage__canvas{ display:block; }
+.globe-stage--live .globe-fallback{ display:none; }
+
+/* Static fallback: a stylized accent globe disc + translated caption. Shown on
+   mobile / reduced-motion / Save-Data / any failure — never an empty box. */
+.globe-fallback{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:var(--s4);
+  text-align:center;
+}
+.globe-fallback__orb{
+  position:relative;
+  width:min(64%,240px);
+  aspect-ratio:1;
+  border-radius:50%;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--border-mint);
+  background:
+    radial-gradient(38% 38% at 34% 30%, var(--accent-glow), transparent 68%),
+    radial-gradient(circle at 50% 50%, var(--mint-dim), transparent 74%),
+    var(--navy-dim);
+  box-shadow:inset 0 0 42px -10px var(--accent-glow), var(--elev-1);
+}
+/* Wireframe graticule: a lat/long grid clipped to the disc reads as a globe. */
+.globe-fallback__orb::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg,  transparent 0 11%, var(--mint-glow) 11% 11.6%),
+    repeating-linear-gradient(90deg, transparent 0 11%, var(--mint-glow) 11% 11.6%);
+  opacity:.22;
+}
+.globe-fallback__count{
+  position:relative;
+  z-index:1;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(28px,7vw,44px);
+  line-height:1;
+  color:var(--accent);
+  text-shadow:0 2px 14px var(--accent-glow);
+}
+.globe-fallback__caption{
+  margin:0;
+  font-size:.8rem;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--txt-3);
+}
+/* Subtle breathing glow — opt-in only, so reduced-motion users see it static. */
+@media (prefers-reduced-motion:no-preference){
+  .globe-fallback__count{ animation:globePulse 4.5s ease-in-out infinite; }
+}
+@keyframes globePulse{
+  0%,100%{ text-shadow:0 2px 14px var(--accent-glow); }
+  50%    { text-shadow:0 2px 22px var(--accent-glow); }
+}
