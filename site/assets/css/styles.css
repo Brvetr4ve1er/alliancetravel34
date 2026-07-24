@@ -9443,6 +9443,7 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .contact-main__lede {
   margin-bottom: var(--s6, 32px);
+  max-width: 34rem; /* was running ~78 chars — tightened to a comfortable measure */
 }
 
 /* Two fields per row while there is room. 220px is the point at which the
@@ -9877,3 +9878,62 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .footer-logo-svg path[fill="#efe8df"] { fill: var(--txt-1); }
 .footer-logo-svg path[fill="#9ce8b2"] { fill: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOMEPAGE FLOW — readability + alignment pass.
+   Scoped so the trip pages (already consistent) are untouched. Fixes: the
+   value-props strip was inset ~40px more than every other section (max-width
+   1200 vs the container's 1280) and floated with no presence; the agency
+   section carried a second copy of the hero stats; several body ledes ran
+   ~78ch, past the comfortable 45–75ch measure.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Value-props: align to the container grid + give each item card presence. */
+.value-props-3 {
+  max-width: 1280px;
+  padding-inline: var(--container-x, clamp(16px, 5vw, 80px));
+  padding-block: clamp(48px, 8vw, 96px);
+  gap: clamp(16px, 2vw, 24px);
+}
+.value-prop {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r3, 14px);
+  padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 28px);
+  gap: 14px;
+  transition: border-color var(--t-fast, .18s) ease, transform var(--t-fast, .18s) ease;
+}
+.value-prop:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.value-prop__text {
+  font-size: .9375rem; /* was .875rem (14px) — matched to the site body size */
+  max-width: 30ch;
+}
+
+/* Agency: single, left-aligned editorial column (its right half was the
+   duplicate stats). Capped for readability and sharing the hero/contact left
+   edge, so the left margin stays put as you scroll. */
+/* rem, not ch: DM Sans's '0' glyph is ~0.69em, so a `ch` cap renders ~40%
+   more characters than its number implies — 64ch was ~88 characters. 38rem
+   lands around 74 for this story column without leaving it lopsidedly thin. */
+.about-copy {
+  max-width: 38rem;
+}
+.about-copy .fs-body {
+  line-height: 1.7;
+}
+
+/* Section rhythm: the content sections now alternate bg-2 / bg cleanly
+   (A-B-A-B-A), and a hairline between them delineates each one so the page
+   reads as distinct bands rather than one continuous cream wash. Homepage
+   only — the trip pages already have their own section treatment. */
+body[data-page="home"] #voyages,
+body[data-page="home"] .value-props-3,
+body[data-page="home"] #agence,
+body[data-page="home"] #agences,
+body[data-page="home"] #contact {
+  border-top: 1px solid var(--border);
+}
+/* End HOMEPAGE FLOW ──────────────────────────────────────────────────────── */
