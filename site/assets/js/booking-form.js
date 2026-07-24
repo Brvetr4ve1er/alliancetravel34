@@ -311,7 +311,7 @@ class BookingForm {
       ${chips.map(c => `
         <div class="bf-trip-chip">
           <span style="color:var(--txt-3);font-size:.7rem">${c.label}</span>
-          <strong style="${c.highlight ? 'color:var(--bronze)' : ''}">${c.val}</strong>
+          <strong class="${c.highlight ? 'is-hl' : ''}">${c.val}</strong>
         </div>`).join('')}
     </div>`;
   }

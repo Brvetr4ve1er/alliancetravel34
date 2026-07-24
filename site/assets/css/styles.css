@@ -2536,6 +2536,15 @@ select {
 .bf-trip-chip strong {
   color: var(--accent);
 }
+/* The total chip used an inline color:var(--bronze) to stand out. That token was
+   deleted in Phase J, and an undefined var() on an inherited property computes
+   to the inherited colour — so the highlighted total actually rendered DULLER
+   than its accent-green siblings, the reverse of the intent. Every chip strong
+   is already --accent (above), so the highlight now distinguishes itself by
+   weight instead of a second colour. */
+.bf-trip-chip strong.is-hl {
+  font-weight: 700;
+}
 
 .bf-trip-empty {
   font-size: .875rem;
@@ -9421,6 +9430,14 @@ body { background: var(--bg); color: var(--txt-1); }
    body colour. 12.4:1 on --bg-2 dark, 4.7:1 light — both clear of the 3:1 that
    large text needs. */
 .contact-main__title em {
+  color: var(--accent);
+  font-style: italic;
+}
+/* Same story as the contact title: the agency heading's <em> carried an inline
+   color:var(--bronze), and Phase J deleted that token, so the accented half
+   ("depuis Bordj Bou Arreridj") had rendered in plain heading colour. Moved off
+   the inline style onto this class, using --accent like its sibling. */
+.agency-title em {
   color: var(--accent);
   font-style: italic;
 }
