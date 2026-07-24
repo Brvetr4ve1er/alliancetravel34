@@ -10,6 +10,7 @@
     "api/save-trip.mjs": { "includeFiles": "tools/**", "maxDuration": 30 }
   },
   "redirects": [
+    { "source": "/cairo-sharm", "destination": "/egypte/", "permanent": true },
     { "source": "/sharm-constantine", "destination": "/egypte/", "permanent": true },
     { "source": "/azerbaijan", "destination": "/azerbaidjan/", "permanent": true },
     { "source": "/kl", "destination": "/kuala-lumpur/", "permanent": true },
