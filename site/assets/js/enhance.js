@@ -350,6 +350,14 @@
     document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
       a.addEventListener('click', e => {
         const id = a.getAttribute('href');
+        // #top is the HTML spec's scroll-to-document-top anchor: it matches no
+        // element, so it needs handling here. The footer's back-to-top link
+        // uses it, and works as a native jump even if this script never runs.
+        if (id === '#top') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+          return;
+        }
         const target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();

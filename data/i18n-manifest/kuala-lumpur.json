@@ -2166,8 +2166,64 @@
       "arState": "missing"
     },
     "footer.tagline": {
-      "fr": "Voyages guidés depuis Bordj Bou Arreridj. 1.200+ voyageurs satisfaits.",
-      "frHash": "01y3449q",
+      "fr": "Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.",
+      "frHash": "01x3xgta",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.col_voyages": {
+      "fr": "Nos voyages 2026",
+      "frHash": "016brh6p",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_egypte": {
+      "fr": "Égypte",
+      "frHash": "01f7igiz",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_tunisie": {
+      "fr": "Tunisie",
+      "frHash": "00vzcvgu",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_azerbaidjan": {
+      "fr": "Azerbaïdjan",
+      "frHash": "01ewlous",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_istanbul": {
+      "fr": "Istanbul",
+      "frHash": "008sjfc7",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_kuala_lumpur": {
+      "fr": "Kuala Lumpur",
+      "frHash": "01j142tc",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_bali": {
+      "fr": "Bali",
+      "frHash": "016anwzv",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.dest_vietnam": {
+      "fr": "Vietnam",
+      "frHash": "00ubdkh7",
       "scope": "shared",
       "enState": "missing",
       "arState": "missing"
@@ -2201,15 +2257,22 @@
       "arState": "missing"
     },
     "footer.copyright": {
-      "fr": "© 2026 Alliance Travel · Bordj Bou Arreridj",
-      "frHash": "002p2a80",
+      "fr": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie",
+      "frHash": "01qig6hr",
       "scope": "shared",
       "enState": "missing",
       "arState": "missing"
     },
     "footer.notice": {
-      "fr": "Prix en DA · Indicatifs · Confirmation à la réservation",
-      "frHash": "008ootgo",
+      "fr": "Prix en Dinar Algérien (DA) · Indicatifs · Confirmation à la réservation",
+      "frHash": "0092or02",
+      "scope": "shared",
+      "enState": "missing",
+      "arState": "missing"
+    },
+    "footer.back_to_top": {
+      "fr": "Haut de page",
+      "frHash": "01q09e3t",
       "scope": "shared",
       "enState": "missing",
       "arState": "missing"

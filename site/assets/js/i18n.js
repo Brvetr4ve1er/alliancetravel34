@@ -189,7 +189,15 @@
         notice: 'Prix indicatifs en Dinar Algérien (DA) · Confirmation au moment de la réservation',
         social_instagram: 'Instagram Alliance Travel',
         social_facebook: 'Facebook Alliance Travel',
-        social_tiktok: 'TikTok Alliance Travel'
+        social_tiktok: 'TikTok Alliance Travel',
+        back_to_top: 'Haut de page',
+        dest_egypte: 'Égypte',
+        dest_tunisie: 'Tunisie',
+        dest_azerbaidjan: 'Azerbaïdjan',
+        dest_istanbul: 'Istanbul',
+        dest_kuala_lumpur: 'Kuala Lumpur',
+        dest_bali: 'Bali',
+        dest_vietnam: 'Vietnam'
       },
       conseiller: {
         label_prefix: 'Votre conseiller',
@@ -535,7 +543,15 @@
         notice: 'Prices in Algerian Dinar (DZD) · Indicative · Confirmed at booking',
         social_instagram: 'Alliance Travel on Instagram',
         social_facebook: 'Alliance Travel on Facebook',
-        social_tiktok: 'Alliance Travel on TikTok'
+        social_tiktok: 'Alliance Travel on TikTok',
+        back_to_top: 'Back to top',
+        dest_egypte: 'Egypt',
+        dest_tunisie: 'Tunisia',
+        dest_azerbaidjan: 'Azerbaijan',
+        dest_istanbul: 'Istanbul',
+        dest_kuala_lumpur: 'Kuala Lumpur',
+        dest_bali: 'Bali',
+        dest_vietnam: 'Vietnam'
       },
       conseiller: {
         label_prefix: 'Advisor',
@@ -886,7 +902,15 @@
         notice: 'الأسعار بالدينار الجزائري · إرشادية · تُؤكَّد عند الحجز',
         social_instagram: 'إنستغرام أليانس ترافل',
         social_facebook: 'فيسبوك أليانس ترافل',
-        social_tiktok: 'تيك توك أليانس ترافل'
+        social_tiktok: 'تيك توك أليانس ترافل',
+        back_to_top: 'أعلى الصفحة',
+        dest_egypte: 'مصر',
+        dest_tunisie: 'تونس',
+        dest_azerbaidjan: 'أذربيجان',
+        dest_istanbul: 'إسطنبول',
+        dest_kuala_lumpur: 'كوالالمبور',
+        dest_bali: 'بالي',
+        dest_vietnam: 'فيتنام'
       },
       conseiller: {
         label_prefix: 'مستشارك',

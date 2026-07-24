@@ -9625,3 +9625,236 @@ body { background: var(--bg); color: var(--txt-1); }
     flex: 1 1 260px;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER — bold editorial redesign (2026-07-24)
+   One design, rendered on all 8 pages: index.html and the 7 trip pages
+   (via tools/templates/sections/footer.tpl). Reuses the existing leaf
+   classes (.footer-cta, .footer-col, .phone-group, .footer-social,
+   .footer-bottom) and, being appended last, wins the cascade over the
+   scattered "phase" rules above. New structural classes: .footer-main,
+   .footer-wordmark, .footer-nav, .footer-legal, .footer-top.
+   ══════════════════════════════════════════════════════════════ */
+.site-footer {
+  padding-block: clamp(48px, 8vw, 96px) clamp(28px, 4vw, 40px);
+}
+
+/* CTA band — statement + WhatsApp, bolder and calmer than before. */
+.footer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s7);
+  flex-wrap: wrap;
+  padding-bottom: clamp(32px, 5vw, 56px);
+  margin-bottom: clamp(40px, 6vw, 64px);
+  border-bottom: 1px solid var(--border);
+}
+.footer-cta__text h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  color: var(--txt-1);
+  margin: 0;
+}
+.footer-cta__text p {
+  margin: .5rem 0 0;
+  font-size: var(--fs-body-sm, .9375rem);
+  color: var(--txt-2);
+}
+.footer-cta__btn {
+  min-height: var(--touch-min);
+  flex-shrink: 0;
+}
+
+/* Main block: brand (with oversized wordmark) beside the link directory. */
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  min-width: 0;
+}
+
+/* The editorial anchor: an oversized wordmark. Decorative (aria-hidden) —
+   the nav logo is the real home link — so it can be pure type. */
+.footer-wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.75rem, 7vw, 5.25rem);
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--txt-1);
+  display: block;
+}
+.footer-wordmark em {
+  color: var(--accent);
+  font-style: normal;
+}
+.footer-tagline {
+  font-size: .9375rem;
+  line-height: 1.6;
+  color: var(--txt-2);
+  max-width: 42ch;
+  margin: 0;
+}
+
+/* Social tiles — dotted rounded squares that lift on hover (the reference's
+   signature cue), mapped to the site palette. */
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: var(--s2) 0 0;
+  padding: 0;
+}
+.footer-social a {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px dotted var(--border-hi);
+  background: transparent;
+  display: grid;
+  place-items: center;
+  color: var(--txt-2);
+  transition: transform var(--t-fast) var(--ease-out),
+              color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+}
+.footer-social a:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  border-style: solid;
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.footer-social a svg { width: 18px; height: 18px; }
+
+/* Link directory */
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+}
+.footer-col h4 {
+  font-size: .6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--txt-3);
+  margin: 0 0 var(--s4);
+}
+.footer-col--trips ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Animated underline, scoped to the trip links so the phone numbers in the
+   contact column keep their own treatment. */
+.footer-col--trips a {
+  display: inline-block;
+  font-size: .9375rem;
+  color: var(--txt-2);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--t-fast) var(--ease-out), color var(--t-fast);
+}
+:root[lang="ar"] .footer-col--trips a { background-position: 100% 100%; }
+.footer-col--trips a:hover {
+  color: var(--txt-1);
+  background-size: 100% 1px;
+}
+
+/* Contact column keeps the phone-group layout; re-asserted here so the
+   trip-link rule above cannot bleed into the numbers. */
+.footer-col--contact .phone-group { margin-bottom: var(--s4); }
+.footer-col--contact .phone-group:last-child { margin-bottom: 0; }
+.footer-col--contact .phone-group a {
+  background: none;
+  font-variant-numeric: tabular-nums;
+  font-size: .9375rem;
+  color: var(--txt-1);
+  padding: 2px 0;
+  transition: color var(--t-fast);
+}
+.footer-col--contact .phone-group a:hover { color: var(--accent); }
+.footer-address {
+  margin: 0;
+  font-size: .875rem;
+  line-height: 1.6;
+  color: var(--txt-2);
+}
+
+/* Bottom bar: legal on one side, back-to-top on the other. Dotted rule as a
+   final editorial nod. */
+.footer-bottom {
+  margin-top: clamp(40px, 6vw, 64px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px dotted var(--border-hi);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s4);
+}
+.footer-legal p {
+  margin: 0;
+  font-size: .8125rem;
+  color: var(--txt-3);
+  line-height: 1.5;
+}
+.footer-legal .footer-notice { margin-top: 2px; opacity: .85; }
+
+/* Back-to-top pill — the one utility control. It is a real link to #top, so it
+   works with no JS; enhance.js upgrades the jump to a smooth scroll. */
+.footer-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--touch-min);
+  padding: 10px 18px;
+  border: 1px solid var(--border-hi);
+  border-radius: 999px;
+  color: var(--txt-2);
+  font-size: .8125rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  transition: transform var(--t-fast) var(--ease-out),
+              color var(--t-fast), border-color var(--t-fast);
+}
+.footer-top svg { width: 16px; height: 16px; }
+.footer-top:hover {
+  transform: translateY(-2px);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  .footer-main { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 48px); }
+}
+@media (max-width: 560px) {
+  .footer-cta { gap: var(--s4); }
+  .footer-cta__btn { width: 100%; justify-content: center; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .footer-wordmark { font-size: clamp(2.5rem, 13vw, 3.5rem); }
+}
+
+/* ── reduced motion: no lifts ── */
+@media (prefers-reduced-motion: reduce) {
+  .footer-social a:hover,
+  .footer-top:hover { transform: none; }
+}
