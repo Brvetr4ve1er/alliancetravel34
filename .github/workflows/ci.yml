@@ -15,6 +15,7 @@ on:
   push:
     branches: [integrate/unified-admin]
   pull_request:
+  workflow_dispatch: # allow re-running CI on demand from the Actions tab
 
 permissions:
   contents: read
