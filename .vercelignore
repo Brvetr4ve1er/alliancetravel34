@@ -1,0 +1,17 @@
+# Files that must never reach the Vercel deploy.
+#
+# Vercel treats every api/*.mjs as a serverless function ENTRY POINT — so
+# api/status.test.mjs was being compiled as a bogus function that imports
+# node:test, which can fail the whole function build. This keeps every test
+# file out of the deploy; CI and `node --test` still run them from the repo.
+# The pattern matches at any depth (api/, tools/, site/admin/).
+*.test.mjs
+
+# Dev-only trees the build never reads. buildCommand is `node tools/build.mjs`,
+# which touches only data/, tools/ and site/; excluding these keeps the upload
+# lean and never ships repo internals. (This affects only what Vercel uploads —
+# GitHub Actions still read .github/ from the git repo.)
+.github/
+.claude/
+.playwright-mcp/
+docs/
