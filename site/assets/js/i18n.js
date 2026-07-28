@@ -274,8 +274,8 @@
           description: "Le Caire (Pyramides de Guizeh) + Sharm El Sheikh (mer Rouge) en 8 jours. Vol EgyptAir, hôtels 4★/5★, visa et excursions compris. Départs juin 2026 depuis Alger."
         },
         azerbaidjan: {
-          title: "Voyage Azerbaïdjan · Bakou & Gabala dès 227 000 DA — Alliance",
-          description: "7 nuits entre Bakou et Gabala, vol Turkish Airlines, e-visa compris, accompagnateur arabophone sur place. Départs juin–octobre 2026 depuis Alger. À partir de 227 000 DA."
+          title: "Voyage Azerbaïdjan · Bakou & Gabala dès 249 900 DA — Alliance",
+          description: "7 nuits entre Bakou et Gabala, vol Turkish Airlines, e-visa compris, accompagnateur arabophone sur place. Départs juin–octobre 2026 depuis Alger. À partir de 249 900 DA."
         },
         istanbul: {
           title: "Voyage Istanbul depuis Constantine dès 129 000 DA — Alliance",
@@ -291,9 +291,9 @@
         },
       visa: {
         title: 'Rendez-vous Visa · Alliance Travel · Bordj Bou Arreridj',
-        description: "RDV ambassade et VFS, dossier complet, dépôt physique selon ambassade. 10 pays couverts depuis Bordj Bou Arreridj — sans monter à Alger.",
+        description: "RDV ambassade et VFS, dossier complet, dépôt physique selon ambassade. 15 pays couverts depuis Bordj Bou Arreridj — sans monter à Alger.",
         og_title: 'Rendez-vous Visa · Alliance Travel',
-        og_description: "On s'occupe du RDV, du dossier et du dépôt — vous restez à Bordj. 10 pays · réponse WhatsApp en 30 min."
+        og_description: "On s'occupe du RDV, du dossier et du dépôt — vous restez à Bordj. 15 pays · réponse WhatsApp en 30 min."
       },
       },
       visa: {
@@ -636,6 +636,22 @@
         sharm_constantine: {
           title: "Sharm El Sheikh from Constantine · from DZD 155,000 — Alliance Travel",
           description: "Sharm El Sheikh, ten days / eight nights all-inclusive, direct from Constantine on Turkish Airlines. 4★/5★ Red Sea hotels. Five departures, June–October 2026."
+        },
+        egypte: {
+          title: "Egypt 2026 · 5 programmes — Alliance Travel",
+          description: "Egypt 2026: five programmes across Cairo, Hurghada and Sharm El Sheikh. Charter & scheduled flights, All-Inclusive on the Red Sea. Summer 2026 departures from Algiers. From DZD 169,000."
+        },
+        tunisie: {
+          title: "Tunisia by coach 2026 — Alliance Travel",
+          description: "Tunisia beach holiday by coach. Six nights half-board in Hammamet, Sousse or Djerba. Visa-free for Algerians. Weekly departures from Algiers and Oran. From DZD 36,000."
+        },
+        bali: {
+          title: "Bali (Indonesia) 2026 — Alliance Travel",
+          description: "Guided Bali trip. Nine nights all in 5★ hotels (Kuta · Ubud · Nusa Dua), Qatar Airways / Emirates flights, breakfast. Summer 2026 departures from Algiers. From DZD 419,000."
+        },
+        vietnam: {
+          title: "Vietnam 2026 — Alliance Travel",
+          description: "Vietnam tour, summer 2026. Twelve days: Ho Chi Minh, Phu Quoc, Hanoi and a Ha Long Bay cruise. Qatar Airways flights from Algiers. From DZD 439,000."
         },
       visa: {
         title: 'Visa Appointments & Dossier Service — Alliance Travel · BBA',
@@ -995,6 +1011,22 @@
         sharm_constantine: {
           title: 'رحلة شرم الشيخ من قسنطينة ابتداءً من 155.000 دينار جزائري',
           description: 'شرم الشيخ في عشرة أيام وثماني ليالٍ، نظام All Inclusive، انطلاقًا من قسنطينة. طيران Turkish Airlines، فنادق 4★/5★ على البحر الأحمر. خمس انطلاقات بين جوان وأكتوبر 2026.'
+        },
+        egypte: {
+          title: 'مصر 2026 · 5 برامج — أليانس ترافل',
+          description: 'مصر 2026: خمسة برامج للاختيار بين القاهرة والغردقة وشرم الشيخ. رحلات مستأجرة ومجدولة، نظام All Inclusive على البحر الأحمر. مغادرات صيف 2026 من الجزائر. ابتداءً من 169.000 دج.'
+        },
+        tunisie: {
+          title: 'تونس بالحافلة 2026 — أليانس ترافل',
+          description: 'عطلة شاطئية في تونس بالحافلة. ست ليالٍ بنصف إقامة في الحمامات أو سوسة أو جربة. بدون تأشيرة للجزائريين. مغادرات أسبوعية من الجزائر ووهران. ابتداءً من 36.000 دج.'
+        },
+        bali: {
+          title: 'بالي (إندونيسيا) 2026 — أليانس ترافل',
+          description: 'رحلة منظمة إلى بالي. تسع ليالٍ في فنادق 5★ (كوتا · أوبود · نوسا دوا)، طيران القطرية / الإمارات، مع الفطور. مغادرات صيف 2026 من الجزائر. ابتداءً من 419.000 دج.'
+        },
+        vietnam: {
+          title: 'فيتنام 2026 — أليانس ترافل',
+          description: 'جولة فيتنام صيف 2026. اثنا عشر يومًا: هوشي منه، فو كوك، هانوي ورحلة بحرية في خليج ها لونغ. طيران القطرية من الجزائر. ابتداءً من 439.000 دج.'
         },
       visa: {
         title: 'خدمة موعد التأشيرة وتجهيز الملف — أليانس ترافل · برج بوعريريج',

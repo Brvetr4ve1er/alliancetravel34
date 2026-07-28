@@ -126,8 +126,13 @@ class TripCalculator {
       chip.addEventListener('click', () => this.selectDateChip(chip));
       // Arrow-key navigation within the radiogroup (a11y).
       chip.addEventListener('keydown', e => {
-        const chips = [...this.el.dateChips];
+        // Only navigate between still-bookable chips: pruneDates() hides past
+        // departures with display:none, and the old full-NodeList walk let a
+        // keyboard user land on a hidden past date (corrupting state.date and
+        // stranding focus on a display:none element).
+        const chips = [...this.el.dateChips].filter(c => c.style.display !== 'none');
         const i = chips.indexOf(chip);
+        if (i < 0) return;
         let next = null;
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = chips[(i + 1) % chips.length];
         else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = chips[(i - 1 + chips.length) % chips.length];

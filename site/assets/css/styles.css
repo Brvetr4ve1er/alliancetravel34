@@ -962,8 +962,12 @@ select {
      stay equal-width and only form a 2-up once inner width clears 624px, then
      a 3-up at the 1280px container — both balanced. Floor kept at 300px on
      purpose; no earlier 1-col forcing needed. */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--s5);
+  /* v27 density: floor 300px→260px yields a 4-up on the 1280px container
+     (was 3-up), tightening the 25-hotel egypte wall by a full row-band.
+     auto-fill still steps to 3-up ~1024px, 2-up ~800px; the ≤768px rule
+     below forces 1-col. Gap --s5(24px)→--s3(16px) trims inter-row space. */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--s3);
 }
 
 .hotel-card {
@@ -2252,6 +2256,14 @@ select {
      ladder reference, not a hard pin). */
   body:has(.sticky-total) .fab-whatsapp {
     bottom: calc(var(--sticky-bar-h, 68px) + var(--space-4) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* The FAB (z-index 650) sits above the nav drawer's stacking context, so a
+     FAB already visible when the drawer opens painted on top of the open
+     drawer. Hide it while the drawer holds the scroll lock. */
+  body.nav-scroll-lock .fab-whatsapp {
+    opacity: 0;
+    pointer-events: none;
   }
 
   /* v22 Agent 3 — at ≤1024px, swap to auto-fit so each column has a
@@ -7969,7 +7981,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 
 /* ── Photo block ────────────────────────────────────────────── */
 .hotel-card__img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;   /* v27 density: 16/10→16/9 shaves ~17px/card */
   position: relative;
   overflow: hidden;
   background: var(--hc-accent-dim);
@@ -8036,10 +8048,10 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* ── Body ──────────────────────────────────────────────────── */
 .hotel-card__body {
   position: relative;
-  padding: 18px 20px 20px;
+  padding: 14px 16px 16px;   /* v27 density: was 18px 20px 20px */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;                   /* v27 density: was 10px */
   flex: 1;
   z-index: 1;
 }
@@ -8057,7 +8069,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 }
 
 .hotel-card__name {
-  font-size: 17px;
+  font-size: 16px;           /* v27 density: was 17px */
   font-weight: 700;
   color: var(--hc-text);
   line-height: 1.25;
@@ -8092,8 +8104,8 @@ section.section.phase-block + section.section:not(.phase-block) {
   display: flex;
   flex-direction: column;
   gap: 1px;
-  margin-top: 8px;
-  padding-top: 18px;
+  margin-top: 6px;           /* v27 density: was 8px */
+  padding-top: 14px;         /* v27 density: was 18px */
   border-top: 2px dashed rgba(0, 0, 0, 0);
   background:
     linear-gradient(to right,
@@ -8160,12 +8172,12 @@ section.section.phase-block + section.section:not(.phase-block) {
 .hotel-card__cta {
   position: relative;
   width: 100%;
-  margin-top: 14px;
+  margin-top: 10px;          /* v27 density: was 14px */
   background: var(--hc-accent);
   color: var(--hc-shadow);
   font-size: 13px;
   font-weight: 800;
-  padding: 12px 16px;
+  padding: 10px 16px;        /* v27 density: was 12px 16px */
   border: 2.5px solid var(--hc-shadow);
   border-radius: 8px;
   box-shadow: 4px 4px 0 var(--hc-shadow);
@@ -9119,6 +9131,9 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .contact-phone-link,
 :root[lang="ar"] a[href^="tel:"]:not([data-i18n]),
 :root[lang="ar"] a.btn--ghost[href*="wa.me"]:not([data-i18n]),
+/* The JS-injected trust-strip rating "4,9 / 5" is two number runs joined by a
+   bidi-neutral " / "; without isolation it reordered to "5 / 4.9" in Arabic. */
+:root[lang="ar"] .trust-strip__item strong,
 :root[lang="ar"] .num-ltr {
   direction: ltr;
   unicode-bidi: isolate;

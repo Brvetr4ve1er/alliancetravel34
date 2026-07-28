@@ -173,7 +173,12 @@
       ].join('\n');
 
       var url = 'https://wa.me/' + AGENCY_WA + '?text=' + encodeURIComponent(body);
-      var win = window.open(url, '_blank', 'noopener');
+      // Do NOT pass 'noopener' in the features string: per the HTML spec that
+      // makes window.open ALWAYS return null, so the success check below fired
+      // the "browser blocked the window" warning on every real submit. Open
+      // normally, then sever the opener ourselves for the same security.
+      var win = window.open(url, '_blank');
+      if (win) { try { win.opener = null; } catch (e) { /* cross-origin */ } }
 
       if (!status) return;
       if (win) {
