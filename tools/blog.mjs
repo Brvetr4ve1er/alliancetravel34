@@ -92,6 +92,10 @@ ${JSON.stringify(jsonLd, null, 2)}
 
 const SCRIPTS = `<script src="/assets/js/i18n.js" defer></script>
   <script src="/assets/js/enhance.js" defer></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>`;
 
