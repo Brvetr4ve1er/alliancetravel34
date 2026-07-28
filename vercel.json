@@ -11,6 +11,7 @@
   },
   "redirects": [
     { "source": "/sharm-constantine", "destination": "/egypte/", "permanent": true },
+    { "source": "/cairo-sharm", "destination": "/egypte/", "permanent": true },
     { "source": "/azerbaijan", "destination": "/azerbaidjan/", "permanent": true },
     { "source": "/kl", "destination": "/kuala-lumpur/", "permanent": true },
     { "source": "/kualalumpur", "destination": "/kuala-lumpur/", "permanent": true },
