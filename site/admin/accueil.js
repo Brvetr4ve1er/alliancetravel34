@@ -83,11 +83,13 @@ function kpiTile(labelKey, value, prev, breakdown, emptyKey) {
 function leadCard(r) {
   const card = document.createElement("div"); card.className = "lead-card";
   const top = document.createElement("div"); top.className = "top";
-  const name = document.createElement("span"); name.className = "name"; name.textContent = r.name || "—";
+  const name = document.createElement("span"); name.className = "name"; name.textContent = r.name || (r.phone ? "—" : t("leads.anon"));
   const age = document.createElement("span"); age.className = "age"; age.textContent = ago(r.created_at);
   top.append(name, age);
   const meta = document.createElement("div"); meta.className = "meta";
-  meta.textContent = [r.trip, fmt("leads.people", { a: r.adults ?? 0, k: r.kids ?? 0 }),
+  const hasPeople = r.adults != null || r.kids != null;
+  meta.textContent = [r.trip || r.page,
+    hasPeople ? fmt("leads.people", { a: r.adults ?? 0, k: r.kids ?? 0 }) : null,
     r.total_da ? `${t("leads.total")}: ${Number(r.total_da).toLocaleString("fr-DZ")} DA` : null]
     .filter(Boolean).join(" · ");
   const actions = document.createElement("div"); actions.className = "actions";

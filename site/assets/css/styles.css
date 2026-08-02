@@ -9952,3 +9952,105 @@ body[data-page="home"] #contact {
   border-top: 1px solid var(--border);
 }
 /* End HOMEPAGE FLOW ──────────────────────────────────────────────────────── */
+
+/* ── WhatsApp lead-capture prompt (lead-whatsapp.js) ─────────────────────────
+   A small, dismissible "want a callback?" invite shown a beat after a WhatsApp
+   CTA tap. Anchored bottom-inline-start so it never overlaps the bottom-right
+   FAB, and rises above the FAB on narrow screens. Sits at toast level: above
+   content and the sticky bar, below the FAB and nav drawer. RTL-native. */
+.wa-lead-prompt {
+  position: fixed;
+  /* Logical start: the FAB mirrors to the inline-end corner in both directions
+     (right in LTR, left in RTL — see the [dir="rtl"] .fab-whatsapp rule), so
+     anchoring the prompt to inline-start keeps it in the opposite corner from
+     the FAB in every language. */
+  inset-inline-start: 24px;
+  inset-block-end: 24px;
+  z-index: var(--z-toast);
+  width: min(340px, calc(100vw - 48px));
+  padding: 16px 18px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-hi);
+  border-radius: 16px;
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, .5), 0 4px 12px rgba(0, 0, 0, .28);
+  color: var(--txt-1);
+  text-align: start;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out),
+              visibility 0s linear var(--t-base);
+}
+.wa-lead-prompt.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out);
+}
+.wa-lead-prompt__close {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-end: 10px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--txt-3);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.wa-lead-prompt__close:hover { color: var(--txt-1); background: var(--border); }
+.wa-lead-prompt__q {
+  margin: 0 0 2px;
+  margin-inline-end: 26px;
+  font-family: var(--font-display, inherit);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--txt-1);
+}
+.wa-lead-prompt__sub {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--txt-2);
+}
+.wa-lead-prompt__form { display: flex; flex-direction: column; gap: 8px; }
+.wa-lead-prompt__input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border-hi);
+  border-radius: 10px;
+  color: var(--txt-1);
+  font: inherit;
+  font-size: 14px;
+  transition: border-color var(--t-fast);
+}
+.wa-lead-prompt__input::placeholder { color: var(--txt-3); }
+.wa-lead-prompt__input:focus-visible { outline: none; border-color: var(--border-mint); }
+.wa-lead-prompt__send { margin-top: 2px; justify-content: center; }
+.wa-lead-prompt__done {
+  margin: 0;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+}
+@media (max-width: 560px) {
+  .wa-lead-prompt {
+    inset-inline: 12px;
+    inset-block-end: 92px;   /* clear the 56px FAB + its 24px breathing room */
+    width: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-lead-prompt { transition: none !important; } /* appear/leave instantly */
+}
+

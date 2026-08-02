@@ -272,7 +272,10 @@ function metaLine(r) {
   if (r.city) bits.push(document.createTextNode(r.city));
   if (r.trip) bits.push(document.createTextNode(r.trip));
   if (r.hotel) bits.push(document.createTextNode(r.hotel));
-  bits.push(ltrSpan(fmt("leads.people", { a: r.adults ?? 0, k: r.kids ?? 0 })));
+  // Anonymous WhatsApp-click leads carry no city/trip/hotel — show the page so
+  // the owner still sees where the enquiry came from.
+  if (!r.city && !r.trip && !r.hotel && r.page) bits.push(document.createTextNode(r.page));
+  if (r.adults != null || r.kids != null) bits.push(ltrSpan(fmt("leads.people", { a: r.adults ?? 0, k: r.kids ?? 0 })));
   const m = money(r.total_da);
   if (m) bits.push(ltrSpan(m));
   joinBits(meta, bits);
@@ -288,7 +291,7 @@ function leadCard(r) {
   paintStatusChip(chip, r.status);
   chip.setAttribute("aria-label", t("leads.status." + normStatus(r.status)));
   chip.addEventListener("click", () => cycleStatus(r));
-  const name = document.createElement("span"); name.className = "name"; name.textContent = r.name || "—";
+  const name = document.createElement("span"); name.className = "name"; name.textContent = r.name || (r.phone ? "—" : t("leads.anon"));
   const age = document.createElement("span"); age.className = "age"; age.textContent = ago(r.created_at);
   top.append(chip, name, age);
 
@@ -370,7 +373,7 @@ function leadDetailPanel(r, backTo) {
     if (backTo !== "client") openClientKey = null;
     renderPanel(); applyPanelVisibility();
   }));
-  const name = document.createElement("span"); name.textContent = r.name || "—";
+  const name = document.createElement("span"); name.textContent = r.name || (r.phone ? "—" : t("leads.anon"));
   head.append(name);
   wrap.appendChild(head);
 

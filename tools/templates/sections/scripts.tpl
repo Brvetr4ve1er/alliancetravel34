@@ -6,6 +6,7 @@
 <script src="../assets/js/booking-form.js" defer></script>
 <script src="../assets/js/lead-config.js" defer></script>
 <script src="../assets/js/lead-capture.js" defer></script>
+<script src="../assets/js/lead-whatsapp.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
   <script type="module" src="../assets/js/beacon.js"></script>
