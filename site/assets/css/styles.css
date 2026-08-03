@@ -38,6 +38,16 @@ body {
   min-height: 100svh;
 }
 
+/* v28 — headings default to the display face (Fraunces, via --font-display).
+   Low-specificity tag rule so component classes that set size/weight keep
+   working and any that needs to opt out still can. The RTL block remaps
+   --font-display to Cairo/Tajawal, so Arabic headings render in Cairo — never
+   Fraunces (which has no Arabic glyphs). */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -378,6 +388,8 @@ select {
   /* ── Default accent (per-page <style> overrides this on trip pages) */
   --accent:       #9ce8b2;
   --accent-dim:   rgba(156, 232, 178, .12);
+  --accent-2:      #e8b04b;   /* v28 warm amber — editorial secondary accent (Latin themes) */
+  --accent-2-dim:  rgba(232, 176, 75, .14);
   --accent-glow:  rgba(156, 232, 178, .26);
 
   /* ── Status ────────────────────────────────────────────────────── */
@@ -401,7 +413,7 @@ select {
   --region-bg-sharm:      #020a10;
 
   /* ── Typography ────────────────────────────────────────────────── */
-  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;  /* v28: distinctive high-contrast display serif; headings already route through this token. Body stays DM Sans. RTL block (~L9072) remaps display to Cairo/Tajawal so Arabic never hits Fraunces. */
   --font-body:    'DM Sans', system-ui, sans-serif;
 
   /* ── Spacing scale (legacy v1 — kept for backward compat; use --space-* in new code)
@@ -486,6 +498,8 @@ select {
   /* Accent (default; per-page <style> overrides win) */
   --accent:       #237a4a;
   --accent-dim:   rgba(35, 122, 74, .12);
+  --accent-2:      #a86a12;   /* v28 deeper amber for AA contrast on cream */
+  --accent-2-dim:  rgba(168, 106, 18, .12);
   --accent-glow:  rgba(35, 122, 74, .24);
 
   /* Elevation — navy-tinted, softer */
@@ -809,7 +823,7 @@ select {
 
 .hero__title em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
 }
 
 .hero__lede {
@@ -894,6 +908,9 @@ select {
   display: grid;
   place-items: center;
   color: var(--accent);
+  /* Transition on the base rule so the icon eases both in AND out of hover
+     (was declared only on :hover, causing an instant snap-back on leave). */
+  transition: transform var(--t-base) var(--ease-spring);
 }
 
 .hl-card__label {
@@ -1977,7 +1994,7 @@ select {
 
 .faq-q svg {
   flex-shrink: 0;
-  transition: transform var(--t-fast);
+  transition: transform var(--t-base) var(--ease-spring);
   color: var(--txt-3);
 }
 
@@ -2032,7 +2049,7 @@ select {
 
 .final-cta__title em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
 }
 
 .final-cta__sub {
@@ -3093,7 +3110,7 @@ html.js [data-aos].visible {
 
 .inclus-col__title em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
 }
 
 .inclus-col__count {
@@ -3259,12 +3276,14 @@ html.js [data-aos].visible {
   border-color: var(--border);
 }
 
-.trip-switcher__trigger svg {
-  transition: transform var(--t-fast);
-  color: var(--txt-3);
+.trip-switcher__trigger svg { color: var(--txt-3); }
+/* Rotate only the disclosure chevron (last svg) on open — not the decorative
+   globe icon, which used to flip upside-down because the rule wasn't scoped. */
+.trip-switcher__trigger svg:last-child {
+  transition: transform var(--t-base) var(--ease-spring);
 }
 
-.trip-switcher.open .trip-switcher__trigger svg {
+.trip-switcher.open .trip-switcher__trigger svg:last-child {
   transform: rotate(180deg);
 }
 
@@ -4367,7 +4386,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 
 .hl-card:hover .hl-card__icon {
   transform: rotate(-6deg) scale(1.05);
-  transition: transform var(--t-base) var(--ease-spring);
 }
 
 .bform-block__title svg { transition: transform var(--t-fast) ease; }
@@ -5424,12 +5442,13 @@ img.lb-target:hover {
   height: 14px;
   border-right: 2px solid var(--mint, currentColor);
   border-bottom: 2px solid var(--mint, currentColor);
-  transform: rotate(45deg) translate(-2px, -2px);
+  /* translate before rotate so the 2px nudge doesn't orbit the origin mid-spin */
+  transform: translate(-2px, -2px) rotate(45deg);
   transition: transform var(--t-base) var(--ease-spring);
   flex-shrink: 0;
 }
 [data-accordion][open] summary::after {
-  transform: rotate(-135deg) translate(-2px, -2px);
+  transform: translate(-2px, -2px) rotate(-135deg);
 }
 [data-accordion]:hover {
   border-color: var(--border-hi, rgba(156, 232, 178, 0.18));
@@ -6593,7 +6612,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--accent-2);   /* v28 amber step badge */
   color: var(--bg);
   display: grid;
   place-items: center;
@@ -7129,7 +7148,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* migrated from the removed duplicate block (~L998) */
 .section-head__title em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
 }
 .section-head__sub {
   margin-top: var(--s3);
@@ -9148,6 +9167,10 @@ body { background: var(--bg); color: var(--txt-1); }
 [dir="rtl"] .arrow-right {
   transform: scaleX(-1);
 }
+/* Compose the RTL flip with the hover nudge: without this the higher-specificity
+   hover rule replaced the flip, so the arrow pointed the wrong way and slid
+   toward the text on hover in Arabic. */
+[dir="rtl"] .trip-card:hover .trip-card__cta > svg { transform: translateX(-3px) scaleX(-1); }
 /* Trip card price ribbons originate from left edge — flip to right */
 [dir="rtl"] .trip-card__flag,
 [dir="rtl"] .hotel-card__ribbon { left: auto; right: var(--s3); }
@@ -9286,6 +9309,9 @@ body { background: var(--bg); color: var(--txt-1); }
 @media (max-width:768px){
   .aurora-hero{ min-height:92svh; min-height:92dvh; }
   .aurora-hero__sky{ filter:blur(24px) saturate(1.3); opacity:.5; }
+  /* Cap the offer/eyebrow glass blur on phones (they're always on-screen) —
+     matches the ≤640px GPU cap applied to the rest of the site's glass. */
+  .aurora-hero__offer, .aurora-hero__eyebrow{ -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
   .aurora-hero__inner{ padding-top:calc(var(--nav-h) + var(--space-4)); gap:var(--space-2); }
   .aurora-hero__offer{ gap:var(--space-2) var(--space-3); padding:var(--space-3) var(--space-4); }
   .aurora-hero__price{ width:100%; }
@@ -9391,6 +9417,9 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .aurora-orb__card--2{left:auto;right:2%}
 :root[lang="ar"] .aurora-orb__card--3{right:auto;left:0}
 @media (prefers-reduced-motion:reduce){.aurora-orb__sky,.aurora-orb__card{animation:none!important}}
+/* Mobile GPU gate for the homepage orb — match the aurora-hero: lighter blur,
+   release the persistent compositor layers on phones. */
+@media (max-width:768px){.aurora-orb__sky{filter:blur(24px) saturate(1.25)}.aurora-orb__card{will-change:auto}}
 
 
 /* ── v27 responsive / delivery polish (from the responsive audit) ──────────── */
@@ -10053,4 +10082,53 @@ body[data-page="home"] #contact {
 @media (prefers-reduced-motion: reduce) {
   .wa-lead-prompt { transition: none !important; } /* appear/leave instantly */
 }
+
+/* ── Footer contact — tappable WhatsApp / phone rows (2026-08) ────────────────
+   The contact column read as a flat stack of plain text links. Every entry is a
+   wa.me / tel action on a WhatsApp-first site, so make them look tappable:
+   comfortable rows with a hover fill, clearer group rhythm, and a labelled
+   address block. CSS-only, so it applies to every page's footer at once.
+   Direction-agnostic (no left/right transforms) so it is RTL-safe. */
+.footer-col--contact .phone-group { margin-bottom: var(--s5); }
+.footer-col--contact .phone-group:last-child { margin-bottom: 0; }
+.footer-col--contact .phone-group__head { margin: 0 0 var(--s2); }
+
+.footer-col--contact .phone-group a {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 12px;
+  margin-inline: -12px;              /* hover fill bleeds to the edge; text stays flush */
+  border-radius: var(--r2, 10px);
+  background: none;
+  font-variant-numeric: tabular-nums;
+  font-size: .9375rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  color: var(--txt-1);
+  transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.footer-col--contact .phone-group a:hover,
+.footer-col--contact .phone-group a:focus-visible {
+  background: var(--accent-dim);
+  color: var(--accent);
+  outline: none;
+}
+/* Trailing "tap to chat" chevron, revealed on hover. */
+.footer-col--contact .phone-group a::after {
+  content: "";
+  inline-size: 6px;
+  block-size: 6px;
+  margin-inline-start: auto;
+  border-top: 1.6px solid currentColor;
+  border-inline-end: 1.6px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity var(--t-fast) var(--ease-out);
+}
+[dir="rtl"] .footer-col--contact .phone-group a::after { transform: rotate(-135deg); }
+.footer-col--contact .phone-group a:hover::after,
+.footer-col--contact .phone-group a:focus-visible::after { opacity: .65; }
+
+.footer-col--contact .footer-address { margin-block-start: 2px; }
 

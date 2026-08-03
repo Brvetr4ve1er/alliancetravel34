@@ -64,7 +64,7 @@ function head(site, { title, description, path, ogImage, jsonLd }) {
   <meta name="description" content="${esc(description)}"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet"/>
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="/assets/css/styles.css"/>
 <meta property="og:type" content="article"/>

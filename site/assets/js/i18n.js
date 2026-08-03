@@ -158,7 +158,7 @@
         trip_bali: 'Bali',
         trip_vietnam: 'Vietnam',
         hours_note: 'Lignes ouvertes du dimanche au jeudi, 9 h – 18 h. Réponse WhatsApp sous 30 minutes en moyenne.',
-        advisors_show: 'Voir les 6 conseillers',
+        advisors_show: 'Voir les 5 conseillers',
         advisors_hide: 'Afficher moins'
       },
       map: {
@@ -512,7 +512,7 @@
         trip_bali: 'Bali',
         trip_vietnam: 'Vietnam',
         hours_note: 'Lines open Sunday to Thursday, 9am – 6pm. WhatsApp replies in about 30 minutes.',
-        advisors_show: 'Show all 6 advisors',
+        advisors_show: 'Show all 5 advisors',
         advisors_hide: 'Show fewer'
       },
       map: {
@@ -887,7 +887,7 @@
         trip_bali: 'بالي',
         trip_vietnam: 'فيتنام',
         hours_note: 'الخطوط مفتوحة من الأحد إلى الخميس، من 9 صباحًا إلى 6 مساءً. الرد على واتساب خلال 30 دقيقة تقريبًا.',
-        advisors_show: 'عرض المستشارين الستّة',
+        advisors_show: 'عرض المستشارين الخمسة',
         advisors_hide: 'عرض أقل'
       },
       map: {

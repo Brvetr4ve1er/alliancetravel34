@@ -2049,15 +2049,15 @@
       "arState": "ok"
     },
     "azFinalAddress": {
-      "fr": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville",
-      "frHash": "01by88i0",
-      "en": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
-      "ar": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
+      "fr": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · Au cœur du centre-ville",
+      "frHash": "01oyjkt3",
+      "en": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
+      "ar": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
       "enHash": "01by88i0",
       "arHash": "01by88i0",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "footer.cta_title": {
       "fr": "Prêt à partir ?",

@@ -10,7 +10,7 @@
       <div class="inclus-col reveal">
         <div class="inclus-col__head">
           <div class="inclus-col__icon inclus-col__icon--yes">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
             <h3 class="inclus-col__title"{{k.inclColTitle}}>Inclus dans le <em>forfait</em></h3>
@@ -19,7 +19,7 @@
         </div>
         <div class="inclus-list">
 {{#inclus.included}}        <div class="inclus-item inclus-item--yes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           <span{{.k}}>{{.t}}</span>
         </div>
 {{/inclus.included}}        </div>
@@ -28,7 +28,7 @@
       <div class="inclus-col reveal">
         <div class="inclus-col__head">
           <div class="inclus-col__icon inclus-col__icon--no">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </div>
           <div>
             <h3 class="inclus-col__title"{{k.exclColTitle}}>À <em>prévoir</em> en plus</h3>
@@ -37,7 +37,7 @@
         </div>
         <div class="inclus-list">
 {{#inclus.excluded}}        <div class="inclus-item inclus-item--no">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           <span{{.k}}>{{.t}}</span>
         </div>
 {{/inclus.excluded}}        </div>

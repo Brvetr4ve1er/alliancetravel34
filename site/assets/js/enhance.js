@@ -226,7 +226,7 @@
     toast.className = `toast toast--${kind}`;
     toast.innerHTML = `
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"/>
       </svg>${msg}`;
     void toast.offsetWidth;   // force reflow so transition fires
@@ -294,7 +294,7 @@
     wrap.innerHTML = `
       <button class="trip-switcher__trigger" type="button" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
@@ -803,14 +803,14 @@
     lb.innerHTML = `
       <span class="lightbox__counter" aria-live="polite"></span>
       <button class="lightbox__close" type="button" aria-label="Fermer la galerie">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
       <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Photo précédente">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <img class="lightbox__img" alt=""/>
       <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Photo suivante">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
       <span class="lightbox__caption"></span>
     `;
@@ -962,21 +962,21 @@
     wrap.innerHTML = `
       <div class="value-prop">
         <div class="value-prop__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <h3 class="value-prop__title" data-i18n="value_props.guides_title">Guides francophones locaux</h3>
         <p class="value-prop__text" data-i18n="value_props.guides_text">Des accompagnateurs qui parlent votre langue et connaissent chaque destination par cœur.</p>
       </div>
       <div class="value-prop">
         <div class="value-prop__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3 class="value-prop__title" data-i18n="value_props.included_title">Vol, hôtel & visa inclus</h3>
         <p class="value-prop__text" data-i18n="value_props.included_text">Tout est cadré à l'avance — vous payez un prix tout compris, sans mauvaise surprise.</p>
       </div>
       <div class="value-prop">
         <div class="value-prop__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3 class="value-prop__title" data-i18n="value_props.groups_title">Groupes de 12 maximum</h3>
         <p class="value-prop__text" data-i18n="value_props.groups_text">Petits groupes pour une expérience humaine et personnalisée à chaque étape.</p>
@@ -995,11 +995,12 @@
     if (!('IntersectionObserver' in window)) return;
 
     const hosts = new Set();
-    /* v28: #alliance-globe removed — globe.js solely owns its pause via
-       .is-paused on #globe-stage. Toggling .is-paused on the canvas here
-       conflicted with that ownership and caused the globe to be born hidden. */
+    /* The backgrounds are now CSS-only (the v28 WebGL globe is gone). Pause the
+       heavy ambient keyframes when their host scrolls off-screen: the homepage
+       aurora orb (.home-hero), the trip-page aurora hero (.aurora-hero), and the
+       service/visa hero (.hero) — plus any opt-in [data-pause-off-screen]. */
     document.querySelectorAll(
-      '.home-hero, .hero, [data-pause-off-screen]'
+      '.home-hero, .hero, .aurora-hero, [data-pause-off-screen]'
     ).forEach(el => hosts.add(el));
 
     if (!hosts.size) return;
