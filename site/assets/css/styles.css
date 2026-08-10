@@ -41,7 +41,7 @@ body {
 /* v28 — headings default to the display face (Fraunces, via --font-display).
    Low-specificity tag rule so component classes that set size/weight keep
    working and any that needs to opt out still can. The RTL block remaps
-   --font-display to Cairo/Tajawal, so Arabic headings render in Cairo — never
+   --font-display to Cairo, so Arabic headings render in Cairo — never
    Fraunces (which has no Arabic glyphs). */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
@@ -404,6 +404,7 @@ select {
   /* ── WhatsApp — brand color, immutable in both themes ───────────── */
   --wa-green:     #25D366;
   --wa-green-hov: #1ebe5d;
+  --wa-ink:       #052e16;   /* on-green text/icon ink for WA buttons */
 
   /* ── Per-region hero atmospheres (always dark, no light override) ─ */
   --region-bg-egypt:      #0a0703;
@@ -413,7 +414,7 @@ select {
   --region-bg-sharm:      #020a10;
 
   /* ── Typography ────────────────────────────────────────────────── */
-  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;  /* v28: distinctive high-contrast display serif; headings already route through this token. Body stays DM Sans. RTL block (~L9072) remaps display to Cairo/Tajawal so Arabic never hits Fraunces. */
+  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;  /* v28: distinctive high-contrast display serif; headings already route through this token. Body stays DM Sans. RTL block (~L9072) remaps display to Cairo so Arabic never hits Fraunces. */
   --font-body:    'DM Sans', system-ui, sans-serif;
 
   /* ── Spacing scale (legacy v1 — kept for backward compat; use --space-* in new code)
@@ -1419,13 +1420,13 @@ select {
 }
 
 .breakdown__line span {
-  text-align: right;
+  text-align: end;
   font-variant-numeric: tabular-nums;
 }
 /* The label (1st span) must wrap; only the amount (last span) stays on one
    line — otherwise a long package label nowraps past the panel on phones. */
 .breakdown__line span:first-child {
-  text-align: left;
+  text-align: start;
   min-width: 0;
   overflow-wrap: anywhere;
 }
@@ -1579,7 +1580,7 @@ select {
 /* WhatsApp — brand green */
 .btn--wa {
   background: var(--wa-green);
-  color: #052e16;
+  color: var(--wa-ink);
 }
 .btn--wa:hover {
   background: var(--wa-green-hov);
@@ -1883,7 +1884,8 @@ select {
 .stat-card__num {
   font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 56px);
-  font-weight: 300;
+  /* weight comes from the later .stat-card__num rule (700) — the 300 that
+     used to sit here was dead (shadowed) and 300 is no longer loaded */
   color: var(--txt-1);
   font-variant-numeric: tabular-nums;
 }
@@ -1983,7 +1985,7 @@ select {
   font-size: .9375rem;
   font-weight: 500;
   color: var(--txt-1);
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   transition: color var(--t-fast);
 }
@@ -5266,7 +5268,7 @@ section + section.is-in::before { width: 60%; }
   flex-direction: column;
   align-items: flex-end;
   line-height: 1.1;
-  text-align: right;
+  text-align: end;
 }
 .trip-sticky-bar__price-from {
   font-size: 0.7rem;
@@ -7178,7 +7180,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   border: 1px solid var(--border);
   border-radius: var(--r3);
   padding: var(--s5);
-  text-align: left;
+  text-align: start;
 }
 .stat-card__num {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
@@ -8362,6 +8364,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   --tc-fg-muted: rgba(255, 255, 255, .82);
   --tc-fg-faint: rgba(255, 255, 255, .55);
   --tc-accent: var(--tc-region-accent, var(--accent, #9ce8b2));
+  --tc-ink: #050609;   /* on-accent CTA text ink (matches the card bg hex) */
 
   position: relative;
   display: block;
@@ -8637,7 +8640,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 
 .trip-card:hover .trip-card__cta > span:not(.trip-card__cta-price) {
   background: var(--tc-accent);
-  color: #050609;
+  color: var(--tc-ink);
   border-color: transparent;
 }
 .trip-card:hover .trip-card__cta > svg {
@@ -8681,10 +8684,10 @@ section.section.phase-block + section.section:not(.phase-block) {
   /* Touch devices have no hover — give them the "active" look at rest */
   .trip-card__cta > span:not(.trip-card__cta-price) {
     background: var(--tc-accent);
-    color: #050609;
+    color: var(--tc-ink);
     border-color: transparent;
   }
-  .trip-card__cta > svg { color: #050609; }
+  .trip-card__cta > svg { color: var(--tc-ink); }
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */
@@ -8885,11 +8888,11 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .phone-card__btn--wa {
   background: var(--wa-green);
-  color: #052e16;
+  color: var(--wa-ink);
 }
 .phone-card__btn--wa:hover {
-  background: #20bf5b;
-  color: #052e16;
+  background: var(--wa-green-hov);
+  color: var(--wa-ink);
 }
 .phone-card__btn--call {
   background: var(--bg-elev);
@@ -9052,7 +9055,7 @@ body { background: var(--bg); color: var(--txt-1); }
   color: var(--navy);
 }
 .lang-btn--ar {
-  font-family: 'Tajawal', 'Cairo', 'DM Sans', system-ui, sans-serif;
+  font-family: 'Cairo', 'DM Sans', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0;
@@ -9063,7 +9066,7 @@ body { background: var(--bg); color: var(--txt-1); }
   background: rgba(0,44,81,0.04);
   border-color: rgba(0,44,81,0.18);
 }
-[data-theme="light"] .lang-btn { color: #4a5b6f; }
+[data-theme="light"] .lang-btn { color: var(--txt-2); }
 [data-theme="light"] .lang-btn:hover {
   color: var(--navy);
   background: rgba(0,44,81,0.05);
@@ -9086,10 +9089,10 @@ body { background: var(--bg); color: var(--txt-1); }
    At <=768px the .lang-switcher block above already compresses the
    pill (height 34, btn 28x28) so it fits a 375px viewport. */
 
-/* ── ARABIC TYPOGRAPHY  (Cairo for display · Tajawal for body) ── */
+/* ── ARABIC TYPOGRAPHY  (Cairo — single Arabic face, display + body) ── */
 :root[lang="ar"] {
-  --font-display: 'Cairo', 'Tajawal', 'DM Sans', system-ui, sans-serif;
-  --font-body:    'Tajawal', 'Cairo', 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Cairo', 'DM Sans', system-ui, sans-serif;
+  --font-body:    'Cairo', 'DM Sans', system-ui, sans-serif;
 }
 :root[lang="ar"] body {
   font-family: var(--font-body);
@@ -9201,7 +9204,6 @@ body { background: var(--bg); color: var(--txt-1); }
    ═══════════════════════════════════════════════════════════════════════════ */
 .aurora-hero{
   --hero-a:#33C5C9; --hero-b:#1E6F8E; --hero-c:#FF6B5A;   /* fallback */
-  --font-hero-display:'Sora', var(--font-display);
   position:relative; min-height:100svh; min-height:100dvh;
   display:grid; grid-template-rows:1fr auto;
   isolation:isolate; overflow:clip;
@@ -9264,7 +9266,7 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .aurora-hero__pin{ color:var(--hero-a); flex:none; }
 .aurora-hero__title{
-  margin:0; color:#fff; font-family:var(--font-hero-display, var(--font-display));
+  margin:0; color:#fff; font-family:var(--font-display);
   font-weight:600; font-size:clamp(2.7rem,8.4vw,6.6rem); line-height:.96; letter-spacing:-.025em;
   text-shadow:0 1px 2px rgba(0,0,0,.45), 0 8px 44px rgba(0,0,0,.5);
 }
@@ -9288,7 +9290,7 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .aurora-hero__price{ margin:0; display:flex; align-items:baseline; flex-wrap:wrap; justify-content:center; gap:.15em .5ch; }
 .aurora-hero__from{ font-size:var(--fs-caption); text-transform:uppercase; letter-spacing:.12em; color:var(--txt-2); }
-.aurora-hero__amount{ font-family:var(--font-hero-display, var(--font-display)); font-weight:600; font-size:clamp(1.55rem,4.4vw,2.2rem); color:#fff; direction:ltr; unicode-bidi:isolate; }
+.aurora-hero__amount{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.55rem,4.4vw,2.2rem); color:#fff; direction:ltr; unicode-bidi:isolate; }
 /* The offer bar glass is cream in light mode, so #fff price was invisible. */
 :root[data-theme="light"] .aurora-hero__amount{ color:var(--txt-1); }
 .aurora-hero__unit{ font-size:var(--fs-caption); color:var(--txt-2); }
@@ -9612,14 +9614,14 @@ body { background: var(--bg); color: var(--txt-1); }
   color: var(--accent);
 }
 .advisor__btn--wa {
-  background: #25d366;
-  border-color: #25d366;
-  color: #052e16;
+  background: var(--wa-green);
+  border-color: var(--wa-green);
+  color: var(--wa-ink);
 }
 .advisor__btn--wa:hover {
-  background: #20bf5b;
-  border-color: #20bf5b;
-  color: #052e16;
+  background: var(--wa-green-hov);
+  border-color: var(--wa-green-hov);
+  color: var(--wa-ink);
 }
 
 .advisor-toggle {

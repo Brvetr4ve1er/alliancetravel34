@@ -12,7 +12,7 @@
  *   - Injects a 3-button language switcher into .site-nav (before .theme-toggle)
  *   - Persists choice in localStorage ("al-lang")
  *   - Toggles <html lang> and <html dir> ("rtl" for Arabic)
- *   - Lazy-loads Cairo + Tajawal from Google Fonts on first Arabic selection
+ *   - Lazy-loads Cairo from Google Fonts on first Arabic selection
  *   - Falls back to French if a key is missing
  *   - Dispatches "langchange" event for other modules
  *
@@ -24,10 +24,12 @@
   const STORAGE_KEY  = 'al-lang';
   const DEFAULT_LANG = 'fr';
   const SUPPORTED    = ['fr', 'en', 'ar'];
-  // Arabic webfont: only 400 & 700 are used in the design system; trimming
-  // from 5+4 weights shrinks the payload (~300-500KB) on metered Android.
+  // Arabic webfont: Cairo only (single AR face for display + body — the old
+  // two-family pair rendered two different Arabic faces simultaneously).
+  // 600 is real, not faux: the AR heading rules set font-weight 600, which
+  // browsers used to synthesize because only 400/700 were loaded.
   // &display=swap lets text paint immediately with a fallback (no FOIT).
-  const AR_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap';
+  const AR_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap';
 
   /* ════════════════════════════════════════════════════════════════
      TRANSLATIONS
