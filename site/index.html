@@ -98,14 +98,14 @@
         imagesizes="100vw"
         fetchpriority="high" />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&display=swap"
     rel="stylesheet" fetchpriority="high" />
   <!-- Returning Arabic-preferring visitors: fetch the Arabic webfont right
        away instead of waiting for the deferred i18n.js to run, so they
        don't pay a visible fallback-font flash on every load. Mirrors the
        hard gate in ensureArabicFont() (assets/js/i18n.js) — FR/EN visitors
        never trigger this. -->
-  <script>try{if(localStorage.getItem('al-lang')==='ar'){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap';l.dataset.arabicFont='1';document.head.appendChild(l);}}catch(e){}</script>
+  <script>try{if(localStorage.getItem('al-lang')==='ar'){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap';l.dataset.arabicFont='1';document.head.appendChild(l);}}catch(e){}</script>
   <!-- v22: html.js flag for [data-aos] reveal CSS -->
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="assets/css/styles.css" />
@@ -363,22 +363,22 @@
           class="u-mt-sp5" style="display:flex; flex-wrap:wrap; gap:var(--s7); padding-top:var(--space-5); border-top:1px solid var(--border)"
           class="fade-up">
           <div>
-            <p class="fs-h3 u-font-display u-fw-300 u-text-1"
+            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
               data-counter="1.2" data-counter-format="{n}K+">1.2K+</p>
             <p class="fs-body-sm u-text-3" data-i18n="stats.travelers">Voyageurs guidés</p>
           </div>
           <div>
-            <p class="fs-h3 u-font-display u-fw-300 u-text-1"
+            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
               data-counter="98" data-counter-format="{n}%">98%</p>
             <p class="fs-body-sm u-text-3" data-i18n="stats.satisfaction">Taux de satisfaction</p>
           </div>
           <div>
-            <p class="fs-h3 u-font-display u-fw-300 u-text-1"
+            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
               data-counter="5" data-counter-format="{n}">5</p>
             <p class="fs-body-sm u-text-3" data-i18n="stats.destinations">Destinations 2026</p>
           </div>
           <div>
-            <p class="fs-h3 u-font-display u-fw-300 u-text-1"
+            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
               data-counter="7" data-counter-format="{n}+">7+</p>
             <p class="fs-body-sm u-text-3" data-i18n="stats.experience">Ans d'expérience</p>
           </div>

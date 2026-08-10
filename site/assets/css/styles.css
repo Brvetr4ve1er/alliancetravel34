@@ -234,7 +234,6 @@ button {
 .u-text-3        { color: var(--txt-3); }
 .u-text-mint     { color: var(--mint); }
 .u-text-accent   { color: var(--accent); }
-.u-fw-300        { font-weight: 300; }
 .u-fw-400        { font-weight: 400; }
 .u-fw-500        { font-weight: 500; }
 .u-fw-600        { font-weight: 600; }
@@ -392,6 +391,7 @@ select {
   /* ── WhatsApp — brand color, immutable in both themes ───────────── */
   --wa-green:     #25D366;
   --wa-green-hov: #1ebe5d;
+  --wa-ink:       #052e16;       /* text on WhatsApp green (AAA) */
 
   /* ── Per-region hero atmospheres (always dark, no light override) ─ */
   --region-bg-egypt:      #0a0703;
@@ -1558,7 +1558,7 @@ select {
 /* WhatsApp — brand green */
 .btn--wa {
   background: var(--wa-green);
-  color: #052e16;
+  color: var(--wa-ink);
 }
 .btn--wa:hover {
   background: var(--wa-green-hov);
@@ -1871,7 +1871,6 @@ select {
 .stat-card__num {
   font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 56px);
-  font-weight: 300;
   color: var(--txt-1);
   font-variant-numeric: tabular-nums;
 }
@@ -2001,7 +2000,7 @@ select {
   font-size: .9375rem;
   font-weight: 500;
   color: var(--txt-1);
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   transition: color var(--t-fast);
 }
@@ -5294,7 +5293,7 @@ section + section.is-in::before { width: 60%; }
   flex-direction: column;
   align-items: flex-end;
   line-height: 1.1;
-  text-align: right;
+  text-align: end;
 }
 .trip-sticky-bar__price-from {
   font-size: 0.7rem;
@@ -7263,7 +7262,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   border: 1px solid var(--border);
   border-radius: var(--r3);
   padding: var(--s5);
-  text-align: left;
+  text-align: start;
 }
 .stat-card__num {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
@@ -8440,6 +8439,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   --tc-fg-muted: rgba(255, 255, 255, .82);
   --tc-fg-faint: rgba(255, 255, 255, .55);
   --tc-accent: var(--tc-region-accent, var(--accent, #9ce8b2));
+  --tc-ink: #050609;             /* text on --tc-accent (CTA active state) */
 
   position: relative;
   display: block;
@@ -8717,7 +8717,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 
 .trip-card:hover .trip-card__cta > span:not(.trip-card__cta-price) {
   background: var(--tc-accent);
-  color: #050609;
+  color: var(--tc-ink);
   border-color: transparent;
 }
 .trip-card:hover .trip-card__cta > svg {
@@ -8761,10 +8761,10 @@ section.section.phase-block + section.section:not(.phase-block) {
   /* Touch devices have no hover — give them the "active" look at rest */
   .trip-card__cta > span:not(.trip-card__cta-price) {
     background: var(--tc-accent);
-    color: #050609;
+    color: var(--tc-ink);
     border-color: transparent;
   }
-  .trip-card__cta > svg { color: #050609; }
+  .trip-card__cta > svg { color: var(--tc-ink); }
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */
@@ -9002,11 +9002,11 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .phone-card__btn--wa {
   background: var(--wa-green);
-  color: #052e16;
+  color: var(--wa-ink);
 }
 .phone-card__btn--wa:hover {
-  background: #20bf5b;
-  color: #052e16;
+  background: var(--wa-green-hov);
+  color: var(--wa-ink);
 }
 .phone-card__btn--call {
   background: var(--bg-elev);
@@ -9189,7 +9189,7 @@ body { background: var(--bg); color: var(--txt-1); }
   background: rgba(0,44,81,0.04);
   border-color: rgba(0,44,81,0.18);
 }
-[data-theme="light"] .lang-btn { color: #4a5b6f; }
+[data-theme="light"] .lang-btn { color: var(--txt-2); }
 [data-theme="light"] .lang-btn:hover {
   color: var(--navy);
   background: rgba(0,44,81,0.05);
@@ -9212,10 +9212,14 @@ body { background: var(--bg); color: var(--txt-1); }
    At <=768px the .lang-switcher block above already compresses the
    pill (height 34, btn 28x28) so it fits a 375px viewport. */
 
-/* ── ARABIC TYPOGRAPHY  (Cairo for display · Tajawal for body) ── */
+/* ── ARABIC TYPOGRAPHY  (Cairo — ONE family for display AND body) ──
+   v27 font cleanup: Tajawal removed. Mixing Cairo headings with Tajawal
+   body meant two different Arabic faces on screen at once; Cairo alone
+   (400 body / 600 headings / 700 strong) matches the site's single-family
+   DM Sans discipline. Loader URLs: head.tpl + i18n.js AR_FONT_HREF. */
 :root[lang="ar"] {
-  --font-display: 'Cairo', 'Tajawal', 'DM Sans', system-ui, sans-serif;
-  --font-body:    'Tajawal', 'Cairo', 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Cairo', 'DM Sans', system-ui, sans-serif;
+  --font-body:    'Cairo', 'DM Sans', system-ui, sans-serif;
 }
 :root[lang="ar"] body {
   font-family: var(--font-body);
@@ -9320,7 +9324,6 @@ body { background: var(--bg); color: var(--txt-1); }
    ═══════════════════════════════════════════════════════════════════════════ */
 .aurora-hero{
   --hero-a:#33C5C9; --hero-b:#1E6F8E; --hero-c:#FF6B5A;   /* fallback */
-  --font-hero-display:'Sora', var(--font-display);
   position:relative; min-height:100svh; min-height:100dvh;
   display:grid; grid-template-rows:1fr auto;
   isolation:isolate; overflow:clip;
@@ -9383,7 +9386,7 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .aurora-hero__pin{ color:var(--hero-a); flex:none; }
 .aurora-hero__title{
-  margin:0; color:#fff; font-family:var(--font-hero-display, var(--font-display));
+  margin:0; color:#fff; font-family:var(--font-display);
   font-weight:600; font-size:clamp(2.7rem,8.4vw,6.6rem); line-height:.96; letter-spacing:-.025em;
   text-shadow:0 1px 2px rgba(0,0,0,.45), 0 8px 44px rgba(0,0,0,.5);
 }
@@ -9407,7 +9410,7 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .aurora-hero__price{ margin:0; display:flex; align-items:baseline; flex-wrap:wrap; justify-content:center; gap:.15em .5ch; }
 .aurora-hero__from{ font-size:var(--fs-caption); text-transform:uppercase; letter-spacing:.12em; color:var(--txt-2); }
-.aurora-hero__amount{ font-family:var(--font-hero-display, var(--font-display)); font-weight:600; font-size:clamp(1.55rem,4.4vw,2.2rem); color:#fff; direction:ltr; unicode-bidi:isolate; }
+.aurora-hero__amount{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.55rem,4.4vw,2.2rem); color:#fff; direction:ltr; unicode-bidi:isolate; }
 /* The offer bar glass is cream in light mode, so #fff price was invisible. */
 :root[data-theme="light"] .aurora-hero__amount{ color:var(--txt-1); }
 .aurora-hero__unit{ font-size:var(--fs-caption); color:var(--txt-2); }
