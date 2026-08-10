@@ -4295,10 +4295,14 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 /* Branch cards grid */
 .branch-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  /* min(240px,100%) so a narrow container (contact card) can't be forced wider
+     than the viewport — was causing sideways page scroll ~1025–1146px. */
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
   gap: var(--s4);
   margin-top: var(--s7);
+  min-width: 0;
 }
+.contact-card { min-width: 0; }
 .branch-card {
   /* bg + border-color from canonical v21-D.2 surface block */
   border: 1px solid;
@@ -10301,4 +10305,200 @@ html.js .inclus-col.reveal.visible .inclus-check {
   0%,100%{ text-shadow:0 2px 14px var(--accent-glow); }
   50%    { text-shadow:0 2px 22px var(--accent-glow); }
 }
+/* ══════════════════════════════════════════════════════════════════════════
+   DUOTONE ICON SYSTEM (.dico) + FOOTER "editorial duotone" (2026-08)
+   A crisp glyph on a soft tinted disc, with a small reduced-motion-safe motion
+   library. Foundation for animated, relevant icons across the site.
+   ══════════════════════════════════════════════════════════════════════════ */
+.dico {
+  --dico-size: 34px;
+  inline-size: var(--dico-size);
+  block-size: var(--dico-size);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  transition: transform var(--t-base) var(--ease-spring),
+              background var(--t-fast) var(--ease-out),
+              color var(--t-fast) var(--ease-out);
+}
+.dico > svg { inline-size: 54%; block-size: 54%; display: block; }
+.dico--sm { --dico-size: 28px; }
+.dico--lg { --dico-size: 44px; }
+.dico--amber { background: var(--accent-2-dim, var(--accent-dim)); color: var(--accent-2, var(--accent)); }
+
+/* Relevant micro-motions — calm and slow; disabled under reduced-motion below. */
+@keyframes dico-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+@keyframes dico-ring  { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-13deg); } 87% { transform: rotate(11deg); } 95% { transform: rotate(-4deg); } }
+@keyframes dico-drop  { 0%, 58%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } 45% { transform: translateY(0); } }
+@keyframes dico-bob   { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes dico-fly   { 0%, 100% { transform: translate(0, 0) rotate(-8deg); } 50% { transform: translate(2px, -3px) rotate(6deg); } }
+.dico--pulse > svg { animation: dico-pulse 2.8s ease-in-out infinite; transform-origin: center; }
+.dico--ring  > svg { animation: dico-ring 3.4s ease-in-out infinite; transform-origin: center; }
+.dico--drop  > svg { animation: dico-drop 3s ease-in-out infinite; transform-origin: center bottom; }
+.dico--fly   > svg { animation: dico-fly 3.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dico > svg { animation: none !important; }
+  .dico { transition: none; }
+}
+
+/* ── Footer destinations → icon-led rows with monument chips ──────────────── */
+.footer-col--trips ul { gap: 4px; }
+.footer-col--trips a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 10px;
+  margin-inline: -10px;
+  border-radius: var(--r2, 10px);
+  background-image: none;            /* supersede the animated-underline treatment */
+  color: var(--txt-2);
+  transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.footer-col--trips a .dico { --dico-size: 30px; }
+.footer-col--trips a:hover { background: rgba(255, 255, 255, .05); color: var(--txt-1); }
+:root[data-theme="light"] .footer-col--trips a:hover { background: rgba(0, 44, 81, .05); }
+.footer-col--trips a:hover .dico { transform: translateY(-2px); background: var(--accent); color: var(--bg-card); }
+.footer-col--trips a:hover .dico > svg { animation: dico-bob .7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .footer-col--trips a:hover .dico > svg { animation: none !important; } }
+
+/* ── Footer contact → duotone chip heads with gentle idle motion ─────────── */
+.footer-col--contact .phone-group__head { gap: 11px; color: var(--txt-2); }
+.footer-col--contact .phone-group__head svg {
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  flex: none;
+}
+.footer-col--contact .phone-group:nth-of-type(1) .phone-group__head svg { animation: dico-pulse 2.8s ease-in-out infinite; transform-origin: center; }
+.footer-col--contact .phone-group:nth-of-type(2) .phone-group__head svg { animation: dico-ring 3.6s ease-in-out infinite; transform-origin: center; }
+.footer-col--contact .phone-group:nth-of-type(3) .phone-group__head svg { animation: dico-drop 3.2s ease-in-out infinite; transform-origin: center bottom; }
+@media (prefers-reduced-motion: reduce) { .footer-col--contact .phone-group__head svg { animation: none !important; } }
+
+/* ── Footer duotone — calmer + slightly smaller chips (feedback) ──────────── */
+.footer-col--trips a .dico { --dico-size: 28px; }
+.footer-col--contact .phone-group__head svg { width: 28px; height: 28px; }
+.footer-col--contact .phone-group:nth-of-type(1) .phone-group__head svg { animation-duration: 5s; }
+.footer-col--contact .phone-group:nth-of-type(2) .phone-group__head svg { animation-duration: 6s; }
+.footer-col--contact .phone-group:nth-of-type(3) .phone-group__head svg { animation-duration: 5.5s; }
+
+/* ── Feature icon chips — calm, staggered idle float (reduced-motion safe) ── */
+.value-prop__icon > svg, .hl-card__icon > svg, .info-card__icon > svg { animation: dico-bob 5s ease-in-out infinite; }
+.hl-card:nth-of-type(2n) .hl-card__icon > svg { animation-delay: .8s; }
+.hl-card:nth-of-type(3n) .hl-card__icon > svg { animation-delay: 1.6s; }
+.value-prop:nth-of-type(2) .value-prop__icon > svg { animation-delay: .7s; }
+.value-prop:nth-of-type(3) .value-prop__icon > svg { animation-delay: 1.4s; }
+@media (prefers-reduced-motion: reduce) {
+  .value-prop__icon > svg, .hl-card__icon > svg, .info-card__icon > svg { animation: none !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   AGENCES — bento (map tile + location-switcher panel) (2026-08)
+   ══════════════════════════════════════════════════════════════════════════ */
+.branches-bento {
+  margin-top: var(--s9, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: var(--space-4, 24px);
+  align-items: stretch;
+}
+@media (max-width: 860px) { .branches-bento { grid-template-columns: 1fr; } }
+
+.bento-tile {
+  min-width: 0;                 /* let grid tracks shrink; prevents overflow */
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r3, 16px);
+  overflow: hidden;
+}
+.bento-tile--map { padding: 0; }
+/* The tile frames the map now, so strip the map's own frame + fix its height. */
+.branches-bento .bento-tile--map #algeria-map {
+  height: 100%;
+  min-height: clamp(420px, 44vw, 560px);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.bento-tile--panel {
+  padding: var(--space-4, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 20px);
+}
+
+/* location switcher (segmented control) */
+.loc-switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.loc-switch__tab {
+  flex: 1 1 0;
+  min-width: 0;                 /* allow labels to shrink instead of overflowing */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--txt-2);
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.loc-switch__tab:hover { color: var(--txt-1); }
+.loc-switch__tab.is-active { background: var(--accent); color: var(--bg-card); }
+
+/* active branch detail */
+.loc-detail { display: none; }
+.loc-detail.is-active { display: flex; flex-direction: column; gap: var(--space-3, 18px); animation: locFade .28s var(--ease-out) both; }
+html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--space-3, 18px); } /* no-JS: show all */
+@keyframes locFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .loc-detail.is-active { animation: none; } }
+
+.loc-detail__head { display: flex; gap: 12px; align-items: flex-start; }
+.loc-detail__head .dico { --dico-size: 40px; margin-top: 2px; }
+.loc-detail__name { margin: 6px 0 3px; font-size: 1.15rem; font-weight: 700; line-height: 1.2; color: var(--txt-1); }
+.loc-detail__addr { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--txt-2); }
+
+/* merged phone chips */
+.loc-phones { display: flex; flex-wrap: wrap; gap: 8px; }
+.loc-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-hi);
+  background: var(--bg);
+  color: var(--txt-1);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: .9rem;
+  transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
+}
+.loc-phone svg { width: 18px; height: 18px; color: var(--wa-green); flex: none; }
+.loc-phone:hover { border-color: var(--wa-green); background: var(--accent-dim); transform: translateY(-1px); }
+
+.loc-dir { align-self: flex-start; gap: 8px; margin-top: 2px; }
+.loc-dir svg { width: 16px; height: 16px; }
+
+/* The contact card carries a duplicate branch mini-list; force it to a single
+   column so its 3×240px grid can't push the page into horizontal scroll. */
+.contact-card .branch-list { grid-template-columns: 1fr; }
 

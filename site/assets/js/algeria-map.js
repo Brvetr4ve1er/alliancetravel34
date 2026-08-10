@@ -386,6 +386,12 @@
 
     // Expose for debugging
     window.__alliance_algeria_map = map;
+
+    // The location switcher can now fly the real map to a chosen agency.
+    mapFocus = (id) => {
+      const b = [HQ, ...BRANCHES].find((x) => x.id === id);
+      if (b) map.flyTo({ center: b.loc, zoom: 12.2, duration: 700, essential: true });
+    };
   }
 
   /* ─── 3. Fallback when MapLibre CDN is unreachable ─────────── */
@@ -398,6 +404,32 @@
       </div>
     `;
   }
+
+  /* ─── 4. Location switcher: tabs ↔ detail panel ↔ map ─────────
+     Wired immediately (independent of the lazy map boot) so the panel always
+     switches; the map fly-to activates once boot() has run. */
+  let mapFocus = null;
+  function wireSwitch() {
+    const tabs = [...document.querySelectorAll('.loc-switch__tab')];
+    const details = [...document.querySelectorAll('.loc-detail')];
+    if (!tabs.length) return;
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.branch;
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      details.forEach((d) => {
+        const on = d.dataset.branch === id;
+        d.classList.toggle('is-active', on);
+        d.hidden = !on;
+      });
+      if (mapFocus) mapFocus(id);
+    }));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireSwitch);
+  else wireSwitch();
 
   MB.lazyBoot('algeria-map', boot);
 })();
