@@ -191,7 +191,6 @@
     .value-card__num {
       font-family: var(--font-display);
       font-size: 3rem;
-      font-weight: 300;
       color: var(--txt-1);
       font-variant-numeric: tabular-nums;
     }
@@ -794,6 +793,22 @@
         </a>
 
       </div>
+
+      <!-- ── Nos destinations · globe capstone (homepage-only three.js showpiece) ──
+           BELOW THE FOLD, does not touch the hero LCP. Heavily guarded in
+           assets/js/globe.js: phones (<=768px), prefers-reduced-motion, Save-Data
+           and low-memory devices NEVER fetch three.js — the static fallback below
+           stays. The 3D globe lazy-loads only as it nears the viewport, pauses
+           off-screen + when the tab is hidden, and degrades to the fallback on any
+           failure. Reuses .is-paused (see the enhance.js "v28 WebGL globe is gone"
+           note), replacing the always-on globe that was removed. -->
+      <div id="globe-stage" class="globe-stage" aria-hidden="true">
+        <canvas class="globe-stage__canvas"></canvas>
+        <div class="globe-fallback">
+          <div class="globe-fallback__orb"><span class="globe-fallback__count num-ltr">7</span></div>
+          <p class="globe-fallback__caption" data-i18n="stats.destinations">Destinations 2026</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1378,6 +1393,9 @@
   </script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/enhance.js" defer></script>
+  <script src="assets/js/anim.js" defer></script>
+  <!-- Homepage-only: guarded three.js "nos destinations" globe (#globe-stage). NOT in scripts.tpl. -->
+  <script src="assets/js/globe.js" defer></script>
   <script src="assets/js/hero-collage-lazy.js" defer></script>
   <script src="assets/js/map-base.js" defer></script>
   <script src="assets/js/algeria-map.js" defer></script>
