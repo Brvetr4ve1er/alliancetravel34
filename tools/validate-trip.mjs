@@ -68,6 +68,33 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
   req(file, data, "hero.aria", isStr, "string (aria-label du hero, ex: \"Istanbul — Entre deux continents\")");
   req(file, data, "hero.priceFrom", isStr, "string (ex: \"129.000 DA\")");
 
+  // ── Content-quality gates ─────────────────────────────────────────────
+  // The structural checks above accept ANY non-empty string, so a <title>
+  // blanked to a lone space (" ") or clipped to the bare city name ("Istanbul ")
+  // slips through and ships a page with an all-but-empty <title>. That actually
+  // happened on the owner's first edit. These bands reject a value that is
+  // technically a string but unusable as published content. Conservative on
+  // purpose — the 7 live trips sit well inside every band (measured 2026-07-24:
+  // titles 32–48 chars, descriptions 142–161). Guarded on isStr so a field that
+  // is outright missing/empty is reported once (by req above), not twice.
+  const band = (path, min, max, what) => {
+    const v = get(data, path);
+    if (!isStr(v)) return;
+    const n = v.trim().length;
+    if (n < min)
+      err(file, `${path}: contenu trop court (${n} caractère(s) utile(s), minimum ${min}) — ${what}`);
+    else if (n > max)
+      err(file, `${path}: contenu trop long (${n} caractères, maximum ${max}) — ${what}`);
+  };
+  band("meta.title", 10, 70, "le <title> de la page (référencement)");
+  band("meta.description", 50, 200, "la meta description (référencement)");
+
+  // Non-empty-after-trim for the visible "from" price. (seo.offerPrice is already
+  // guarded by its digits-only rule above, which rejects an empty string too.)
+  const heroPrice = get(data, "hero.priceFrom");
+  if (isStr(heroPrice) && heroPrice.trim().length === 0)
+    err(file, "hero.priceFrom: valeur vide (prix « à partir de » du hero)");
+
   // The calculator payload drives the page's core feature.
   req(file, data, "tripData.name", isStr, "string");
   const dates = get(data, "tripData.dates");

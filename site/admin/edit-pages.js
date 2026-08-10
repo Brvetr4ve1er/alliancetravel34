@@ -1,5 +1,5 @@
 // site/admin/edit-pages.js — pick a trip, edit high-value fields (+ raw JSON), save.
-import { t, applyI18n } from "./i18n.js";
+import { t, fmt, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { areaHead } from "./ui.js";
 
@@ -105,6 +105,7 @@ function renderEditor(container) {
       <div class="row" style="align-items:center">
         <h2 style="margin:0">${escHtml(current.slug)}</h2>
         <span class="spacer"></span>
+        <button id="ep-revert" class="btn btn--ghost btn--sm ep-undo" type="button" data-i18n="pages.revert"></button>
         <button id="ep-save" class="btn" data-i18n="pages.publish"></button>
       </div>
       <p id="ep-msg" class="msg" role="status" aria-live="polite"></p>
@@ -121,6 +122,7 @@ function renderEditor(container) {
   const back = container.querySelector("#ep-back");
   back.prepend(icon("back", { size: 16 }));
   container.querySelector("#ep-save").prepend(icon("send", { size: 17 }));
+  container.querySelector("#ep-revert").prepend(icon("back", { size: 16 }));
   const legendIcon = { "pages.group.seo": "seo", "pages.group.hero": "sparkles", "pages.group.prices": "hotel" };
   container.querySelectorAll("fieldset.group > legend").forEach((lg) => {
     const key = Object.keys(legendIcon).find((k) => t(k) === lg.textContent.trim());
@@ -130,6 +132,7 @@ function renderEditor(container) {
   if (st && !st.github) {
     const btn = container.querySelector("#ep-save");
     btn.disabled = true;
+    container.querySelector("#ep-revert").disabled = true; // revert also writes to GitHub
     const bn = document.createElement("p"); bn.className = "banner";
     bn.append(icon("alert", { size: 18 }));
     const tx = document.createElement("span"); tx.textContent = t("pages.nogithub");
@@ -137,6 +140,7 @@ function renderEditor(container) {
     container.querySelector("#ep-msg").after(bn);
   } else {
     container.querySelector("#ep-save").addEventListener("click", save);
+    container.querySelector("#ep-revert").addEventListener("click", revert);
   }
 }
 
@@ -198,10 +202,55 @@ async function save() {
     }
   } else if (r.status === 422) {
     msg.className = "msg err";
-    msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + e).join("<br>");
+    // Escape server-provided text before it reaches innerHTML: validator
+    // messages interpolate field values verbatim, and the raw-JSON panel is
+    // unrestricted — unescaped, a crafted value executes in the admin session.
+    msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + escHtml(e)).join("<br>");
   } else {
     msg.className = "msg err";
     msg.textContent = `Erreur ${r.status}: ${r.data.error || "inconnue"}`;
+  }
+}
+
+// Undo the last publish of the current trip. The server finds the previous
+// committed version and commits it forward (no history rewrite); on success we
+// reload the trip so the form reflects the restored content, then confirm.
+async function revert() {
+  const msg = el("ep-msg");
+  if (!confirm(t("pages.revert.confirm"))) return;
+
+  msg.className = "msg"; msg.textContent = t("pages.reverting");
+  const saveBtn = el("ep-save"), revBtn = el("ep-revert");
+  if (saveBtn) saveBtn.disabled = true;
+  if (revBtn) revBtn.disabled = true;
+
+  const r = await window.AT_ADMIN.callApi("/api/revert-trip", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ slug: current.slug }),
+  });
+
+  if (r.ok) {
+    // Re-render the editor with the restored version, then show the confirmation
+    // (loadTrip rebuilds #area-pages, so the message must be set afterwards).
+    const slug = current.slug;
+    const commitUrl = r.data.commitUrl;
+    await loadTrip(slug);
+    const m2 = el("ep-msg");
+    if (m2) {
+      m2.className = "msg ok";
+      m2.textContent = t("pages.reverted");
+      if (commitUrl) {
+        const a = document.createElement("a");
+        a.href = commitUrl; a.textContent = t("pages.viewcommit"); a.target = "_blank"; a.rel = "noopener";
+        m2.append(" ", a);
+      }
+    }
+  } else {
+    if (saveBtn) saveBtn.disabled = false;
+    if (revBtn) revBtn.disabled = false;
+    msg.className = "msg err";
+    // Server-provided text goes through textContent, never through markup.
+    msg.textContent = fmt("pages.revert.fail", { e: r.data.error || `erreur ${r.status}` });
   }
 }
 
@@ -224,6 +273,7 @@ document.addEventListener("admin:status", () => {
   const btn = c.querySelector("#ep-save");
   if (btn) {
     btn.disabled = true; // a disabled button no longer fires its click listener
+    const rev = c.querySelector("#ep-revert"); if (rev) rev.disabled = true;
     const bn = document.createElement("p"); bn.className = "banner"; bn.textContent = t("pages.nogithub");
     const msg = c.querySelector("#ep-msg"); if (msg) msg.after(bn);
   }

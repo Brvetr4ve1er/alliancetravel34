@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="inclus-list">
-{{#inclus.included}}        <div class="inclus-item inclus-item--yes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+{{#inclus.included}}        <div class="inclus-item inclus-item--yes" style="--tick-i:{{=i}}">
+          <svg class="inclus-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           <span{{.k}}>{{.t}}</span>
         </div>
 {{/inclus.included}}        </div>
@@ -36,8 +36,8 @@
           </div>
         </div>
         <div class="inclus-list">
-{{#inclus.excluded}}        <div class="inclus-item inclus-item--no">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+{{#inclus.excluded}}        <div class="inclus-item inclus-item--no" style="--tick-i:{{=i}}">
+          <svg class="inclus-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           <span{{.k}}>{{.t}}</span>
         </div>
 {{/inclus.excluded}}        </div>

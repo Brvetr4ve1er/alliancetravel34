@@ -7,6 +7,11 @@
 # The pattern matches at any depth (api/, tools/, site/admin/).
 *.test.mjs
 
+# lead-autoreply's notify endpoint — dormant until the owner provisions Resend +
+# the Supabase INSERT webhook (see docs/admin-setup.md). Its code + test stay in
+# the repo; remove this line when activating the feature.
+api/notify-lead.mjs
+
 # Dev-only trees the build never reads. buildCommand is `node tools/build.mjs`,
 # which touches only data/, tools/ and site/; excluding these keeps the upload
 # lean and never ships repo internals. (This affects only what Vercel uploads —
