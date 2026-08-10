@@ -14,8 +14,10 @@
 //       the reciprocal hreflang cluster, and a relative→root-absolute path
 //       rewrite so assets resolve from the deeper /en|ar/<slug>/ directory.
 //   • injectHreflang(html, {slug, langs}) — for the FRENCH variant of a
-//       multi-language trip: it stays byte-identical except for the hreflang
-//       cluster, which must list its new siblings.
+//       multi-language trip. NOT WIRED on this branch: the FR page stays
+//       fully byte-identical and reciprocity is declared via the sitemap's
+//       xhtml:link alternates instead. Kept exported for the follow-up that
+//       accepts FR byte-drift and adds the on-page cluster.
 
 // localize.mjs (the data-i18n body text-swap) is imported lazily inside
 // localizeVariant so a French-only build never loads it.
@@ -115,7 +117,7 @@ function replaceOnce(html, find, replacement, label) {
 // (kuala_lumpur) where the URL slug uses hyphens (kuala-lumpur).
 const metaKey = (slug) => slug.replace(/-/g, "_");
 
-function localizeHead(html, { lang, slug, data, globalT }) {
+function localizeHead(html, { lang, slug, langs, data, globalT }) {
   const meta = lookup(`meta.${metaKey(slug)}`, globalT[lang]) || {};
   const frUrl = urlFor("fr", slug);
   const selfUrl = urlFor(lang, slug);
@@ -147,7 +149,7 @@ function localizeHead(html, { lang, slug, data, globalT }) {
     `<link rel="canonical" href="${selfUrl}"/>`, "canonical");
 
   // hreflang cluster.
-  html = replaceHreflang(html, slug, data._langs);
+  html = replaceHreflang(html, slug, langs);
 
   // JSON-LD: point the self-referential URLs at this variant, and localize the
   // TouristTrip name/description to the meta strings when available.
@@ -180,10 +182,9 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 export async function localizeVariant(html, { lang, slug, langs, data, globalT }) {
   const { localizeHtml } = await import("./localize.mjs");
-  data._langs = langs;
   const resolve = makeResolve(lang, data, globalT);
   let out = localizeHtml(html, resolve); // body + attribute data-i18n swap
-  out = localizeHead(out, { lang, slug, data, globalT });
+  out = localizeHead(out, { lang, slug, langs, data, globalT });
   out = injectTripLangs(out, langs);
   out = rootAbsolutePaths(out);
   return out;

@@ -11,8 +11,9 @@
 // already uses for the TRIP_DATA blob.
 //
 // One source of truth, read two ways: the browser executes i18n.js directly,
-// the generator slices the same T out of it. tools/check-global-i18n.mjs
-// guards against the slice ever silently failing.
+// the generator slices the same T out of it. sliceTLiteral() throws if the
+// `const T = {` literal goes missing or unbalanced; note a RENAMED inner key
+// (e.g. meta.azerbaidjan) is NOT caught and would ship the FR fallback text.
 
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
