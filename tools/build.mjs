@@ -22,6 +22,8 @@ import { checkAdminFields } from "./check-admin-fields.mjs";
 import { checkValueGraph } from "./check-value-graph.mjs";
 import { checkI18n, writeManifest } from "./check-i18n.mjs";
 import { checkI18nBindings } from "./check-i18n-bindings.mjs";
+import { localizeVariant } from "./templates/langpage.mjs";
+import { loadGlobalI18n } from "./templates/global-i18n.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
@@ -94,6 +96,45 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
     err("data/build-manifest.json", `"${slug}" listé mais data/trips/${slug}.json introuvable`);
 }
 
+// site/<dir>/index.html must trace back to a manifest-enabled trip or a known
+// static page. Anything else is a stale/orphaned page — e.g. a leftover local
+// file swept into a commit by a broad `git add`, or a localized variant left
+// behind after a language was turned off — that would otherwise sit on the live
+// site indefinitely with no generator ever touching it again.
+{
+  const enabled = Object.entries(manifest.trips ?? {}).filter(([, e]) => e?.enabled === true);
+  const outputDir = (slug, e) => e.outputDir || slug;
+  // French pages live at site/<dir>/; each enabled non-fr language nests under
+  // site/<lang>/<dir>/. Build the expected set per language root.
+  const frDirs = new Set(enabled.map(([slug, e]) => outputDir(slug, e)));
+  const langDirs = new Map(); // lang -> Set(outputDir) that enable it
+  for (const [slug, e] of enabled) {
+    for (const lang of (e.langs || ["fr"])) {
+      if (lang === "fr") continue;
+      if (!langDirs.has(lang)) langDirs.set(lang, new Set());
+      langDirs.get(lang).add(outputDir(slug, e));
+    }
+  }
+  const STATIC_SITE_DIRS = new Set(["admin", "assets", "blog", "voyages", "rendez-vous-visa"]);
+  const flag = (rel) => err(rel, "page orpheline — aucune entrée data/build-manifest.json ne pointe ici; supprimer le dossier ou l'ajouter au manifest");
+
+  for (const name of readdirSync(SITE_DIR, { withFileTypes: true })) {
+    if (!name.isDirectory()) continue;
+    if (STATIC_SITE_DIRS.has(name.name) || frDirs.has(name.name)) continue;
+    if (langDirs.has(name.name)) {
+      // A language root (site/en, site/ar): every child must be a trip that
+      // still enables this language.
+      const expected = langDirs.get(name.name);
+      for (const sub of readdirSync(join(SITE_DIR, name.name), { withFileTypes: true })) {
+        if (sub.isDirectory() && !expected.has(sub.name) && existsSync(join(SITE_DIR, name.name, sub.name, "index.html")))
+          flag(`site/${name.name}/${sub.name}/index.html`);
+      }
+      continue;
+    }
+    if (existsSync(join(SITE_DIR, name.name, "index.html"))) flag(`site/${name.name}/index.html`);
+  }
+}
+
 // Admin form fields must address data the templates actually render, or the
 // owner edits them to no effect. Caught here because nothing at runtime can.
 for (const e of checkAdminFields(ROOT)) errors.push(e);
@@ -157,6 +198,42 @@ let i18nManifests = null;
   for (const e of checkI18nBindings(ROOT, i18n.manifests)) errors.push(e);
 }
 
+// Per-language variants: a manifest entry whose `langs` lists languages beyond
+// "fr" gets each extra language rendered from its French page (langpage.mjs →
+// localize.mjs, the same data-i18n contract the browser uses) into
+// site/<lang>/<dir>/index.html. The French output is untouched by design: a
+// trip with langs:["fr"] (or no langs field) never passes through the
+// localizer, and even a multi-language trip's FR page is written byte-for-byte
+// as before — reciprocal hreflang for the cluster is declared in sitemap.xml.
+// Computed pre-gate, like the FR renders above, so a langpage failure (e.g. a
+// head.tpl drift) blocks the build instead of writing a half-localized page.
+const variantRenders = []; // { slug, lang, outFile, html }
+if (!errors.length) {
+  let globalT = null; // loaded once, only when some trip actually needs it
+  for (const [slug, data] of parsed) {
+    const entry = manifest.trips?.[slug];
+    if (entry?.enabled !== true) continue;
+    const langs = Array.isArray(entry.langs) && entry.langs.length ? entry.langs : ["fr"];
+    const extra = langs.filter((l) => l !== "fr");
+    if (!extra.length) continue;
+    globalT ??= loadGlobalI18n();
+    const baseDir = entry.outputDir || slug;
+    const frHtml = renders.get(slug)?.html;
+    for (const lang of extra) {
+      try {
+        variantRenders.push({
+          slug,
+          lang,
+          outFile: join(SITE_DIR, lang, baseDir, "index.html"),
+          html: toOutput(await localizeVariant(frHtml, { lang, slug: baseDir, langs, data, globalT })),
+        });
+      } catch (e) {
+        err(`data/trips/${slug}.json`, `variante ${lang} impossible: ${e.message}`);
+      }
+    }
+  }
+}
+
 // ── Blog: load + validate (rendered after the error gate) ───────────
 const { loadPosts, renderPost, renderIndex } = await import(pathToFileURL(join(ROOT, "tools", "blog.mjs")).href);
 const siteCfg = JSON.parse(readFileSync(join(ROOT, "data", "site.json"), "utf8"));
@@ -183,6 +260,14 @@ for (const [slug] of parsed) {
   const relOut = outFile.slice(ROOT.length + 1);
   if (changed) { rendered++; console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${slug} → ${relOut}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`); }
   else { unchanged++; console.log(`✅ ${slug} → ${relOut} (déjà à jour)`); }
+}
+
+// Language variants (site/<lang>/<dir>/), rendered pre-gate above.
+for (const v of variantRenders) {
+  const { outFile, changed } = writeRendered(v.outFile, v.html);
+  const relOut = outFile.slice(ROOT.length + 1);
+  if (changed) { rendered++; console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${v.slug} [${v.lang}] → ${relOut}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`); }
+  else { unchanged++; console.log(`✅ ${v.slug} [${v.lang}] → ${relOut} (déjà à jour)`); }
 }
 
 // ── Blog: render published posts + index + sitemap injection ────────
