@@ -133,6 +133,35 @@ function rootAbsolutePaths(html, lang, sameLangDirs) {
   return out;
 }
 
+/* ------------------------------------------------------------- nav CTA */
+
+// The nav CTA's visible label comes from trip data (nav.ctaHtml), so unlike
+// every other nav item it carries no data-i18n and stayed French on variants —
+// an Arabic page whose single most prominent button read "Réserver".
+//
+// Bound here rather than in nav.tpl on purpose: adding the attribute to the
+// template would also rewrite all seven FRENCH pages, and keeping those
+// byte-identical is the guarantee the whole per-language pipeline rests on.
+//
+// Only the LAST text run before </a> is swapped, so egypte's inline WhatsApp
+// <svg> (and any future icon markup) survives untouched.
+function localizeNavCta(html, resolve) {
+  const label = resolve("nav.trip_booking");
+  if (!label) return html;
+  return html.replace(
+    /(<a[^>]*class="[^"]*\bnav-cta\b[^"]*"[^>]*>)([\s\S]*?)(<\/a>)/g,
+    (full, open, inner, close) => {
+      // Trailing text run = everything after the last '>' (or the whole inner
+      // when there is no nested markup). Bail out if it holds no visible text.
+      const cut = inner.lastIndexOf(">") + 1;
+      const head = inner.slice(0, cut);
+      const tail = inner.slice(cut);
+      if (!tail.trim()) return full;
+      return open + head + tail.replace(/\S[\s\S]*\S|\S/, escText(label)) + close;
+    }
+  );
+}
+
 /* --------------------------------------------------------- head rewrites */
 
 function replaceOnce(html, find, replacement, label) {
@@ -227,6 +256,7 @@ export async function localizeVariant(html, { lang, slug, langs, data, globalT, 
   const { localizeHtml } = await import("./localize.mjs");
   const resolve = makeResolve(lang, data, globalT);
   let out = localizeHtml(html, resolve); // body + attribute data-i18n swap
+  out = localizeNavCta(out, resolve);    // the one nav item with no data-i18n
   out = localizeHead(out, { lang, slug, langs, data, globalT });
   out = injectTripLangs(out, langs);
   out = rootAbsolutePaths(out, lang, sameLangDirs);
