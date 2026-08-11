@@ -14,7 +14,8 @@
  *   arcCoords(from,to,…)  — quadratic Bezier curve points (64 samples)
  *   loadMapLibre()        — lazy CDN load, idempotent
  *   escapeHtml(s)         — HTML-entity escape for popup text
- *   attachDashAnimation() — ants-marching dash cycle on a line layer
+ *   attachDashAnimation() — ants-marching dash cycle on a line layer,
+ *                           paused off-screen / on a hidden tab
  *   setupSinglePopup()    — auto-close older popups
  *   setupThemeSwap()      — re-style on data-theme attribute change
  *   lazyBoot()            — IO + scroll fallback + 30s safety boot
@@ -91,19 +92,73 @@
     },
 
     /* Ants-marching dash cycle on a line layer. Skips when reduced
-       motion or the same timer key is already running. */
+       motion or the same timer key is already attached.
+
+       GATED like every other animation here (globe.js): the 70ms interval is
+       a paint-property write ~14×/second and used to run for the life of the
+       page — while the map was scrolled far off-screen and while the tab was
+       in the background — with no clearInterval anywhere in the repo. It now
+       runs only while the map container is in view AND the tab is visible,
+       and stops for good on pagehide. The cycle itself is unchanged (same
+       sequence, same 70ms, resumes on the step it paused on), so the visible
+       animation is identical whenever it is actually on screen.
+
+       window[timerKey] still holds the live interval id (null while paused);
+       the returned handle exposes stop()/dispose() so a caller can clear it. */
     attachDashAnimation(map, layerId, timerKey) {
-      if (this.reduced || window[timerKey]) return;
+      const ctlKey = timerKey + 'Ctl';
+      // The controller — not the interval id — is the "already attached"
+      // marker: the id is null whenever we're paused, and a re-style calling
+      // this again in that window would otherwise start a second timer.
+      if (this.reduced || window[ctlKey]) return window[ctlKey] || null;
       const dashSeq = [
         [0, 4, 3], [1, 4, 2], [2, 4, 1], [3, 4, 0],
         [0, 1, 3, 3], [0, 2, 3, 2], [0, 3, 3, 1]
       ];
       let step = 0;
-      window[timerKey] = setInterval(() => {
+      let inView = true;   // set by the pause observer below
+
+      const tick = () => {
         if (!map.getLayer(layerId)) return;
         step = (step + 1) % dashSeq.length;
         map.setPaintProperty(layerId, 'line-dasharray', dashSeq[step]);
-      }, 70);
+      };
+      const running = () => inView && !document.hidden;
+      const start = () => {
+        if (window[timerKey] != null || !running()) return;
+        window[timerKey] = setInterval(tick, 70);
+      };
+      const stop = () => {
+        if (window[timerKey] != null) { clearInterval(window[timerKey]); window[timerKey] = null; }
+      };
+      const sync = () => { running() ? start() : stop(); };
+
+      let pauseObs = null;
+      const container = typeof map.getContainer === 'function' ? map.getContainer() : null;
+      if (container && 'IntersectionObserver' in window) {
+        pauseObs = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { inView = e.isIntersecting; });
+          sync();
+        }, { rootMargin: '0px' });
+        pauseObs.observe(container);
+      }
+      const onVisibility = () => sync();
+      document.addEventListener('visibilitychange', onVisibility);
+
+      const ctl = {
+        stop,
+        dispose() {
+          stop();
+          if (pauseObs) { pauseObs.disconnect(); pauseObs = null; }
+          document.removeEventListener('visibilitychange', onVisibility);
+        }
+      };
+      // Battery hygiene: hard-stop on pagehide (mirrors globe.js).
+      window.addEventListener('pagehide', ctl.dispose, { once: true });
+
+      window[ctlKey] = ctl;
+      start();
+      return ctl;
     },
 
     /* When a new maplibregl-popup appears in the container, remove any

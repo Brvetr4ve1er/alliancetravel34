@@ -12,6 +12,10 @@
  *   - Injects a 3-button language switcher into .site-nav (before .theme-toggle)
  *   - Persists choice in localStorage ("al-lang")
  *   - Toggles <html lang> and <html dir> ("rtl" for Arabic)
+ *   - On a server-rendered variant (/en/…, /ar/… — see tools/templates/
+ *     langpage.mjs) the served language WINS over the stored preference and
+ *     the switcher navigates between the real URLs instead of swapping text;
+ *     see the PAGE_LANG block in the engine below
  *   - Lazy-loads Cairo from Google Fonts on first Arabic selection
  *   - Falls back to French if a key is missing
  *   - Dispatches "langchange" event for other modules
@@ -1157,7 +1161,56 @@
     return key.split('.').reduce((o, k) => (o && k in o) ? o[k] : null, dict);
   }
 
+  /* ── Server-rendered language variants ──────────────────────────────
+     /en/<trip>/ and /ar/<trip>/ are REAL pages: tools/templates/langpage.mjs
+     renders the whole body into that language at build time and stamps
+     <html lang="…" dir="…"> to match. Two consequences for this engine:
+
+       • The page's language is a fact, not a preference. Left to the stored
+         preference (usually "fr"), init() flipped <html dir="rtl"> back to
+         "ltr" — un-mirroring an Arabic page on load — and captureBaseline()
+         recorded the Arabic DOM as the live-FRENCH baseline, after which any
+         node injected later (enhance.js: trust strip, sticky bar, FAB) took
+         its text from T.fr and painted French into an Arabic page.
+       • The switcher must NAVIGATE, not swap text in place: each sibling has
+         its own URL, canonical and hreflang. window.AL_TRIP_LANGS — emitted
+         before </head> by langpage.mjs for exactly this — lists the languages
+         THIS trip publishes, so the switcher can never link to a 404.
+
+     PAGE_LANG is read once, before anything here can mutate it. */
+  const PAGE_LANG = (() => {
+    const raw = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
+    const l = raw.slice(0, 2).toLowerCase();
+    return SUPPORTED.includes(l) ? l : DEFAULT_LANG;
+  })();
+  const IS_VARIANT = PAGE_LANG !== DEFAULT_LANG;
+
+  function tripLangs() {
+    const list = (typeof window !== 'undefined') && window.AL_TRIP_LANGS;
+    return Array.isArray(list) ? list.filter(l => SUPPORTED.includes(l)) : [];
+  }
+
+  /* /ar/bali/ ⇄ /bali/ — the language is a path prefix and nothing else moves,
+     so strip any prefix that is present and re-add the one we want. */
+  function urlForLang(lang) {
+    const others = SUPPORTED.filter(l => l !== DEFAULT_LANG).join('|');
+    const path = location.pathname.replace(new RegExp(`^/(?:${others})(?=/)`), '') || '/';
+    return (lang === DEFAULT_LANG ? '' : `/${lang}`) + path;
+  }
+
+  /* Where clicking `lang` should take us, or null to translate in place. */
+  function navTargetFor(lang) {
+    if (lang === PAGE_LANG) return null;                       // already here
+    if (tripLangs().includes(lang)) return urlForLang(lang);   // real sibling URL
+    // No URL for that language. In-place switching on a variant page would mix
+    // two languages (the baseline holds the variant's text, not French), so go
+    // to the French page — the preference is persisted first and applied there
+    // client-side, exactly as it always has been.
+    return IS_VARIANT ? urlForLang(DEFAULT_LANG) : null;
+  }
+
   function getLang() {
+    if (IS_VARIANT) return PAGE_LANG; // the served page is what it says it is
     let stored = null;
     try { stored = localStorage.getItem(STORAGE_KEY); } catch (_) { /* private mode */ }
     if (stored && SUPPORTED.includes(stored)) return stored;
@@ -1367,6 +1420,20 @@
 
   function setLang(lang) {
     if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
+    const url = navTargetFor(lang);
+    if (url) {
+      persistLang(lang);            // so the destination boots in this language
+      window.location.assign(url);
+      return;
+    }
+    if (IS_VARIANT) {
+      // On this language's own page: nothing to translate, and translating
+      // would overwrite the server's copy with the shared dictionary's.
+      persistLang(lang);
+      reflectActive(lang);
+      announceLang(lang);
+      return;
+    }
     if (lang === 'ar') ensureArabicFont();
     persistLang(lang);
     setHtmlAttrs(lang);
@@ -1388,6 +1455,19 @@
   window.alTranslate = (lang) => translate(SUPPORTED.includes(lang) ? lang : getLang());
 
   function init() {
+    if (IS_VARIANT) {
+      // The markup is already localized and <html lang/dir> already correct.
+      // translate() could only overwrite it, and captureBaseline() would file
+      // this language away as the French source. Do neither: just persist the
+      // language (so the rest of the site follows the URL the visitor landed
+      // on), make sure the Arabic face is loading, and wire the switcher.
+      persistLang(PAGE_LANG);
+      setHtmlAttrs(PAGE_LANG);
+      if (PAGE_LANG === 'ar') ensureArabicFont();
+      buildSwitcher();
+      reflectActive(PAGE_LANG);
+      return;
+    }
     const lang = getLang();
     setHtmlAttrs(lang);               // pre-set ASAP (prevents flash)
     if (lang === 'ar') ensureArabicFont();

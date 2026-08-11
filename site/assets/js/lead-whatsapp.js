@@ -70,8 +70,18 @@
 
   /* ---------------------------------------------------------- network (POST) */
 
+  /* A hard deadline on every POST: without one a stalled connection leaves the
+     request pending for the life of the tab (no client fetch in this repo had
+     a timeout before 2026-08-11). The failure path is unchanged — swallowed,
+     because nothing here may delay or block the WhatsApp tap. */
+  var TIMEOUT_MS = 8000;
+
   function post(path, body) {
     try {
+      var ctl = typeof AbortController === 'function' ? new AbortController() : null;
+      var timer = ctl ? setTimeout(function () {
+        try { ctl.abort(); } catch (e) { /* already settled */ }
+      }, TIMEOUT_MS) : null;
       fetch(CFG.url + path, {
         method: 'POST',
         headers: {
@@ -81,8 +91,10 @@
           Prefer: 'return=minimal'
         },
         body: JSON.stringify(body),
-        keepalive: true // survives the navigation a WhatsApp tap triggers
-      }).catch(function () { /* a failed insert must never block the CTA */ });
+        keepalive: true, // survives the navigation a WhatsApp tap triggers
+        signal: ctl ? ctl.signal : undefined
+      }).catch(function () { /* a failed insert must never block the CTA */ })
+        .then(function () { if (timer) clearTimeout(timer); });
     } catch (e) { /* never surfaced to the visitor */ }
   }
   function insertLead(id, trip, page) {

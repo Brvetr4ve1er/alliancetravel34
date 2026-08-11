@@ -19,9 +19,18 @@ export function buildEvent(kind, page, eventName) {
   };
 }
 
+// A counter is worth nothing and must cost nothing: the POST carries a hard
+// deadline so a stalled connection can't leave a request pending for the life
+// of the tab (no client fetch in this repo had a timeout before 2026-08-11).
+const TIMEOUT_MS = 8000;
+
 function send(payload) {
   if (!payload) return;
   try {
+    const ctl = typeof AbortController === "function" ? new AbortController() : null;
+    const timer = ctl
+      ? setTimeout(() => { try { ctl.abort(); } catch { /* already settled */ } }, TIMEOUT_MS)
+      : null;
     fetch(CFG.url + "/rest/v1/events", {
       method: "POST",
       headers: {
@@ -32,7 +41,8 @@ function send(payload) {
       },
       body: JSON.stringify(payload),
       keepalive: true, // survives the navigation a WhatsApp click triggers
-    }).catch(() => {});
+      signal: ctl ? ctl.signal : undefined,
+    }).catch(() => {}).then(() => { if (timer) clearTimeout(timer); });
   } catch { /* never surface */ }
 }
 

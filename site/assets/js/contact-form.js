@@ -55,7 +55,8 @@
       noTrip: 'Je voudrais discuter d’un voyage avec vous.',
       close: 'Pourriez-vous me recontacter ? Merci !',
       opening: 'WhatsApp s’ouvre dans un nouvel onglet…',
-      blocked: 'Votre navigateur a bloqué la fenêtre. Ouvrir WhatsApp'
+      blocked: 'Votre navigateur a bloqué la fenêtre. Ouvrir WhatsApp',
+      saveWarn: 'Nous n’avons pas pu enregistrer votre demande — envoyez le message WhatsApp, il nous parviendra.'
     },
     en: {
       hello: 'Hello Alliance Travel!',
@@ -65,7 +66,8 @@
       noTrip: 'I would like to talk through a trip with you.',
       close: 'Could you get back to me? Thank you!',
       opening: 'WhatsApp is opening in a new tab…',
-      blocked: 'Your browser blocked the window. Open WhatsApp'
+      blocked: 'Your browser blocked the window. Open WhatsApp',
+      saveWarn: 'We couldn’t save your request — please send the WhatsApp message and it will reach us.'
     },
     ar: {
       hello: 'مرحبًا ألاينس ترافل!',
@@ -75,7 +77,8 @@
       noTrip: 'أودّ التحدّث معكم بشأن رحلة.',
       close: 'هل يمكنكم التواصل معي؟ شكرًا!',
       opening: 'يتم فتح واتساب في نافذة جديدة…',
-      blocked: 'حجب المتصفّح النافذة. افتح واتساب'
+      blocked: 'حجب المتصفّح النافذة. افتح واتساب',
+      saveWarn: 'لم نتمكّن من حفظ طلبك — أرسل رسالة واتساب وستصلنا.'
     }
   };
 
@@ -91,6 +94,106 @@
     if (v == null) return null;
     v = String(v).trim();
     return v === '' ? null : v.slice(0, max);
+  }
+
+  /* The insert must never block or delay the WhatsApp handoff — that is the
+     visitor's actual goal — so nothing below is awaited by the submit handler.
+     What changed on 2026-08-11 is that a failure is no longer INVISIBLE: the
+     old `.catch(function () {})` meant a lead could evaporate while the
+     visitor watched WhatsApp open, and neither side ever found out. Same
+     mechanism as lead-capture.js on the trip pages (deliberately duplicated:
+     these two files load on different pages and there is no module system):
+       • an AbortController deadline, so a hung POST cannot stay pending;
+       • one retry, then localStorage until the visitor's next page view;
+       • a quiet toast only when the rejection is permanent (a queued copy
+         would never drain). */
+  var TIMEOUT_MS   = 8000;
+  var QUEUE_KEY    = 'at-lead-queue';         // shared with lead-capture.js
+  var QUEUE_MAX    = 20;
+  var QUEUE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+
+  /* Resolves with the HTTP status, or 0 for a network error / timeout /
+     abort. Never rejects — every caller is a background task. */
+  function postLead(cfg, payload) {
+    var ctl = null, timer = null;
+    var opts = {
+      method: 'POST',
+      headers: {
+        apikey: cfg.anonKey,
+        Authorization: 'Bearer ' + cfg.anonKey,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify(payload),
+      // keepalive: opening WhatsApp can navigate this tab away, and without
+      // this the browser is free to cancel the POST in flight — which is the
+      // difference between recording the lead and losing it.
+      keepalive: true
+    };
+    try {
+      if (typeof AbortController === 'function') {
+        ctl = new AbortController();
+        opts.signal = ctl.signal;
+        timer = setTimeout(function () { try { ctl.abort(); } catch (e) {} }, TIMEOUT_MS);
+      }
+    } catch (e) { /* no AbortController — as before, no deadline */ }
+    function done(status) { if (timer) { clearTimeout(timer); timer = null; } return status; }
+    try {
+      return fetch(cfg.url + '/rest/v1/leads', opts)
+        .then(function (res) { return done(res && typeof res.status === 'number' ? res.status : 0); })
+        .catch(function () { return done(0); });
+    } catch (e) {
+      return Promise.resolve(done(0));
+    }
+  }
+
+  function isOk(status) { return status >= 200 && status < 300; }
+  /* 0 = no answer at all (network error / our own timeout), 408 / 429 = the
+     server asked us to wait, 5xx = it broke. Any other 4xx is a verdict on
+     the payload and a retry would send the same bytes. */
+  function isTransient(status) {
+    return status === 0 || status === 408 || status === 429 || status >= 500;
+  }
+
+  function queueRead() {
+    try {
+      var arr = JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]');
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) { return []; } // private mode / corrupt value
+  }
+  function queueWrite(arr) {
+    try { localStorage.setItem(QUEUE_KEY, JSON.stringify(arr.slice(-QUEUE_MAX))); } catch (e) { /* quota */ }
+  }
+  function queuePush(payload) {
+    var arr = queueRead();
+    arr.push({ at: Date.now(), payload: payload });
+    queueWrite(arr);
+  }
+  /* Re-send what a previous visit couldn't. Once per page: the flag is on
+     window so lead-capture.js's copy of this queue cannot double-send it. */
+  function flushQueue(cfg) {
+    if (window.__atLeadQueueFlushed) return;
+    window.__atLeadQueueFlushed = true;
+    var now = Date.now();
+    var pending = queueRead().filter(function (it) {
+      return it && it.payload && typeof it.at === 'number' && (now - it.at) < QUEUE_TTL_MS;
+    });
+    if (!pending.length) { if (queueRead().length) queueWrite([]); return; }
+    queueWrite([]); // take the batch; a transient failure re-queues itself
+    pending.forEach(function (it) {
+      postLead(cfg, it.payload).then(function (status) {
+        if (!isOk(status) && isTransient(status)) queuePush(it.payload);
+      });
+    });
+  }
+
+  /* Non-blocking by construction: enhance.js's toast, raised long after the
+     WhatsApp tab opened. Silent if enhance.js isn't there. */
+  function notify() {
+    try {
+      var m = MSG[currentLang()] || MSG.fr;
+      if (typeof window.AT_showToast === 'function') window.AT_showToast(m.saveWarn, 'error');
+    } catch (e) { /* a notice must never throw into the CTA path */ }
   }
 
   var lastKey = null; // a double-click must not create two rows
@@ -112,22 +215,16 @@
       page: clamp(location.pathname, MAX.page)
     };
 
-    try {
-      fetch(cfg.url + '/rest/v1/leads', {
-        method: 'POST',
-        headers: {
-          apikey: cfg.anonKey,
-          Authorization: 'Bearer ' + cfg.anonKey,
-          'Content-Type': 'application/json',
-          Prefer: 'return=minimal'
-        },
-        body: JSON.stringify(payload),
-        // keepalive: opening WhatsApp can navigate this tab away, and without
-        // this the browser is free to cancel the POST in flight — which is the
-        // difference between recording the lead and losing it.
-        keepalive: true
-      }).catch(function () { /* a failed insert must never block the CTA */ });
-    } catch (e) { /* never surfaced to the visitor */ }
+    postLead(cfg, payload).then(function (status) {
+      if (isOk(status)) return;
+      if (!isTransient(status)) { notify(); return; }
+      // One immediate retry — keepalive, so it survives the tab switch too.
+      return postLead(cfg, payload).then(function (again) {
+        if (isOk(again)) return;
+        if (isTransient(again)) queuePush(payload); // parked for the next visit
+        else notify();
+      });
+    }).catch(function () { /* postLead never rejects; belt and braces */ });
   }
 
   /* ------------------------------------------------------------------- submit */
@@ -238,7 +335,12 @@
     });
   }
 
-  function init() { wireForm(); wireAdvisors(); wireLangReset(); }
+  function init() {
+    wireForm(); wireAdvisors(); wireLangReset();
+    // Drain anything a previous visit couldn't deliver, off the critical path.
+    var cfg = window.AT_LEADS;
+    if (cfg && cfg.url && cfg.anonKey) setTimeout(function () { flushQueue(cfg); }, 1500);
+  }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

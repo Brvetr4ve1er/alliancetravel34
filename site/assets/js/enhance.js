@@ -224,11 +224,16 @@
       document.body.appendChild(toast);
     }
     toast.className = `toast toast--${kind}`;
+    // The <svg> is static markup we authored; `msg` is NOT. booking-form.js
+    // interpolates file.name into its toasts (`${file.name} — type non
+    // supporté`, `Impossible de lire ${file.name}`…), so a file named
+    // `<img src=x onerror=…>.txt` used to execute here. Escape the message,
+    // keep the icon as markup.
     toast.innerHTML = `
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"/>
-      </svg>${msg}`;
+      </svg>${escapeHtml(msg)}`;
     void toast.offsetWidth;   // force reflow so transition fires
     toast.classList.add('show');
     clearTimeout(toast._hideTimer);
@@ -372,11 +377,22 @@
      lang-switcher, theme-toggle, nav-cta) into the drawer. The drawer
      wrapper has `display: contents` at desktop so the layout is
      identical to pre-drawer at ≥901px. */
+  /* Retry budget for the i18n wait inside initNavDrawer: 40 × 50ms = 2s.
+     Without it, a page where .lang-switcher never appears (i18n.js blocked,
+     a nav without a switcher) re-scheduled initNavDrawer every 50ms for the
+     life of the page — forever, and once the drawer existed each pass also
+     re-bound the click / keydown / resize listeners. */
+  const NAV_DRAWER_MAX_TRIES = 40;
+  let navDrawerTries = 0;
+
   function initNavDrawer() {
     const nav = document.querySelector('.site-nav');
     if (!nav) return;
     // Wait one tick so i18n.js can finish building .lang-switcher first.
-    if (!nav.querySelector('.lang-switcher')) {
+    // After the budget above we build the drawer anyway: a drawer without
+    // the language switcher beats no hamburger at all on mobile.
+    if (!nav.querySelector('.lang-switcher') && navDrawerTries < NAV_DRAWER_MAX_TRIES) {
+      navDrawerTries++;
       return setTimeout(initNavDrawer, 50);
     }
 
@@ -453,7 +469,16 @@
       }
     };
 
-    /* ── 5. Wire events ── */
+    /* ── 5. Wire events (ONCE) ──
+       Steps 1-4 above are idempotent — they reuse the existing button /
+       drawer / backdrop — but every listener below is attached to a node
+       that survives a re-entry, so binding twice made one tap toggle the
+       drawer twice (open then instantly closed). initNavDrawer re-enters via
+       the retry above and could be called again by any future boot, so the
+       wiring is gated on a marker rather than on "did we just build it". */
+    if (nav.dataset.drawerWired === '1') return;
+    nav.dataset.drawerWired = '1';
+
     btn.addEventListener('click', () => setOpen(!nav.classList.contains('nav-open')));
     backdrop.addEventListener('click', () => setOpen(false));
 
