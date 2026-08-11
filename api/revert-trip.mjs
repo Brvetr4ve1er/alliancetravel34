@@ -10,8 +10,8 @@
 // when it was first committed, so it is known-good by construction.
 import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile, putFile, listCommits } from "./_lib/github.mjs";
+import { isValidSlug } from "./_lib/slug.mjs";
 
-const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const API = "https://api.github.com";
 
 async function readBody(req) {
@@ -60,7 +60,7 @@ export default async function handler(req, res) {
   catch { return res.status(400).json({ error: "invalid JSON body" }); }
 
   const { slug } = body;
-  if (!SLUG_RE.test(String(slug || ""))) return res.status(400).json({ error: "invalid slug" });
+  if (!isValidSlug(slug)) return res.status(400).json({ error: "invalid slug" });
 
   const path = `data/trips/${slug}.json`;
 

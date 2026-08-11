@@ -18,11 +18,24 @@
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
+// Hard ceiling on the request body, for the same reason as save-trip.mjs: the whole
+// thing is buffered before it can be parsed. A lead row is a few hundred bytes, so
+// 1 MB is an enormous allowance and still a bound. Kept identical to save-trip's
+// limit so there is one number to reason about.
+export const MAX_BODY_BYTES = 1024 * 1024; // 1 MB
+
 // Vercel pre-parses a JSON body; fall back to reading the stream (mirrors save-trip.mjs).
 async function readBody(req) {
   if (req.body && typeof req.body === "object") return req.body;
-  let raw = "";
-  for await (const chunk of req) raw += chunk;
+  const chunks = [];
+  let bytes = 0;
+  for await (const chunk of req) {
+    const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    bytes += buf.length;
+    if (bytes > MAX_BODY_BYTES) throw Object.assign(new Error("body too large"), { status: 413 });
+    chunks.push(buf);
+  }
+  const raw = Buffer.concat(chunks).toString("utf8");
   return raw ? JSON.parse(raw) : {};
 }
 
@@ -63,7 +76,10 @@ export default async function handler(req, res) {
   // 4. Parse the Supabase webhook body and pull the inserted row.
   let body;
   try { body = await readBody(req); }
-  catch { return res.status(400).json({ error: "invalid JSON body" }); }
+  catch (e) {
+    if (e && e.status === 413) return res.status(413).json({ error: "body too large" });
+    return res.status(400).json({ error: "invalid JSON body" });
+  }
   const record = body && body.record;
   if (!record || typeof record !== "object") return res.status(400).json({ error: "missing record" });
 

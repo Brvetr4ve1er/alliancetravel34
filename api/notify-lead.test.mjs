@@ -6,7 +6,7 @@
 // assert whether an email was attempted at all.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import handler from "./notify-lead.mjs";
+import handler, { MAX_BODY_BYTES } from "./notify-lead.mjs";
 
 // Configured (active) baseline. Individual tests override env in try/finally.
 process.env.LEAD_NOTIFY_SECRET = "test-secret";
@@ -172,6 +172,54 @@ test("Resend non-ok response is surfaced as an error status (not thrown)", async
   assert.equal(res.statusCode, 502);
   assert.ok(res.body.error.includes("422"));
   assert.equal(fetchMock.mock.calls.length, 1); // it tried once, then reported the failure
+});
+
+// A request with NO pre-parsed body, so readBody() takes the stream path.
+function streamReq(chunks, { secret = "test-secret" } = {}) {
+  const headers = {};
+  if (secret !== null) headers["x-notify-secret"] = secret;
+  return {
+    method: "POST", headers,
+    async *[Symbol.asyncIterator]() { for (const c of chunks) yield c; },
+  };
+}
+
+test("a streamed body over the cap → 413, no email sent", async (t) => {
+  // The body is buffered whole before it can be parsed, so an uncapped stream is a
+  // memory-exhaustion lever on a route that is reachable by anyone holding the
+  // webhook secret. The cap fires before the payload is ever decoded.
+  const fetchMock = t.mock.method(globalThis, "fetch", makeFetch());
+  const chunk = Buffer.alloc(256 * 1024, 0x61);
+  const chunks = Array.from({ length: Math.ceil(MAX_BODY_BYTES / chunk.length) + 1 }, () => chunk);
+  const res = fakeRes();
+  await handler(streamReq(chunks), res);
+  assert.equal(res.statusCode, 413);
+  assert.equal(res.body.error, "body too large");
+  assert.equal(fetchMock.mock.calls.length, 0);
+});
+
+test("a normal streamed body is unaffected by the cap, multi-byte text intact", async (t) => {
+  let sentOpts;
+  t.mock.method(globalThis, "fetch", async (url, opts) => {
+    sentOpts = opts;
+    return { ok: true, status: 200, json: async () => ({ id: "x" }) };
+  });
+  // Split mid-character: "Hôtel" must not come back mangled.
+  const payload = Buffer.from(JSON.stringify({ record: { ...SAMPLE, city: "Béjaïa" } }), "utf8");
+  const mid = payload.indexOf(Buffer.from("Béjaïa", "utf8")) + 2; // inside "é"
+  const res = fakeRes();
+  await handler(streamReq([payload.subarray(0, mid), payload.subarray(mid)]), res);
+  assert.equal(res.statusCode, 200);
+  assert.ok(JSON.parse(sentOpts.body).text.includes("Béjaïa"));
+});
+
+test("an unparseable streamed body → 400, not 413 and not a crash", async (t) => {
+  const fetchMock = t.mock.method(globalThis, "fetch", makeFetch());
+  const res = fakeRes();
+  await handler(streamReq([Buffer.from("{ not json")]), res);
+  assert.equal(res.statusCode, 400);
+  assert.equal(res.body.error, "invalid JSON body");
+  assert.equal(fetchMock.mock.calls.length, 0);
 });
 
 test("missing record in the webhook body → 400, no email sent", async (t) => {

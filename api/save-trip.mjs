@@ -3,15 +3,31 @@
 // → commit data/trips/<slug>.json to GitHub. A bad edit is rejected, never committed.
 import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile, putFile, listTree } from "./_lib/github.mjs";
+import { isValidSlug } from "./_lib/slug.mjs";
 import { validateTrip } from "../tools/validate-trip.mjs";
 import { renderTrip } from "../tools/templates/trip2.mjs";
 
-const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+// Hard ceiling on the request body. The whole body is buffered in memory before it
+// can be parsed, so without a cap one client can stream until the function dies.
+// The largest real trip in data/trips/ is egypte.json at ~166 KB, so 1 MB is ~6x
+// headroom for any legitimate edit and still a bound.
+export const MAX_BODY_BYTES = 1024 * 1024; // 1 MB
 
 async function readBody(req) {
   if (req.body && typeof req.body === "object") return req.body; // Vercel pre-parses JSON
-  let raw = "";
-  for await (const chunk of req) raw += chunk;
+  // Chunks are kept as Buffers and decoded once at the end. Byte counting has to be
+  // exact for the cap to mean anything, and decoding chunk-by-chunk would mangle a
+  // multi-byte character split across a chunk boundary — this body is full of
+  // accented French and Arabic, and a mangled one would be committed as-is.
+  const chunks = [];
+  let bytes = 0;
+  for await (const chunk of req) {
+    const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    bytes += buf.length;
+    if (bytes > MAX_BODY_BYTES) throw Object.assign(new Error("body too large"), { status: 413 });
+    chunks.push(buf);
+  }
+  const raw = Buffer.concat(chunks).toString("utf8");
   return raw ? JSON.parse(raw) : {};
 }
 
@@ -22,11 +38,14 @@ export default async function handler(req, res) {
 
   let body;
   try { body = await readBody(req); }
-  catch { return res.status(400).json({ error: "invalid JSON body" }); }
+  catch (e) {
+    if (e && e.status === 413) return res.status(413).json({ error: "body too large" });
+    return res.status(400).json({ error: "invalid JSON body" });
+  }
 
   const { slug, content } = body;
   let sha = body.sha;
-  if (!SLUG_RE.test(String(slug || ""))) return res.status(400).json({ error: "invalid slug" });
+  if (!isValidSlug(slug)) return res.status(400).json({ error: "invalid slug" });
   if (!content || typeof content !== "object") return res.status(400).json({ error: "missing content" });
   if (content.slug !== slug) return res.status(400).json({ error: "content.slug must equal slug" });
 

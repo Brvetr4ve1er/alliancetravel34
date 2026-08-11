@@ -1,16 +1,17 @@
 // api/get-trip.mjs — GET ?slug= : return a trip's current JSON + GitHub SHA.
 import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile } from "./_lib/github.mjs";
-
-const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+import { isValidSlug } from "./_lib/slug.mjs";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).json({ error: "method not allowed" });
   const auth = await verifyAdmin(req);
   if (!auth.ok) return res.status(auth.status).json({ error: auth.error });
 
-  const slug = String((req.query && req.query.slug) || "");
-  if (!SLUG_RE.test(slug)) return res.status(400).json({ error: "invalid slug" });
+  // A repeated query parameter (?slug=a&slug=b) arrives as an array, so the raw
+  // value is checked for type as well as shape before it becomes a repo path.
+  const slug = (req.query && req.query.slug) || "";
+  if (!isValidSlug(slug)) return res.status(400).json({ error: "invalid slug" });
 
   // Both reads are independent, and opening the editor is a user-facing action,
   // so they go out together rather than one after the other. `slug` is already
