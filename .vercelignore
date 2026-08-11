@@ -20,3 +20,19 @@ api/notify-lead.mjs
 .claude/
 .playwright-mcp/
 docs/
+
+# Supplier B2B rate sheets — confidential wholesale brochures (supplier names +
+# commission amounts), ~77 MB. They have no business on a public web host and
+# were being uploaded on every single build. Nothing reads them at build time:
+# tools/build.mjs touches only data/, tools/ and site/. Also in .gitignore.
+source of truth/
+
+# ── DO NOT ignore site/admin/i18n-bindings.js ────────────────────────────────
+# It is dead weight at runtime (no browser file imports it — index.html loads
+# only app.js, accueil.js, leads.js, edit-pages.js), so it looks like an easy
+# win. It is not: tools/i18n-manifest.mjs and tools/check-i18n-bindings.mjs
+# import it *statically* from that exact path, and both are on tools/build.mjs's
+# import chain — i.e. the Vercel buildCommand. .vercelignore filters the source
+# before the build runs, so ignoring the file makes `node tools/build.mjs` die
+# with ERR_MODULE_NOT_FOUND and takes the whole deploy with it. If you want it
+# out of the deployed output, move it to tools/ and update both importers.
