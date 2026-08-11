@@ -38,8 +38,24 @@ jobs:
 
       # Zero dependencies — nothing to install.
 
+      # Every *.test.mjs in the repo, at any depth. The previous line listed
+      # three single-level globs (api/*.test.mjs tools/*.test.mjs
+      # site/admin/*.test.mjs) and therefore never ran api/_lib/auth.test.mjs,
+      # tools/templates/localize.test.mjs, site/assets/js/beacon.test.mjs or
+      # site/assets/js/booking-form.test.mjs — the authentication logic, the
+      # i18n substitution engine and both XSS-escaping suites, about a quarter
+      # of the suite, green on a screen that was not looking at them.
+      # The pattern is quoted so `node --test` expands it itself; ** then
+      # reaches any subdirectory added later without another edit here.
       - name: Unit tests
-        run: node --test api/*.test.mjs tools/*.test.mjs site/admin/*.test.mjs
+        shell: bash # guarantees -o pipefail, so a node failure survives the pipe
+        run: |
+          node --test --test-reporter=tap "**/*.test.mjs" | tee "${RUNNER_TEMP:-/tmp}/tap.txt"
+          # `node --test` exits 0 when its path glob matches nothing — that
+          # silence is precisely how the missing files went unnoticed. An empty
+          # run is a failed run.
+          grep -qE '^# tests [1-9]' "${RUNNER_TEMP:-/tmp}/tap.txt" \
+            || { echo "::error::aucun fichier de test découvert — le motif ne correspond à rien"; exit 1; }
 
       - name: Validation gate (same as the Vercel build)
         run: node tools/build.mjs --check

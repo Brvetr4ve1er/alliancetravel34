@@ -13,11 +13,15 @@
 //       browser uses), <html lang>/dir, <title>/description/OG, self-canonical,
 //       the reciprocal hreflang cluster, and a relative→root-absolute path
 //       rewrite so assets resolve from the deeper /en|ar/<slug>/ directory.
-//   • injectHreflang(html, {slug, langs}) — for the FRENCH variant of a
-//       multi-language trip. NOT WIRED on this branch: the FR page stays
-//       fully byte-identical and reciprocity is declared via the sitemap's
-//       xhtml:link alternates instead. Kept exported for the follow-up that
-//       accepts FR byte-drift and adds the on-page cluster.
+//   • injectHreflang(html, {slug, langs}) — for the FRENCH page of a
+//       multi-language trip: the same reciprocal cluster, plus the langs list.
+//       Wired in tools/build.mjs, after the variants are rendered and before
+//       the error gate. It was left unwired at first to keep every FR page
+//       byte-identical, with reciprocity declared only through the sitemap's
+//       xhtml:link alternates; Google treats a cluster whose members do not
+//       point back at each other as unconfirmed, so the FR byte-drift is
+//       accepted now. A trip with langs:["fr"] never reaches this function, so
+//       single-language French pages are still byte-for-byte what they were.
 
 // localize.mjs (the data-i18n body text-swap) is imported lazily inside
 // localizeVariant so a French-only build never loads it.

@@ -28,6 +28,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { join, basename } from "node:path";
 import { buildManifest, extractBindings } from "./i18n-manifest.mjs";
+import { loadGlobalI18n } from "./templates/global-i18n.mjs";
 
 /**
  * Key paths of the site-wide dictionary in site/assets/js/i18n.js.
@@ -117,6 +118,31 @@ export function loadSharedKeys(root) {
 }
 
 /**
+ * The shared dictionary's VALUES, not just its key names.
+ *
+ * The scanner above deliberately never learns what a key is worth: it only
+ * needs names, and a name scanner cannot execute anything. Knowing whether
+ * `nav.skip` is actually translated into Arabic does need the values, and
+ * tools/templates/global-i18n.mjs already extracts them — the build imports it
+ * on every multi-language trip to render the /en/ and /ar/ variants. Reusing it
+ * keeps one parser for one file; a second one written to avoid its `new
+ * Function` would be a second chance to drift, and the symptom of drift here
+ * (coverage quietly reported against a stale copy of the dictionary) is exactly
+ * the class of lie this gate exists to prevent.
+ *
+ * Failure degrades to "no dictionary" plus a warning: shared keys then read
+ * "missing" — pessimistic, never blocking.
+ */
+function loadSharedDict() {
+  try {
+    const T = loadGlobalI18n();
+    return { dict: { en: T.en || {}, ar: T.ar || {} }, warning: null };
+  } catch (e) {
+    return { dict: null, warning: `valeurs du dictionnaire partagé illisibles: ${e.message}` };
+  }
+}
+
+/**
  * @param root         repository root
  * @param htmlBySlug   freshly-rendered pages, keyed by slug. The build passes
  *   what it is about to write; anything absent falls back to the copy on disk.
@@ -130,6 +156,8 @@ export function checkI18n(root, htmlBySlug = {}) {
 
   const { keys: sharedKeys, warning: sharedWarning } = loadSharedKeys(root);
   if (sharedWarning) warnings.push({ file: "site/assets/js/i18n.js", msg: sharedWarning });
+  const { dict: sharedDict, warning: dictWarning } = loadSharedDict();
+  if (dictWarning) warnings.push({ file: "site/assets/js/i18n.js", msg: dictWarning });
 
   const tripsDir = join(root, "data", "trips");
   for (const file of readdirSync(tripsDir).filter((f) => f.endsWith(".json"))) {
@@ -185,17 +213,37 @@ export function checkI18n(root, htmlBySlug = {}) {
       }
     }
 
-    const manifest = buildManifest({ slug, html, trip, sharedKeys });
+    const manifest = buildManifest({ slug, html, trip, sharedKeys, sharedDict });
     manifests[slug] = manifest;
 
     // Warnings: coverage and freshness, aggregated so the build stays readable.
-    const tripKeys = Object.values(manifest.keys).filter((k) => k.scope === "trip");
-    for (const [lang, stateKey] of [["anglaise", "enState"], ["arabe", "arState"]]) {
+    // Both percentages are quoted together, each with the number of keys it is
+    // computed over — a bare "99 % traduit" says nothing about whether the 1 %
+    // is one string or forty, nor whether the shared chrome is translated at all.
+    const allKeys = Object.values(manifest.keys);
+    const tripKeys = allKeys.filter((k) => k.scope === "trip");
+    for (const [lang, stateKey, code] of [["anglaise", "enState", "en"], ["arabe", "arState", "ar"]]) {
       const missing = tripKeys.filter((k) => k[stateKey] === "missing").length;
       const stale = tripKeys.filter((k) => k[stateKey] === "stale").length;
-      const pct = lang === "anglaise" ? manifest.coverage.en : manifest.coverage.ar;
-      if (missing) warnings.push({ file: rel, msg: `${missing} clé(s) sans traduction ${lang} (${pct} % traduit)` });
+      const sharedMissing = allKeys.filter((k) => k.scope === "shared" && k[stateKey] === "missing").length;
+      if (missing)
+        warnings.push({
+          file: rel,
+          msg: `${missing} clé(s) sans traduction ${lang} — ${manifest.coverage[code]} % des ${tripKeys.length} clés propres ` +
+               `à la page, ${manifest.coveragePage[code]} % des ${manifest.counts.total} clés affichées ` +
+               `(dont ${manifest.counts.shared} partagées)`,
+        });
       if (stale) warnings.push({ file: rel, msg: `${stale} traduction(s) ${lang} à revérifier` });
+      // A shared key with no entry in the sitewide dictionary shows French to
+      // every page that binds it. Nothing reported this before: the manifest
+      // called all 26 shared keys "missing" on every trip, so a genuine hole
+      // was indistinguishable from the normal state of affairs.
+      if (sharedMissing)
+        warnings.push({
+          file: "site/assets/js/i18n.js",
+          msg: `${sharedMissing} clé(s) partagée(s) affichée(s) par site/${slug}/index.html sans traduction ${lang} ` +
+               `dans le dictionnaire sitewide — ces éléments resteront en français`,
+        });
     }
 
     // Orphans: translations for bindings that no longer exist. Dead weight, and
@@ -255,9 +303,9 @@ export function checkI18n(root, htmlBySlug = {}) {
  * happened to be opened. Per-trip files also mean opening one editor transfers
  * 60 KB instead of 556 KB.
  *
- * The index carries only what an overview needs: coverage and the binding
- * count. Coverage is never shown without the count beside it, because a page
- * that binds nothing scores 100 %.
+ * The index carries only what an overview needs: both coverage figures and the
+ * key counts they are computed over. Coverage is never shown without the count
+ * beside it, because a page that binds nothing scores 100 %.
  */
 export function writeManifest(root, manifests) {
   const dir = join(root, "data", "i18n-manifest");
@@ -267,8 +315,10 @@ export function writeManifest(root, manifests) {
   for (const [slug, m] of Object.entries(manifests)) {
     writeFileSync(join(dir, `${slug}.json`), JSON.stringify(m, null, 2) + "\n");
     index.trips[slug] = {
-      coverage: m.coverage,
-      bindings: Object.values(m.keys).filter((k) => k.scope === "trip").length,
+      coverage: m.coverage,          // trip-owned keys — the editing backlog
+      coveragePage: m.coveragePage,  // every bound key — what a visitor reads
+      bindings: m.counts.trip,
+      shared: m.counts.shared,
     };
   }
   writeFileSync(join(dir, "_index.json"), JSON.stringify(index, null, 2) + "\n");
