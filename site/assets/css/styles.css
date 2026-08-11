@@ -1172,11 +1172,9 @@ select {
 }
 
 /* Date chips */
-.date-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2);
-}
+/* dup sweep 2026-08: the earlier `.date-chips` copy is deleted — an identical
+   declaration block is re-declared under "── 11. Date chips ──" further down,
+   which wins the cascade outright. */
 
 .date-chip {
   padding: var(--s2) var(--s4);
@@ -1335,10 +1333,8 @@ select {
   background: var(--bg-card);
 }
 
-.extra-toggle.checked {
-  border-color: var(--mint);
-  background: var(--mint-dim);
-}
+/* dup sweep 2026-08: `.extra-toggle.checked` deleted here — re-declared
+   identically in the light/dark token block below. */
 
 .extra-toggle__check {
   width: 20px;
@@ -1351,10 +1347,8 @@ select {
   transition: background var(--t-fast), border-color var(--t-fast);
 }
 
-.extra-toggle.checked .extra-toggle__check {
-  background: var(--mint);
-  border-color: var(--mint);
-}
+/* dup sweep 2026-08: `.extra-toggle.checked .extra-toggle__check` deleted here
+   — re-declared identically in the same block as the rule above. */
 
 .extra-toggle__info {
   flex: 1;
@@ -1901,15 +1895,8 @@ select {
   gap: var(--s5);
 }
 
-.testi-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--r3);
-  padding: var(--s6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--s4);
-}
+/* dup sweep 2026-08: `.testi-card` deleted here — re-declared identically
+   under "── 17. Testimonial cards ──" below. */
 
 .testi-stars {
   color: var(--star-gold);
@@ -1949,10 +1936,8 @@ select {
   color: var(--txt-1);
 }
 
-.testi-trip {
-  font-size: .75rem;
-  color: var(--txt-3);
-}
+/* dup sweep 2026-08: `.testi-trip` deleted here — the "── 17. Testimonial
+   cards ──" copy below re-declares both properties (and adds margin-top). */
 
 /* ── FAQ ─────────────────────────────────────────────────── */
 .faq-bg {
@@ -2121,11 +2106,8 @@ select {
   gap: var(--s9);
 }
 
-.footer-brand {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s4);
-}
+/* dup sweep 2026-08: `.footer-brand` deleted here — the v28 footer block near
+   the end of the file re-declares all three properties identically. */
 
 .footer-logo {
   font-family: var(--font-display);
@@ -2162,9 +2144,8 @@ select {
   transition: color var(--t-fast);
 }
 
-.footer-col a:hover {
-  color: var(--txt-1);
-}
+/* dup sweep 2026-08: `.footer-col a:hover` deleted here — the v28 footer block
+   re-declares `color: var(--txt-1)` (plus the underline sweep). */
 
 .footer-bottom {
   margin-top: var(--s7);
@@ -2310,19 +2291,15 @@ select {
     padding: calc(var(--nav-h) + var(--space-5)) var(--container-x) var(--section-y) !important;
   }
 
-  .hero__strip-inner {
-    flex-direction: column;
-    gap: var(--s3);
-    align-items: flex-start;
-  }
+  /* dead-css sweep 2026-08: .hero__strip-inner stacking rule deleted (host
+     removed in v21 phase J.2.4). */
 
   .hotel-grid {
     grid-template-columns: 1fr;
   }
 
-  .packages-grid {
-    grid-template-columns: 1fr;
-  }
+  /* dead-css sweep 2026-08: .packages-grid single-column rule deleted (the
+     packages component was culled in v21 phase J.2). */
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2507,9 +2484,8 @@ select {
   color: var(--txt-2);
 }
 
-.bform-field .req {
-  color: var(--danger);
-}
+/* dup sweep 2026-08: `.bform-field .req` deleted here — the "Required asterisk"
+   rule below re-declares the same colour (and adds weight/offset). */
 
 .bform-field input,
 .bform-field select,
@@ -2911,19 +2887,9 @@ select {
   }
 }
 
-@keyframes glow-pulse {
-
-  0%,
-  100% {
-    opacity: .85;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-}
+/* dead-css sweep 2026-08: @keyframes glow-pulse deleted — its only consumer was
+   the .hero__visual-art moon rule removed just below, so nothing animates it
+   any more (no JS assigns it either). */
 
 @keyframes drift-slow {
   0% {
@@ -2946,30 +2912,10 @@ select {
   transform-origin: center;
 }
 
-.hero__visual-art circle[fill="white"]:nth-of-type(2n) {
-  animation-delay: -1.6s;
-  animation-duration: 5.5s;
-}
-
-.hero__visual-art circle[fill="white"]:nth-of-type(3n) {
-  animation-delay: -3.2s;
-  animation-duration: 6.2s;
-}
-
-.hero__visual-art circle[fill="white"]:nth-of-type(5n) {
-  animation-delay: -2.4s;
-  animation-duration: 4.8s;
-}
-
-/* Moon breathes (any large circle with FFF or fill-opacity ≤ .12 in hero art) */
-.hero__visual-art circle[fill="#FFF4D6"],
-.hero__visual-art circle[fill="#FFF4D0"],
-.hero__visual-art circle[fill="#FFF8F0"],
-.hero__visual-art circle[fill="#DFFFF0"] {
-  animation: glow-pulse 7s ease-in-out infinite;
-  transform-origin: center;
-  transform-box: fill-box;
-}
+/* dead-css sweep 2026-08: the three twinkle-stagger rules and the moon
+   glow-pulse rule were all scoped to .hero__visual-art alone, whose host was
+   deleted in v21 phase J.2.4. The shared twinkle rule above still drives
+   .trip-card__art, which is live. */
 
 /* Water/horizon shimmer overlay */
 .hero__bg::before {
@@ -3138,12 +3084,8 @@ html.js [data-aos].visible {
   color: var(--txt-2);
 }
 
-.inclus-item svg {
-  flex-shrink: 0;
-  margin-top: 3px;
-  width: 16px;
-  height: 16px;
-}
+/* dup sweep 2026-08: `.inclus-item svg` deleted here — re-declared with the
+   same four values (different source order) in the numbered section below. */
 
 .inclus-item--yes svg {
   color: var(--sage);
@@ -3362,9 +3304,8 @@ html.js [data-aos].visible {
 /* ══════════════════════════════════════════════════════════
    TRIP CARD SHARE BUTTON (homepage)
    ══════════════════════════════════════════════════════════ */
-.trip-card {
-  position: relative;
-}
+/* dup sweep 2026-08: `.trip-card { position: relative }` deleted here — the
+   v27 card-root block re-declares it (with isolation + overflow). */
 
 .trip-card__share {
   position: absolute;
@@ -3564,9 +3505,9 @@ html.js [data-aos].visible {
   z-index: 0;
 }
 
-.hero__visual-art {
-  position: relative;
-}
+/* dead-css sweep 2026-08: `.hero__visual-art { position: relative }` deleted —
+   the v13 hero SVG-art host went with .hero__visual in v21 phase J.2.4. The
+   sibling .trip-card__art below is the live consumer of the shared art rules. */
 
 .trip-card__art {
   position: relative;
@@ -3653,7 +3594,8 @@ html.js [data-aos].visible {
 
 /* ── Tier tabs ────────────────────────────────────────────── */
 .tier-tab[aria-pressed="true"] { border-color: var(--mint); color: var(--mint); }
-.tier-tab:hover { color: var(--txt-1); }
+/* dup sweep 2026-08: `.tier-tab:hover { color: var(--txt-1) }` deleted — the
+   numbered tier-tab block below re-declares the identical colour. */
 
 /* ── Calculator ──────────────────────────────────────────── */
 .date-chip.active { border-color: var(--mint); background: var(--mint-dim); color: var(--mint); }
@@ -3678,9 +3620,8 @@ html.js [data-aos].visible {
 .faq-q:hover { color: var(--mint); }
 
 /* ── Packages ────────────────────────────────────────────── */
-.pkg-card { border-color: var(--border); border-radius: var(--r3); }
-.pkg-card.recommended { border-color: var(--mint); box-shadow: 0 0 0 1px var(--mint); }
-.pkg-badge { background: var(--mint); color: var(--navy); }
+/* dead-css sweep 2026-08: .pkg-card / .pkg-card.recommended / .pkg-badge
+   deleted — remnants of the packages component culled in v21 phase J.2. */
 
 /* ── Inclus panel ────────────────────────────────────────── */
 .inclus-col { border-color: var(--border); border-radius: var(--r3); }
@@ -3847,12 +3788,8 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 :root[data-theme="light"] .hero__bg::before,
 :root[data-theme="light"] .hero__bg::after { opacity: 0.5; }
 :root[data-theme="light"] .hero__noise { opacity: 0.015; }
-:root[data-theme="light"] .hero__faded-title { color: var(--navy); opacity: 0.04; }
-:root[data-theme="light"] .hero__visual { border: 1px solid rgba(0,44,81,0.2); }
-:root[data-theme="light"] .hero__strip {
-  background: rgba(251,248,241,0.92);
-  border-top: 1px solid var(--border);
-}
+/* dead-css sweep 2026-08: light-theme .hero__faded-title / .hero__visual /
+   .hero__strip rules deleted — all three hosts went in v21 phase J.2.4. */
 
 :root[data-theme="light"] .hero__visual-art::after,
 :root[data-theme="light"] .trip-card__art::after {
@@ -3882,7 +3819,8 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 :root[data-theme="light"] .btn--primary {
   color: #ffffff !important;
 }
-:root[data-theme="light"] .pkg-badge { color: #ffffff; }
+/* dead-css sweep 2026-08: light-theme .pkg-badge deleted — the packages
+   component was culled in v21 phase J.2 (see the note near .highlights). */
 :root[data-theme="light"] .btn--ghost {
   background: rgba(255,255,255,0.6);
   border-color: var(--border-hi);
@@ -4179,29 +4117,10 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   color: var(--navy) !important;
 }
 
-/* Hero trust-strip overlays photo too — keep cream text */
-.hero__strip {
-  background: rgba(12, 14, 18, 0.65) !important;
-}
-.hero__strip .trust-pill {
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-.hero__strip .trust-pill svg {
-  color: var(--mint) !important;
-}
-
-/* Departure card overlay — text must be readable on its glass surface */
-:root[data-theme="light"] .hero__dep-card {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border-color: rgba(0, 44, 81, 0.18) !important;
-}
-:root[data-theme="light"] .hero__dep-card .dep-pill {
-  color: var(--navy) !important;
-  border-color: rgba(0, 44, 81, 0.12) !important;
-}
-:root[data-theme="light"] .hero__dep-card h3 {
-  color: var(--txt-3) !important;
-}
+/* dead-css sweep 2026-08: the light-theme readability overrides for
+   .hero__strip / .trust-pill and for .hero__dep-card / .dep-pill were left
+   behind when those families were deleted in v21 phase J.2.4 (see the notes
+   near .hero__ctas). Nine !important declarations went with them. */
 
 /* Final CTA scarcity pill — danger red on dark hero gradient */
 :root[data-theme="light"] .final-cta__scarcity {
@@ -4209,11 +4128,8 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   color: var(--danger) !important;
 }
 
-/* Hero faded title on light theme should also stay subtle */
-:root[data-theme="light"] .hero__faded-title {
-  color: var(--navy) !important;
-  opacity: 0.04;
-}
+/* dead-css sweep 2026-08: the light-theme .hero__faded-title override is gone
+   with the watermark itself (deleted in v21 phase J.2.4). */
 
 
 /* ══════════════════════════════════════════════════════════
@@ -4240,10 +4156,8 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   color: var(--mint);
 }
 
-/* Trust pill icons in hero strip stay mint regardless of theme */
-:root[data-theme="light"] .hero__strip .trust-pill svg {
-  color: var(--mint) !important;
-}
+/* dead-css sweep 2026-08: last surviving .hero__strip .trust-pill override
+   deleted — the v13 hero trust strip is gone (v21 phase J.2.4). */
 
 /* CTA buttons: .btn--primary font-weight 600 is set in canonical .btn block.
    .nav-cta keeps its own weight bump for nav-context readability. */
@@ -4284,13 +4198,16 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   pointer-events: none;
 }
 
-.algeria-map-wrap {
-  position: relative;
-  margin-top: var(--s9);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--s7);
-}
+/* dead-css sweep 2026-08: .algeria-map-wrap deleted — 921b4f4 dropped the
+   wrapper element around #algeria-map when the agences bento landed; the map
+   container is now a direct child of the bento cell. */
+
+/* dead-css sweep 2026-08: the whole .branch-card family (.branch-card,
+   :hover, --hq, --hq::before, header, h3, a[href^="tel:"], .branch-addr,
+   .branch-phones and @keyframes card-pulse) is deleted. 921b4f4 replaced that
+   markup with .branches-bento in site/index.html, leaving these rules with no
+   host element. .branch-list, .branch-flag and .branch-flag--alt below are
+   STILL IN USE by the bento — do not remove those. */
 
 /* Branch cards grid */
 .branch-list {
@@ -4303,50 +4220,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   min-width: 0;
 }
 .contact-card { min-width: 0; }
-.branch-card {
-  /* bg + border-color from canonical v21-D.2 surface block */
-  border: 1px solid;
-  border-radius: var(--r3);
-  padding: var(--s5);
-  transition: transform var(--t-fast) ease, border-color var(--t-fast) ease, box-shadow var(--t-fast) ease;
-}
-.branch-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--mint);
-  box-shadow: 0 12px 32px rgba(0,44,81,.15);
-}
-.branch-card--hq {
-  border-color: var(--mint);
-  background: linear-gradient(180deg, var(--mint-dim), var(--bg-card));
-  position: relative;
-}
-.branch-card--hq::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  border: 1px solid var(--mint);
-  opacity: 0.6;
-  animation: card-pulse 2.6s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes card-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50%      { opacity: 0.7; transform: scale(1.015); }
-}
-.branch-card header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s2);
-  margin-bottom: var(--s3);
-}
-.branch-card h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--txt-1);
-  margin: 0;
-}
 .branch-flag {
   font-size: 0.6875rem;
   font-weight: 700;
@@ -4361,24 +4234,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   border: 1px solid var(--border);
   color: var(--txt-3);
 }
-.branch-addr {
-  font-size: 0.875rem;
-  color: var(--txt-2);
-  margin: 0 0 var(--s3);
-}
-.branch-phones {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s2);
-}
-.branch-card a[href^="tel:"] {
-  font-size: 0.875rem;
-  color: var(--mint);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color var(--t-fast) ease;
-}
-.branch-card a[href^="tel:"]:hover { color: var(--mint-hov); }
 
 /* v21 phase J.2: .hero__plane orphan + @keyframes plane-arc deleted.
    The paper-plane mascot survey-tagged for keeping had its HTML host
@@ -4410,11 +4265,8 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   }
 }
 
-/* Light mode for branch cards */
-:root[data-theme="light"] .branch-card { background: #ffffff; }
-:root[data-theme="light"] .branch-card--hq {
-  background: linear-gradient(180deg, var(--mint-dim), #ffffff);
-}
+/* dead-css sweep 2026-08: light-mode .branch-card / .branch-card--hq overrides
+   deleted along with the base component (see the note above .branch-list). */
 
 
 /* ══════════════════════════════════════════════════════════
@@ -4893,7 +4745,8 @@ a.btn--ghost:hover, a.btn--ghost:focus-visible,
               0 0 0 1px rgba(35, 122, 74, .18);
 }
 
-.trip-card__hero { overflow: hidden; }
+/* dup sweep 2026-08: `.trip-card__hero { overflow: hidden }` deleted — the v27
+   "Image fill behind everything" rule re-declares it identically. */
 .trip-card__art,
 .trip-card img {
   transition: transform 1.2s var(--ease-spring);
@@ -4905,7 +4758,8 @@ a.btn--ghost:hover, a.btn--ghost:focus-visible,
   will-change: transform;
 }
 
-.trip-card { position: relative; isolation: isolate; }
+/* dup sweep 2026-08: `.trip-card { position: relative; isolation: isolate }`
+   deleted — the v27 card-root block re-declares both, same values. */
 .trip-card::after {
   content: "";
   position: absolute;
@@ -4918,7 +4772,8 @@ a.btn--ghost:hover, a.btn--ghost:focus-visible,
   z-index: 2;
   pointer-events: none;
 }
-.trip-card:hover::after { transform: scaleX(1); }
+/* dup sweep 2026-08: `.trip-card:hover::after { transform: scaleX(1) }` deleted
+   — re-declared identically in the v27 card block. */
 
 /* ---- 6.5 — Section reveal ---- */
 section { scroll-margin-top: 90px; }
@@ -5631,9 +5486,8 @@ img.lb-target:hover {
 }
 
 /* ---- 7.10 — Destination cards: refined hover-zoom + gradient overlay ---- */
-.trip-card {
-  position: relative;
-}
+/* dup sweep 2026-08: third `.trip-card { position: relative }` copy deleted —
+   the v27 card-root block re-declares it. */
 .trip-card__hero::after {
   content: "";
   position: absolute;
@@ -6877,22 +6731,8 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   font-variant-numeric: tabular-nums;
   color: var(--txt-1);
 }
-.faq-a ul.faq-prices {
-  list-style: none;
-  padding: 0;
-  margin: var(--s3) 0 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--s2) var(--s5);
-}
-.faq-a ul.faq-prices li {
-  padding: 6px 0;
-  border-bottom: 1px dashed var(--border);
-  font-size: .875rem;
-}
-.faq-a ul.faq-prices li:last-child {
-  border-bottom: none;
-}
+/* dead-css sweep 2026-08: the three `.faq-a ul.faq-prices` rules are deleted —
+   no FAQ answer in any page or template emits a ul.faq-prices. */
 
 /* ── 9. Calculator + recap — visually bound panel ─────────── */
 .calc-grid {
@@ -7125,13 +6965,9 @@ section.section {
   position: relative;
 }
 
-/* Stronger phase boundary: alternating background blocks */
-section.section.phase-block {
-  background: var(--bg-2);
-}
-section.section.phase-block + section.section:not(.phase-block) {
-  background: var(--bg);
-}
+/* dead-css sweep 2026-08: the `.phase-block` alternating-background pair is
+   deleted — no page has ever shipped the class, so the second rule (which
+   requires a preceding .phase-block sibling) could never match either. */
 
 /* ── 15. Section heads — tighter, more disciplined ────────── */
 .section-head {
@@ -7251,10 +7087,10 @@ section.section.phase-block + section.section:not(.phase-block) {
   margin-top: 1px;
 }
 
-/* ── 18. Hero strip — demote (duplicates highlights) ──────── */
-.hero__strip {
-  display: none; /* moved into .highlights component below hero */
-}
+/* ── 18. Hero strip — removed ─────────────────────────────── */
+/* dead-css sweep 2026-08: the `.hero__strip { display:none }` demotion is gone
+   with the rest of the v13 trust-strip family (see the v21 phase J.2.4 note
+   near .hero__ctas). .highlights + .trust-strip carry this content now. */
 
 /* ── 19. Final CTA — demote (duplicates booking) ──────────── */
 .final-cta {
@@ -7471,17 +7307,9 @@ section.section.phase-block + section.section:not(.phase-block) {
   filter: grayscale(.4);
 }
 
-/* ── Hero fineprint (à-partir-de disclaimer) ──────────────── */
-.hero-fineprint {
-  font-size: .75rem;
-  color: var(--txt-3, #8a99a8);
-  text-align: center;
-  margin: 0 auto var(--s4, 16px);
-  max-width: 56ch;
-  line-height: 1.5;
-  font-style: italic;
-  letter-spacing: .01em;
-}
+/* dead-css sweep 2026-08: .hero-fineprint (à-partir-de disclaimer) base rule
+   deleted — no page has carried the element since the v14 hero rewrite. The
+   class survives only as a colour-list entry further down; harmless. */
 
 /* ── Date chips: keyboard focus + active visual ──────────── */
 .date-chip:focus-visible {
@@ -8941,33 +8769,10 @@ body { background: var(--bg); color: var(--txt-1); }
   }
 }
 
-/* Google-Maps "Itinéraire" chip at the foot of each branch card.
-   Sits below the phone block — keeps the action hierarchy clear:
-   call first, then route. */
-.branch-maps {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: var(--s3, 12px);
-  padding: 6px 12px;
-  font-size: .75rem;
-  font-weight: 600;
-  letter-spacing: .02em;
-  text-decoration: none;
-  border-radius: 999px;
-  background: var(--bg);
-  border: 1px solid var(--border-hi);
-  color: var(--txt-2);
-  transition: border-color var(--t-fast) ease, color var(--t-fast) ease, background var(--t-fast) ease;
-}
-.branch-maps:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--mint-dim);
-}
-.branch-maps svg {
-  flex-shrink: 0;
-}
+/* dead-css sweep 2026-08: .branch-maps (Google-Maps "Itinéraire" chip at the
+   foot of each branch card) deleted — its host .branch-card markup was replaced
+   by the .branches-bento layout in 921b4f4, so the chip has no element left.
+   The equivalent deep-link survives as .amap-popup__maps below. */
 
 /* Map popup — Itinéraire deep-link sits one row below the phone */
 .amap-popup__maps {
@@ -9196,6 +9001,104 @@ body { background: var(--bg); color: var(--txt-1); }
 /* WhatsApp FAB anchors right by default — flip to left for RTL */
 [dir="rtl"] .fab-whatsapp { left: var(--s5); right: auto; }
 
+/* ── RTL gaps found against the generated /ar/<trip>/ pages (2026-08) ──────
+   Arabic had never shipped as a real URL, so the physical↔[dir="rtl"] pairing
+   above was hand-maintained against pages nobody had ever rendered in Arabic.
+   Every rule below mirrors a physical-direction declaration that (a) actually
+   fires on a rendered /ar/ trip page and (b) had no RTL counterpart. Each was
+   checked against the full cascade first: rules whose physical declaration is
+   already dead (.seg-opt's border-right, killed by a later `border:none`;
+   .site-nav > .theme-toggle's margin-left:auto, killed by the v3 nav override
+   that spaces the bar with the logical `margin-inline:auto`) are deliberately
+   NOT mirrored — adding those overrides would have invented layout that LTR
+   does not have. Overrides rather than logical properties on the originals:
+   the LTR rules live in other sections of this file and are shared with the
+   FR/EN pages, whose bytes must not move. */
+
+/* Bulleted body lists (« Compris dans le prix », conditions, annulation): the
+   dot is absolutely positioned at left:0 against a matching padding-left, so
+   in Arabic every bullet detached from its text and sat at the line's end. */
+[dir="rtl"] .info-list li { padding-left: 0; padding-right: 18px; }
+[dir="rtl"] .info-list li::before { left: auto; right: 0; }
+[dir="rtl"] .info-list--tiered li { padding: 10px 32px 10px 14px; }
+[dir="rtl"] .info-list--tiered li::before { left: auto; right: 14px; }
+/* Callout note: accent bar + the rounded pair both on the inline-start edge. */
+[dir="rtl"] .info-card__note {
+  border-left: 0;
+  border-right: 3px solid var(--accent, var(--mint));
+  border-radius: 8px 0 0 8px;
+}
+/* Section eyebrows carry a 12px accent dash before the text — 9 per page. */
+[dir="rtl"] [data-region] .section-head__eyebrow { padding-left: 0; padding-right: 18px; }
+[dir="rtl"] [data-region] .section-head__eyebrow::before { left: auto; right: 0; }
+/* Hotel cards: the cut-corner triangle and the ★ inside it. */
+[dir="rtl"] .hotel-card::before { right: auto; left: -28px; }
+[dir="rtl"] .hotel-card::after  { right: auto; left: 10px; }
+/* Step marker pill: the numbered badge hugs the inline-start edge (4px) and
+   the label the inline-end edge (10px). */
+[dir="rtl"] .phase-marker { padding: 4px 4px 4px 10px; }
+[dir="rtl"] .phase-marker__label { padding-right: 0; padding-left: 4px; }
+/* Required-field asterisk trails its label; the booking form's upload
+   thumbnails carry their remove badge in the top inline-end corner. */
+[dir="rtl"] .bform-field .req { margin-left: 0; margin-right: 2px; }
+[dir="rtl"] .upload-thumb__remove { right: auto; left: 3px; }
+/* Skip link — off-screen until focused, then it must land on the start edge. */
+[dir="rtl"] .skip-link { left: auto; right: 8px; }
+/* Trip-switcher dropdown hangs off the trigger's inline-end edge; anchored
+   right in RTL it opened leftwards off the viewport. */
+[dir="rtl"] .trip-switcher__menu { right: auto; left: 0; transform-origin: top left; }
+@media (max-width: 768px) {
+  [dir="rtl"] .trip-switcher__menu { right: auto; left: 16px; }
+}
+/* The FAB's tooltip hangs off the button's inline-start side; with the FAB
+   itself flipped to the left (rule above) it pointed off-screen. */
+[dir="rtl"] .fab-whatsapp__tooltip {
+  right: auto;
+  left: calc(100% + 12px);
+  transform: translateY(-50%) translateX(-8px);
+}
+[dir="rtl"] .fab-whatsapp.tooltip-shown .fab-whatsapp__tooltip {
+  transform: translateY(-50%) translateX(0);
+}
+[dir="rtl"] .fab-whatsapp__tooltip::after {
+  right: auto;
+  left: -5px;
+  border-right: 0;
+  border-top: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* Photo lightbox (enhance.js builds it from the hotel images on every trip
+   page): swap the rails, and flip the chevrons so "previous" still points
+   back. The flip goes on the <svg>, not the button, which carries its own
+   translateY(-50%) centring transform. */
+[dir="rtl"] .lightbox__close { right: auto; left: 20px; }
+[dir="rtl"] .lightbox__nav--prev { left: auto; right: 20px; }
+[dir="rtl"] .lightbox__nav--next { right: auto; left: 20px; }
+[dir="rtl"] .lightbox__nav svg { transform: scaleX(-1); }
+@media (max-width: 640px) {
+  [dir="rtl"] .lightbox__nav--prev { left: auto; right: 10px; }
+  [dir="rtl"] .lightbox__nav--next { right: auto; left: 10px; }
+  [dir="rtl"] .lightbox__close { right: auto; left: 12px; }
+}
+/* Map "recentrer" control. */
+[dir="rtl"] .tmap-recenter,
+[dir="rtl"] .amap-recenter { left: auto; right: 14px; }
+
+/* Numeric runs the isolation list above missed on the real /ar/ pages.
+   `.aurora-hero__amount` (the big trip price) already carries its own
+   direction:ltr in the aurora-hero block, so it is not repeated here.
+   `.ltr` is the class the house style tells authors to wrap prices, phone
+   numbers and dates in; it had no rule at all, so every `class="ltr"` was a
+   silent no-op. Nothing on the public site uses it yet — defining it changes
+   no current pixel and makes the convention work for the next author. */
+:root[lang="ar"] .u-noscript-card a,
+:root[lang="ar"] .ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════════
    HORIZON AURORA HERO (v27) — full-bleed parallax destination hero
@@ -9308,10 +9211,10 @@ body { background: var(--bg); color: var(--txt-1); }
 .hero-intro__fineprint{ margin:var(--space-3) auto 0; font-size:var(--fs-caption); color:var(--txt-3); }
 
 /* desktop will-change only (≤640px released by the v26 GPU gate) */
-@media (min-width:641px){ .aurora-hero__sky{will-change:transform} .aurora-hero__img{will-change:transform} }
+@media (min-width: 641px){ .aurora-hero__sky{will-change:transform} .aurora-hero__img{will-change:transform} }
 
 /* mobile tuning — compact offer (more photo visible) + a touch more aurora */
-@media (max-width:768px){
+@media (max-width: 768px){
   .aurora-hero{ min-height:92svh; min-height:92dvh; }
   .aurora-hero__sky{ filter:blur(24px) saturate(1.3); opacity:.5; }
   /* Cap the offer/eyebrow glass blur on phones (they're always on-screen) —
@@ -9373,9 +9276,8 @@ body { background: var(--bg); color: var(--txt-1); }
   font-size: var(--fs-body-sm);
   margin: .25rem 0 0;
 }
-.footer-cta__btn {
-  min-height: var(--touch-min);
-}
+/* dup sweep 2026-08: `.footer-cta__btn` deleted here — the v28 footer block
+   re-declares the same min-height (and adds flex-shrink). */
 
 /* Rebalance the brand-heavier grid + bump the logo */
 .footer-grid {
@@ -9421,10 +9323,10 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .aurora-orb__card--1{left:auto;right:21%}
 :root[lang="ar"] .aurora-orb__card--2{left:auto;right:2%}
 :root[lang="ar"] .aurora-orb__card--3{right:auto;left:0}
-@media (prefers-reduced-motion:reduce){.aurora-orb__sky,.aurora-orb__card{animation:none!important}}
+@media (prefers-reduced-motion: reduce){.aurora-orb__sky,.aurora-orb__card{animation:none!important}}
 /* Mobile GPU gate for the homepage orb — match the aurora-hero: lighter blur,
    release the persistent compositor layers on phones. */
-@media (max-width:768px){.aurora-orb__sky{filter:blur(24px) saturate(1.25)}.aurora-orb__card{will-change:auto}}
+@media (max-width: 768px){.aurora-orb__sky{filter:blur(24px) saturate(1.25)}.aurora-orb__card{will-change:auto}}
 
 
 /* ── v27 responsive / delivery polish (from the responsive audit) ──────────── */
@@ -9433,12 +9335,12 @@ body { background: var(--bg); color: var(--txt-1); }
 .calc-form select,
 .bform-field input, .bform-field select, .bform-field textarea{ font-size:max(16px, 1rem); }
 /* Stepper +/- buttons: full 44px hit area on touch (the coarse rule set only min-height). */
-@media (pointer:coarse){ .stepper__btn{ min-width:var(--touch-min); min-height:var(--touch-min); } }
+@media (pointer: coarse){ .stepper__btn{ min-width:var(--touch-min); min-height:var(--touch-min); } }
 /* Aurora hero title: never clip/overflow on narrow phones; add a side gutter to the inner. */
 .aurora-hero__title{ overflow-wrap:break-word; hyphens:auto; }
 .aurora-hero__inner{ padding-inline:var(--container-x); }
 /* Aurora hero CTAs: stack full-width on the smallest phones instead of a cramped 2-up. */
-@media (max-width:380px){
+@media (max-width: 380px){
   .aurora-hero__actions{ flex-wrap:wrap; }
   .aurora-hero__actions .btn{ flex:1 1 100%; }
 }
@@ -9835,7 +9737,8 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Contact column keeps the phone-group layout; re-asserted here so the
    trip-link rule above cannot bleed into the numbers. */
 .footer-col--contact .phone-group { margin-bottom: var(--s4); }
-.footer-col--contact .phone-group:last-child { margin-bottom: 0; }
+/* dup sweep 2026-08: `.phone-group:last-child { margin-bottom: 0 }` deleted —
+   re-declared identically in the v28 contact-column block below. */
 .footer-col--contact .phone-group a {
   background: none;
   font-variant-numeric: tabular-nums;
@@ -10298,7 +10201,7 @@ html.js .inclus-col.reveal.visible .inclus-check {
   color:var(--txt-3);
 }
 /* Subtle breathing glow — opt-in only, so reduced-motion users see it static. */
-@media (prefers-reduced-motion:no-preference){
+@media (prefers-reduced-motion: no-preference){
   .globe-fallback__count{ animation:globePulse 4.5s ease-in-out infinite; }
 }
 @keyframes globePulse{
