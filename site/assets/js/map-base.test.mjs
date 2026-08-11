@@ -59,7 +59,10 @@ function load({ reducedMotion = false, withIO = true } = {}) {
   vm.runInContext(code, ctx);
 
   const live = () => intervals.filter((i) => !i.cleared);
-  const fire = (target, type) => (listeners[target][type] || []).slice().forEach((fn) => fn());
+  // `ev` is optional: the visibility/dispose handlers ignore their argument, but
+  // the pagehide/pageshow pair reads `event.persisted` to tell a bfcache freeze
+  // from a real unload.
+  const fire = (target, type, ev) => (listeners[target][type] || []).slice().forEach((fn) => fn(ev));
   return { MapBase: win.MapBase, win, doc, intervals, live, fire, observers, listeners };
 }
 
@@ -152,6 +155,88 @@ test("pagehide disposes: timer cleared, observer disconnected, listener removed"
   assert.equal(env.live().length, 0);
   assert.equal(env.observers[0].disconnected, true);
   assert.equal((env.listeners.document.visibilitychange || []).length, 0);
+});
+
+/* ── the Back button (bfcache) ──────────────────────────────────────────
+
+   The gate above made pagehide a HARD stop: it cleared the interval,
+   disconnected the observer and removed the visibilitychange listener, while
+   window[timerKey + 'Ctl'] stayed truthy so attachDashAnimation() could never
+   re-attach — and nothing in the repo listened for pageshow. Navigate away,
+   press Back, and the route "ants" were dead for the rest of that page's life
+   (before the gate they merely froze and resumed). These tests lock the
+   round-trip: freeze on the way out, run again on the way back. */
+
+test("a bfcache restore (Back) brings the dash cycle back to life", () => {
+  const env = load();
+  const map = fakeMap();
+  env.MapBase.attachDashAnimation(map, "l", "__b1");
+  assert.equal(env.live().length, 1);
+
+  // Leaving the page: persisted === true means it is frozen, not destroyed.
+  env.fire("window", "pagehide", { persisted: true });
+  assert.equal(env.live().length, 0, "a frozen page must not hold a live timer");
+
+  // …and Back restores it.
+  env.fire("window", "pageshow", { persisted: true });
+  assert.equal(env.live().length, 1, "the ants must march again after Back");
+  env.live()[0].fn();
+  assert.equal(map.painted.length, 1, "and the restored timer actually paints");
+});
+
+test("after a bfcache restore the pause gates still work", () => {
+  const env = load();
+  env.MapBase.attachDashAnimation(fakeMap(), "l", "__b2");
+  env.fire("window", "pagehide", { persisted: true });
+  env.fire("window", "pageshow", { persisted: true });
+  assert.equal(env.live().length, 1);
+
+  env.doc.hidden = true;
+  env.fire("document", "visibilitychange");
+  assert.equal(env.live().length, 0, "the tab-hidden gate must survive the round-trip");
+  env.doc.hidden = false;
+  env.fire("document", "visibilitychange");
+  assert.equal(env.live().length, 1);
+
+  env.observers[env.observers.length - 1].cb([{ isIntersecting: false }]);
+  assert.equal(env.live().length, 0, "the off-screen gate must survive it too");
+});
+
+test("a bfcache freeze while paused stays paused on restore", () => {
+  const env = load();
+  env.MapBase.attachDashAnimation(fakeMap(), "l", "__b3");
+  env.doc.hidden = true;                       // tab hidden…
+  env.fire("document", "visibilitychange");
+  env.fire("window", "pagehide", { persisted: true });
+  env.fire("window", "pageshow", { persisted: true });
+  // Restored into a still-hidden tab: pageshow must re-evaluate the gates, not
+  // blindly restart.
+  assert.equal(env.live().length, 0, "a hidden tab must stay hidden after a restore");
+});
+
+test("pageshow on a normal (non-persisted) load starts no extra timer", () => {
+  const env = load();
+  env.MapBase.attachDashAnimation(fakeMap(), "l", "__b4");
+  env.fire("window", "pageshow", { persisted: false });
+  env.fire("window", "pageshow", undefined); // some browsers hand us nothing
+  assert.equal(env.intervals.length, 1, "the initial timer, and only it");
+  assert.equal(env.live().length, 1);
+});
+
+test("a browser that reports a non-persisted hide and restores anyway recovers", () => {
+  // pagehide.persisted has been unreliable historically; a restore is proof the
+  // page survived, so pageshow must be able to rebuild what dispose() tore down.
+  const env = load();
+  env.MapBase.attachDashAnimation(fakeMap(), "l", "__b5");
+  env.fire("window", "pagehide", { persisted: false });
+  assert.equal(env.live().length, 0);
+  assert.equal(env.observers[0].disconnected, true);
+
+  env.fire("window", "pageshow", { persisted: true });
+  assert.equal(env.live().length, 1, "the animation is rebuilt, not abandoned");
+  assert.equal(env.observers.length, 2, "with a fresh in-view observer");
+  assert.equal((env.listeners.document.visibilitychange || []).length, 1,
+    "and exactly one visibilitychange listener, never two");
 });
 
 test("re-attaching the same key never starts a second timer — even while paused", () => {

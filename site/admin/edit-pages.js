@@ -254,9 +254,24 @@ async function save() {
     // anyone else published in between.
     // The publish itself already succeeded; a failed re-sync must not throw
     // away the confirmation the owner is reading.
+    //
+    // Stamped with the SAME token as loadTrip(): this is the second /api/get-trip
+    // that writes `current`, and #ep-back is never disabled, so the owner can go
+    // back and open another trip while it is in flight. Unguarded, the stale
+    // answer pasted the PREVIOUS trip's sha + content onto a `current` whose slug
+    // is now the new one, and repainted the raw-JSON panel with it — the next
+    // Publier then POSTs a mismatched {slug, content} that save-trip.mjs rejects
+    // 400 ("content.slug must equal slug"), losing the edit and naming a field
+    // the owner never touched. Bump, don't just read: after a publish this
+    // response is the freshest view of `current`, so any older load in flight
+    // must lose to it.
+    const seq = ++loadSeq;
     let g = null;
     try { g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`); }
     catch { /* keep the "Publié ✓" — next save re-reads the SHA anyway */ }
+    // Dropping it is safe precisely because a newer load now owns `current` (and
+    // this editor's #ep-json is gone, so writing to it would throw anyway).
+    if (seq !== loadSeq) return;
     if (g && g.ok) {
       current.sha = g.data.sha;
       current.content = g.data.content;
