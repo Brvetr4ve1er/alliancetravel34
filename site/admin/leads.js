@@ -8,6 +8,7 @@ import { t, fmt, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { emptyState } from "./illus.js";
 import { areaHead, help } from "./ui.js";
+import { csvCell } from "./csv.js";
 
 const COLS = ["created_at", "status", "name", "phone", "city", "trip", "hotel", "date", "room", "adults", "kids", "total_da", "channel", "page", "notes"];
 const STATUSES = ["nouveau", "contacté", "conclu"];
@@ -618,8 +619,12 @@ function applyPanelVisibility() {
 mqDesktop.addEventListener("change", () => { if (loaded && ROWS.length) applyPanelVisibility(); });
 
 function exportCsv(rows) {
-  const escC = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-  const csv = [COLS.join(","), ...rows.map((r) => COLS.map((c) => escC(r[c])).join(","))].join("\r\n");
+  // csvCell() carries the OWASP formula guard as well as RFC-4180 quoting: a lead
+  // name or note beginning with = + - @ TAB or CR is code the OWNER executes when
+  // she opens demandes.csv, and every one of those values arrives through the
+  // PUBLIC insert path. Same rule, same module contract as the server backup in
+  // api/export-leads.mjs — site/admin/csv.test.mjs asserts the two never drift.
+  const csv = [COLS.join(","), ...rows.map((r) => COLS.map((c) => csvCell(r[c])).join(","))].join("\r\n");
   const url = URL.createObjectURL(new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" }));
   const a = document.createElement("a"); a.href = url; a.download = "demandes.csv"; a.click();
   URL.revokeObjectURL(url);

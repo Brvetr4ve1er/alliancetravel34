@@ -1,15 +1,57 @@
 // site/admin/app.js — Supabase magic-link auth, admin gate via /api/me, tab shell.
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 import { t, fmt, getLang, setLang, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { areaHead } from "./ui.js";
 
 const CFG = window.AT_LEADS || {};
-const supabase = createClient(CFG.url, CFG.anonKey);
 const $ = (id) => document.getElementById(id);
 const show = (el, on) => { el.hidden = !on; };
 
-const AT_ADMIN = { supabase, session: null, token: null, showArea, status: null };
+// ── The Supabase library: pinned AND integrity-verified ───────────────
+// This module holds the session that authorises repo writes through
+// /api/save-trip, so the library it is built on must be exactly the bytes we
+// audited. It used to arrive as
+//   import { createClient } from ".../@supabase/supabase-js/+esm";
+// which was unpinned *and* unverifiable: a static ESM import carries no
+// integrity attribute, so every new jsDelivr release — or any tampering with
+// one — became CMS code on the owner's next page load.
+//
+// So it is loaded the way the other three CDN dependencies in this repo are
+// (site/assets/js/anim.js, globe.js, map-base.js): a <script> tag with a real
+// SRI hash + crossorigin, which the browser refuses to execute if a single
+// byte differs. The UMD build is the vendor's own browser bundle and sets the
+// global `window.supabase`.
+//
+// Hash computed from the byte-identical npm file:
+//   @supabase/supabase-js@2.112.2/dist/umd/supabase.js  (211412 bytes)
+// Re-verify (substitute the new version after any bump):
+//   curl -sL https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.2/dist/umd/supabase.js \
+//     | openssl dgst -sha384 -binary | openssl base64 -A
+const SB_CDN = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.2/dist/umd/supabase.js";
+const SB_SRI = "sha384-OUpie84zd1LdwNlK9uJJQRwab0BLqo3eKYKFh7hSVL58FSk7wPp2l0kfUMIIoaQd";
+
+function loadSupabaseLib() {
+  if (window.supabase && window.supabase.createClient) return Promise.resolve(window.supabase);
+  return new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = SB_CDN;
+    s.integrity = SB_SRI;         // a mismatch fires onerror; nothing executes
+    s.crossOrigin = "anonymous";  // required for SRI on a cross-origin script
+    s.async = true;
+    s.onload = () => (window.supabase && window.supabase.createClient
+      ? resolve(window.supabase)
+      : reject(new Error("supabase global missing")));
+    s.onerror = () => reject(new Error("supabase-js failed to load"));
+    document.head.appendChild(s);
+  });
+}
+
+let supabase = null; // assigned in boot(), once the library has loaded and verified
+
+// AT_ADMIN is published immediately (identity, not value): the other three admin
+// modules capture window.AT_ADMIN and read .supabase / .callApi later, from event
+// handlers that cannot run before boot() has filled them in.
+const AT_ADMIN = { supabase: null, session: null, token: null, showArea, status: null };
 window.AT_ADMIN = AT_ADMIN;
 
 async function callApi(path, opts = {}) {
@@ -118,14 +160,48 @@ async function enterApp(session) {
   show($("change-pw"), true); show($("logout"), true);
   showArea("accueil");
   document.dispatchEvent(new CustomEvent("admin:ready"));
-  callApi("/api/status").then((r) => {
-    if (r.ok) AT_ADMIN.status = r.data;
-    document.dispatchEvent(new CustomEvent("admin:status"));
-  });
+  // `admin:status` MUST be dispatched on every outcome. Without the .catch, a
+  // network error rejected this promise unhandled and the event never fired —
+  // so the no-GitHub banner logic in edit-pages.js and accueil.js's re-render
+  // never ran, and the owner could be shown an enabled Publier that cannot
+  // publish. Both listeners already treat a null status as "unknown".
+  callApi("/api/status")
+    .then((r) => { if (r.ok) AT_ADMIN.status = r.data; })
+    .catch(() => { /* status stays null — "unknown", not "broken" */ })
+    .finally(() => { document.dispatchEvent(new CustomEvent("admin:status")); });
+}
+
+// The admin used to have no failure path at all: if the library import failed
+// (offline, blocked CDN, SRI mismatch) app.js never evaluated, window.AT_ADMIN
+// was never created, and the owner sat on a permanent, untranslated
+// "Chargement…" with no error and nothing to click. Now the boot message
+// becomes the error, with a retry.
+function bootFailed() {
+  const box = $("boot-msg");
+  if (!box) return;
+  // Drop the binding first, or the next setLang()/applyI18n() would quietly
+  // restore "Chargement…" over the top of the failure.
+  box.removeAttribute("data-i18n");
+  box.className = "msg err";
+  box.textContent = t("boot.libfail");
+  const b = document.createElement("button");
+  b.className = "btn btn--ghost btn--sm";
+  b.textContent = t("common.retry");
+  b.addEventListener("click", () => location.reload());
+  box.after(b);
 }
 
 async function boot() {
   setLang(getLang()); // stamps lang+dir and fills every [data-i18n]
+
+  try {
+    const lib = await loadSupabaseLib();
+    supabase = lib.createClient(CFG.url, CFG.anonKey);
+    AT_ADMIN.supabase = supabase;
+  } catch {
+    bootFailed();
+    return; // nothing below can work without an auth client
+  }
 
   // Everything below the old `return enterApp(...)` never ran for a visitor who
   // already had a stored session — which is every return visit. That left the
@@ -273,10 +349,31 @@ document.addEventListener("admin:area", async (e) => {
     d.append(l, v); cfg.appendChild(d);
   };
   line("settings.supabase", true, null, "database"); // being here required a working /api/me
-  const st = AT_ADMIN.status || (await window.AT_ADMIN.callApi("/api/status")).data || {};
-  AT_ADMIN.status = st;
-  line("settings.github", !!st.github, null, "send");
-  if (st.branch) line("settings.branch", true, st.branch, "branch");
+  // This await used to be naked. A network throw aborted the render here —
+  // after reglagesInit was already set true at the top — so Réglages stayed
+  // half-drawn for the rest of the session and re-entering the tab did nothing.
+  let st = AT_ADMIN.status;
+  if (!st) {
+    try {
+      st = (await window.AT_ADMIN.callApi("/api/status")).data || {};
+    } catch {
+      st = null; // could not reach the API at all — handled below
+    }
+  }
+  if (st) {
+    AT_ADMIN.status = st;
+    line("settings.github", !!st.github, null, "send");
+    if (st.branch) line("settings.branch", true, st.branch, "branch");
+  } else {
+    // Say "we could not check", never "non configuré": that is a verdict we
+    // have not earned. Releasing reglagesInit is what makes the retry work.
+    reglagesInit = false;
+    const p = document.createElement("p"); p.className = "msg err"; p.textContent = t("common.error");
+    const b = document.createElement("button"); b.className = "btn btn--ghost btn--sm";
+    b.textContent = t("common.retry");
+    b.addEventListener("click", () => showArea("reglages"));
+    cfg.append(p, b);
+  }
 });
 
 // ── First-run orientation ────────────────────────────────────────────
