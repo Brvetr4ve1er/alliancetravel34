@@ -5,6 +5,7 @@ import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile, putFile, listTree } from "./_lib/github.mjs";
 import { validateTrip } from "../tools/validate-trip.mjs";
 import { renderTrip } from "../tools/templates/trip2.mjs";
+import { driftOf } from "../tools/value-graph.mjs";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -50,6 +51,23 @@ export default async function handler(req, res) {
   // 2. Dry-run render — renderTrip throws on any missing field/array/codec.
   try { renderTrip(content); }
   catch (e) { return res.status(422).json({ errors: [`rendu impossible: ${e.message}`] }); }
+
+  // 2b. Price coherence — the same gate tools/build.mjs enforces (checkValueGraph
+  // → deriveValues), run here on the proposed content. Without it, a guided price
+  // edit passes save and commits a green "Publié ✓", then the Vercel build's
+  // checkValueGraph fails on the mismatched copies — the rebuild breaks and the
+  // site silently never updates. Rejecting at save keeps the pipeline shippable.
+  const drift = driftOf(content);
+  if (drift.length) {
+    return res.status(422).json({
+      errors: drift.map((d) =>
+        d.expected == null
+          ? `prix: ${d.reason}`
+          : `prix incohérent: "${d.path}" affiche ${JSON.stringify(d.current)} ` +
+            `mais devrait être ${JSON.stringify(d.expected)} — ${d.reason}`
+      ),
+    });
+  }
 
   // 3. Commit (retry once on a stale SHA).
   const path = `data/trips/${slug}.json`;
