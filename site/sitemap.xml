@@ -45,6 +45,23 @@
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/egypte/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/egypte/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/egypte/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-cairo-sharm.jpg</image:loc>
+      <image:title>Égypte — Le Caire, Sharm El Sheikh &amp; Hurghada</image:title>
+      <image:caption>5 programmes, vol inclus, Mer Rouge All Inclusive, à partir de 169.000 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/egypte/</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/egypte/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/egypte/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/egypte/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-cairo-sharm.jpg</image:loc>
       <image:title>Égypte — Le Caire, Sharm El Sheikh &amp; Hurghada</image:title>
@@ -58,6 +75,23 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/istanbul/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-istanbul.jpg</image:loc>
+      <image:title>Istanbul — Entre deux continents · 8 jours</image:title>
+      <image:caption>Aya Sofya, Grand Bazar, Bosphore, îles des Princes, à partir de 123.000 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/istanbul/</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/istanbul/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-istanbul.jpg</image:loc>
       <image:title>Istanbul — Entre deux continents · 8 jours</image:title>
@@ -73,6 +107,22 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/azerbaidjan/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://alliance-travel.dz/en/azerbaidjan/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/azerbaidjan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/azerbaidjan/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-azerbaidjan.jpg</image:loc>
+      <image:title>Azerbaïdjan — Bakou &amp; Gabala · 7 nuits</image:title>
+      <image:caption>Cité du Feu et montagnes du Caucase, visa électronique inclus, à partir de 249.900 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/azerbaidjan/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/azerbaidjan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alliance-travel.dz/en/azerbaidjan/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/azerbaidjan/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/azerbaidjan/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-azerbaidjan.jpg</image:loc>
@@ -87,6 +137,7 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/azerbaidjan/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://alliance-travel.dz/en/azerbaidjan/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/azerbaidjan/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/azerbaidjan/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-azerbaidjan.jpg</image:loc>
@@ -101,6 +152,23 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/kuala-lumpur/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-kuala-lumpur.jpg</image:loc>
+      <image:title>Kuala Lumpur &amp; Langkawi · 10 jours · hôtels 5★</image:title>
+      <image:caption>Petronas, Batu Caves, Genting puis les plages de Langkawi, à partir de 339.000 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/kuala-lumpur/</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/kuala-lumpur/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-kuala-lumpur.jpg</image:loc>
       <image:title>Kuala Lumpur &amp; Langkawi · 10 jours · hôtels 5★</image:title>
@@ -114,6 +182,23 @@
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/tunisie/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/tunisie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/tunisie/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Tunisie — Hammamet, Sousse &amp; Djerba · 6 nuits demi-pension</image:title>
+      <image:caption>Voyage en bus sans visa, 9 hôtels balnéaires au choix, à partir de 36.000 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/tunisie/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/tunisie/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/tunisie/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/tunisie/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
       <image:title>Tunisie — Hammamet, Sousse &amp; Djerba · 6 nuits demi-pension</image:title>
@@ -127,6 +212,23 @@
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/bali/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/bali/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/bali/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Bali — Kuta, Ubud &amp; Nusa Dua · 9 nuits 5★</image:title>
+      <image:caption>Rizières, temples et plages, combiné Kuala Lumpur en option, à partir de 419.000 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/bali/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/bali/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/bali/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/bali/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
       <image:title>Bali — Kuta, Ubud &amp; Nusa Dua · 9 nuits 5★</image:title>
@@ -140,6 +242,23 @@
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/vietnam/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/vietnam/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/vietnam/"/>
+    <image:image>
+      <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
+      <image:title>Vietnam — Ho Chi Minh, Phu Quoc, Hanoï &amp; baie d'Ha Long · 12 jours</image:title>
+      <image:caption>Circuit 4 étapes avec croisière en baie d'Ha Long, à partir de 439.000 DA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alliance-travel.dz/ar/vietnam/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/vietnam/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/vietnam/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/vietnam/"/>
     <image:image>
       <image:loc>https://alliance-travel.dz/assets/images/og/og-default.jpg</image:loc>
       <image:title>Vietnam — Ho Chi Minh, Phu Quoc, Hanoï &amp; baie d'Ha Long · 12 jours</image:title>

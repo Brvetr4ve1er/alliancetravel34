@@ -27,6 +27,15 @@
 // localizeVariant so a French-only build never loads it.
 const ORIGIN = "https://alliance-travel.dz";
 
+// Arabic webfont, byte-identical to AR_FONT_HREF in site/assets/js/i18n.js.
+// The data-arabic-font marker lets the client's ensureArabicFont() skip its own
+// injection, so an AR page loads Cairo exactly once — from the <head>, before
+// first paint. Injected from JS alone (as it used to be) every Arabic page
+// painted its first frame in a Latin fallback and reflowed, and never loaded
+// Cairo at all when JS was blocked.
+const AR_FONT_HREF = "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap";
+const AR_FONT_LINK = `<link rel="stylesheet" href="${AR_FONT_HREF}" data-arabic-font="1"/>`;
+
 // Path segment prefix for a language: French lives at the root, others nest.
 const prefixFor = (lang) => (lang === "fr" ? "" : `${lang}/`);
 const urlFor = (lang, slug) => `${ORIGIN}/${prefixFor(lang)}${slug}/`;
@@ -102,8 +111,26 @@ export function injectHreflang(html, { slug, langs }) {
 // localized variants get this — the French page keeps its relative paths.
 // Targets "../ " only when it opens an attribute value or a srcset entry, so a
 // stray "../" inside body copy can't be caught.
-function rootAbsolutePaths(html) {
-  return html.replace(/(["'(,]\s*)\.\.\//g, "$1/");
+// `sameLangDirs` is the set of trip output-dirs that publish a variant in THIS
+// language. Sibling-trip links are re-pointed at that language's URL so an
+// Arabic reader stays in Arabic; without this every internal link dropped them
+// back into French and left the whole /<lang>/ tree orphaned from internal
+// linking (Googlebot saw pages with zero inbound links).
+// Pages with no variant — /voyages/, /rendez-vous-visa/, the homepage — keep
+// their French URL: inventing /ar/voyages/ would link to a 404.
+function rootAbsolutePaths(html, lang, sameLangDirs) {
+  let out = html.replace(/(["'(,]\s*)\.\.\//g, "$1/");
+  if (lang === "fr" || !sameLangDirs?.size) return out;
+  for (const dir of sameLangDirs) {
+    // Only an href/src attribute value that IS the trip root, so asset paths
+    // (/assets/…) and anchors (/bali/#hotels) are matched deliberately, never
+    // substrings of a longer segment.
+    out = out.replace(
+      new RegExp(`((?:href|src)=")/${escapeRe(dir)}/(?=["#?])`, "g"),
+      `$1/${lang}/${dir}/`
+    );
+  }
+  return out;
 }
 
 /* --------------------------------------------------------- head rewrites */
@@ -129,6 +156,16 @@ function localizeHead(html, { lang, slug, langs, data, globalT }) {
   // <html lang="fr"> → <html lang="en"> (+ dir="rtl" for Arabic)
   html = replaceOnce(html, `<html lang="fr">`,
     `<html lang="${lang}"${lang === "ar" ? ' dir="rtl"' : ""}>`, "<html lang>");
+
+  // Arabic needs Cairo in the HEAD, not injected later by i18n.js. On a
+  // server-rendered /ar/ page the client-side language switch never fires, so
+  // ensureArabicFont() never runs: the page painted its first frame in a Latin
+  // fallback (and with JS blocked, never loaded Cairo at all). Weights match
+  // AR_FONT_HREF in site/assets/js/i18n.js — keep the two in step.
+  if (lang === "ar") {
+    html = replaceOnce(html, "</head>",
+      `  ${AR_FONT_LINK}\n</head>`, "</head> for AR font");
+  }
 
   // <title> and meta description — only when a translation exists.
   if (meta.title) {
@@ -184,12 +221,14 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /* ----------------------------------------------------------------- api */
 
-export async function localizeVariant(html, { lang, slug, langs, data, globalT }) {
+// sameLangDirs: output-dirs of every trip publishing a variant in `lang`, used
+// to keep sibling-trip links inside this language (see rootAbsolutePaths).
+export async function localizeVariant(html, { lang, slug, langs, data, globalT, sameLangDirs }) {
   const { localizeHtml } = await import("./localize.mjs");
   const resolve = makeResolve(lang, data, globalT);
   let out = localizeHtml(html, resolve); // body + attribute data-i18n swap
   out = localizeHead(out, { lang, slug, langs, data, globalT });
   out = injectTripLangs(out, langs);
-  out = rootAbsolutePaths(out);
+  out = rootAbsolutePaths(out, lang, sameLangDirs);
   return out;
 }

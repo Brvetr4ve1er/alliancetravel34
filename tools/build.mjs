@@ -24,6 +24,7 @@ import { checkI18n, writeManifest } from "./check-i18n.mjs";
 import { checkI18nBindings } from "./check-i18n-bindings.mjs";
 import { localizeVariant, injectHreflang } from "./templates/langpage.mjs";
 import { renderBlogBlock, injectBlogBlock } from "./sitemap-blog.mjs";
+import { syncSitemapLangs, checkSitemapLangs } from "./sitemap-langs.mjs";
 import { loadGlobalI18n } from "./templates/global-i18n.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -214,6 +215,19 @@ let i18nManifests = null;
 const variantRenders = []; // { slug, lang, outFile, html }
 if (!errors.length) {
   let globalT = null; // loaded once, only when some trip actually needs it
+
+  // lang → set of output-dirs publishing that language. Lets the localizer
+  // re-point sibling-trip links at the same-language URL, but only where that
+  // variant really exists, so we never link to a page we did not render.
+  const dirsByLang = new Map();
+  for (const [s, e] of Object.entries(manifest.trips ?? {})) {
+    if (e?.enabled !== true) continue;
+    for (const l of (Array.isArray(e.langs) && e.langs.length ? e.langs : ["fr"])) {
+      if (l === "fr") continue;
+      if (!dirsByLang.has(l)) dirsByLang.set(l, new Set());
+      dirsByLang.get(l).add(e.outputDir || s);
+    }
+  }
   for (const [slug, data] of parsed) {
     const entry = manifest.trips?.[slug];
     if (entry?.enabled !== true) continue;
@@ -229,7 +243,10 @@ if (!errors.length) {
           slug,
           lang,
           outFile: join(SITE_DIR, lang, baseDir, "index.html"),
-          html: toOutput(await localizeVariant(frHtml, { lang, slug: baseDir, langs, data, globalT })),
+          html: toOutput(await localizeVariant(frHtml, {
+            lang, slug: baseDir, langs, data, globalT,
+            sameLangDirs: dirsByLang.get(lang),
+          })),
         });
       } catch (e) {
         err(`data/trips/${slug}.json`, `variante ${lang} impossible: ${e.message}`);
@@ -327,7 +344,34 @@ if (posts.length) {
 {
   const smPath = join(SITE_DIR, "sitemap.xml");
   const sm = readFileSync(smPath, "utf8");
-  const { xml, mode, error: smError } = injectBlogBlock(sm, renderBlogBlock(posts, siteCfg.baseUrl));
+
+  // Language data first: alternate clusters and one <url> per published
+  // variant, both derived from the manifest so they cannot drift from the
+  // rendered pages. Curated image copy, lastmod and priority are preserved —
+  // variant blocks are cloned from their French sibling.
+  const lang = syncSitemapLangs(sm, manifest);
+  for (const p of lang.problems) warn("site/sitemap.xml", p);
+  if (lang.added.length || lang.updated) {
+    console.log(`${CHECK_ONLY ? "🔍" : "✅"} sitemap.xml → langues: ` +
+                `${lang.added.length} URL(s) ajoutée(s), ${lang.updated} cluster(s) synchronisé(s)` +
+                `${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`);
+  }
+
+  // --check must not write, so a committed sitemap that disagrees with the
+  // manifest has to FAIL rather than pass quietly: a real build would silently
+  // repair it on Vercel while the repo kept shipping the stale file, which is
+  // exactly how the hreflang mismatch went unnoticed.
+  if (CHECK_ONLY) {
+    const drift = checkSitemapLangs(sm, manifest);
+    if (drift.length) {
+      for (const d of drift) console.error(`❌ [site/sitemap.xml] ${d}`);
+      console.error(`\nBuild bloqué: sitemap.xml désynchronisé du manifest. ` +
+                    `Lancer \`node tools/build.mjs\` et committer le sitemap.`);
+      process.exit(1);
+    }
+  }
+
+  const { xml, mode, error: smError } = injectBlogBlock(lang.xml, renderBlogBlock(posts, siteCfg.baseUrl));
   if (mode === "error") {
     // Past the gate, so the pages are already written — but the deploy must
     // still fail: shipping a sitemap we could not update is how the silent
