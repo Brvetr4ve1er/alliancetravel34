@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# STALE / UNUSED — one-shot script from the pre-generator era. Hardcoded `C:\Users\ROG STRIX\...` path, referenced by nothing, never run in CI or the build. Do not run; candidate for deletion.
 """Rewrite the footer 'Nos Voyages' link list across all pages to include the new destinations."""
 import re, glob, os, sys
 sys.stdout.reconfigure(encoding="utf-8")

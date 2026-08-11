@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# STALE / UNUSED — one-shot script from the pre-generator era. Rewrites site/assets/js/i18n.js in place; referenced by nothing, never run in CI or the build. Do not run; candidate for deletion.
 import re
 IP = 'site/assets/js/i18n.js'
 s = open(IP, encoding='utf-8').read()

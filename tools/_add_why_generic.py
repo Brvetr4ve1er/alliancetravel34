@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# STALE / UNUSED — one-shot script from the pre-generator era. Hardcoded `C:\Users\ROG STRIX\...` path, referenced by nothing, never run in CI or the build. Do not run; candidate for deletion.
 """Add a generic localized calcWhyGeneric line into each page's window.AL_PAGE_I18N (en + ar)."""
 import re, sys
 sys.stdout.reconfigure(encoding="utf-8")

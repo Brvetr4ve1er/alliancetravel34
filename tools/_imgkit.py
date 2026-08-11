@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# STALE / UNUSED — one-shot script from the pre-generator era. Hardcoded `C:\Users\ROG STRIX\...` path, referenced by nothing, never run in CI or the build. Do not run; candidate for deletion.
 """Download Pexels photos by id and build a labeled contact-sheet montage.
 Usage: python tools/_imgkit.py <category> <id1> <id2> ...
 Outputs _imgtmp/montage_<category>.jpg (4-col grid, each cell labeled with its id)."""

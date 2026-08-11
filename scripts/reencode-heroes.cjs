@@ -1,3 +1,4 @@
+// STALE / UNUSED — requires `sharp`, which is not installed and cannot be: this repo has zero dependencies and no package.json. Referenced by nothing. Do not run; candidate for deletion.
 /**
  * One-shot script — re-encode the 3 heavy desktop hero layers flagged by
  * the Jun 5 audit (F5). Target: ~150-250 KB AVIF, ~300-400 KB WebP, to

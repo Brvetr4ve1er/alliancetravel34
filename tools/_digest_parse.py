@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# STALE / UNUSED — one-shot script from the pre-generator era. Hardcoded `C:\Users\ROG STRIX\...` path, referenced by nothing, never run in CI or the build. Do not run; candidate for deletion.
 """Digest the parse-source-of-truth workflow output into a compact per-destination view."""
 import json, html, os, sys
 sys.stdout.reconfigure(encoding="utf-8")
