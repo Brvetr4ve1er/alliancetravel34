@@ -1,12 +1,12 @@
 {
   "$comment": "Publishing gate for tools/build.mjs. A trip's HTML is generated into site/<outputDir>/index.html ONLY when enabled=true. Each trip below was migrated via tools/extract-trip.mjs with a verified round-trip (docs/ADMIN-DASHBOARD-PLAN.md Phase 1). outputDir defaults to the slug when null. `langs` lists which language variants to render: the French page always writes to site/<outputDir>/, additional languages write to site/<lang>/<outputDir>/ with reciprocal hreflang. A trip with only [\"fr\"] renders byte-for-byte as before (never passed through the localizer). Only enable a non-fr language once that trip's i18n block is complete — see docs/reference/I18N-SEO.md.",
   "trips": {
-    "istanbul": { "enabled": true, "outputDir": null, "langs": ["fr"] },
-    "azerbaidjan": { "enabled": true, "outputDir": null, "langs": ["fr", "en"] },
-    "bali": { "enabled": true, "outputDir": null, "langs": ["fr"] },
-    "kuala-lumpur": { "enabled": true, "outputDir": null, "langs": ["fr"] },
-    "tunisie": { "enabled": true, "outputDir": null, "langs": ["fr"] },
-    "vietnam": { "enabled": true, "outputDir": null, "langs": ["fr"] },
-    "egypte": { "enabled": true, "outputDir": null, "langs": ["fr"] }
+    "istanbul": { "enabled": true, "outputDir": null, "langs": ["fr", "ar"] },
+    "azerbaidjan": { "enabled": true, "outputDir": null, "langs": ["fr", "en", "ar"] },
+    "bali": { "enabled": true, "outputDir": null, "langs": ["fr", "ar"] },
+    "kuala-lumpur": { "enabled": true, "outputDir": null, "langs": ["fr", "ar"] },
+    "tunisie": { "enabled": true, "outputDir": null, "langs": ["fr", "ar"] },
+    "vietnam": { "enabled": true, "outputDir": null, "langs": ["fr", "ar"] },
+    "egypte": { "enabled": true, "outputDir": null, "langs": ["fr", "ar"] }
   }
 }

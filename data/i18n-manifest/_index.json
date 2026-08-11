@@ -6,49 +6,84 @@
         "en": 99,
         "ar": 99
       },
-      "bindings": 185
+      "coveragePage": {
+        "en": 99,
+        "ar": 99
+      },
+      "bindings": 185,
+      "shared": 26
     },
     "bali": {
       "coverage": {
         "en": 99,
         "ar": 99
       },
-      "bindings": 183
+      "coveragePage": {
+        "en": 99,
+        "ar": 99
+      },
+      "bindings": 183,
+      "shared": 26
     },
     "egypte": {
       "coverage": {
         "en": 100,
         "ar": 100
       },
-      "bindings": 197
+      "coveragePage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 197,
+      "shared": 26
     },
     "istanbul": {
       "coverage": {
         "en": 100,
         "ar": 100
       },
-      "bindings": 7
+      "coveragePage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 7,
+      "shared": 26
     },
     "kuala-lumpur": {
       "coverage": {
         "en": 100,
         "ar": 100
       },
-      "bindings": 192
+      "coveragePage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 192,
+      "shared": 26
     },
     "tunisie": {
       "coverage": {
         "en": 100,
         "ar": 100
       },
-      "bindings": 186
+      "coveragePage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 186,
+      "shared": 26
     },
     "vietnam": {
       "coverage": {
         "en": 100,
         "ar": 100
       },
-      "bindings": 207
+      "coveragePage": {
+        "en": 100,
+        "ar": 100
+      },
+      "bindings": 207,
+      "shared": 26
     }
   }
 }
