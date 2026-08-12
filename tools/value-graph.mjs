@@ -172,5 +172,35 @@ export function syncDerivedPrices(trip) {
     }
   }
 
+  const rows = (out.tripData && out.tripData.hotels) || [];
+  const cards = out.hotels || [];
+
+  // priceMeta: rewrite only the "Single <currency>" number, per hotel.
+  cards.forEach((card, i) => {
+    const single = rows[i] && rows[i].prices && rows[i].prices.single;
+    if (!card || typeof card.priceMeta !== "string" || !Number.isFinite(single)) return;
+    const next = card.priceMeta.replace(/(\bSingle\s+)([\d.\s]+DA)/, (_, lead) => lead + fmtDA(single));
+    if (next !== card.priceMeta) {
+      changes.push({ path: `hotels.${i}.priceMeta`, from: card.priceMeta, to: next });
+      card.priceMeta = next;
+    }
+  });
+
+  // calcUi.optionsHtml: rewrite each "dès <currency>" positionally — only when the
+  // "dès" tokens line up 1:1 with priced hotels (else the mapping is unproven).
+  const opts = out.calcUi && out.calcUi.optionsHtml;
+  const doubles = rows.map((r) => r && r.prices && r.prices.double);
+  if (typeof opts === "string") {
+    const tokens = opts.match(/dès\s+[\d.\s]+DA/g) || [];
+    if (tokens.length > 0 && tokens.length === doubles.length && doubles.every(Number.isFinite)) {
+      let k = 0;
+      const next = opts.replace(/(dès\s+)([\d.\s]+DA)/g, (_, lead) => lead + fmtDA(doubles[k++]));
+      if (next !== opts) {
+        changes.push({ path: "calcUi.optionsHtml", from: opts, to: next });
+        out.calcUi.optionsHtml = next;
+      }
+    }
+  }
+
   return { trip: out, changes };
 }

@@ -127,3 +127,34 @@ test("syncDerivedPrices leaves cards untouched when they are not currency (bali/
   assert.equal(trip.hotels[0].priceFrom, "3 nuits · Kuta");
   assert.equal(trip.hotels[1].priceFrom, "4 nuits · Ubud");
 });
+
+test("syncDerivedPrices rewrites only the Single token in priceMeta", () => {
+  const t = derivableTrip();
+  t.hotels[0].priceMeta = "Double · pers · Single 999.000 DA";
+  t.hotels[1].priceMeta = "Double · pers · Single 999.000 DA";
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.hotels[0].priceMeta, "Double · pers · Single 130.000 DA");
+  assert.equal(trip.hotels[1].priceMeta, "Double · pers · Single 150.000 DA");
+});
+
+test("syncDerivedPrices leaves priceMeta without a Single token untouched", () => {
+  const t = derivableTrip();
+  t.hotels[0].priceMeta = "Double · pers"; // no Single token
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.hotels[0].priceMeta, "Double · pers");
+});
+
+test("syncDerivedPrices rewrites each dès token in optionsHtml positionally", () => {
+  const t = derivableTrip();
+  t.calcUi = { optionsHtml: '<option>A — dès 999.000 DA</option><option>B — dès 999.000 DA</option>' };
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.calcUi.optionsHtml,
+    '<option>A — dès 100.000 DA</option><option>B — dès 120.000 DA</option>');
+});
+
+test("syncDerivedPrices leaves optionsHtml untouched when token count != hotel count", () => {
+  const t = derivableTrip();
+  t.calcUi = { optionsHtml: '<option>dès 999.000 DA</option><option>dès 999.000 DA</option><option>dès 999.000 DA</option>' };
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.calcUi.optionsHtml, t.calcUi.optionsHtml); // 3 tokens vs 2 hotels → skip
+});
