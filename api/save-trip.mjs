@@ -5,7 +5,7 @@ import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile, putFile, listTree } from "./_lib/github.mjs";
 import { validateTrip } from "../tools/validate-trip.mjs";
 import { renderTrip } from "../tools/templates/trip2.mjs";
-import { driftOf } from "../tools/value-graph.mjs";
+import { driftOf, syncDerivedPrices } from "../tools/value-graph.mjs";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -48,16 +48,15 @@ export default async function handler(req, res) {
   const { errors } = validateTrip(`data/trips/${slug}.json`, content, { enabled: true, imageExists });
   if (errors.length) return res.status(422).json({ errors: errors.map((e) => e.msg) });
 
-  // 2. Dry-run render — renderTrip throws on any missing field/array/codec.
-  try { renderTrip(content); }
+  // 2. Single-source: recompute every derived display copy from tripData.hotels prices.
+  const synced = syncDerivedPrices(content).trip;
+
+  // 2b. Dry-run render the SYNCED content — renderTrip throws on any missing field.
+  try { renderTrip(synced); }
   catch (e) { return res.status(422).json({ errors: [`rendu impossible: ${e.message}`] }); }
 
-  // 2b. Price coherence — the same gate tools/build.mjs enforces (checkValueGraph
-  // → deriveValues), run here on the proposed content. Without it, a guided price
-  // edit passes save and commits a green "Publié ✓", then the Vercel build's
-  // checkValueGraph fails on the mismatched copies — the rebuild breaks and the
-  // site silently never updates. Rejecting at save keeps the pipeline shippable.
-  const drift = driftOf(content);
+  // 2c. Price coherence backstop on the synced content (unresolvable cases still 422).
+  const drift = driftOf(synced);
   if (drift.length) {
     return res.status(422).json({
       errors: drift.map((d) =>
@@ -69,9 +68,9 @@ export default async function handler(req, res) {
     });
   }
 
-  // 3. Commit (retry once on a stale SHA).
+  // 3. Commit the SYNCED content (retry once on a stale SHA).
   const path = `data/trips/${slug}.json`;
-  const json = JSON.stringify(content, null, 2) + "\n";
+  const json = JSON.stringify(synced, null, 2) + "\n";
   const message = `content(${slug}): edit via dashboard by ${auth.email}`;
   try {
     if (!sha) sha = (await getFile({ path })).sha;

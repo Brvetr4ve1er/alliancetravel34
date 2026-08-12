@@ -10,6 +10,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import handler from "./save-trip.mjs";
+import { driftOf } from "../tools/value-graph.mjs";
 
 process.env.GITHUB_REPO = "owner/repo";
 process.env.GITHUB_TOKEN = "test-token";
@@ -53,20 +54,22 @@ function makeFetch() {
   return { fn, calls };
 }
 
-test("rejects a price-inconsistent edit with 422 and never commits", async (t) => {
+test("rejects an unresolvable price state with 422 and never commits", async (t) => {
   const { fn, calls } = makeFetch();
   t.mock.method(globalThis, "fetch", fn);
 
-  // Break ONE price copy: hero.priceFrom no longer equals the calculator's
-  // headline double. Valid currency format (passes schema + render) but wrong value.
+  // Since Task 3 (sync-on-save), a stale display copy (e.g. a wrong hero.priceFrom)
+  // is no longer rejectable — syncDerivedPrices snaps it back to the source before
+  // the drift gate runs. What the gate still catches is a price graph that cannot
+  // be resolved at all: an explicit headlineHotelId naming a row that doesn't exist.
   const content = structuredClone(REAL);
   content.slug = "istanbul";
-  content.hero.priceFrom = "999.999 DA";
+  content.tripData.headlineHotelId = "ghost";
 
   const res = fakeRes();
   await handler(fakeReq({ slug: "istanbul", content, sha: "sha" }), res);
 
-  assert.equal(res.statusCode, 422);
+  assert.equal(res.statusCode, 422, JSON.stringify(res.body));
   assert.ok(Array.isArray(res.body.errors));
   assert.ok(res.body.errors.some((m) => /prix/i.test(m)),
     `expected a price error, got ${JSON.stringify(res.body.errors)}`);
@@ -87,4 +90,29 @@ test("a coherent edit passes the price gate and commits once", async (t) => {
     `expected 200, got ${res.statusCode}: ${JSON.stringify(res.body)}`);
   assert.equal(res.body.ok, true);
   assert.equal(calls.put, 1);
+});
+
+test("syncs derived price copies from an edited calculator price before commit", async (t) => {
+  let putBody;
+  const { fn, calls } = makeFetch();
+  t.mock.method(globalThis, "fetch", async (url, opts) => {
+    if (opts?.method === "PUT") putBody = JSON.parse(opts.body);
+    return fn(url, opts);
+  });
+
+  // Bump the first hotel's source double; leave the display copies stale.
+  const content = structuredClone(REAL);
+  content.slug = "istanbul";
+  content.tripData.hotels[0].prices.double = 999000;
+
+  const res = fakeRes();
+  await handler(fakeReq({ slug: "istanbul", content, sha: "sha" }), res);
+
+  assert.equal(res.statusCode, 200, JSON.stringify(res.body));
+  assert.equal(calls.put, 1);
+
+  const committed = JSON.parse(Buffer.from(putBody.content, "base64").toString("utf8"));
+  assert.equal(committed.tripData.hotels[0].prices.double, 999000);   // source preserved
+  assert.equal(committed.hotels[0].priceFrom, "999.000 DA");          // card synced
+  assert.equal(driftOf(committed).length, 0);                        // globally coherent
 });
