@@ -85,6 +85,13 @@ const FORM_HTML = `
             aria-required="true" aria-describedby="bf-city-err"/>
           <p class="bf-field-err" id="bf-city-err" hidden>Indiquez votre wilaya ou ville.</p>
         </div>
+        <!-- Office picker: which agency WhatsApp the dossier is sent to.
+             Populated at runtime from window.AT_CONTACTS; hidden if unavailable. -->
+        <div class="bform-field" id="bf-office-field" hidden>
+          <label for="bf-office">Agence à contacter</label>
+          <select id="bf-office" autocomplete="off"></select>
+          <p class="bform-hint" id="bf-office-hint">Votre demande WhatsApp sera envoyée à cette agence.</p>
+        </div>
       </div>
 
       <!-- Block 3 · Passport info per traveler -->
@@ -267,7 +274,32 @@ class BookingForm {
       sendBtn:      this.mount.querySelector('#bf-send-btn'),
       emailBtn:     this.mount.querySelector('#bf-email-btn'),
       copyBtn:      this.mount.querySelector('#bf-copy-btn'),
+      officeField:  this.mount.querySelector('#bf-office-field'),
+      officeSelect: this.mount.querySelector('#bf-office'),
     };
+
+    // Office picker → WhatsApp destination. Populated from window.AT_CONTACTS
+    // (site/assets/js/contacts.js). If absent/empty, keep the hardcoded default
+    // number and leave the picker hidden — behaves exactly as before this feature.
+    const offices = Array.isArray(window.AT_CONTACTS)
+      ? window.AT_CONTACTS.filter((o) => o && o.id && o.wa)
+      : [];
+    if (offices.length) {
+      const def = offices.find((o) => o.default) || offices[0];
+      this.WA_NUMBER = String(def.wa);
+      if (this.el.officeSelect) {
+        this.el.officeSelect.innerHTML = offices.map((o) =>
+          `<option value="${escapeHtml(o.id)}"${o === def ? ' selected' : ''}>${escapeHtml(o.label || o.id)}</option>`
+        ).join('');
+        this.el.officeSelect.addEventListener('change', () => {
+          const sel = offices.find((o) => o.id === this.el.officeSelect.value) || def;
+          this.WA_NUMBER = String(sel.wa);
+          this._liveUpdate();
+        });
+        // Only surface the picker when there's an actual choice to make.
+        if (offices.length > 1 && this.el.officeField) this.el.officeField.hidden = false;
+      }
+    }
 
     this._renderPassports();
     this._bindAll();
