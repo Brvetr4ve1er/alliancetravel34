@@ -79,3 +79,51 @@ test("a card that IS currency and positionally matched gets derived", () => {
   assert.equal(card1.ok, false);
   assert.equal(card1.expected, "180.000 DA");
 });
+
+import { syncDerivedPrices } from "./value-graph.mjs";
+
+// Minimal trip in the derivable shape: cards count == price-row count, card
+// priceFrom values are currency. No headlineHotelId → headline = cheapest double.
+const derivableTrip = () => ({
+  tripData: { hotels: [
+    { id: "a", prices: { double: 100000, single: 130000 } },
+    { id: "b", prices: { double: 120000, single: 150000 } },
+  ] },
+  hero: { priceFrom: "999.000 DA" },
+  seo:  { offerPrice: "999000" },
+  hotels: [
+    { priceFrom: "999.000 DA" },
+    { priceFrom: "999.000 DA" },
+  ],
+});
+
+test("syncDerivedPrices rewrites hero, seo and hotel cards from the source doubles", () => {
+  const { trip, changes } = syncDerivedPrices(derivableTrip());
+  assert.equal(trip.hero.priceFrom, "100.000 DA");        // cheapest double
+  assert.equal(trip.seo.offerPrice, "100000");
+  assert.equal(trip.hotels[0].priceFrom, "100.000 DA");   // positional
+  assert.equal(trip.hotels[1].priceFrom, "120.000 DA");
+  assert.ok(changes.some((c) => c.path === "hero.priceFrom" && c.to === "100.000 DA"));
+});
+
+test("syncDerivedPrices does not mutate its input", () => {
+  const input = derivableTrip();
+  syncDerivedPrices(input);
+  assert.equal(input.hero.priceFrom, "999.000 DA"); // untouched
+});
+
+test("syncDerivedPrices is idempotent on coherent content", () => {
+  const once = syncDerivedPrices(derivableTrip()).trip;
+  const { trip: twice, changes } = syncDerivedPrices(once);
+  assert.deepEqual(twice, once);
+  assert.equal(changes.length, 0);
+});
+
+test("syncDerivedPrices leaves cards untouched when they are not currency (bali/KL shape)", () => {
+  const t = derivableTrip();
+  t.hotels[0].priceFrom = "3 nuits · Kuta";   // itinerary text, not a price
+  t.hotels[1].priceFrom = "4 nuits · Ubud";
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.hotels[0].priceFrom, "3 nuits · Kuta");
+  assert.equal(trip.hotels[1].priceFrom, "4 nuits · Ubud");
+});

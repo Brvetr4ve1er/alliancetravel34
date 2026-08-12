@@ -139,3 +139,38 @@ export function deriveValues(trip) {
 export function driftOf(trip) {
   return deriveValues(trip).derived.filter((d) => !d.ok);
 }
+
+function getAt(obj, path) {
+  return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
+}
+function setAt(obj, path, val) {
+  const keys = path.split(".");
+  const last = keys.pop();
+  const parent = keys.reduce((o, k) => (o == null ? o : o[k]), obj);
+  if (parent != null) parent[last] = val;
+}
+
+/**
+ * syncDerivedPrices(trip) -> { trip, changes }
+ * Clones the trip and rewrites every derived price copy from tripData.hotels
+ * prices (the source). Reuses deriveValues' guards for hero.priceFrom,
+ * seo.offerPrice and hotels[i].priceFrom; anything not provably safe is left
+ * exactly as-is. Pure and idempotent. (priceMeta + optionsHtml added in Task 2.)
+ */
+export function syncDerivedPrices(trip) {
+  const out = JSON.parse(JSON.stringify(trip)); // trips are plain JSON
+  const changes = [];
+
+  const { derived, safe } = deriveValues(out);
+  if (safe) {
+    for (const d of derived) {
+      if (d.ok || d.expected == null) continue; // already agrees, or not derivable
+      const from = getAt(out, d.path);
+      if (from === d.expected) continue;
+      setAt(out, d.path, d.expected);
+      changes.push({ path: d.path, from, to: d.expected });
+    }
+  }
+
+  return { trip: out, changes };
+}
