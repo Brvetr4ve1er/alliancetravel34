@@ -10,7 +10,7 @@ import { emptyState } from "./illus.js";
 import { areaHead, help } from "./ui.js";
 import { csvCell } from "./csv.js";
 
-const COLS = ["created_at", "status", "name", "phone", "city", "trip", "hotel", "date", "room", "adults", "kids", "total_da", "channel", "page", "notes"];
+const COLS = ["created_at", "status", "name", "phone", "city", "trip", "hotel", "date", "room", "adults", "kids", "total_da", "channel", "wa_destination", "page", "notes"];
 const STATUSES = ["nouveau", "contacté", "conclu"];
 
 // ── State ──────────────────────────────────────────────────────────────

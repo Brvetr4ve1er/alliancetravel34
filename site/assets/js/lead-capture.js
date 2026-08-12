@@ -18,7 +18,7 @@
   'use strict';
   var CFG = (typeof window !== 'undefined') && window.AT_LEADS;
 
-  var MAX = { name: 200, phone: 40, city: 120, trip: 200, hotel: 200, date: 80, room: 40, page: 200, notes: 2000 };
+  var MAX = { name: 200, phone: 40, city: 120, trip: 200, hotel: 200, date: 80, room: 40, page: 200, notes: 2000, wa_destination: 60 };
   function str(v, max) { return v == null || v === '' ? null : String(v).slice(0, max); }
   function clampInt(v, lo, hi) { v = parseInt(v, 10); if (!Number.isFinite(v)) return null; return Math.max(lo, Math.min(hi, v)); }
 
@@ -38,7 +38,8 @@
       total_da: state.totalDA == null ? null : clampInt(state.totalDA, 0, 100000000),
       channel: (channel === 'whatsapp' || channel === 'email' || channel === 'copy') ? channel : null,
       page: str((typeof location !== 'undefined' && location.pathname) || '', MAX.page),
-      notes: str(fields.notes, MAX.notes)
+      notes: str(fields.notes, MAX.notes),
+      wa_destination: str(fields.office, MAX.wa_destination)
     };
   }
   // Expose the pure builder for unit tests and defensive reuse.
@@ -178,7 +179,7 @@
 
   function readFields() {
     var q = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
-    return { name: q('bf-name'), phone: q('bf-phone'), city: q('bf-city'), notes: q('bf-notes') };
+    return { name: q('bf-name'), phone: q('bf-phone'), city: q('bf-city'), notes: q('bf-notes'), office: q('bf-office') };
   }
 
   function fieldsValid() {

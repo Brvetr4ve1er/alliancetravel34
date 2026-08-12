@@ -6,6 +6,7 @@ import { getFile, putFile, listTree } from "./_lib/github.mjs";
 import { isValidSlug } from "./_lib/slug.mjs";
 import { validateTrip } from "../tools/validate-trip.mjs";
 import { renderTrip } from "../tools/templates/trip2.mjs";
+import { driftOf, syncDerivedPrices } from "../tools/value-graph.mjs";
 
 // Hard ceiling on the request body. The whole body is buffered in memory before it
 // can be parsed, so without a cap one client can stream until the function dies.
@@ -66,13 +67,29 @@ export default async function handler(req, res) {
   const { errors } = validateTrip(`data/trips/${slug}.json`, content, { enabled: true, imageExists });
   if (errors.length) return res.status(422).json({ errors: errors.map((e) => e.msg) });
 
-  // 2. Dry-run render — renderTrip throws on any missing field/array/codec.
-  try { renderTrip(content); }
+  // 2. Single-source: recompute every derived display copy from tripData.hotels prices.
+  const synced = syncDerivedPrices(content).trip;
+
+  // 2b. Dry-run render the SYNCED content — renderTrip throws on any missing field.
+  try { renderTrip(synced); }
   catch (e) { return res.status(422).json({ errors: [`rendu impossible: ${e.message}`] }); }
 
-  // 3. Commit (retry once on a stale SHA).
+  // 2c. Price coherence backstop on the synced content (unresolvable cases still 422).
+  const drift = driftOf(synced);
+  if (drift.length) {
+    return res.status(422).json({
+      errors: drift.map((d) =>
+        d.expected == null
+          ? `prix: ${d.reason}`
+          : `prix incohérent: "${d.path}" affiche ${JSON.stringify(d.current)} ` +
+            `mais devrait être ${JSON.stringify(d.expected)} — ${d.reason}`
+      ),
+    });
+  }
+
+  // 3. Commit the SYNCED content (retry once on a stale SHA).
   const path = `data/trips/${slug}.json`;
-  const json = JSON.stringify(content, null, 2) + "\n";
+  const json = JSON.stringify(synced, null, 2) + "\n";
   const message = `content(${slug}): edit via dashboard by ${auth.email}`;
   try {
     if (!sha) sha = (await getFile({ path })).sha;

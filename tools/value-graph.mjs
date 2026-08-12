@@ -139,3 +139,78 @@ export function deriveValues(trip) {
 export function driftOf(trip) {
   return deriveValues(trip).derived.filter((d) => !d.ok);
 }
+
+function getAt(obj, path) {
+  return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
+}
+function setAt(obj, path, val) {
+  const keys = path.split(".");
+  const last = keys.pop();
+  const parent = keys.reduce((o, k) => (o == null ? o : o[k]), obj);
+  if (parent != null) parent[last] = val;
+}
+
+/**
+ * syncDerivedPrices(trip) -> { trip, changes }
+ * Clones the trip and rewrites every derived price copy from tripData.hotels
+ * prices (the source). Reuses deriveValues' guards for hero.priceFrom,
+ * seo.offerPrice and hotels[i].priceFrom; anything not provably safe is left
+ * exactly as-is. Pure and idempotent. (priceMeta + optionsHtml added in Task 2.)
+ */
+export function syncDerivedPrices(trip) {
+  const out = JSON.parse(JSON.stringify(trip)); // trips are plain JSON
+  const changes = [];
+
+  const { derived, safe } = deriveValues(out);
+  if (safe) {
+    for (const d of derived) {
+      if (d.ok || d.expected == null) continue; // already agrees, or not derivable
+      const from = getAt(out, d.path);
+      if (from === d.expected) continue;
+      setAt(out, d.path, d.expected);
+      changes.push({ path: d.path, from, to: d.expected });
+    }
+  }
+
+  const rows = (out.tripData && out.tripData.hotels) || [];
+  const cards = out.hotels || [];
+
+  // priceMeta: rewrite only the "Single <currency>" number, per hotel.
+  cards.forEach((card, i) => {
+    const single = rows[i] && rows[i].prices && rows[i].prices.single;
+    if (!card || typeof card.priceMeta !== "string" || !Number.isFinite(single)) return;
+    const next = card.priceMeta.replace(/(\bSingle\s+)([\d.\s]+DA)/, (_, lead) => lead + fmtDA(single));
+    if (next !== card.priceMeta) {
+      changes.push({ path: `hotels.${i}.priceMeta`, from: card.priceMeta, to: next });
+      card.priceMeta = next;
+    }
+  });
+
+  // calcUi.optionsHtml: rewrite each <option>'s "dès <currency>" from the row whose
+  // id === the option's value. Match by id, NEVER by position — options may be sorted
+  // differently than tripData.hotels (tunisie sorts options by price). An option whose
+  // value names no priced row is left untouched.
+  const opts = out.calcUi && out.calcUi.optionsHtml;
+  if (typeof opts === "string") {
+    const doubleById = new Map();
+    for (const r of rows) {
+      const d = r && r.prices && r.prices.double;
+      if (r && r.id != null && Number.isFinite(d)) doubleById.set(r.id, d);
+    }
+    const next = opts.replace(
+      /<option value="([^"]*)"([^>]*)>([\s\S]*?)<\/option>/g,
+      (whole, id, attrs, inner) => {
+        const dbl = doubleById.get(id);
+        if (dbl == null) return whole; // no matching priced row — leave untouched
+        const inner2 = inner.replace(/(dès\s+)([\d.\s]+DA)/, (_, lead) => lead + fmtDA(dbl));
+        return `<option value="${id}"${attrs}>${inner2}</option>`;
+      }
+    );
+    if (next !== opts) {
+      changes.push({ path: "calcUi.optionsHtml", from: opts, to: next });
+      out.calcUi.optionsHtml = next;
+    }
+  }
+
+  return { trip: out, changes };
+}
