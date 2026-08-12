@@ -186,19 +186,29 @@ export function syncDerivedPrices(trip) {
     }
   });
 
-  // calcUi.optionsHtml: rewrite each "dès <currency>" positionally — only when the
-  // "dès" tokens line up 1:1 with priced hotels (else the mapping is unproven).
+  // calcUi.optionsHtml: rewrite each <option>'s "dès <currency>" from the row whose
+  // id === the option's value. Match by id, NEVER by position — options may be sorted
+  // differently than tripData.hotels (tunisie sorts options by price). An option whose
+  // value names no priced row is left untouched.
   const opts = out.calcUi && out.calcUi.optionsHtml;
-  const doubles = rows.map((r) => r && r.prices && r.prices.double);
   if (typeof opts === "string") {
-    const tokens = opts.match(/dès\s+[\d.\s]+DA/g) || [];
-    if (tokens.length > 0 && tokens.length === doubles.length && doubles.every(Number.isFinite)) {
-      let k = 0;
-      const next = opts.replace(/(dès\s+)([\d.\s]+DA)/g, (_, lead) => lead + fmtDA(doubles[k++]));
-      if (next !== opts) {
-        changes.push({ path: "calcUi.optionsHtml", from: opts, to: next });
-        out.calcUi.optionsHtml = next;
+    const doubleById = new Map();
+    for (const r of rows) {
+      const d = r && r.prices && r.prices.double;
+      if (r && r.id != null && Number.isFinite(d)) doubleById.set(r.id, d);
+    }
+    const next = opts.replace(
+      /<option value="([^"]*)"([^>]*)>([\s\S]*?)<\/option>/g,
+      (whole, id, attrs, inner) => {
+        const dbl = doubleById.get(id);
+        if (dbl == null) return whole; // no matching priced row — leave untouched
+        const inner2 = inner.replace(/(dès\s+)([\d.\s]+DA)/, (_, lead) => lead + fmtDA(dbl));
+        return `<option value="${id}"${attrs}>${inner2}</option>`;
       }
+    );
+    if (next !== opts) {
+      changes.push({ path: "calcUi.optionsHtml", from: opts, to: next });
+      out.calcUi.optionsHtml = next;
     }
   }
 

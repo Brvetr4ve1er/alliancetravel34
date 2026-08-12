@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { deriveValues, headlineDouble, fmtDA, parseDA, driftOf } from "./value-graph.mjs";
 
 const base = (over = {}) => ({
@@ -144,17 +145,40 @@ test("syncDerivedPrices leaves priceMeta without a Single token untouched", () =
   assert.equal(trip.hotels[0].priceMeta, "Double · pers");
 });
 
-test("syncDerivedPrices rewrites each dès token in optionsHtml positionally", () => {
+test("syncDerivedPrices rewrites each dès token in optionsHtml by hotel id", () => {
   const t = derivableTrip();
-  t.calcUi = { optionsHtml: '<option>A — dès 999.000 DA</option><option>B — dès 999.000 DA</option>' };
+  // options carry value="a"/value="b" but in the OPPOSITE order to tripData.hotels
+  // rows — an id-based rewrite must give each option ITS OWN row's price.
+  t.calcUi = { optionsHtml: '<option value="b">B — dès 999.000 DA</option><option value="a">A — dès 999.000 DA</option>' };
   const { trip } = syncDerivedPrices(t);
   assert.equal(trip.calcUi.optionsHtml,
-    '<option>A — dès 100.000 DA</option><option>B — dès 120.000 DA</option>');
+    '<option value="b">B — dès 120.000 DA</option><option value="a">A — dès 100.000 DA</option>');
 });
 
-test("syncDerivedPrices leaves optionsHtml untouched when token count != hotel count", () => {
+test("syncDerivedPrices leaves an option whose value matches no row unchanged (id-mismatch skip)", () => {
   const t = derivableTrip();
-  t.calcUi = { optionsHtml: '<option>dès 999.000 DA</option><option>dès 999.000 DA</option><option>dès 999.000 DA</option>' };
+  // one matching option (rewritten) plus one whose value names no priced row (untouched)
+  t.calcUi = { optionsHtml: '<option value="a">A — dès 999.000 DA</option><option value="ghost">X — dès 999.000 DA</option>' };
   const { trip } = syncDerivedPrices(t);
-  assert.equal(trip.calcUi.optionsHtml, t.calcUi.optionsHtml); // 3 tokens vs 2 hotels → skip
+  assert.equal(trip.calcUi.optionsHtml,
+    '<option value="a">A — dès 100.000 DA</option><option value="ghost">X — dès 999.000 DA</option>');
+});
+
+test("syncDerivedPrices maps optionsHtml by id, not position (order-divergent)", () => {
+  const t = {
+    tripData: { hotels: [ { id: "cheap", prices: { double: 100000 } }, { id: "pricey", prices: { double: 200000 } } ] },
+    hotels: [ { priceFrom: "100.000 DA" }, { priceFrom: "200.000 DA" } ],
+    hero: { priceFrom: "100.000 DA" }, seo: { offerPrice: "100000" },
+    // options in the OPPOSITE order to rows, both stale:
+    calcUi: { optionsHtml: '<option value="pricey">B — dès 1 DA</option><option value="cheap">A — dès 1 DA</option>' },
+  };
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.calcUi.optionsHtml,
+    '<option value="pricey">B — dès 200.000 DA</option><option value="cheap">A — dès 100.000 DA</option>');
+});
+
+test("syncDerivedPrices does not corrupt tunisie's already-coherent optionsHtml", () => {
+  const t = JSON.parse(readFileSync("data/trips/tunisie.json", "utf8"));
+  const { trip } = syncDerivedPrices(t);
+  assert.equal(trip.calcUi.optionsHtml, t.calcUi.optionsHtml);            // unchanged — no positional swap
 });
