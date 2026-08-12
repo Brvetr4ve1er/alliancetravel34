@@ -3486,7 +3486,6 @@ html.js [data-aos].visible {
   }
 }
 
-
 /* ══════════════════════════════════════════════════════════
    IMAGE INJECTION — local photos in placeholder wrappers
    Added by _inject_images.py · additive only · no class mods
@@ -3856,31 +3855,26 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
    REGIONAL THEME — per-trip atmosphere via body[data-region]
    ══════════════════════════════════════════════════════════ */
 
-[data-region="egypt"] .hero { background-color: var(--region-bg-egypt); }
 [data-region="egypt"] .hero__bg::before {
   background-image: radial-gradient(circle at 20% 80%, rgba(201,135,46,0.18), transparent 50%),
                      radial-gradient(circle at 80% 20%, rgba(180,100,30,0.12), transparent 60%);
 }
 
-[data-region="azerbaijan"] .hero { background-color: var(--region-bg-azerbaijan); }
 [data-region="azerbaijan"] .hero__bg::before {
   background-image: radial-gradient(circle at 50% 100%, rgba(232,93,47,0.15), transparent 50%),
                      radial-gradient(circle at 30% 30%, rgba(58,175,175,0.18), transparent 55%);
 }
 
-[data-region="istanbul"] .hero { background-color: var(--region-bg-istanbul); }
 [data-region="istanbul"] .hero__bg::before {
   background-image: radial-gradient(circle at 70% 80%, rgba(224,112,64,0.14), transparent 55%),
                      radial-gradient(circle at 30% 30%, rgba(91,158,201,0.15), transparent 60%);
 }
 
-[data-region="malaysia"] .hero { background-color: var(--region-bg-malaysia); }
 [data-region="malaysia"] .hero__bg::before {
   background-image: radial-gradient(circle at 50% 50%, rgba(76,175,130,0.15), transparent 60%),
                      radial-gradient(circle at 80% 20%, rgba(150,210,180,0.10), transparent 50%);
 }
 
-[data-region="sharm"] .hero { background-color: var(--region-bg-sharm); }
 [data-region="sharm"] .hero__bg::before {
   background-image: radial-gradient(circle at 50% 70%, rgba(40,180,212,0.18), transparent 55%),
                      radial-gradient(circle at 70% 30%, rgba(232,138,58,0.10), transparent 60%);
@@ -3899,7 +3893,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   background: var(--accent);
   transform: translateY(-50%);
 }
-
 
 /* ══════════════════════════════════════════════════════════
    FLOATING NAV — single-row pill, override grid layout
@@ -4055,7 +4048,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 :root[data-theme="light"] .site-nav .nav-links a { color: var(--navy); opacity: 0.85; }
 :root[data-theme="light"] .site-nav .nav-links a:hover { color: var(--mint); opacity: 1; }
 
-
 /* ══════════════════════════════════════════════════════════
    v3 — Logo LEFT + visibility fixes for photo overlays
    ══════════════════════════════════════════════════════════ */
@@ -4131,7 +4123,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 /* dead-css sweep 2026-08: the light-theme .hero__faded-title override is gone
    with the watermark itself (deleted in v21 phase J.2.4). */
 
-
 /* ══════════════════════════════════════════════════════════
    v3.1 — WCAG fixes (token values folded into canonical
    :root[data-theme="light"] at top of file). Component-level
@@ -4175,7 +4166,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 :root[data-theme="light"] [data-region="sharm"] .section-head__eyebrow {
   color: var(--mint) !important;
 }
-
 
 /* ══════════════════════════════════════════════════════════
    v4 — Algeria map · Travel animations · Hero paper plane
@@ -4267,7 +4257,6 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 
 /* dead-css sweep 2026-08: light-mode .branch-card / .branch-card--hq overrides
    deleted along with the base component (see the note above .branch-list). */
-
 
 /* ══════════════════════════════════════════════════════════
    v5 — Per-region atmospheric backgrounds
@@ -4409,60 +4398,8 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
    Mobile media query swaps to a smaller crop for a ~70% byte reduction.
    Paths are relative to this CSS file (site/assets/css/styles.css):
      ../images/heroes/* -> site/assets/images/heroes/* */
-[data-region="egypt"] .hero {
-  background-image:
-    image-set(url("../images/heroes/hero__cairo-sharm.webp") type("image/webp"),
-              url("../images/heroes/hero__cairo-sharm.jpg") type("image/jpeg"));
-}
-[data-region="azerbaijan"] .hero {
-  background-image:
-    image-set(url("../images/heroes/hero__azerbaidjan.webp") type("image/webp"),
-              url("../images/heroes/hero__azerbaidjan.jpg") type("image/jpeg"));
-}
-[data-region="istanbul"] .hero {
-  background-image:
-    image-set(url("../images/heroes/hero__istanbul.webp") type("image/webp"),
-              url("../images/heroes/hero__istanbul.jpg") type("image/jpeg"));
-}
-[data-region="malaysia"] .hero {
-  background-image:
-    image-set(url("../images/heroes/hero__kuala-lumpur.webp") type("image/webp"),
-              url("../images/heroes/hero__kuala-lumpur.jpg") type("image/jpeg"));
-}
-[data-region="sharm"] .hero {
-  background-image:
-    image-set(url("../images/heroes/hero__sharm-constantine.webp") type("image/webp"),
-              url("../images/heroes/hero__sharm-constantine.jpg") type("image/jpeg"));
-}
 
 /* Mobile (<=768px): use the smaller cropped variants — ~70% smaller files */
-@media (max-width: 768px) {
-  [data-region="egypt"] .hero {
-    background-image:
-      image-set(url("../images/heroes/hero__cairo-sharm--mobile.webp") type("image/webp"),
-                url("../images/heroes/hero__cairo-sharm--mobile.jpg") type("image/jpeg"));
-  }
-  [data-region="azerbaijan"] .hero {
-    background-image:
-      image-set(url("../images/heroes/hero__azerbaidjan--mobile.webp") type("image/webp"),
-                url("../images/heroes/hero__azerbaidjan--mobile.jpg") type("image/jpeg"));
-  }
-  [data-region="istanbul"] .hero {
-    background-image:
-      image-set(url("../images/heroes/hero__istanbul--mobile.webp") type("image/webp"),
-                url("../images/heroes/hero__istanbul--mobile.jpg") type("image/jpeg"));
-  }
-  [data-region="malaysia"] .hero {
-    background-image:
-      image-set(url("../images/heroes/hero__kuala-lumpur--mobile.webp") type("image/webp"),
-                url("../images/heroes/hero__kuala-lumpur--mobile.jpg") type("image/jpeg"));
-  }
-  [data-region="sharm"] .hero {
-    background-image:
-      image-set(url("../images/heroes/hero__sharm-constantine--mobile.webp") type("image/webp"),
-                url("../images/heroes/hero__sharm-constantine--mobile.jpg") type("image/jpeg"));
-  }
-}
 
 /* Override .hero__bg per region: keep the per-region tinted gradient
    AND the photo behind it. The pseudo-elements remain for atmosphere */
@@ -8792,8 +8729,6 @@ body { background: var(--bg); color: var(--txt-1); }
 
 /* End v19.2 agency-network ──────────────────────────────────── */
 
-
-
 /* ══════════════════════════════════════════════════════════
    AOS integration layer — REMOVED v22 (2026-05-22)
    ══════════════════════════════════════════════════════════
@@ -9099,7 +9034,6 @@ body { background: var(--bg); color: var(--txt-1); }
   font-family: 'DM Sans', system-ui, sans-serif;
 }
 
-
 /* ═══════════════════════════════════════════════════════════════════════════
    HORIZON AURORA HERO (v27) — full-bleed parallax destination hero
    Replaces the v14 scroll-hero scrub on trip pages. Per-destination tint via
@@ -9327,7 +9261,6 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Mobile GPU gate for the homepage orb — match the aurora-hero: lighter blur,
    release the persistent compositor layers on phones. */
 @media (max-width: 768px){.aurora-orb__sky{filter:blur(24px) saturate(1.25)}.aurora-orb__card{will-change:auto}}
-
 
 /* ── v27 responsive / delivery polish (from the responsive audit) ──────────── */
 /* iOS focus-zoom guard: keep form controls >=16px even when a utility font class
