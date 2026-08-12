@@ -29,7 +29,6 @@ const FIELDS = [
   ["Hero — titre (1re partie)", "hero.h1Pre", "text"],
   ["Hero — titre (partie colorée)", "hero.h1Em", "text"],
   ["Hero — dates/durée", "hero.date", "text"],
-  ["Hero — prix « à partir de »", "hero.priceFrom", "text"],
   ["Hero — aria-label", "hero.aria", "text"],
   // No CTA scarcity field: finalCta.scarcityHtml stores the sentence and its
   // data-i18n binding in one string (plain text on istanbul, a bound <span> on
