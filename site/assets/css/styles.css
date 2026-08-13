@@ -9766,7 +9766,10 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Main block: brand (with oversized wordmark) beside the link directory. */
 .footer-main {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+  /* The brand block is short (logo, one line of copy, socials) while the nav
+     carries seven trips and three offices — an near-even split left the left
+     column mostly empty and the right one cramped and tall. */
+  grid-template-columns: minmax(0, .85fr) minmax(0, 2fr);
   gap: clamp(40px, 6vw, 88px);
   align-items: start;
 }
@@ -9822,9 +9825,66 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Link directory */
 .footer-nav {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* auto-fit gave the trips list and the contact block an equal share, which
+     made contact ~4x taller than everything beside it. Contact now gets the
+     room to lay its offices out side by side instead of stacking. */
+  grid-template-columns: minmax(0, .62fr) minmax(0, 2fr);
   gap: clamp(24px, 4vw, 48px);
 }
+
+@media (max-width: 860px) {
+  .footer-nav { grid-template-columns: 1fr; }
+}
+
+/* ── Footer offices ───────────────────────────────────────────────────────
+   One entry per branch (name · address · its own lines) instead of a
+   WhatsApp-vs-Phone split that left five numbers unattributed — a visitor
+   could not tell which office they were calling. Laid out across the row so
+   the column reads wide-and-short rather than a tall stack. */
+.office-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--s5);
+}
+
+.office__name {
+  margin: 0 0 3px;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--txt-1);
+  line-height: 1.4;
+}
+
+.office__addr {
+  margin: 0 0 10px;
+  font-size: .75rem;
+  line-height: 1.5;
+  color: var(--txt-3);
+}
+
+.office__lines {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+/* Numerals stay LTR and tabular so the columns line up in Arabic too. */
+.office__lines a {
+  font-size: .875rem;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+  color: var(--txt-2);
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+.office__lines a:hover,
+.office__lines a:focus-visible { color: var(--accent); }
 .footer-col h4 {
   font-size: .6875rem;
   font-weight: 700;

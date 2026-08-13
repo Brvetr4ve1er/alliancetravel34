@@ -2235,27 +2235,6 @@
       "enState": "missing",
       "arState": "missing"
     },
-    "footer.wa_viber": {
-      "fr": "WhatsApp / Viber",
-      "frHash": "00uliopw",
-      "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
-    },
-    "footer.phone": {
-      "fr": "Téléphone",
-      "frHash": "00p3xtrr",
-      "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
-    },
-    "footer.address_label": {
-      "fr": "Adresse",
-      "frHash": "008nb632",
-      "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
-    },
     "footer.copyright": {
       "fr": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie",
       "frHash": "01qig6hr",
