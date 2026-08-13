@@ -138,7 +138,10 @@
       margin-inline: auto;
       padding: 140px clamp(20px, 5vw, 80px) var(--s12);
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      /* Text gets the wider share: at an even 1fr 1fr the lede wrapped tight and
+         the four stats could not sit on one row. minmax(0,…) keeps long words
+         from forcing either column past its share. */
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
       gap: var(--s10);
       align-items: center;
       width: 100%;
@@ -154,6 +157,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    /* Hero stats — one row of four, hairline-separated. A wrapping flex row left
+       the fourth stat orphaned on its own line; an explicit 4-track grid keeps
+       them aligned and lets each label wrap inside its own column. */
+    .hero-stats {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--s6);
+      margin-top: var(--s8);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stats > div { min-width: 0; }
+
+    .hero-stats > div + div {
+      border-inline-start: 1px solid var(--border);
+      padding-inline-start: var(--s6);
+    }
+
+    /* Four tracks get too tight for the labels on phones: fall back to 2x2 and
+       drop the divider on each row's first cell so the rule never floats. */
+    @media (max-width: 640px) {
+      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5) var(--s4); }
+      .hero-stats > div:nth-child(odd) { border-inline-start: 0; padding-inline-start: 0; }
     }
 
     /* Trip cards — full styling lives in v20 block of styles.css.
@@ -335,30 +365,6 @@
           <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." class="btn btn--ghost fs-body" target="_blank" rel="noopener"
             style="padding:var(--space-4) var(--s7)" data-i18n="hero.cta_contact">Nous contacter</a>
         </div>
-        <!-- Stats inline -->
-        <div
-          class="u-mt-sp5 fade-up" style="display:flex; flex-wrap:wrap; gap:var(--s7); padding-top:var(--space-5); border-top:1px solid var(--border)">
-          <div>
-            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
-              data-counter="1.2" data-counter-format="{n}K+">1.2K+</p>
-            <p class="fs-body-sm u-text-3" data-i18n="stats.travelers">Voyageurs guidés</p>
-          </div>
-          <div>
-            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
-              data-counter="98" data-counter-format="{n}%">98%</p>
-            <p class="fs-body-sm u-text-3" data-i18n="stats.satisfaction">Taux de satisfaction</p>
-          </div>
-          <div>
-            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
-              data-counter="5" data-counter-format="{n}">5</p>
-            <p class="fs-body-sm u-text-3" data-i18n="stats.destinations">Destinations 2026</p>
-          </div>
-          <div>
-            <p class="fs-h3 u-font-display u-fw-400 u-text-1"
-              data-counter="7" data-counter-format="{n}+">7+</p>
-            <p class="fs-body-sm u-text-3" data-i18n="stats.experience">Ans d'expérience</p>
-          </div>
-        </div>
       </div>
 
       <!-- Aurora orb: floating destination photo-stack (CSS-only, replaces the cobe globe) -->
@@ -377,6 +383,31 @@
             <img src="assets/images/trips/card__home__bali.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
             <figcaption>Bali</figcaption>
           </figure>
+        </div>
+      </div>
+
+      <!-- Stats strip: spans both columns so each figure gets room to breathe
+           (inside the text column the labels wrapped at ~130px). -->
+      <div class="fade-up hero-stats">
+        <div>
+          <p class="fs-h3 u-font-display u-fw-400 u-text-1"
+            data-counter="1.2" data-counter-format="{n}K+">1.2K+</p>
+          <p class="fs-body-sm u-text-3" data-i18n="stats.travelers">Voyageurs guidés</p>
+        </div>
+        <div>
+          <p class="fs-h3 u-font-display u-fw-400 u-text-1"
+            data-counter="98" data-counter-format="{n}%">98%</p>
+          <p class="fs-body-sm u-text-3" data-i18n="stats.satisfaction">Taux de satisfaction</p>
+        </div>
+        <div>
+          <p class="fs-h3 u-font-display u-fw-400 u-text-1"
+            data-counter="5" data-counter-format="{n}">5</p>
+          <p class="fs-body-sm u-text-3" data-i18n="stats.destinations">Destinations 2026</p>
+        </div>
+        <div>
+          <p class="fs-h3 u-font-display u-fw-400 u-text-1"
+            data-counter="7" data-counter-format="{n}+">7+</p>
+          <p class="fs-body-sm u-text-3" data-i18n="stats.experience">Ans d'expérience</p>
         </div>
       </div>
     </div>

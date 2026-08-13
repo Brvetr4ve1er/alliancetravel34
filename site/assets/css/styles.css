@@ -4031,6 +4031,33 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 .site-nav .nav-links a:hover { opacity: 1; color: var(--mint); }
 
+/* Hover/focus underline: a hairline that wipes out from the centre. scaleX on a
+   pseudo-element keeps it off the layout (no reflow, no shifting siblings) and
+   transform-origin:center is direction-agnostic, so RTL needs no override. */
+.site-nav .nav-links a {
+  position: relative;
+  padding-block: 4px;
+}
+.site-nav .nav-links a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--mint);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--t-fast) var(--ease-out);
+}
+.site-nav .nav-links a:hover::after,
+.site-nav .nav-links a:focus-visible::after,
+.site-nav .nav-links a[aria-current]::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav .nav-links a::after { transition: none; }
+}
+
 /* Right group: first sibling among toggle/switcher/cta gets margin-left:auto */
 .site-nav > .theme-toggle {
   margin-left: auto;
