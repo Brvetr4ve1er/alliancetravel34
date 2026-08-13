@@ -6,7 +6,7 @@
 // intercepts every call without touching any ES module export bindings.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import handler from "./revert-trip.mjs";
+import handler, { MAX_BODY_BYTES } from "./revert-trip.mjs";
 
 process.env.GITHUB_REPO = "owner/repo";
 process.env.GITHUB_TOKEN = "test-token";
@@ -30,6 +30,15 @@ function fakeRes() {
 
 function fakeReq(body) {
   return { method: "POST", headers: { authorization: "Bearer tok" }, body };
+}
+
+// A request with NO pre-parsed body, so readBody() takes the stream path
+// (mirrors save-trip.test.mjs / notify-lead.test.mjs).
+function streamReq(chunks) {
+  return {
+    method: "POST", headers: { authorization: "Bearer tok" },
+    async *[Symbol.asyncIterator]() { for (const c of chunks) yield c; },
+  };
 }
 
 // Dispatches every fetch() call revert-trip.mjs's dependencies can make:
@@ -144,6 +153,55 @@ test("happy path: commits the prior version back exactly once", async (t) => {
   assert.equal(decoded, priorContent); // restores the previous bytes verbatim
   assert.ok(putBody.message.includes("revert(istanbul)"));
   assert.ok(putBody.message.includes("owner@example.com"));
+});
+
+// ── body handling ─────────────────────────────────────────────────────
+// save-trip.mjs and notify-lead.mjs both cap the streamed body at the same
+// 1 MB; this endpoint used to accumulate `raw += chunk` with no cap at all.
+// Its body is only {slug}, so nothing was exploitable here — but the cap is
+// documented across the three routes as "one number to reason about", and a
+// route that opts out quietly makes that sentence false.
+
+test("a streamed body over the cap → 413, nothing read or committed", async (t) => {
+  const { fn, calls } = makeFetch();
+  t.mock.method(globalThis, "fetch", fn);
+  const chunk = Buffer.alloc(256 * 1024, 0x61); // 256 KB of 'a'
+  const chunks = Array.from({ length: Math.ceil(MAX_BODY_BYTES / chunk.length) + 1 }, () => chunk);
+  const res = fakeRes();
+  await handler(streamReq(chunks), res);
+  assert.equal(res.statusCode, 413);
+  assert.equal(res.body.error, "body too large");
+  assert.equal(calls.auth, 1);        // auth runs first, by design
+  assert.equal(calls.commits, 0);
+  assert.equal(calls.putContents, 0); // the repo is never touched
+});
+
+test("the cap matches the other write route, so there is one number", async () => {
+  const { MAX_BODY_BYTES: saveCap } = await import("./save-trip.mjs");
+  assert.equal(MAX_BODY_BYTES, saveCap);
+});
+
+test("an ordinary streamed body still reverts, split mid-character", async (t) => {
+  const { fn, calls } = makeFetch();
+  t.mock.method(globalThis, "fetch", fn);
+  // The slug is ASCII, but the decode must survive a chunk boundary inside a
+  // multi-byte character all the same — accumulating strings would mangle it.
+  const payload = Buffer.from(JSON.stringify({ slug: "istanbul", note: "Béjaïa" }), "utf8");
+  const mid = payload.indexOf(Buffer.from("Béjaïa", "utf8")) + 2; // inside "é"
+  const res = fakeRes();
+  await handler(streamReq([payload.subarray(0, mid), payload.subarray(mid)]), res);
+  assert.equal(res.statusCode, 200);
+  assert.equal(calls.putContents, 1);
+});
+
+test("an unparseable streamed body → 400, nothing committed", async (t) => {
+  const { fn, calls } = makeFetch();
+  t.mock.method(globalThis, "fetch", fn);
+  const res = fakeRes();
+  await handler(streamReq([Buffer.from("{ not json")]), res);
+  assert.equal(res.statusCode, 400);
+  assert.equal(res.body.error, "invalid JSON body");
+  assert.equal(calls.putContents, 0);
 });
 
 test("stale sha (409) is retried exactly once: refetch sha, then commit succeeds", async (t) => {

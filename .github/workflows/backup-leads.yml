@@ -12,16 +12,24 @@
 #                                security. Keep it secret: it is NOT the public
 #                                anon key in site/assets/js/lead-config.js.
 #
+#   BACKUP_PASSPHRASE           (REQUIRED for the upload step) A strong passphrase.
+#                                The CSV is GPG-encrypted (AES256, symmetric) with it
+#                                BEFORE being uploaded. This repo is PUBLIC, and on a
+#                                public repo Actions artifacts are downloadable by
+#                                anyone — a plaintext customer list must never land
+#                                there. Decrypt locally with:
+#                                  gpg --decrypt leads-<date>.csv.gpg > leads.csv
+#
 # OPTIONAL REPO SECRET:
 #
 #   SUPABASE_URL                (optional) The Supabase project URL. Defaults to the
 #                                known public project URL below if the secret is
 #                                empty, so most owners only need the key above.
 #
-# Until SUPABASE_SERVICE_ROLE_KEY is set, this workflow is a deliberate no-op: it
-# runs, warns that it is unconfigured, and exits 0 (green) — it never fails a run
-# just because the secret is missing. Secrets are passed through env only and are
-# never echoed; GitHub also masks them in logs automatically.
+# Until BOTH secrets are set, this workflow is a deliberate no-op: it runs, warns
+# which secret is missing, and exits 0 (green) — it never fails a run just because
+# a secret is missing, and it NEVER uploads plaintext PII. Secrets are passed
+# through env only and are never echoed; GitHub also masks them in logs.
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Backup leads
@@ -43,21 +51,29 @@ jobs:
         id: check
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
         run: |
           if [ -z "${SUPABASE_SERVICE_ROLE_KEY}" ]; then
             echo "::warning::SUPABASE_SERVICE_ROLE_KEY is not set — skipping lead backup."
             echo "This is expected until the owner adds the secret; the run is intentionally a no-op."
             echo "configured=false" >> "$GITHUB_OUTPUT"
+          elif [ -z "${BACKUP_PASSPHRASE}" ]; then
+            # PII gate: this repo is public and its artifacts are world-downloadable.
+            # Without a passphrase to encrypt with, uploading the leads CSV would
+            # publish every customer's name and phone — refuse rather than leak.
+            echo "::warning::BACKUP_PASSPHRASE is not set — skipping lead backup (a plaintext customer list must never be uploaded as an artifact of a public repo)."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
           else
-            echo "Service-role key present — proceeding with backup."
+            echo "Both secrets present — proceeding with encrypted backup."
             echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Export leads to CSV
+      - name: Export leads to CSV and encrypt
         id: export
         if: steps.check.outputs.configured == 'true'
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
           # Public project URL fallback; override with a SUPABASE_URL secret if the project moves.
           SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://vxblgxiamtphabfswnxb.supabase.co' }}
         run: |
@@ -74,10 +90,18 @@ jobs:
             "${SUPABASE_URL}/rest/v1/leads?select=*&order=created_at.desc" \
             -o "${FILE}"
           LINES="$(wc -l < "${FILE}" | tr -d ' ')"
-          echo "Wrote ${FILE} (${LINES} line(s) including the header)."
-          echo "file=${FILE}" >> "$GITHUB_OUTPUT"
+          echo "Exported ${LINES} line(s) including the header."
+          # Encrypt BEFORE upload: artifacts of a public repo are world-downloadable,
+          # so only ciphertext may leave this job. Passphrase comes from env (never
+          # a CLI arg, which would show in the process list). shred the plaintext.
+          gpg --batch --yes --symmetric --cipher-algo AES256 \
+            --passphrase-fd 3 --pinentry-mode loopback \
+            --output "${FILE}.gpg" "${FILE}" 3<<<"${BACKUP_PASSPHRASE}"
+          shred -u "${FILE}"
+          echo "Encrypted to ${FILE}.gpg — plaintext removed."
+          echo "file=${FILE}.gpg" >> "$GITHUB_OUTPUT"
 
-      - name: Upload backup artifact
+      - name: Upload encrypted backup artifact
         if: steps.check.outputs.configured == 'true'
         uses: actions/upload-artifact@v4
         with:

@@ -6,7 +6,30 @@
 // CSV helpers are exercised directly, no mocks.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import handler, { csvCell, toCsv, leadColumns, LEAD_COLUMNS } from "./export-leads.mjs";
+import handler, { csvCell, csvFormulaGuard, toCsv, leadColumns, LEAD_COLUMNS } from "./export-leads.mjs";
+
+// Minimal RFC-4180 reader, used only to prove that guarding a cell against
+// formula injection does not damage ordinary values: parse(toCsv(rows)) must
+// hand back exactly what went in. Handles quoted fields, doubled quotes and
+// CRLF record separators — the three things csvCell() emits.
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = "", quoted = false, i = 0;
+  while (i < text.length) {
+    const ch = text[i];
+    if (quoted) {
+      if (ch === '"' && text[i + 1] === '"') { field += '"'; i += 2; continue; }
+      if (ch === '"') { quoted = false; i++; continue; }
+      field += ch; i++; continue;
+    }
+    if (ch === '"' && field === "") { quoted = true; i++; continue; }
+    if (ch === ",") { row.push(field); field = ""; i++; continue; }
+    if (ch === "\r" && text[i + 1] === "\n") { row.push(field); rows.push(row); row = []; field = ""; i += 2; continue; }
+    field += ch; i++;
+  }
+  if (field !== "" || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
 
 // Configured (active) baseline. Individual tests override env in try/finally.
 process.env.AT_SUPABASE_URL = "https://example.supabase.co";
@@ -95,6 +118,81 @@ test("csvCell: quotes fields containing newlines (CR/LF)", () => {
 
 test("csvCell: objects (jsonb) are JSON-stringified then escaped", () => {
   assert.equal(csvCell({ a: 1, b: "x,y" }), '"{""a"":1,""b"":""x,y""}"');
+});
+
+// ---- CSV formula injection (OWASP) -------------------------------------------
+//
+// name / notes / city reach this table straight off the PUBLIC lead form
+// (site/assets/js/lead-capture.js → Supabase INSERT). A value whose first
+// character is =, +, -, @, TAB or CR is executed as a FORMULA by Excel,
+// LibreOffice and Google Sheets when the owner opens the backup — remote code
+// execution on the owner's machine, triggered by a web form. Every one of these
+// must come out inert.
+
+test("csvFormulaGuard: neutralises every dangerous leading character", () => {
+  assert.equal(csvFormulaGuard("=1+1"), "'=1+1");
+  assert.equal(csvFormulaGuard("+1+1"), "'+1+1");
+  assert.equal(csvFormulaGuard("-1+1"), "'-1+1");
+  assert.equal(csvFormulaGuard("@SUM(A1:A9)"), "'@SUM(A1:A9)");
+  assert.equal(csvFormulaGuard("\t=1+1"), "'\t=1+1"); // TAB is stripped by Excel first
+  assert.equal(csvFormulaGuard("\r=1+1"), "'\r=1+1"); // …so is CR
+});
+
+test("csvCell: the classic DDE payload in a lead name is defused", () => {
+  // The payload that shells out; it must be stored as literal text.
+  const payload = '=cmd|\' /C calc\'!A0';
+  const cell = csvCell(payload);
+  assert.ok(cell.startsWith("'="), `expected a leading quote, got ${cell}`);
+  assert.ok(!cell.startsWith("="));
+});
+
+test("csvCell: guard is applied INSIDE the RFC-4180 quotes, not outside", () => {
+  // A dangerous prefix AND a comma: the cell must be quoted for the CSV reader
+  // and prefixed for the spreadsheet — in that nesting order, or one of the two
+  // protections is lost.
+  assert.equal(csvCell("=HYPERLINK(1,2)"), `"'=HYPERLINK(1,2)"`);
+  assert.equal(csvCell('=A1&"x"'), `"'=A1&""x"""`);
+});
+
+test("csvCell: a legitimate negative number is NOT mangled", () => {
+  // A refund / credit in total_da is not a formula. Guarding it would corrupt
+  // the owner's arithmetic, so plain numeric literals are left exactly alone.
+  assert.equal(csvCell(-15000), "-15000");
+  assert.equal(csvCell("-15000"), "-15000");
+  assert.equal(csvCell("-1500.75"), "-1500.75");
+  assert.equal(csvCell("+42"), "+42");
+  assert.equal(csvCell("-1.5e3"), "-1.5e3");
+});
+
+test("csvCell: a + phone number that is not a bare numeral IS guarded", () => {
+  // "+213 555 12 34 56" is not a number; Excel would evaluate it and show
+  // #NAME?. Prefixing both defuses it and makes it display correctly.
+  assert.equal(csvCell("+213 555 12 34 56"), "'+213 555 12 34 56");
+  assert.equal(csvCell("+213555123456"), "+213555123456"); // bare numeral, untouched
+});
+
+test("csvCell: ordinary values keep their previous encoding exactly", () => {
+  assert.equal(csvCell("Yacine B."), "Yacine B.");
+  assert.equal(csvCell('O\'Brien, "Sam"'), '"O\'Brien, ""Sam"""');
+  assert.equal(csvCell("Ligne 1\nLigne 2, avec virgule"), '"Ligne 1\nLigne 2, avec virgule"');
+  assert.equal(csvCell("Alger, Algérie"), '"Alger, Algérie"');
+  assert.equal(csvCell({ a: 1, b: "x,y" }), '"{""a"":1,""b"":""x,y""}"');
+});
+
+test("round-trip: ordinary values survive toCsv → parse unchanged", () => {
+  const values = [
+    "Yacine B.", 'O\'Brien, "Sam"', "Alger, Algérie", "Ligne 1\nLigne 2, avec virgule",
+    "-15000", "185000", "0555 12 34 56", "12 août", "", "Grand Hôtel",
+  ];
+  const rows = values.map((v, i) => ({ id: i, name: v }));
+  const parsed = parseCsv(toCsv(rows, ["id", "name"]));
+  assert.deepEqual(parsed[0], ["id", "name"]);
+  values.forEach((v, i) => assert.equal(parsed[i + 1][1], v, `value ${i} did not round-trip`));
+});
+
+test("round-trip: a guarded value comes back as inert text, prefix and all", () => {
+  const parsed = parseCsv(toCsv([{ name: "=1+1" }], ["name"]));
+  assert.equal(parsed[1][0], "'=1+1"); // read back as text, never evaluated
 });
 
 test("toCsv: header row + CRLF-joined records, trailing CRLF", () => {
@@ -203,6 +301,32 @@ test("admin happy path → CSV with header row, escaped fields, and download hea
   assert.ok(body.includes('"Ligne 1\nLigne 2, avec virgule"'));
   // BOM present for Excel UTF-8.
   assert.ok(body.startsWith("﻿"));
+});
+
+test("end-to-end: a hostile lead name is inert in the downloaded CSV", async (t) => {
+  const hostile = [{
+    id: 3, created_at: "2026-07-24T08:00:00Z", status: "nouveau",
+    name: "=cmd|' /C calc'!A0", phone: "0555 00 00 00", city: "Alger",
+    notes: "@SUM(1+1)*cmd|' /C calc'!A0", total_da: -15000,
+  }];
+  const { fn } = makeFetch({ rows: hostile });
+  t.mock.method(globalThis, "fetch", fn);
+  const res = fakeRes();
+  await handler(fakeReq(), res);
+
+  assert.equal(res.statusCode, 200);
+  const body = String(res.body).replace(/^﻿/, "");
+  const parsed = parseCsv(body);
+  const cell = (name) => parsed[1][parsed[0].indexOf(name)];
+
+  assert.equal(cell("name"), "=cmd|' /C calc'!A0".replace(/^=/, "'="));
+  assert.ok(cell("notes").startsWith("'@"));
+  // …and the legitimate negative total is still a number, not text.
+  assert.equal(cell("total_da"), "-15000");
+  // Nothing in the file starts a field with a raw formula character.
+  for (const row of parsed.slice(1)) {
+    for (const f of row) assert.ok(!/^[=+\-@\t\r]/.test(f) || /^[+-]?[\d.]/.test(f), `unguarded field: ${JSON.stringify(f)}`);
+  }
 });
 
 test("empty table → CSV with just the canonical header row", async (t) => {

@@ -13,7 +13,7 @@
 {{/?}}    <div class="hotel-grid"{{k.hotelGridAttrs}}>
 {{#hotels}}
       <article class="hotel-card" data-aos="fade-up" data-aos-delay="{{.aosDelay:int}}" data-aos-duration="550"{{.kRole}} data-hotel-id="{{.calcId}}" data-tier="{{.tier}}" tabindex="0"{{.kAria}}>
-        <div class="hotel-card__img"><img class="hotel-card__photo" src="{{.image}}" alt="{{.alt}}" loading="lazy" width="800" height="600" decoding="async"/><span class="hotel-card__ribbon {{.ribbonClass}}"{{.kRibbon}}>{{.ribbon}}</span></div>
+        <div class="hotel-card__img"><picture><source type="image/avif" srcset="{{=item.image.replace(/\.jpg$/, '.avif')}}"/><source type="image/webp" srcset="{{=item.image.replace(/\.jpg$/, '.webp')}}"/><img class="hotel-card__photo" src="{{.image}}" alt="{{.alt}}" loading="lazy" width="800" height="600" decoding="async"/></picture><span class="hotel-card__ribbon {{.ribbonClass}}"{{.kRibbon}}>{{.ribbon}}</span></div>
         <div class="hotel-card__body">
           <div class="hotel-card__stars" aria-label="{{.stars:int}} étoiles">{{.starsHtml}}</div>
           <h3 class="hotel-card__name">{{.name}}</h3>

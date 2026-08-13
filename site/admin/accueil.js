@@ -26,7 +26,12 @@ async function fetchData() {
     sb.from("leads").select("id", { count: "exact", head: true }).gte("created_at", d7.toISOString()),
     sb.from("leads").select("id", { count: "exact", head: true }).gte("created_at", d14.toISOString()).lt("created_at", d7.toISOString()),
   ]);
-  if (daily.error) throw daily.error;
+  // Check EVERY result, not just `daily`. A failed leads query used to fall
+  // through to `count || 0` and paint a confident "0 demandes" — the dashboard
+  // telling the owner her business had no enquiries when in truth it could not
+  // read them. A fabricated zero is worse than an error: she acts on it.
+  // Any failure throws, and load()'s catch shows the error + Réessayer.
+  for (const r of [daily, latest, c7, cPrev]) if (r.error) throw r.error;
   return { daily: daily.data || [], leads: latest.data || [], leadCount7: c7.count || 0, leadCountPrev: cPrev.count || 0 };
 }
 

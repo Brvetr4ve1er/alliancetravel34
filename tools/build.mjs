@@ -22,7 +22,9 @@ import { checkAdminFields } from "./check-admin-fields.mjs";
 import { checkValueGraph } from "./check-value-graph.mjs";
 import { checkI18n, writeManifest } from "./check-i18n.mjs";
 import { checkI18nBindings } from "./check-i18n-bindings.mjs";
-import { localizeVariant } from "./templates/langpage.mjs";
+import { localizeVariant, injectHreflang } from "./templates/langpage.mjs";
+import { renderBlogBlock, injectBlogBlock } from "./sitemap-blog.mjs";
+import { syncSitemapLangs, checkSitemapLangs } from "./sitemap-langs.mjs";
 import { loadGlobalI18n } from "./templates/global-i18n.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -201,15 +203,31 @@ let i18nManifests = null;
 // Per-language variants: a manifest entry whose `langs` lists languages beyond
 // "fr" gets each extra language rendered from its French page (langpage.mjs →
 // localize.mjs, the same data-i18n contract the browser uses) into
-// site/<lang>/<dir>/index.html. The French output is untouched by design: a
-// trip with langs:["fr"] (or no langs field) never passes through the
-// localizer, and even a multi-language trip's FR page is written byte-for-byte
-// as before — reciprocal hreflang for the cluster is declared in sitemap.xml.
+// site/<lang>/<dir>/index.html. A trip with langs:["fr"] (or no langs field)
+// never passes through the localizer at all, so single-language French output
+// stays byte-for-byte as before.
 // Computed pre-gate, like the FR renders above, so a langpage failure (e.g. a
 // head.tpl drift) blocks the build instead of writing a half-localized page.
+// The variants are built from the PRISTINE French render — before the FR page
+// receives its own hreflang cluster below — because langpage expands the single
+// x-default line it finds, and a page that already carries the cluster would
+// have it expanded a second time.
 const variantRenders = []; // { slug, lang, outFile, html }
 if (!errors.length) {
   let globalT = null; // loaded once, only when some trip actually needs it
+
+  // lang → set of output-dirs publishing that language. Lets the localizer
+  // re-point sibling-trip links at the same-language URL, but only where that
+  // variant really exists, so we never link to a page we did not render.
+  const dirsByLang = new Map();
+  for (const [s, e] of Object.entries(manifest.trips ?? {})) {
+    if (e?.enabled !== true) continue;
+    for (const l of (Array.isArray(e.langs) && e.langs.length ? e.langs : ["fr"])) {
+      if (l === "fr") continue;
+      if (!dirsByLang.has(l)) dirsByLang.set(l, new Set());
+      dirsByLang.get(l).add(e.outputDir || s);
+    }
+  }
   for (const [slug, data] of parsed) {
     const entry = manifest.trips?.[slug];
     if (entry?.enabled !== true) continue;
@@ -225,11 +243,45 @@ if (!errors.length) {
           slug,
           lang,
           outFile: join(SITE_DIR, lang, baseDir, "index.html"),
-          html: toOutput(await localizeVariant(frHtml, { lang, slug: baseDir, langs, data, globalT })),
+          html: toOutput(await localizeVariant(frHtml, {
+            lang, slug: baseDir, langs, data, globalT,
+            sameLangDirs: dirsByLang.get(lang),
+          })),
         });
       } catch (e) {
         err(`data/trips/${slug}.json`, `variante ${lang} impossible: ${e.message}`);
       }
+    }
+  }
+}
+
+// Reciprocal hreflang on the FRENCH page of a multi-language trip.
+//
+// head.tpl emits one self-referential x-default line, and until now only the
+// variants expanded it into the full cluster: /en/azerbaidjan/ pointed at its
+// French sibling, the French page pointed at nobody. Google treats a
+// one-directional cluster as unconfirmed and is free to ignore it, so the
+// alternates declared in sitemap.xml were carrying the whole claim alone.
+// injectHreflang has existed for this since the variants landed; it was left
+// unwired to keep every FR page byte-identical. That cost is accepted now, and
+// it is paid ONLY by trips that publish another language: a langs:["fr"] trip
+// hits the `continue` below before anything is touched and still renders the
+// exact bytes it did before.
+// Runs after the variants (which need the un-expanded page) and before the
+// error gate, so a head.tpl drift fails the build rather than shipping a page
+// with no cluster at all.
+if (!errors.length) {
+  for (const [slug] of parsed) {
+    const entry = manifest.trips?.[slug];
+    if (entry?.enabled !== true) continue;
+    const langs = Array.isArray(entry.langs) && entry.langs.length ? entry.langs : ["fr"];
+    if (!langs.filter((l) => l !== "fr").length) continue; // French-only: untouched
+    const r = renders.get(slug);
+    if (!r) continue;
+    try {
+      r.html = toOutput(injectHreflang(r.html, { slug: entry.outputDir || slug, langs }));
+    } catch (e) {
+      err(`data/trips/${slug}.json`, `hreflang réciproque (page FR) impossible: ${e.message}`);
     }
   }
 }
@@ -284,17 +336,59 @@ if (posts.length) {
   writeOut("blog/index.html", renderIndex(posts, siteCfg));
   console.log(`📝 blog: ${posts.length} article(s) publié(s)${includeDrafts ? " (brouillons inclus — AT_BLOG_DRAFTS=1)" : ""}, ${blogWritten} fichier(s) écrit(s)`);
 }
-// sitemap: (re)generate the blog block between the AT:blog markers
+// sitemap: (re)generate the blog block. The markers are inserted before
+// </urlset> when they are absent — site/sitemap.xml has never carried them, so
+// the old marker-only replace matched nothing, wrote nothing and said nothing:
+// no published post could ever have reached the sitemap. Every outcome is now
+// announced (see tools/sitemap-blog.mjs).
 {
   const smPath = join(SITE_DIR, "sitemap.xml");
   const sm = readFileSync(smPath, "utf8");
-  const urls = posts.length
-    ? [`  <url><loc>${siteCfg.baseUrl}/blog/</loc><lastmod>${posts[0].date}</lastmod></url>`,
-       ...posts.map((p) => `  <url><loc>${siteCfg.baseUrl}/blog/${p.slug}/</loc><lastmod>${p.date}</lastmod></url>`)]
-    : [];
-  const block = `<!-- AT:blog START -->\n${urls.length ? urls.join("\n") + "\n" : ""}<!-- AT:blog END -->`;
-  const next = sm.replace(/<!-- AT:blog START -->[\s\S]*?<!-- AT:blog END -->/, block);
-  if (next !== sm && !CHECK_ONLY) writeFileSync(smPath, next);
+
+  // Language data first: alternate clusters and one <url> per published
+  // variant, both derived from the manifest so they cannot drift from the
+  // rendered pages. Curated image copy, lastmod and priority are preserved —
+  // variant blocks are cloned from their French sibling.
+  const lang = syncSitemapLangs(sm, manifest);
+  for (const p of lang.problems) warn("site/sitemap.xml", p);
+  if (lang.added.length || lang.updated) {
+    console.log(`${CHECK_ONLY ? "🔍" : "✅"} sitemap.xml → langues: ` +
+                `${lang.added.length} URL(s) ajoutée(s), ${lang.updated} cluster(s) synchronisé(s)` +
+                `${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`);
+  }
+
+  // --check must not write, so a committed sitemap that disagrees with the
+  // manifest has to FAIL rather than pass quietly: a real build would silently
+  // repair it on Vercel while the repo kept shipping the stale file, which is
+  // exactly how the hreflang mismatch went unnoticed.
+  if (CHECK_ONLY) {
+    const drift = checkSitemapLangs(sm, manifest);
+    if (drift.length) {
+      for (const d of drift) console.error(`❌ [site/sitemap.xml] ${d}`);
+      console.error(`\nBuild bloqué: sitemap.xml désynchronisé du manifest. ` +
+                    `Lancer \`node tools/build.mjs\` et committer le sitemap.`);
+      process.exit(1);
+    }
+  }
+
+  const { xml, mode, error: smError } = injectBlogBlock(lang.xml, renderBlogBlock(posts, siteCfg.baseUrl));
+  if (mode === "error") {
+    // Past the gate, so the pages are already written — but the deploy must
+    // still fail: shipping a sitemap we could not update is how the silent
+    // no-op lasted this long.
+    console.error(`❌ [site/sitemap.xml] ${smError}`);
+    console.error(`\nBuild bloqué: sitemap.xml inutilisable. Le site en ligne reste inchangé.`);
+    process.exit(1);
+  }
+  if (mode === "inserted") {
+    console.warn(`⚠️  [site/sitemap.xml] marqueurs AT:blog absents — bloc blog ` +
+                 `${CHECK_ONLY ? "à insérer" : "inséré"} avant </urlset>`);
+  }
+  if (xml !== sm) {
+    if (!CHECK_ONLY) writeFileSync(smPath, xml);
+    console.log(`${CHECK_ONLY ? "🔍" : "✅"} sitemap.xml → bloc blog: ${posts.length} article(s)` +
+                `${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`);
+  }
 }
 
 console.log(`\nBuild OK — ${tripFiles.length} fichier(s) validé(s), ${rendered} rendu(s), ${unchanged} inchangé(s), ${skipped} non publié(s).`);

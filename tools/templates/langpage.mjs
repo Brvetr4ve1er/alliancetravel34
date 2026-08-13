@@ -13,15 +13,28 @@
 //       browser uses), <html lang>/dir, <title>/description/OG, self-canonical,
 //       the reciprocal hreflang cluster, and a relative→root-absolute path
 //       rewrite so assets resolve from the deeper /en|ar/<slug>/ directory.
-//   • injectHreflang(html, {slug, langs}) — for the FRENCH variant of a
-//       multi-language trip. NOT WIRED on this branch: the FR page stays
-//       fully byte-identical and reciprocity is declared via the sitemap's
-//       xhtml:link alternates instead. Kept exported for the follow-up that
-//       accepts FR byte-drift and adds the on-page cluster.
+//   • injectHreflang(html, {slug, langs}) — for the FRENCH page of a
+//       multi-language trip: the same reciprocal cluster, plus the langs list.
+//       Wired in tools/build.mjs, after the variants are rendered and before
+//       the error gate. It was left unwired at first to keep every FR page
+//       byte-identical, with reciprocity declared only through the sitemap's
+//       xhtml:link alternates; Google treats a cluster whose members do not
+//       point back at each other as unconfirmed, so the FR byte-drift is
+//       accepted now. A trip with langs:["fr"] never reaches this function, so
+//       single-language French pages are still byte-for-byte what they were.
 
 // localize.mjs (the data-i18n body text-swap) is imported lazily inside
 // localizeVariant so a French-only build never loads it.
 const ORIGIN = "https://alliance-travel.dz";
+
+// Arabic webfont, byte-identical to AR_FONT_HREF in site/assets/js/i18n.js.
+// The data-arabic-font marker lets the client's ensureArabicFont() skip its own
+// injection, so an AR page loads Cairo exactly once — from the <head>, before
+// first paint. Injected from JS alone (as it used to be) every Arabic page
+// painted its first frame in a Latin fallback and reflowed, and never loaded
+// Cairo at all when JS was blocked.
+const AR_FONT_HREF = "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap";
+const AR_FONT_LINK = `<link rel="stylesheet" href="${AR_FONT_HREF}" data-arabic-font="1"/>`;
 
 // Path segment prefix for a language: French lives at the root, others nest.
 const prefixFor = (lang) => (lang === "fr" ? "" : `${lang}/`);
@@ -98,8 +111,55 @@ export function injectHreflang(html, { slug, langs }) {
 // localized variants get this — the French page keeps its relative paths.
 // Targets "../ " only when it opens an attribute value or a srcset entry, so a
 // stray "../" inside body copy can't be caught.
-function rootAbsolutePaths(html) {
-  return html.replace(/(["'(,]\s*)\.\.\//g, "$1/");
+// `sameLangDirs` is the set of trip output-dirs that publish a variant in THIS
+// language. Sibling-trip links are re-pointed at that language's URL so an
+// Arabic reader stays in Arabic; without this every internal link dropped them
+// back into French and left the whole /<lang>/ tree orphaned from internal
+// linking (Googlebot saw pages with zero inbound links).
+// Pages with no variant — /voyages/, /rendez-vous-visa/, the homepage — keep
+// their French URL: inventing /ar/voyages/ would link to a 404.
+function rootAbsolutePaths(html, lang, sameLangDirs) {
+  let out = html.replace(/(["'(,]\s*)\.\.\//g, "$1/");
+  if (lang === "fr" || !sameLangDirs?.size) return out;
+  for (const dir of sameLangDirs) {
+    // Only an href/src attribute value that IS the trip root, so asset paths
+    // (/assets/…) and anchors (/bali/#hotels) are matched deliberately, never
+    // substrings of a longer segment.
+    out = out.replace(
+      new RegExp(`((?:href|src)=")/${escapeRe(dir)}/(?=["#?])`, "g"),
+      `$1/${lang}/${dir}/`
+    );
+  }
+  return out;
+}
+
+/* ------------------------------------------------------------- nav CTA */
+
+// The nav CTA's visible label comes from trip data (nav.ctaHtml), so unlike
+// every other nav item it carries no data-i18n and stayed French on variants —
+// an Arabic page whose single most prominent button read "Réserver".
+//
+// Bound here rather than in nav.tpl on purpose: adding the attribute to the
+// template would also rewrite all seven FRENCH pages, and keeping those
+// byte-identical is the guarantee the whole per-language pipeline rests on.
+//
+// Only the LAST text run before </a> is swapped, so egypte's inline WhatsApp
+// <svg> (and any future icon markup) survives untouched.
+function localizeNavCta(html, resolve) {
+  const label = resolve("nav.trip_booking");
+  if (!label) return html;
+  return html.replace(
+    /(<a[^>]*class="[^"]*\bnav-cta\b[^"]*"[^>]*>)([\s\S]*?)(<\/a>)/g,
+    (full, open, inner, close) => {
+      // Trailing text run = everything after the last '>' (or the whole inner
+      // when there is no nested markup). Bail out if it holds no visible text.
+      const cut = inner.lastIndexOf(">") + 1;
+      const head = inner.slice(0, cut);
+      const tail = inner.slice(cut);
+      if (!tail.trim()) return full;
+      return open + head + tail.replace(/\S[\s\S]*\S|\S/, escText(label)) + close;
+    }
+  );
 }
 
 /* --------------------------------------------------------- head rewrites */
@@ -125,6 +185,16 @@ function localizeHead(html, { lang, slug, langs, data, globalT }) {
   // <html lang="fr"> → <html lang="en"> (+ dir="rtl" for Arabic)
   html = replaceOnce(html, `<html lang="fr">`,
     `<html lang="${lang}"${lang === "ar" ? ' dir="rtl"' : ""}>`, "<html lang>");
+
+  // Arabic needs Cairo in the HEAD, not injected later by i18n.js. On a
+  // server-rendered /ar/ page the client-side language switch never fires, so
+  // ensureArabicFont() never runs: the page painted its first frame in a Latin
+  // fallback (and with JS blocked, never loaded Cairo at all). Weights match
+  // AR_FONT_HREF in site/assets/js/i18n.js — keep the two in step.
+  if (lang === "ar") {
+    html = replaceOnce(html, "</head>",
+      `  ${AR_FONT_LINK}\n</head>`, "</head> for AR font");
+  }
 
   // <title> and meta description — only when a translation exists.
   if (meta.title) {
@@ -180,12 +250,15 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /* ----------------------------------------------------------------- api */
 
-export async function localizeVariant(html, { lang, slug, langs, data, globalT }) {
+// sameLangDirs: output-dirs of every trip publishing a variant in `lang`, used
+// to keep sibling-trip links inside this language (see rootAbsolutePaths).
+export async function localizeVariant(html, { lang, slug, langs, data, globalT, sameLangDirs }) {
   const { localizeHtml } = await import("./localize.mjs");
   const resolve = makeResolve(lang, data, globalT);
   let out = localizeHtml(html, resolve); // body + attribute data-i18n swap
+  out = localizeNavCta(out, resolve);    // the one nav item with no data-i18n
   out = localizeHead(out, { lang, slug, langs, data, globalT });
   out = injectTripLangs(out, langs);
-  out = rootAbsolutePaths(out);
+  out = rootAbsolutePaths(out, lang, sameLangDirs);
   return out;
 }

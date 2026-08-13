@@ -4,48 +4,81 @@
     "en": 100,
     "ar": 100
   },
+  "coveragePage": {
+    "en": 100,
+    "ar": 100
+  },
+  "counts": {
+    "total": 215,
+    "trip": 192,
+    "shared": 23,
+    "en": {
+      "ok": 192,
+      "stale": 0,
+      "global": 23,
+      "missing": 0
+    },
+    "ar": {
+      "ok": 192,
+      "stale": 0,
+      "global": 23,
+      "missing": 0
+    }
+  },
   "keys": {
     "nav.skip": {
       "fr": "Aller au contenu principal",
       "frHash": "00tjwm6j",
+      "en": "Skip to main content",
+      "ar": "تخطَّ إلى المحتوى الرئيسي",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "nav.trip_program": {
       "fr": "Programme",
       "frHash": "00dfvy9h",
+      "en": "Itinerary",
+      "ar": "البرنامج",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "nav.trip_hotels": {
       "fr": "Hôtels",
       "frHash": "009pf2vb",
+      "en": "Hotels",
+      "ar": "الفنادق",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "nav.trip_faq": {
       "fr": "FAQ",
       "frHash": "00hfim9n",
+      "en": "FAQ",
+      "ar": "الأسئلة الشائعة",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "nav.trip_booking": {
       "fr": "Réserver",
       "frHash": "01b5gpyv",
+      "en": "Book",
+      "ar": "احجز رحلتك",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "nav.visa_rdv": {
       "fr": "Visa",
       "frHash": "00k3jmpk",
+      "en": "Visa Appointments",
+      "ar": "مواعيد التأشيرات",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "klHeroEyebrow": {
       "fr": "Voyage organisé · Qatar / Emirates · Été 2026",
@@ -83,9 +116,11 @@
     "heroFrom": {
       "fr": "À partir de",
       "frHash": "008fxzhe",
+      "en": "From",
+      "ar": "ابتداءً من",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "klHeroPriceUnit": {
       "fr": "par personne · chambre double · 5★ · dès le départ de Juin",
@@ -2147,114 +2182,146 @@
     "footer.cta_title": {
       "fr": "Prêt à partir ?",
       "frHash": "00hhwa6o",
+      "en": "Ready to go?",
+      "ar": "جاهز للسفر؟",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.cta_sub": {
       "fr": "Écrivez-nous sur WhatsApp, réponse le jour même.",
       "frHash": "011n77ph",
+      "en": "Message us on WhatsApp — same-day reply.",
+      "ar": "راسلنا على واتساب، رد في نفس اليوم.",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.cta_btn": {
       "fr": "Discuter sur WhatsApp",
       "frHash": "00w9kd9q",
+      "en": "Chat on WhatsApp",
+      "ar": "الدردشة على واتساب",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.tagline": {
       "fr": "Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.",
       "frHash": "01x3xgta",
+      "en": "Guided trips out of Bordj Bou Arreridj. 1,200+ travellers, one standard, since 2019.",
+      "ar": "رحلات مُرافَقة من بُرج بوعريريج. أكثر من 1.200 مسافر راضٍ منذ 2019.",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.col_voyages": {
       "fr": "Nos voyages 2026",
       "frHash": "016brh6p",
+      "en": "Our 2026 trips",
+      "ar": "رحلاتنا 2026",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_egypte": {
       "fr": "Égypte",
       "frHash": "01f7igiz",
+      "en": "Egypt",
+      "ar": "مصر",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_tunisie": {
       "fr": "Tunisie",
       "frHash": "00vzcvgu",
+      "en": "Tunisia",
+      "ar": "تونس",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_azerbaidjan": {
       "fr": "Azerbaïdjan",
       "frHash": "01ewlous",
+      "en": "Azerbaijan",
+      "ar": "أذربيجان",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_istanbul": {
       "fr": "Istanbul",
       "frHash": "008sjfc7",
+      "en": "Istanbul",
+      "ar": "إسطنبول",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_kuala_lumpur": {
       "fr": "Kuala Lumpur",
       "frHash": "01j142tc",
+      "en": "Kuala Lumpur",
+      "ar": "كوالالمبور",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_bali": {
       "fr": "Bali",
       "frHash": "016anwzv",
+      "en": "Bali",
+      "ar": "بالي",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.dest_vietnam": {
       "fr": "Vietnam",
       "frHash": "00ubdkh7",
+      "en": "Vietnam",
+      "ar": "فيتنام",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.col_contact": {
       "fr": "Contact",
       "frHash": "00w3fq2r",
+      "en": "Contact",
+      "ar": "تواصل",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.copyright": {
       "fr": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie",
       "frHash": "01qig6hr",
+      "en": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algeria",
+      "ar": "© 2026 أليانس ترافل · بُرج بوعريريج، الجزائر",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.notice": {
       "fr": "Prix en Dinar Algérien (DA) · Indicatifs · Confirmation à la réservation",
       "frHash": "0092or02",
+      "en": "Prices in Algerian Dinar (DZD) · Indicative · Confirmed at booking",
+      "ar": "الأسعار بالدينار الجزائري · إرشادية · تُؤكَّد عند الحجز",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "footer.back_to_top": {
       "fr": "Haut de page",
       "frHash": "01q09e3t",
+      "en": "Back to top",
+      "ar": "أعلى الصفحة",
       "scope": "shared",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "global",
+      "arState": "global"
     },
     "klStickyLabel": {
       "fr": "Total estimé",

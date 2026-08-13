@@ -843,10 +843,18 @@ class BookingForm {
         return;
       }
       const btn = this.el.copyBtn;
-      const orig = btn.innerHTML;
+      // Capture the label ONCE per confirmation cycle. A second click inside
+      // the 2s window used to capture the already-swapped "Copié !" markup
+      // and restore *that*, so the button kept saying "Copié !" for good.
+      if (btn._copyResetTimer) clearTimeout(btn._copyResetTimer);
+      else btn._copyOrigHTML = btn.innerHTML;
       btn.innerHTML = `${icon('check')} Copié&nbsp;!`;
       btn.classList.add('copied');
-      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+      btn._copyResetTimer = setTimeout(() => {
+        btn._copyResetTimer = null;
+        btn.innerHTML = btn._copyOrigHTML;
+        btn.classList.remove('copied');
+      }, 2000);
       window.AT_showToast?.('Texte du dossier copié — collez-le où vous voulez');
     });
 

@@ -11,6 +11,10 @@ const getPath = (o, p) => p.split(".").reduce((x, k) => (x == null ? x : x[k]), 
 const setPath = (o, p, v) => { const k = p.split("."); let x = o; for (const s of k.slice(0, -1)) x = x[s] ?? (x[s] = {}); x[k[k.length - 1]] = v; };
 // Escape before interpolating trip content into markup. Browsers decode these
 // entities back when you read input/textarea `.value`, so JSON round-trips intact.
+// It deliberately does NOT escape `'`: every interpolation site in this file was
+// audited and every one of them sits either in element text or inside a
+// DOUBLE-quoted attribute (lines with data-path=, value=, id=, for=). If you ever
+// add a single-quoted attribute here, add `.replace(/'/g, "&#39;")` first.
 const escHtml = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 // [label, json-path, type]
@@ -153,13 +157,55 @@ function collectInto(content) {
   return content;
 }
 
+// Two fast clicks on two different trips race each other. Without a token,
+// whichever /api/get-trip resolves LAST wins `current` — the form can end up
+// showing trip A while current.slug is B, and then Publier writes A's content
+// into B's file. That is silent data corruption on a WRITE surface, not a
+// flicker. Same guard as app.js's pendingToken around /api/me: stamp the
+// request, and let only the newest response touch `current` or the DOM.
+let loadSeq = 0;
+
+// A dead end with no way out is its own bug: the Pages nav button no-ops once
+// the area is initialised, so without these two controls a failed load left the
+// owner with nothing but a page reload.
+function loadFailed(c, slug, detail) {
+  // Server-supplied text is escaped before it reaches markup — same policy as
+  // the 422 branch in save() below.
+  c.innerHTML = `<p class="msg err">${escHtml(fmt("pages.load.fail", { e: detail }))}</p>`;
+  const retry = document.createElement("button");
+  retry.className = "btn btn--ghost btn--sm";
+  retry.textContent = t("common.retry");
+  retry.addEventListener("click", () => loadTrip(slug));
+  const back = document.createElement("button");
+  back.className = "btn btn--ghost btn--sm";
+  back.textContent = t("pages.back");
+  back.addEventListener("click", () => renderList(c));
+  c.append(retry, back);
+}
+
 async function loadTrip(slug) {
   const c = document.getElementById("area-pages");
-  c.innerHTML = `<p class="msg">Chargement de ${slug}…</p>`;
-  const r = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(slug)}`);
-  if (!r.ok) { c.innerHTML = `<p class="msg err">Erreur: ${r.data.error || r.status}</p>`; return; }
+  const seq = ++loadSeq;
+  const p = document.createElement("p"); p.className = "msg";
+  p.textContent = fmt("pages.loading", { slug });
+  c.replaceChildren(p);
+
+  let r;
+  try {
+    r = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(slug)}`);
+  } catch {
+    // An unguarded throw here used to leave "Chargement de …" on screen forever.
+    if (seq !== loadSeq) return false;
+    loadFailed(c, slug, t("pages.network"));
+    return false;
+  }
+  // A newer trip was clicked while this request was in flight: this answer is
+  // stale, so it must not claim `current` and must not paint anything.
+  if (seq !== loadSeq) return false;
+  if (!r.ok) { loadFailed(c, slug, r.data.error || r.status); return false; }
   current = { slug, content: r.data.content, sha: r.data.sha };
   renderEditor(c);
+  return true;
 }
 
 async function save() {
@@ -173,12 +219,24 @@ async function save() {
   el("ep-json").value = JSON.stringify(content, null, 2);
 
   msg.className = "msg"; msg.textContent = t("pages.publishing");
-  el("ep-save").disabled = true;
-  const r = await window.AT_ADMIN.callApi("/api/save-trip", {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ slug: current.slug, content, sha: current.sha }),
-  });
-  el("ep-save").disabled = false;
+  const saveBtn = el("ep-save");
+  if (saveBtn) saveBtn.disabled = true;
+  let r;
+  try {
+    r = await window.AT_ADMIN.callApi("/api/save-trip", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: current.slug, content, sha: current.sha }),
+    });
+  } catch {
+    msg.className = "msg err";
+    msg.textContent = t("pages.save.network");
+    return;
+  } finally {
+    // In `finally`, not after the await: a network throw used to skip the
+    // re-enable and leave Publier disabled and stuck on "Publication…" for the
+    // rest of the session, with no retry short of reloading the page.
+    if (saveBtn) saveBtn.disabled = false;
+  }
   if (r.ok) {
     msg.className = "msg ok";
     msg.textContent = t("pages.published");
@@ -193,8 +251,27 @@ async function save() {
     // in memory and armed: the next save would re-POST that stale body, and the
     // 409 retry re-PUTs it against a fresh SHA — silently reverting whatever
     // anyone else published in between.
-    const g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`);
-    if (g.ok) {
+    // The publish itself already succeeded; a failed re-sync must not throw
+    // away the confirmation the owner is reading.
+    //
+    // Stamped with the SAME token as loadTrip(): this is the second /api/get-trip
+    // that writes `current`, and #ep-back is never disabled, so the owner can go
+    // back and open another trip while it is in flight. Unguarded, the stale
+    // answer pasted the PREVIOUS trip's sha + content onto a `current` whose slug
+    // is now the new one, and repainted the raw-JSON panel with it — the next
+    // Publier then POSTs a mismatched {slug, content} that save-trip.mjs rejects
+    // 400 ("content.slug must equal slug"), losing the edit and naming a field
+    // the owner never touched. Bump, don't just read: after a publish this
+    // response is the freshest view of `current`, so any older load in flight
+    // must lose to it.
+    const seq = ++loadSeq;
+    let g = null;
+    try { g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`); }
+    catch { /* keep the "Publié ✓" — next save re-reads the SHA anyway */ }
+    // Dropping it is safe precisely because a newer load now owns `current` (and
+    // this editor's #ep-json is gone, so writing to it would throw anyway).
+    if (seq !== loadSeq) return;
+    if (g && g.ok) {
       current.sha = g.data.sha;
       current.content = g.data.content;
       el("ep-json").value = JSON.stringify(g.data.content, null, 2);
@@ -223,10 +300,23 @@ async function revert() {
   if (saveBtn) saveBtn.disabled = true;
   if (revBtn) revBtn.disabled = true;
 
-  const r = await window.AT_ADMIN.callApi("/api/revert-trip", {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ slug: current.slug }),
-  });
+  let r;
+  try {
+    r = await window.AT_ADMIN.callApi("/api/revert-trip", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: current.slug }),
+    });
+  } catch {
+    // A throw used to skip both re-enables in the else branch below and leave
+    // the editor frozen on "Annulation en cours…" with two dead buttons.
+    // (Not a `finally`: on the success path loadTrip() rebuilds the toolbar, so
+    // re-enabling these now-detached buttons would be meaningless.)
+    if (saveBtn) saveBtn.disabled = false;
+    if (revBtn) revBtn.disabled = false;
+    msg.className = "msg err";
+    msg.textContent = fmt("pages.revert.fail", { e: t("pages.network") });
+    return;
+  }
 
   if (r.ok) {
     // Re-render the editor with the restored version, then show the confirmation

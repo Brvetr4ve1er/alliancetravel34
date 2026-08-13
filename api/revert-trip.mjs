@@ -10,14 +10,32 @@
 // when it was first committed, so it is known-good by construction.
 import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile, putFile, listCommits } from "./_lib/github.mjs";
+import { isValidSlug } from "./_lib/slug.mjs";
 
-const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const API = "https://api.github.com";
+
+// The same 1 MB ceiling as save-trip.mjs and notify-lead.mjs — the whole body is
+// buffered before it can be parsed, so every route that reads the stream needs a
+// bound, and they all share one number. This body is only {slug}, so the cap is
+// pure hygiene here; it is spelled out rather than imported because importing
+// save-trip.mjs would drag tools/validate-trip.mjs + tools/templates/trip2.mjs
+// into this function's bundle (vercel.json only ships tools/** with save-trip).
+export const MAX_BODY_BYTES = 1024 * 1024; // 1 MB
 
 async function readBody(req) {
   if (req.body && typeof req.body === "object") return req.body; // Vercel pre-parses JSON
-  let raw = "";
-  for await (const chunk of req) raw += chunk;
+  // Buffers, decoded once at the end: byte counting has to be exact for the cap
+  // to mean anything, and decoding chunk-by-chunk would mangle a multi-byte
+  // character split across a chunk boundary.
+  const chunks = [];
+  let bytes = 0;
+  for await (const chunk of req) {
+    const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    bytes += buf.length;
+    if (bytes > MAX_BODY_BYTES) throw Object.assign(new Error("body too large"), { status: 413 });
+    chunks.push(buf);
+  }
+  const raw = Buffer.concat(chunks).toString("utf8");
   return raw ? JSON.parse(raw) : {};
 }
 
@@ -57,10 +75,13 @@ export default async function handler(req, res) {
 
   let body;
   try { body = await readBody(req); }
-  catch { return res.status(400).json({ error: "invalid JSON body" }); }
+  catch (e) {
+    if (e && e.status === 413) return res.status(413).json({ error: "body too large" });
+    return res.status(400).json({ error: "invalid JSON body" });
+  }
 
   const { slug } = body;
-  if (!SLUG_RE.test(String(slug || ""))) return res.status(400).json({ error: "invalid slug" });
+  if (!isValidSlug(slug)) return res.status(400).json({ error: "invalid slug" });
 
   const path = `data/trips/${slug}.json`;
 

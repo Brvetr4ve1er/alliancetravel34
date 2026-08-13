@@ -9,14 +9,21 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-# Block known scraper bots that don't respect crawl-delay and ignore
-# the Allow directive while hammering the server. Add more here when
+# Slow down the SEO crawlers that hammer the server. Add more here when
 # the access logs show abuse.
+#
+# Disallow: /admin/ is repeated in each group ON PURPOSE. A group that names a
+# user-agent REPLACES the "User-agent: *" group for that crawler — it does not
+# add to it — so these two were being told "crawl at 5 s intervals" and nothing
+# else, and the admin panel was fair game for exactly the two bots most likely
+# to publish what they find.
 User-agent: AhrefsBot
 Crawl-delay: 5
+Disallow: /admin/
 
 User-agent: SemrushBot
 Crawl-delay: 5
+Disallow: /admin/
 
 # Sitemap location — Google + Bing pick this up automatically.
 Sitemap: https://alliance-travel.dz/sitemap.xml

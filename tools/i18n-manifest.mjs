@@ -91,19 +91,50 @@ function stateFor(value, storedHash, currentFrHash) {
   return "stale";
 }
 
+/** Dotted-path read, for shared keys like "nav.skip" in the sitewide dict. */
+function lookupPath(key, dict) {
+  if (!key || !dict) return undefined;
+  return key.split(".").reduce((o, k) => (o && typeof o === "object" && k in o ? o[k] : undefined), dict);
+}
+
+// Shared keys (nav.*, footer.*, heroFrom…) are translated once, in
+// site/assets/js/i18n.js, and NEVER in a trip's i18n block. Measuring them
+// against trip.i18n therefore declared all 26 of them "missing" on every one of
+// the 7 trips, while the headline coverage — which counts trip-scope keys only —
+// read 100 %. A reader saw a perfect score above 26 rows of red. They are
+// resolved against the sitewide dictionary instead and labelled "global", so the
+// state says both that the string is translated and where the translation lives;
+// a shared key genuinely absent from that dictionary is still "missing", which
+// is a real gap nothing used to report.
+// No sitewide dictionary supplied (a caller that cannot read it) → the honest
+// answer is "unknown", and unknown is reported as missing rather than assumed
+// translated: a coverage metric may under-promise, never over-promise.
+function sharedStateFor(value) {
+  return value == null || value === "" ? "missing" : "global";
+}
+
 /**
- * buildManifest({ slug, html, trip, sharedKeys }) ->
- *   { slug, coverage: {en, ar}, keys: { [key]: {fr, frHash, en, ar, enHash, arHash, scope, enState, arState} } }
+ * buildManifest({ slug, html, trip, sharedKeys, sharedDict }) ->
+ *   { slug, coverage: {en, ar}, coveragePage: {en, ar}, counts, keys: { [key]: {…} } }
  *
  * - scope: "shared" for keys translated once globally (nav.*, heroFrom, …),
  *   "trip" for everything specific to this trip page.
- * - enState/arState: "missing" | "stale" | "ok" (see stateFor).
- * - coverage.{en,ar}: % of trip-scope keys PRESENT in that language (ok or stale).
- *   i18nHash is a new, currently-absent block on every trip's JSON, so on
- *   first run every existing translation reads as "stale" — expected, honest,
- *   and fixed by the stamping step that ships later in this milestone.
+ * - enState/arState: "missing" | "stale" | "ok" | "global" (see stateFor and
+ *   sharedStateFor). "global" only ever applies to shared-scope keys.
+ * - coverage.{en,ar}: % of TRIP-scope keys present in that language (ok or
+ *   stale). Unchanged: it answers "how much of the work this trip owns is
+ *   done", which is the number the editor acts on.
+ * - coveragePage.{en,ar}: % of ALL bound keys present, shared ones included —
+ *   what the page actually shows a visitor in that language, and the number to
+ *   read before deciding a language is ready to publish.
+ * - counts: {total, trip, shared, en:{…state tallies}, ar:{…}} so neither
+ *   figure is ever quoted without the size of what it measures. A page that
+ *   binds 7 elements scores 100 % just as easily as one that binds 207.
+ *
+ * @param sharedDict optional {en, ar} sitewide dictionary (tools/templates/
+ *   global-i18n.mjs). Omitted → shared keys report "missing", never "global".
  */
-export function buildManifest({ slug, html, trip, sharedKeys }) {
+export function buildManifest({ slug, html, trip, sharedKeys, sharedDict = null }) {
   const bindings = extractBindings(html);
   const en = (trip && trip.i18n && trip.i18n.en) || {};
   const ar = (trip && trip.i18n && trip.i18n.ar) || {};
@@ -115,6 +146,24 @@ export function buildManifest({ slug, html, trip, sharedKeys }) {
     if (keys[b.key]) continue; // first occurrence wins; duplicates share one FR source
     const scope = sharedKeys && sharedKeys.has(b.key) ? "shared" : "trip";
     const hash = frHash(b.fr);
+
+    if (scope === "shared") {
+      // Translated in site/assets/js/i18n.js, so its freshness is that file's
+      // business — no per-trip hash is stamped for it and none is invented here.
+      const enVal = lookupPath(b.key, sharedDict && sharedDict.en);
+      const arVal = lookupPath(b.key, sharedDict && sharedDict.ar);
+      keys[b.key] = {
+        fr: b.fr,
+        frHash: hash,
+        en: enVal,
+        ar: arVal,
+        scope,
+        enState: sharedStateFor(enVal),
+        arState: sharedStateFor(arVal),
+      };
+      continue;
+    }
+
     const enVal = en[b.key];
     const arVal = ar[b.key];
     const enHash = enHashes[b.key];
@@ -139,15 +188,39 @@ export function buildManifest({ slug, html, trip, sharedKeys }) {
   // Counting only "ok" would read 0% on every trip until the one-time hash
   // stamping lands, which would tell the owner egypte is untranslated when it
   // is 92% translated — a worse lie than the staleness it was meant to expose.
-  const tripKeys = Object.values(keys).filter((k) => k.scope === "trip");
-  const pct = (state) =>
-    tripKeys.length === 0
+  //
+  // Two figures, because one cannot answer both questions: `coverage` scopes to
+  // the keys this trip owns (the editing to-do list), `coveragePage` covers
+  // every key the page binds (what a visitor in that language actually reads).
+  // Reporting only the first is how 100 % came to sit above 26 untranslated
+  // rows; reporting only the second would hide a trip's own backlog behind
+  // shared strings it does not control.
+  const allKeys = Object.values(keys);
+  const tripKeys = allKeys.filter((k) => k.scope === "trip");
+  const pct = (list, state) =>
+    list.length === 0
       ? 0
-      : Math.round((tripKeys.filter((k) => k[state] !== "missing").length / tripKeys.length) * 100);
+      : Math.round((list.filter((k) => k[state] !== "missing").length / list.length) * 100);
+
+  // One tally per language over the whole key set, so the two percentages can
+  // always be read against what they are made of.
+  const tally = (state) => {
+    const t = { ok: 0, stale: 0, global: 0, missing: 0 };
+    for (const k of allKeys) t[k[state]] = (t[k[state]] ?? 0) + 1;
+    return t;
+  };
 
   return {
     slug,
-    coverage: { en: pct("enState"), ar: pct("arState") },
+    coverage: { en: pct(tripKeys, "enState"), ar: pct(tripKeys, "arState") },
+    coveragePage: { en: pct(allKeys, "enState"), ar: pct(allKeys, "arState") },
+    counts: {
+      total: allKeys.length,
+      trip: tripKeys.length,
+      shared: allKeys.length - tripKeys.length,
+      en: tally("enState"),
+      ar: tally("arState"),
+    },
     keys,
   };
 }

@@ -43,3 +43,10 @@ scripts/_*-backup/
 .obsidian/
 .vercel
 .env*
+
+# Supplier B2B rate sheets — CONFIDENTIAL, never commit. 77 MB of wholesale
+# brochures carrying supplier names and commission amounts; docs/PROJECT-BIBLE.md
+# classes those as internal-only and this repo is public. The owner drops the PDFs
+# here locally and a dev/AI reads them from disk; nothing in the build touches this
+# directory (tools/build.mjs reads only data/, tools/ and site/).
+source of truth/
