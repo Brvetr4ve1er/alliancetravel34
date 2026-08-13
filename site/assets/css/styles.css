@@ -387,8 +387,11 @@ select {
   /* ── Default accent (per-page <style> overrides this on trip pages) */
   --accent:       #9ce8b2;
   --accent-dim:   rgba(156, 232, 178, .12);
-  --accent-2:      #e8b04b;   /* v28 warm amber — editorial secondary accent (Latin themes) */
-  --accent-2-dim:  rgba(232, 176, 75, .14);
+  /* Gold retired (owner call 2026-08-13): the amber secondary accent read as
+     clutter. Alias to the primary accent so every --accent-2 consumer (hero em,
+     step badges, amber chips) collapses onto the single brand green. */
+  --accent-2:      var(--accent);
+  --accent-2-dim:  var(--accent-dim);
   --accent-glow:  rgba(156, 232, 178, .26);
 
   /* ── Status ────────────────────────────────────────────────────── */
@@ -415,6 +418,7 @@ select {
   /* ── Typography ────────────────────────────────────────────────── */
   --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;  /* v28: distinctive high-contrast display serif; headings already route through this token. Body stays DM Sans. RTL block (~L9072) remaps display to Cairo so Arabic never hits Fraunces. */
   --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-hero-display: 'Sora', 'DM Sans', system-ui, sans-serif; /* heroes only: modern geometric sans (owner call 2026-08-13 — Fraunces italic heroes read as unreadable); RTL remaps to Cairo */
 
   /* ── Spacing scale (legacy v1 — kept for backward compat; use --space-* in new code)
        Aliases by design: --s4/--s5 both 24px (legacy v1 → v6 widening absorbed a removed step);
@@ -498,8 +502,9 @@ select {
   /* Accent (default; per-page <style> overrides win) */
   --accent:       #237a4a;
   --accent-dim:   rgba(35, 122, 74, .12);
-  --accent-2:      #a86a12;   /* v28 deeper amber for AA contrast on cream */
-  --accent-2-dim:  rgba(168, 106, 18, .12);
+  /* Gold retired (owner call 2026-08-13) — same alias as the dark theme. */
+  --accent-2:      var(--accent);
+  --accent-2-dim:  var(--accent-dim);
   --accent-glow:  rgba(35, 122, 74, .24);
 
   /* Elevation — navy-tinted, softer */
@@ -8863,6 +8868,7 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] {
   --font-display: 'Cairo', 'DM Sans', system-ui, sans-serif;
   --font-body:    'Cairo', 'DM Sans', system-ui, sans-serif;
+  --font-hero-display: 'Cairo', 'DM Sans', system-ui, sans-serif; /* Sora is Latin-only — Arabic heroes stay on Cairo */
 }
 :root[lang="ar"] body {
   font-family: var(--font-body);
@@ -10331,3 +10337,18 @@ html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--sp
    column so its 3×240px grid can't push the page into horizontal scroll. */
 .contact-card .branch-list { grid-template-columns: 1fr; }
 
+
+/* ── Hero type — Sora display face restored (owner call 2026-08-13) ──────────
+   The v28 "one family per role" pass put heroes on Fraunces, whose italic em
+   ("fully sorted") the owner rejected as unreadable. Heroes go back to the
+   approved Sora treatment (daf58e5): modern geometric sans, weight 600, accent
+   line in brand green, no italic. Section headings stay on Fraunces — this is
+   hero-scoped. RTL remaps --font-hero-display to Cairo (Sora has no Arabic). */
+.home-hero .hero__title { font-family: var(--font-hero-display); font-weight: 600; font-size: clamp(2.3rem, 1.7rem + 3vw, 4rem); line-height: 1.08; letter-spacing: -.02em; }
+.home-hero .hero__title em { font-family: var(--font-hero-display); font-style: normal; font-weight: 600; font-size: .56em; color: var(--accent); }
+
+.aurora-hero__title { font-family: var(--font-hero-display, var(--font-display)); font-weight: 600; font-size: clamp(2.5rem, 7.4vw, 5.4rem); line-height: 1; letter-spacing: -.02em; }
+.aurora-hero__title em { font-family: var(--font-hero-display, var(--font-display)); font-style: normal; }
+
+.hero--service .hero__title { font-family: var(--font-hero-display); font-weight: 600; letter-spacing: -.02em; }
+.hero--service .hero__title em { font-family: var(--font-hero-display); font-style: normal; font-weight: 600; font-size: .82em; color: var(--accent); }
