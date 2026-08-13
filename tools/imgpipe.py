@@ -7,12 +7,14 @@ docs/PROJECT-BIBLE.md (AVIF q42-50 speed 3, WebP q70-76 method 6, JPEG q74-80)
 and against its delivery budget (AVIF < 250 KB, LCP hero < 200 KB).
 
 WHY THIS EXISTS
-The repo had no runnable encoder. scripts/reencode-heroes.cjs needs `sharp`,
-which cannot be installed in a repo that deliberately has no package.json, and
-the six tools/_*.py one-shots carry hardcoded C:\\Users\\ROG STRIX\\ paths. So
-50 of the site's images (the 7 homepage trip cards and all 43 hotel photos)
-were still shipping as bare JPEG with no AVIF or WebP sibling — the only images
-outside the pipeline, on the pages customers open over mobile data.
+The repo had no runnable encoder. The previous attempts — scripts/
+reencode-heroes.cjs (needed `sharp`, uninstallable in a repo that deliberately
+has no package.json) and six tools/_*.py one-shots (hardcoded
+C:\\Users\\ROG STRIX\\ paths) — have since been deleted in favour of this file.
+Before it existed, 50 of the site's images (the 7 homepage trip cards and all
+43 hotel photos) were still shipping as bare JPEG with no AVIF or WebP sibling
+— the only images outside the pipeline, on the pages customers open over
+mobile data.
 
 USAGE
   # encode one or many sources into a directory

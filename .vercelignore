@@ -36,3 +36,7 @@ source of truth/
 # before the build runs, so ignoring the file makes `node tools/build.mjs` die
 # with ERR_MODULE_NOT_FOUND and takes the whole deploy with it. If you want it
 # out of the deployed output, move it to tools/ and update both importers.
+
+# Masters + image provenance, kept in the repo but never needed at build time.
+# See _archive/README.md — do not delete the folder itself.
+_archive/
