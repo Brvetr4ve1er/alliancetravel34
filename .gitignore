@@ -50,3 +50,9 @@ scripts/_*-backup/
 # here locally and a dev/AI reads them from disk; nothing in the build touches this
 # directory (tools/build.mjs reads only data/, tools/ and site/).
 source of truth/
+
+# Local agent/browser working dirs — session logs & paused audit scratch.
+# Never commit: .playwright-mcp accumulates real browser-session console/page
+# dumps on every automated run; this repo is public.
+.playwright-mcp/
+.security-hardening/
