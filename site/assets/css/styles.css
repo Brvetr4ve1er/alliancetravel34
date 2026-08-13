@@ -826,10 +826,6 @@ select {
   color: var(--txt-1);
 }
 
-.hero__title em {
-  font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
-}
 
 .hero__lede {
   font-size: 1.0625rem;
@@ -2040,7 +2036,10 @@ select {
 
 .final-cta__title em {
   font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  /* --accent-2 aliases --accent since the 2026-08-13 hero pass retired the amber
+     secondary; kept as the token rather than inlined so the two stay in step if
+     a real second accent ever returns. Fraunces italic at the parent's 400. */
+  color: var(--accent-2);
 }
 
 .final-cta__sub {
@@ -3062,7 +3061,9 @@ html.js [data-aos].visible {
 
 .inclus-col__title em {
   font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  /* --accent-2 aliases --accent since the amber secondary was retired.
+     Fraunces italic at the parent's 400. */
+  color: var(--accent-2);
 }
 
 .inclus-col__count {
@@ -6958,7 +6959,13 @@ section.section {
 /* migrated from the removed duplicate block (~L998) */
 .section-head__title em {
   font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  /* --accent-2 aliases --accent since the amber secondary was retired.
+     NOTE: the parent .section-head__title is weight 600, so this renders
+     Fraunces ITALIC at 600 — interpolated from the variable font, whose italic
+     axis the fonts URL spans by requesting ital 400 AND 700. Dropping the 700
+     from that URL looks like removing an unused weight but would collapse the
+     italic axis to 400 and render every section-heading emphasis too light. */
+  color: var(--accent-2);
 }
 .section-head__sub {
   margin-top: var(--s3);
