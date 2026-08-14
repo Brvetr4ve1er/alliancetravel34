@@ -38,7 +38,7 @@ body {
   min-height: 100svh;
 }
 
-/* v28 — headings default to the display face (Fraunces, via --font-display).
+/* Headings default to the display face (Sora, via --font-display).
    Low-specificity tag rule so component classes that set size/weight keep
    working and any that needs to opt out still can. The RTL block remaps
    --font-display to Cairo, so Arabic headings render in Cairo — never
@@ -416,7 +416,7 @@ select {
   --region-bg-sharm:      #020a10;
 
   /* ── Typography ────────────────────────────────────────────────── */
-  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;  /* v28: distinctive high-contrast display serif; headings already route through this token. Body stays DM Sans. RTL block (~L9072) remaps display to Cairo so Arabic never hits Fraunces. */
+  --font-display: 'Sora', 'DM Sans', system-ui, sans-serif;  /* 2026-08-13: one display voice — Sora everywhere (owner retired Fraunces after rejecting its italic hero; a serif-heading/sans-hero split read as a patchwork). Body stays DM Sans; the RTL block remaps display to Cairo (Sora is Latin-only). */
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-hero-display: 'Sora', 'DM Sans', system-ui, sans-serif; /* heroes only: modern geometric sans (owner call 2026-08-13 — Fraunces italic heroes read as unreadable); RTL remaps to Cairo */
 
@@ -827,8 +827,8 @@ select {
 }
 
 .hero__title em {
-  font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  font-style: normal;
+  color: var(--accent-2);   /* accent em — Sora has no italic; color carries the emphasis */
 }
 
 .hero__lede {
@@ -2039,8 +2039,8 @@ select {
 }
 
 .final-cta__title em {
-  font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  font-style: normal;
+  color: var(--accent-2);   /* accent em — color carries the emphasis */
 }
 
 .final-cta__sub {
@@ -3061,8 +3061,8 @@ html.js [data-aos].visible {
 }
 
 .inclus-col__title em {
-  font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  font-style: normal;
+  color: var(--accent-2);   /* accent em — color carries the emphasis */
 }
 
 .inclus-col__count {
@@ -6957,8 +6957,8 @@ section.section {
 }
 /* migrated from the removed duplicate block (~L998) */
 .section-head__title em {
-  font-style: italic;
-  color: var(--accent-2);   /* v28 amber accent (Fraunces italic) */
+  font-style: normal;
+  color: var(--accent-2);   /* accent em — color carries the emphasis */
 }
 .section-head__sub {
   margin-top: var(--s3);
