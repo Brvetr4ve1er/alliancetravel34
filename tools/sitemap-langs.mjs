@@ -93,6 +93,10 @@ const swapLoc = (block, loc) => block.replace(/<loc>[^<]+<\/loc>/, `<loc>${loc}<
  * not recognise — unknown blocks are passed through.
  */
 export function syncSitemapLangs(xml, manifest) {
+  // Judge content, not bytes: a Windows checkout (or a byte-exact write path)
+  // can hand us CRLF, and every run-matcher below assumes bare \n. Normalize
+  // once at the boundary; the synced output is canonically LF.
+  xml = xml.replace(/\r\n?/g, "\n");
   const trips = publishedTrips(manifest);
   const byLoc = new Map(); // loc → { dir, langs }
   for (const t of trips) {
@@ -153,6 +157,9 @@ export function syncSitemapLangs(xml, manifest) {
  * -readable problems (empty when in sync).
  */
 export function checkSitemapLangs(xml, manifest) {
+  // Same boundary normalization as the sync: the gate failed CI on a CRLF
+  // sitemap whose content was correct (the `/>\n?` run-matcher stopped at \r).
+  xml = xml.replace(/\r\n?/g, "\n");
   const problems = [];
   const parts = splitBlocks(xml);
   const blocks = new Map();
