@@ -9,17 +9,17 @@
     "ar": 100
   },
   "counts": {
-    "total": 209,
-    "trip": 186,
+    "total": 207,
+    "trip": 184,
     "shared": 23,
     "en": {
-      "ok": 186,
+      "ok": 184,
       "stale": 0,
       "global": 23,
       "missing": 0
     },
     "ar": {
-      "ok": 186,
+      "ok": 184,
       "stale": 0,
       "global": 23,
       "missing": 0
@@ -1482,28 +1482,6 @@
       "ar": "مزدوجة",
       "enHash": "013h5354",
       "arHash": "013h5354",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnRoomTriple": {
-      "fr": "Triple",
-      "frHash": "001ndqz9",
-      "en": "Triple",
-      "ar": "ثلاثية",
-      "enHash": "001ndqz9",
-      "arHash": "001ndqz9",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnRoomSingle": {
-      "fr": "Individuelle",
-      "frHash": "013gstj1",
-      "en": "Single",
-      "ar": "فردية",
-      "enHash": "013gstj1",
-      "arHash": "013gstj1",
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"

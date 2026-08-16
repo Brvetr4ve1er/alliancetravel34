@@ -779,7 +779,7 @@
       "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
       "priceLabel": "À partir de",
       "kPrice": "",
-      "priceFrom": "46.000 DA",
+      "priceFrom": "55.000 DA",
       "kMeta": " data-i18n=\"tnPriceMeta\"",
       "priceMeta": "Chambre double · par personne",
       "kCta": " data-i18n=\"tnSelect\""
@@ -921,50 +921,38 @@
     "dateChips": [
       {
         "active": true,
-        "value": "13 – 20 Juin 2026",
+        "value": "20 – 26 Août 2026",
         "k": "",
-        "label": "13–20 Juin 2026"
+        "label": "20–26 Août 2026"
       },
       {
         "active": false,
-        "value": "20 – 27 Juin 2026",
+        "value": "28 Août – 03 Septembre 2026",
         "k": "",
-        "label": "20–27 Juin 2026"
+        "label": "28 Août–3 Sept 2026"
       },
       {
         "active": false,
-        "value": "27 Juin – 04 Juillet 2026",
+        "value": "01 – 07 Septembre 2026",
         "k": "",
-        "label": "27 Juin–4 Juil 2026"
+        "label": "1–7 Sept 2026"
       },
       {
         "active": false,
-        "value": "04 – 11 Juillet 2026",
+        "value": "09 – 15 Septembre 2026",
         "k": "",
-        "label": "4–11 Juil 2026"
+        "label": "9–15 Sept 2026"
       },
       {
         "active": false,
-        "value": "11 – 18 Juillet 2026",
+        "value": "16 – 22 Septembre 2026",
         "k": "",
-        "label": "11–18 Juil 2026"
-      },
-      {
-        "active": false,
-        "value": "19 – 25 Août 2026",
-        "k": "",
-        "label": "19–25 Août 2026"
-      },
-      {
-        "active": false,
-        "value": "27 Août – 02 Septembre 2026",
-        "k": "",
-        "label": "27 Août–2 Sept 2026"
+        "label": "16–22 Sept 2026"
       }
     ],
     "dateHint": "Départs chaque semaine de juin à septembre, depuis Alger et Oran.",
     "selectLabel": "Hôtel",
-    "optionsHtml": "            <option value=\"royal-beach-sousse\">Royal Beach 3★ — Sousse — dès 36.000 DA</option>\n            <option value=\"yasmine-beach\">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 46.000 DA</option>\n            <option value=\"menara-hammamet\">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"prestige-imperial-park\">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"kanta-sousse\">Kanta 4★ — Sousse — dès 51.000 DA</option>\n            <option value=\"hannibal-palace\">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>\n            <option value=\"sidi-mansour-djerba\">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>\n            <option value=\"joya-paradise-djerba\">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>\n",
+    "optionsHtml": "            <option value=\"royal-beach-sousse\">Royal Beach 3★ — Sousse — dès 36.000 DA</option>\n            <option value=\"yasmine-beach\">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>\n            <option value=\"soviva\">Hôtel Soviva — dès 41.900 DA</option>\n            <option value=\"menara-hammamet\">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"prestige-imperial-park\">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"kanta-sousse\">Kanta 4★ — Sousse — dès 51.000 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 55.000 DA</option>\n            <option value=\"hannibal-palace\">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>\n            <option value=\"sidi-mansour-djerba\">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>\n            <option value=\"joya-paradise-djerba\">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>\n            <option value=\"mouradi-club-selima\">Mouradi Club Selima — dès 88.000 DA</option>\n            <option value=\"eden-club\">Hôtel Eden Club — dès 89.900 DA</option>\n",
     "roomLabel": "Type de chambre",
     "roomOptions": [
       {
@@ -972,18 +960,6 @@
         "room": "double",
         "k": " data-i18n=\"tnRoomDouble\"",
         "label": "Double"
-      },
-      {
-        "active": false,
-        "room": "triple",
-        "k": " data-i18n=\"tnRoomTriple\"",
-        "label": "Triple"
-      },
-      {
-        "active": false,
-        "room": "single",
-        "k": " data-i18n=\"tnRoomSingle\"",
-        "label": "Individuelle"
       }
     ],
     "travellersLabel": "Voyageurs",
@@ -1118,13 +1094,11 @@
   "tripData": {
     "name": "Tunisie 2026 · Hammamet, Sousse & Djerba",
     "dates": [
-      "13 – 20 Juin 2026",
-      "20 – 27 Juin 2026",
-      "27 Juin – 04 Juillet 2026",
-      "04 – 11 Juillet 2026",
-      "11 – 18 Juillet 2026",
-      "19 – 25 Août 2026",
-      "27 Août – 02 Septembre 2026"
+      "20 – 26 Août 2026",
+      "28 Août – 03 Septembre 2026",
+      "01 – 07 Septembre 2026",
+      "09 – 15 Septembre 2026",
+      "16 – 22 Septembre 2026"
     ],
     "hotels": [
       {
@@ -1183,7 +1157,7 @@
         "id": "houria-palace",
         "name": "Houria Palace 4★ — Sousse",
         "prices": {
-          "double": 46000,
+          "double": 55000,
           "triple": 39000,
           "single": 54000,
           "child1": 8000,
@@ -1243,6 +1217,36 @@
           "baby": 0
         },
         "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec plage privée et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "soviva",
+        "name": "Hôtel Soviva",
+        "prices": {
+          "double": 41900,
+          "child1": 8000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "mouradi-club-selima",
+        "name": "Mouradi Club Selima",
+        "prices": {
+          "double": 88000,
+          "child1": 8000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
+      },
+      {
+        "id": "eden-club",
+        "name": "Hôtel Eden Club",
+        "prices": {
+          "double": 89900,
+          "child1": 8000,
+          "baby": 8000
+        },
+        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
       }
     ],
     "extras": []

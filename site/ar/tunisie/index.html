@@ -489,7 +489,7 @@
           <div class="hotel-card__amenities"><span class="amenity-pill" data-i18n="tnPillPlagePrivee">شاطئ خاص</span><span class="amenity-pill" data-i18n="tnPillSpa">سبا</span></div>
           <div class="hotel-card__price">
             <span class="hotel-card__price-label" data-i18n="tnPriceFrom">ابتداءً من</span>
-            <strong>46.000 DA</strong>
+            <strong>55.000 DA</strong>
             <span class="hotel-card__price-meta" data-i18n="tnPriceMeta">غرفة مزدوجة · للشخص</span>
           </div>
           <button class="hotel-card__cta" data-track-event="hotel_select" data-i18n="tnSelect">اختيار</button>
@@ -570,13 +570,11 @@
         <div class="calc-form-group">
           <label class="calc-form-label" data-i18n="tnCalcDateLabel">تاريخ الانطلاق</label>
           <div class="date-chips" role="radiogroup" aria-label="Choisissez votre date de départ">
-            <button class="date-chip active" type="button" role="radio" tabindex="0" aria-checked="true" data-date="13 – 20 Juin 2026">13–20 Juin 2026</button>
-            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="20 – 27 Juin 2026">20–27 Juin 2026</button>
-            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="27 Juin – 04 Juillet 2026">27 Juin–4 Juil 2026</button>
-            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="04 – 11 Juillet 2026">4–11 Juil 2026</button>
-            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="11 – 18 Juillet 2026">11–18 Juil 2026</button>
-            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="19 – 25 Août 2026">19–25 Août 2026</button>
-            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="27 Août – 02 Septembre 2026">27 Août–2 Sept 2026</button>
+            <button class="date-chip active" type="button" role="radio" tabindex="0" aria-checked="true" data-date="20 – 26 Août 2026">20–26 Août 2026</button>
+            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="28 Août – 03 Septembre 2026">28 Août–3 Sept 2026</button>
+            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="01 – 07 Septembre 2026">1–7 Sept 2026</button>
+            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="09 – 15 Septembre 2026">9–15 Sept 2026</button>
+            <button class="date-chip" type="button" role="radio" tabindex="-1" aria-checked="false" data-date="16 – 22 Septembre 2026">16–22 Sept 2026</button>
           </div>
           <p class="fs-caption u-text-3 u-mt-sp2" data-i18n="tnCalcDateHint">انطلاقات كل أسبوع من جوان إلى سبتمبر، من الجزائر العاصمة ووهران.</p>
         </div>
@@ -585,21 +583,22 @@
           <select id="hotel-select" class="fs-body-sm u-text-1" style="background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer">
             <option value="royal-beach-sousse">Royal Beach 3★ — Sousse — dès 36.000 DA</option>
             <option value="yasmine-beach">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>
-            <option value="houria-palace">Houria Palace 4★ — Sousse — dès 46.000 DA</option>
+            <option value="soviva">Hôtel Soviva — dès 41.900 DA</option>
             <option value="menara-hammamet">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>
             <option value="prestige-imperial-park">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>
             <option value="kanta-sousse">Kanta 4★ — Sousse — dès 51.000 DA</option>
+            <option value="houria-palace">Houria Palace 4★ — Sousse — dès 55.000 DA</option>
             <option value="hannibal-palace">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>
             <option value="sidi-mansour-djerba">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>
             <option value="joya-paradise-djerba">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>
+            <option value="mouradi-club-selima">Mouradi Club Selima — dès 88.000 DA</option>
+            <option value="eden-club">Hôtel Eden Club — dès 89.900 DA</option>
           </select>
         </div>
         <div class="calc-form-group">
           <label class="calc-form-label" data-i18n="tnCalcRoomLabel">نوع الغرفة</label>
           <div class="segmented">
             <button class="seg-opt active" data-room="double" data-i18n="tnRoomDouble">مزدوجة</button>
-            <button class="seg-opt" data-room="triple" data-i18n="tnRoomTriple">ثلاثية</button>
-            <button class="seg-opt" data-room="single" data-i18n="tnRoomSingle">فردية</button>
           </div>
         </div>
         <div class="calc-form-group">
@@ -893,17 +892,20 @@
 <script>
 window.TRIP_DATA = {
   name: 'Tunisie 2026 · Hammamet, Sousse & Djerba',
-  dates: ['13 – 20 Juin 2026', '20 – 27 Juin 2026', '27 Juin – 04 Juillet 2026', '04 – 11 Juillet 2026', '11 – 18 Juillet 2026', '19 – 25 Août 2026', '27 Août – 02 Septembre 2026'],
+  dates: ['20 – 26 Août 2026', '28 Août – 03 Septembre 2026', '01 – 07 Septembre 2026', '09 – 15 Septembre 2026', '16 – 22 Septembre 2026'],
   hotels: [
     { id: 'yasmine-beach', name: 'Hôtel Yasmine Beach 4★ — Hammamet', prices: { double: 40000, triple: 37500, single: 57000, child1: 5000, child2: 24000, baby: 5000 }, why: 'Prix par personne, transport en bus aller-retour depuis Alger et Oran inclus, 6 nuits en demi-pension (petit-déjeuner + dîner buffet) à Hammamet, animations, piscines et plage privée, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
     { id: 'menara-hammamet', name: 'Hôtel Menara 4★ — Hammamet', prices: { double: 43000, triple: 43000, single: 60000, child1: 5000, child2: 26000, baby: 5000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Hammamet, piscines, plage et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
     { id: 'prestige-imperial-park', name: 'Prestige Imperial Park 3★ — Hammamet', prices: { double: 43000, triple: 43000, single: 60000, child1: 5000, child2: 26000, baby: 5000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Hammamet, plage et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
     { id: 'royal-beach-sousse', name: 'Royal Beach 3★ — Sousse', prices: { double: 36000, triple: 34500, single: 48000, child1: 8000, child2: 27000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, hôtel bord de mer, piscines et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
-    { id: 'houria-palace', name: 'Houria Palace 4★ — Sousse', prices: { double: 46000, triple: 39000, single: 54000, child1: 8000, child2: 28000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
+    { id: 'houria-palace', name: 'Houria Palace 4★ — Sousse', prices: { double: 55000, triple: 39000, single: 54000, child1: 8000, child2: 28000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
     { id: 'kanta-sousse', name: 'Kanta 4★ — Sousse', prices: { double: 51000, triple: 51000, single: 73000, child1: 8000, child2: 32000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, piscines et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
     { id: 'hannibal-palace', name: 'Hannibal Palace 4★ — Sousse', prices: { double: 57000, triple: 57000, single: 79000, child1: 8000, child2: 36000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, hôtel bord de mer, spa et plage privée, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
     { id: 'sidi-mansour-djerba', name: 'Sidi Mansour Resort & Spa 4★ — Djerba', prices: { double: 58800, triple: 58800, single: 73800, child1: 0, child2: 35000, baby: 0 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec spa, piscines et plage, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
-    { id: 'joya-paradise-djerba', name: 'Joya Paradise 4★ — Djerba', prices: { double: 70800, triple: 70800, single: 94800, child1: 35000, child2: 54900, baby: 0 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec plage privée et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' }
+    { id: 'joya-paradise-djerba', name: 'Joya Paradise 4★ — Djerba', prices: { double: 70800, triple: 70800, single: 94800, child1: 35000, child2: 54900, baby: 0 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec plage privée et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
+    { id: 'soviva', name: 'Hôtel Soviva', prices: { double: 41900, child1: 8000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
+    { id: 'mouradi-club-selima', name: 'Mouradi Club Selima', prices: { double: 88000, child1: 8000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' },
+    { id: 'eden-club', name: 'Hôtel Eden Club', prices: { double: 89900, child1: 8000, baby: 8000 }, why: 'Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens.' }
   ],
   extras: []
 };
