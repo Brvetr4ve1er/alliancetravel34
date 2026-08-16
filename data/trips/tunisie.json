@@ -779,7 +779,7 @@
       "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
       "priceLabel": "À partir de",
       "kPrice": "",
-      "priceFrom": "42.000 DA",
+      "priceFrom": "46.000 DA",
       "kMeta": " data-i18n=\"tnPriceMeta\"",
       "priceMeta": "Chambre double · par personne",
       "kCta": " data-i18n=\"tnSelect\""
@@ -948,11 +948,23 @@
         "value": "11 – 18 Juillet 2026",
         "k": "",
         "label": "11–18 Juil 2026"
+      },
+      {
+        "active": false,
+        "value": "19 – 25 Août 2026",
+        "k": "",
+        "label": "19–25 Août 2026"
+      },
+      {
+        "active": false,
+        "value": "27 Août – 02 Septembre 2026",
+        "k": "",
+        "label": "27 Août–2 Sept 2026"
       }
     ],
     "dateHint": "Départs chaque semaine de juin à septembre, depuis Alger et Oran.",
     "selectLabel": "Hôtel",
-    "optionsHtml": "            <option value=\"royal-beach-sousse\">Royal Beach 3★ — Sousse — dès 36.000 DA</option>\n            <option value=\"yasmine-beach\">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 42.000 DA</option>\n            <option value=\"menara-hammamet\">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"prestige-imperial-park\">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"kanta-sousse\">Kanta 4★ — Sousse — dès 51.000 DA</option>\n            <option value=\"hannibal-palace\">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>\n            <option value=\"sidi-mansour-djerba\">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>\n            <option value=\"joya-paradise-djerba\">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>\n",
+    "optionsHtml": "            <option value=\"royal-beach-sousse\">Royal Beach 3★ — Sousse — dès 36.000 DA</option>\n            <option value=\"yasmine-beach\">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 46.000 DA</option>\n            <option value=\"menara-hammamet\">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"prestige-imperial-park\">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"kanta-sousse\">Kanta 4★ — Sousse — dès 51.000 DA</option>\n            <option value=\"hannibal-palace\">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>\n            <option value=\"sidi-mansour-djerba\">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>\n            <option value=\"joya-paradise-djerba\">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>\n",
     "roomLabel": "Type de chambre",
     "roomOptions": [
       {
@@ -1110,7 +1122,9 @@
       "20 – 27 Juin 2026",
       "27 Juin – 04 Juillet 2026",
       "04 – 11 Juillet 2026",
-      "11 – 18 Juillet 2026"
+      "11 – 18 Juillet 2026",
+      "19 – 25 Août 2026",
+      "27 Août – 02 Septembre 2026"
     ],
     "hotels": [
       {
@@ -1169,7 +1183,7 @@
         "id": "houria-palace",
         "name": "Houria Palace 4★ — Sousse",
         "prices": {
-          "double": 42000,
+          "double": 46000,
           "triple": 39000,
           "single": 54000,
           "child1": 8000,
