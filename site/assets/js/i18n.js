@@ -33,7 +33,7 @@
   // 600 is real, not faux: the AR heading rules set font-weight 600, which
   // browsers used to synthesize because only 400/700 were loaded.
   // &display=swap lets text paint immediately with a fallback (no FOIT).
-  const AR_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap';
+  const AR_FONT_HREF = 'https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Noto+Sans+Arabic:wght@400;500;600&display=swap';
 
   /* ════════════════════════════════════════════════════════════════
      TRANSLATIONS

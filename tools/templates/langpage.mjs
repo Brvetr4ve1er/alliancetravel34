@@ -33,7 +33,7 @@ const ORIGIN = "https://alliance-travel.dz";
 // first paint. Injected from JS alone (as it used to be) every Arabic page
 // painted its first frame in a Latin fallback and reflowed, and never loaded
 // Cairo at all when JS was blocked.
-const AR_FONT_HREF = "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap";
+const AR_FONT_HREF = "https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Noto+Sans+Arabic:wght@400;500;600&display=swap";
 const AR_FONT_LINK = `<link rel="stylesheet" href="${AR_FONT_HREF}" data-arabic-font="1"/>`;
 
 // Path segment prefix for a language: French lives at the root, others nest.

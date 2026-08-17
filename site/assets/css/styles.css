@@ -8866,9 +8866,12 @@ body { background: var(--bg); color: var(--txt-1); }
 
 /* ── ARABIC TYPOGRAPHY  (Cairo — single Arabic face, display + body) ── */
 :root[lang="ar"] {
-  --font-display: 'Cairo', 'DM Sans', system-ui, sans-serif;
-  --font-body:    'Cairo', 'DM Sans', system-ui, sans-serif;
-  --font-hero-display: 'Cairo', 'DM Sans', system-ui, sans-serif; /* Sora is Latin-only — Arabic heroes stay on Cairo */
+  /* Arabic type pair (2026-08): Cairo carries the display voice — geometric,
+     high-contrast, right at home next to Sora — while Noto Sans Arabic runs the
+     body text, where Cairo's tight counters get dense at paragraph sizes. */
+  --font-display: 'Cairo', 'Noto Sans Arabic', 'DM Sans', system-ui, sans-serif;
+  --font-body:    'Noto Sans Arabic', 'Cairo', 'DM Sans', system-ui, sans-serif;
+  --font-hero-display: 'Cairo', 'Noto Sans Arabic', 'DM Sans', system-ui, sans-serif; /* Sora is Latin-only — Arabic heroes stay on Cairo */
 }
 :root[lang="ar"] body {
   font-family: var(--font-body);
@@ -10352,3 +10355,32 @@ html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--sp
 
 .hero--service .hero__title { font-family: var(--font-hero-display); font-weight: 600; letter-spacing: -.02em; }
 .hero--service .hero__title em { font-family: var(--font-hero-display); font-style: normal; font-weight: 600; font-size: .82em; color: var(--accent); }
+
+
+/* ── Maker's mark — site credit, the very last line of every page ──────────
+   Signature in the body face's true italic; NUMIDIEA LABS as a letterspaced
+   Sora wordmark in the brand green, joined by a hairline accent stroke.
+   Logical properties + baseline flex keep it correct in RTL and both themes. */
+.madeby {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center;
+  gap: 6px 10px;
+  margin-block-start: var(--s6, 24px);
+  padding-block-start: var(--s5, 18px);
+  border-block-start: 1px solid rgba(255, 255, 255, .06);
+  font-size: .8rem; color: var(--txt-3);
+}
+.madeby__made { letter-spacing: .02em; }
+.madeby__sig  { font-style: italic; color: var(--txt-2); }
+.madeby__sep  { inline-size: 22px; block-size: 1px; align-self: center;
+                background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+.madeby__brand {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: .72rem;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); white-space: nowrap;
+}
+.madeby__tm { font-size: .6em; letter-spacing: 0; vertical-align: super; margin-inline-start: 2px; opacity: .8; }
+:root[data-theme="light"] .madeby { border-color: rgba(0, 44, 81, .08); }
+/* Arabic: the Latin wordmark keeps its own tracking, the signature stays upright
+   (Noto Sans Arabic has no italic — a synthesized slant would look broken). */
+:root[lang="ar"] .madeby__sig { font-style: normal; }
