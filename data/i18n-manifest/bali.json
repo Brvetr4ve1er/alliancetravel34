@@ -13,14 +13,14 @@
     "trip": 183,
     "shared": 23,
     "en": {
-      "ok": 181,
-      "stale": 0,
+      "ok": 180,
+      "stale": 1,
       "global": 23,
       "missing": 2
     },
     "ar": {
-      "ok": 181,
-      "stale": 0,
+      "ok": 180,
+      "stale": 1,
       "global": 23,
       "missing": 2
     }
@@ -2018,15 +2018,15 @@
       "arState": "ok"
     },
     "baRelTnPrice": {
-      "fr": "À partir de <strong>36.000 DA</strong>",
-      "frHash": "00blbxvj",
-      "en": "From <strong>36,000 DA</strong>",
-      "ar": "ابتداءً من <strong>36.000 دج</strong>",
+      "fr": "À partir de <strong>41.900 DA</strong>",
+      "frHash": "00m4w2cy",
+      "en": "From <strong>41,900 DA</strong>",
+      "ar": "ابتداءً من <strong>41.900 دج</strong>",
       "enHash": "00blbxvj",
       "arHash": "00blbxvj",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "baFinalScarcity": {
       "fr": "5 départs en 2026 · Places limitées",

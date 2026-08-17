@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 207,
-    "trip": 184,
+    "total": 201,
+    "trip": 178,
     "shared": 23,
     "en": {
-      "ok": 184,
-      "stale": 0,
+      "ok": 175,
+      "stale": 3,
       "global": 23,
       "missing": 0
     },
     "ar": {
-      "ok": 184,
-      "stale": 0,
+      "ok": 175,
+      "stale": 3,
       "global": 23,
       "missing": 0
     }
@@ -244,26 +244,26 @@
       "arState": "ok"
     },
     "tnHl3Title": {
-      "fr": "3 destinations",
-      "frHash": "007j01wb",
-      "en": "3 destinations",
-      "ar": "3 وجهات",
+      "fr": "Sousse & sa région",
+      "frHash": "013b8qah",
+      "en": "Sousse & around",
+      "ar": "سوسة وضواحيها",
       "enHash": "007j01wb",
       "arHash": "007j01wb",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnHl3Body": {
-      "fr": "Hammamet, Sousse ou Djerba — 9 hôtels triés selon votre budget et votre style de séjour.",
-      "frHash": "002dmtuo",
-      "en": "Hammamet, Sousse or Djerba — 9 hotels sorted by your budget and travel style.",
-      "ar": "الحمامات أو سوسة أو جربة — 9 فنادق منتقاة حسب ميزانيتك وأسلوب إقامتك.",
+      "fr": "Sousse et sa région — 4 hôtels triés selon votre budget et votre style de séjour.",
+      "frHash": "01ao5d8i",
+      "en": "Sousse and its region — 4 hotels sorted by your budget and travel style.",
+      "ar": "سوسة ومنطقتها — 4 فنادق منتقاة حسب ميزانيتك وأسلوب إقامتك.",
       "enHash": "002dmtuo",
       "arHash": "002dmtuo",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnHl4Label": {
       "fr": "Détente",
@@ -1245,15 +1245,15 @@
       "arState": "ok"
     },
     "tnHotelsTitle": {
-      "fr": "9 hôtels · <em>3 destinations</em>",
-      "frHash": "00ad4gdi",
-      "en": "9 hotels · <em>3 destinations</em>",
-      "ar": "9 فنادق · <em>3 وجهات</em>",
+      "fr": "4 hôtels · <em>au choix</em>",
+      "frHash": "01m99phw",
+      "en": "4 hotels · <em>to choose from</em>",
+      "ar": "4 فنادق · <em>للاختيار</em>",
       "enHash": "00ad4gdi",
       "arHash": "00ad4gdi",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnHotelsSub": {
       "fr": "Séjour en demi-pension (petit-déjeuner + dîner buffet). Transport en bus aller-retour depuis Alger et Oran inclus dans chaque prix.",
@@ -1288,13 +1288,13 @@
       "enState": "ok",
       "arState": "ok"
     },
-    "tnPillDemiPension": {
-      "fr": "Demi-pension",
-      "frHash": "01f42jbn",
-      "en": "Half-board",
-      "ar": "نصف إقامة",
-      "enHash": "01f42jbn",
-      "arHash": "01f42jbn",
+    "tnPillSpa": {
+      "fr": "Spa",
+      "frHash": "00hpb7th",
+      "en": "Spa",
+      "ar": "سبا",
+      "enHash": "00hpb7th",
+      "arHash": "00hpb7th",
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
@@ -1328,72 +1328,6 @@
       "ar": "اختيار",
       "enHash": "00xccxvi",
       "arHash": "00xccxvi",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnPillPiscines": {
-      "fr": "Piscines",
-      "frHash": "00gvupiv",
-      "en": "Pools",
-      "ar": "مسابح",
-      "enHash": "00gvupiv",
-      "arHash": "00gvupiv",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnPillPlage": {
-      "fr": "Plage",
-      "frHash": "01ben3mw",
-      "en": "Beach",
-      "ar": "شاطئ",
-      "enHash": "01ben3mw",
-      "arHash": "01ben3mw",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnPillAnimations": {
-      "fr": "Animations",
-      "frHash": "00jr4rd6",
-      "en": "Entertainment",
-      "ar": "أنشطة ترفيهية",
-      "enHash": "00jr4rd6",
-      "arHash": "00jr4rd6",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnPillBordDeMer": {
-      "fr": "Bord de mer",
-      "frHash": "01uam8rn",
-      "en": "Seafront",
-      "ar": "على البحر",
-      "enHash": "01uam8rn",
-      "arHash": "01uam8rn",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnPillSpa": {
-      "fr": "Spa",
-      "frHash": "00hpb7th",
-      "en": "Spa",
-      "ar": "سبا",
-      "enHash": "00hpb7th",
-      "arHash": "00hpb7th",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
-    "tnPillResort": {
-      "fr": "Resort",
-      "frHash": "00zk6wek",
-      "en": "Resort",
-      "ar": "منتجع",
-      "enHash": "00zk6wek",
-      "arHash": "00zk6wek",
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"

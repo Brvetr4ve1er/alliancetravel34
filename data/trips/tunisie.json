@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tunisie — Alliance Travel · 2026",
-    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 36.000 DA.",
+    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 41.900 DA.",
     "ogTitle": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
     "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
     "themeColor": "#19B5B0",
@@ -20,7 +20,7 @@
   "seo": {
     "tripName": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
     "tripDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
-    "offerPrice": "36000",
+    "offerPrice": "41900",
     "faqJsonLd": [
       {
         "name": "Faut-il un visa pour la Tunisie ?",
@@ -133,7 +133,7 @@
     "h1Pre": "Tunisie ",
     "h1Em": "Soleil & Méditerranée",
     "lede": "Le balnéaire à portée de bus. Choisissez Hammamet, Sousse ou Djerba — plages privées, piscines et soleil de la Méditerranée. 6 nuits en demi-pension, voyage en bus depuis Alger et Oran. Aucun visa pour les Algériens.",
-    "priceFrom": "36.000 DA",
+    "priceFrom": "41.900 DA",
     "priceUnit": "par personne · chambre double · dès",
     "fineprint": "Sur la base d'une chambre double, sous réserve de disponibilité — transport en bus aller-retour inclus."
   },
@@ -161,9 +161,9 @@
       "kLabel": " data-i18n=\"tnHl3Label\"",
       "label": "Au choix",
       "kTitle": " data-i18n=\"tnHl3Title\"",
-      "title": "3 destinations",
+      "title": "Sousse & sa région",
       "kBody": " data-i18n=\"tnHl3Body\"",
-      "body": "Hammamet, Sousse ou Djerba — 9 hôtels triés selon votre budget et votre style de séjour."
+      "body": "Sousse et sa région — 4 hôtels triés selon votre budget et votre style de séjour."
     },
     {
       "iconSvg": "<path d=\"M2 18c1.5 0 2-1 3.5-1s2 1 3.5 1 2-1 3.5-1 2 1 3.5 1 2-1 3.5-1\"/><path d=\"M2 14c1.5 0 2-1 3.5-1s2 1 3.5 1 2-1 3.5-1 2 1 3.5 1 2-1 3.5-1\"/><path d=\"M12 11V3M12 3c2 1 3 2.5 3 4M12 3c-2 1-3 2.5-3 4\"/>",
@@ -589,7 +589,7 @@
   "hotelsSection": {
     "phaseLabel": "Comparer les hôtels",
     "eyebrow": "Hébergement · 6 nuits",
-    "titleHtml": "9 hôtels · <em>3 destinations</em>",
+    "titleHtml": "4 hôtels · <em>au choix</em>",
     "sub": "Séjour en demi-pension (petit-déjeuner + dîner buffet). Transport en bus aller-retour depuis Alger et Oran inclus dans chaque prix.",
     "tierTabs": [
       {
@@ -598,160 +598,11 @@
         "tier2": "all",
         "k": " data-i18n=\"tnTabAll\"",
         "label": "Tous"
-      },
-      {
-        "active": false,
-        "tier": "hammamet",
-        "tier2": "hammamet",
-        "k": "",
-        "label": "Hammamet"
-      },
-      {
-        "active": false,
-        "tier": "sousse",
-        "tier2": "sousse",
-        "k": "",
-        "label": "Sousse"
-      },
-      {
-        "active": false,
-        "tier": "djerba",
-        "tier2": "djerba",
-        "k": "",
-        "label": "Djerba"
       }
     ],
     "hint": false
   },
   "hotels": [
-    {
-      "aosDelay": 0,
-      "kRole": "",
-      "calcId": "yasmine-beach",
-      "tier": "hammamet",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__yasmine-beach.jpg",
-      "alt": "Hôtel Yasmine Beach Hammamet",
-      "ribbonClass": "medium",
-      "kRibbon": "",
-      "ribbon": "4★ · Hammamet",
-      "stars": 4,
-      "starsHtml": "★★★★",
-      "name": "Hôtel Yasmine Beach",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillPlagePrivee\"",
-          "t": "Plage privée"
-        },
-        {
-          "k": " data-i18n=\"tnPillDemiPension\"",
-          "t": "Demi-pension"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "40.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 60,
-      "kRole": "",
-      "calcId": "menara-hammamet",
-      "tier": "hammamet",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__menara-hammamet.jpg",
-      "alt": "Hôtel Menara Hammamet",
-      "ribbonClass": "medium",
-      "kRibbon": "",
-      "ribbon": "4★ · Hammamet",
-      "stars": 4,
-      "starsHtml": "★★★★",
-      "name": "Hôtel Menara",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillPiscines\"",
-          "t": "Piscines"
-        },
-        {
-          "k": " data-i18n=\"tnPillDemiPension\"",
-          "t": "Demi-pension"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "43.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 120,
-      "kRole": "",
-      "calcId": "prestige-imperial-park",
-      "tier": "hammamet",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__prestige-imperial-park.jpg",
-      "alt": "Prestige Imperial Park Hammamet",
-      "ribbonClass": "economique",
-      "kRibbon": "",
-      "ribbon": "3★ · Hammamet",
-      "stars": 3,
-      "starsHtml": "★★★",
-      "name": "Prestige Imperial Park",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillPlage\"",
-          "t": "Plage"
-        },
-        {
-          "k": " data-i18n=\"tnPillAnimations\"",
-          "t": "Animations"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "43.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 0,
-      "kRole": "",
-      "calcId": "royal-beach-sousse",
-      "tier": "sousse",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__royal-beach-sousse.jpg",
-      "alt": "Royal Beach Sousse",
-      "ribbonClass": "economique",
-      "kRibbon": "",
-      "ribbon": "3★ · Sousse",
-      "stars": 3,
-      "starsHtml": "★★★",
-      "name": "Royal Beach",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillBordDeMer\"",
-          "t": "Bord de mer"
-        },
-        {
-          "k": " data-i18n=\"tnPillDemiPension\"",
-          "t": "Demi-pension"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "36.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
     {
       "aosDelay": 60,
       "kRole": "",
@@ -780,134 +631,6 @@
       "priceLabel": "À partir de",
       "kPrice": "",
       "priceFrom": "55.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 120,
-      "kRole": "",
-      "calcId": "kanta-sousse",
-      "tier": "sousse",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__kanta-sousse.jpg",
-      "alt": "Kanta Sousse",
-      "ribbonClass": "medium",
-      "kRibbon": "",
-      "ribbon": "4★ · Sousse",
-      "stars": 4,
-      "starsHtml": "★★★★",
-      "name": "Kanta",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillPiscines\"",
-          "t": "Piscines"
-        },
-        {
-          "k": " data-i18n=\"tnPillAnimations\"",
-          "t": "Animations"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "51.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 180,
-      "kRole": "",
-      "calcId": "hannibal-palace",
-      "tier": "sousse",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__hannibal-palace.jpg",
-      "alt": "Hannibal Palace Sousse",
-      "ribbonClass": "premium",
-      "kRibbon": "",
-      "ribbon": "4★ · Sousse",
-      "stars": 4,
-      "starsHtml": "★★★★",
-      "name": "Hannibal Palace",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillBordDeMer\"",
-          "t": "Bord de mer"
-        },
-        {
-          "k": " data-i18n=\"tnPillSpa\"",
-          "t": "Spa"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "57.000 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 0,
-      "kRole": "",
-      "calcId": "sidi-mansour-djerba",
-      "tier": "djerba",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__sidi-mansour-djerba.jpg",
-      "alt": "Sidi Mansour Resort & Spa Djerba",
-      "ribbonClass": "premium",
-      "kRibbon": "",
-      "ribbon": "4★ · Djerba",
-      "stars": 4,
-      "starsHtml": "★★★★",
-      "name": "Sidi Mansour Resort &amp; Spa",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillResort\"",
-          "t": "Resort"
-        },
-        {
-          "k": " data-i18n=\"tnPillSpa\"",
-          "t": "Spa"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "58.800 DA",
-      "kMeta": " data-i18n=\"tnPriceMeta\"",
-      "priceMeta": "Chambre double · par personne",
-      "kCta": " data-i18n=\"tnSelect\""
-    },
-    {
-      "aosDelay": 60,
-      "kRole": "",
-      "calcId": "joya-paradise-djerba",
-      "tier": "djerba",
-      "kAria": "",
-      "image": "../assets/images/hotels/hotel__joya-paradise-djerba.jpg",
-      "alt": "Joya Paradise Djerba",
-      "ribbonClass": "luxe",
-      "kRibbon": "",
-      "ribbon": "4★ · Djerba",
-      "stars": 4,
-      "starsHtml": "★★★★",
-      "name": "Joya Paradise",
-      "amenities": [
-        {
-          "k": " data-i18n=\"tnPillResort\"",
-          "t": "Resort"
-        },
-        {
-          "k": " data-i18n=\"tnPillPlagePrivee\"",
-          "t": "Plage privée"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"tnPriceFrom\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "70.800 DA",
       "kMeta": " data-i18n=\"tnPriceMeta\"",
       "priceMeta": "Chambre double · par personne",
       "kCta": " data-i18n=\"tnSelect\""
@@ -952,7 +675,7 @@
     ],
     "dateHint": "Départs chaque semaine de juin à septembre, depuis Alger et Oran.",
     "selectLabel": "Hôtel",
-    "optionsHtml": "            <option value=\"royal-beach-sousse\">Royal Beach 3★ — Sousse — dès 36.000 DA</option>\n            <option value=\"yasmine-beach\">Hôtel Yasmine Beach 4★ — Hammamet — dès 40.000 DA</option>\n            <option value=\"soviva\">Hôtel Soviva — dès 41.900 DA</option>\n            <option value=\"menara-hammamet\">Hôtel Menara 4★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"prestige-imperial-park\">Prestige Imperial Park 3★ — Hammamet — dès 43.000 DA</option>\n            <option value=\"kanta-sousse\">Kanta 4★ — Sousse — dès 51.000 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 55.000 DA</option>\n            <option value=\"hannibal-palace\">Hannibal Palace 4★ — Sousse — dès 57.000 DA</option>\n            <option value=\"sidi-mansour-djerba\">Sidi Mansour Resort &amp; Spa 4★ — Djerba — dès 58.800 DA</option>\n            <option value=\"joya-paradise-djerba\">Joya Paradise 4★ — Djerba — dès 70.800 DA</option>\n            <option value=\"mouradi-club-selima\">Mouradi Club Selima — dès 88.000 DA</option>\n            <option value=\"eden-club\">Hôtel Eden Club — dès 89.900 DA</option>\n",
+    "optionsHtml": "            <option value=\"soviva\">Hôtel Soviva — dès 41.900 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 55.000 DA</option>\n            <option value=\"mouradi-club-selima\">Mouradi Club Selima — dès 88.000 DA</option>\n            <option value=\"eden-club\">Hôtel Eden Club — dès 89.900 DA</option>\n",
     "roomLabel": "Type de chambre",
     "roomOptions": [
       {
@@ -1102,58 +825,6 @@
     ],
     "hotels": [
       {
-        "id": "yasmine-beach",
-        "name": "Hôtel Yasmine Beach 4★ — Hammamet",
-        "prices": {
-          "double": 40000,
-          "triple": 37500,
-          "single": 57000,
-          "child1": 5000,
-          "child2": 24000,
-          "baby": 5000
-        },
-        "why": "Prix par personne, transport en bus aller-retour depuis Alger et Oran inclus, 6 nuits en demi-pension (petit-déjeuner + dîner buffet) à Hammamet, animations, piscines et plage privée, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "menara-hammamet",
-        "name": "Hôtel Menara 4★ — Hammamet",
-        "prices": {
-          "double": 43000,
-          "triple": 43000,
-          "single": 60000,
-          "child1": 5000,
-          "child2": 26000,
-          "baby": 5000
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Hammamet, piscines, plage et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "prestige-imperial-park",
-        "name": "Prestige Imperial Park 3★ — Hammamet",
-        "prices": {
-          "double": 43000,
-          "triple": 43000,
-          "single": 60000,
-          "child1": 5000,
-          "child2": 26000,
-          "baby": 5000
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Hammamet, plage et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "royal-beach-sousse",
-        "name": "Royal Beach 3★ — Sousse",
-        "prices": {
-          "double": 36000,
-          "triple": 34500,
-          "single": 48000,
-          "child1": 8000,
-          "child2": 27000,
-          "baby": 8000
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, hôtel bord de mer, piscines et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
         "id": "houria-palace",
         "name": "Houria Palace 4★ — Sousse",
         "prices": {
@@ -1165,58 +836,6 @@
           "baby": 8000
         },
         "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, plage privée, spa et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "kanta-sousse",
-        "name": "Kanta 4★ — Sousse",
-        "prices": {
-          "double": 51000,
-          "triple": 51000,
-          "single": 73000,
-          "child1": 8000,
-          "child2": 32000,
-          "baby": 8000
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, piscines et animations, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "hannibal-palace",
-        "name": "Hannibal Palace 4★ — Sousse",
-        "prices": {
-          "double": 57000,
-          "triple": 57000,
-          "single": 79000,
-          "child1": 8000,
-          "child2": 36000,
-          "baby": 8000
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Sousse, hôtel bord de mer, spa et plage privée, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "sidi-mansour-djerba",
-        "name": "Sidi Mansour Resort & Spa 4★ — Djerba",
-        "prices": {
-          "double": 58800,
-          "triple": 58800,
-          "single": 73800,
-          "child1": 0,
-          "child2": 35000,
-          "baby": 0
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec spa, piscines et plage, accompagnateur Alliance Travel. Sans visa pour les Algériens."
-      },
-      {
-        "id": "joya-paradise-djerba",
-        "name": "Joya Paradise 4★ — Djerba",
-        "prices": {
-          "double": 70800,
-          "triple": 70800,
-          "single": 94800,
-          "child1": 35000,
-          "child2": 54900,
-          "baby": 0
-        },
-        "why": "Prix par personne, bus aller-retour inclus, 6 nuits en demi-pension à Djerba, resort avec plage privée et piscines, accompagnateur Alliance Travel. Sans visa pour les Algériens."
       },
       {
         "id": "soviva",
@@ -1270,8 +889,8 @@
       "tnHl2Title": "Half-board buffet",
       "tnHl2Body": "Breakfast and dinner buffet at the hotel every day. Lunches free so you can enjoy local spots.",
       "tnHl3Label": "Your choice",
-      "tnHl3Title": "3 destinations",
-      "tnHl3Body": "Hammamet, Sousse or Djerba — 9 hotels sorted by your budget and travel style.",
+      "tnHl3Title": "Sousse & around",
+      "tnHl3Body": "Sousse and its region — 4 hotels sorted by your budget and travel style.",
       "tnHl4Label": "Relax",
       "tnHl4Title": "Private beach &amp; pools",
       "tnHl4Body": "Landscaped beaches, pools and hotel entertainment. Mediterranean sun all summer long.",
@@ -1361,7 +980,7 @@
       "tnFaqA4": "Children's rates depend on the chosen hotel. The <strong>1st child</strong> sharing a room with 2 adults gets a reduced rate (from <strong>5,000 DA</strong>), the <strong>2nd child</strong> a second rate, and the <strong>baby (0–2 years)</strong> travels free or at a minimal rate depending on the hotel.",
       "tnPhase2": "Compare the hotels",
       "tnHotelsEyebrow": "Accommodation · 6 nights",
-      "tnHotelsTitle": "9 hotels · <em>3 destinations</em>",
+      "tnHotelsTitle": "4 hotels · <em>to choose from</em>",
       "tnHotelsSub": "Half-board stay (breakfast + buffet dinner). Round-trip bus transport from Algiers and Oran included in every price.",
       "tnTabAll": "All",
       "tnPillPlagePrivee": "Private beach",
@@ -1461,8 +1080,8 @@
       "tnHl2Title": "نصف إقامة بوفيه",
       "tnHl2Body": "فطور وعشاء بوفيه في الفندق كل يوم. وجبات الغداء حرة للاستمتاع بالأماكن المحلية.",
       "tnHl3Label": "حسب اختيارك",
-      "tnHl3Title": "3 وجهات",
-      "tnHl3Body": "الحمامات أو سوسة أو جربة — 9 فنادق منتقاة حسب ميزانيتك وأسلوب إقامتك.",
+      "tnHl3Title": "سوسة وضواحيها",
+      "tnHl3Body": "سوسة ومنطقتها — 4 فنادق منتقاة حسب ميزانيتك وأسلوب إقامتك.",
       "tnHl4Label": "استرخاء",
       "tnHl4Title": "شاطئ خاص ومسابح",
       "tnHl4Body": "شواطئ مهيّأة ومسابح وأنشطة ترفيهية في الفندق. شمس البحر الأبيض المتوسط طوال الصيف.",
@@ -1552,7 +1171,7 @@
       "tnFaqA4": "تعتمد أسعار الأطفال على الفندق المختار. يحصل <strong>الطفل الأول</strong> المشارك في غرفة بالغَين على سعر مخفّض (ابتداءً من <strong>5000 دج</strong>)، و<strong>الطفل الثاني</strong> على سعر ثانٍ، ويسافر <strong>الرضيع (0–2 سنة)</strong> مجاناً أو بسعر زهيد حسب الفندق.",
       "tnPhase2": "قارن الفنادق",
       "tnHotelsEyebrow": "الإقامة · 6 ليالٍ",
-      "tnHotelsTitle": "9 فنادق · <em>3 وجهات</em>",
+      "tnHotelsTitle": "4 فنادق · <em>للاختيار</em>",
       "tnHotelsSub": "إقامة بنظام نصف الإقامة (فطور + عشاء بوفيه). النقل بالحافلة ذهاباً وإياباً من الجزائر العاصمة ووهران مشمول في كل سعر.",
       "tnTabAll": "الكل",
       "tnPillPlagePrivee": "شاطئ خاص",

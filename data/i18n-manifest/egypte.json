@@ -13,14 +13,14 @@
     "trip": 197,
     "shared": 23,
     "en": {
-      "ok": 197,
-      "stale": 0,
+      "ok": 196,
+      "stale": 1,
       "global": 23,
       "missing": 0
     },
     "ar": {
-      "ok": 197,
-      "stale": 0,
+      "ok": 196,
+      "stale": 1,
       "global": 23,
       "missing": 0
     }
@@ -2125,15 +2125,15 @@
       "arState": "ok"
     },
     "egRel1Price": {
-      "fr": "À partir de <strong>36.000 DA</strong>",
-      "frHash": "00blbxvj",
-      "en": "From <strong>36,000 DA</strong>",
-      "ar": "ابتداءً من <strong>36.000 دج</strong>",
+      "fr": "À partir de <strong>41.900 DA</strong>",
+      "frHash": "00m4w2cy",
+      "en": "From <strong>41,900 DA</strong>",
+      "ar": "ابتداءً من <strong>41.900 دج</strong>",
       "enHash": "00blbxvj",
       "arHash": "00blbxvj",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egRelCta": {
       "fr": "Voir ce voyage",
