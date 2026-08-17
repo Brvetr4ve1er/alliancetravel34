@@ -272,8 +272,8 @@
           og_description: "Vol + visa + hôtel + accompagnateur arabophone, tout est compris. 7 destinations 2026 au départ d'Alger ou Constantine. Agence agréée à Bordj Bou Arreridj. 1 200+ voyageurs satisfaits."
         },
         voyages: {
-          title: "Voyages organisés 2026 · 7 destinations dès 36 000 DA — Alliance Travel",
-          description: "7 voyages clé en main pour 2026 : Égypte, Tunisie, Istanbul, Azerbaïdjan, Kuala Lumpur, Bali, Vietnam. Vol + visa + hôtel compris. À partir de 36 000 DA."
+          title: "Voyages organisés 2026 · 7 destinations dès 41 900 DA — Alliance Travel",
+          description: "7 voyages clé en main pour 2026 : Égypte, Tunisie, Istanbul, Azerbaïdjan, Kuala Lumpur, Bali, Vietnam. Vol + visa + hôtel compris. À partir de 41 900 DA."
         },
         cairo_sharm: {
           title: "Voyage Égypte 2026 · Caire + Sharm El Sheikh dès 190 000 DA",
@@ -620,8 +620,8 @@
           og_description: "Flight, visa, hotel and Arabic-speaking guide — all in the headline price. Seven 2026 destinations out of Algiers or Constantine. Licensed agency, three branches in BBA and M'Sila. 1,200+ travellers."
         },
         voyages: {
-          title: "2026 guided trips · Seven destinations from DZD 36,000 — Alliance Travel",
-          description: "Our 2026 programme: Egypt, Tunisia, Istanbul, Azerbaijan, Kuala Lumpur, Bali, Vietnam. Flight, visa, hotel and Arabic-speaking guide included. From DZD 36,000."
+          title: "2026 guided trips · Seven destinations from DZD 41,900 — Alliance Travel",
+          description: "Our 2026 programme: Egypt, Tunisia, Istanbul, Azerbaijan, Kuala Lumpur, Bali, Vietnam. Flight, visa, hotel and Arabic-speaking guide included. From DZD 41,900."
         },
         cairo_sharm: {
           title: "Egypt 2026 · Cairo + Sharm El Sheikh from DZD 190,000",
@@ -649,7 +649,7 @@
         },
         tunisie: {
           title: "Tunisia by coach 2026 — Alliance Travel",
-          description: "Tunisia beach holiday by coach. Six nights half-board in Hammamet, Sousse or Djerba. Visa-free for Algerians. Weekly departures from Algiers and Oran. From DZD 36,000."
+          description: "Tunisia beach holiday by coach. Six nights half-board in Hammamet, Sousse or Djerba. Visa-free for Algerians. Weekly departures from Algiers and Oran. From DZD 41,900."
         },
         bali: {
           title: "Bali (Indonesia) 2026 — Alliance Travel",
@@ -995,8 +995,8 @@
           og_description: 'الطيران والتأشيرة والفندق ومُرافِق ناطق بالعربية — كل شيء مشمول. سبع وجهات لسنة 2026 من الجزائر أو قسنطينة. وكالة معتمدة في بُرج بوعريريج. أكثر من 1.200 مسافر برفقتنا.'
         },
         voyages: {
-          title: 'رحلات منظَّمة 2026 · سبع وجهات ابتداءً من 36.000 دينار جزائري — أليانس ترافل',
-          description: 'سبع رحلات منظَّمة لسنة 2026: مصر، تونس، إسطنبول، أذربيجان، كوالا لمبور، بالي، فيتنام. الطيران والتأشيرة والفندق مشمولة. ابتداءً من 36.000 د.ج.'
+          title: 'رحلات منظَّمة 2026 · سبع وجهات ابتداءً من 41.900 دينار جزائري — أليانس ترافل',
+          description: 'سبع رحلات منظَّمة لسنة 2026: مصر، تونس، إسطنبول، أذربيجان، كوالا لمبور، بالي، فيتنام. الطيران والتأشيرة والفندق مشمولة. ابتداءً من 41.900 د.ج.'
         },
         cairo_sharm: {
           title: 'رحلة مصر 2026 · القاهرة وشرم الشيخ ابتداءً من 190.000 دينار جزائري',
@@ -1024,7 +1024,7 @@
         },
         tunisie: {
           title: 'تونس بالحافلة 2026 — أليانس ترافل',
-          description: 'عطلة شاطئية في تونس بالحافلة. ست ليالٍ بنصف إقامة في الحمامات أو سوسة أو جربة. بدون تأشيرة للجزائريين. مغادرات أسبوعية من الجزائر ووهران. ابتداءً من 36.000 دج.'
+          description: 'عطلة شاطئية في تونس بالحافلة. ست ليالٍ بنصف إقامة في الحمامات أو سوسة أو جربة. بدون تأشيرة للجزائريين. مغادرات أسبوعية من الجزائر ووهران. ابتداءً من 41.900 دج.'
         },
         bali: {
           title: 'بالي (إندونيسيا) 2026 — أليانس ترافل',
