@@ -25,6 +25,7 @@ import { checkI18nBindings } from "./check-i18n-bindings.mjs";
 import { localizeVariant, injectHreflang } from "./templates/langpage.mjs";
 import { renderBlogBlock, injectBlogBlock } from "./sitemap-blog.mjs";
 import { syncSitemapLangs, checkSitemapLangs } from "./sitemap-langs.mjs";
+import { computeSwVersion, syncSwVersion } from "./sw-version.mjs";
 import { loadGlobalI18n } from "./templates/global-i18n.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -388,6 +389,34 @@ if (posts.length) {
     if (!CHECK_ONLY) writeFileSync(smPath, xml);
     console.log(`${CHECK_ONLY ? "🔍" : "✅"} sitemap.xml → bloc blog: ${posts.length} article(s)` +
                 `${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`);
+  }
+}
+
+// ── Service worker: derive the cache version from what we just shipped ──
+//
+// Runs LAST: the hash must cover the pages rendered above, not the previous
+// build's. VERSION was hand-written under a "bump every release" rule that
+// went unfollowed for a week of deploys — and a stale SW cache re-serves the
+// old page, so a missed bump can quote a visitor a price we already corrected.
+// Like the sitemap gate, --check refuses to pass on drift rather than letting
+// Vercel silently repair it while the repo keeps shipping the stale file.
+{
+  const swPath = join(SITE_DIR, "sw.js");
+  const src = readFileSync(swPath, "utf8");
+  const version = computeSwVersion(ROOT);
+  const { source, changed, current } = syncSwVersion(src, version);
+  if (current === null) {
+    console.error("❌ [site/sw.js] VERSION introuvable (format modifié ?)");
+    process.exit(1);
+  }
+  if (changed) {
+    if (CHECK_ONLY) {
+      console.error(`❌ [site/sw.js] VERSION périmée: ${current} → ${version}`);
+      console.error("Build bloque: sw.js desynchronise du contenu. Lancer: node tools/build.mjs puis committer sw.js.");
+      process.exit(1);
+    }
+    writeFileSync(swPath, source);
+    console.log(`✅ sw.js → cache ${current} → ${version}`);
   }
 }
 
