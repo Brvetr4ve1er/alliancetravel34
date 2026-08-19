@@ -613,9 +613,12 @@ select {
        backdrop-filter is GPU-expensive on phones; removing it is a perf win. */
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: var(--bg-deep, #06090d);
+    /* !important on BOTH backgrounds: the v3 pill block declares the same
+       specificity later in the file, so without the flag its 50%-alpha navy
+       won the cascade and page text ghosted through the blur-less pill. */
+    background: var(--bg-deep, #06090d) !important;
   }
-  :root[data-theme="light"] .site-nav { background: rgba(251, 248, 241, 0.98); }
+  :root[data-theme="light"] .site-nav { background: rgba(251, 248, 241, 0.98) !important; }
 
   .nav-hamburger {
     display: grid;
@@ -979,17 +982,27 @@ select {
 .hotel-grid {
   display: grid;
   /* v26 mobile-ux: mid-band orphan audit. The 600-768px band is already
-     forced to a single column by the ≤768px override (:2249), so the 300px
-     floor cannot strand a lopsided 2-up there. Above 768px the 1fr tracks
-     stay equal-width and only form a 2-up once inner width clears 624px, then
-     a 3-up at the 1280px container — both balanced. Floor kept at 300px on
-     purpose; no earlier 1-col forcing needed. */
+     forced to a single column by the ≤768px override (:2249), so the floor
+     cannot strand a lopsided 2-up there. Above 768px the 1fr tracks stay
+     equal-width; no earlier 1-col forcing needed. */
   /* v27 density: floor 300px→260px yields a 4-up on the 1280px container
-     (was 3-up), tightening the 25-hotel egypte wall by a full row-band.
-     auto-fill still steps to 3-up ~1024px, 2-up ~800px; the ≤768px rule
-     below forces 1-col. Gap --s5(24px)→--s3(16px) trims inter-row space. */
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+     (was 3-up), tightening the 25-hotel egypte wall by a full row-band. It
+     still steps to 3-up ~1024px, 2-up ~800px; the ≤768px rule below forces
+     1-col. Gap --s5(24px)→--s3(16px) trims inter-row space. */
+  /* orphan fix: auto-fill keeps the empty tracks, so a short catalogue never
+     filled its row — tunisie (1 card), azerbaidjan (2) and kuala-lumpur (3)
+     each left a narrow card pinned to the row's inline-start edge with the
+     rest of the section blank (mirrored to the right edge under /ar/).
+     auto-fit collapses those empty tracks and behaves exactly like auto-fill
+     whenever every track is occupied, so the ≥4-card pages are pixel-
+     identical. The repeat count stays keyed to the 260px min on purpose: with
+     a definite max the count is computed from the max instead, which drops
+     egypte's 4-up to a 2-up. Growth is capped at the item level — see
+     .hotel-card's max-width below — and justify-items centres each card in
+     its track, so a lone card lands mid-row in LTR and RTL alike. */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--s3);
+  justify-items: center;
 }
 
 .hotel-card {
@@ -999,6 +1012,11 @@ select {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  /* width:100% preserves the stretch sizing inside a normal track; the cap is
+     what stops a lone card ballooning to the whole container once auto-fit
+     collapses the empty tracks around it. */
+  width: 100%;
+  max-width: 420px;
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
   cursor: pointer;
 }
@@ -1202,8 +1220,7 @@ select {
   }
 }
 
-.date-chip.active,
-.date-chip.active:hover {
+.date-chip.active {
   border-color: var(--mint);
   background: var(--mint-dim);
   color: var(--mint);
@@ -1582,6 +1599,8 @@ select {
 }
 .btn--wa:hover {
   background: var(--wa-green-hov);
+  color: var(--wa-ink);
+  border-color: transparent;
   transform: translateY(-1px);
 }
 
@@ -2270,6 +2289,18 @@ select {
     pointer-events: none;
   }
 
+  /* Same problem, same treatment: the sticky bars ride --z-sticky (200) while
+     the drawer backdrop sits at 105, so they stayed full-brightness and
+     tap-blocking beside the open drawer — killing tap-outside-to-close along
+     the whole bottom band. opacity (not display:none) so body:has(.sticky-total)
+     keeps its padding reservation and the page does not reflow. */
+  body.nav-scroll-lock .sticky-total,
+  body.nav-scroll-lock .trip-sticky-bar,
+  body.nav-scroll-lock .trip-sticky-bar--visa {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   /* v22 Agent 3 — at ≤1024px, swap to auto-fit so each column has a
      min-width floor (220px) and the grid naturally reflows to 1 col
      at ≤480px without needing a 3rd explicit breakpoint. Replaces the
@@ -2301,6 +2332,12 @@ select {
 
   .hotel-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Single column from here down: drop the 420px item cap so the card keeps
+     spanning the full track, byte-identical to the pre-cap rendering. */
+  .hotel-card {
+    max-width: none;
   }
 
   /* dead-css sweep 2026-08: .packages-grid single-column rule deleted (the
@@ -3477,7 +3514,10 @@ html.js [data-aos].visible {
   }
 
   .related-grid {
-    grid-template-columns: 1fr;
+    /* minmax(0,…): plain 1fr floors the track at the card min-content
+       (96px art + gap + longest title + padding = 315px), which overflowed
+       320px viewports and clipped the card against html{overflow-x:clip}. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .trip-switcher__menu {
@@ -3658,7 +3698,10 @@ html.js [data-aos].visible {
 
 /* The calculator and booking form share the same bg (--bg-2)
    and flow as one unified "Configure & Book" zone */
-.calc-section {
+/* Two classes on purpose: `section.section` (:6931) is (0,1,1) and outranks
+   the single-class form, which left 96px above the step divider against the
+   40px the sibling rule below already applies underneath it. */
+.calc-section.section {
   padding-bottom: var(--s7);   /* tighter bottom — booking starts right below */
 }
 .calc-section + .booking-section {
@@ -6685,6 +6728,12 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
 .faq-q:hover {
   background: var(--bg-card);
 }
+/* .faq-item has overflow:hidden, so the default 3px-outside focus ring is
+   clipped away entirely. Draw it inside the button instead — same fix, same
+   value as the structurally identical .info-card__head accordion. */
+.faq-q:focus-visible {
+  outline-offset: -2px;
+}
 .faq-a {
   font-size: .9375rem;
   line-height: 1.7;
@@ -6841,6 +6890,13 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
 /* ── 12. Segmented control — proper visual ────────────────── */
 .segmented {
   display: inline-flex;
+  /* .calc-form-group (:1153) is a column flex container, which blockifies the
+     inline-flex above and then stretches it to the full column — a 544px
+     bordered bar wrapped around 72px of options. flex-start restores the
+     content-width sizing inline-flex was asking for; width:fit-content is
+     belt-and-braces. The ≤640px block below re-stretches it to 100%. */
+  align-self: flex-start;
+  width: fit-content;
   background: var(--bg);
   border: 1px solid var(--border-hi);
   border-radius: var(--r2);
@@ -6866,13 +6922,16 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   color: var(--bg);
   font-weight: 600;
 }
-/* v26 mobile-ux: the inline-flex duplicate above floats the room-type control
-   left at content width. At ≤640px force three equal full-width thirds so it
-   aligns with the chips/select. Coarse-pointer min-height (44px, :126) kept. */
+/* v26 mobile-ux: the inline-flex duplicate above holds the room-type control
+   at content width. At ≤640px stretch it full-width so it aligns with the
+   chips/select, and split it into as many equal parts as there are options.
+   The old `repeat(3, 1fr)` hardcoded three room types, so tunisie (1 option)
+   and istanbul (2) rendered one or two empty bordered thirds; going flex here
+   also activates the `.seg-opt { flex: 1 }` below, which was dead under grid.
+   Coarse-pointer min-height (44px, :126) kept. */
 @media (max-width: 640px) {
   .segmented {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     width: 100%;
   }
   .seg-opt {
@@ -7078,7 +7137,10 @@ section.section {
 }
 
 /* ── 20. Related (cross-sell) — demote, smaller scale ─────── */
-.related-section {
+/* Two classes for the same reason as .calc-section.section (:3661): the
+   single-class form loses to `section.section` (:6931), so this density
+   tightening rendered as 96px/96px instead of the declared 40px/40px. */
+.related-section.section {
   padding-block: var(--s7) var(--s8);
 }
 .related-section .section-head__title {
@@ -8914,8 +8976,6 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .sticky-total__amount,
 :root[lang="ar"] .trip-sticky-bar__price-num,
 :root[lang="ar"] .trip-card__from strong,
-:root[lang="ar"] .hotel-card__price,
-:root[lang="ar"] .hotel-card__price-from,
 :root[lang="ar"] .bf-trip-chip,
 :root[lang="ar"] .related-card__price,
 :root[lang="ar"] .related-card__price strong,
@@ -9351,7 +9411,7 @@ body { background: var(--bg); color: var(--txt-1); }
    large text needs. */
 .contact-main__title em {
   color: var(--accent);
-  font-style: italic;
+  font-style: normal;
 }
 /* Same story as the contact title: the agency heading's <em> carried an inline
    color:var(--bronze), and Phase J deleted that token, so the accented half
@@ -9359,7 +9419,7 @@ body { background: var(--bg); color: var(--txt-1); }
    the inline style onto this class, using --accent like its sibling. */
 .agency-title em {
   color: var(--accent);
-  font-style: italic;
+  font-style: normal;
 }
 .contact-main__lede {
   margin-bottom: var(--s6, 32px);
@@ -10353,7 +10413,7 @@ html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--sp
 .aurora-hero__title { font-family: var(--font-hero-display, var(--font-display)); font-weight: 600; font-size: clamp(2.5rem, 7.4vw, 5.4rem); line-height: 1; letter-spacing: -.02em; }
 .aurora-hero__title em { font-family: var(--font-hero-display, var(--font-display)); font-style: normal; }
 
-.hero--service .hero__title { font-family: var(--font-hero-display); font-weight: 600; letter-spacing: -.02em; }
+.hero--service .hero__title { font-family: var(--font-hero-display); font-weight: 600; font-size: clamp(2.3rem, 1.7rem + 3vw, 4rem); line-height: 1.08; letter-spacing: -.02em; }
 .hero--service .hero__title em { font-family: var(--font-hero-display); font-style: normal; font-weight: 600; font-size: .82em; color: var(--accent); }
 
 

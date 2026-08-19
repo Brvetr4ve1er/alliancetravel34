@@ -141,6 +141,18 @@
     .links a:hover {
       color: var(--mint);
     }
+    .madeby {
+      display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center;
+      gap: 6px 10px; margin-top: 40px; padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: .8rem; color: var(--txt-3);
+    }
+    .madeby__sig { font-style: italic; color: var(--txt-2); }
+    .madeby__sep { width: 22px; height: 1px; align-self: center;
+      background: linear-gradient(90deg, transparent, var(--mint), transparent); }
+    .madeby__brand { font-weight: 700; font-size: .72rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--mint); white-space: nowrap; }
+    .madeby__tm { font-size: .6em; letter-spacing: 0; vertical-align: super; margin-left: 2px; opacity: .8; }
   </style>
 </head>
 <body>
@@ -158,6 +170,12 @@
       <a href="/azerbaidjan/">Azerbaïdjan</a>·
       <a href="/kuala-lumpur/">Kuala Lumpur</a>
     </nav>
+    <div class="madeby">
+      <span class="madeby__made">Made by</span>
+      <span class="madeby__sig">Hamisse Mohamed Yasser</span>
+      <span class="madeby__sep" aria-hidden="true"></span>
+      <span class="madeby__brand">NUMIDIEA&nbsp;LABS<sup class="madeby__tm">™</sup></span>
+    </div>
   </main>
   <script src="/assets/js/lead-whatsapp.js" defer></script>
   <script src="/assets/js/i18n.js" defer></script>

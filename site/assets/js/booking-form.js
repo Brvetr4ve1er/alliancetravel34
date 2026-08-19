@@ -13,6 +13,16 @@
 const fmt = (n) =>
   n ? new Intl.NumberFormat('fr-DZ').format(n) + ' DA' : null;
 
+/* Bidi isolation for LTR values dropped into the recap. Under dir=rtl the
+   bidi-neutral spaces between phone digit groups and the en-dash in
+   "20 - 26 Aout 2026" resolve right-to-left, so the value renders reversed
+   ("266 616 0561", "26 Aout 2026 - 20") both in the on-page <pre> and in
+   WhatsApp's own RTL view. U+2066 LRI ... U+2069 PDI pins each value to its
+   own left-to-right run. Written as unicode escapes so the isolates stay
+   visible in source; NOT HTML entities - _liveUpdate's &-escape would print
+   them as text. Wrap values only, never the Arabic labels or a whole line. */
+const ltr = (v) => `\u2066${v}\u2069`;
+
 /* Escape user-controlled values before interpolating into innerHTML.
    No backend exists so the only exposure is self-XSS, but escaping is
    cheap and removes the footgun. Safe in attribute and text contexts. */
@@ -582,16 +592,16 @@ class BookingForm {
       L.tripHead,
       `• ${L.destination} : ${s.tripName || '—'}`,
       s.hotel  ? `• ${L.hotel} : ${s.hotel}`          : null,
-      s.date   ? `• ${L.date} : ${s.date}`             : null,
+      s.date   ? `• ${L.date} : ${ltr(s.date)}`        : null,
       s.room   ? `• ${L.room} : ${s.room}`             : null,
       s.adults ? `• ${L.adults} : ${s.adults}`         : null,
       (s.kids?.length) ? `• ${L.kids} : ${s.kids.length}` : null,
-      s.totalDA ? `• ${L.price} : ${fmt(s.totalDA)}` : null,
+      s.totalDA ? `• ${L.price} : ${ltr(fmt(s.totalDA))}` : null,
       s.totalUSD ? `• ${L.localTax(s.totalUSD)}` : null,
       '',
       L.ownerHead,
       name ? `• ${L.nameField} : ${name}`  : L.nameEmpty,
-      ph   ? `• ${L.phone} : ${ph}`        : null,
+      ph   ? `• ${L.phone} : ${ltr(ph)}`   : null,
       city ? `• ${L.city} : ${city}`       : null,
     ];
 
@@ -601,8 +611,8 @@ class BookingForm {
         const parts = [
           p.name   ? p.name   : null,
           p.number ? L.passNum(p.number) : null,
-          p.expiry ? L.passExpiry(p.expiry) : null,
-          p.dob    ? L.passDob(p.dob) : null,
+          p.expiry ? L.passExpiry(ltr(p.expiry)) : null,
+          p.dob    ? L.passDob(ltr(p.dob)) : null,
         ].filter(Boolean);
         lines.push(`• ${L.traveler} ${i + 1} : ${parts.join(' · ') || '—'}`);
       });

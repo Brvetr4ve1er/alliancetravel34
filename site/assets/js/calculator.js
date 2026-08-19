@@ -640,11 +640,33 @@ function initTimeline() {
   });
 }
 
+// Keep --sticky-bar-h honest. The token is a static 68px, but the bar
+// auto-sizes: 87px in EN, 111px in AR, 118px at 320px FR once the CTA label
+// wraps to two lines. Everything that clears the bar reads the token — body
+// padding, the FAB lift, the aurora offer margin — so a stale 68px hid the
+// last 19-50px of every trip page and parked the FAB on the Réserver button.
+// One observer covers viewport resize, FR/EN/AR label swaps, font swap and
+// the wrap states; the bar's height never depends on the token, so no loop.
+function initStickyBarHeight() {
+  const bar = document.getElementById('sticky-total-bar');
+  if (!bar || !('ResizeObserver' in window)) return;   // old browsers keep today's behaviour
+  const root = document.documentElement;
+  new ResizeObserver(() => {
+    const h = bar.getBoundingClientRect().height;
+    // Above 1024px the bar is display:none (h = 0). Writing 0px would collapse
+    // the desktop .aurora-hero__offer margin, which consumes the same token —
+    // so drop the override and let the :root 68px fallback stand.
+    if (h > 0) root.style.setProperty('--sticky-bar-h', Math.ceil(h) + 'px');
+    else root.style.removeProperty('--sticky-bar-h');
+  }).observe(bar);
+}
+
 // Boot
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initHotelPicker();
   initFAQ();
   initTimeline();
+  initStickyBarHeight();
   new TripCalculator();
 });

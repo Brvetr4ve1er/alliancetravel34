@@ -89,7 +89,7 @@
     "calcFormAttrs": "",
     "calcDateLabel": " data-i18n=\"tnCalcDateLabel\"",
     "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
-    "dateHintAttrs": " class=\"fs-caption u-text-3 u-mt-sp2\" data-i18n=\"tnCalcDateHint\"",
+    "dateHintAttrs": " class=\"fs-caption u-text-3 u-mt-sp3\" data-i18n=\"tnCalcDateHint\"",
     "calcSelectLabel": " data-i18n=\"tnCalcHotelLabel\"",
     "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
     "calcRoomLabel": " data-i18n=\"tnCalcRoomLabel\"",

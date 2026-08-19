@@ -244,6 +244,19 @@
       align-items: start;
     }
 
+    /* The form column runs out of content ~400px before the three-card rail
+       does, leaving the bottom of the section one-sided. On desktop the pay
+       card is pulled under the form and the rail spans both rows, which
+       squares the two columns off. The card stays LAST in the DOM so the
+       stacked reading order below 1025px is untouched. row-gap matches the
+       rail's own 24px card gap rather than the section's 56px column gap. */
+    @media (min-width: 1025px) {
+      .contact-section   { grid-template-rows: auto auto; row-gap: var(--s4); }
+      .contact-main      { grid-column: 1; grid-row: 1; }
+      .contact-rail      { grid-column: 2; grid-row: 1 / span 2; }
+      .contact-card--pay { grid-column: 1; grid-row: 2; }
+    }
+
     @media (max-width: 1024px) {
       .home-hero__inner {
         grid-template-columns: 1fr;
@@ -835,7 +848,7 @@
         <div class="about-copy">
           <p class="section-head__eyebrow u-mb-sp3" data-aos="fade-up" data-aos-duration="400" data-i18n="agency.eyebrow">Notre histoire</p>
           <h2
-            class="agency-title u-font-display u-fw-400 u-text-1 u-mb-sp4" style="font-size:clamp(28px,4vw,48px); line-height:1.1">
+            class="agency-title u-font-display u-text-1 u-mb-sp4" style="font-size:clamp(28px,4vw,48px); line-height:1.1">
             <span data-i18n="agency.title_l1">Alliance Travel,</span><br><em data-i18n="agency.title_em">depuis Bordj Bou Arreridj</em></h2>
           <p class="fs-body u-text-2 u-mb-sp4" data-i18n-html="agency.p1_html">Fondée au cœur de
             <strong class="u-text-1 u-fw-600">Bordj Bou Arreridj</strong> — la ville-charnière entre
@@ -974,7 +987,7 @@
         <!-- ─────────────── the ask ─────────────── -->
         <div class="contact-main">
           <p class="section-head__eyebrow u-mb-sp3" data-aos="fade-up" data-aos-duration="400" data-i18n="contact.eyebrow">Nous joindre</p>
-          <h2 class="contact-main__title u-font-display u-fw-400 u-text-1" id="contact-title">
+          <h2 class="contact-main__title u-font-display u-text-1" id="contact-title">
             <span data-i18n="contact.title_l1">Parlons de</span><br><em data-i18n="contact.title_em">votre prochain voyage</em>
           </h2>
           <p class="fs-body u-text-2 contact-main__lede" data-i18n="contact.lede">Un appel, un WhatsApp, ou un passage à l'agence — c'est vous qui choisissez. Paiement par virement CCP, virement bancaire, ou en espèces à l'agence. Un acompte suffit pour bloquer votre place.</p>
@@ -1097,19 +1110,19 @@
             <p class="contact-card__note" data-i18n="contact.addresses_note">3 agences en Algérie</p>
           </div>
 
-          <div class="contact-card">
-            <h3 class="contact-card__title">
-              <svg class="ico" width="16" height="16" aria-hidden="true" focusable="false"><use href="#ico-wallet"/></svg>
-              <span data-i18n="contact.payment_label">Modes de paiement</span>
-            </h3>
-            <ul class="pay-list" role="list">
-              <li data-i18n="contact.payment_ccp">Virement CCP</li>
-              <li data-i18n="contact.payment_cash">Espèces à l'agence</li>
-              <li data-i18n="contact.payment_bank">Virement bancaire</li>
-            </ul>
-            <p class="contact-card__note"><strong class="u-text-1" data-i18n="contact.signup_label">Inscription simple</strong> <span data-i18n="contact.signup_lede">Par téléphone, sur WhatsApp ou en agence. Un acompte suffit pour bloquer votre place — le solde se règle avant le départ.</span></p>
-          </div>
+        </div>
 
+        <div class="contact-card contact-card--pay">
+          <h3 class="contact-card__title">
+            <svg class="ico" width="16" height="16" aria-hidden="true" focusable="false"><use href="#ico-wallet"/></svg>
+            <span data-i18n="contact.payment_label">Modes de paiement</span>
+          </h3>
+          <ul class="pay-list" role="list">
+            <li data-i18n="contact.payment_ccp">Virement CCP</li>
+            <li data-i18n="contact.payment_cash">Espèces à l'agence</li>
+            <li data-i18n="contact.payment_bank">Virement bancaire</li>
+          </ul>
+          <p class="contact-card__note"><strong class="u-text-1" data-i18n="contact.signup_label">Inscription simple</strong> <span data-i18n="contact.signup_lede">Par téléphone, sur WhatsApp ou en agence. Un acompte suffit pour bloquer votre place — le solde se règle avant le départ.</span></p>
         </div>
       </div>
     </div>
