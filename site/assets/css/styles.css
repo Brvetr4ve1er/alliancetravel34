@@ -10444,3 +10444,45 @@ html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--sp
 /* Arabic: the Latin wordmark keeps its own tracking, the signature stays upright
    (Noto Sans Arabic has no italic — a synthesized slant would look broken). */
 :root[lang="ar"] .madeby__sig { font-style: normal; }
+
+/* ── Typographic finish: balanced headings, no orphans ─────────────────────
+   Measured before writing this (1081px and 1680px, live): measure already caps
+   at 59-77 characters, body line-height is 1.6-1.65 and paragraph rhythm is
+   16-24px — the fundamentals were sound, so nothing here changes size, weight
+   or spacing. What was missing was line-BREAKING quality: `text-wrap` appeared
+   zero times in this file, so every heading could drop a single orphan word
+   onto its own last line ("Votre / réservation") and paragraphs could end on a
+   one-word runt. Both are pure progressive enhancement — a browser without
+   support ignores the declaration and renders exactly as it does today, so
+   there is no fallback to maintain and no layout risk.
+
+   balance -> short blocks (headings, eyebrows, leads): the browser evens the
+   line lengths, which is what stops the orphan word.
+   pretty  -> long blocks (body copy): keeps normal line-breaking speed but
+   refuses to leave a runt on the final line. */
+h1, h2, h3, h4, h5, h6,
+.hero__title, .aurora-hero__title, .section-head__title,
+.hl-card__title, .hotel-card__name, .bform-block__title,
+.final-cta__title, .inclus-col__title, .trip-card__title {
+  text-wrap: balance;
+}
+
+/* Leads and subtitles are 2-3 lines — balancing reads as deliberate there. */
+.section-head__sub, .hero__lede, .hero__fineprint, .bform-hint {
+  text-wrap: balance;
+}
+
+/* Running copy: prevent the one-word last line without touching the rhythm. */
+p, li, dd, blockquote, figcaption, .testi-text {
+  text-wrap: pretty;
+}
+
+/* Arabic is cursive and joins: `balance` may re-break mid-phrase in ways that
+   read oddly, and RTL support is less mature. Keep AR on normal wrapping. */
+:root[lang="ar"] h1, :root[lang="ar"] h2, :root[lang="ar"] h3,
+:root[lang="ar"] h4, :root[lang="ar"] h5, :root[lang="ar"] h6,
+:root[lang="ar"] .hero__title, :root[lang="ar"] .aurora-hero__title,
+:root[lang="ar"] .section-head__title, :root[lang="ar"] .section-head__sub,
+:root[lang="ar"] p, :root[lang="ar"] li {
+  text-wrap: wrap;
+}
