@@ -27,11 +27,26 @@ import { renderBlogBlock, injectBlogBlock } from "./sitemap-blog.mjs";
 import { syncSitemapLangs, checkSitemapLangs } from "./sitemap-langs.mjs";
 import { computeSwVersion, syncSwVersion } from "./sw-version.mjs";
 import { loadGlobalI18n } from "./templates/global-i18n.mjs";
+import { renderStaticVariant, resolverFor, missingKeys, expandDict } from "./static-page.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const TRIPS_DIR = join(ROOT, "data", "trips");
 const SITE_DIR = join(ROOT, "site");
 const MANIFEST_PATH = join(ROOT, "data", "build-manifest.json");
+
+// Hand-authored pages under site/<dir>/, and the languages each publishes as a
+// REAL URL. The French file is the committed source and is never rewritten;
+// every other language is generated from it into site/<lang>/<dir>/ by
+// tools/static-page.mjs, using the flat dictionary at data/pages/<dir>.i18n.json.
+//
+// This is the non-trip equivalent of data/build-manifest.json. It exists because
+// tools/validate-trip.mjs hard-requires a hotel price grid and a calculator
+// payload, so an informational page cannot be "just another trip" without
+// fabricating prices — and /omra/'s audience searches in Arabic, so shipping it
+// as one French URL that swaps text client-side would hide it from those queries.
+const STATIC_PAGES = {
+  omra: ["fr", "en", "ar"],
+};
 
 const CHECK_ONLY = process.argv.includes("--check");
 
@@ -118,7 +133,8 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
       langDirs.get(lang).add(outputDir(slug, e));
     }
   }
-  const STATIC_SITE_DIRS = new Set(["admin", "assets", "blog", "voyages", "rendez-vous-visa"]);
+  const STATIC_SITE_DIRS = new Set(["admin", "assets", "blog", "voyages", "rendez-vous-visa",
+    ...Object.keys(STATIC_PAGES)]);
   const flag = (rel) => err(rel, "page orpheline — aucune entrée data/build-manifest.json ne pointe ici; supprimer le dossier ou l'ajouter au manifest");
 
   for (const name of readdirSync(SITE_DIR, { withFileTypes: true })) {
@@ -129,7 +145,9 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
       // still enables this language.
       const expected = langDirs.get(name.name);
       for (const sub of readdirSync(join(SITE_DIR, name.name), { withFileTypes: true })) {
-        if (sub.isDirectory() && !expected.has(sub.name) && existsSync(join(SITE_DIR, name.name, sub.name, "index.html")))
+        // A static page's variant (site/ar/omra/) is generated, not orphaned.
+        const staticHere = (STATIC_PAGES[sub.name] ?? []).includes(name.name);
+        if (sub.isDirectory() && !expected.has(sub.name) && !staticHere && existsSync(join(SITE_DIR, name.name, sub.name, "index.html")))
           flag(`site/${name.name}/${sub.name}/index.html`);
       }
       continue;
@@ -214,6 +232,7 @@ let i18nManifests = null;
 // x-default line it finds, and a page that already carries the cluster would
 // have it expanded a second time.
 const variantRenders = []; // { slug, lang, outFile, html }
+const staticPageDicts = []; // { dir, outFile, text } — window.AL_PAGE_I18N bundles
 if (!errors.length) {
   let globalT = null; // loaded once, only when some trip actually needs it
 
@@ -227,6 +246,16 @@ if (!errors.length) {
       if (l === "fr") continue;
       if (!dirsByLang.has(l)) dirsByLang.set(l, new Set());
       dirsByLang.get(l).add(e.outputDir || s);
+    }
+  }
+  // Hand-authored pages publish real per-language URLs too. Without this the
+  // Omra link in an /ar/ trip page still pointed at the FRENCH /omra/, dropping
+  // an Arabic reader onto a French URL mid-journey.
+  for (const [dir, pLangs] of Object.entries(STATIC_PAGES)) {
+    for (const l of pLangs) {
+      if (l === "fr") continue;
+      if (!dirsByLang.has(l)) dirsByLang.set(l, new Set());
+      dirsByLang.get(l).add(dir);
     }
   }
   for (const [slug, data] of parsed) {
@@ -254,6 +283,76 @@ if (!errors.length) {
       }
     }
   }
+  // ── Language variants of HAND-AUTHORED pages ────────────────────────────
+  // Same contract as the trip variants above — computed pre-gate so a
+  // dictionary gap or a <head> drift blocks the build instead of shipping a
+  // half-French page — but sourced from committed HTML rather than a trip JSON.
+  for (const [dir, langs] of Object.entries(STATIC_PAGES)) {
+    const extra = langs.filter((l) => l !== "fr");
+    if (!extra.length) continue;
+
+    const frFile = join(SITE_DIR, dir, "index.html");
+    if (!existsSync(frFile)) {
+      err(`site/${dir}/index.html`, "déclarée dans STATIC_PAGES mais absente du dépôt");
+      continue;
+    }
+    const dictPath = join(ROOT, "data", "pages", `${dir}.i18n.json`);
+    if (!existsSync(dictPath)) {
+      err(`data/pages/${dir}.i18n.json`, `dictionnaire absent — requis pour ${extra.join(", ")}`);
+      continue;
+    }
+    const frHtml = readFileSync(frFile, "utf8").replace(/^\ufeff/, "");
+    let dicts;
+    try { dicts = JSON.parse(readFileSync(dictPath, "utf8")); }
+    catch (e) { err(`data/pages/${dir}.i18n.json`, `JSON invalide: ${e.message}`); continue; }
+
+    // The same dictionary the variants are rendered from, shipped to the browser
+    // so an arriving visitor whose stored language is EN/AR sees this page in it
+    // even before they touch the switcher. Keys the page does not use are
+    // harmless; a key the page DOES use and this bundle lacks is caught by
+    // missingKeys() below, which gates the build.
+    {
+      const runtime = {};
+      for (const l of extra) if (dicts[l]) runtime[l] = expandDict(dicts[l]);
+      staticPageDicts.push({
+        dir,
+        outFile: join(SITE_DIR, dir, "page-i18n.js"),
+        text:
+          `/* GENERATED by tools/build.mjs from data/pages/${dir}.i18n.json — ne pas editer. */\n` +
+          `window.AL_PAGE_I18N = ${JSON.stringify(runtime, null, 2)};\n`,
+      });
+    }
+
+    for (const lang of extra) {
+      const dict = dicts[lang];
+      if (!dict) { err(`data/pages/${dir}.i18n.json`, `aucune entrée "${lang}"`); continue; }
+
+      // Nothing else gates a hand-authored page's translations: check-i18n.mjs
+      // only ever walks data/trips. Without this a variant ships whole sections
+      // still in French and nobody notices — exactly what /voyages/ does today.
+      const missing = missingKeys(frHtml, dict);
+      if (missing.length) {
+        const head = missing.slice(0, 6).join(", ");
+        err(`data/pages/${dir}.i18n.json`,
+            `${missing.length} clé(s) non traduite(s) en ${lang}: ${head}${missing.length > 6 ? "…" : ""}`);
+        continue;
+      }
+      try {
+        variantRenders.push({
+          slug: dir,
+          lang,
+          outFile: join(SITE_DIR, lang, dir, "index.html"),
+          html: toOutput(renderStaticVariant(frHtml, {
+            lang, slug: dir, langs, resolve: resolverFor(dict),
+            sameLangDirs: dirsByLang.get(lang),
+          })),
+        });
+      } catch (e) {
+        err(`site/${dir}/index.html`, `variante ${lang} impossible: ${e.message}`);
+      }
+    }
+  }
+
 }
 
 // Reciprocal hreflang on the FRENCH page of a multi-language trip.
@@ -321,6 +420,17 @@ for (const v of variantRenders) {
   const relOut = outFile.slice(ROOT.length + 1);
   if (changed) { rendered++; console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${v.slug} [${v.lang}] → ${relOut}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`); }
   else { unchanged++; console.log(`✅ ${v.slug} [${v.lang}] → ${relOut} (déjà à jour)`); }
+}
+
+// Runtime i18n bundles for hand-authored pages. Plain LF + no BOM, matching
+// every other file under site/assets/js/.
+for (const d of staticPageDicts) {
+  const exists = existsSync(d.outFile) && readFileSync(d.outFile, "utf8") === d.text;
+  const rel = d.outFile.slice(ROOT.length + 1);
+  if (exists) { unchanged++; console.log(`✅ ${d.dir} [i18n] → ${rel} (déjà à jour)`); continue; }
+  if (!CHECK_ONLY) { mkdirSync(dirname(d.outFile), { recursive: true }); writeFileSync(d.outFile, d.text); }
+  rendered++;
+  console.log(`${CHECK_ONLY ? "🔍" : "✅"} ${d.dir} [i18n] → ${rel}${CHECK_ONLY ? " (diffère — non écrit, mode --check)" : ""}`);
 }
 
 // ── Blog: render published posts + index + sitemap injection ────────

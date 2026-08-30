@@ -343,8 +343,11 @@ class BookingForm {
       { label: T.destination, val: s.tripName },
       { label: T.hotel,       val: s.hotel },
       { label: T.date,        val: s.date || '—' },
-      { label: T.room,        val: s.room },
-      { label: T.adults,      val: s.adults },
+      // Guarded like kids/total below, and like every line in _buildMessage:
+      // a page without the price calculator (e.g. /omra/) sets only tripName
+      // and hotel, and an unguarded chip rendered the string "undefined".
+      s.room ? { label: T.room, val: s.room } : null,
+      s.adults != null ? { label: T.adults, val: s.adults } : null,
       s.kids?.length ? { label: T.kids, val: s.kids.length } : null,
       s.totalDA ? { label: T.total, val: fmt(s.totalDA), highlight: true } : null,
     ].filter(Boolean);

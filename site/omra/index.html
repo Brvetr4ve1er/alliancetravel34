@@ -1,0 +1,875 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Omra 2026 · Formules, hôtels et tarifs · Alliance Travel</title>
+  <meta name="description" content="Omra au départ d'Algérie : vol, hébergement à La Mecque et Médine, transferts, visa, ziyarat, assurance et guide religieux. Hôtels à 600 m et 1 200 m du Haram. Environ 15 jours."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+  <style>
+    :root {
+      --accent: #8FE3C2;
+      --accent-dim: rgba(143,227,194,.13);
+      --accent-glow: rgba(143,227,194,.22);
+    }
+    /* Omra page-only styles ──────────────────────────────────── */
+    .hero--service { padding-block: clamp(80px, 12vh, 140px) clamp(48px, 6vh, 80px); }
+    .hero__trust { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s4); font-size: .875rem; color: var(--txt-2); }
+    .hero__trust li { position: relative; padding-inline-start: 18px; }
+    .hero__trust li::before { content: '✓'; position: absolute; inset-inline-start: 0; color: var(--mint); font-weight: 700; }
+
+    .omra-note {
+      margin: var(--s6) auto 0; max-width: 720px; padding: var(--s4) var(--s5);
+      border: 1px solid var(--border); border-inline-start: 3px solid var(--accent);
+      border-radius: var(--r2); background: var(--bg-2);
+      color: var(--txt-2); font-size: var(--fs-body-sm); line-height: var(--lh-relaxed);
+    }
+
+    /* ── Séjour : deux étapes ─────────────────────────────────── */
+    .omra-stay { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s5); margin-top: var(--s7); }
+    .omra-stay__card {
+      position: relative; padding: var(--s6) var(--s5); border: 1px solid var(--border);
+      border-radius: var(--r3); background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 42%), var(--bg-card);
+      transition: border-color var(--t-base), transform var(--t-base);
+    }
+    .omra-stay__card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+    .omra-stay__num { font-family: var(--font-display); font-size: clamp(2.75rem, 6vw, 4rem); font-weight: 700; line-height: 1; color: var(--accent); margin: 0; }
+    .omra-stay__city { font-size: var(--fs-h5); margin: var(--s2) 0 var(--s3); color: var(--txt-1); }
+    .omra-stay__body { color: var(--txt-2); line-height: var(--lh-relaxed); margin: 0; }
+
+    /* ── Comparatif ───────────────────────────────────────────── */
+    .omra-compare-wrap { margin-top: var(--s7); overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: var(--r3); background: var(--bg-card); }
+    .omra-compare { width: 100%; min-width: 560px; border-collapse: collapse; font-size: var(--fs-body-sm); }
+    .omra-compare th, .omra-compare td { padding: var(--s3) var(--s4); text-align: start; vertical-align: middle; }
+    .omra-compare thead th {
+      position: sticky; top: 0; z-index: var(--z-raised);
+      background: var(--bg-elev); color: var(--txt-1);
+      font-family: var(--font-display); font-weight: 600; font-size: var(--fs-body);
+      border-bottom: 1px solid var(--border-hi); white-space: nowrap;
+    }
+    .omra-compare thead th:first-child { color: var(--txt-3); font-weight: 500; }
+    .omra-compare tbody th { font-weight: 500; color: var(--txt-2); white-space: nowrap; }
+    .omra-compare tbody td { color: var(--txt-1); }
+    .omra-compare tbody tr + tr th, .omra-compare tbody tr + tr td { border-top: 1px solid var(--border); }
+    .omra-compare tbody tr:hover th, .omra-compare tbody tr:hover td { background: var(--accent-dim); }
+    .omra-compare .is-strong { color: var(--accent); font-weight: 700; }
+
+    /* ── Formules ─────────────────────────────────────────────── */
+    .omra-pkgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s5); margin-top: var(--s7); }
+    .omra-pkg {
+      display: flex; flex-direction: column; gap: var(--s3);
+      padding: var(--s6) var(--s5); border: 1px solid var(--border); border-radius: var(--r3);
+      background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 42%), var(--bg-card);
+      transition: border-color var(--t-base), transform var(--t-base);
+    }
+    .omra-pkg:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+    .omra-pkg__badge {
+      align-self: flex-start; margin: 0; padding: 4px 12px; border-radius: var(--r4);
+      font-size: var(--fs-caption); font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--txt-2); background: var(--bg-elev); border: 1px solid var(--border-hi);
+    }
+    .omra-pkg__badge--best { color: var(--bg-deep); background: var(--accent); border-color: var(--accent); }
+    .omra-pkg__name { font-size: var(--fs-h4); margin: 0; color: var(--txt-1); }
+    .omra-pkg__pills { display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0; }
+    .omra-pkg__body { color: var(--txt-2); line-height: var(--lh-relaxed); margin: 0; }
+    /* margin-top:auto pins the price to the bottom so both cards line up even
+       when one description wraps to an extra line. */
+    .omra-pkg__price { margin-top: auto; padding-top: var(--s4); border-top: 1px solid var(--border); }
+    .omra-pkg__price-label { display: block; font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: .06em; color: var(--txt-3); }
+    .omra-pkg__price-value { display: block; font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; color: var(--accent); margin-top: 2px; }
+    .omra-pkg__price-meta { display: block; font-size: var(--fs-body-sm); color: var(--txt-3); margin-top: 2px; }
+    .omra-pkg__cta { margin-top: var(--s4); }
+    @media (max-width: 560px) { .omra-compare { font-size: var(--fs-caption); } .omra-compare th, .omra-compare td { padding: var(--s3); } }
+  </style>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Omra 2026 · Alliance Travel"/>
+  <meta property="og:description" content="Vol, hébergement à La Mecque et Médine, transferts, visa, ziyarat, assurance et guide religieux. Environ 15 jours au départ d'Algérie."/>
+  <meta property="og:url" content="https://alliance-travel.dz/omra/"/>
+  <meta property="og:site_name" content="Alliance Travel"/>
+  <meta property="og:locale" content="fr_FR"/>
+  <meta property="og:image" content="https://alliance-travel.dz/assets/images/og/og-default.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Omra 2026 · Alliance Travel"/>
+  <meta name="twitter:description" content="Formules Omra au départ d'Algérie. Hôtels à 600 m et 1 200 m du Haram. Devis WhatsApp."/>
+  <meta name="twitter:image" content="https://alliance-travel.dz/assets/images/og/og-default.jpg"/>
+  <link rel="canonical" href="https://alliance-travel.dz/omra/"/>
+  <link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/omra/"/>
+  <link rel="alternate" hreflang="en" href="https://alliance-travel.dz/en/omra/"/>
+  <link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/omra/"/>
+  <link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/omra/"/>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://alliance-travel.dz/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Omra",
+        "item": "https://alliance-travel.dz/omra/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Voyage organisé — Omra",
+    "name": "Omra — Alliance Travel",
+    "description": "Voyage organisé pour l'Omra au départ d'Algérie : billet d'avion, hébergement à La Mecque et à Médine, transferts, assistance visa, ziyarat, assurance voyage et accompagnement par un guide religieux.",
+    "url": "https://alliance-travel.dz/omra/",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Algérie"
+    },
+    "provider": {
+      "@type": "TravelAgency",
+      "name": "Alliance Travel",
+      "url": "https://alliance-travel.dz/",
+      "telephone": "+213561616266",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bordj Bou Arreridj",
+        "addressCountry": "DZ"
+      }
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quels documents faut-il pour accomplir l'Omra ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un passeport en cours de validité est généralement demandé, afin d'obtenir le visa Omra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "L'agence prend-elle en charge les démarches du visa Omra ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Alliance Travel assure l'assistance dans les démarches du visa Omra au moment du dépôt de la demande."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que comprend le prix de la formule Omra ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le billet d'avion, l'hébergement à La Mecque et à Médine, les transferts, le visa et les services d'accompagnement. L'ensemble des prestations comprises et non comprises est précisé au client avant la confirmation de la réservation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la différence entre les formules économiques et les formules supérieures ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les formules diffèrent par le niveau des hôtels, l'emplacement de l'hébergement, le type de chambre, la durée du séjour, les services proposés et le niveau de confort. L'équipe Alliance Travel peut vous proposer la formule la plus adaptée à votre budget et à vos besoins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Puis-je choisir l'hôtel, ou son niveau de standing ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, vous pouvez choisir parmi les options disponibles selon la formule et le budget. Nous pouvons vous conseiller des hôtels adaptés en fonction de leur proximité du Haram et de leur niveau de service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la distance entre l'hôtel et le Haram de La Mecque ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Elle varie selon l'hôtel choisi. Avant la confirmation de la réservation, nous vous précisons l'emplacement de l'hôtel, la distance approximative du Haram et le moyen de transport disponible. À titre de repère : l'hôtel Es-Safat se situe à 1 200 mètres de l'esplanade du Haram, et Manarat Ghazza à 600 mètres."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Assurez-vous le transport de l'aéroport à l'hôtel ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, le transfert de l'aéroport vers l'hôtel est prévu dans certaines formules Omra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Assurez-vous le transport entre La Mecque et Médine ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, le transport entre La Mecque et Médine peut être organisé dans le cadre de la formule."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La formule comprend-elle les déplacements à l'intérieur de l'Arabie Saoudite ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, les déplacements à l'intérieur de l'Arabie Saoudite sont compris : ce sont les ziyarat, les visites organisées."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Les repas sont-ils compris dans la formule ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cela dépend de la formule et de l'hôtel choisis. Certaines offres comprennent des repas déterminés, tandis que d'autres proposent l'hébergement sans restauration. Le détail vous est précisé avant la confirmation de la réservation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de jours dure le voyage de l'Omra ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La durée varie selon le programme choisi. Elle est généralement de 15 jours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Depuis quels aéroports d'Algérie peut-on partir ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les voyages s'organisent au départ des aéroports desservant l'Arabie Saoudite, selon le programme du voyage, la compagnie aérienne et les vols disponibles à la date de départ. Le départ se fait généralement depuis Alger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Un enfant a-t-il besoin d'un visa particulier ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Les enfants qui voyagent pour l'Omra sont soumis aux mêmes exigences de voyage et de visa qu'un voyageur adulte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "L'agence prévoit-elle un accompagnateur ou un encadrant religieux ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Un guide religieux professionnel accompagne chaque groupe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Proposez-vous un programme religieux et des orientations pour les pèlerins ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Des orientations et des conseils aident les pèlerins à accomplir les rites de l'Omra de manière organisée, avec l'explication des principales étapes et des recommandations liées au voyage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Peut-on obtenir un fauteuil roulant pour le pèlerin ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, le service de fauteuil roulant peut être demandé en cas de besoin, selon la disponibilité et les conditions des prestataires en Arabie Saoudite. Il est préférable de nous en informer dès la réservation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "L'assurance voyage est-elle comprise dans la formule ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, l'assurance est comprise dans la formule Omra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Peut-on annuler la réservation ou changer la date du voyage ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "L'annulation ou le changement de la date de voyage peut être possible selon les conditions de la compagnie aérienne, de l'hôtel, des prestataires de services et le type de réservation. Des frais ou des conditions particulières peuvent s'appliquer. Nous vous conseillons donc de contacter l'agence avant d'engager toute modification — et, dans la plupart des cas, la réservation ne peut pas être annulée."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la meilleure période pour accomplir l'Omra ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "L'Omra peut s'accomplir tout au long de l'année. Le choix du moment dépend du climat, de la saison, du budget et du niveau d'affluence. Les prix varient également selon les saisons — l'équipe Alliance Travel peut vous aider à choisir la période la plus adaptée."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de nuits à La Mecque, et combien à Médine ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le séjour se répartit entre 3 nuits à Médine et 10 nuits à La Mecque. L'ordre des deux étapes peut varier selon le programme du voyage."
+        }
+      }
+    ]
+  }
+  </script>
+  <script>window.AL_TRIP_LANGS=["fr","en","ar"];</script>
+</head>
+
+<body data-page="omra" data-trip="Omra">
+
+<a href="#main" class="skip-link" data-i18n="nav.skip">Aller au contenu principal</a>
+
+<nav class="site-nav" aria-label="Navigation principale">
+  <a href="../index.html" class="nav-logo" aria-label="Alliance Travel" data-i18n-aria-label="nav.logo_label">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 117" height="40" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs><clipPath id="mg1"><path d="M 23.808594 0 L 65.683594 0 L 65.683594 35.996094 L 23.808594 35.996094 Z M 23.808594 0 " clip-rule="nonzero"/></clipPath><clipPath id="mg2"><path d="M 46.292969 35.855469 C 45.75 29.660156 45.214844 23.53125 44.671875 17.34375 C 44.460938 17.421875 44.316406 17.464844 44.179688 17.53125 C 40.558594 19.191406 36.9375 20.863281 33.308594 22.511719 C 32.941406 22.675781 32.796875 22.894531 32.742188 23.28125 C 32.519531 24.832031 32.269531 26.378906 32.011719 27.921875 C 31.984375 28.085938 31.878906 28.292969 31.742188 28.375 C 31.140625 28.757812 30.519531 29.097656 29.839844 29.492188 C 29.777344 29.273438 29.722656 29.136719 29.695312 28.992188 C 29.351562 27.25 29.023438 25.507812 28.652344 23.769531 C 28.589844 23.472656 28.414062 23.152344 28.195312 22.945312 C 26.898438 21.707031 25.574219 20.5 24.261719 19.277344 C 24.175781 19.195312 24.09375 19.105469 23.949219 18.953125 C 24.660156 18.558594 25.332031 18.171875 26.023438 17.820312 C 26.128906 17.765625 26.324219 17.847656 26.460938 17.902344 C 27.890625 18.5 29.324219 19.089844 30.738281 19.714844 C 31.125 19.886719 31.394531 19.84375 31.738281 19.613281 C 35.03125 17.402344 38.339844 15.207031 41.640625 13.007812 C 41.769531 12.921875 41.890625 12.828125 42.078125 12.6875 C 37.097656 8.972656 32.160156 5.289062 27.171875 1.570312 C 28.128906 1.03125 29.015625 0.519531 29.917969 0.0390625 C 30.042969 -0.0273438 30.261719 0 30.402344 0.0625 C 36.523438 2.738281 42.644531 5.414062 48.753906 8.113281 C 49.226562 8.324219 49.566406 8.28125 50.003906 8.039062 C 53.269531 6.210938 56.574219 4.453125 60.085938 3.121094 C 60.847656 2.832031 61.636719 2.601562 62.421875 2.378906 C 62.820312 2.265625 63.238281 2.191406 63.652344 2.164062 C 64.3125 2.117188 65.054688 2.019531 65.429688 2.71875 C 65.804688 3.414062 65.339844 3.996094 64.941406 4.519531 C 64.628906 4.933594 64.28125 5.34375 63.878906 5.667969 C 62.664062 6.652344 61.472656 7.683594 60.164062 8.53125 C 57.726562 10.113281 55.21875 11.582031 52.722656 13.070312 C 52.34375 13.296875 52.144531 13.523438 52.082031 13.976562 C 51.164062 20.613281 50.222656 27.246094 49.277344 33.875 C 49.253906 34.042969 49.152344 34.261719 49.019531 34.339844 C 48.152344 34.847656 47.261719 35.320312 46.292969 35.855469 Z M 46.292969 35.855469 " clip-rule="nonzero"/></clipPath><clipPath id="mg3"><rect x="0" width="43" y="0" height="36"/></clipPath><clipPath id="mg4"><path d="M 0.917969 0 L 42.683594 0 L 42.683594 35.878906 L 0.917969 35.878906 Z M 0.917969 0 " clip-rule="nonzero"/></clipPath><clipPath id="mg5"><path d="M 23.292969 35.855469 C 22.75 29.660156 22.214844 23.53125 21.671875 17.34375 C 21.460938 17.421875 21.316406 17.464844 21.179688 17.53125 C 17.558594 19.191406 13.9375 20.863281 10.308594 22.511719 C 9.941406 22.675781 9.796875 22.894531 9.742188 23.28125 C 9.519531 24.832031 9.269531 26.378906 9.011719 27.921875 C 8.984375 28.085938 8.878906 28.292969 8.742188 28.375 C 8.140625 28.757812 7.519531 29.097656 6.839844 29.492188 C 6.777344 29.273438 6.722656 29.136719 6.695312 28.992188 C 6.351562 27.25 6.023438 25.507812 5.652344 23.769531 C 5.589844 23.472656 5.414062 23.152344 5.195312 22.945312 C 3.898438 21.707031 2.574219 20.5 1.261719 19.277344 C 1.175781 19.195312 1.09375 19.105469 0.949219 18.953125 C 1.660156 18.558594 2.332031 18.171875 3.023438 17.820312 C 3.128906 17.765625 3.324219 17.847656 3.460938 17.902344 C 4.890625 18.5 6.324219 19.089844 7.738281 19.714844 C 8.125 19.886719 8.394531 19.84375 8.738281 19.613281 C 12.03125 17.402344 15.339844 15.207031 18.640625 13.007812 C 18.769531 12.921875 18.890625 12.828125 19.078125 12.6875 C 14.097656 8.972656 9.160156 5.289062 4.171875 1.570312 C 5.128906 1.03125 6.015625 0.519531 6.917969 0.0390625 C 7.042969 -0.0273438 7.261719 0 7.402344 0.0625 C 13.523438 2.738281 19.644531 5.414062 25.753906 8.113281 C 26.226562 8.324219 26.566406 8.28125 27.003906 8.039062 C 30.269531 6.210938 33.574219 4.453125 37.085938 3.121094 C 37.847656 2.832031 38.636719 2.601562 39.421875 2.378906 C 39.820312 2.265625 40.238281 2.191406 40.652344 2.164062 C 41.3125 2.117188 42.054688 2.019531 42.429688 2.71875 C 42.804688 3.414062 42.339844 3.996094 41.941406 4.519531 C 41.628906 4.933594 41.28125 5.34375 40.878906 5.667969 C 39.664062 6.652344 38.472656 7.683594 37.164062 8.53125 C 34.726562 10.113281 32.21875 11.582031 29.722656 13.070312 C 29.34375 13.296875 29.144531 13.523438 29.082031 13.976562 C 28.164062 20.613281 27.222656 27.246094 26.277344 33.875 C 26.253906 34.042969 26.152344 34.261719 26.019531 34.339844 C 25.152344 34.847656 24.261719 35.320312 23.292969 35.855469 Z M 23.292969 35.855469 " clip-rule="nonzero"/></clipPath><clipPath id="mg6"><path d="M 0.714844 28.292969 L 92.65625 28.292969 L 92.65625 116.496094 L 0.714844 116.496094 Z M 0.714844 28.292969 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#mg1)"><g clip-path="url(#mg2)"><g transform="matrix(1, 0, 0, 1, 23, 0)"><g clip-path="url(#mg3)"><g clip-path="url(#mg4)"><g clip-path="url(#mg5)"><path fill="#9ce8b2" d="M 0.949219 0 L 42.546875 0 L 42.546875 35.855469 L 0.949219 35.855469 Z M 0.949219 0 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#mg6)"><path fill="#efe8df" d="M 65.113281 98.660156 C 59.664062 96.8125 54.28125 94.8125 49.019531 92.625 C 44.707031 90.832031 40.476562 88.914062 36.375 86.84375 L 49.988281 55.023438 L 64.214844 88.28125 L 69.015625 99.949219 C 67.710938 99.527344 66.410156 99.101562 65.113281 98.660156 M 58.304688 40.082031 L 41.777344 40.082031 L 23.929688 79.714844 C 22.488281 78.761719 21.082031 77.777344 19.714844 76.753906 C 15.433594 73.539062 11.597656 69.914062 8.871094 65.804688 C 7.515625 63.75 6.460938 61.574219 5.847656 59.304688 C 5.230469 57.035156 5.0625 54.679688 5.398438 52.328125 C 5.726562 49.976562 6.554688 47.644531 7.753906 45.417969 C 8.957031 43.195312 10.488281 41.0625 12.261719 39.054688 C 15.84375 35.054688 20.226562 31.511719 24.910156 28.296875 C 19.835938 31.054688 14.976562 34.179688 10.730469 37.957031 C 8.625 39.859375 6.710938 41.945312 5.09375 44.234375 C 3.480469 46.523438 2.195312 49.039062 1.457031 51.722656 C 0.707031 54.402344 0.527344 57.226562 0.90625 60 C 1.28125 62.773438 2.195312 65.476562 3.460938 68.023438 C 4.722656 70.570312 6.332031 72.960938 8.128906 75.210938 C 9.929688 77.464844 11.933594 79.574219 14.054688 81.566406 C 16.136719 83.515625 18.324219 85.367188 20.589844 87.136719 L 7.40625 116.421875 L 23.824219 116.421875 L 30.171875 101.589844 L 32.726562 95.503906 C 36.125 97.609375 39.597656 99.609375 43.132812 101.515625 C 48.363281 104.339844 53.726562 106.96875 59.1875 109.445312 C 61.914062 110.683594 64.671875 111.878906 67.460938 113.039062 C 68.855469 113.621094 70.253906 114.191406 71.667969 114.75 L 73.808594 115.585938 L 74.894531 115.996094 L 76.039062 116.417969 L 76.039062 116.421875 L 92.566406 116.421875 Z M 58.304688 40.082031 " fill-opacity="1" fill-rule="nonzero"/></g></svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#voyages" data-i18n="nav.trips">Nos voyages</a></li>
+    <li><a href="../omra/" aria-current="page" data-i18n="nav.omra">Omra</a></li>
+    <li><a href="../rendez-vous-visa/" data-i18n="nav.visa_rdv">Rendez-vous Visa</a></li>
+    <li><a href="../index.html#agence" data-i18n="nav.agency">L'agence</a></li>
+    <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" type="button" data-i18n-aria-label="nav.theme_label" data-i18n-title="nav.theme_label" aria-label="Changer de thème" title="Changer de thème">
+    <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20souhaite%20des%20informations%20sur%20l'Omra." class="nav-cta" target="_blank" rel="noopener" data-i18n-aria-label="nav.whatsapp_label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span data-i18n="nav.whatsapp">WhatsApp</span>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero hero--service" aria-labelledby="omra-hero-title">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__content u-measure-lg">
+      <p class="hero__eyebrow" data-i18n="omra.hero.eyebrow">Omra · العمرة</p>
+      <h1 id="omra-hero-title" class="hero__title">
+        <span data-i18n="omra.hero.title_l1">Votre Omra, organisée</span>
+        <em data-i18n="omra.hero.title_em">de bout en bout.</em>
+      </h1>
+      <p class="hero__lede" data-i18n="omra.hero.lede">Vol au départ d'Algérie, hébergement à La Mecque et à Médine, transferts, visa et accompagnement religieux. Environ 15 jours, assurance voyage comprise.</p>
+      <ul class="hero__trust">
+        <li data-i18n="omra.hero.trust1">Guide religieux avec chaque groupe</li>
+        <li data-i18n="omra.hero.trust2">Assurance voyage incluse</li>
+        <li data-i18n="omra.hero.trust3">Hôtels à 600 m et 1 200 m du Haram</li>
+        <li data-i18n="omra.hero.trust4">Ziyarat incluses</li>
+      </ul>
+      <div class="hero__ctas">
+        <a href="#formules" class="btn btn--primary" data-i18n="omra.hero.cta_offers">Voir les formules</a>
+        <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20souhaite%20des%20informations%20sur%20l'Omra." class="btn btn--wa" target="_blank" rel="noopener" data-track-event="omra_hero_wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          <span data-i18n="omra.hero.cta_wa">Demander un devis</span>
+        </a>
+      </div>
+      <p class="hero__fineprint" data-i18n="omra.hero.fineprint">Les tarifs varient selon la saison, la compagnie aérienne et l'hôtel choisi. Contactez-nous pour le prix de la période qui vous intéresse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REPÈRES ═══════════════════════════════════════════════ -->
+<section class="highlights section-sm" aria-labelledby="omra-reperes-title">
+  <div class="container">
+    <h2 id="omra-reperes-title" class="u-visually-hidden" data-i18n="omra.facts.title">Les repères du voyage</h2>
+    <div class="highlights__grid">
+      <article class="hl-card">
+        <div class="hl-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <p class="hl-card__label" data-i18n="omra.facts.f1_label">Durée</p>
+        <h3 class="hl-card__title" data-i18n="omra.facts.f1_title">Environ 15 jours</h3>
+        <p class="hl-card__body" data-i18n="omra.facts.f1_body">3 nuits à Médine et 10 nuits à La Mecque. L'ordre des deux étapes varie selon le programme.</p>
+      </article>
+      <article class="hl-card">
+        <div class="hl-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.12 2.12 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8l3.2 3.9-2 2-2.2-.6a.5.5 0 0 0-.5.8L5 16l1.9 2.2a.5.5 0 0 0 .8-.5l-.6-2.2 2-2 3.9 3.2a.5.5 0 0 0 .8-.5Z"/></svg></div>
+        <p class="hl-card__label" data-i18n="omra.facts.f2_label">Départ</p>
+        <h3 class="hl-card__title" data-i18n="omra.facts.f2_title">Généralement d'Alger</h3>
+        <p class="hl-card__body" data-i18n="omra.facts.f2_body">Le départ dépend du programme, de la compagnie aérienne et des vols disponibles à la date choisie.</p>
+      </article>
+      <article class="hl-card">
+        <div class="hl-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <p class="hl-card__label" data-i18n="omra.facts.f3_label">Encadrement</p>
+        <h3 class="hl-card__title" data-i18n="omra.facts.f3_title">Un guide religieux</h3>
+        <p class="hl-card__body" data-i18n="omra.facts.f3_body">Un accompagnateur religieux professionnel voyage avec chaque groupe et guide l'accomplissement des rites.</p>
+      </article>
+      <article class="hl-card">
+        <div class="hl-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <p class="hl-card__label" data-i18n="omra.facts.f4_label">Assurance</p>
+        <h3 class="hl-card__title" data-i18n="omra.facts.f4_title">Incluse au forfait</h3>
+        <p class="hl-card__body" data-i18n="omra.facts.f4_body">L'assurance voyage est comprise dans la formule Omra, sans supplément à régler séparément.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMULES ══════════════════════════════════════════════ -->
+<section class="hotels section" id="formules" aria-labelledby="omra-formules-title">
+  <div class="container">
+    <div class="phase-marker"><span class="phase-marker__num">1</span><span class="phase-marker__label" data-i18n="omra.offers.phase">Choisir sa formule</span></div>
+    <div class="section-head">
+      <p class="section-head__eyebrow" data-i18n="omra.offers.eyebrow">Hébergement à La Mecque</p>
+      <h2 id="omra-formules-title" class="section-head__title">
+        <span data-i18n="omra.offers.title_l1">Tout se joue sur la</span>
+        <em data-i18n="omra.offers.title_em">distance au Haram.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="omra.offers.sub">C'est le critère qui change réellement le vécu du séjour : le nombre de fois où vous pourrez rejoindre le Haram dans la journée sans y laisser vos forces. Voici nos deux hôtels et ce qui les sépare.</p>
+    </div>
+
+    <div class="omra-pkgs">
+      <article class="omra-pkg" data-omra-pkg="Manarat Ghazza — 600 m du Haram">
+          <p class="omra-pkg__badge omra-pkg__badge--best" data-i18n="omra.offers.p1_ribbon">Le plus proche</p>
+          <h3 class="omra-pkg__name" data-i18n="omra.offers.p1_name">Manarat Ghazza</h3>
+          <p class="omra-pkg__pills">
+            <span class="amenity-pill" data-i18n="omra.offers.p1_pill1">600 m du Haram</span>
+            <span class="amenity-pill" data-i18n="omra.offers.p1_pill2">≈ 8 min à pied</span>
+            <span class="amenity-pill" data-i18n="omra.offers.pill_makkah">La Mecque</span>
+          </p>
+          <p class="omra-pkg__body" data-i18n="omra.offers.p1_body">L'option à privilégier si vous voyagez avec des personnes âgées, ou si vous comptez multiplier les allers-retours vers le Haram entre les prières.</p>
+          <div class="omra-pkg__price">
+            <span class="omra-pkg__price-label" data-i18n="omra.offers.price_label">Tarif</span>
+            <strong class="omra-pkg__price-value" data-i18n="omra.offers.price_value">Sur demande</strong>
+            <span class="omra-pkg__price-meta" data-i18n="omra.offers.price_meta">selon la saison et la date de départ</span>
+          </div>
+          <a href="#booking" class="btn btn--primary btn--full omra-pkg__cta" data-omra-select data-i18n="omra.offers.cta">Demander le tarif</a>
+      </article>
+
+      <article class="omra-pkg" data-omra-pkg="Es-Safat — 1 200 m du Haram">
+          <p class="omra-pkg__badge" data-i18n="omra.offers.p2_ribbon">Plus accessible</p>
+          <h3 class="omra-pkg__name" data-i18n="omra.offers.p2_name">Es-Safat</h3>
+          <p class="omra-pkg__pills">
+            <span class="amenity-pill" data-i18n="omra.offers.p2_pill1">1 200 m du Haram</span>
+            <span class="amenity-pill" data-i18n="omra.offers.p2_pill2">≈ 15 min à pied</span>
+            <span class="amenity-pill" data-i18n="omra.offers.pill_makkah">La Mecque</span>
+          </p>
+          <p class="omra-pkg__body" data-i18n="omra.offers.p2_body">Un peu plus éloigné du Haram, et c'est précisément ce qui permet d'alléger le budget du séjour à prestations équivalentes.</p>
+          <div class="omra-pkg__price">
+            <span class="omra-pkg__price-label" data-i18n="omra.offers.price_label">Tarif</span>
+            <strong class="omra-pkg__price-value" data-i18n="omra.offers.price_value">Sur demande</strong>
+            <span class="omra-pkg__price-meta" data-i18n="omra.offers.price_meta">selon la saison et la date de départ</span>
+          </div>
+          <a href="#booking" class="btn btn--primary btn--full omra-pkg__cta" data-omra-select data-i18n="omra.offers.cta">Demander le tarif</a>
+      </article>
+    </div>
+
+    <p class="omra-note" data-i18n="omra.offers.note">Le choix de l'hôtel se fait parmi les options disponibles pour votre formule. Avant toute confirmation, nous vous précisons l'emplacement exact, la distance au Haram et le moyen de transport prévu.</p>
+  </div>
+</section>
+
+<!-- ══ COMPARATIF ════════════════════════════════════════════ -->
+<section class="section" id="comparatif" aria-labelledby="omra-compare-title">
+  <div class="container">
+    <div class="section-head section-head--center u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="omra.compare.eyebrow">Comparatif</p>
+      <h2 id="omra-compare-title" class="section-head__title">
+        <span data-i18n="omra.compare.title_l1">Ce qui change,</span>
+        <em data-i18n="omra.compare.title_em">et ce qui ne change pas.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="omra.compare.sub">Les deux formules partagent le même socle de prestations. Seul l'hébergement à La Mecque les distingue.</p>
+    </div>
+
+    <div class="omra-compare-wrap">
+      <table class="omra-compare">
+        <caption class="u-visually-hidden" data-i18n="omra.compare.caption">Comparaison des deux formules Omra</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-i18n="omra.compare.col_criteria">Critère</th>
+            <th scope="col" data-i18n="omra.offers.p1_name">Manarat Ghazza</th>
+            <th scope="col" data-i18n="omra.offers.p2_name">Es-Safat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" data-i18n="omra.compare.r_distance">Distance du Haram</th><td class="is-strong num-ltr" data-i18n="omra.compare.r_distance_a">600 m</td><td class="num-ltr" data-i18n="omra.compare.r_distance_b">1 200 m</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_walk">Trajet à pied (approx.)</th><td class="is-strong num-ltr" data-i18n="omra.compare.r_walk_a">≈ 8 min</td><td class="num-ltr" data-i18n="omra.compare.r_walk_b">≈ 15 min</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_makkah">Nuits à La Mecque</th><td class="num-ltr" data-i18n="omra.compare.r_ten">10</td><td class="num-ltr" data-i18n="omra.compare.r_ten">10</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_madinah">Nuits à Médine</th><td class="num-ltr" data-i18n="omra.compare.r_three">3</td><td class="num-ltr" data-i18n="omra.compare.r_three">3</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_visa">Visa Omra</th><td data-i18n="omra.compare.v_assisted">Assistance incluse</td><td data-i18n="omra.compare.v_assisted">Assistance incluse</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_transfer">Transfert La Mecque ↔ Médine</th><td data-i18n="omra.compare.v_included">Inclus</td><td data-i18n="omra.compare.v_included">Inclus</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_ziyarat">Ziyarat (visites)</th><td data-i18n="omra.compare.v_included">Inclus</td><td data-i18n="omra.compare.v_included">Inclus</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_insurance">Assurance voyage</th><td data-i18n="omra.compare.v_included">Inclus</td><td data-i18n="omra.compare.v_included">Inclus</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_guide">Guide religieux</th><td data-i18n="omra.compare.v_included">Inclus</td><td data-i18n="omra.compare.v_included">Inclus</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_meals">Repas</th><td data-i18n="omra.compare.v_depends">Selon la formule</td><td data-i18n="omra.compare.v_depends">Selon la formule</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_airport">Transfert aéroport → hôtel</th><td data-i18n="omra.compare.v_depends">Selon la formule</td><td data-i18n="omra.compare.v_depends">Selon la formule</td></tr>
+          <tr><th scope="row" data-i18n="omra.compare.r_price">Tarif</th><td data-i18n="omra.offers.price_value">Sur demande</td><td data-i18n="omra.offers.price_value">Sur demande</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LE SÉJOUR ═════════════════════════════════════════════ -->
+<section class="itinerary-bg section" id="sejour" aria-labelledby="omra-sejour-title">
+  <div class="container">
+    <div class="phase-marker"><span class="phase-marker__num">2</span><span class="phase-marker__label" data-i18n="omra.stay.phase">Le déroulement</span></div>
+    <div class="section-head">
+      <p class="section-head__eyebrow" data-i18n="omra.stay.eyebrow">Treize nuits sur place</p>
+      <h2 id="omra-sejour-title" class="section-head__title">
+        <span data-i18n="omra.stay.title_l1">Médine et La Mecque,</span>
+        <em data-i18n="omra.stay.title_em">dans l'ordre du programme.</em>
+      </h2>
+    </div>
+    <div class="omra-stay">
+      <article class="omra-stay__card">
+        <p class="omra-stay__num num-ltr" data-i18n="omra.stay.s1_num">3</p>
+        <h3 class="omra-stay__city" data-i18n="omra.stay.s1_city">nuits à Médine</h3>
+        <p class="omra-stay__body" data-i18n="omra.stay.s1_body">L'étape de Médine, autour de la Mosquée du Prophète. Les ziyarat prévues dans le forfait s'organisent depuis place.</p>
+      </article>
+      <article class="omra-stay__card">
+        <p class="omra-stay__num num-ltr" data-i18n="omra.stay.s2_num">10</p>
+        <h3 class="omra-stay__city" data-i18n="omra.stay.s2_city">nuits à La Mecque</h3>
+        <p class="omra-stay__body" data-i18n="omra.stay.s2_body">Le cœur du séjour, à proximité du Haram. C'est ici que le choix de l'hôtel pèse le plus sur votre quotidien.</p>
+      </article>
+    </div>
+    <p class="omra-note" data-i18n="omra.stay.note">L'ordre des deux étapes — Médine d'abord ou La Mecque d'abord — dépend du programme et des vols retenus. Il vous est confirmé avant le départ.</p>
+  </div>
+</section>
+
+<!-- ══ INCLUS / NON INCLUS ═══════════════════════════════════ -->
+<section class="inclus-section section" id="inclus" aria-labelledby="omra-inclus-title">
+  <div class="container">
+    <div class="section-head section-head--center u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="omra.incl.eyebrow">Le forfait</p>
+      <h2 id="omra-inclus-title" class="section-head__title">
+        <span data-i18n="omra.incl.title_l1">Ce qui est compris,</span>
+        <em data-i18n="omra.incl.title_em">et ce qui dépend de la formule.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="omra.incl.sub">Le détail complet des prestations comprises et non comprises vous est communiqué avant toute confirmation de réservation.</p>
+    </div>
+    <div class="inclus-grid" style="margin-top:var(--s7)">
+      <div class="inclus-col">
+        <div class="inclus-col__head">
+          <span class="inclus-col__icon inclus-col__icon--yes" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <h3 class="inclus-col__title" data-i18n="omra.incl.yes_title">Compris dans le forfait</h3>
+          <span class="inclus-col__count num-ltr">9</span>
+        </div>
+        <ul class="inclus-list" role="list">
+          <li class="inclus-item inclus-item--yes" style="--tick-i:0" data-i18n="omra.incl.y1">Billet d'avion aller-retour</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:1" data-i18n="omra.incl.y2">Hébergement à La Mecque</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:2" data-i18n="omra.incl.y3">Hébergement à Médine</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:3" data-i18n="omra.incl.y4">Transfert entre La Mecque et Médine</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:4" data-i18n="omra.incl.y5">Transports sur place en Arabie Saoudite</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:5" data-i18n="omra.incl.y6">Ziyarat — les visites organisées</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:6" data-i18n="omra.incl.y7">Visa Omra — assistance à la procédure</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:7" data-i18n="omra.incl.y8">Assurance voyage</li>
+          <li class="inclus-item inclus-item--yes" style="--tick-i:8" data-i18n="omra.incl.y9">Accompagnement d'un guide religieux</li>
+        </ul>
+      </div>
+      <div class="inclus-col">
+        <div class="inclus-col__head">
+          <span class="inclus-col__icon inclus-col__icon--no" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+          <h3 class="inclus-col__title" data-i18n="omra.incl.no_title">Selon la formule, ou à prévoir</h3>
+          <span class="inclus-col__count num-ltr">4</span>
+        </div>
+        <ul class="inclus-list" role="list">
+          <li class="inclus-item inclus-item--no" style="--tick-i:0" data-i18n="omra.incl.n1">Les repas — comprises dans certaines formules seulement, selon l'hôtel</li>
+          <li class="inclus-item inclus-item--no" style="--tick-i:1" data-i18n="omra.incl.n2">Le transfert aéroport → hôtel — prévu dans certaines formules</li>
+          <li class="inclus-item inclus-item--no" style="--tick-i:2" data-i18n="omra.incl.n3">Le fauteuil roulant — sur demande, selon la disponibilité des prestataires</li>
+          <li class="inclus-item inclus-item--no" style="--tick-i:3" data-i18n="omra.incl.n4">Les dépenses personnelles sur place</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BON À SAVOIR ══════════════════════════════════════════ -->
+<section class="info-block-section section" id="conditions" aria-labelledby="omra-cond-title">
+  <div class="container">
+    <div class="section-head section-head--center u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="omra.cond.eyebrow">Bon à savoir</p>
+      <h2 id="omra-cond-title" class="section-head__title">
+        <span data-i18n="omra.cond.title_l1">Les conditions,</span>
+        <em data-i18n="omra.cond.title_em">dites franchement.</em>
+      </h2>
+    </div>
+    <div class="info-block-grid" style="margin-top:var(--s7)">
+      <details class="info-card" open>
+        <summary class="info-card__head">
+          <span class="info-card__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          <h3 class="info-card__title" data-i18n="omra.cond.c1_title">Formalités et visa</h3>
+          <span class="info-card__chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="info-card__body">
+          <p class="info-card__lede" data-i18n="omra.cond.c1_lede">Un passeport en cours de validité suffit pour engager la demande de visa Omra.</p>
+          <ul class="info-list" role="list">
+            <li data-i18n="omra.cond.c1_l1">Alliance Travel vous assiste dans la procédure de visa Omra au moment du dépôt de la demande.</li>
+            <li data-i18n="omra.cond.c1_l2">Les enfants sont soumis aux mêmes exigences de visa et de voyage qu'un adulte.</li>
+            <li data-i18n="omra.cond.c1_l3">Vérifiez la validité de votre passeport avant toute réservation — c'est le point de blocage le plus fréquent.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="info-card">
+        <summary class="info-card__head">
+          <span class="info-card__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <h3 class="info-card__title" data-i18n="omra.cond.c2_title">Annulation et modification</h3>
+          <span class="info-card__chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="info-card__body">
+          <p class="info-card__lede" data-i18n="omra.cond.c2_lede">À lire avant de réserver : dans la plupart des cas, une réservation Omra ne peut pas être annulée.</p>
+          <ul class="info-list" role="list">
+            <li data-i18n="omra.cond.c2_l1">L'annulation ou le changement de date dépend des conditions de la compagnie aérienne, de l'hôtel, des prestataires et du type de réservation.</li>
+            <li data-i18n="omra.cond.c2_l2">Des frais peuvent s'appliquer selon le cas.</li>
+            <li data-i18n="omra.cond.c2_l3">Contactez-nous avant d'engager toute modification — jamais après.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="info-card">
+        <summary class="info-card__head">
+          <span class="info-card__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></span>
+          <h3 class="info-card__title" data-i18n="omra.cond.c3_title">Assurance et accompagnement</h3>
+          <span class="info-card__chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="info-card__body">
+          <p class="info-card__lede" data-i18n="omra.cond.c3_lede">L'assurance voyage est comprise dans le forfait Omra.</p>
+          <ul class="info-list" role="list">
+            <li data-i18n="omra.cond.c3_l1">Un guide religieux professionnel accompagne chaque groupe.</li>
+            <li data-i18n="omra.cond.c3_l2">Vous recevez des orientations pour accomplir les rites de l'Omra de façon organisée, étape par étape.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="info-card">
+        <summary class="info-card__head">
+          <span class="info-card__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M19 13v-2a2 2 0 0 0-2-2h-5l-1.5 6"/><circle cx="11" cy="17" r="5"/><path d="M17 21h4"/></svg></span>
+          <h3 class="info-card__title" data-i18n="omra.cond.c4_title">Accessibilité et mobilité réduite</h3>
+          <span class="info-card__chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="info-card__body">
+          <p class="info-card__lede" data-i18n="omra.cond.c4_lede">Un fauteuil roulant peut être demandé pour le pèlerin qui en a besoin.</p>
+          <ul class="info-list" role="list">
+            <li data-i18n="omra.cond.c4_l1">Le service dépend de la disponibilité et des conditions des prestataires en Arabie Saoudite.</li>
+            <li data-i18n="omra.cond.c4_l2">Signalez-le nous dès la réservation — c'est ce qui permet de le garantir.</li>
+            <li data-i18n="omra.cond.c4_l3">Si vous voyagez avec une personne âgée, l'hôtel le plus proche du Haram change réellement le quotidien.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ═══════════════════════════════════════════════════ -->
+<section class="faq-bg section" id="faq" aria-labelledby="omra-faq-title">
+  <div class="container">
+    <div class="section-head section-head--center u-text-center u-measure-lg u-mx-auto">
+      <p class="section-head__eyebrow" data-i18n="omra.faq.eyebrow">Questions fréquentes</p>
+      <h2 id="omra-faq-title" class="section-head__title">
+        <span data-i18n="omra.faq.title_l1">Vingt questions,</span>
+        <em data-i18n="omra.faq.title_em">vingt réponses.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="omra.faq.sub">Les questions que l'on nous pose réellement au comptoir, avec les réponses telles que nous les donnons.</p>
+    </div>
+    <div class="faq-list" style="margin-top:var(--s8);max-width:820px;margin-inline:auto">
+
+      <details class="faq-item" open><summary class="faq-q"><span data-i18n="omra.faq.q1.q">Quels documents faut-il pour accomplir l'Omra ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q1.a">Un passeport en cours de validité est généralement demandé, afin d'obtenir le visa Omra.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q2.q">L'agence prend-elle en charge les démarches du visa Omra ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q2.a">Oui. Alliance Travel assure l'assistance dans les démarches du visa Omra au moment du dépôt de la demande.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q3.q">Que comprend le prix de la formule Omra ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q3.a">Le billet d'avion, l'hébergement à La Mecque et à Médine, les transferts, le visa et les services d'accompagnement. L'ensemble des prestations comprises et non comprises est précisé au client avant la confirmation de la réservation.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q4.q">Quelle est la différence entre les formules économiques et les formules supérieures ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q4.a">Les formules diffèrent par le niveau des hôtels, l'emplacement de l'hébergement, le type de chambre, la durée du séjour, les services proposés et le niveau de confort. L'équipe Alliance Travel peut vous proposer la formule la plus adaptée à votre budget et à vos besoins.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q5.q">Puis-je choisir l'hôtel, ou son niveau de standing ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q5.a">Oui, vous pouvez choisir parmi les options disponibles selon la formule et le budget. Nous pouvons vous conseiller des hôtels adaptés en fonction de leur proximité du Haram et de leur niveau de service.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q6.q">Quelle est la distance entre l'hôtel et le Haram de La Mecque ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q6.a">Elle varie selon l'hôtel choisi. Avant la confirmation de la réservation, nous vous précisons l'emplacement de l'hôtel, la distance approximative du Haram et le moyen de transport disponible. À titre de repère : l'hôtel Es-Safat se situe à 1 200 mètres de l'esplanade du Haram, et Manarat Ghazza à 600 mètres.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q7.q">Assurez-vous le transport de l'aéroport à l'hôtel ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q7.a">Oui, le transfert de l'aéroport vers l'hôtel est prévu dans certaines formules Omra.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q8.q">Assurez-vous le transport entre La Mecque et Médine ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q8.a">Oui, le transport entre La Mecque et Médine peut être organisé dans le cadre de la formule.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q9.q">La formule comprend-elle les déplacements à l'intérieur de l'Arabie Saoudite ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q9.a">Oui, les déplacements à l'intérieur de l'Arabie Saoudite sont compris : ce sont les ziyarat, les visites organisées.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q10.q">Les repas sont-ils compris dans la formule ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q10.a">Cela dépend de la formule et de l'hôtel choisis. Certaines offres comprennent des repas déterminés, tandis que d'autres proposent l'hébergement sans restauration. Le détail vous est précisé avant la confirmation de la réservation.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q11.q">Combien de jours dure le voyage de l'Omra ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q11.a">La durée varie selon le programme choisi. Elle est généralement de 15 jours.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q12.q">Depuis quels aéroports d'Algérie peut-on partir ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q12.a">Les voyages s'organisent au départ des aéroports desservant l'Arabie Saoudite, selon le programme du voyage, la compagnie aérienne et les vols disponibles à la date de départ. Le départ se fait généralement depuis Alger.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q13.q">Un enfant a-t-il besoin d'un visa particulier ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q13.a">Oui. Les enfants qui voyagent pour l'Omra sont soumis aux mêmes exigences de voyage et de visa qu'un voyageur adulte.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q14.q">L'agence prévoit-elle un accompagnateur ou un encadrant religieux ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q14.a">Oui. Un guide religieux professionnel accompagne chaque groupe.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q15.q">Proposez-vous un programme religieux et des orientations pour les pèlerins ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q15.a">Oui. Des orientations et des conseils aident les pèlerins à accomplir les rites de l'Omra de manière organisée, avec l'explication des principales étapes et des recommandations liées au voyage.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q16.q">Peut-on obtenir un fauteuil roulant pour le pèlerin ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q16.a">Oui, le service de fauteuil roulant peut être demandé en cas de besoin, selon la disponibilité et les conditions des prestataires en Arabie Saoudite. Il est préférable de nous en informer dès la réservation.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q17.q">L'assurance voyage est-elle comprise dans la formule ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q17.a">Oui, l'assurance est comprise dans la formule Omra.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q18.q">Peut-on annuler la réservation ou changer la date du voyage ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q18.a">L'annulation ou le changement de la date de voyage peut être possible selon les conditions de la compagnie aérienne, de l'hôtel, des prestataires de services et le type de réservation. Des frais ou des conditions particulières peuvent s'appliquer. Nous vous conseillons donc de contacter l'agence avant d'engager toute modification — et, dans la plupart des cas, la réservation ne peut pas être annulée.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q19.q">Quelle est la meilleure période pour accomplir l'Omra ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q19.a">L'Omra peut s'accomplir tout au long de l'année. Le choix du moment dépend du climat, de la saison, du budget et du niveau d'affluence. Les prix varient également selon les saisons — l'équipe Alliance Travel peut vous aider à choisir la période la plus adaptée.</p></div></details>
+
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q20.q">Combien de nuits à La Mecque, et combien à Médine ?</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q20.a">Le séjour se répartit entre 3 nuits à Médine et 10 nuits à La Mecque. L'ordre des deux étapes peut varier selon le programme du voyage.</p></div></details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ RÉSERVATION ═══════════════════════════════════════════ -->
+<section class="section" id="reserver" aria-labelledby="omra-booking-title">
+  <div class="container">
+    <div class="phase-marker"><span class="phase-marker__num">3</span><span class="phase-marker__label" data-i18n="omra.book.phase">Nous contacter</span></div>
+    <div class="section-head">
+      <p class="section-head__eyebrow" data-i18n="omra.book.eyebrow">Demande de devis</p>
+      <h2 id="omra-booking-title" class="section-head__title">
+        <span data-i18n="omra.book.title_l1">Dites-nous votre période,</span>
+        <em data-i18n="omra.book.title_em">on vous dit le tarif.</em>
+      </h2>
+      <p class="section-head__sub" data-i18n="omra.book.sub">Remplissez le formulaire : votre demande part directement sur le WhatsApp de l'agence de votre choix, avec toutes vos informations déjà mises en forme.</p>
+    </div>
+  </div>
+</section>
+
+<section class="booking-section section" id="booking" aria-label="Formulaire de demande Omra">
+
+</section>
+<noscript><div class="u-measure-lg u-text-center u-noscript-card"><h3 class="fs-h5 u-noscript-title">Activez JavaScript pour envoyer votre demande</h3><p class="u-noscript-msg">Le formulaire de demande requiert JavaScript. En attendant, vous pouvez nous contacter directement&nbsp;:</p><p class="fs-body-lg u-m-0"><a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20souhaite%20des%20informations%20sur%20l'Omra." class="u-text-mint u-fw-600 u-no-decoration">WhatsApp&nbsp;: 0561 616 266</a><br><br><a href="tel:+213561616266" class="u-text-mint u-no-decoration">Téléphone&nbsp;: 0561 616 266</a></p></div></noscript>
+
+<!-- ══ CTA FINAL ═════════════════════════════════════════════ -->
+<section class="final-cta" aria-labelledby="omra-cta-title">
+  <div class="container">
+    <p class="final-cta__scarcity">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span data-i18n="omra.cta.scarcity">Les tarifs et les disponibilités changent selon la saison</span>
+    </p>
+    <h2 id="omra-cta-title" class="final-cta__title">
+      <span data-i18n="omra.cta.title_l1">Une question avant de vous décider ?</span>
+      <em data-i18n="omra.cta.title_em">Posez-la.</em>
+    </h2>
+    <p class="final-cta__sub" data-i18n="omra.cta.sub">Nos conseillers répondent sur WhatsApp et vous orientent vers la formule adaptée à votre budget, votre période et les personnes qui vous accompagnent.</p>
+    <div class="final-cta__actions">
+      <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j'ai%20une%20question%20sur%20l'Omra." class="btn btn--wa" target="_blank" rel="noopener" data-track-event="omra_cta_wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        <span data-i18n="omra.cta.wa">Écrire sur WhatsApp</span>
+      </a>
+      <a href="tel:+213561616266" class="btn btn--ghost" data-i18n="omra.cta.call">Appeler l'agence</a>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-cta">
+        <div class="footer-cta__text">
+          <h3 data-i18n="footer.cta_title">Prêt à partir ?</h3>
+          <p data-i18n="footer.cta_sub">Écrivez-nous sur WhatsApp, réponse le jour même.</p>
+        </div>
+        <a class="btn btn--primary footer-cta__btn" href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener" data-i18n="footer.cta_btn">Discuter sur WhatsApp</a>
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-brand-logo" aria-hidden="true"><svg class="footer-logo-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 426 148.499996" height="40" aria-label="Alliance Travel" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="6f5dac3367"><path d="M 23.808594 0 L 65.683594 0 L 65.683594 35.996094 L 23.808594 35.996094 Z M 23.808594 0 " clip-rule="nonzero"/></clipPath><clipPath id="22fe911202"><path d="M 46.292969 35.855469 C 45.75 29.660156 45.214844 23.53125 44.671875 17.34375 C 44.460938 17.421875 44.316406 17.464844 44.179688 17.53125 C 40.558594 19.191406 36.9375 20.863281 33.308594 22.511719 C 32.941406 22.675781 32.796875 22.894531 32.742188 23.28125 C 32.519531 24.832031 32.269531 26.378906 32.011719 27.921875 C 31.984375 28.085938 31.878906 28.292969 31.742188 28.375 C 31.140625 28.757812 30.519531 29.097656 29.839844 29.492188 C 29.777344 29.273438 29.722656 29.136719 29.695312 28.992188 C 29.351562 27.25 29.023438 25.507812 28.652344 23.769531 C 28.589844 23.472656 28.414062 23.152344 28.195312 22.945312 C 26.898438 21.707031 25.574219 20.5 24.261719 19.277344 C 24.175781 19.195312 24.09375 19.105469 23.949219 18.953125 C 24.660156 18.558594 25.332031 18.171875 26.023438 17.820312 C 26.128906 17.765625 26.324219 17.847656 26.460938 17.902344 C 27.890625 18.5 29.324219 19.089844 30.738281 19.714844 C 31.125 19.886719 31.394531 19.84375 31.738281 19.613281 C 35.03125 17.402344 38.339844 15.207031 41.640625 13.007812 C 41.769531 12.921875 41.890625 12.828125 42.078125 12.6875 C 37.097656 8.972656 32.160156 5.289062 27.171875 1.570312 C 28.128906 1.03125 29.015625 0.519531 29.917969 0.0390625 C 30.042969 -0.0273438 30.261719 0 30.402344 0.0625 C 36.523438 2.738281 42.644531 5.414062 48.753906 8.113281 C 49.226562 8.324219 49.566406 8.28125 50.003906 8.039062 C 53.269531 6.210938 56.574219 4.453125 60.085938 3.121094 C 60.847656 2.832031 61.636719 2.601562 62.421875 2.378906 C 62.820312 2.265625 63.238281 2.191406 63.652344 2.164062 C 64.3125 2.117188 65.054688 2.019531 65.429688 2.71875 C 65.804688 3.414062 65.339844 3.996094 64.941406 4.519531 C 64.628906 4.933594 64.28125 5.34375 63.878906 5.667969 C 62.664062 6.652344 61.472656 7.683594 60.164062 8.53125 C 57.726562 10.113281 55.21875 11.582031 52.722656 13.070312 C 52.34375 13.296875 52.144531 13.523438 52.082031 13.976562 C 51.164062 20.613281 50.222656 27.246094 49.277344 33.875 C 49.253906 34.042969 49.152344 34.261719 49.019531 34.339844 C 48.152344 34.847656 47.261719 35.320312 46.292969 35.855469 Z M 46.292969 35.855469 " clip-rule="nonzero"/></clipPath><clipPath id="bc60a13e81"><path d="M 0.917969 0 L 42.683594 0 L 42.683594 35.878906 L 0.917969 35.878906 Z M 0.917969 0 " clip-rule="nonzero"/></clipPath><clipPath id="1a1fe097b1"><path d="M 23.292969 35.855469 C 22.75 29.660156 22.214844 23.53125 21.671875 17.34375 C 21.460938 17.421875 21.316406 17.464844 21.179688 17.53125 C 17.558594 19.191406 13.9375 20.863281 10.308594 22.511719 C 9.941406 22.675781 9.796875 22.894531 9.742188 23.28125 C 9.519531 24.832031 9.269531 26.378906 9.011719 27.921875 C 8.984375 28.085938 8.878906 28.292969 8.742188 28.375 C 8.140625 28.757812 7.519531 29.097656 6.839844 29.492188 C 6.777344 29.273438 6.722656 29.136719 6.695312 28.992188 C 6.351562 27.25 6.023438 25.507812 5.652344 23.769531 C 5.589844 23.472656 5.414062 23.152344 5.195312 22.945312 C 3.898438 21.707031 2.574219 20.5 1.261719 19.277344 C 1.175781 19.195312 1.09375 19.105469 0.949219 18.953125 C 1.660156 18.558594 2.332031 18.171875 3.023438 17.820312 C 3.128906 17.765625 3.324219 17.847656 3.460938 17.902344 C 4.890625 18.5 6.324219 19.089844 7.738281 19.714844 C 8.125 19.886719 8.394531 19.84375 8.738281 19.613281 C 12.03125 17.402344 15.339844 15.207031 18.640625 13.007812 C 18.769531 12.921875 18.890625 12.828125 19.078125 12.6875 C 14.097656 8.972656 9.160156 5.289062 4.171875 1.570312 C 5.128906 1.03125 6.015625 0.519531 6.917969 0.0390625 C 7.042969 -0.0273438 7.261719 0 7.402344 0.0625 C 13.523438 2.738281 19.644531 5.414062 25.753906 8.113281 C 26.226562 8.324219 26.566406 8.28125 27.003906 8.039062 C 30.269531 6.210938 33.574219 4.453125 37.085938 3.121094 C 37.847656 2.832031 38.636719 2.601562 39.421875 2.378906 C 39.820312 2.265625 40.238281 2.191406 40.652344 2.164062 C 41.3125 2.117188 42.054688 2.019531 42.429688 2.71875 C 42.804688 3.414062 42.339844 3.996094 41.941406 4.519531 C 41.628906 4.933594 41.28125 5.34375 40.878906 5.667969 C 39.664062 6.652344 38.472656 7.683594 37.164062 8.53125 C 34.726562 10.113281 32.21875 11.582031 29.722656 13.070312 C 29.34375 13.296875 29.144531 13.523438 29.082031 13.976562 C 28.164062 20.613281 27.222656 27.246094 26.277344 33.875 C 26.253906 34.042969 26.152344 34.261719 26.019531 34.339844 C 25.152344 34.847656 24.261719 35.320312 23.292969 35.855469 Z M 23.292969 35.855469 " clip-rule="nonzero"/></clipPath><clipPath id="dc38495a75"><rect x="0" width="43" y="0" height="36"/></clipPath><clipPath id="ad75c4b4fc"><path d="M 285.808594 130.515625 L 299.566406 130.515625 L 299.566406 131.847656 L 285.808594 131.847656 Z M 292.027344 131.847656 L 293.347656 131.847656 L 293.347656 147.378906 L 292.027344 147.378906 Z M 292.027344 131.847656 " clip-rule="nonzero"/></clipPath><clipPath id="0e3106f3ca"><path d="M 0.808594 0.515625 L 14.566406 0.515625 L 14.566406 1.847656 L 0.808594 1.847656 Z M 7.027344 1.847656 L 8.347656 1.847656 L 8.347656 17.378906 L 7.027344 17.378906 Z M 7.027344 1.847656 " clip-rule="nonzero"/></clipPath><clipPath id="bfc8f113ba"><rect x="0" width="15" y="0" height="18"/></clipPath><clipPath id="c4f571a3d5"><path d="M 312.644531 130.515625 L 323.855469 130.515625 L 323.855469 147.710938 L 312.644531 147.710938 Z M 312.644531 130.515625 " clip-rule="nonzero"/></clipPath><clipPath id="c6b329dff5"><path d="M 336.964844 130.515625 L 352.664062 130.515625 L 352.664062 147.710938 L 336.964844 147.710938 Z M 336.964844 130.515625 " clip-rule="nonzero"/></clipPath><clipPath id="e0b06f2b52"><path d="M 362.347656 130.515625 L 377.789062 130.515625 L 377.789062 147.402344 L 362.347656 147.402344 Z M 362.347656 130.515625 " clip-rule="nonzero"/></clipPath><clipPath id="0cabbca291"><path d="M 370.804688 147.378906 L 369.378906 147.378906 L 362.40625 130.515625 L 363.828125 130.515625 L 370.097656 145.652344 L 376.351562 130.515625 L 377.789062 130.515625 Z M 370.804688 147.378906 " clip-rule="nonzero"/></clipPath><clipPath id="dd3a24775a"><path d="M 0.378906 0.515625 L 15.789062 0.515625 L 15.789062 17.402344 L 0.378906 17.402344 Z M 0.378906 0.515625 " clip-rule="nonzero"/></clipPath><clipPath id="53f36033ce"><path d="M 8.804688 17.378906 L 7.378906 17.378906 L 0.40625 0.515625 L 1.828125 0.515625 L 8.097656 15.652344 L 14.351562 0.515625 L 15.789062 0.515625 Z M 8.804688 17.378906 " clip-rule="nonzero"/></clipPath><clipPath id="a239c7dbf9"><rect x="0" width="16" y="0" height="18"/></clipPath><clipPath id="4aa9e00c49"><path d="M 390.847656 130.515625 L 400.714844 130.515625 L 400.714844 131.84375 L 390.847656 131.84375 Z M 390.847656 131.84375 L 392.175781 131.84375 L 392.175781 137.976562 L 390.847656 137.976562 Z M 390.847656 137.976562 L 399.390625 137.976562 L 399.390625 139.246094 L 390.847656 139.246094 Z M 390.847656 139.246094 L 392.175781 139.246094 L 392.175781 146.046875 L 390.847656 146.046875 Z M 390.847656 146.046875 L 400.714844 146.046875 L 400.714844 147.363281 L 390.847656 147.363281 Z M 390.847656 146.046875 " clip-rule="nonzero"/></clipPath><clipPath id="4700ad0c56"><path d="M 0.847656 0.515625 L 10.714844 0.515625 L 10.714844 1.84375 L 0.847656 1.84375 Z M 0.847656 1.84375 L 2.175781 1.84375 L 2.175781 7.976562 L 0.847656 7.976562 Z M 0.847656 7.976562 L 9.390625 7.976562 L 9.390625 9.246094 L 0.847656 9.246094 Z M 0.847656 9.246094 L 2.175781 9.246094 L 2.175781 16.046875 L 0.847656 16.046875 Z M 0.847656 16.046875 L 10.714844 16.046875 L 10.714844 17.363281 L 0.847656 17.363281 Z M 0.847656 16.046875 " clip-rule="nonzero"/></clipPath><clipPath id="41f3651b0b"><rect x="0" width="11" y="0" height="18"/></clipPath><clipPath id="6e60c38031"><path d="M 413.800781 130.515625 L 415.128906 130.515625 L 415.128906 146.0625 L 413.800781 146.0625 Z M 413.800781 146.0625 L 424.84375 146.0625 L 424.84375 147.378906 L 413.800781 147.378906 Z M 413.800781 146.0625 " clip-rule="nonzero"/></clipPath><clipPath id="de1ffa27ec"><path d="M 0.800781 0.515625 L 2.128906 0.515625 L 2.128906 16.0625 L 0.800781 16.0625 Z M 0.800781 16.0625 L 11.84375 16.0625 L 11.84375 17.378906 L 0.800781 17.378906 Z M 0.800781 16.0625 " clip-rule="nonzero"/></clipPath><clipPath id="31cf2a680e"><rect x="0" width="12" y="0" height="18"/></clipPath><clipPath id="155b22a741"><path d="M 99.792969 40.042969 L 114.074219 40.042969 L 114.074219 115.207031 L 99.792969 115.207031 Z M 99.792969 40.042969 " clip-rule="nonzero"/></clipPath><clipPath id="4c70b551bb"><path d="M 0.792969 0.0429688 L 15.074219 0.0429688 L 15.074219 75.207031 L 0.792969 75.207031 Z M 0.792969 0.0429688 " clip-rule="nonzero"/></clipPath><clipPath id="edfb46498a"><rect x="0" width="16" y="0" height="76"/></clipPath><clipPath id="6b2d92cfe6"><path d="M 127.757812 40.042969 L 142.039062 40.042969 L 142.039062 115.207031 L 127.757812 115.207031 Z M 127.757812 40.042969 " clip-rule="nonzero"/></clipPath><clipPath id="bbf96f04a3"><path d="M 0.757812 0.0429688 L 15.039062 0.0429688 L 15.039062 75.207031 L 0.757812 75.207031 Z M 0.757812 0.0429688 " clip-rule="nonzero"/></clipPath><clipPath id="3b14f3e239"><rect x="0" width="16" y="0" height="76"/></clipPath><clipPath id="a17f906130"><path d="M 154.214844 38.96875 L 172.15625 38.96875 L 172.15625 115.210938 L 154.214844 115.210938 Z M 154.214844 38.96875 " clip-rule="nonzero"/></clipPath><clipPath id="2b1d768afb"><path d="M 180.480469 60.945312 L 238 60.945312 L 238 116.257812 L 180.480469 116.257812 Z M 180.480469 60.945312 " clip-rule="nonzero"/></clipPath><clipPath id="90d071fd48"><path d="M 251.335938 61.039062 L 304.542969 61.039062 L 304.542969 115.320312 L 251.335938 115.320312 Z M 251.335938 61.039062 " clip-rule="nonzero"/></clipPath><clipPath id="52c8be3069"><path d="M 251.515625 62.109375 L 263.859375 62.109375 L 264.824219 68.230469 C 266.898438 65.9375 269.441406 64.167969 272.445312 62.914062 C 275.453125 61.664062 278.707031 61.039062 282.214844 61.039062 C 289.011719 61.039062 294.414062 63.238281 298.425781 67.636719 C 302.429688 72.039062 304.4375 77.996094 304.4375 85.511719 L 304.4375 115.140625 L 290.160156 115.140625 L 290.160156 86.371094 C 290.160156 82.292969 289.140625 79.125 287.097656 76.871094 C 285.058594 74.617188 282.25 73.488281 278.671875 73.488281 C 274.808594 73.488281 271.695312 74.777344 269.332031 77.351562 C 266.972656 79.929688 265.792969 83.257812 265.792969 87.335938 L 265.792969 115.140625 L 251.515625 115.140625 Z M 251.515625 62.109375 " clip-rule="nonzero"/></clipPath><clipPath id="0b92d48cc6"><path d="M 0.390625 0.0390625 L 53.492188 0.0390625 L 53.492188 54.292969 L 0.390625 54.292969 Z M 0.390625 0.0390625 " clip-rule="nonzero"/></clipPath><clipPath id="6ff1ed3015"><path d="M 0.515625 1.109375 L 12.859375 1.109375 L 13.824219 7.230469 C 15.898438 4.9375 18.441406 3.167969 21.445312 1.914062 C 24.453125 0.664062 27.707031 0.0390625 31.214844 0.0390625 C 38.011719 0.0390625 43.414062 2.238281 47.425781 6.636719 C 51.429688 11.039062 53.4375 16.996094 53.4375 24.511719 L 53.4375 54.140625 L 39.160156 54.140625 L 39.160156 25.371094 C 39.160156 21.292969 38.140625 18.125 36.097656 15.871094 C 34.058594 13.617188 31.25 12.488281 27.671875 12.488281 C 23.808594 12.488281 20.695312 13.777344 18.332031 16.351562 C 15.972656 18.929688 14.792969 22.257812 14.792969 26.335938 L 14.792969 54.140625 L 0.515625 54.140625 Z M 0.515625 1.109375 " clip-rule="nonzero"/></clipPath><clipPath id="81b7480e77"><rect x="0" width="54" y="0" height="55"/></clipPath><clipPath id="d775c81624"><path d="M 314 60.945312 L 363.921875 60.945312 L 363.921875 116.328125 L 314 116.328125 Z M 314 60.945312 " clip-rule="nonzero"/></clipPath><clipPath id="e4e38b35b2"><path d="M 327.671875 112.945312 C 323.34375 110.691406 320 107.472656 317.636719 103.285156 C 315.277344 99.101562 314.097656 94.21875 314.097656 88.636719 C 314.097656 83.199219 315.292969 78.386719 317.691406 74.199219 C 320.089844 70.015625 323.433594 66.761719 327.726562 64.433594 C 332.019531 62.109375 336.992188 60.945312 342.644531 60.945312 C 350.515625 60.945312 357.3125 63.699219 363.039062 69.210938 L 354.773438 78.117188 C 353.269531 76.617188 351.515625 75.453125 349.515625 74.628906 C 347.511719 73.808594 345.398438 73.394531 343.183594 73.394531 C 338.746094 73.394531 335.148438 74.808594 332.394531 77.636719 C 329.640625 80.460938 328.265625 84.128906 328.265625 88.636719 C 328.265625 93.144531 329.640625 96.8125 332.394531 99.636719 C 335.148438 102.464844 338.746094 103.875 343.183594 103.875 C 348.046875 103.875 352.125 102.160156 355.417969 98.726562 L 363.789062 107.742188 C 357.847656 113.464844 350.871094 116.328125 342.859375 116.328125 C 337.0625 116.328125 332.003906 115.199219 327.671875 112.945312 Z M 327.671875 112.945312 " clip-rule="nonzero"/></clipPath><clipPath id="df2143a0f0"><path d="M 0.0585938 0.945312 L 49.8125 0.945312 L 49.8125 56.328125 L 0.0585938 56.328125 Z M 0.0585938 0.945312 " clip-rule="nonzero"/></clipPath><clipPath id="e7624dd84c"><path d="M 13.671875 52.945312 C 9.34375 50.691406 6 47.472656 3.636719 43.285156 C 1.277344 39.101562 0.0976562 34.21875 0.0976562 28.636719 C 0.0976562 23.199219 1.292969 18.386719 3.691406 14.199219 C 6.089844 10.015625 9.433594 6.761719 13.726562 4.433594 C 18.019531 2.109375 22.992188 0.945312 28.644531 0.945312 C 36.515625 0.945312 43.3125 3.699219 49.039062 9.210938 L 40.773438 18.117188 C 39.269531 16.617188 37.515625 15.453125 35.515625 14.628906 C 33.511719 13.808594 31.398438 13.394531 29.183594 13.394531 C 24.746094 13.394531 21.148438 14.808594 18.394531 17.636719 C 15.640625 20.460938 14.265625 24.128906 14.265625 28.636719 C 14.265625 33.144531 15.640625 36.8125 18.394531 39.636719 C 21.148438 42.464844 24.746094 43.875 29.183594 43.875 C 34.046875 43.875 38.125 42.160156 41.417969 38.726562 L 49.789062 47.742188 C 43.847656 53.464844 36.871094 56.328125 28.859375 56.328125 C 23.0625 56.328125 18.003906 55.199219 13.671875 52.945312 Z M 13.671875 52.945312 " clip-rule="nonzero"/></clipPath><clipPath id="4c7c7a3221"><rect x="0" width="50" y="0" height="57"/></clipPath><clipPath id="2ebf84af89"><path d="M 368.140625 61.105469 L 423.453125 61.105469 L 423.453125 116.417969 L 368.140625 116.417969 Z M 368.140625 61.105469 " clip-rule="nonzero"/></clipPath><clipPath id="b6e5db2c0d"><path d="M 0.714844 28.292969 L 92.65625 28.292969 L 92.65625 116.496094 L 0.714844 116.496094 Z M 0.714844 28.292969 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#6f5dac3367)"><g clip-path="url(#22fe911202)"><g transform="matrix(1, 0, 0, 1, 23, 0)"><g clip-path="url(#dc38495a75)"><g clip-path="url(#bc60a13e81)"><g clip-path="url(#1a1fe097b1)"><path fill="#9ce8b2" d="M 0.949219 0 L 42.546875 0 L 42.546875 35.855469 L 0.949219 35.855469 Z M 0.949219 0 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#ad75c4b4fc)"><g transform="matrix(1, 0, 0, 1, 285, 130)"><g clip-path="url(#bfc8f113ba)"><g clip-path="url(#0e3106f3ca)"><path fill="#efe8df" d="M 0.808594 0.515625 L 14.566406 0.515625 L 14.566406 17.394531 L 0.808594 17.394531 Z M 0.808594 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#c4f571a3d5)"><path fill="#efe8df" d="M 313.941406 131.730469 L 313.941406 138.707031 L 318.746094 138.707031 C 318.949219 138.707031 319.148438 138.6875 319.351562 138.648438 C 320.167969 138.496094 320.851562 138.105469 321.398438 137.46875 C 321.941406 136.816406 322.214844 136.074219 322.222656 135.230469 C 322.214844 134.382812 321.945312 133.632812 321.410156 132.980469 C 320.863281 132.347656 320.179688 131.949219 319.363281 131.792969 C 319.160156 131.761719 318.960938 131.742188 318.757812 131.730469 Z M 322.1875 147.585938 L 317.101562 139.910156 L 313.941406 139.910156 L 313.941406 147.585938 L 312.644531 147.585938 L 312.644531 130.519531 L 313.941406 130.519531 L 313.941406 130.53125 L 318.769531 130.53125 C 319.03125 130.539062 319.296875 130.566406 319.558594 130.613281 C 320.648438 130.820312 321.558594 131.347656 322.292969 132.195312 C 322.648438 132.617188 322.921875 133.089844 323.113281 133.613281 C 323.300781 134.136719 323.390625 134.675781 323.390625 135.230469 C 323.375 136.382812 323.007812 137.390625 322.28125 138.253906 C 321.546875 139.101562 320.636719 139.628906 319.546875 139.835938 C 319.285156 139.882812 319.023438 139.910156 318.757812 139.910156 L 318.726562 139.910156 L 323.808594 147.585938 Z M 322.1875 147.585938 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#c6b329dff5)"><path fill="#efe8df" d="M 341.195312 140.859375 L 348.273438 140.859375 L 344.734375 132.269531 Z M 351.054688 147.585938 L 348.832031 142.191406 L 340.636719 142.191406 L 338.414062 147.585938 L 336.964844 147.585938 L 344.011719 130.519531 L 345.460938 130.519531 L 352.503906 147.585938 Z M 351.054688 147.585938 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#e0b06f2b52)"><g clip-path="url(#0cabbca291)"><g transform="matrix(1, 0, 0, 1, 362, 130)"><g clip-path="url(#a239c7dbf9)"><g clip-path="url(#dd3a24775a)"><g clip-path="url(#53f36033ce)"><path fill="#efe8df" d="M 0.40625 0.515625 L 15.789062 0.515625 L 15.789062 17.402344 L 0.40625 17.402344 Z M 0.40625 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#4aa9e00c49)"><g transform="matrix(1, 0, 0, 1, 390, 130)"><g clip-path="url(#41f3651b0b)"><g clip-path="url(#4700ad0c56)"><path fill="#efe8df" d="M 0.847656 0.515625 L 10.714844 0.515625 L 10.714844 17.359375 L 0.847656 17.359375 Z M 0.847656 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#6e60c38031)"><g transform="matrix(1, 0, 0, 1, 413, 130)"><g clip-path="url(#31cf2a680e)"><g clip-path="url(#de1ffa27ec)"><path fill="#efe8df" d="M 0.800781 0.515625 L 11.84375 0.515625 L 11.84375 17.382812 L 0.800781 17.382812 Z M 0.800781 0.515625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#155b22a741)"><g transform="matrix(1, 0, 0, 1, 99, 40)"><g clip-path="url(#edfb46498a)"><g clip-path="url(#4c70b551bb)"><path fill="#efe8df" d="M 0.792969 0.0429688 L 15.074219 0.0429688 L 15.074219 75.1875 L 0.792969 75.1875 Z M 0.792969 0.0429688 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#6b2d92cfe6)"><g transform="matrix(1, 0, 0, 1, 127, 40)"><g clip-path="url(#3b14f3e239)"><g clip-path="url(#bbf96f04a3)"><path fill="#efe8df" d="M 0.757812 0.0429688 L 15.039062 0.0429688 L 15.039062 75.1875 L 0.757812 75.1875 Z M 0.757812 0.0429688 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g><g clip-path="url(#a17f906130)"><path fill="#efe8df" d="M 155.746094 62.113281 L 170.289062 62.113281 L 170.289062 115.035156 L 155.746094 115.035156 Z M 156.730469 41.332031 C 158.40625 39.761719 160.519531 38.976562 163.070312 38.976562 C 165.621094 38.976562 167.753906 39.761719 169.46875 41.332031 C 171.179688 42.902344 172.035156 44.902344 172.035156 47.332031 C 172.035156 49.6875 171.179688 51.636719 169.46875 53.167969 C 167.753906 54.707031 165.621094 55.472656 163.070312 55.472656 C 160.519531 55.472656 158.40625 54.707031 156.730469 53.167969 C 155.050781 51.636719 154.214844 49.6875 154.214844 47.332031 C 154.214844 44.902344 155.050781 42.902344 156.730469 41.332031 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#2b1d768afb)"><path fill="#efe8df" d="M 198.746094 99.433594 C 201.464844 102.285156 204.9375 103.710938 209.164062 103.710938 C 213.460938 103.710938 216.96875 102.285156 219.691406 99.433594 C 222.414062 96.585938 223.777344 92.949219 223.777344 88.53125 C 223.777344 84.109375 222.414062 80.476562 219.691406 77.625 C 216.96875 74.773438 213.460938 73.347656 209.164062 73.347656 C 204.9375 73.347656 201.464844 74.773438 198.746094 77.625 C 196.023438 80.476562 194.664062 84.109375 194.664062 88.53125 C 194.664062 92.949219 196.023438 96.585938 198.746094 99.433594 M 192.890625 112.640625 C 188.984375 110.324219 185.941406 107.0625 183.757812 102.855469 C 181.574219 98.652344 180.484375 93.875 180.484375 88.53125 C 180.484375 83.183594 181.574219 78.410156 183.757812 74.203125 C 185.941406 69.996094 188.984375 66.738281 192.890625 64.417969 C 196.792969 62.105469 201.25 60.945312 206.265625 60.945312 C 209.988281 60.945312 213.445312 61.585938 216.632812 62.867188 C 219.816406 64.152344 222.484375 66.007812 224.632812 68.429688 L 225.601562 62.121094 L 237.957031 62.121094 L 237.957031 114.9375 L 225.601562 114.9375 L 224.632812 108.523438 C 222.414062 111.019531 219.726562 112.90625 216.578125 114.191406 C 213.425781 115.472656 209.988281 116.113281 206.265625 116.113281 C 201.25 116.113281 196.792969 114.957031 192.890625 112.640625 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#90d071fd48)"><g clip-path="url(#52c8be3069)"><g transform="matrix(1, 0, 0, 1, 251, 61)"><g clip-path="url(#81b7480e77)"><g clip-path="url(#0b92d48cc6)"><g clip-path="url(#6ff1ed3015)"><path fill="#efe8df" d="M 0.515625 0.0390625 L 53.363281 0.0390625 L 53.363281 54.140625 L 0.515625 54.140625 Z M 0.515625 0.0390625 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#d775c81624)"><g clip-path="url(#e4e38b35b2)"><g transform="matrix(1, 0, 0, 1, 314, 60)"><g clip-path="url(#4c7c7a3221)"><g clip-path="url(#df2143a0f0)"><g clip-path="url(#e7624dd84c)"><path fill="#efe8df" d="M 0.0976562 0.945312 L 49.742188 0.945312 L 49.742188 56.328125 L 0.0976562 56.328125 Z M 0.0976562 0.945312 " fill-opacity="1" fill-rule="nonzero"/></g></g></g></g></g></g><g clip-path="url(#2ebf84af89)"><path fill="#efe8df" d="M 409.808594 83.878906 C 409.523438 80.457031 408.175781 77.75 405.761719 75.753906 C 403.34375 73.757812 400.179688 72.761719 396.273438 72.761719 C 392.507812 72.761719 389.4375 73.742188 387.058594 75.699219 C 384.675781 77.660156 383.238281 80.386719 382.742188 83.878906 Z M 381.832031 112.957031 C 377.464844 110.679688 374.089844 107.453125 371.710938 103.28125 C 369.328125 99.113281 368.140625 94.25 368.140625 88.691406 C 368.140625 83.273438 369.292969 78.480469 371.601562 74.308594 C 373.910156 70.140625 377.160156 66.898438 381.355469 64.582031 C 385.546875 62.265625 390.378906 61.105469 395.847656 61.105469 C 404.445312 61.105469 411.195312 63.511719 416.097656 68.324219 C 421 73.136719 423.449219 79.710938 423.449219 88.046875 C 423.449219 89.6875 423.34375 91.433594 423.132812 93.285156 L 382.527344 93.285156 C 383.023438 96.636719 384.640625 99.3125 387.375 101.304688 C 390.109375 103.300781 393.574219 104.300781 397.765625 104.300781 C 400.609375 104.300781 403.34375 103.855469 405.972656 102.960938 C 408.601562 102.070312 410.769531 100.84375 412.472656 99.273438 L 420.359375 107.398438 C 417.589844 110.25 414.179688 112.460938 410.128906 114.027344 C 406.078125 115.59375 401.78125 116.378906 397.234375 116.378906 C 391.335938 116.378906 386.203125 115.238281 381.832031 112.957031 " fill-opacity="1" fill-rule="nonzero"/></g><g clip-path="url(#b6e5db2c0d)"><path fill="#efe8df" d="M 65.113281 98.660156 C 59.664062 96.8125 54.28125 94.8125 49.019531 92.625 C 44.707031 90.832031 40.476562 88.914062 36.375 86.84375 L 49.988281 55.023438 L 64.214844 88.28125 L 69.015625 99.949219 C 67.710938 99.527344 66.410156 99.101562 65.113281 98.660156 M 58.304688 40.082031 L 41.777344 40.082031 L 23.929688 79.714844 C 22.488281 78.761719 21.082031 77.777344 19.714844 76.753906 C 15.433594 73.539062 11.597656 69.914062 8.871094 65.804688 C 7.515625 63.75 6.460938 61.574219 5.847656 59.304688 C 5.230469 57.035156 5.0625 54.679688 5.398438 52.328125 C 5.726562 49.976562 6.554688 47.644531 7.753906 45.417969 C 8.957031 43.195312 10.488281 41.0625 12.261719 39.054688 C 15.84375 35.054688 20.226562 31.511719 24.910156 28.296875 C 19.835938 31.054688 14.976562 34.179688 10.730469 37.957031 C 8.625 39.859375 6.710938 41.945312 5.09375 44.234375 C 3.480469 46.523438 2.195312 49.039062 1.457031 51.722656 C 0.707031 54.402344 0.527344 57.226562 0.90625 60 C 1.28125 62.773438 2.195312 65.476562 3.460938 68.023438 C 4.722656 70.570312 6.332031 72.960938 8.128906 75.210938 C 9.929688 77.464844 11.933594 79.574219 14.054688 81.566406 C 16.136719 83.515625 18.324219 85.367188 20.589844 87.136719 L 7.40625 116.421875 L 23.824219 116.421875 L 30.171875 101.589844 L 32.726562 95.503906 C 36.125 97.609375 39.597656 99.609375 43.132812 101.515625 C 48.363281 104.339844 53.726562 106.96875 59.1875 109.445312 C 61.914062 110.683594 64.671875 111.878906 67.460938 113.039062 C 68.855469 113.621094 70.253906 114.191406 71.667969 114.75 L 73.808594 115.585938 L 74.894531 115.996094 L 76.039062 116.417969 L 76.039062 116.421875 L 92.566406 116.421875 Z M 58.304688 40.082031 " fill-opacity="1" fill-rule="nonzero"/></g></svg></span>
+          <p class="footer-tagline" data-i18n="footer.tagline">Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.</p>
+          <ul class="footer-social" role="list">
+            <li><a href="https://www.instagram.com/alliance_travel34/" target="_blank" rel="noopener" data-i18n-aria-label="footer.social_instagram" aria-label="Instagram Alliance Travel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
+            <li><a href="https://web.facebook.com/Alliance.Mebarkia" target="_blank" rel="noopener" data-i18n-aria-label="footer.social_facebook" aria-label="Facebook Alliance Travel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.95v-7.04H8v-2.91h2.5V9.84c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91H13.6v7.04A10 10 0 0 0 22 12z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@visa.bba34" target="_blank" rel="noopener" data-i18n-aria-label="footer.social_tiktok" aria-label="TikTok Alliance Travel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z"/></svg></a></li>
+          </ul>
+        </div>
+
+        <nav class="footer-nav" aria-label="Liens du pied de page">
+          <div class="footer-col footer-col--trips">
+            <h4 data-i18n="footer.col_voyages">Nos voyages 2026</h4>
+            <ul role="list">
+          <li><a href="../omra/"><span class="dico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></span><span data-i18n="footer.dest_omra">Omra</span></a></li>
+          <li><a href="../egypte/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 4 20 19 4 19"/><polygon points="6 11 11 19 1 19" stroke-opacity=".7"/><line x1="2" y1="20.5" x2="22" y2="20.5" stroke-opacity=".55"/></svg></span><span data-i18n="footer.dest_egypte">Égypte</span></a></li>
+          <li><a href="../tunisie/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 v9"/><path d="M12 6 q4 -1 6 2 q-3 1 -6 0" stroke-opacity=".85"/><path d="M2 16 q3 -2 6 0 t6 0 t6 0" stroke-opacity=".9"/><path d="M2 20 q3 -2 6 0 t6 0 t6 0" stroke-opacity=".7"/></svg></span><span data-i18n="footer.dest_tunisie">Tunisie</span></a></li>
+          <li><a href="../azerbaidjan/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 c2 3 4 5 4 8.5 a4 4 0 0 1 -8 0 c0 -3 2 -5 4 -8.5 z"/><path d="M12 7 c1 2 1.8 3 1.8 5 a1.8 1.8 0 0 1 -3.6 0 c0 -2 .8 -3 1.8 -5 z" stroke-opacity=".7"/><line x1="4" y1="20" x2="20" y2="20" stroke-opacity=".55"/><line x1="6" y1="22" x2="18" y2="22" stroke-opacity=".4"/></svg></span><span data-i18n="footer.dest_azerbaidjan">Azerbaïdjan</span></a></li>
+          <li><a href="../istanbul/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18 v-7 a7 7 0 0 1 14 0 v7"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="3" y1="20.5" x2="21" y2="20.5" stroke-opacity=".55"/><line x1="2" y1="20" x2="2" y2="9"/><line x1="22" y1="20" x2="22" y2="9"/><polygon points="2 9 1.4 11 2.6 11" fill="currentColor" stroke="none"/><polygon points="22 9 21.4 11 22.6 11" fill="currentColor" stroke="none"/></svg></span><span data-i18n="footer.dest_istanbul">Istanbul</span></a></li>
+          <li><a href="../kuala-lumpur/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="17" rx=".5"/><rect x="14" y="4" width="4" height="17" rx=".5"/><line x1="8" y1="2.5" x2="8" y2="4"/><line x1="16" y1="2.5" x2="16" y2="4"/><line x1="10" y1="11" x2="14" y2="11"/><line x1="10" y1="13" x2="14" y2="13" stroke-opacity=".7"/><line x1="3" y1="21" x2="21" y2="21" stroke-opacity=".55"/></svg></span><span data-i18n="footer.dest_kuala_lumpur">Kuala Lumpur</span></a></li>
+          <li><a href="../bali/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 c2 3 4 5 4 8.5 a4 4 0 0 1 -8 0 c0 -3 2 -5 4 -8.5 z"/><path d="M12 7 c1 2 1.8 3 1.8 5 a1.8 1.8 0 0 1 -3.6 0 c0 -2 .8 -3 1.8 -5 z" stroke-opacity=".7"/><path d="M2 18 q3 -2 6 0 t6 0 t6 0" stroke-opacity=".85"/><path d="M2 21 q3 -2 6 0 t6 0 t6 0" stroke-opacity=".65"/></svg></span><span data-i18n="footer.dest_bali">Bali</span></a></li>
+          <li><a href="../vietnam/"><span class="dico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17 l4 -9 l3 6 l3 -8 l6 11 z"/><path d="M2 20.5 q3 -1.5 6 0 t6 0 t6 0" stroke-opacity=".7"/></svg></span><span data-i18n="footer.dest_vietnam">Vietnam</span></a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col footer-col--contact">
+            <h4 data-i18n="footer.col_contact">Contact</h4>
+            <ul class="office-list">
+              <li class="office">
+                <p class="office__name">La Graf · siège</p>
+                <p class="office__addr">Bd. Houari Boumediene · Bordj Bou Arreridj</p>
+                <p class="office__lines">
+                  <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">0561 616 266</a>
+                  <a href="https://wa.me/213561616267?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">0561 616 267</a>
+                </p>
+              </li>
+              <li class="office">
+                <p class="office__name">Cité Zehour</p>
+                <p class="office__addr">Route de Medjana · Bordj Bou Arreridj</p>
+                <p class="office__lines">
+                  <a href="https://wa.me/213561616268?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">0561 616 268</a>
+                  <a href="https://wa.me/213561616269?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">0561 616 269</a>
+                </p>
+              </li>
+              <li class="office">
+                <p class="office__name">M'Sila</p>
+                <p class="office__addr">Centre-ville · M'Sila</p>
+                <p class="office__lines">
+                  <a href="https://wa.me/213560869905?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." target="_blank" rel="noopener">0560 869 905</a>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p data-i18n="footer.copyright">© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie</p>
+          <p class="footer-notice" data-i18n="footer.notice">Prix en Dinar Algérien (DA) · Indicatifs · Confirmation à la réservation</p>
+        </div>
+        <a class="footer-top" href="#top" data-i18n-aria-label="footer.back_to_top" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span data-i18n="footer.back_to_top">Haut de page</span></a>
+      </div>
+
+      <div class="madeby">
+        <span class="madeby__made">Made by</span>
+        <span class="madeby__sig">Hamisse Mohamed Yasser</span>
+        <span class="madeby__sep" aria-hidden="true"></span>
+        <span class="madeby__brand">NUMIDIEA&nbsp;LABS<sup class="madeby__tm">™</sup></span>
+      </div>
+
+    </div>
+  </footer>
+
+<script>
+/* Wire the two package cards to the booking form + the Supabase lead row.
+   booking-form.js reads window.__calcState for its trip summary and
+   lead-capture.js copies trip/hotel onto the lead, so selecting a package
+   here means the WhatsApp message and the lead both name it. */
+(function () {
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-omra-select]');
+    if (!btn) return;
+    var card = btn.closest('[data-omra-pkg]');
+    if (!card) return;
+    window.__calcState = Object.assign({}, window.__calcState, {
+      tripName: 'Omra',
+      hotel: card.getAttribute('data-omra-pkg')
+    });
+    document.dispatchEvent(new CustomEvent('calcStateUpdated', { detail: window.__calcState }));
+  }, false);
+})();
+</script>
+<script src="../assets/js/contacts.js" defer></script>
+<script src="../assets/js/booking-form.js" defer></script>
+<script src="../assets/js/lead-config.js" defer></script>
+<script src="../assets/js/lead-capture.js" defer></script>
+<script src="../assets/js/lead-whatsapp.js" defer></script>
+<script src="/omra/page-i18n.js" defer></script>
+<script src="../assets/js/i18n.js" defer></script>
+<script src="../assets/js/enhance.js" defer></script>
+<script type="module" src="../assets/js/beacon.js"></script>
+</body>
+</html>
+

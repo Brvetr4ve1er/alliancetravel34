@@ -55,6 +55,7 @@
         skip: 'Aller au contenu principal',
         trips: 'Nos voyages',
         visa_rdv: 'Rendez-vous Visa',
+        omra: 'Omra',
         agency: "L'agence",
         contact: 'Contact',
         whatsapp: 'WhatsApp',
@@ -198,6 +199,7 @@
         social_tiktok: 'TikTok Alliance Travel',
         back_to_top: 'Haut de page',
         dest_egypte: 'Égypte',
+        dest_omra: 'Omra',
         dest_tunisie: 'Tunisie',
         dest_azerbaidjan: 'Azerbaïdjan',
         dest_istanbul: 'Istanbul',
@@ -300,6 +302,12 @@
         description: "RDV ambassade et VFS, dossier complet, dépôt physique selon ambassade. 15 pays couverts depuis Bordj Bou Arreridj — sans monter à Alger.",
         og_title: 'Rendez-vous Visa · Alliance Travel',
         og_description: "On s'occupe du RDV, du dossier et du dépôt — vous restez à Bordj. 15 pays · réponse WhatsApp en 30 min."
+      },
+      omra: {
+        title: "Omra 2026 · Formules, hôtels et tarifs · Alliance Travel",
+        description: "Omra au départ d'Algérie : vol, hébergement à La Mecque et Médine, transferts, visa, ziyarat, assurance et guide religieux. Hôtels à 600 m et 1 200 m du Haram. Environ 15 jours.",
+        og_title: "Omra 2026 · Alliance Travel",
+        og_description: "Vol, hébergement à La Mecque et Médine, transferts, visa, ziyarat, assurance et guide religieux. Environ 15 jours au départ d'Algérie."
       },
       },
       visa: {
@@ -414,6 +422,7 @@
         skip: 'Skip to main content',
         trips: 'Our trips',
         visa_rdv: 'Visa Appointments',
+        omra: 'Umrah',
         agency: 'The agency',
         contact: 'Contact',
         whatsapp: 'WhatsApp',
@@ -552,6 +561,7 @@
         social_tiktok: 'Alliance Travel on TikTok',
         back_to_top: 'Back to top',
         dest_egypte: 'Egypt',
+        dest_omra: 'Umrah',
         dest_tunisie: 'Tunisia',
         dest_azerbaidjan: 'Azerbaijan',
         dest_istanbul: 'Istanbul',
@@ -664,6 +674,12 @@
         description: 'Embassy and VFS appointments, full dossier, drop-off where the consulate allows it. Fifteen countries served from Bordj Bou Arreridj — no Algiers trip.',
         og_title: 'Visa Appointments — Alliance Travel',
         og_description: 'RDV, dossier, drop-off — we handle it from Bordj. Fifteen countries · 30-min WhatsApp reply.'
+      },
+      omra: {
+        title: "Umrah 2026 · Packages, hotels and prices · Alliance Travel",
+        description: "Umrah from Algeria: flights, accommodation in Makkah and Madinah, transfers, visa, ziyarat, insurance and a religious guide. Hotels 600 m and 1,200 m from the Haram. Around 15 days.",
+        og_title: "Umrah 2026 · Alliance Travel",
+        og_description: "Flights, accommodation in Makkah and Madinah, transfers, visa, ziyarat, insurance and a religious guide. Around 15 days from Algeria."
       },
       },
       visa: {
@@ -789,6 +805,7 @@
         skip: 'تخطَّ إلى المحتوى الرئيسي',
         trips: 'رحلاتنا',
         visa_rdv: 'مواعيد التأشيرات',
+        omra: 'العمرة',
         agency: 'الوكالة',
         contact: 'تواصل معنا',
         whatsapp: 'واتساب',
@@ -927,6 +944,7 @@
         social_tiktok: 'تيك توك أليانس ترافل',
         back_to_top: 'أعلى الصفحة',
         dest_egypte: 'مصر',
+        dest_omra: 'العمرة',
         dest_tunisie: 'تونس',
         dest_azerbaidjan: 'أذربيجان',
         dest_istanbul: 'إسطنبول',
@@ -1039,6 +1057,12 @@
         description: 'نحجز مواعيد السفارات ومراكز VFS، نُعدّ الملف كاملاً، ونُودِعه نيابةً عنك حيث تسمح السفارة. خمس عشرة دولة من برج بوعريريج — دون الحاجة للتنقّل إلى الجزائر العاصمة.',
         og_title: 'خدمة موعد التأشيرة — أليانس ترافل',
         og_description: 'الموعد، الملف، الإيداع — كلّه من برج. خمس عشرة دولة · ردّ خلال 30 دقيقة على واتساب.'
+      },
+      omra: {
+        title: "العمرة 2026 · الباقات والفنادق والأسعار · Alliance Travel",
+        description: "العمرة انطلاقًا من الجزائر: تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة، الزيارات، التأمين ومرشد ديني. فنادق على بعد 600 م و1200 م من الحرم. حوالي 15 يومًا.",
+        og_title: "العمرة 2026 · Alliance Travel",
+        og_description: "تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة، الزيارات، التأمين ومرشد ديني. حوالي 15 يومًا انطلاقًا من الجزائر."
       },
       },
       visa: {

@@ -8,6 +8,7 @@
     <li><a href="#hotels" data-i18n="nav.trip_hotels">Hôtels</a></li>
     <li><a href="#faq" data-i18n="nav.trip_faq">FAQ</a></li>
     <li><a href="#booking" data-i18n="nav.trip_booking">Réserver</a></li>
+    <li><a href="../omra/" data-i18n="nav.omra">Omra</a></li>
     <li><a href="../rendez-vous-visa/" data-i18n="nav.visa_rdv">Visa</a></li>
   </ul>
   <button class="theme-toggle" type="button" data-i18n-aria-label="nav.theme_label" data-i18n-title="nav.theme_label" aria-label="Changer de thème" title="Changer de thème">

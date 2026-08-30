@@ -9,19 +9,19 @@
     "ar": 100
   },
   "counts": {
-    "total": 30,
+    "total": 32,
     "trip": 7,
-    "shared": 23,
+    "shared": 25,
     "en": {
       "ok": 7,
       "stale": 0,
-      "global": 23,
+      "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 7,
       "stale": 0,
-      "global": 23,
+      "global": 25,
       "missing": 0
     }
   },
@@ -67,6 +67,15 @@
       "frHash": "01b5gpyv",
       "en": "Book",
       "ar": "احجز رحلتك",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "nav.omra": {
+      "fr": "Omra",
+      "frHash": "00jd6axs",
+      "en": "Umrah",
+      "ar": "العمرة",
       "scope": "shared",
       "enState": "global",
       "arState": "global"
@@ -207,6 +216,15 @@
       "frHash": "016brh6p",
       "en": "Our 2026 trips",
       "ar": "رحلاتنا 2026",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.dest_omra": {
+      "fr": "Omra",
+      "frHash": "00jd6axs",
+      "en": "Umrah",
+      "ar": "العمرة",
       "scope": "shared",
       "enState": "global",
       "arState": "global"
