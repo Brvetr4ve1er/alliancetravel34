@@ -60,6 +60,7 @@
         contact: 'Contact',
         whatsapp: 'WhatsApp',
         whatsapp_label: 'Écrire sur WhatsApp',
+        whatsapp_tooltip: "Une question ? Écrivez-nous",
         logo_label: 'Alliance Travel — Retour à l\'accueil',
         theme_label: 'Changer de thème',
         // trip-page-specific nav links
@@ -417,6 +418,7 @@
         contact: 'Contact',
         whatsapp: 'WhatsApp',
         whatsapp_label: 'Contact us on WhatsApp',
+        whatsapp_tooltip: "A question? Message us",
         logo_label: 'Alliance Travel — Home',
         theme_label: 'Toggle theme',
         trip_program: 'Itinerary',
@@ -800,6 +802,7 @@
         contact: 'تواصل معنا',
         whatsapp: 'واتساب',
         whatsapp_label: 'تواصل عبر واتساب',
+        whatsapp_tooltip: "سؤال؟ راسلونا",
         logo_label: 'أليانس ترافل — الصفحة الرئيسية',
         theme_label: 'تبديل المظهر',
         trip_program: 'البرنامج',
