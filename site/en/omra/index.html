@@ -72,7 +72,11 @@
       font-size: var(--fs-caption); font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
       color: var(--txt-2); background: var(--bg-elev); border: 1px solid var(--border-hi);
     }
-    .omra-pkg__badge--best { color: var(--bg-deep); background: var(--accent); border-color: var(--accent); }
+    /* --bg, not --bg-deep: in the light theme --bg-deep is the cream #ede5d4,
+       which lands at 4.24:1 on the darkened light-mode accent — under AA for
+       text this small. --bg is near-white in light and near-black in dark,
+       giving 5.0:1 and 13:1. */
+    .omra-pkg__badge--best { color: var(--bg); background: var(--accent); border-color: var(--accent); }
     .omra-pkg__name { font-size: var(--fs-h4); margin: 0; color: var(--txt-1); }
     .omra-pkg__pills { display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0; }
     .omra-pkg__body { color: var(--txt-2); line-height: var(--lh-relaxed); margin: 0; }
@@ -83,6 +87,31 @@
     .omra-pkg__price-value { display: block; font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; color: var(--accent); margin-top: 2px; }
     .omra-pkg__price-meta { display: block; font-size: var(--fs-body-sm); color: var(--txt-3); margin-top: 2px; }
     .omra-pkg__cta { margin-top: var(--s4); }
+
+    /* FAQ — native <details>/<summary>.
+       The global .faq-a is max-height:0 and is only opened by `.faq-item.open`,
+       a CLASS added by initFAQ() in assets/js/calculator.js — which is the price
+       calculator, and this page has no reason to load it. <details> sets the
+       [open] ATTRIBUTE instead, so without these rules every answer on the page
+       stays collapsed and the whole FAQ is unreadable. Same fix the visa page
+       carries; kept page-scoped so no trip page is affected. */
+    #faq .faq-item { border: 1px solid var(--border); border-radius: var(--r3); background: var(--bg-card); overflow: hidden; }
+    #faq .faq-item:hover { border-color: var(--border-hi); }
+    #faq .faq-item[open] { border-color: var(--border-mint); }
+    #faq .faq-q { display: flex; align-items: center; gap: var(--s3); cursor: pointer; list-style: none; }
+    #faq .faq-q::-webkit-details-marker { display: none; }
+    #faq .faq-q > span { flex: 1; }
+    #faq .faq-q svg { flex-shrink: 0; color: var(--txt-3); transition: transform var(--t-base), color var(--t-base); }
+    #faq .faq-q:hover { color: var(--accent); }
+    #faq .faq-item[open] .faq-q { color: var(--accent); }
+    #faq .faq-item[open] .faq-q svg { transform: rotate(180deg); color: var(--accent); }
+    #faq .faq-a { max-height: none; overflow: visible; padding: 0 var(--s6) var(--s5); }
+    /* A closed <details> normally hides its own body, but `overflow:hidden` on
+       the details (needed for the rounded corners) makes Chrome lay the body
+       out anyway, so every answer showed at once. Hide it explicitly on the
+       [open] attribute instead of relying on the UA. */
+    #faq .faq-item:not([open]) .faq-a { display: none; }
+    #faq .faq-a p { margin: 0; color: var(--txt-2); line-height: var(--lh-relaxed); }
     @media (max-width: 560px) { .omra-compare { font-size: var(--fs-caption); } .omra-compare th, .omra-compare td { padding: var(--s3); } }
   </style>
   <meta property="og:type" content="website"/>
@@ -380,7 +409,7 @@
 <!-- ══ REPÈRES ═══════════════════════════════════════════════ -->
 <section class="highlights section-sm" aria-labelledby="omra-reperes-title">
   <div class="container">
-    <h2 id="omra-reperes-title" class="u-visually-hidden" data-i18n="omra.facts.title">Key facts</h2>
+    <h2 id="omra-reperes-title" class="sr-only" data-i18n="omra.facts.title">Key facts</h2>
     <div class="highlights__grid">
       <article class="hl-card">
         <div class="hl-card__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
@@ -477,7 +506,7 @@
 
     <div class="omra-compare-wrap">
       <table class="omra-compare">
-        <caption class="u-visually-hidden" data-i18n="omra.compare.caption">Comparison of the two Umrah packages</caption>
+        <caption class="sr-only" data-i18n="omra.compare.caption">Comparison of the two Umrah packages</caption>
         <thead>
           <tr>
             <th scope="col" data-i18n="omra.compare.col_criteria">Criterion</th>
