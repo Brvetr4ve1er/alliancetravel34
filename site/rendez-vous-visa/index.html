@@ -86,7 +86,16 @@
     #faq .faq-q:hover { color: var(--accent); }
     #faq .faq-item[open] .faq-q { color: var(--accent); }
     #faq .faq-item[open] .faq-q svg { transform: rotate(180deg); color: var(--accent); }
-    #faq .faq-a { padding: 0 var(--s5) var(--s4); animation: visaReveal .3s var(--ease, ease); }
+    /* The global .faq-a is `max-height: 0; overflow: hidden` and is only opened by
+       `.faq-item.open` — a CLASS set by initFAQ() in assets/js/calculator.js, the
+       price calculator this page has no reason to load. These are <details>, which
+       set the [open] ATTRIBUTE, so nothing ever lifted the clip: all 21 answers
+       rendered about 24px tall — the FAQ has been unreadable in production. */
+    #faq .faq-a { max-height: none; overflow: visible; padding: 0 var(--s5) var(--s4); animation: visaReveal .3s var(--ease, ease); }
+    /* And a closed <details> would normally hide its own body, but the
+       `overflow: hidden` on #faq .faq-item (needed for the rounded corners) makes
+       Chrome lay it out anyway — so assert the collapse instead of trusting the UA. */
+    #faq .faq-item:not([open]) .faq-a { display: none; }
     #faq .faq-a p { margin: 0; color: var(--txt-2); font-size: .9rem; line-height: 1.7; }
     #visa-map { height: clamp(380px, 60vh, 560px); border-radius: var(--r3); overflow: hidden; background: var(--bg-2); position: relative; }
     .visa-partners { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
