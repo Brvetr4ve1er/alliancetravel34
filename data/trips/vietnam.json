@@ -513,15 +513,15 @@
     "stats": [
       {
         "kNum": "",
-        "num": "1.2K+",
+        "num": "2019",
         "k": " data-i18n=\"vnStat1\"",
-        "label": "Voyageurs guidés depuis 2019"
+        "label": "Année de création"
       },
       {
         "kNum": "",
-        "num": "98%",
+        "num": "3",
         "k": " data-i18n=\"vnStat2\"",
-        "label": "Taux de satisfaction"
+        "label": "Agences · BBA & M'Sila"
       },
       {
         "kNum": "",
@@ -1176,8 +1176,8 @@
       "vnMapLegendTours": "Guided excursions",
       "vnTrustEyebrow": "Over 1,200 travellers guided",
       "vnTrustTitle": "They <em>trusted us</em>",
-      "vnStat1": "Travellers guided since 2019",
-      "vnStat2": "Satisfaction rate",
+      "vnStat1": "Founded",
+      "vnStat2": "Branches · BBA & M'Sila",
       "vnStat3": "Packages to choose from in 2026",
       "vnStat4": "Stops in a single circuit",
       "vnTesti1Text": "\"Vietnam in a single trip — Saigon, the Phu Quoc beaches, then Hanoi and Ha Long Bay. Everything was organised end to end; we never had to worry about a thing.\"",
@@ -1388,8 +1388,8 @@
       "vnMapLegendTours": "الجولات المُرافَقة",
       "vnTrustEyebrow": "أكثر من 1200 مسافر مُرافَق",
       "vnTrustTitle": "لقد <em>وثقوا بنا</em>",
-      "vnStat1": "مسافرون مُرافَقون منذ 2019",
-      "vnStat2": "نسبة الرضا",
+      "vnStat1": "سنة التأسيس",
+      "vnStat2": "وكالات · برج بوعريريج والمسيلة",
       "vnStat3": "صيغتان للاختيار في 2026",
       "vnStat4": "محطات في جولة واحدة",
       "vnTesti1Text": "«فيتنام في رحلة واحدة — سايغون وشواطئ فو كووك ثم هانوي وخليج ها لونغ. كان كل شيء منظَّماً من البداية إلى النهاية، ولم نقلق على أيّ شيء قطّ.»",

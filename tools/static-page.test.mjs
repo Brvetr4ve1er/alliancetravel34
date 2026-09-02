@@ -12,15 +12,15 @@ const FR = `<!DOCTYPE html>
   <meta name="description" content="Description FR"/>
   <meta property="og:title" content="Omra · Alliance Travel"/>
   <meta property="og:description" content="Description FR"/>
-  <meta property="og:url" content="https://alliance-travel.dz/omra/"/>
+  <meta property="og:url" content="https://alliancetravel.app/omra/"/>
   <meta property="og:locale" content="fr_FR"/>
   <meta name="twitter:title" content="Omra · Alliance Travel"/>
   <meta name="twitter:description" content="Description FR"/>
-  <link rel="canonical" href="https://alliance-travel.dz/omra/"/>
-  <link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/omra/"/>
-  <link rel="alternate" hreflang="en" href="https://alliance-travel.dz/en/omra/"/>
-  <link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/omra/"/>
-  <link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/omra/"/>
+  <link rel="canonical" href="https://alliancetravel.app/omra/"/>
+  <link rel="alternate" hreflang="fr" href="https://alliancetravel.app/omra/"/>
+  <link rel="alternate" hreflang="en" href="https://alliancetravel.app/en/omra/"/>
+  <link rel="alternate" hreflang="ar" href="https://alliancetravel.app/ar/omra/"/>
+  <link rel="alternate" hreflang="x-default" href="https://alliancetravel.app/omra/"/>
   <link rel="stylesheet" href="../assets/css/styles.css"/>
   <script>window.AL_TRIP_LANGS=["fr","en","ar"];</script>
 </head>
@@ -49,8 +49,8 @@ const render = (lang, dict = DICT_AR, extra = {}) =>
   });
 
 test("urlForStatic puts French at the root and nests the others", () => {
-  assert.equal(urlForStatic("fr", "omra"), "https://alliance-travel.dz/omra/");
-  assert.equal(urlForStatic("ar", "omra"), "https://alliance-travel.dz/ar/omra/");
+  assert.equal(urlForStatic("fr", "omra"), "https://alliancetravel.app/omra/");
+  assert.equal(urlForStatic("ar", "omra"), "https://alliancetravel.app/ar/omra/");
 });
 
 test("Arabic gets lang + dir=rtl; English gets lang only", () => {
@@ -62,8 +62,8 @@ test("Arabic gets lang + dir=rtl; English gets lang only", () => {
 
 test("canonical, og:url and og:locale point at the variant, not the French page", () => {
   const ar = render("ar");
-  assert.match(ar, /<link rel="canonical" href="https:\/\/alliance-travel\.dz\/ar\/omra\/"\/>/);
-  assert.match(ar, /<meta property="og:url" content="https:\/\/alliance-travel\.dz\/ar\/omra\/"\/>/);
+  assert.match(ar, /<link rel="canonical" href="https:\/\/alliancetravel.app\/ar\/omra\/"\/>/);
+  assert.match(ar, /<meta property="og:url" content="https:\/\/alliancetravel.app\/ar\/omra\/"\/>/);
   assert.match(ar, /<meta property="og:locale" content="ar_AR"\/>/);
 });
 

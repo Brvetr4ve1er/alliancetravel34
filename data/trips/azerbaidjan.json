@@ -538,15 +538,15 @@
     "stats": [
       {
         "kNum": "",
-        "num": "1.2K+",
+        "num": "2019",
         "k": " data-i18n=\"azStat1\"",
-        "label": "Voyageurs guidés depuis 2019"
+        "label": "Année de création"
       },
       {
         "kNum": "",
-        "num": "98%",
+        "num": "3",
         "k": " data-i18n=\"azStat2\"",
-        "label": "Taux de satisfaction"
+        "label": "Agences · BBA & M'Sila"
       },
       {
         "kNum": "",
@@ -1119,8 +1119,8 @@
       "azMapLegTours": "Guided excursions",
       "azTrustEyebrow": "Over 1,200 travelers guided",
       "azTrustTitle": "They <em>trusted us</em>",
-      "azStat1": "Travelers guided since 2019",
-      "azStat2": "Satisfaction rate",
+      "azStat1": "Founded",
+      "azStat2": "Branches · BBA & M'Sila",
       "azStat3": "Baku departures in 2026",
       "azStat4": "Hand-picked hotels to choose from",
       "azTesti1Text": "\"Baku blew us away — the old city, the Flame Towers at night, Gabala up in the mountains. Everything was organized, we never had to figure anything out ourselves.\"",
@@ -1307,8 +1307,8 @@
       "azMapLegTours": "الرحلات المصحوبة بمرشد",
       "azTrustEyebrow": "أكثر من 1200 مسافر بصحبة مرشد",
       "azTrustTitle": "لقد <em>وثقوا بنا</em>",
-      "azStat1": "مسافرون بصحبة مرشد منذ 2019",
-      "azStat2": "معدل الرضا",
+      "azStat1": "سنة التأسيس",
+      "azStat2": "وكالات · برج بوعريريج والمسيلة",
       "azStat3": "رحلات إلى باكو في 2026",
       "azStat4": "فنادق منتقاة للاختيار من بينها",
       "azTesti1Text": "«أبهرتنا باكو — المدينة القديمة، أبراج اللهب ليلاً، غابالا في الجبال. كان كل شيء منظَّماً، ولم نضطر قط للبحث عن أي شيء بأنفسنا.»",

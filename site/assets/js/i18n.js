@@ -84,6 +84,8 @@
       },
       stats: {
         travelers: 'Voyageurs accompagnés',
+        branches: "Agences · BBA &amp; M'Sila",
+        since: 'Année de création',
         satisfaction: 'Clients satisfaits',
         destinations: 'Destinations 2026',
         experience: "Ans sur le terrain"
@@ -119,7 +121,7 @@
         title_l1: 'Une agence',
         title_em: 'de Bordj, pour la wilaya et au-delà',
         p1_html: "Alliance Travel a ouvert ses portes à <strong>Bordj Bou Arreridj</strong> — et nulle part ailleurs. Notre métier est simple à dire, exigeant à tenir : organiser un voyage où vous n'avez qu'à boucler la valise. <strong>Visa, vol, hôtel, transferts, accompagnateur arabophone sur place</strong> — tout est verrouillé en amont, par des gens d'ici, dans la langue du client.",
-        p2_html: "Depuis 2019, plus de <strong>1 200 voyageurs algériens</strong> sont partis avec nous — des lunes de miel à Bakou, des familles entières au Caire, des retraités à Istanbul, des amies en virée à Sharm. Notre <strong>taux de satisfaction de 98%</strong> n'est pas un chiffre de plaquette : c'est ce que ça donne quand les prix sont annoncés sans astérisque, les groupes restent à taille humaine, et le suivi WhatsApp continue jusqu'au retour à Alger ou Constantine.",
+        p2_html: "Depuis 2019, nous organisons des voyages guidés depuis nos trois agences de Bordj Bou Arreridj et M'Sila — des lunes de miel à Bakou, des familles entières au Caire, des retraités à Istanbul, des amies en virée à Sharm. Les prix sont annoncés sans astérisque, les groupes restent à taille humaine, et le suivi WhatsApp continue jusqu'au retour à Alger ou Constantine.",
         p3_html: "Aujourd'hui, nous tenons <strong>trois agences</strong> : deux à <strong>Bordj Bou Arreridj</strong> (La Graf et Cité Zehour) et une à <strong>M'Sila</strong>. Vous passez quand vous voulez, on vous reçoit autour d'un café — en arabe, en français, comme vous préférez. Pas besoin de monter à la capitale pour réserver un voyage : votre conseiller est de la wilaya, il connaît votre nom, et il décroche dès la première sonnerie.",
         cta_contact: 'Passer à l\'agence',
         cta_voyages: 'Voir les voyages',
@@ -219,10 +221,10 @@
       // window.alTranslate() right after injection to localize them.
       trust_strip: {
         aria: 'Indicateurs de confiance',
-        rating: '<strong>4,9 / 5</strong> · 320 voyageurs',
+        branches: "<strong>3 agences</strong> · BBA &amp; M'Sila",
         experience: "<strong>7+ ans</strong> d'expérience",
-        all_inclusive: '<strong>Tout inclus</strong> — vol, hôtel, excursions',
-        flexible: '<strong>Annulation flexible</strong>'
+        transparency: '<strong>Inclus &amp; non inclus</strong> détaillés',
+        conditions: "<strong>Conditions</strong> d'annulation claires"
       },
       press_strip: {
         aria: 'Nos engagements',
@@ -237,8 +239,8 @@
         aria: 'Pourquoi Alliance Travel',
         guides_title: 'Guides francophones locaux',
         guides_text: 'Des accompagnateurs qui parlent votre langue et connaissent chaque destination par cœur.',
-        included_title: 'Vol, hôtel & visa inclus',
-        included_text: "Tout est cadré à l'avance — vous payez un prix tout compris, sans mauvaise surprise.",
+        included_title: 'Une formule organisée de A à Z',
+        included_text: "Vol ou bus, hôtel, transferts et programme cadrés à l'avance — le détail de ce qui est compris est indiqué sur chaque voyage.",
         groups_title: 'Groupes de 12 maximum',
         groups_text: 'Petits groupes pour une expérience humaine et personnalisée à chaque étape.'
       },
@@ -270,9 +272,9 @@
       meta: {
         home: {
           title: "Alliance Travel · Agence de voyage à Bordj Bou Arreridj",
-          description: "Agence de voyage à Bordj Bou Arreridj. Voyages organisés vers l'Égypte, Istanbul, Bakou, Kuala Lumpur et Sharm El Sheikh. Vol + visa + hôtel inclus dans le prix. 1 200+ voyageurs satisfaits depuis 2019.",
+          description: "Agence de voyage à Bordj Bou Arreridj depuis 2019. Voyages organisés vers l'Égypte, Istanbul, Bakou, Kuala Lumpur et Sharm El Sheikh, plus l'Omra. Le détail de ce qui est compris est indiqué sur chaque voyage.",
           og_title: "Alliance Travel · Voyages organisés depuis Bordj Bou Arreridj",
-          og_description: "Vol + visa + hôtel + accompagnateur arabophone, tout est compris. 7 destinations 2026 au départ d'Alger ou Constantine. Agence agréée à Bordj Bou Arreridj. 1 200+ voyageurs satisfaits."
+          og_description: "Vol ou bus, hôtel, transferts et accompagnement — le détail par voyage. 8 destinations 2026 au départ d'Alger ou Constantine. Agence à Bordj Bou Arreridj."
         },
         voyages: {
           title: "Voyages organisés 2026 · 7 destinations dès 41 900 DA — Alliance Travel",
@@ -321,7 +323,7 @@
           cta_form: 'Voir les pays',
           trust_branches: "3 agences physiques · BBA & M'Sila",
           trust_no_alger: 'Pas besoin de monter à Alger',
-          trust_since: 'Depuis 2019 · 1 200+ dossiers traités'
+          trust_since: 'Agence à Bordj Bou Arreridj depuis 2019'
         },
         services: {
           eyebrow: 'Nos prestations',
@@ -441,6 +443,8 @@
       },
       stats: {
         travelers: 'Travellers guided',
+        branches: "Branches · BBA &amp; M'Sila",
+        since: 'Founded',
         satisfaction: 'Satisfaction rate',
         destinations: 'Destinations in 2026',
         experience: 'Years on the road'
@@ -476,7 +480,7 @@
         title_l1: 'Alliance Travel,',
         title_em: 'made in Bordj Bou Arreridj',
         p1_html: "We started Alliance Travel in <strong>Bordj Bou Arreridj</strong> — deliberately not Algiers. The idea was straightforward: build guided trips where the traveller's only job is to pack a suitcase. Visa, flight, hotel, transfers, an <strong>Arabic-speaking guide</strong> waiting at arrivals — every link in the chain is sorted in advance. Nothing is left to improvise.",
-        p2_html: "Since 2019, more than <strong>1,200 Algerian travellers</strong> have booked with us — honeymoons in Baku, family weeks in Cairo, long weekends in Istanbul. The <strong>98% satisfaction rate</strong> isn't a tagline: it comes from transparent pricing, small groups, and a WhatsApp thread that stays open all the way back to Algiers or Constantine.",
+        p2_html: "Since 2019 we have run guided trips out of our three branches in Bordj Bou Arreridj and M'Sila — honeymoons in Baku, family weeks in Cairo, long weekends in Istanbul. Pricing is quoted without asterisks, groups stay small, and the WhatsApp thread stays open all the way back to Algiers or Constantine.",
         p3_html: "Three branches — two in <strong>Bordj Bou Arreridj</strong> (La Graf and Cité Zehour) and one in <strong>M'Sila</strong> — mean you walk in close to home and talk to an advisor in Arabic or French. No trip to the capital to book a trip. Your advisor is from the wilaya, and they pick up on the first ring.",
         cta_contact: 'Talk to us',
         cta_voyages: 'See the trips',
@@ -538,7 +542,7 @@
         cta_title: 'Ready to go?',
         cta_sub: 'Message us on WhatsApp — same-day reply.',
         cta_btn: 'Chat on WhatsApp',
-        tagline: 'Guided trips out of Bordj Bou Arreridj. 1,200+ travellers, one standard, since 2019.',
+        tagline: 'Guided trips out of Bordj Bou Arreridj. Three branches, eight destinations, since 2019.',
         col_voyages: 'Our 2026 trips',
         col_contact: 'Contact',
         col_address_label: 'Address',
@@ -569,10 +573,10 @@
       // ─── JS-injected homepage sections (enhance.js) ───────────────
       trust_strip: {
         aria: 'Trust indicators',
-        rating: '<strong>4.9 / 5</strong> · 320 travellers',
+        branches: "<strong>3 branches</strong> · BBA &amp; M'Sila",
         experience: '<strong>7+ years</strong> of experience',
-        all_inclusive: '<strong>All-inclusive</strong> — flight, hotel, excursions',
-        flexible: '<strong>Flexible cancellation</strong>'
+        transparency: "<strong>What is and isn't included</strong>, spelled out",
+        conditions: '<strong>Clear</strong> cancellation terms'
       },
       press_strip: {
         aria: 'Our commitments',
@@ -587,8 +591,8 @@
         aria: 'Why Alliance Travel',
         guides_title: 'Local Arabic-speaking guides',
         guides_text: 'Guides who speak your language and know every destination inside out.',
-        included_title: 'Flight, hotel & visa included',
-        included_text: 'Everything is locked in advance — you pay one all-in price, no nasty surprises.',
+        included_title: 'A trip organised end to end',
+        included_text: 'Flight or coach, hotel, transfers and programme settled in advance — each trip spells out exactly what is included.',
         groups_title: 'Groups of 12 maximum',
         groups_text: 'Small groups for a personal, human experience at every step.'
       },
@@ -617,9 +621,9 @@
       meta: {
         home: {
           title: "Alliance Travel · Guided trips from Bordj Bou Arreridj, Algeria",
-          description: "Licensed Algerian travel agency in Bordj Bou Arreridj. All-inclusive guided trips to Egypt, Türkiye, Azerbaijan, Malaysia and the Red Sea. Flight, visa, hotel and Arabic-speaking guide in one price. 1,200+ travellers since 2019.",
+          description: "Algerian travel agency in Bordj Bou Arreridj since 2019. Guided trips to Egypt, Türkiye, Azerbaijan, Malaysia and the Red Sea, plus Umrah. Each trip spells out exactly what is included.",
           og_title: "Alliance Travel · Guided trips from Bordj Bou Arreridj",
-          og_description: "Flight, visa, hotel and Arabic-speaking guide — all in the headline price. Seven 2026 destinations out of Algiers or Constantine. Licensed agency, three branches in BBA and M'Sila. 1,200+ travellers."
+          og_description: "Flight or coach, hotel, transfers and a guide — itemised per trip. Eight 2026 destinations out of Algiers or Constantine. Three branches in BBA and M'Sila."
         },
         voyages: {
           title: "2026 guided trips · Seven destinations from DZD 41,900 — Alliance Travel",
@@ -684,7 +688,7 @@
           cta_form: 'Browse countries',
           trust_branches: "Three offices on the ground · BBA & M'Sila",
           trust_no_alger: 'No trip to Algiers needed',
-          trust_since: 'Operating since 2019 · 1,200+ files processed'
+          trust_since: 'Bordj Bou Arreridj agency, operating since 2019'
         },
         services: {
           eyebrow: 'Our services',
@@ -825,6 +829,8 @@
       },
       stats: {
         travelers: 'مسافر برفقتنا',
+        branches: 'وكالات · برج بوعريريج والمسيلة',
+        since: 'سنة التأسيس',
         satisfaction: 'نسبة الرضا',
         destinations: 'وجهة لسنة 2026',
         experience: 'سنوات من الخبرة'
@@ -860,7 +866,7 @@
         title_l1: 'أليانس ترافل،',
         title_em: 'من قلب بُرج بوعريريج',
         p1_html: 'وُلِدت أليانس ترافل في <strong>بُرج بوعريريج</strong> — لا في الجزائر العاصمة. ووعدُنا يختصره سطر واحد: نُنظِّم لك رحلة لا تحتاج فيها سوى أن تجهِّز حقيبتك. التأشيرة والطيران والفندق والتنقّلات ومُرافِق ناطق بالعربية على الأرض — كل تفصيل مُعَدٌّ سلفًا، ولا شيء يُترك للصدفة.',
-        p2_html: 'منذ سنة 2019، منحنا أكثرُ من <strong>1.200 مسافر جزائري</strong> ثقتَهم — في شهر عسلٍ بباكو، وعطلةٍ عائلية في القاهرة، ورحلةٍ ثقافية إلى إسطنبول. نسبة الرضا عندنا <strong>%98</strong> ليست شعارًا تسويقيًّا، بل ثمرة أسعار شفّافة، ومجموعات صغيرة، ومتابعة على واتساب حتى عودتك إلى أرض الوطن — الجزائر أو قسنطينة.',
+        p2_html: 'منذ سنة 2019 ونحن ننظّم رحلات مُرافَقة انطلاقًا من وكالاتنا الثلاث في بُرج بوعريريج والمسيلة — شهر عسلٍ بباكو، وعطلةٍ عائلية في القاهرة، ورحلةٍ ثقافية إلى إسطنبول. أسعارٌ معلنة دون نجمة، ومجموعات صغيرة، ومتابعة على واتساب حتى عودتك إلى أرض الوطن.',
         p3_html: 'بِـ<strong>ثلاث وكالات</strong> — اثنتان في <strong>بُرج بوعريريج</strong> (لاغراف وحيّ الزهور) وثالثة في <strong>المسيلة</strong> — نستقبلك قريبًا من بيتك، بالعربية أو بالفرنسية. لا داعي للسفر إلى العاصمة لتحجز: مستشارك ابن الولاية، يردّ على هاتفك من أوّل رنّة.',
         cta_contact: 'تواصل معنا',
         cta_voyages: 'تصفَّح الرحلات',
@@ -922,7 +928,7 @@
         cta_title: 'جاهز للسفر؟',
         cta_sub: 'راسلنا على واتساب، رد في نفس اليوم.',
         cta_btn: 'الدردشة على واتساب',
-        tagline: 'رحلات مُرافَقة من بُرج بوعريريج. أكثر من 1.200 مسافر راضٍ منذ 2019.',
+        tagline: 'رحلات مُرافَقة من بُرج بوعريريج. ثلاث وكالات، ثماني وجهات، منذ 2019.',
         col_voyages: 'رحلاتنا 2026',
         col_contact: 'تواصل',
         col_address_label: 'العنوان',
@@ -953,10 +959,10 @@
       // ─── JS-injected homepage sections (enhance.js) ───────────────
       trust_strip: {
         aria: 'مؤشّرات الثقة',
-        rating: '<strong>4.9 / 5</strong> · 320 مسافرًا',
+        branches: '<strong>3 وكالات</strong> · برج بوعريريج والمسيلة',
         experience: '<strong>أكثر من 7 سنوات</strong> من الخبرة',
-        all_inclusive: '<strong>كل شيء مشمول</strong> — الطيران والفندق والجولات',
-        flexible: '<strong>إلغاء مرن</strong>'
+        transparency: '<strong>المشمول وغير المشمول</strong> موضّح',
+        conditions: '<strong>شروط إلغاء</strong> واضحة'
       },
       press_strip: {
         aria: 'التزاماتنا',
@@ -971,8 +977,8 @@
         aria: 'لماذا أليانس ترافل',
         guides_title: 'مُرافِقون محلّيون ناطقون بالعربية',
         guides_text: 'مُرافِقون يتحدّثون لغتك ويعرفون كلّ وجهة عن ظهر قلب.',
-        included_title: 'الطيران والفندق والتأشيرة مشمولة',
-        included_text: 'كل شيء مُعَدٌّ سلفًا — تدفع سعرًا واحدًا شاملًا، دون أيّ مفاجآت.',
+        included_title: 'رحلة منظّمة من الألف إلى الياء',
+        included_text: 'الطيران أو الحافلة، الفندق، التنقلات والبرنامج محدّدة سلفًا — وكل رحلة توضّح ما هو مشمول بالضبط.',
         groups_title: 'مجموعات من 12 كحدٍّ أقصى',
         groups_text: 'مجموعات صغيرة لتجربة إنسانية وشخصية في كلّ مرحلة.'
       },
@@ -1001,9 +1007,9 @@
       meta: {
         home: {
           title: 'أليانس ترافل · وكالة سفر في بُرج بوعريريج، الجزائر',
-          description: 'وكالة سفر في بُرج بوعريريج تُنظِّم رحلات مُرافَقة إلى مصر وإسطنبول وباكو وكوالا لمبور وشرم الشيخ. الطيران والتأشيرة والفندق مشمولة. أكثر من 1.200 مسافر راضٍ.',
+          description: 'وكالة سفر في بُرج بوعريريج منذ 2019، تُنظِّم رحلات مُرافَقة إلى مصر وإسطنبول وباكو وكوالا لمبور وشرم الشيخ، إضافةً إلى العمرة. كل رحلة توضّح ما هو مشمول بالضبط.',
           og_title: 'أليانس ترافل · رحلات مُرافَقة من بُرج بوعريريج',
-          og_description: 'الطيران والتأشيرة والفندق ومُرافِق ناطق بالعربية — كل شيء مشمول. سبع وجهات لسنة 2026 من الجزائر أو قسنطينة. وكالة معتمدة في بُرج بوعريريج. أكثر من 1.200 مسافر برفقتنا.'
+          og_description: 'الطيران أو الحافلة، الفندق، التنقلات والمُرافقة — التفصيل مذكور في كل رحلة. ثماني وجهات لسنة 2026 من الجزائر أو قسنطينة. ثلاث وكالات في برج بوعريريج والمسيلة.'
         },
         voyages: {
           title: 'رحلات منظَّمة 2026 · سبع وجهات ابتداءً من 41.900 دينار جزائري — أليانس ترافل',

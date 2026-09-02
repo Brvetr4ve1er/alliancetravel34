@@ -13,14 +13,14 @@
     "trip": 207,
     "shared": 25,
     "en": {
-      "ok": 206,
-      "stale": 1,
+      "ok": 204,
+      "stale": 3,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 206,
-      "stale": 1,
+      "ok": 204,
+      "stale": 3,
       "global": 25,
       "missing": 0
     }
@@ -737,26 +737,26 @@
       "arState": "ok"
     },
     "vnStat1": {
-      "fr": "Voyageurs guidés depuis 2019",
-      "frHash": "012gyh45",
-      "en": "Travellers guided since 2019",
-      "ar": "مسافرون مُرافَقون منذ 2019",
+      "fr": "Année de création",
+      "frHash": "01bssav2",
+      "en": "Founded",
+      "ar": "سنة التأسيس",
       "enHash": "012gyh45",
       "arHash": "012gyh45",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "vnStat2": {
-      "fr": "Taux de satisfaction",
-      "frHash": "01xdj1ye",
-      "en": "Satisfaction rate",
-      "ar": "نسبة الرضا",
+      "fr": "Agences · BBA & M'Sila",
+      "frHash": "01smm3jy",
+      "en": "Branches · BBA & M'Sila",
+      "ar": "وكالات · برج بوعريريج والمسيلة",
       "enHash": "01xdj1ye",
       "arHash": "01xdj1ye",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "vnStat3": {
       "fr": "Formules au choix en 2026",
@@ -2383,8 +2383,8 @@
     "footer.tagline": {
       "fr": "Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.",
       "frHash": "01x3xgta",
-      "en": "Guided trips out of Bordj Bou Arreridj. 1,200+ travellers, one standard, since 2019.",
-      "ar": "رحلات مُرافَقة من بُرج بوعريريج. أكثر من 1.200 مسافر راضٍ منذ 2019.",
+      "en": "Guided trips out of Bordj Bou Arreridj. Three branches, eight destinations, since 2019.",
+      "ar": "رحلات مُرافَقة من بُرج بوعريريج. ثلاث وكالات، ثماني وجهات، منذ 2019.",
       "scope": "shared",
       "enState": "global",
       "arState": "global"

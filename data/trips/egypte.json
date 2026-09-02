@@ -447,15 +447,15 @@
     "stats": [
       {
         "kNum": "",
-        "num": "1.2K+",
+        "num": "2019",
         "k": " data-i18n=\"egStat1\"",
-        "label": "Voyageurs guidés depuis 2019"
+        "label": "Année de création"
       },
       {
         "kNum": "",
-        "num": "98%",
+        "num": "3",
         "k": " data-i18n=\"egStat2\"",
-        "label": "Taux de satisfaction"
+        "label": "Agences · BBA & M'Sila"
       },
       {
         "kNum": "",
@@ -2160,8 +2160,8 @@
       "egMapLegendTours": "Guided excursions",
       "egTrustEyebrow": "Over 1,200 travellers guided",
       "egTrustTitle": "They <em>trusted us</em>",
-      "egStat1": "Travellers guided since 2019",
-      "egStat2": "Satisfaction rate",
+      "egStat1": "Founded",
+      "egStat2": "Branches · BBA & M'Sila",
       "egStat3": "Egypt programmes summer 2026",
       "egStat4": "Hand-picked hotels to choose from",
       "egTesti1Text": "\"Everything was perfectly organised. The pyramids at sunrise, the Nile in the evening — I could never have done that on my own. Alliance Travel thought of everything.\"",
@@ -2362,8 +2362,8 @@
       "egMapLegendTours": "الجولات المُرافَقة",
       "egTrustEyebrow": "أكثر من 1200 مسافر مُرافَق",
       "egTrustTitle": "لقد <em>وثقوا بنا</em>",
-      "egStat1": "مسافرون مُرافَقون منذ 2019",
-      "egStat2": "نسبة الرضا",
+      "egStat1": "سنة التأسيس",
+      "egStat2": "وكالات · برج بوعريريج والمسيلة",
       "egStat3": "برامج مصر صيف 2026",
       "egStat4": "فنادق منتقاة للاختيار",
       "egTesti1Text": "«كان كل شيء منظَّماً بإتقان. الأهرامات عند الشروق، والنيل في المساء — ما كنت لأفعل ذلك بمفردي أبداً. أليانس ترافل فكّرت في كل شيء.»",

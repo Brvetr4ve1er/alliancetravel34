@@ -23,15 +23,15 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="{{meta.ogTitle}}"/>
 <meta property="og:description" content="{{meta.ogDescription}}"/>
-<meta property="og:url" content="https://alliance-travel.dz/{{slug}}/"/>
+<meta property="og:url" content="https://alliancetravel.app/{{slug}}/"/>
 <meta property="og:site_name" content="Alliance Travel"/>
 <meta property="og:locale" content="fr_FR"/>
 <meta name="twitter:title" content="{{meta.ogTitle}}"/>
 <meta name="twitter:description" content="{{meta.ogDescription}}"/>
 <meta name="theme-color" content="{{meta.themeColor}}"/>
-<link rel="canonical" href="https://alliance-travel.dz/{{slug}}/"/>
+<link rel="canonical" href="https://alliancetravel.app/{{slug}}/"/>
 <!-- v22 i18n-SEO strategy (c): see docs/I18N-SEO.md -->
-<link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/{{slug}}/"/>
+<link rel="alternate" hreflang="x-default" href="https://alliancetravel.app/{{slug}}/"/>
 <!-- v21 prod-prep: preload the LCP hero bg image -->
 <link rel="preload" as="image" type="image/webp"
       href="{{=d.hero.bg.replace('--bg.jpg','--bg.webp')}}"
@@ -44,9 +44,9 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Accueil",  "item": "https://alliance-travel.dz/" },
-    { "@type": "ListItem", "position": 2, "name": "Voyages",  "item": "https://alliance-travel.dz/voyages/" },
-    { "@type": "ListItem", "position": 3, "name": "{{jsonLd.breadcrumbName}}", "item": "https://alliance-travel.dz/{{slug}}/" }
+    { "@type": "ListItem", "position": 1, "name": "Accueil",  "item": "https://alliancetravel.app/" },
+    { "@type": "ListItem", "position": 2, "name": "Voyages",  "item": "https://alliancetravel.app/voyages/" },
+    { "@type": "ListItem", "position": 3, "name": "{{jsonLd.breadcrumbName}}", "item": "https://alliancetravel.app/{{slug}}/" }
   ]
 }
 </script>
@@ -58,20 +58,20 @@
   "description": "{{seo.tripDescription}}",
   "subjectOf": {
     "@type": "WebPage",
-    "url": "https://alliance-travel.dz/{{slug}}/"
+    "url": "https://alliancetravel.app/{{slug}}/"
   },
   "offers": {
     "@type": "Offer",
     "price": "{{seo.offerPrice}}",
     "priceCurrency": "DZD",
     "availability": "https://schema.org/InStock",
-    "url": "https://alliance-travel.dz/{{slug}}/"
+    "url": "https://alliancetravel.app/{{slug}}/"
   },
   "provider": {
     "@type": "TravelAgency",
     "name": "Alliance Travel",
     "telephone": "+213561616266",
-    "url": "https://alliance-travel.dz/",
+    "url": "https://alliancetravel.app/",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Boulevard Houari Boumediene, La Graf",
@@ -91,10 +91,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png"/>
 <link rel="icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico"/>
 <link rel="manifest" href="../site.webmanifest"/>
-<meta property="og:image" content="https://alliance-travel.dz/assets/images/og/{{meta.ogImage}}"/>
+<meta property="og:image" content="https://alliancetravel.app/assets/images/og/{{meta.ogImage}}"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta name="twitter:image" content="https://alliance-travel.dz/assets/images/og/{{meta.ogImage}}"/>
+<meta name="twitter:image" content="https://alliancetravel.app/assets/images/og/{{meta.ogImage}}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <!-- AT:favicons-og END -->
 </head>

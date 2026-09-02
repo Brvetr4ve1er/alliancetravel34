@@ -48,7 +48,7 @@ function chrome(site) {
   const footer = `<footer class="site-footer"><div class="container">
   <div class="footer-bottom" style="border-top:none; margin-top:0; padding-top:0">
     <p data-i18n="footer.copyright">© 2026 ${site.name} · Bordj Bou Arreridj</p>
-    <p><a href="/">alliance-travel.dz</a> · <a href="https://wa.me/${site.whatsapp}" target="_blank" rel="noopener">WhatsApp ${site.phoneDisplay}</a></p>
+    <p><a href="/">alliancetravel.app</a> · <a href="https://wa.me/${site.whatsapp}" target="_blank" rel="noopener">WhatsApp ${site.phoneDisplay}</a></p>
   </div>
 </div></footer>`;
   return { nav, footer };

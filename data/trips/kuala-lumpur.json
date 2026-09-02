@@ -499,15 +499,15 @@
     "stats": [
       {
         "kNum": "",
-        "num": "1.2K+",
+        "num": "2019",
         "k": " data-i18n=\"klStat1\"",
-        "label": "Voyageurs guidés depuis 2019"
+        "label": "Année de création"
       },
       {
         "kNum": "",
-        "num": "98%",
+        "num": "3",
         "k": " data-i18n=\"klStat2\"",
-        "label": "Taux de satisfaction"
+        "label": "Agences · BBA & M'Sila"
       },
       {
         "kNum": "",
@@ -1054,8 +1054,8 @@
       "klMapLegendTours": "Guided excursions",
       "klTrustEyebrow": "Over 1,200 travellers guided",
       "klTrustTitle": "They <em>trusted us</em>",
-      "klStat1": "Travellers guided since 2019",
-      "klStat2": "Satisfaction rate",
+      "klStat1": "Founded",
+      "klStat2": "Branches · BBA & M'Sila",
       "klStat3": "Malaysia departures in 2026",
       "klStat4": "5★ hotels throughout the trip",
       "klTesti1": "\"Kuala Lumpur blew us away — the Petronas Towers at night, Batu Caves, then Langkawi to finish on the beaches. Everything was organized, we never had to look for anything.\"",
@@ -1251,8 +1251,8 @@
       "klMapLegendTours": "الجولات المصحوبة بمرشد",
       "klTrustEyebrow": "أكثر من 1200 مسافر بصحبة مرشدينا",
       "klTrustTitle": "لقد <em>وثقوا بنا</em>",
-      "klStat1": "مسافرون بصحبة مرشدينا منذ 2019",
-      "klStat2": "نسبة الرضا",
+      "klStat1": "سنة التأسيس",
+      "klStat2": "وكالات · برج بوعريريج والمسيلة",
       "klStat3": "مغادرات نحو ماليزيا في 2026",
       "klStat4": "فنادق 5 نجوم طوال الرحلة",
       "klTesti1": "«أبهرتنا كوالالمبور — برجا بتروناس ليلاً، وكهوف باتو، ثم لنكاوي لنختم على الشواطئ. كان كل شيء منظّماً، لم نضطر للبحث عن أي شيء.»",

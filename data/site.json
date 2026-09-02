@@ -1,14 +1,14 @@
-{
-  "name": "Alliance Travel",
-  "baseUrl": "https://alliance-travel.dz",
-  "whatsapp": "213561616266",
-  "phoneDisplay": "0561 616 266",
-  "addressLine": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj",
-  "blog": {
-    "title": "Le blog — Alliance Travel",
-    "description": "Conseils de voyage, guides pratiques visa et actualités des programmes Alliance Travel.",
-    "heroEyebrow": "Conseils & actualités",
-    "heroTitle": "Le <em>blog</em>",
-    "heroSub": "Guides pratiques, conseils visa et coulisses de nos voyages organisés — écrits par l'équipe Alliance Travel."
-  }
-}
+{
+  "name": "Alliance Travel",
+  "baseUrl": "https://alliancetravel.app",
+  "whatsapp": "213561616266",
+  "phoneDisplay": "0561 616 266",
+  "addressLine": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj",
+  "blog": {
+    "title": "Le blog — Alliance Travel",
+    "description": "Conseils de voyage, guides pratiques visa et actualités des programmes Alliance Travel.",
+    "heroEyebrow": "Conseils & actualités",
+    "heroTitle": "Le <em>blog</em>",
+    "heroSub": "Guides pratiques, conseils visa et coulisses de nos voyages organisés — écrits par l'équipe Alliance Travel."
+  }
+}

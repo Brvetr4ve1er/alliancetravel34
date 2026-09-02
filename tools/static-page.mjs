@@ -23,7 +23,7 @@
 
 import { localizeHtml } from "./templates/localize.mjs";
 
-const ORIGIN = "https://alliance-travel.dz";
+const ORIGIN = "https://alliancetravel.app";
 
 // Byte-identical to AR_FONT_HREF in site/assets/js/i18n.js and langpage.mjs.
 // The data-arabic-font marker lets the client's ensureArabicFont() skip its own

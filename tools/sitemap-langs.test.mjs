@@ -19,18 +19,18 @@ const MANIFEST = {
 const LF_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://alliance-travel.dz/istanbul/</loc>
+    <loc>https://alliancetravel.app/istanbul/</loc>
     <lastmod>2026-06-09</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/istanbul/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/istanbul/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliancetravel.app/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliancetravel.app/ar/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliancetravel.app/istanbul/"/>
   </url>
   <url>
-    <loc>https://alliance-travel.dz/ar/istanbul/</loc>
+    <loc>https://alliancetravel.app/ar/istanbul/</loc>
     <lastmod>2026-06-09</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://alliance-travel.dz/istanbul/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/istanbul/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliance-travel.dz/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alliancetravel.app/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alliancetravel.app/ar/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alliancetravel.app/istanbul/"/>
   </url>
 </urlset>
 `;
@@ -46,7 +46,7 @@ test("check: the SAME sitemap with CRLF endings still passes (content, not bytes
 
 test("check: a genuinely missing alternate still fails, in both endings", () => {
   const broken = LF_XML.replace(
-    '    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/istanbul/"/>\n',
+    '    <xhtml:link rel="alternate" hreflang="ar" href="https://alliancetravel.app/ar/istanbul/"/>\n',
     "",
   );
   assert.ok(checkSitemapLangs(broken, MANIFEST).length > 0, "LF break must be caught");
@@ -55,7 +55,7 @@ test("check: a genuinely missing alternate still fails, in both endings", () => 
 
 test("sync: repairs a drifted cluster even when the file is CRLF", () => {
   const broken = LF_XML.replace(
-    '    <xhtml:link rel="alternate" hreflang="ar" href="https://alliance-travel.dz/ar/istanbul/"/>\n',
+    '    <xhtml:link rel="alternate" hreflang="ar" href="https://alliancetravel.app/ar/istanbul/"/>\n',
     "",
   ).replace(/\n/g, "\r\n");
   const { xml } = syncSitemapLangs(broken, MANIFEST);

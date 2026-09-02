@@ -451,15 +451,15 @@
     "stats": [
       {
         "kNum": "",
-        "num": "1.2K+",
+        "num": "2019",
         "k": " data-i18n=\"tnStat1\"",
-        "label": "Voyageurs guidés depuis 2019"
+        "label": "Année de création"
       },
       {
         "kNum": "",
-        "num": "98%",
+        "num": "3",
         "k": " data-i18n=\"tnStat2\"",
-        "label": "Taux de satisfaction"
+        "label": "Agences · BBA & M'Sila"
       },
       {
         "kNum": " data-i18n=\"tnStat3Num\"",
@@ -469,7 +469,7 @@
       },
       {
         "kNum": "",
-        "num": "9",
+        "num": "4",
         "k": " data-i18n=\"tnStat4\"",
         "label": "Hôtels triés au choix"
       }
@@ -940,8 +940,8 @@
       "tnMapLegend3": "Bus route",
       "tnTrustEyebrow": "Over 1,200 travellers guided",
       "tnTrustTitle": "They put their <em>trust in us</em>",
-      "tnStat1": "Travellers guided since 2019",
-      "tnStat2": "Satisfaction rate",
+      "tnStat1": "Founded",
+      "tnStat2": "Branches · BBA & M'Sila",
       "tnStat3Num": "Weekly",
       "tnStat3": "Departures every week in summer 2026",
       "tnStat4": "Hand-picked hotels to choose from",
@@ -1131,8 +1131,8 @@
       "tnMapLegend3": "مسار الحافلة",
       "tnTrustEyebrow": "أكثر من 1200 مسافر مُرافَق",
       "tnTrustTitle": "لقد <em>وثقوا بنا</em>",
-      "tnStat1": "مسافرون مُرافَقون منذ 2019",
-      "tnStat2": "معدّل الرضا",
+      "tnStat1": "سنة التأسيس",
+      "tnStat2": "وكالات · برج بوعريريج والمسيلة",
       "tnStat3Num": "أسبوعياً",
       "tnStat3": "انطلاقات كل أسبوع في صيف 2026",
       "tnStat4": "فنادق منتقاة للاختيار",

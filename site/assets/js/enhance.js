@@ -743,7 +743,11 @@
   /* ─── Trust strip under the hero ─── */
   function initTrustStrip() {
     if (document.querySelector('.trust-strip')) return;
-    const hero = document.querySelector('.home-hero, .hero');
+    // Homepage only. This used to match '.hero' too, which put the strip on
+    // /omra/ and /rendez-vous-visa/ — so the Omra page carried an
+    // "Annulation flexible" badge directly above its own copy saying an Omra
+    // booking usually cannot be cancelled.
+    const hero = document.querySelector('.home-hero');
     if (!hero) return;
 
     const strip = document.createElement('div');
@@ -751,9 +755,9 @@
     strip.setAttribute('aria-label', 'Indicateurs de confiance');
     strip.setAttribute('data-i18n-aria-label', 'trust_strip.aria');
     strip.innerHTML = `
-      <div class="trust-strip__item" title="Note moyenne sur 320 avis vérifiés">
+      <div class="trust-strip__item" title="Bordj Bou Arreridj (2 agences) et M'Sila">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span data-i18n-html="trust_strip.rating"><strong>4,9 / 5</strong> · 320 voyageurs</span>
+        <span data-i18n-html="trust_strip.branches"><strong>3 agences</strong> · BBA &amp; M'Sila</span>
       </div>
       <div class="trust-strip__sep" aria-hidden="true"></div>
       <div class="trust-strip__item" title="Agence créée en 2019">
@@ -761,14 +765,14 @@
         <span data-i18n-html="trust_strip.experience"><strong>7+ ans</strong> d'expérience</span>
       </div>
       <div class="trust-strip__sep" aria-hidden="true"></div>
-      <div class="trust-strip__item" title="Vol, hôtel et excursions inclus">
+      <div class="trust-strip__item" title="Chaque voyage détaille ce qui est compris et ce qui ne l'est pas">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-        <span data-i18n-html="trust_strip.all_inclusive"><strong>Tout inclus</strong> — vol, hôtel, excursions</span>
+        <span data-i18n-html="trust_strip.transparency"><strong>Inclus &amp; non inclus</strong> détaillés</span>
       </div>
       <div class="trust-strip__sep" aria-hidden="true"></div>
-      <div class="trust-strip__item" title="Annulation flexible jusqu'à 30 jours">
+      <div class="trust-strip__item" title="Barème d'annulation indiqué sur chaque voyage">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/></svg>
-        <span data-i18n-html="trust_strip.flexible"><strong>Annulation flexible</strong></span>
+        <span data-i18n-html="trust_strip.conditions"><strong>Conditions</strong> d'annulation claires</span>
       </div>
     `;
     hero.insertAdjacentElement('afterend', strip);
@@ -1018,8 +1022,8 @@
         <div class="value-prop__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3 class="value-prop__title" data-i18n="value_props.included_title">Vol, hôtel & visa inclus</h3>
-        <p class="value-prop__text" data-i18n="value_props.included_text">Tout est cadré à l'avance — vous payez un prix tout compris, sans mauvaise surprise.</p>
+        <h3 class="value-prop__title" data-i18n="value_props.included_title">Une formule organisée de A à Z</h3>
+        <p class="value-prop__text" data-i18n="value_props.included_text">Vol ou bus, hôtel, transferts et programme cadrés à l'avance — le détail de ce qui est compris est indiqué sur chaque voyage.</p>
       </div>
       <div class="value-prop">
         <div class="value-prop__icon">

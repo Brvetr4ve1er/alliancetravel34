@@ -466,15 +466,15 @@
     "stats": [
       {
         "kNum": "",
-        "num": "1.2K+",
+        "num": "2019",
         "k": " data-i18n=\"baStat1\"",
-        "label": "Voyageurs guidés depuis 2019"
+        "label": "Année de création"
       },
       {
         "kNum": "",
-        "num": "98%",
+        "num": "3",
         "k": " data-i18n=\"baStat2\"",
-        "label": "Taux de satisfaction"
+        "label": "Agences · BBA & M'Sila"
       },
       {
         "kNum": "",
@@ -1117,8 +1117,8 @@
       "baLegendTours": "Guided excursions",
       "baTrustEyebrow": "Over 1,200 travellers guided",
       "baTrustTitle": "They put their <em>trust in us</em>",
-      "baStat1": "Travellers guided since 2019",
-      "baStat2": "Satisfaction rate",
+      "baStat1": "Founded",
+      "baStat2": "Branches · BBA & M'Sila",
       "baStat3": "Bali departures in 2026",
       "baStat4": "All hotels rated 5 stars",
       "baTesti1": "\"Bali blew us away — the Ubud rice paddies, the sunset at Tanah Lot, the Nusa Dua beaches. Everything was organized, we never had to look for anything.\"",
@@ -1303,8 +1303,8 @@
       "baLegendTours": "الجولات المصحوبة بمرشد",
       "baTrustEyebrow": "أكثر من 1.200 مسافر مرافَق",
       "baTrustTitle": "لقد <em>وثقوا بنا</em>",
-      "baStat1": "مسافرون مرافَقون منذ 2019",
-      "baStat2": "نسبة الرضا",
+      "baStat1": "سنة التأسيس",
+      "baStat2": "وكالات · برج بوعريريج والمسيلة",
       "baStat3": "رحلات بالي في 2026",
       "baStat4": "كل الفنادق 5 نجوم",
       "baTesti1": "«بالي أبهرتنا — مدرَّجات أرز أوبود، وغروب الشمس في تاناه لوت، وشواطئ نوسا دوا. كان كل شيء منظَّماً، ولم نضطر أبداً للبحث عن أي شيء.»",
