@@ -46,6 +46,12 @@ const MANIFEST_PATH = join(ROOT, "data", "build-manifest.json");
 // as one French URL that swaps text client-side would hide it from those queries.
 const STATIC_PAGES = {
   omra: ["fr", "en", "ar"],
+  // French-only for now: legal wording has to be completed and approved by the
+  // owner before it is worth translating. Adding "en"/"ar" here plus a
+  // data/pages/<slug>.i18n.json is all that is needed to publish variants.
+  "mentions-legales": ["fr"],
+  confidentialite: ["fr"],
+  cgv: ["fr"],
 };
 
 const CHECK_ONLY = process.argv.includes("--check");

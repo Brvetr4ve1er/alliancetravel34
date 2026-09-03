@@ -10486,3 +10486,20 @@ p, li, dd, blockquote, figcaption, .testi-text {
 :root[lang="ar"] p, :root[lang="ar"] li {
   text-wrap: wrap;
 }
+
+/* Legal links in the footer bottom bar (mentions légales / confidentialité / CGV).
+   Added 2026-08-31: the site collects passport data and had no legal pages at all. */
+.footer-links { margin: var(--s2) 0 0; font-size: var(--fs-caption); color: var(--txt-3); }
+.footer-links a { color: var(--txt-3); text-decoration: none; border-bottom: 1px solid transparent; transition: color var(--t-fast), border-color var(--t-fast); }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Consent opt-in gating the optional passport fields in the booking form.
+   Added 2026-08-31: the form collected passport numbers and dates of birth with
+   no notice and no opt-in. The fields stay hidden until this is ticked. */
+.bf-consent { display: flex; gap: var(--s3); align-items: flex-start; margin: var(--s3) 0 var(--s4);
+  padding: var(--s4); border: 1px solid var(--border); border-radius: var(--r2);
+  background: var(--bg-2); cursor: pointer; font-size: var(--fs-body-sm); color: var(--txt-2);
+  line-height: var(--lh-normal); }
+.bf-consent:hover { border-color: var(--border-hi); }
+.bf-consent input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 1px; accent-color: var(--accent); cursor: pointer; }
+.bf-consent:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }

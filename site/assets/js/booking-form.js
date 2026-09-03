@@ -111,14 +111,23 @@ const FORM_HTML = `
           Informations passeports
         </h3>
         <p class="bform-hint">
-          Renseignez les données de chaque voyageur. Ajoutez autant de lignes
-          que nécessaire (adultes + enfants avec passeport).
+          <strong>Facultatif.</strong> Ces informations ne sont pas nécessaires pour obtenir un
+          devis. Si vous les renseignez, elles sont incluses dans le message WhatsApp que vous
+          envoyez à l'agence — elles ne sont pas enregistrées dans notre outil de suivi.
+          <a href="/confidentialite/" target="_blank" rel="noopener">Politique de confidentialité</a>
         </p>
-        <div id="bf-passports-list"></div>
-        <button class="btn btn--ghost btn--sm" id="bf-add-passport" type="button"
-          style="width:fit-content;margin-top:var(--s1)">
-          ${icon('plus')} Ajouter un voyageur
-        </button>
+        <label class="bf-consent" for="bf-passport-consent">
+          <input type="checkbox" id="bf-passport-consent"/>
+          <span>J'accepte de transmettre les données de passeport des voyageurs via WhatsApp
+            pour la préparation de mon dossier.</span>
+        </label>
+        <div id="bf-passport-fields" hidden>
+          <div id="bf-passports-list"></div>
+          <button class="btn btn--ghost btn--sm" id="bf-add-passport" type="button"
+            style="width:fit-content;margin-top:var(--s1)">
+            ${icon('plus')} Ajouter un voyageur
+          </button>
+        </div>
       </div>
 
       <!-- Block 4 · Document upload -->
@@ -277,6 +286,8 @@ class BookingForm {
       tripSummary:  this.mount.querySelector('#bf-trip-summary'),
       passportList: this.mount.querySelector('#bf-passports-list'),
       addPassport:  this.mount.querySelector('#bf-add-passport'),
+      ppConsent:    this.mount.querySelector('#bf-passport-consent'),
+      ppFields:     this.mount.querySelector('#bf-passport-fields'),
       uploadZone:   this.mount.querySelector('#bf-upload-zone'),
       fileInput:    this.mount.querySelector('#bf-files'),
       previews:     this.mount.querySelector('#bf-previews'),
@@ -816,6 +827,18 @@ class BookingForm {
     this.el.emailBtn?.addEventListener('click', sendGate);
 
     // Add passport row
+    this.el.ppConsent?.addEventListener('change', () => {
+      const on = this.el.ppConsent.checked;
+      if (this.el.ppFields) this.el.ppFields.hidden = !on;
+      if (!on) {
+        // Withdrawing consent must drop the data, not merely hide the fields —
+        // otherwise a cleared checkbox still ships passport numbers to WhatsApp.
+        this.passports = [{}];
+        this._renderPassports?.();
+        this._scheduleUpdate?.();
+      }
+    });
+
     this.el.addPassport?.addEventListener('click', () => {
       this.passports.push({});
       this._renderPassports();
