@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Tunisie — Alliance Travel · 2026",
-    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 41.900 DA.",
-    "ogTitle": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
-    "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
+    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 41.900 DA.",
+    "ogTitle": "Tunisie · Sousse & sa région — Alliance Travel",
+    "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
     "themeColor": "#19B5B0",
     "ogImage": "og-default.jpg"
   },
@@ -18,8 +18,8 @@
     "breadcrumbName": "Tunisie"
   },
   "seo": {
-    "tripName": "Tunisie · Hammamet, Sousse & Djerba — Alliance Travel",
-    "tripDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Hammamet, Sousse ou Djerba. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
+    "tripName": "Tunisie · Sousse & sa région — Alliance Travel",
+    "tripDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
     "offerPrice": "41900",
     "faqJsonLd": [
       {
@@ -341,7 +341,7 @@
     "legendSites": "Villes de départ",
     "legendTours": "Route en bus",
     "data": {
-      "name": "Tunisie · Hammamet, Sousse & Djerba",
+      "name": "Tunisie · Sousse & sa région",
       "hotels": [
         {
           "id": "hammamet",
@@ -514,7 +514,7 @@
       },
       {
         "k": " data-i18n-html=\"tnInclusYes3\"",
-        "t": "<strong>Hôtel au choix</strong> à Hammamet, Sousse ou Djerba"
+        "t": "<strong>Hôtel au choix</strong> à Sousse et sa région"
       },
       {
         "k": " data-i18n-html=\"tnInclusYes4\"",
@@ -689,7 +689,7 @@
     "steppersHtml": "\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h3 data-i18n=\"tnStepAdults\">Adultes</h3><p data-i18n=\"tnStepAdultsHint\">À partir de 12 ans</p></div>\n              <div class=\"stepper\"><button class=\"stepper__btn\" id=\"adults-minus\" type=\"button\" aria-label=\"Diminuer le nombre d'adultes\">−</button><span class=\"stepper__val\" id=\"adults-val\">2</span><button class=\"stepper__btn\" id=\"adults-plus\" type=\"button\" aria-label=\"Augmenter le nombre d'adultes\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h3 data-i18n=\"tnStepChild1\">1er enfant</h3><p data-i18n=\"tnStepChild1Hint\">partage la chambre de 2 adultes</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_b\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 1ᵉʳ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 1ᵉʳ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h3 data-i18n=\"tnStepChild2\">2e enfant</h3><p data-i18n=\"tnStepChild2Hint\">partage la chambre de 2 adultes</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"child_a\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de 2ᵉ enfant\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de 2ᵉ enfant\">+</button></div>\n            </div>\n            <div class=\"stepper-item\">\n              <div class=\"stepper-item__info\"><h3 data-i18n=\"tnStepBaby\">Bébé</h3><p data-i18n=\"tnStepBabyHint\">0–2 ans</p></div>\n              <div class=\"stepper kid-stepper\" data-kid-type=\"baby\"><button class=\"stepper__btn kid-minus\" type=\"button\" aria-label=\"Diminuer le nombre de bébé\">−</button><span class=\"stepper__val kid-val\" aria-live=\"polite\" aria-atomic=\"true\">0</span><button class=\"stepper__btn kid-plus\" type=\"button\" aria-label=\"Augmenter le nombre de bébé\">+</button></div>\n            </div>",
     "noteHtml": "",
     "emptyMsg": "Configurez votre voyage pour voir le prix.",
-    "whyHtml": "<details><summary data-i18n=\"tnWhy\">Pourquoi ce prix ?</summary><p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\">Prix par personne en chambre double, transport en bus aller-retour depuis Alger et Oran inclus, 6 nuits en demi-pension (petit-déjeuner + dîner buffet), hôtel au choix à Hammamet, Sousse ou Djerba, animations, piscines et plage privée, et accompagnateur Alliance Travel. Aucun visa requis pour les Algériens.</p></details>",
+    "whyHtml": "<details><summary data-i18n=\"tnWhy\">Pourquoi ce prix ?</summary><p id=\"breakdown-why-details\" class=\"u-mt-sp3\" style=\"line-height:1.65\">Prix par personne en chambre double, transport en bus aller-retour depuis Alger et Oran inclus, 6 nuits en demi-pension (petit-déjeuner + dîner buffet), hôtel au choix à Sousse et sa région, animations, piscines et plage privée, et accompagnateur Alliance Travel. Aucun visa requis pour les Algériens.</p></details>",
     "continueLabel": "Continuer vers la réservation",
     "nextStep": "Étape suivante : remplissez votre dossier ci-dessous"
   },
@@ -958,7 +958,7 @@
       "tnInclusColYesCount": "5 services covered",
       "tnInclusYes1": "<strong>Round-trip bus transport</strong> from Algiers and Oran, air-conditioned",
       "tnInclusYes2": "<strong>6 nights half-board</strong> (breakfast + buffet dinner)",
-      "tnInclusYes3": "<strong>Hotel of your choice</strong> in Hammamet, Sousse or Djerba",
+      "tnInclusYes3": "<strong>Hotel of your choice</strong> in Sousse and the surrounding coast",
       "tnInclusYes4": "Entertainment, pools and the hotel's <strong>private beach</strong>",
       "tnInclusYes5": "Alliance Travel guide throughout the trip",
       "tnInclusColNoTitle": "To <em>budget</em> separately",
@@ -1149,7 +1149,7 @@
       "tnInclusColYesCount": "5 خدمات مغطّاة",
       "tnInclusYes1": "<strong>النقل بالحافلة ذهاباً وإياباً</strong> من الجزائر العاصمة ووهران، مكيّفة",
       "tnInclusYes2": "<strong>6 ليالٍ بنظام نصف الإقامة</strong> (فطور + عشاء بوفيه)",
-      "tnInclusYes3": "<strong>فندق حسب اختيارك</strong> في الحمامات أو سوسة أو جربة",
+      "tnInclusYes3": "<strong>فندق حسب اختيارك</strong> في سوسة وضواحيها",
       "tnInclusYes4": "أنشطة ترفيهية ومسابح و<strong>شاطئ خاص</strong> للفندق",
       "tnInclusYes5": "مُرافِق من أليانس ترافل طوال الرحلة",
       "tnInclusColNoTitle": "يُدبَّر <em>إضافياً</em>",

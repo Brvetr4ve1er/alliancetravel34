@@ -9,19 +9,19 @@
     "ar": 99
   },
   "counts": {
-    "total": 210,
+    "total": 213,
     "trip": 185,
-    "shared": 25,
+    "shared": 28,
     "en": {
       "ok": 180,
       "stale": 3,
-      "global": 25,
+      "global": 28,
       "missing": 2
     },
     "ar": {
       "ok": 180,
       "stale": 3,
-      "global": 25,
+      "global": 28,
       "missing": 2
     }
   },
@@ -2234,6 +2234,33 @@
       "frHash": "01qig6hr",
       "en": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algeria",
       "ar": "© 2026 أليانس ترافل · بُرج بوعريريج، الجزائر",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.legal_mentions": {
+      "fr": "Mentions légales",
+      "frHash": "0127qfjv",
+      "en": "Legal notice",
+      "ar": "الإشعار القانوني",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.legal_privacy": {
+      "fr": "Confidentialité",
+      "frHash": "00p9pod5",
+      "en": "Privacy",
+      "ar": "الخصوصية",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.legal_terms": {
+      "fr": "CGV",
+      "frHash": "012nomrf",
+      "en": "Terms",
+      "ar": "شروط البيع",
       "scope": "shared",
       "enState": "global",
       "arState": "global"

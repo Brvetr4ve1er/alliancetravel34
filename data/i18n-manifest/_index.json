@@ -11,7 +11,7 @@
         "ar": 99
       },
       "bindings": 185,
-      "shared": 25
+      "shared": 28
     },
     "bali": {
       "coverage": {
@@ -23,7 +23,7 @@
         "ar": 99
       },
       "bindings": 183,
-      "shared": 25
+      "shared": 28
     },
     "egypte": {
       "coverage": {
@@ -35,7 +35,7 @@
         "ar": 100
       },
       "bindings": 197,
-      "shared": 25
+      "shared": 28
     },
     "istanbul": {
       "coverage": {
@@ -47,7 +47,7 @@
         "ar": 100
       },
       "bindings": 7,
-      "shared": 25
+      "shared": 28
     },
     "kuala-lumpur": {
       "coverage": {
@@ -59,7 +59,7 @@
         "ar": 100
       },
       "bindings": 192,
-      "shared": 25
+      "shared": 28
     },
     "tunisie": {
       "coverage": {
@@ -71,7 +71,7 @@
         "ar": 100
       },
       "bindings": 178,
-      "shared": 25
+      "shared": 28
     },
     "vietnam": {
       "coverage": {
@@ -83,7 +83,7 @@
         "ar": 100
       },
       "bindings": 207,
-      "shared": 25
+      "shared": 28
     }
   }
 }

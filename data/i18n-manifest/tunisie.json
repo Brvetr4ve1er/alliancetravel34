@@ -9,19 +9,19 @@
     "ar": 100
   },
   "counts": {
-    "total": 203,
+    "total": 206,
     "trip": 178,
-    "shared": 25,
+    "shared": 28,
     "en": {
-      "ok": 173,
-      "stale": 5,
-      "global": 25,
+      "ok": 172,
+      "stale": 6,
+      "global": 28,
       "missing": 0
     },
     "ar": {
-      "ok": 173,
-      "stale": 5,
-      "global": 25,
+      "ok": 172,
+      "stale": 6,
+      "global": 28,
       "missing": 0
     }
   },
@@ -1012,15 +1012,15 @@
       "arState": "ok"
     },
     "tnInclusYes3": {
-      "fr": "<strong>Hôtel au choix</strong> à Hammamet, Sousse ou Djerba",
-      "frHash": "015y8n16",
-      "en": "<strong>Hotel of your choice</strong> in Hammamet, Sousse or Djerba",
-      "ar": "<strong>فندق حسب اختيارك</strong> في الحمامات أو سوسة أو جربة",
+      "fr": "<strong>Hôtel au choix</strong> à Sousse et sa région",
+      "frHash": "006qsxbh",
+      "en": "<strong>Hotel of your choice</strong> in Sousse and the surrounding coast",
+      "ar": "<strong>فندق حسب اختيارك</strong> في سوسة وضواحيها",
       "enHash": "015y8n16",
       "arHash": "015y8n16",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnInclusYes4": {
       "fr": "Animations, piscines et <strong>plage privée</strong> de l'hôtel",
@@ -2176,6 +2176,33 @@
       "frHash": "01qig6hr",
       "en": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algeria",
       "ar": "© 2026 أليانس ترافل · بُرج بوعريريج، الجزائر",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.legal_mentions": {
+      "fr": "Mentions légales",
+      "frHash": "0127qfjv",
+      "en": "Legal notice",
+      "ar": "الإشعار القانوني",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.legal_privacy": {
+      "fr": "Confidentialité",
+      "frHash": "00p9pod5",
+      "en": "Privacy",
+      "ar": "الخصوصية",
+      "scope": "shared",
+      "enState": "global",
+      "arState": "global"
+    },
+    "footer.legal_terms": {
+      "fr": "CGV",
+      "frHash": "012nomrf",
+      "en": "Terms",
+      "ar": "شروط البيع",
       "scope": "shared",
       "enState": "global",
       "arState": "global"

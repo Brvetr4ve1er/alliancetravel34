@@ -161,7 +161,7 @@
         // the two still agreed, and a <select> is a picker rather than a
         // shop window. The trips grid above quotes the live figure.
         trip_egypte: 'Égypte — Le Caire, Sharm & Hurghada',
-        trip_tunisie: 'Tunisie — Hammamet, Sousse & Djerba',
+        trip_tunisie: 'Tunisie — Sousse & sa région',
         trip_istanbul: 'Istanbul',
         trip_azerbaidjan: 'Azerbaïdjan — Bakou & Gabala',
         trip_kuala_lumpur: 'Kuala Lumpur & Langkawi',
@@ -519,7 +519,7 @@
         signup_label: 'How to book',
         signup_lede: 'By phone, on WhatsApp, or walk into any branch. A deposit holds your seat.',
         trip_egypte: 'Egypt — Cairo, Sharm & Hurghada',
-        trip_tunisie: 'Tunisia — Hammamet, Sousse & Djerba',
+        trip_tunisie: 'Tunisia — Sousse & around',
         trip_istanbul: 'Istanbul',
         trip_azerbaidjan: 'Azerbaijan — Baku & Gabala',
         trip_kuala_lumpur: 'Kuala Lumpur & Langkawi',
@@ -661,7 +661,7 @@
         },
         tunisie: {
           title: "Tunisia by coach 2026 — Alliance Travel",
-          description: "Tunisia beach holiday by coach. Six nights half-board in Hammamet, Sousse or Djerba. Visa-free for Algerians. Weekly departures from Algiers and Oran. From DZD 41,900."
+          description: "Tunisia beach holiday by coach. Six nights half-board in Sousse and the surrounding coast. Visa-free for Algerians. Weekly departures from Algiers and Oran. From DZD 41,900."
         },
         bali: {
           title: "Bali (Indonesia) 2026 — Alliance Travel",
@@ -908,7 +908,7 @@
         signup_label: 'طرق التسجيل',
         signup_lede: 'عبر الهاتف · واتساب · في الوكالة. يكفي عربون بسيط لحجز مكانك.',
         trip_egypte: 'مصر — القاهرة وشرم الشيخ والغردقة',
-        trip_tunisie: 'تونس — الحمامات وسوسة وجربة',
+        trip_tunisie: 'تونس — سوسة وضواحيها',
         trip_istanbul: 'إسطنبول',
         trip_azerbaidjan: 'أذربيجان — باكو وقبالة',
         trip_kuala_lumpur: 'كوالالمبور ولنكاوي',
@@ -1050,7 +1050,7 @@
         },
         tunisie: {
           title: 'تونس بالحافلة 2026 — أليانس ترافل',
-          description: 'عطلة شاطئية في تونس بالحافلة. ست ليالٍ بنصف إقامة في الحمامات أو سوسة أو جربة. بدون تأشيرة للجزائريين. مغادرات أسبوعية من الجزائر ووهران. ابتداءً من 41.900 دج.'
+          description: 'عطلة شاطئية في تونس بالحافلة. ست ليالٍ بنصف إقامة في سوسة وضواحيها. بدون تأشيرة للجزائريين. مغادرات أسبوعية من الجزائر ووهران. ابتداءً من 41.900 دج.'
         },
         bali: {
           title: 'بالي (إندونيسيا) 2026 — أليانس ترافل',
