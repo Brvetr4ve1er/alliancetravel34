@@ -56,3 +56,11 @@ source of truth/
 # dumps on every automated run; this repo is public.
 .playwright-mcp/
 .security-hardening/
+
+# Verification screenshots dropped at the repo root by browser-automation runs.
+# This repo is PUBLIC and a broad `git add -A` has swept stray local files into
+# a commit before (see the orphan-page gate in tools/build.mjs).
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp

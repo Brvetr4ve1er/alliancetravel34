@@ -13,14 +13,14 @@
     "trip": 178,
     "shared": 28,
     "en": {
-      "ok": 172,
-      "stale": 6,
+      "ok": 170,
+      "stale": 8,
       "global": 28,
       "missing": 0
     },
     "ar": {
-      "ok": 172,
-      "stale": 6,
+      "ok": 170,
+      "stale": 8,
       "global": 28,
       "missing": 0
     }
@@ -869,15 +869,15 @@
       "arState": "ok"
     },
     "tnTesti1": {
-      "fr": "\"Hammamet en famille, c'était parfait. Le bus confortable, la plage privée à deux pas de l'hôtel, et le dîner buffet chaque soir. Les enfants ne voulaient plus rentrer.\"",
-      "frHash": "00j53yz2",
+      "fr": "\"Sousse en famille, c'était parfait. Le bus confortable, la plage privée à deux pas de l'hôtel, et le dîner buffet chaque soir. Les enfants ne voulaient plus rentrer.\"",
+      "frHash": "01tekdiu",
       "en": "\"Hammamet as a family was perfect. The comfortable bus, the private beach steps from the hotel, and the buffet dinner every evening. The kids didn't want to leave.\"",
       "ar": "«الحمامات مع العائلة كانت مثالية. الحافلة مريحة، الشاطئ الخاص على بُعد خطوات من الفندق، والعشاء بوفيه كل مساء. الأطفال لم يرغبوا في العودة.»",
       "enHash": "00j53yz2",
       "arHash": "00j53yz2",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnTesti1Trip": {
       "fr": "Bordj Bou Arreridj · Voyage Tunisie 2026",
@@ -891,15 +891,15 @@
       "arState": "ok"
     },
     "tnTesti2": {
-      "fr": "\"Sans visa, juste la carte d'identité — on a réservé en quelques jours. Le départ d'Oran était bien organisé, le passage de la frontière sans stress. Sousse et sa médina valent le détour.\"",
-      "frHash": "01nthllb",
+      "fr": "\"Sans visa, juste la carte d'identité — on a réservé en quelques jours. Le départ était bien organisé, le passage de la frontière sans stress. Sousse et sa médina valent le détour.\"",
+      "frHash": "01g3iv5q",
       "en": "\"No visa, just an ID card — we booked in a few days. The departure from Oran was well organised, the border crossing stress-free. Sousse and its medina are worth the trip.\"",
       "ar": "«بدون تأشيرة، فقط بطاقة الهوية — حجزنا في أيام قليلة. الانطلاق من وهران كان منظَّماً جيداً، وعبور الحدود دون توتّر. سوسة ومدينتها العتيقة تستحق الزيارة.»",
       "enHash": "01nthllb",
       "arHash": "01nthllb",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnTesti2Trip": {
       "fr": "Constantine · Voyage Tunisie 2026",

@@ -477,25 +477,25 @@
     "testimonials": [
       {
         "kText": " data-i18n=\"tnTesti1\"",
-        "text": "\"Hammamet en famille, c'était parfait. Le bus confortable, la plage privée à deux pas de l'hôtel, et le dîner buffet chaque soir. Les enfants ne voulaient plus rentrer.\"",
-        "initials": "RH",
-        "name": "Rania H.",
+        "text": "\"Sousse en famille, c'était parfait. Le bus confortable, la plage privée à deux pas de l'hôtel, et le dîner buffet chaque soir. Les enfants ne voulaient plus rentrer.\"",
+        "initials": "WR",
+        "name": "Wassila R.",
         "kTrip": " data-i18n=\"tnTesti1Trip\"",
         "trip": "Bordj Bou Arreridj · Voyage Tunisie 2026"
       },
       {
         "kText": " data-i18n=\"tnTesti2\"",
-        "text": "\"Sans visa, juste la carte d'identité — on a réservé en quelques jours. Le départ d'Oran était bien organisé, le passage de la frontière sans stress. Sousse et sa médina valent le détour.\"",
-        "initials": "MT",
-        "name": "Mohamed T.",
+        "text": "\"Sans visa, juste la carte d'identité — on a réservé en quelques jours. Le départ était bien organisé, le passage de la frontière sans stress. Sousse et sa médina valent le détour.\"",
+        "initials": "KB",
+        "name": "Khaled B.",
         "kTrip": " data-i18n=\"tnTesti2Trip\"",
         "trip": "Constantine · Voyage Tunisie 2026"
       },
       {
         "kText": " data-i18n=\"tnTesti3\"",
         "text": "\"Séjour en couple à Djerba. Hôtel impeccable, piscines magnifiques et la mer turquoise. Le rapport qualité-prix est imbattable pour un voyage tout compris en bus.\"",
-        "initials": "LK",
-        "name": "Leïla K.",
+        "initials": "DT",
+        "name": "Djamila T.",
         "kTrip": " data-i18n=\"tnTesti3Trip\"",
         "trip": "Annaba · Voyage Tunisie 2026"
       }
