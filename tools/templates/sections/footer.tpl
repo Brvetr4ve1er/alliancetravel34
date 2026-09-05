@@ -20,7 +20,7 @@
           </ul>
         </div>
 
-        <nav class="footer-nav" aria-label="Liens du pied de page">
+        <nav class="footer-nav" aria-label="Liens du pied de page" data-i18n-aria-label="footer.nav_aria">
           <div class="footer-col footer-col--trips">
             <h4 data-i18n="footer.col_voyages">Nos voyages 2026</h4>
             <ul role="list">

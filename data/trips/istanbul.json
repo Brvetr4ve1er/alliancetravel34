@@ -91,7 +91,7 @@
     "calcDateLabel": "",
     "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
     "calcSelectLabel": "",
-    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer\"",
+    "selectAttrs": "",
     "calcRoomLabel": "",
     "segmentedAttrs": "",
     "calcTravLabel": "",

@@ -102,7 +102,7 @@
     "dateChipsRole": " role=\"radiogroup\" aria-label=\"Choisissez votre date de départ\"",
     "dateHintAttrs": " class=\"fs-caption u-text-3 u-mt-sp3\" data-i18n=\"egCalcDatesNote\"",
     "calcSelectLabel": " data-i18n=\"egCalcHotelLabel\"",
-    "selectAttrs": " style=\"background:var(--bg); border:1px solid var(--border); border-radius:var(--r2); padding:var(--space-3) var(--space-4); width:100%; cursor:pointer; appearance:none\" aria-label=\"Choisissez un hôtel\"",
+    "selectAttrs": " aria-label=\"Choisissez un hôtel\"",
     "calcRoomLabel": " data-i18n=\"egCalcRoomLabel\"",
     "segmentedAttrs": " role=\"group\" aria-label=\"Type de chambre\"",
     "calcTravLabel": " data-i18n=\"egCalcGroupLabel\"",

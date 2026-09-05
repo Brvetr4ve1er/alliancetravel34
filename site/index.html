@@ -428,7 +428,7 @@
       <div class="section-head section-head--center">
         <p class="section-head__eyebrow" data-aos="fade-up" data-aos-duration="400" data-i18n="voyages_section.eyebrow">Programmes 2026</p>
         <h2 class="section-head__title" data-aos="fade-up" data-aos-duration="500"><span data-i18n="voyages_section.title_l1">Nos</span> <em data-i18n="voyages_section.title_em">destinations</em></h2>
-        <p class="section-head__sub" data-i18n="voyages_section.sub">7 voyages guidés, vol + hôtel + excursions inclus. Chaque page voyage a un
+        <p class="section-head__sub" data-i18n="voyages_section.sub">7 voyages guidés et l'Omra — vol + hôtel + excursions inclus. Chaque page voyage a un
           calculateur de prix live — obtenez votre devis en 30 secondes.</p>
       </div>
       <div class="dest-filter" role="toolbar" aria-label="Filtrer les destinations par région" id="destFilter">
@@ -436,7 +436,9 @@
         <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="egypt" data-track-event="dest_filter" data-track-label="egypt" data-i18n="voyages_section.filter_egypt">Égypte</button>
         <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="azerbaijan" data-track-event="dest_filter" data-track-label="azerbaijan" data-i18n="voyages_section.filter_caucasus">Caucase</button>
         <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="istanbul" data-track-event="dest_filter" data-track-label="istanbul" data-i18n="voyages_section.filter_turkey">Turquie</button>
-        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="malaysia" data-track-event="dest_filter" data-track-label="malaysia" data-i18n="voyages_section.filter_asia">Asie</button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="asia" data-track-event="dest_filter" data-track-label="asia" data-i18n="voyages_section.filter_asia">Asie</button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="tunisie" data-track-event="dest_filter" data-track-label="tunisie" data-i18n="voyages_section.filter_tunisia">Tunisie</button>
+        <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="omra" data-track-event="dest_filter" data-track-label="omra" data-i18n="voyages_section.filter_omra">Omra</button>
       </div>
       <script>
       // Wait for full DOM — this <script> sits BEFORE the .trips-grid in
@@ -448,12 +450,15 @@
           if (!pills.length || !cards.length) return;
           function applyFilter(region) {
             cards.forEach(card => {
-              const match = region === 'all' || card.dataset.region === region;
+              // A pill can name a region OR a group (data-group="asia" spans Malaysia,
+              // Bali and Vietnam). Before this, the "Asie" pill showed Kuala Lumpur alone
+              // and Tunisia was reachable from no pill at all.
+              const match = region === 'all' || card.dataset.region === region || card.dataset.group === region;
               card.classList.toggle('is-filtered-out', !match);
             });
             pills.forEach(p => p.setAttribute('aria-pressed', p.dataset.filter === region ? 'true' : 'false'));
             const totalPill = document.querySelector('.dest-filter__pill[data-filter="all"] .dest-filter__count');
-            if (totalPill) totalPill.textContent = region === 'all' ? cards.length : Array.from(cards).filter(c => c.dataset.region === region).length;
+            if (totalPill) totalPill.textContent = region === 'all' ? cards.length : Array.from(cards).filter(c => c.dataset.region === region || c.dataset.group === region).length;
           }
           pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter)));
           // The "Tous N" count was hardcoded to 5 in the markup and only ever
@@ -628,7 +633,7 @@
         </a>
 
         <!-- Kuala Lumpur -->
-        <a href="kuala-lumpur/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600" data-region="malaysia"
+        <a href="kuala-lumpur/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600" data-region="malaysia" data-group="asia"
           aria-label="Voyage Kuala Lumpur Malaisie, à partir de 339.000 DA" data-i18n-aria-label="home_trip.malaysia.aria" data-from="339 000 DA">
           <div class="trip-card__monument" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="kuala-lumpur"><rect x="6" y="4" width="4" height="17" rx=".5" /><rect x="14" y="4" width="4" height="17" rx=".5" /><line x1="8" y1="2.5" x2="8" y2="4" /><line x1="16" y1="2.5" x2="16" y2="4" /><line x1="10" y1="11" x2="14" y2="11" /><line x1="10" y1="13" x2="14" y2="13" stroke-opacity=".7" /><line x1="3" y1="21" x2="21" y2="21" stroke-opacity=".55" /></svg></div>
           <div class="trip-card__hero">
@@ -732,7 +737,7 @@
         </a>
 
         <!-- Bali -->
-        <a href="bali/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="600" data-aos-duration="600" data-region="bali"
+        <a href="bali/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="600" data-aos-duration="600" data-region="bali" data-group="asia"
           aria-label="Voyage Bali, à partir de 419.000 DA" data-i18n-aria-label="home_trip.bali.aria" data-from="419 000 DA">
           <div class="trip-card__monument" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="bali"><path d="M12 2.5 c2 3 4 5 4 8.5 a4 4 0 0 1 -8 0 c0 -3 2 -5 4 -8.5 z" /><path d="M12 7 c1 2 1.8 3 1.8 5 a1.8 1.8 0 0 1 -3.6 0 c0 -2 .8 -3 1.8 -5 z" stroke-opacity=".7" /><path d="M2 18 q3 -2 6 0 t6 0 t6 0" stroke-opacity=".85" /><path d="M2 21 q3 -2 6 0 t6 0 t6 0" stroke-opacity=".65" /></svg></div>
           <div class="trip-card__hero">
@@ -784,7 +789,7 @@
         </a>
 
         <!-- Vietnam -->
-        <a href="vietnam/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="700" data-aos-duration="600" data-region="vietnam"
+        <a href="vietnam/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="700" data-aos-duration="600" data-region="vietnam" data-group="asia"
           aria-label="Voyage Vietnam, à partir de 439.000 DA" data-i18n-aria-label="home_trip.vietnam.aria" data-from="439 000 DA">
           <div class="trip-card__monument" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="vietnam"><path d="M4 17 l4 -9 l3 6 l3 -8 l6 11 z" /><path d="M2 20.5 q3 -1.5 6 0 t6 0 t6 0" stroke-opacity=".7" /></svg></div>
           <div class="trip-card__hero">
@@ -835,6 +840,63 @@
           </div>
         </a>
 
+        <!-- Omra — the eighth destination; no photo asset exists for it, so the
+             tile is a designed gradient + Kaaba glyph (see .trip-card[data-region="omra"]) -->
+        <a href="omra/index.html" class="trip-card" data-aos="fade-up" data-aos-delay="800" data-aos-duration="600" data-region="omra"
+          aria-label="Omra, organisée de bout en bout — prix sur demande" data-i18n-aria-label="home_trip.omra.aria">
+          <div class="trip-card__monument" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="omra"><rect x="5" y="6" width="14" height="14" rx="1"/><path d="M5 11 h14" stroke-opacity=".9"/><path d="M3 6 l9 -3 l9 3" stroke-opacity=".7"/></svg></div>
+          <div class="trip-card__hero">
+            <div class="trip-card__art">
+              <svg class="trip-card__glyph" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <rect x="24" y="30" width="72" height="66" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect x="24" y="52" width="72" height="9" fill="currentColor" opacity=".55"/>
+                <path d="M14 30 L60 12 L106 30" fill="none" stroke="currentColor" stroke-width="2" opacity=".6"/>
+                <path d="M46 96 v-14 a14 14 0 0 1 28 0 v14" fill="none" stroke="currentColor" stroke-width="2" opacity=".8"/>
+              </svg>
+            </div>
+            <span class="trip-card__flag" data-i18n="home_trip.omra.flag">Omra · Toute l'année</span>
+            <div class="trip-card__from" data-i18n-html="home_trip.omra.from_html">Prix<strong>sur demande</strong></div>
+          </div>
+          <div class="trip-card__body">
+            <div class="trip-card__meta">
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg><span data-i18n="home_trip.omra.meta_dates">Départs selon groupe</span></div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg><span data-i18n="home_trip.omra.meta_duration">Environ 15 jours</span></div>
+              <div class="trip-card__meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                </svg><span data-i18n="home_trip.omra.meta_depart">La Mecque &amp; Médine</span></div>
+            </div>
+            <h3 class="trip-card__title" data-i18n="home_trip.omra.title">Omra · Organisée de bout en bout</h3>
+            <p class="trip-card__subtitle" data-i18n="home_trip.omra.subtitle">Vol depuis l'Algérie, hôtels à La Mecque et Médine, transferts, visa, ziyarat et guide religieux avec chaque groupe.</p>
+            <div class="trip-card__tags">
+              <span class="trip-tag" data-i18n="home_trip.omra.tag1">Guide religieux</span>
+              <span class="trip-tag" data-i18n="home_trip.omra.tag2">Assurance incluse</span>
+              <span class="trip-tag" data-i18n="home_trip.omra.tag3">Ziyarat</span>
+            </div>
+          </div>
+          <div class="trip-card__cta"><span class="trip-card__cta-price" data-i18n-html="home_trip.omra.cta_price_html"><em>Prix</em> sur demande</span><span data-i18n="home_trip.omra.cta_action">Voir les formules</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </a>
+
       </div>
 
     </div>
@@ -847,7 +909,7 @@
         <div class="about-copy">
           <p class="section-head__eyebrow u-mb-sp3" data-aos="fade-up" data-aos-duration="400" data-i18n="agency.eyebrow">Notre histoire</p>
           <h2
-            class="agency-title u-font-display u-text-1 u-mb-sp4" style="font-size:clamp(28px,4vw,48px); line-height:1.1">
+            class="agency-title u-font-display u-text-1 u-mb-sp4">
             <span data-i18n="agency.title_l1">Alliance Travel,</span><br><em data-i18n="agency.title_em">depuis Bordj Bou Arreridj</em></h2>
           <p class="fs-body u-text-2 u-mb-sp4" data-i18n-html="agency.p1_html">Fondée au cœur de
             <strong class="u-text-1 u-fw-600">Bordj Bou Arreridj</strong> — la ville-charnière entre
@@ -1149,7 +1211,7 @@
           </ul>
         </div>
 
-        <nav class="footer-nav" aria-label="Liens du pied de page">
+        <nav class="footer-nav" aria-label="Liens du pied de page" data-i18n-aria-label="footer.nav_aria">
           <div class="footer-col footer-col--trips">
             <h4 data-i18n="footer.col_voyages">Nos voyages 2026</h4>
             <ul role="list">
@@ -1234,6 +1296,21 @@
     window.AL_PAGE_I18N = {
       en: {
         home_trip: {
+          omra: {
+            aria: "Umrah, organised from start to finish — price on request",
+            flag: "Umrah · All year round",
+            from_html: "Price<strong>on request</strong>",
+            meta_dates: "Departures by group",
+            meta_duration: "Around 15 days",
+            meta_depart: "Makkah & Madinah",
+            title: "Umrah · Organised from start to finish",
+            subtitle: "Flights from Algeria, hotels in Makkah and Madinah, transfers, visa, ziyarat and a religious guide with every group.",
+            tag1: "Religious guide",
+            tag2: "Insurance included",
+            tag3: "Ziyarat",
+            cta_price_html: "<em>Price</em> on request",
+            cta_action: "See the packages",
+          },
           egypt: {
             aria: "Egypt trip — Cairo, Sharm El Sheikh & Hurghada, from 169,000 DA",
             flag: "Egypt · 5 programmes 2026",
@@ -1344,6 +1421,21 @@
       },
       ar: {
         home_trip: {
+          omra: {
+            aria: "العمرة، منظّمة من البداية إلى النهاية — السعر عند الطلب",
+            flag: "العمرة · طوال السنة",
+            from_html: "السعر<strong>عند الطلب</strong>",
+            meta_dates: "انطلاق حسب المجموعة",
+            meta_duration: "حوالي 15 يومًا",
+            meta_depart: "مكة والمدينة",
+            title: "العمرة · منظّمة من البداية إلى النهاية",
+            subtitle: "رحلة انطلاقًا من الجزائر، فنادق في مكة والمدينة، التنقلات، التأشيرة، الزيارات ومرشد ديني مع كل مجموعة.",
+            tag1: "مرشد ديني",
+            tag2: "التأمين مشمول",
+            tag3: "الزيارات",
+            cta_price_html: "<em>السعر</em> عند الطلب",
+            cta_action: "اطّلع على الباقات",
+          },
           egypt: {
             aria: "رحلة مصر — القاهرة وشرم الشيخ والغردقة، ابتداءً من 169.000 دج",
             flag: "مصر · 5 برامج 2026",

@@ -249,3 +249,48 @@ test("the untranslated page does not overwrite the stored preference", () => {
   const { store } = boot({ pageLang: "fr", stored: "ar", path: "/cgv/", mainBindings: false });
   assert.equal(store.get("al-lang"), "ar", "reflectActive() is display-only; the next page still follows Arabic");
 });
+
+/* ── keys the injected chrome depends on ───────────────────────────────── */
+
+test("nav, footer and filter keys exist in all three languages", () => {
+  // enhance.js builds the trip switcher and the drawer button from these via
+  // dictText(); a missing key silently falls back to the French literal, which
+  // is exactly the bug this replaces. The homepage filter pills and the footer
+  // nav aria-label resolve through the same table.
+  const { win } = boot({ pageLang: "fr", path: "/" });
+  const T = win.alTranslations;
+  const SLUGS = ["egypte", "azerbaidjan", "istanbul", "kuala-lumpur", "tunisie", "bali", "vietnam"];
+  for (const lang of ["fr", "en", "ar"]) {
+    for (const k of ["all_trips", "from", "menu_open", "menu_close"]) {
+      assert.ok(T[lang].nav[k], `${lang}.nav.${k} must exist`);
+    }
+    for (const slug of SLUGS) {
+      assert.ok(T[lang].nav.trip[slug]?.name, `${lang}.nav.trip.${slug}.name`);
+      assert.ok(T[lang].nav.trip[slug]?.sub, `${lang}.nav.trip.${slug}.sub`);
+    }
+    assert.ok(T[lang].footer.nav_aria, `${lang}.footer.nav_aria`);
+    for (const k of ["filter_all", "filter_asia", "filter_tunisia", "filter_omra"]) {
+      assert.ok(T[lang].voyages_section[k], `${lang}.voyages_section.${k}`);
+    }
+  }
+  // The Tunisia entry is the one that carried a pruned catalogue for weeks.
+  assert.match(T.fr.nav.trip.tunisie.name, /Sousse/);
+  assert.ok(!/Hammamet|Djerba/.test(T.fr.nav.trip.tunisie.name));
+});
+
+test("no dictionary string still advertises 1,200 travellers", () => {
+  // The claim was removed sitewide on 2026-08-31 but survived in two template
+  // literals and one Arabic visa string until the visual audit found them.
+  const { win } = boot({ pageLang: "fr", path: "/" });
+  const flat = JSON.stringify(win.alTranslations);
+  // A volume claim is a number next to a countable noun. "1,200 m from the
+  // Haram" is a distance and stays — matching bare digits would ban it too.
+  const CLAIMS = [
+    /1[.,\s]?200\s*\+?\s*(voyageur|traveller|traveler|dossier|client|mosafer)/i,
+    /(plus de|over|more than|أكثر من)\s*1[.,\s]?200/i,
+    /1200\s*مسافر/,
+  ];
+  for (const re of CLAIMS) {
+    assert.ok(!re.test(flat), `dictionary still carries a volume claim matching ${re}`);
+  }
+});

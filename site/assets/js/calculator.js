@@ -52,6 +52,10 @@ class TripCalculator {
       kids:     [],  // [{ age: 5 }, ...]
       extras:   this.trip.extras.map(e => ({ ...e, checked: false })),
     };
+    // Sticky bar shows a real total only once the visitor has configured
+    // something. Before that, "Total estimé 440 000 DA" beside a hero "dès
+    // 169 000 DA" read as a contradiction (visual audit B17).
+    this._touched = false;
 
     this.el = {
       dateChips:    document.querySelectorAll('.date-chip'),
@@ -107,6 +111,29 @@ class TripCalculator {
           c.setAttribute('tabindex', on ? '0' : '-1');
         });
         this.state.date = firstVisible.dataset.date;
+      }
+      // A radiogroup with one option is not a choice (visual audit B14): when
+      // pruning leaves ≤1 departure, show it as a statement plus a way to ask
+      // for another date. The calendar itself is the owner's, via the admin.
+      const visible = chips.filter(c => c.style.display !== 'none');
+      const group = chips[0].parentElement;
+      if (visible.length <= 1 && group && !group.nextElementSibling?.classList.contains('date-chips__next')) {
+        const L = this._labels();
+        const p = document.createElement('p');
+        p.className = 'date-chips__next';
+        const lead = document.createElement('span');
+        lead.textContent = visible.length ? L.nextDeparture + ' ' : L.noDates + ' ';
+        p.appendChild(lead);
+        if (visible.length) {
+          const strong = document.createElement('strong');
+          strong.textContent = visible[0].textContent.trim();
+          p.appendChild(strong); p.appendChild(document.createTextNode(' · '));
+        }
+        const a = document.createElement('a');
+        a.href = '#booking'; a.textContent = L.otherDate;
+        p.appendChild(a);
+        group.style.display = 'none';
+        group.insertAdjacentElement('afterend', p);
       }
     }
     if (Array.isArray(this.trip.dates)) {
@@ -206,6 +233,16 @@ class TripCalculator {
       this.state.hotelId = this.el.hotelSel.value;
       this.render();
     });
+
+    const calcRoot = document.getElementById('calculator');
+    const touch = (e) => {
+      if (this._touched) return;
+      if (e.type === 'click' && !e.target.closest('button, .date-chip, .seg-opt, .extra-toggle, .hotel-card, select')) return;
+      this._touched = true; this.render();
+    };
+    calcRoot?.addEventListener('change', touch);
+    calcRoot?.addEventListener('click', touch);
+    document.addEventListener('hotelSelected', touch);
 
     // WhatsApp button
     this.el.whatsappBtn?.addEventListener('click', () => this.openWhatsApp());
@@ -346,12 +383,12 @@ class TripCalculator {
       }
     }
 
-    // Sticky
-    if (this.el.stickyTotal) this.el.stickyTotal.textContent = fmt(totalDA);
+    // Sticky — a prompt until the visitor has touched the calculator, then the total.
+    const SL = this._labels();
+    if (this.el.stickyTotal) this.el.stickyTotal.textContent = this._touched ? fmt(totalDA) : SL.configure;
     // Sticky CTA — value-bearing, localized label ("Réserver · {total}").
     if (this.el.stickyBtn) {
-      const reserveLabel = this._labels().reserve;
-      this.el.stickyBtn.textContent = reserveLabel + ' · ' + fmt(totalDA);
+      this.el.stickyBtn.textContent = this._touched ? SL.reserve + ' · ' + fmt(totalDA) : SL.reserve;
     }
 
     // Why — localized. hotel.why may be a French string (legacy) or { fr, en, ar }.
@@ -451,6 +488,10 @@ class TripCalculator {
         total:    'Total estimé',
         thanks:   'Merci!',
         reserve:  'Réserver',
+        configure: 'Configurez votre voyage',
+        nextDeparture: 'Prochain départ :',
+        noDates: 'Prochaines dates sur demande.',
+        otherDate: 'Une autre date ? Écrivez-nous',
       },
       en: {
         greeting: (name) => `Hello Alliance Travel! I'd like to book the trip ${name}.`,
@@ -462,6 +503,10 @@ class TripCalculator {
         total:    'Estimated total',
         thanks:   'Thank you!',
         reserve:  'Book',
+        configure: 'Configure your trip',
+        nextDeparture: 'Next departure:',
+        noDates: 'Next dates on request.',
+        otherDate: 'Another date? Message us',
       },
       ar: {
         greeting: (name) => `مرحباً Alliance Travel! أودّ حجز رحلة ${name}.`,
@@ -473,6 +518,10 @@ class TripCalculator {
         total:    'الإجمالي التقديري',
         thanks:   'شكراً!',
         reserve:  'احجز',
+        configure: 'اضبط رحلتك',
+        nextDeparture: 'الانطلاق القادم:',
+        noDates: 'التواريخ القادمة عند الطلب.',
+        otherDate: 'تاريخ آخر؟ راسلونا',
       },
     };
     return sets[lang] || sets.fr;

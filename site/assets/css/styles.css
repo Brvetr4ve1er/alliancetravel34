@@ -1996,7 +1996,8 @@ select {
   display: flex;
   flex-direction: column;
   gap: var(--s2);
-  max-width: 760px;
+  /* 780px: the width the two hand-authored pages had set inline; one value now. */
+  max-width: 780px;
   margin-inline: auto;
 }
 
@@ -2048,6 +2049,39 @@ select {
 .faq-item.open .faq-a {
   max-height: 400px;
   padding: 0 var(--s6) var(--s5);
+}
+
+/* Two accordion mechanisms share this component: the trip pages' <button> +
+   .open class (set by calculator.js initFAQ) and the hand-authored pages'
+   <details>/<summary>, which set the [open] ATTRIBUTE and load no JS. Both are
+   spelled out here so /omra/ and /rendez-vous-visa/ need no page-local copy
+   (visual audit D8: three FAQ designs on one site).
+   `overflow:hidden` on .faq-item makes Chrome lay a closed <details> body out
+   anyway, so the collapse is asserted rather than left to the UA. */
+.faq-item[open] .faq-a {
+  max-height: none;
+  overflow: visible;
+  padding: var(--s4) var(--s6) var(--s5);
+  border-top: 1px solid var(--border);
+}
+.faq-item:not([open]) > .faq-a {
+  display: none;
+}
+summary.faq-q {
+  list-style: none;
+}
+summary.faq-q::-webkit-details-marker {
+  display: none;
+}
+.faq-q > span {
+  flex: 1;
+}
+.faq-item[open] .faq-q,
+.faq-item[open] .faq-q svg {
+  color: var(--accent);
+}
+.faq-item[open] .faq-q svg {
+  transform: rotate(180deg);
 }
 
 /* ── Final CTA ───────────────────────────────────────────── */
@@ -3982,6 +4016,10 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   top: 16px;
   left: clamp(16px, 3vw, 40px);
   right: clamp(16px, 3vw, 40px);
+  /* The pill was 1828px wide at 1920 while the content column is 1280, so the
+     logo sat 249px outside it. Cap it on the container and centre (visual audit A8). */
+  max-width: calc(1280px + 2 * 40px);
+  margin-inline: auto;
   height: 64px;
   padding: 0 var(--s4);
   background: rgba(0, 44, 81, 0.5);
@@ -4588,10 +4626,17 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
   opacity: 0.85;
 }
 
-/* Light mode: photos lighten/desaturate further */
+/* Light mode: photos lighten and desaturate further. The `opacity` here is
+   inert — photo-fade animates opacity on the same element, and an animation
+   outranks a normal declaration — so the extra dimming goes on the CONTAINER,
+   where it multiplies with the animated value: 0.35 x 0.45 = 0.16. At the old
+   effective 0.35 the two tiles behind the H1 stayed present enough to meet in
+   a hard vertical seam under the lede (visual audit B5). */
+:root[data-theme="light"] .home-hero__photos {
+  opacity: 0.45;
+}
 :root[data-theme="light"] .home-hero__photos img {
-  filter: saturate(0.6) brightness(1.05);
-  opacity: 0.4;
+  filter: saturate(0.55) brightness(1.08);
 }
 :root[data-theme="light"] .home-hero__photos::after {
   background:
@@ -6572,15 +6617,16 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   margin-top: var(--s5);
   gap: var(--s3);
 }
-.hero__ctas .btn--primary {
+/* Both buttons in a hero cluster share one size — they were 15px/32px next to
+   14px/24px, which read as a rendering accident (visual audit A20). */
+.hero__ctas .btn--primary,
+.hero__ctas .btn--ghost {
   font-size: .9375rem;
   padding: var(--s4) var(--s6);
   font-weight: 600;
   letter-spacing: .01em;
 }
 .hero__ctas .btn--ghost {
-  font-size: .875rem;
-  padding: var(--s4) var(--s5);
   opacity: .9;
 }
 
@@ -6742,8 +6788,9 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   border-radius: var(--r3);
   transition: border-color var(--t-fast), box-shadow var(--t-fast);
 }
-.faq-item.open {
-  border-color: var(--border-hi);
+.faq-item.open,
+.faq-item[open] {
+  border-color: var(--border-mint);
   box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
 }
 .faq-q {
@@ -8294,6 +8341,29 @@ section.section {
 .trip-card[data-region="istanbul"]   { --tc-region-accent: #5cb1c1; }
 .trip-card[data-region="malaysia"]   { --tc-region-accent: #8acaa1; }
 .trip-card[data-region="sharm"]      { --tc-region-accent: #5cc4c1; }
+.trip-card[data-region="omra"]       { --tc-region-accent: var(--accent); }
+
+/* Omra is the eighth tile on the homepage and the one destination with no
+   photograph in the library. Rather than borrow an unrelated image, the card
+   is a designed surface: a deep green field with the Kaaba glyph at low
+   opacity. It also fills the orphan slot the 7-card grid left (A23/D18). */
+.trip-card[data-region="omra"] .trip-card__art {
+  background: radial-gradient(120% 90% at 50% 0%, #14342a 0%, #0a1a16 55%, #050609 100%) !important;
+}
+.trip-card__glyph {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 56%;
+  height: 56%;
+  color: var(--accent);
+  opacity: .18;
+  transition: opacity var(--t-slow) var(--ease-spring), transform var(--t-slow) var(--ease-spring);
+}
+.trip-card:hover .trip-card__glyph {
+  opacity: .26;
+  transform: scale(1.04);
+}
 
 /* ── Image fill behind everything ─────────────────────────── */
 .trip-card__hero {
@@ -8498,10 +8568,13 @@ section.section {
   color: var(--tc-fg) !important;
 }
 
+.trip-card__cta { gap: 0; align-items: stretch; }
 .trip-card__cta > span:not(.trip-card__cta-price) {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .12em;
@@ -8517,12 +8590,25 @@ section.section {
   transition: background var(--t-fast) ease, border-color var(--t-fast) ease, color var(--t-fast) ease;
 }
 
+/* The arrow is painted in on-accent ink but sits OUTSIDE the pill, straight on
+   the photo, so it vanished on dark images at 375 (visual audit B10). Pulled
+   inside the pill's edge and given the same glass backing. */
 .trip-card__cta > svg {
   display: inline-block !important;
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  margin-left: 4px;
+  margin-left: -6px;
+  align-self: stretch;
+  height: auto;
+  padding: 0 10px 0 4px;
+  box-sizing: border-box;
+  border-radius: 0 999px 999px 0;
+  background: rgba(255, 255, 255, .12);
+  border: 1.5px solid rgba(255, 255, 255, .28);
+  border-left: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--tc-fg);
   transition: transform var(--t-fast) ease, color var(--t-fast) ease;
 }
@@ -8534,6 +8620,9 @@ section.section {
 }
 .trip-card:hover .trip-card__cta > svg {
   transform: translateX(3px);
+  background: var(--tc-accent);
+  border-color: transparent;
+  color: var(--tc-ink);
 }
 
 /* The duplicate price strip injected by _v19_inject_monuments.py is
@@ -8576,7 +8665,7 @@ section.section {
     color: var(--tc-ink);
     border-color: transparent;
   }
-  .trip-card__cta > svg { color: var(--tc-ink); }
+  .trip-card__cta > svg { background: var(--tc-accent); border-color: transparent; color: var(--tc-ink); }
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */
@@ -8630,7 +8719,8 @@ body { background: var(--bg); color: var(--txt-1); }
 
 /* Hover surfaces tip up to bg-elev */
 .testi-card:hover,
-.faq-item.open {
+.faq-item.open,
+.faq-item[open] {
   background: var(--bg-elev);
 }
 
@@ -9227,7 +9317,7 @@ body { background: var(--bg); color: var(--txt-1); }
   animation:auroraRise 900ms var(--ease-out, ease-out) both;
 }
 .aurora-hero__eyebrow{
-  display:inline-flex; align-items:center; gap:var(--space-2); margin:0;
+  display:inline-flex; align-items:flex-start; gap:var(--space-2); margin:0;
   font-size:var(--fs-caption); font-weight:600; text-transform:uppercase; letter-spacing:.16em;
   color:var(--txt-1); background:var(--bg-glass); border:1px solid var(--border-hi);
   -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
@@ -9244,7 +9334,9 @@ body { background: var(--bg); color: var(--txt-1); }
   font-style:normal; font-weight:400; font-size:clamp(.95rem,2.4vw,1.5rem);
   letter-spacing:.005em; line-height:1.3; color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.6);
 }
-.aurora-hero__date{ margin:0; font-size:var(--fs-body-sm); text-transform:uppercase; letter-spacing:.14em; color:var(--txt-2); }
+/* --txt-2 at 13px on the bright band of a hero photo, with no shadow, measured
+   as the least legible text on the page (visual audit B13). */
+.aurora-hero__date{ margin:0; font-size:max(var(--fs-body-sm), .875rem); text-transform:uppercase; letter-spacing:.14em; color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.65), 0 1px 2px rgba(0,0,0,.5); }
 
 /* glass offer bar */
 .aurora-hero__offer{
@@ -10453,6 +10545,14 @@ html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--sp
 .aurora-hero__title { font-family: var(--font-hero-display, var(--font-display)); font-weight: 600; font-size: clamp(2.5rem, 7.4vw, 5.4rem); line-height: 1; letter-spacing: -.02em; }
 .aurora-hero__title em { font-family: var(--font-hero-display, var(--font-display)); font-style: normal; }
 
+/* Promoted from the two pages' inline <style> (visual audit A16): the base
+   .hero is min-height:100svh + display:grid, so a short service hero left
+   242px of dead space under it. Content-sized here instead. */
+.hero--service {
+  min-height: auto;
+  align-content: center;
+  padding-block: clamp(80px, 12vh, 140px) clamp(48px, 6vh, 80px);
+}
 .hero--service .hero__title { font-family: var(--font-hero-display); font-weight: 600; font-size: clamp(2.3rem, 1.7rem + 3vw, 4rem); line-height: 1.08; letter-spacing: -.02em; }
 .hero--service .hero__title em { font-family: var(--font-hero-display); font-style: normal; font-weight: 600; font-size: .82em; color: var(--accent); }
 
@@ -10554,4 +10654,100 @@ p, li, dd, blockquote, figcaption, .testi-text {
   /* `.site-nav > .trip-switcher{order:3}` sat to the RIGHT of the burger on every
      non-home page. The hamburger is always last. */
   .site-nav > .nav-hamburger { order: 5; }
+}
+
+/* A22 — .container is capped at 1280 while --container-x keeps growing to 80px,
+   so the readable column NARROWS to 1120px on the widest screens. Give the cap
+   a little back above 1600 (visual audit, desktop lens). */
+@media (min-width: 1600px) {
+  .container { max-width: 1296px; }
+}
+
+/* D12 — .agency-title and .contact-main__title carried an inline
+   clamp(28px,4vw,48px), so they rendered 48px next to a 40px .section-head__title
+   on the same page. Same scale as the shared title now; h2 has no size of its own,
+   so this rule is what sizes them. */
+.agency-title,
+.contact-main__title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+}
+
+/* ── 2026-09-05 · visual audit, wave 2 (mobile + tablet) ────────────────── */
+
+/* M7 — a native select stripped of its arrow with nothing put back reads as a
+   flat box. One inline chevron, both themes, no extra request. */
+/* The seven trip JSONs each carried this as an inline style attribute on the
+   <select>, which also meant an inline `background` shorthand that wiped the
+   caret image below. One rule, no copies. */
+#hotel-select {
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  cursor: pointer;
+  color: var(--txt-1);
+}
+
+#hotel-select,
+.contact-form select,
+#bf-office {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238e857a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-color: var(--bg);
+  background-repeat: no-repeat;
+  background-position: right var(--s3) center;
+  background-size: 16px 16px;
+  padding-inline-end: calc(var(--s3) * 2 + 16px);
+}
+:root[lang="ar"] #hotel-select,
+:root[lang="ar"] .contact-form select,
+:root[lang="ar"] #bf-office {
+  background-position: left var(--s3) center;
+}
+
+/* M10 — the one-departure fallback that replaces a single-option radiogroup. */
+.date-chips__next {
+  margin: 0;
+  font-size: var(--fs-body-sm);
+  color: var(--txt-2);
+  line-height: 1.6;
+}
+.date-chips__next strong { color: var(--txt-1); }
+.date-chips__next a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  /* M12 — these are 44px at 375 but shrank at tablet, because every touch rule
+     lived in a ≤640 block: footer links 24px, filter pills 35, share 36. */
+  .dest-filter__pill,
+  .trip-switcher__trigger {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .trip-card__share {
+    width: 44px;
+    height: 44px;
+    opacity: 1;   /* no hover on touch — the affordance has to be there at rest */
+  }
+  .footer-col a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  /* M13 — 11px eyebrows and 12px table cells are below the readable floor. */
+  .section-head__eyebrow { font-size: max(.6875rem, 12px); }
+}
+
+/* M12 — 900ms entrances mean a fast scroller reads content at 10–20% opacity.
+   Touch scrolling is faster than wheel scrolling, so shorten it there. */
+@media (pointer: coarse) {
+  [data-fx] {
+    transition-duration: 400ms;
+  }
 }

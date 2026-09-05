@@ -20,7 +20,9 @@
 window.AT_CONTACTS = [
   // La Graf (HQ) keeps the number the form used before this feature, so the
   // default office works out-of-the-box with zero change in behaviour.
-  { id: 'la-graf', label: 'Bordj Bou Arreridj — La Graf (siège)', wa: '213561616266', default: true },
-  { id: 'zehour',  label: 'Bordj Bou Arreridj — Cité Zehour',     wa: '213561616268' },
-  { id: 'msila',   label: "M'Sila",                                wa: '213560869905' },
+  // `short` is what the booking form's office <select> shows: the long label
+  // overflowed the 238px control at 375px (visual audit B7).
+  { id: 'la-graf', label: 'Bordj Bou Arreridj — La Graf (siège)', short: 'BBA · La Graf (siège)', wa: '213561616266', default: true },
+  { id: 'zehour',  label: 'Bordj Bou Arreridj — Cité Zehour',     short: 'BBA · Cité Zehour',     wa: '213561616268' },
+  { id: 'msila',   label: "M'Sila",                                short: "M'Sila",                wa: '213560869905' },
 ];

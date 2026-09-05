@@ -13,7 +13,6 @@
   <style>
     /* Accent: the brand token from styles.css (no page override). */
     /* Omra page-only styles ──────────────────────────────────── */
-    .hero--service { padding-block: clamp(80px, 12vh, 140px) clamp(48px, 6vh, 80px); }
     .hero__trust { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s4); font-size: .875rem; color: var(--txt-2); }
     .hero__trust li { position: relative; padding-inline-start: 18px; }
     .hero__trust li::before { content: '✓'; position: absolute; inset-inline-start: 0; color: var(--mint); font-weight: 700; }
@@ -39,7 +38,7 @@
 
     /* ── Comparatif ───────────────────────────────────────────── */
     .omra-compare-wrap { margin-top: var(--s7); overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: var(--r3); background: var(--bg-card); }
-    .omra-compare { width: 100%; min-width: 560px; border-collapse: collapse; font-size: var(--fs-body-sm); }
+    .omra-compare { width: 100%; min-width: 560px; table-layout: fixed; border-collapse: collapse; font-size: var(--fs-body-sm); }
     .omra-compare th, .omra-compare td { padding: var(--s3) var(--s4); text-align: start; vertical-align: middle; }
     .omra-compare thead th {
       position: sticky; top: 0; z-index: var(--z-raised);
@@ -91,24 +90,8 @@
        [open] ATTRIBUTE instead, so without these rules every answer on the page
        stays collapsed and the whole FAQ is unreadable. Same fix the visa page
        carries; kept page-scoped so no trip page is affected. */
-    #faq .faq-item { border: 1px solid var(--border); border-radius: var(--r3); background: var(--bg-card); overflow: hidden; }
-    #faq .faq-item:hover { border-color: var(--border-hi); }
-    #faq .faq-item[open] { border-color: var(--border-mint); }
-    #faq .faq-q { display: flex; align-items: center; gap: var(--s3); cursor: pointer; list-style: none; }
-    #faq .faq-q::-webkit-details-marker { display: none; }
-    #faq .faq-q > span { flex: 1; }
-    #faq .faq-q svg { flex-shrink: 0; color: var(--txt-3); transition: transform var(--t-base), color var(--t-base); }
-    #faq .faq-q:hover { color: var(--accent); }
-    #faq .faq-item[open] .faq-q { color: var(--accent); }
-    #faq .faq-item[open] .faq-q svg { transform: rotate(180deg); color: var(--accent); }
-    #faq .faq-a { max-height: none; overflow: visible; padding: 0 var(--s6) var(--s5); }
-    /* A closed <details> normally hides its own body, but `overflow:hidden` on
-       the details (needed for the rounded corners) makes Chrome lay the body
-       out anyway, so every answer showed at once. Hide it explicitly on the
-       [open] attribute instead of relying on the UA. */
-    #faq .faq-item:not([open]) .faq-a { display: none; }
-    #faq .faq-a p { margin: 0; color: var(--txt-2); line-height: var(--lh-relaxed); }
-    @media (max-width: 560px) { .omra-compare { font-size: var(--fs-caption); } .omra-compare th, .omra-compare td { padding: var(--s3); } }
+    /* FAQ rules: the shared .faq-item spec in styles.css (visual audit D8). */
+    @media (max-width: 560px) { .omra-compare { font-size: max(var(--fs-caption), 13px); } .omra-compare th, .omra-compare td { padding: var(--s3); } }
   </style>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="العمرة 2026 · الباقات والفنادق والأسعار · Alliance Travel"/>
@@ -503,6 +486,7 @@
 
     <div class="omra-compare-wrap">
       <table class="omra-compare">
+        <colgroup><col style="width:40%"/><col style="width:30%"/><col style="width:30%"/></colgroup>
         <caption class="sr-only" data-i18n="omra.compare.caption">مقارنة بين باقتَي العمرة</caption>
         <thead>
           <tr>
@@ -692,47 +676,47 @@
       </h2>
       <p class="section-head__sub" data-i18n="omra.faq.sub">الأسئلة التي تُطرح علينا فعلًا في الوكالة، بالأجوبة كما نقدّمها.</p>
     </div>
-    <div class="faq-list" style="margin-top:var(--s8);max-width:820px;margin-inline:auto">
+    <div class="faq-list" style="margin-top:var(--s8)">
 
-      <details class="faq-item" open><summary class="faq-q"><span data-i18n="omra.faq.q1.q">ما هي الوثائق المطلوبة لأداء العمرة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q1.a">عادةً يُطلب جواز سفر ساري المفعول، لاستخراج تأشيرة العمرة.</p></div></details>
+      <details class="faq-item" open><summary class="faq-q"><span data-i18n="omra.faq.q1.q">ما هي الوثائق المطلوبة لأداء العمرة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q1.a">عادةً يُطلب جواز سفر ساري المفعول، لاستخراج تأشيرة العمرة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q2.q">هل تتكفّل الوكالة بإجراءات تأشيرة العمرة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q2.a">نعم، توفّر Alliance Travel المساعدة في إجراءات تأشيرة العمرة وقت تقديم الطلب.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q2.q">هل تتكفّل الوكالة بإجراءات تأشيرة العمرة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q2.a">نعم، توفّر Alliance Travel المساعدة في إجراءات تأشيرة العمرة وقت تقديم الطلب.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q3.q">ماذا يشمل سعر باقة العمرة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q3.a">تشمل تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة والخدمات المرافقة. يتم توضيح جميع الخدمات المشمولة وغير المشمولة للعميل قبل تأكيد الحجز.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q3.q">ماذا يشمل سعر باقة العمرة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q3.a">تشمل تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة والخدمات المرافقة. يتم توضيح جميع الخدمات المشمولة وغير المشمولة للعميل قبل تأكيد الحجز.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q4.q">ما الفرق بين باقات العمرة الاقتصادية والمميزة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q4.a">تختلف الباقات حسب مستوى الفنادق، موقع الإقامة، نوع الغرف، مدة الرحلة، الخدمات المقدمة ومستوى الراحة. يمكن لفريق Alliance Travel اقتراح الباقة الأنسب حسب ميزانيتكم واحتياجاتكم.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q4.q">ما الفرق بين باقات العمرة الاقتصادية والمميزة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q4.a">تختلف الباقات حسب مستوى الفنادق، موقع الإقامة، نوع الغرف، مدة الرحلة، الخدمات المقدمة ومستوى الراحة. يمكن لفريق Alliance Travel اقتراح الباقة الأنسب حسب ميزانيتكم واحتياجاتكم.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q5.q">هل يمكنني اختيار الفندق أو مستوى الفندق؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q5.a">نعم، يمكنكم اختيار الفندق من بين الخيارات المتاحة حسب الباقة والميزانية، مع إمكانية اقتراح فنادق مناسبة حسب قربها من الحرم ومستوى الخدمة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q5.q">هل يمكنني اختيار الفندق أو مستوى الفندق؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q5.a">نعم، يمكنكم اختيار الفندق من بين الخيارات المتاحة حسب الباقة والميزانية، مع إمكانية اقتراح فنادق مناسبة حسب قربها من الحرم ومستوى الخدمة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q6.q">ما هي المسافة بين الفندق والحرم المكي؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q6.a">تختلف المسافة حسب الفندق المختار. قبل تأكيد الحجز، نوضّح لكم موقع الفندق والمسافة التقريبية عن الحرم ووسيلة التنقل المتوفرة. فندق الصفات يبعد عن ساحة الحرم 1200 متر، أما منارات غزة فتبعد 600 متر عن ساحة الحرم.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q6.q">ما هي المسافة بين الفندق والحرم المكي؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q6.a">تختلف المسافة حسب الفندق المختار. قبل تأكيد الحجز، نوضّح لكم موقع الفندق والمسافة التقريبية عن الحرم ووسيلة التنقل المتوفرة. فندق الصفات يبعد عن ساحة الحرم 1200 متر، أما منارات غزة فتبعد 600 متر عن ساحة الحرم.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q7.q">هل توفّرون النقل من المطار إلى الفندق؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q7.a">نعم، تتوفّر خدمة النقل من المطار إلى الفندق ضمن بعض باقات العمرة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q7.q">هل توفّرون النقل من المطار إلى الفندق؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q7.a">نعم، تتوفّر خدمة النقل من المطار إلى الفندق ضمن بعض باقات العمرة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q8.q">هل توفّرون النقل بين مكة والمدينة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q8.a">نعم، يمكن تنظيم النقل بين مكة والمدينة ضمن الباقة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q8.q">هل توفّرون النقل بين مكة والمدينة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q8.a">نعم، يمكن تنظيم النقل بين مكة والمدينة ضمن الباقة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q9.q">هل تشمل الباقة التنقلات داخل السعودية؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q9.a">نعم، تشمل التنقلات داخل السعودية وتُسمّى بالزيارات.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q9.q">هل تشمل الباقة التنقلات داخل السعودية؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q9.a">نعم، تشمل التنقلات داخل السعودية وتُسمّى بالزيارات.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q10.q">هل تشمل الباقة وجبات الطعام؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q10.a">يعتمد ذلك على الباقة والفندق المختار. بعض العروض قد تشمل وجبات معينة، بينما تكون الإقامة بدون وجبات في عروض أخرى. يتم توضيح ذلك قبل تأكيد الحجز.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q10.q">هل تشمل الباقة وجبات الطعام؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q10.a">يعتمد ذلك على الباقة والفندق المختار. بعض العروض قد تشمل وجبات معينة، بينما تكون الإقامة بدون وجبات في عروض أخرى. يتم توضيح ذلك قبل تأكيد الحجز.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q11.q">كم عدد الأيام التي تستغرقها رحلة العمرة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q11.a">تختلف مدة الرحلة حسب البرنامج المختار، وغالبًا ما تكون 15 يومًا.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q11.q">كم عدد الأيام التي تستغرقها رحلة العمرة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q11.a">تختلف مدة الرحلة حسب البرنامج المختار، وغالبًا ما تكون 15 يومًا.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q12.q">من أي مطارات في الجزائر يمكن السفر للعمرة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q12.a">يمكن تنظيم رحلات العمرة انطلاقًا من المطارات التي تتوفر منها الرحلات المناسبة إلى المملكة العربية السعودية، حسب برنامج الرحلة وشركة الطيران وتوفّر الرحلات في تاريخ السفر. وغالبًا ما تكون من الجزائر.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q12.q">من أي مطارات في الجزائر يمكن السفر للعمرة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q12.a">يمكن تنظيم رحلات العمرة انطلاقًا من المطارات التي تتوفر منها الرحلات المناسبة إلى المملكة العربية السعودية، حسب برنامج الرحلة وشركة الطيران وتوفّر الرحلات في تاريخ السفر. وغالبًا ما تكون من الجزائر.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q13.q">هل يحتاج الطفل إلى تأشيرة خاصة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q13.a">نعم، الأطفال المسافرون للعمرة يخضعون لمتطلبات السفر والتأشيرة المعمول بها مثل المسافر البالغ.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q13.q">هل يحتاج الطفل إلى تأشيرة خاصة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q13.a">نعم، الأطفال المسافرون للعمرة يخضعون لمتطلبات السفر والتأشيرة المعمول بها مثل المسافر البالغ.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q14.q">هل توفّر الوكالة مرافقًا أو مؤطّرًا دينيًا أثناء الرحلة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q14.a">نعم، توفّر الوكالة مرشدًا دينيًا محترفًا مع كل مجموعة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q14.q">هل توفّر الوكالة مرافقًا أو مؤطّرًا دينيًا أثناء الرحلة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q14.a">نعم، توفّر الوكالة مرشدًا دينيًا محترفًا مع كل مجموعة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q15.q">هل تقدّمون برنامجًا دينيًا وإرشادات للمعتمرين؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q15.a">نعم، تتوفّر إرشادات وتوجيهات تساعد المعتمرين على أداء مناسك العمرة بطريقة منظمة، مع شرح أهم المراحل والنصائح المتعلقة بالرحلة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q15.q">هل تقدّمون برنامجًا دينيًا وإرشادات للمعتمرين؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q15.a">نعم، تتوفّر إرشادات وتوجيهات تساعد المعتمرين على أداء مناسك العمرة بطريقة منظمة، مع شرح أهم المراحل والنصائح المتعلقة بالرحلة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q16.q">هل يمكن توفير كرسي متحرك للمعتمر؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q16.a">نعم، يمكن طلب خدمة الكرسي المتحرك للمعتمر عند الحاجة، حسب التوفّر وشروط مزوّدي الخدمة في السعودية. يُفضَّل إعلامنا بذلك عند الحجز مسبقًا.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q16.q">هل يمكن توفير كرسي متحرك للمعتمر؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q16.a">نعم، يمكن طلب خدمة الكرسي المتحرك للمعتمر عند الحاجة، حسب التوفّر وشروط مزوّدي الخدمة في السعودية. يُفضَّل إعلامنا بذلك عند الحجز مسبقًا.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q17.q">هل التأمين على السفر مشمول في الباقة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q17.a">نعم، التأمين مشمول داخل باقة العمرة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q17.q">هل التأمين على السفر مشمول في الباقة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q17.a">نعم، التأمين مشمول داخل باقة العمرة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q18.q">هل يمكن إلغاء الحجز أو تغيير تاريخ السفر؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q18.a">يمكن أن يكون الإلغاء أو تغيير تاريخ السفر ممكنًا وفقًا لشروط شركة الطيران والفندق ومزوّدي الخدمات ونوع الحجز. قد تُطبَّق رسوم أو شروط معينة، لذلك ننصح بالتواصل مع الوكالة قبل إجراء أي تغيير، وفي غالب الأحيان لا يمكن إلغاء الحجز.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q18.q">هل يمكن إلغاء الحجز أو تغيير تاريخ السفر؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q18.a">يمكن أن يكون الإلغاء أو تغيير تاريخ السفر ممكنًا وفقًا لشروط شركة الطيران والفندق ومزوّدي الخدمات ونوع الحجز. قد تُطبَّق رسوم أو شروط معينة، لذلك ننصح بالتواصل مع الوكالة قبل إجراء أي تغيير، وفي غالب الأحيان لا يمكن إلغاء الحجز.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q19.q">ما أفضل وقت لأداء العمرة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q19.a">يمكن أداء العمرة على مدار السنة، ويختلف اختيار الوقت حسب الطقس، الموسم، الميزانية ومستوى الازدحام. تختلف الأسعار أيضًا حسب المواسم، لذلك يمكن لفريق Alliance Travel مساعدتكم في اختيار الفترة المناسبة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q19.q">ما أفضل وقت لأداء العمرة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q19.a">يمكن أداء العمرة على مدار السنة، ويختلف اختيار الوقت حسب الطقس، الموسم، الميزانية ومستوى الازدحام. تختلف الأسعار أيضًا حسب المواسم، لذلك يمكن لفريق Alliance Travel مساعدتكم في اختيار الفترة المناسبة.</p></div></details>
 
-      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q20.q">كم ليلة أقضي في مكة وكم ليلة في المدينة؟</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q20.a">يتم المكوث في المدينة 3 أيام وفي مكة 10 أيام، وقد تختلف أيّهما الأسبق حسب الرحلة.</p></div></details>
+      <details class="faq-item"><summary class="faq-q"><span data-i18n="omra.faq.q20.q">كم ليلة أقضي في مكة وكم ليلة في المدينة؟</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="faq-a"><p data-i18n="omra.faq.q20.a">يتم المكوث في المدينة 3 أيام وفي مكة 10 أيام، وقد تختلف أيّهما الأسبق حسب الرحلة.</p></div></details>
 
     </div>
   </div>
@@ -804,7 +788,7 @@
           </ul>
         </div>
 
-        <nav class="footer-nav" aria-label="Liens du pied de page">
+        <nav class="footer-nav" aria-label="Liens du pied de page" data-i18n-aria-label="footer.nav_aria">
           <div class="footer-col footer-col--trips">
             <h4 data-i18n="footer.col_voyages">Nos voyages 2026</h4>
             <ul role="list">

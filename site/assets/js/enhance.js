@@ -300,8 +300,13 @@
     if (!nav || nav.querySelector('.trip-switcher')) return;
 
     const currentSlug = location.pathname.split('/').filter(Boolean).pop()?.replace('.html','') || '';
-    const isHomepage = currentSlug === 'site' || currentSlug === '' || currentSlug === 'index';
-    if (isHomepage) return;
+    // The homepage gets the switcher too (visual audit D14): without it the
+    // right-hand nav slot was empty and .nav-links{margin-inline:auto} left a
+    // 248px dead zone at 1440 (488px at 1920). ../<slug>/ resolves to /<slug>/
+    // from the root, so the hrefs need no special case.
+    // Strings: dictText() for the first paint, data-i18n so an in-place language
+    // switch re-labels them (i18n.js loads before this file on every page).
+    const tr = (key, fb) => escapeHtml(dictText(key, fb));
 
     const wrap = document.createElement('div');
     wrap.className = 'trip-switcher';
@@ -312,7 +317,7 @@
           <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <span>Tous les voyages</span>
+        <span data-i18n="nav.all_trips">${tr('nav.all_trips', 'Tous les voyages')}</span>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"/>
@@ -324,10 +329,10 @@
              href="../${t.slug}/" role="menuitem">
             <span class="trip-switcher__item-flag" style="background:${t.color}"></span>
             <span class="trip-switcher__item-name">
-              ${t.name}
-              <span style="display:block;font-size:.6875rem;color:var(--txt-3);font-weight:400;letter-spacing:0;margin-top:1px">${t.sub}</span>
+              <span data-i18n="nav.trip.${t.slug}.name">${tr(`nav.trip.${t.slug}.name`, t.name)}</span>
+              <span style="display:block;font-size:.6875rem;color:var(--txt-3);font-weight:400;letter-spacing:0;margin-top:1px" data-i18n="nav.trip.${t.slug}.sub">${tr(`nav.trip.${t.slug}.sub`, t.sub)}</span>
             </span>
-            <span class="trip-switcher__item-price">dès ${t.price}</span>
+            <span class="trip-switcher__item-price"><span data-i18n="nav.from">${tr('nav.from', 'dès')}</span> ${escapeHtml(t.price)}</span>
           </a>`).join('')}
       </div>
     `;
@@ -411,7 +416,8 @@
       btn = document.createElement('button');
       btn.className = 'nav-hamburger';
       btn.type = 'button';
-      btn.setAttribute('aria-label', 'Ouvrir le menu');
+      btn.setAttribute('aria-label', dictText('nav.menu_open', 'Ouvrir le menu'));
+      btn.setAttribute('data-i18n-aria-label', 'nav.menu_open');
       btn.setAttribute('aria-expanded', 'false');
       btn.setAttribute('aria-controls', 'nav-drawer');
       btn.innerHTML = `
@@ -467,7 +473,9 @@
       backdrop.classList.toggle('is-visible', open);
       document.body.classList.toggle('nav-scroll-lock', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      btn.setAttribute('aria-label', open ? dictText('nav.menu_close', 'Fermer le menu') : dictText('nav.menu_open', 'Ouvrir le menu'));
+      // keep the bound key in step so a later translate() resolves the right state
+      btn.setAttribute('data-i18n-aria-label', open ? 'nav.menu_close' : 'nav.menu_open');
       drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
 
       if (open) {

@@ -141,3 +141,13 @@ test("renderPassportEntry(): renders in the language it is given", () => {
   assert.ok(renderPassportEntry(1, {}, UI.en).includes('aria-label="Remove traveller 2"'));
   assert.ok(renderPassportEntry(0, {}).includes("Voyageur 1"), "French stays the default");
 });
+
+test("the office picker prefers the short label", () => {
+  const src = readFileSync(new URL("./booking-form.js", import.meta.url), "utf8");
+  // Two of the three office labels overflowed the 238px select at 375px.
+  assert.match(src, /escapeHtml\(o\.short \|\| o\.label \|\| o\.id\)/);
+  const contacts = readFileSync(new URL("./contacts.js", import.meta.url), "utf8");
+  const shorts = contacts.match(/short:/g) || [];
+  const offices = contacts.match(/\bwa: '/g) || [];
+  assert.equal(shorts.length, offices.length, "every office needs a short label");
+});

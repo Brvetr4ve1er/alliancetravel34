@@ -502,7 +502,7 @@ class BookingForm {
       this.WA_NUMBER = String(def.wa);
       if (this.el.officeSelect) {
         this.el.officeSelect.innerHTML = offices.map((o) =>
-          `<option value="${escapeHtml(o.id)}"${o === def ? ' selected' : ''}>${escapeHtml(o.label || o.id)}</option>`
+          `<option value="${escapeHtml(o.id)}"${o === def ? ' selected' : ''}>${escapeHtml(o.short || o.label || o.id)}</option>`
         ).join('');
         this.el.officeSelect.addEventListener('change', () => {
           const sel = offices.find((o) => o.id === this.el.officeSelect.value) || def;
