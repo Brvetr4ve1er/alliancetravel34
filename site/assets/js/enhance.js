@@ -138,6 +138,19 @@
     catch (e) { /* private mode / disabled storage */ }
   }
 
+  /* What a counter shows at intermediate value `cur` on its way to `target`.
+     Abbreviate to "1.2K" only when the format asks for it: a plain year
+     (data-counter="2019", format "{n}") used to go through the /1000 branch
+     and animate to "2" for every first-time visitor. Pure; exported as
+     window.AT_formatCounter for enhance.test.mjs. */
+  function formatCounter(cur, target, format) {
+    let display;
+    if (target >= 1000 && /k/i.test(format)) display = (cur / 1000).toFixed(1).replace('.0', '');
+    else if (target >= 100) display = Math.floor(cur);
+    else                    display = (Math.round(cur * 10) / 10).toString().replace(/\.0$/, '');
+    return format.replace('{n}', display);
+  }
+
   function animateCounter(el) {
     if (reduced || _counterAlreadyPlayed()) {
       el.textContent = el.dataset.counterFormat
@@ -154,11 +167,7 @@
       const t = Math.min((now - start) / dur, 1);
       const eased = 1 - Math.pow(1 - t, 3);
       const cur = target * eased;
-      let display;
-      if (target >= 1000)      display = (cur / 1000).toFixed(cur >= target * 0.95 ? 1 : 1).replace('.0', '');
-      else if (target >= 100)  display = Math.floor(cur);
-      else                     display = (Math.round(cur * 10) / 10).toString().replace(/\.0$/, '');
-      el.textContent = format.replace('{n}', display);
+      el.textContent = formatCounter(cur, target, format);
       if (t < 1) {
         requestAnimationFrame(step);
       } else {
@@ -281,7 +290,7 @@
     { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '249.900 DA', color: '#3AAFAF', sub: 'Juillet–Septembre 2026' },
     { slug: 'istanbul',     name: 'Istanbul',                            price: '129.000 DA', color: '#5B9EC9', sub: 'Septembre–Novembre 2026' },
     { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '339.000 DA', color: '#4CAF82', sub: 'Malaisie · Été 2026' },
-    { slug: 'tunisie',      name: 'Tunisie · Hammamet, Sousse & Djerba', price: '41.900 DA',  color: '#19B5B0', sub: 'Été 2026' },
+    { slug: 'tunisie',      name: 'Tunisie · Sousse & sa région', price: '41.900 DA',  color: '#19B5B0', sub: 'Été 2026' },
     { slug: 'bali',         name: 'Bali · Indonésie',                    price: '419.000 DA', color: '#D98E48', sub: 'Août–Septembre 2026' },
     { slug: 'vietnam',      name: 'Vietnam · Circuit',                   price: '439.000 DA', color: '#15A88E', sub: 'Août–Septembre 2026' },
   ];
@@ -1104,6 +1113,7 @@
 
   // Export toast for other scripts
   window.AT_showToast = showToast;
+  window.AT_formatCounter = formatCounter;
 })();
 
 /* ─── Service worker registration ───────────────────────────────

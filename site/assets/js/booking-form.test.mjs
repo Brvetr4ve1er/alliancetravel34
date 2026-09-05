@@ -96,3 +96,48 @@ test("renderPassportEntry(): first traveller has no remove button; later ones do
   assert.ok(!renderPassportEntry(0, {}).includes('data-remove="0"'), 'traveller 1 is not removable');
   assert.ok(renderPassportEntry(2, {}).includes('data-remove="2"'),  'traveller 3 is removable');
 });
+
+/* ── the form chrome is built per language ─────────────────────────────── */
+
+test("UI: fr, en and ar carry exactly the same keys", () => {
+  // A key missing from one language would render the literal string
+  // "undefined" in that language's form, and nothing else would notice.
+  const { UI } = load();
+  const keys = (o) => Object.keys(o).sort().join(",");
+  assert.equal(keys(UI.en), keys(UI.fr));
+  assert.equal(keys(UI.ar), keys(UI.fr));
+  for (const lang of ["fr", "en", "ar"]) {
+    for (const [k, v] of Object.entries(UI[lang])) {
+      const val = typeof v === "function" ? v(2) : v;
+      assert.ok(typeof val === "string" && val.trim(), `${lang}.${k} must be a non-empty string`);
+    }
+  }
+});
+
+test("formHtml(): the Arabic form has no French chrome left and keeps every id the JS binds", () => {
+  const { formHtml, UI } = load();
+  const ar = formHtml(UI.ar);
+  for (const id of ["bf-name", "bf-phone", "bf-city", "bf-office", "bf-passport-consent",
+                    "bf-passport-fields", "bf-files", "bf-notes", "bf-send-btn", "bf-copy-btn"]) {
+    assert.ok(ar.includes(`id="${id}"`), `#${id} must survive the rewrite`);
+  }
+  assert.ok(ar.includes(UI.ar.phase) && ar.includes(UI.ar.banner), "Arabic strings are in the markup");
+  assert.ok(!ar.includes("Responsable du dossier") && !ar.includes("Copier le texte"), "no French left");
+  // The French template escapes its own ampersand, exactly as the old literal did.
+  assert.ok(formHtml(UI.fr).includes("Nom &amp; Prénom"));
+});
+
+test("formHtml(): a translation string cannot become markup", () => {
+  const { formHtml, UI } = load();
+  const hostile = { ...UI.fr, phase: '<img src=x onerror=alert(1)>', phNotes: '" autofocus onfocus="alert(2)' };
+  const html = formHtml(hostile);
+  assert.ok(!html.includes("<img src=x"), "text slots are escaped");
+  assert.ok(!html.includes('placeholder="" autofocus'), "attribute slots are escaped");
+});
+
+test("renderPassportEntry(): renders in the language it is given", () => {
+  const { renderPassportEntry, UI } = load();
+  assert.ok(renderPassportEntry(1, {}, UI.ar).includes(UI.ar.traveler(2)));
+  assert.ok(renderPassportEntry(1, {}, UI.en).includes('aria-label="Remove traveller 2"'));
+  assert.ok(renderPassportEntry(0, {}).includes("Voyageur 1"), "French stays the default");
+});

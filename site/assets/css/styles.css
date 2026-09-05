@@ -401,7 +401,13 @@ select {
   --danger-soft:  rgba(207, 82, 82, .12);
   --warn:         #e0a04a;
   --warn-soft:    rgba(224, 160, 74, .14);
-  --star-gold:    #F5C842;   /* testimonial stars, luxe-ribbon flag — brighter than --warn */
+  /* 2026-09-05: stars follow the brand green. Owner rule: amber is a WARNING
+     colour only (--warn), never decoration; the old #F5C842 also measured
+     1.59:1 on white. --mint, NOT --accent: every trip page overrides --accent
+     with its region colour in an inline <style>, and a var() indirection
+     resolves at the consumer — so review stars came out sky-blue on Istanbul
+     and orange on Bali. --mint is the one token no page overrides. */
+  --star-gold:    var(--mint);
 
   /* ── WhatsApp — brand color, immutable in both themes ───────────── */
   --wa-green:     #25D366;
@@ -506,6 +512,14 @@ select {
   --accent-2:      var(--accent);
   --accent-2-dim:  var(--accent-dim);
   --accent-glow:  rgba(35, 122, 74, .24);
+  /* Error red for light: #cf5252 measured 4.22 on white, 3.89 on the tinted
+     banner and 3.17 on the CTA note. #a33333 clears 4.5 on all three. */
+  --danger:       #a33333;
+  --danger-soft:  rgba(163, 51, 51, .12);
+  /* --danger-light is the tint the error chips and invalid fields actually
+     consume (:2060, :2662); without a light override they kept the dark
+     theme's value under a light-theme red. */
+  --danger-light: rgba(163, 51, 51, .12);
 
   /* Elevation — navy-tinted, softer */
   --elev-1: 0 1px 0 rgba(0, 44, 81, .06), 0 4px 16px rgba(0, 44, 81, .05);
@@ -524,6 +538,13 @@ select {
   padding-inline: var(--container-x, clamp(16px, 5vw, 80px));
   width: 100%;
 }
+/* .u-measure-* are declared at the top of the file, BEFORE .container. Same
+   specificity, later rule wins — so `.container.u-measure-xl` computed to 1280px
+   and the legal pages ran at ~142 characters per line. Compound selectors here,
+   after .container, restore the measure. */
+.container.u-measure-md { max-width: 600px; }
+.container.u-measure-lg { max-width: 680px; }
+.container.u-measure-xl { max-width: 720px; }
 .section    { padding-block: var(--section-y,    clamp(48px, 8vw, 96px));  }
 .section-sm { padding-block: var(--section-y-sm, clamp(32px, 5vw, 64px));  }
 
@@ -1533,6 +1554,9 @@ select {
   border-radius: 999px;
   font-size: .9375rem;
   font-weight: 500;
+  /* Explicit: without it <a> inherits the body 1.7 and <button> gets the UA
+     `normal`, so identical .btn classes rendered 52px vs 59.5px in one row. */
+  line-height: 1.7;
   transition:
     background   var(--t-fast) var(--ease-out),
     color        var(--t-fast) var(--ease-out),
@@ -3720,10 +3744,9 @@ html.js [data-aos].visible {
   opacity: 0.6;
 }
 
-/* Section eyebrow step indicators */
-.section-head__eyebrow:has(+ .section-head__title) {
-  letter-spacing: .1em;
-}
+/* 2026-09-05: the `:has(+ .section-head__title)` tracking override was deleted —
+   it gave eyebrows 1.1px on one section and 1.54px on the next depending on the
+   following sibling's class. One value now lives on .section-head__eyebrow. */
 
 /* ══════════════════════════════════════════════════════════
    MIGRATION v2 — Logo centered · Theme switcher · Light mode
@@ -3863,7 +3886,11 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 
 :root[data-theme="light"] .nav-cta,
-:root[data-theme="light"] .btn--primary {
+:root[data-theme="light"] .btn--primary,
+:root[data-theme="light"] .hotel-card__cta,
+:root[data-theme="light"] .trip-sticky-bar__cta,
+:root[data-theme="light"] .skip-link {
+  /* navy on the darkened light accent measured 2.67:1 on the three added here */
   color: #ffffff !important;
 }
 /* dead-css sweep 2026-08: light-theme .pkg-badge deleted — the packages
@@ -7004,7 +7031,7 @@ section.section {
 .section-head__eyebrow {
   font-size: .6875rem;
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -8913,18 +8940,19 @@ body { background: var(--bg); color: var(--txt-1); }
   color: #fff;
 }
 
-/* Mobile — compress padding so the pill fits next to theme + WA CTA */
-@media (max-width: 768px) {
-  .lang-switcher { height: 34px; padding: 2px; }
-  .lang-btn { height: 28px; min-width: 28px; padding: 0 7px; font-size: 11px; }
+/* 900px, not 768: the drawer that holds these buttons opens at <=900, so a
+   768 breakpoint left them 30x32 for the whole 769-900 band. 44px minimum —
+   they are the primary controls of a trilingual site. */
+@media (max-width: 900px) {
+  .lang-switcher { height: auto; padding: 2px; }
+  .lang-btn { min-height: 44px; min-width: 44px; padding: 0 10px; font-size: 13px; }
   .lang-btn--ar { font-size: 13px; }
 }
 
-/* Note: the original drawer-system design hid the inline switcher at
-   <=480px and moved it inside the mobile nav drawer. The drawer system
-   was reverted, so the switcher must stay visible at all viewports.
-   At <=768px the .lang-switcher block above already compresses the
-   pill (height 34, btn 28x28) so it fits a 375px viewport. */
+/* Note (corrected 2026-09-05): the drawer is live again — initNavDrawer() in
+   enhance.js moves the switcher, theme toggle and CTA into it below 900px.
+   The block above sizes the pills for that drawer; the stale note claiming
+   the drawer was reverted described neither the markup nor the CSS. */
 
 /* ── ARABIC TYPOGRAPHY  (Cairo — single Arabic face, display + body) ── */
 :root[lang="ar"] {
@@ -8976,9 +9004,14 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .sticky-total__amount,
 :root[lang="ar"] .trip-sticky-bar__price-num,
 :root[lang="ar"] .trip-card__from strong,
-:root[lang="ar"] .bf-trip-chip,
-:root[lang="ar"] .related-card__price,
+:root[lang="ar"] .bf-trip-chip strong,
 :root[lang="ar"] .related-card__price strong,
+/* …and the whole line when it was never translated: /ar/istanbul/ still
+   renders "À partir de <strong>129.000 DA</strong>" in French (istanbul.json
+   carries 8 i18n keys, none of them the related cards). In an RTL block that
+   French run reorders to "129.000 DA À partir de". A translated line carries
+   data-i18n-html and must stay RTL, so the selector keys on exactly that. */
+:root[lang="ar"] .related-card__price:not([data-i18n-html]),
 :root[lang="ar"] .conseiller-num,
 :root[lang="ar"] .phone-group a,
 :root[lang="ar"] time,
@@ -8992,13 +9025,17 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .contact-phone-link,
 :root[lang="ar"] a[href^="tel:"]:not([data-i18n]),
 :root[lang="ar"] a.btn--ghost[href*="wa.me"]:not([data-i18n]),
-/* The JS-injected trust-strip rating "4,9 / 5" is two number runs joined by a
-   bidi-neutral " / "; without isolation it reordered to "5 / 4.9" in Arabic. */
-:root[lang="ar"] .trust-strip__item strong,
+/* 2026-09-05: `.trust-strip__item strong` was removed from this list. It existed
+   for the "4,9 / 5" rating, which is gone; the <strong> now holds Arabic words
+   ("3 وكالات") and forcing LTR on it put the digit on the wrong side. Same for
+   the .bf-trip-chip and .related-card__price CONTAINERS above: only their numeric
+   <strong> leaves are isolated now, so the Arabic label keeps its natural side. */
 :root[lang="ar"] .num-ltr {
   direction: ltr;
   unicode-bidi: isolate;
-  font-family: 'DM Sans', system-ui, sans-serif;
+  /* 'Noto Sans Arabic' second: these selectors also catch elements that hold
+     Arabic words ("600 م", "أسبوعياً"), which fell to the OS fallback. */
+  font-family: 'DM Sans', 'Noto Sans Arabic', system-ui, sans-serif;
 }
 
 /* ── RTL LAYOUT ADJUSTMENTS  (Arabic only) ── */
@@ -9127,7 +9164,9 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .ltr {
   direction: ltr;
   unicode-bidi: isolate;
-  font-family: 'DM Sans', system-ui, sans-serif;
+  /* 'Noto Sans Arabic' second: these selectors also catch elements that hold
+     Arabic words ("600 م", "أسبوعياً"), which fell to the OS fallback. */
+  font-family: 'DM Sans', 'Noto Sans Arabic', system-ui, sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -9518,6 +9557,13 @@ body { background: var(--bg); color: var(--txt-1); }
   background: var(--bg);
 }
 .advisor[hidden] {
+  display: none;
+}
+/* Same trap, same fix. .bf-field-err and .bf-validation-banner are display:flex
+   and booking-form.js ships them with `hidden` — so every field error and the red
+   "complete the fields" banner painted on first load, before any input. */
+.bf-field-err[hidden],
+.bf-validation-banner[hidden] {
   display: none;
 }
 .advisor__num {
@@ -10503,3 +10549,15 @@ p, li, dd, blockquote, figcaption, .testi-text {
 .bf-consent:hover { border-color: var(--border-hi); }
 .bf-consent input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 1px; accent-color: var(--accent); cursor: pointer; }
 .bf-consent:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+
+/* ── 2026-09-05 mobile nav fixes (visual audit, Lens B) ─────────────────── */
+@media (max-width: 900px) {
+  /* #nav-drawer is a child of nav.site-nav, so `.site-nav .nav-links{margin-inline:auto}`
+     leaked into the drawer and indented the menu 73px while the switcher, toggle and
+     WhatsApp button hugged the left edge. */
+  .nav-drawer .nav-links { margin-inline: 0; align-items: stretch; width: 100%; }
+  .nav-drawer .theme-toggle { min-width: 44px; min-height: 44px; }
+  /* `.site-nav > .trip-switcher{order:3}` sat to the RIGHT of the burger on every
+     non-home page. The hamburger is always last. */
+  .site-nav > .nav-hamburger { order: 5; }
+}

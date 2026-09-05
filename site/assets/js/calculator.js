@@ -409,8 +409,18 @@ class TripCalculator {
 
   // Active UI language ('fr' | 'en' | 'ar'), read off <html lang>. Falls back to 'fr'.
   _lang() {
-    const l = document.documentElement.getAttribute('lang') || 'fr';
-    return (l === 'en' || l === 'ar') ? l : 'fr';
+    // A server-rendered /ar/ or /en/ page is already stamped, and that wins.
+    const page = document.documentElement.getAttribute('lang') || 'fr';
+    if (page === 'en' || page === 'ar') return page;
+    // On a French URL, i18n.js applies the STORED preference in place — but
+    // it is the last deferred script on the page, so at mount time <html lang>
+    // still says "fr". Reading the same key it will read keeps the form in
+    // step instead of building French chrome for an Arabic visitor.
+    try {
+      const stored = localStorage.getItem('al-lang');
+      if (stored === 'en' || stored === 'ar') return stored;
+    } catch (_) { /* storage blocked — fall through to French */ }
+    return 'fr';
   }
 
   // Lang-aware room label for the WhatsApp message (and reusable on-page).
@@ -624,8 +634,14 @@ function initFAQ() {
       const item = btn.closest('.faq-item');
       if (!item) return;
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+      });
       if (!isOpen) item.classList.add('open');
+      // The markup ships aria-expanded but nothing updated it, so the announced
+      // state was wrong after the first tap.
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 }

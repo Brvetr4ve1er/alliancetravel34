@@ -26,4 +26,4 @@ Crawl-delay: 5
 Disallow: /admin/
 
 # Sitemap location — Google + Bing pick this up automatically.
-Sitemap: https://alliance-travel.dz/sitemap.xml
+Sitemap: https://alliancetravel.app/sitemap.xml

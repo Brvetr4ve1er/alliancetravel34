@@ -9,19 +9,19 @@
     "ar": 100
   },
   "counts": {
-    "total": 235,
+    "total": 232,
     "trip": 207,
-    "shared": 28,
+    "shared": 25,
     "en": {
-      "ok": 204,
-      "stale": 3,
-      "global": 28,
+      "ok": 203,
+      "stale": 4,
+      "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 204,
-      "stale": 3,
-      "global": 28,
+      "ok": 203,
+      "stale": 4,
+      "global": 25,
       "missing": 0
     }
   },
@@ -715,15 +715,15 @@
       "arState": "ok"
     },
     "vnTrustEyebrow": {
-      "fr": "Plus de 1.200 voyageurs guidés",
-      "frHash": "00avbgn9",
-      "en": "Over 1,200 travellers guided",
-      "ar": "أكثر من 1200 مسافر مُرافَق",
+      "fr": "Trois agences, depuis 2019",
+      "frHash": "0008kjek",
+      "en": "Three branches, since 2019",
+      "ar": "ثلاث وكالات، منذ 2019",
       "enHash": "00avbgn9",
       "arHash": "00avbgn9",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "vnTrustTitle": {
       "fr": "Ils nous ont <em>fait confiance</em>",
@@ -2381,8 +2381,8 @@
       "arState": "global"
     },
     "footer.tagline": {
-      "fr": "Voyages guidés depuis Bordj Bou Arreridj. Plus de 1.200 voyageurs satisfaits depuis 2019.",
-      "frHash": "01x3xgta",
+      "fr": "Voyages guidés depuis Bordj Bou Arreridj. Trois agences, huit destinations, depuis 2019.",
+      "frHash": "00yosqms",
       "en": "Guided trips out of Bordj Bou Arreridj. Three branches, eight destinations, since 2019.",
       "ar": "رحلات مُرافَقة من بُرج بوعريريج. ثلاث وكالات، ثماني وجهات، منذ 2019.",
       "scope": "shared",
@@ -2484,33 +2484,6 @@
       "frHash": "01qig6hr",
       "en": "© 2026 Alliance Travel · Bordj Bou Arreridj, Algeria",
       "ar": "© 2026 أليانس ترافل · بُرج بوعريريج، الجزائر",
-      "scope": "shared",
-      "enState": "global",
-      "arState": "global"
-    },
-    "footer.legal_mentions": {
-      "fr": "Mentions légales",
-      "frHash": "0127qfjv",
-      "en": "Legal notice",
-      "ar": "الإشعار القانوني",
-      "scope": "shared",
-      "enState": "global",
-      "arState": "global"
-    },
-    "footer.legal_privacy": {
-      "fr": "Confidentialité",
-      "frHash": "00p9pod5",
-      "en": "Privacy",
-      "ar": "الخصوصية",
-      "scope": "shared",
-      "enState": "global",
-      "arState": "global"
-    },
-    "footer.legal_terms": {
-      "fr": "CGV",
-      "frHash": "012nomrf",
-      "en": "Terms",
-      "ar": "شروط البيع",
       "scope": "shared",
       "enState": "global",
       "arState": "global"

@@ -2,6 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    /* enhance.js is not loaded on this page, so mirror its theme rule here,
+       before first paint: stored preference > system preference > dark. */
+    try {
+      var t = localStorage.getItem('at-theme');
+      if (t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches))
+        document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
   <title>Page introuvable — Alliance Travel</title>
@@ -24,22 +33,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Sans:ital,opsz,wght@1,9..40,400&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
   <style>
-    :root {
-      --bg-deep:  #06090d;
-      --bg:       #0a0f15;
-      --bg-card:  #161e28;
-      --txt-1:    #f3ede2;
-      --txt-2:    #b6ada0;
-      --txt-3:    #8e857a;
-      --mint:     #9ce8b2;
-      --mint-soft:#7dd4a0;
-      --navy:     #002c51;
-      --border:   rgba(255, 255, 255, .06);
-    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'DM Sans', system-ui, sans-serif;
       background: var(--bg);
       color: var(--txt-1);
       min-height: 100vh;
@@ -60,8 +57,8 @@
       text-transform: uppercase;
       color: var(--mint);
       padding: 6px 14px;
-      background: rgba(156, 232, 178, .08);
-      border: 1px solid rgba(156, 232, 178, .25);
+      background: var(--mint-dim);
+      border: 1px solid var(--border-mint);
       border-radius: 999px;
       margin-bottom: 32px;
     }
@@ -73,8 +70,8 @@
       margin-bottom: 16px;
     }
     h1 em {
-      font-style: italic;
-      color: var(--mint);
+      font-style: normal;
+      color: var(--accent);
       font-weight: 600;
     }
     p {
@@ -90,40 +87,6 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: .01em;
-      text-decoration: none;
-      transition: transform 180ms cubic-bezier(.22, 1, .36, 1),
-                  background 180ms cubic-bezier(.22, 1, .36, 1),
-                  color 180ms cubic-bezier(.22, 1, .36, 1),
-                  border-color 180ms cubic-bezier(.22, 1, .36, 1);
-    }
-    .btn--primary {
-      background: var(--mint);
-      color: var(--navy);
-      border: 1.5px solid var(--mint);
-    }
-    .btn--primary:hover {
-      background: var(--mint-soft);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(156, 232, 178, .28);
-    }
-    .btn--ghost {
-      background: transparent;
-      color: var(--txt-1);
-      border: 1.5px solid rgba(255, 255, 255, .25);
-    }
-    .btn--ghost:hover {
-      border-color: var(--mint);
-      color: var(--mint);
     }
     .links {
       margin-top: 48px;
@@ -165,10 +128,16 @@
       <a href="https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20j%27aimerais%20en%20savoir%20plus." class="btn btn--ghost" target="_blank" rel="noopener">Nous contacter</a>
     </div>
     <nav class="links" aria-label="Voyages disponibles">
+      <a href="/voyages/">Tous les voyages</a>·
+      <a href="/omra/">Omra</a>·
       <a href="/egypte/">Égypte</a>·
+      <a href="/tunisie/">Tunisie</a>·
       <a href="/istanbul/">Istanbul</a>·
       <a href="/azerbaidjan/">Azerbaïdjan</a>·
-      <a href="/kuala-lumpur/">Kuala Lumpur</a>
+      <a href="/kuala-lumpur/">Kuala Lumpur</a>·
+      <a href="/bali/">Bali</a>·
+      <a href="/vietnam/">Vietnam</a>·
+      <a href="/rendez-vous-visa/">Rendez-vous visa</a>
     </nav>
     <div class="madeby">
       <span class="madeby__made">Made by</span>

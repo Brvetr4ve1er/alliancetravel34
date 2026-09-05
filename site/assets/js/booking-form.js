@@ -36,16 +36,212 @@ function escapeHtml(s) {
 }
 
 /* ─── HTML Template ───────────────────────────────────────────── */
-const FORM_HTML = `
+/* ─── Form chrome strings ──────────────────────────────────────
+   Labels, hints, placeholders, buttons and validation copy of the form itself.
+   The WhatsApp/email BODY has its own table in BookingForm._labels(); this one
+   is what the visitor SEES. It is a static in-file dictionary — never user
+   input, never fetched — but formHtml() and renderPassportEntry() still pass
+   every value through escapeHtml(), so a future translation cannot turn into
+   markup by accident. Emphasis and links stay in the template.
+   Key parity across fr/en/ar is locked by booking-form.test.mjs. */
+const UI = {
+  fr: {
+    phase:          'Réserver par WhatsApp',
+    eyebrow:        'Composez votre dossier',
+    titlePre:       'Votre',
+    titleEm:        'réservation',
+    sub:            'Renseignez vos informations, importez les copies de passeports, et un message complet sera généré automatiquement. Un seul clic ouvre WhatsApp avec tout pré-rempli.',
+    tripTitle:      'Votre sélection (depuis le calculateur)',
+    tripEmpty:      'Configurez votre voyage dans la section Tarifs ci-dessus pour voir votre sélection ici.',
+    contactTitle:   'Responsable du dossier',
+    name:           'Nom & Prénom',
+    phName:         'Ahmed Benkhalifa',
+    nameErr:        'Veuillez indiquer votre nom complet.',
+    phone:          'Téléphone WhatsApp',
+    phPhone:        '0561 616 266',
+    phoneErr:       'Numéro algérien attendu : 05/06/07 suivi de 8 chiffres.',
+    city:           'Wilaya / Ville',
+    phCity:         'Bordj Bou Arreridj',
+    cityErr:        'Indiquez votre wilaya ou ville.',
+    office:         'Agence à contacter',
+    officeHint:     'Votre demande WhatsApp sera envoyée à cette agence.',
+    ppTitle:        'Informations passeports',
+    ppOptional:     'Facultatif.',
+    ppHint:         "Ces informations ne sont pas nécessaires pour obtenir un devis. Si vous les renseignez, elles sont incluses dans le message WhatsApp que vous envoyez à l'agence — elles ne sont pas enregistrées dans notre outil de suivi.",
+    ppPrivacy:      'Politique de confidentialité',
+    ppConsent:      "J'accepte de transmettre les données de passeport des voyageurs via WhatsApp pour la préparation de mon dossier.",
+    ppAdd:          'Ajouter un voyageur',
+    uploadTitle:    'Copies des passeports',
+    uploadDrop:     'Glissez vos copies ici',
+    uploadOr:       'ou',
+    uploadBrowse:   'sélectionnez les fichiers',
+    uploadFormats:  'Images (JPG, PNG) · Scans · PDF',
+    uploadNoteLead: 'Les fichiers ne sont pas transmis automatiquement.',
+    uploadNoteRest: 'Vous les enverrez manuellement dans le chat WhatsApp juste après votre demande.',
+    notesTitle:     'Message complémentaire (optionnel)',
+    phNotes:        'Questions, demandes spéciales, chambre non-fumeur, régime alimentaire...',
+    previewTitle:   'Aperçu du message WhatsApp',
+    banner:         "Veuillez compléter les champs marqués en rouge avant d'envoyer.",
+    previewEmpty:   "Remplissez le formulaire pour voir l'aperçu de votre message…",
+    send:           'Ouvrir WhatsApp & Envoyer',
+    email:          'Envoyer par email',
+    copy:           'Copier le texte',
+    copied:         'Copié\u00a0!',
+    copiedToast:    'Texte du dossier copié — collez-le où vous voulez',
+    footNote:       "WhatsApp est plus rapide. Email et copie disponibles si vous n'avez pas WhatsApp.",
+    traveler:       (n) => `Voyageur ${n}`,
+    removeTraveler: (n) => `Supprimer voyageur ${n}`,
+    ppNum:          'N° de passeport',
+    phPpNum:        'AB 123456',
+    ppNumHint:      '8 caractères alphanumériques.',
+    ppExpiry:       "Date d'expiration",
+    ppExpiryHint:   'Doit être valide ≥ 6 mois après le retour.',
+    ppDob:          'Date de naissance',
+    removeFile:     'Supprimer',
+    tooHeavy:        (n, mb) => `${n} — fichier trop lourd (${mb} MB, max 8 MB)`,
+    tooMany:         (max) => `Limite atteinte (${max} fichiers maximum)`,
+    tooBig:          (n) => `${n} — taille totale dépassée (max 40 MB)`,
+    unreadable:      (n) => `Impossible de lire ${n}`,
+    added:           (n) => `${n} fichier(s) ajouté(s)`,
+    completeFields:  'Veuillez compléter les champs marqués',
+    copyFailed:      'Impossible de copier — sélectionnez le texte manuellement',
+    emailReady:      (addr) => `Email préparé pour ${addr}`,
+  },
+  en: {
+    phase:          'Book via WhatsApp',
+    eyebrow:        'Put your file together',
+    titlePre:       'Your',
+    titleEm:        'booking',
+    sub:            'Fill in your details, add your passport copies, and a complete message is generated for you. One tap opens WhatsApp with everything pre-filled.',
+    tripTitle:      'Your selection (from the calculator)',
+    tripEmpty:      'Configure your trip in the Prices section above to see your selection here.',
+    contactTitle:   'File holder',
+    name:           'Full name',
+    phName:         'Ahmed Benkhalifa',
+    nameErr:        'Please enter your full name.',
+    phone:          'WhatsApp phone',
+    phPhone:        '0561 616 266',
+    phoneErr:       'Algerian number expected: 05/06/07 followed by 8 digits.',
+    city:           'Wilaya / City',
+    phCity:         'Bordj Bou Arreridj',
+    cityErr:        'Enter your wilaya or city.',
+    office:         'Agency to contact',
+    officeHint:     'Your WhatsApp request will be sent to this agency.',
+    ppTitle:        'Passport details',
+    ppOptional:     'Optional.',
+    ppHint:         'These details are not needed for a quote. If you fill them in, they are included in the WhatsApp message you send to the agency — they are not stored in our tracking tool.',
+    ppPrivacy:      'Privacy policy',
+    ppConsent:      "I agree to send the travellers' passport details via WhatsApp so my file can be prepared.",
+    ppAdd:          'Add a traveller',
+    uploadTitle:    'Passport copies',
+    uploadDrop:     'Drop your copies here',
+    uploadOr:       'or',
+    uploadBrowse:   'choose the files',
+    uploadFormats:  'Images (JPG, PNG) · Scans · PDF',
+    uploadNoteLead: 'Files are not sent automatically.',
+    uploadNoteRest: 'You will send them yourself in the WhatsApp chat right after your request.',
+    notesTitle:     'Additional message (optional)',
+    phNotes:        'Questions, special requests, non-smoking room, dietary needs...',
+    previewTitle:   'WhatsApp message preview',
+    banner:         'Please complete the fields marked in red before sending.',
+    previewEmpty:   'Fill in the form to preview your message…',
+    send:           'Open WhatsApp & send',
+    email:          'Send by email',
+    copy:           'Copy the text',
+    copied:         'Copied!',
+    copiedToast:    'File text copied — paste it wherever you like',
+    footNote:       "WhatsApp is faster. Email and copy are there if you don't have WhatsApp.",
+    traveler:       (n) => `Traveller ${n}`,
+    removeTraveler: (n) => `Remove traveller ${n}`,
+    ppNum:          'Passport no.',
+    phPpNum:        'AB 123456',
+    ppNumHint:      '8 alphanumeric characters.',
+    ppExpiry:       'Expiry date',
+    ppExpiryHint:   'Must be valid ≥ 6 months after the return date.',
+    ppDob:          'Date of birth',
+    removeFile:     'Remove',
+    tooHeavy:        (n, mb) => `${n} — file too large (${mb} MB, max 8 MB)`,
+    tooMany:         (max) => `Limit reached (${max} files maximum)`,
+    tooBig:          (n) => `${n} — total size exceeded (max 40 MB)`,
+    unreadable:      (n) => `Could not read ${n}`,
+    added:           (n) => `${n} file(s) added`,
+    completeFields:  'Please complete the marked fields',
+    copyFailed:      'Could not copy — select the text manually',
+    emailReady:      (addr) => `Email prepared for ${addr}`,
+  },
+  ar: {
+    phase:          'الحجز عبر واتساب',
+    eyebrow:        'جهّز ملفّك',
+    titlePre:       'طلب',
+    titleEm:        'الحجز',
+    sub:            'أدخل معلوماتك، وأضف نسخ جوازات السفر، وسيتم إنشاء رسالة كاملة تلقائياً. نقرة واحدة تفتح واتساب وكل شيء معبّأ مسبقاً.',
+    tripTitle:      'اختيارك (من الحاسبة)',
+    tripEmpty:      'اضبط رحلتك في قسم الأسعار أعلاه لعرض اختيارك هنا.',
+    contactTitle:   'صاحب الملف',
+    name:           'الاسم واللقب',
+    phName:         'Ahmed Benkhalifa',
+    nameErr:        'يرجى إدخال اسمك الكامل.',
+    phone:          'هاتف واتساب',
+    phPhone:        '0561 616 266',
+    phoneErr:       'رقم جزائري متوقع: 05/06/07 متبوعاً بـ8 أرقام.',
+    city:           'الولاية / المدينة',
+    phCity:         'برج بوعريريج',
+    cityErr:        'أدخل ولايتك أو مدينتك.',
+    office:         'الوكالة المراد التواصل معها',
+    officeHint:     'سيُرسَل طلبك عبر واتساب إلى هذه الوكالة.',
+    ppTitle:        'معلومات جوازات السفر',
+    ppOptional:     'اختياري.',
+    ppHint:         'هذه المعلومات ليست ضرورية للحصول على عرض سعر. إذا أدخلتها، فستُدرَج في رسالة واتساب التي ترسلها إلى الوكالة — ولا تُحفَظ في أداة المتابعة الخاصة بنا.',
+    ppPrivacy:      'سياسة الخصوصية',
+    ppConsent:      'أوافق على إرسال بيانات جوازات سفر المسافرين عبر واتساب لتحضير ملفي.',
+    ppAdd:          'إضافة مسافر',
+    uploadTitle:    'نسخ جوازات السفر',
+    uploadDrop:     'اسحب نسخك إلى هنا',
+    uploadOr:       'أو',
+    uploadBrowse:   'اختر الملفات',
+    uploadFormats:  'صور (JPG, PNG) · مسح ضوئي · PDF',
+    uploadNoteLead: 'لا تُرسَل الملفات تلقائياً.',
+    uploadNoteRest: 'سترسلها بنفسك في محادثة واتساب مباشرة بعد طلبك.',
+    notesTitle:     'رسالة إضافية (اختياري)',
+    phNotes:        'أسئلة، طلبات خاصة، غرفة لغير المدخنين، نظام غذائي...',
+    previewTitle:   'معاينة رسالة واتساب',
+    banner:         'يرجى إكمال الحقول المحدّدة باللون الأحمر قبل الإرسال.',
+    previewEmpty:   'املأ النموذج لمعاينة رسالتك…',
+    send:           'فتح واتساب والإرسال',
+    email:          'إرسال عبر البريد الإلكتروني',
+    copy:           'نسخ النص',
+    copied:         'تم النسخ!',
+    copiedToast:    'تم نسخ نص الملف — الصقه حيث تشاء',
+    footNote:       'واتساب أسرع. البريد الإلكتروني والنسخ متاحان إن لم يكن لديك واتساب.',
+    traveler:       (n) => `المسافر ${n}`,
+    removeTraveler: (n) => `حذف المسافر ${n}`,
+    ppNum:          'رقم جواز السفر',
+    phPpNum:        'AB 123456',
+    ppNumHint:      '8 أحرف وأرقام.',
+    ppExpiry:       'تاريخ الانتهاء',
+    ppExpiryHint:   'يجب أن يكون صالحاً 6 أشهر على الأقل بعد العودة.',
+    ppDob:          'تاريخ الميلاد',
+    removeFile:     'حذف',
+    tooHeavy:        (n, mb) => `${n} — الملف كبير جداً (${mb} MB، الحد 8 MB)`,
+    tooMany:         (max) => `تم بلوغ الحد (${max} ملفات كحد أقصى)`,
+    tooBig:          (n) => `${n} — تم تجاوز الحجم الإجمالي (الحد 40 MB)`,
+    unreadable:      (n) => `تعذّرت قراءة ${n}`,
+    added:           (n) => `تمت إضافة ${n} ملف`,
+    completeFields:  'يرجى إكمال الحقول المحدّدة',
+    copyFailed:      'تعذّر النسخ — حدّد النص يدوياً',
+    emailReady:      (addr) => `تم تحضير بريد إلكتروني إلى ${addr}`,
+  },
+};
+
+/* The form, built at mount time in the page's language (U = UI[lang]). */
+const formHtml = (U) => `
 <div class="container">
   <div class="section-head" style="text-align:center;max-width:680px;margin-inline:auto">
-    <span class="phase-marker"><span class="phase-marker__num">4</span><span class="phase-marker__label">Réserver par WhatsApp</span></span>
-    <p class="section-head__eyebrow">Composez votre dossier</p>
-    <h2 class="section-head__title">Votre <em>réservation</em></h2>
+    <span class="phase-marker"><span class="phase-marker__num">4</span><span class="phase-marker__label">${escapeHtml(U.phase)}</span></span>
+    <p class="section-head__eyebrow">${escapeHtml(U.eyebrow)}</p>
+    <h2 class="section-head__title">${escapeHtml(U.titlePre)} <em>${escapeHtml(U.titleEm)}</em></h2>
     <p class="section-head__sub">
-      Renseignez vos informations, importez les copies de passeports,
-      et un message complet sera généré automatiquement.
-      Un seul clic ouvre WhatsApp avec tout pré-rempli.
+      ${escapeHtml(U.sub)}
     </p>
   </div>
 
@@ -58,10 +254,10 @@ const FORM_HTML = `
       <div class="bform-block">
         <h3 class="bform-block__title">
           ${icon('calendar')}
-          Votre sélection (depuis le calculateur)
+          ${escapeHtml(U.tripTitle)}
         </h3>
         <div id="bf-trip-summary">
-          <p class="bf-trip-empty">Configurez votre voyage dans la section Tarifs ci-dessus pour voir votre sélection ici.</p>
+          <p class="bf-trip-empty">${escapeHtml(U.tripEmpty)}</p>
         </div>
       </div>
 
@@ -69,38 +265,38 @@ const FORM_HTML = `
       <div class="bform-block">
         <h3 class="bform-block__title">
           ${icon('user')}
-          Responsable du dossier
+          ${escapeHtml(U.contactTitle)}
         </h3>
         <div class="bform-row-2">
           <div class="bform-field">
-            <label for="bf-name">Nom &amp; Prénom <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="bf-name" placeholder="Ahmed Benkhalifa"
+            <label for="bf-name">${escapeHtml(U.name)} <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="bf-name" placeholder="${escapeHtml(U.phName)}"
               autocomplete="name" inputmode="text" required minlength="2"
               aria-required="true" aria-describedby="bf-name-err"/>
-            <p class="bf-field-err" id="bf-name-err" hidden>Veuillez indiquer votre nom complet.</p>
+            <p class="bf-field-err" id="bf-name-err" hidden>${escapeHtml(U.nameErr)}</p>
           </div>
           <div class="bform-field">
-            <label for="bf-phone">Téléphone WhatsApp <span class="req" aria-hidden="true">*</span></label>
-            <input type="tel" id="bf-phone" placeholder="0561 616 266"
+            <label for="bf-phone">${escapeHtml(U.phone)} <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="bf-phone" placeholder="${escapeHtml(U.phPhone)}"
               autocomplete="tel" inputmode="tel" required
               pattern="^(\\+213|0)[5-7][0-9 ]{8,}$"
               aria-required="true" aria-describedby="bf-phone-err"/>
-            <p class="bf-field-err" id="bf-phone-err" hidden>Numéro algérien attendu : 05/06/07 suivi de 8 chiffres.</p>
+            <p class="bf-field-err" id="bf-phone-err" hidden>${escapeHtml(U.phoneErr)}</p>
           </div>
         </div>
         <div class="bform-field">
-          <label for="bf-city">Wilaya / Ville <span class="req" aria-hidden="true">*</span></label>
-          <input type="text" id="bf-city" placeholder="Bordj Bou Arreridj"
+          <label for="bf-city">${escapeHtml(U.city)} <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="bf-city" placeholder="${escapeHtml(U.phCity)}"
             autocomplete="address-level2" required minlength="2"
             aria-required="true" aria-describedby="bf-city-err"/>
-          <p class="bf-field-err" id="bf-city-err" hidden>Indiquez votre wilaya ou ville.</p>
+          <p class="bf-field-err" id="bf-city-err" hidden>${escapeHtml(U.cityErr)}</p>
         </div>
         <!-- Office picker: which agency WhatsApp the dossier is sent to.
              Populated at runtime from window.AT_CONTACTS; hidden if unavailable. -->
         <div class="bform-field" id="bf-office-field" hidden>
-          <label for="bf-office">Agence à contacter</label>
+          <label for="bf-office">${escapeHtml(U.office)}</label>
           <select id="bf-office" autocomplete="off"></select>
-          <p class="bform-hint" id="bf-office-hint">Votre demande WhatsApp sera envoyée à cette agence.</p>
+          <p class="bform-hint" id="bf-office-hint">${escapeHtml(U.officeHint)}</p>
         </div>
       </div>
 
@@ -108,24 +304,21 @@ const FORM_HTML = `
       <div class="bform-block">
         <h3 class="bform-block__title">
           ${icon('passport')}
-          Informations passeports
+          ${escapeHtml(U.ppTitle)}
         </h3>
         <p class="bform-hint">
-          <strong>Facultatif.</strong> Ces informations ne sont pas nécessaires pour obtenir un
-          devis. Si vous les renseignez, elles sont incluses dans le message WhatsApp que vous
-          envoyez à l'agence — elles ne sont pas enregistrées dans notre outil de suivi.
-          <a href="/confidentialite/" target="_blank" rel="noopener">Politique de confidentialité</a>
+          <strong>${escapeHtml(U.ppOptional)}</strong> ${escapeHtml(U.ppHint)}
+          <a href="/confidentialite/" target="_blank" rel="noopener">${escapeHtml(U.ppPrivacy)}</a>
         </p>
         <label class="bf-consent" for="bf-passport-consent">
           <input type="checkbox" id="bf-passport-consent"/>
-          <span>J'accepte de transmettre les données de passeport des voyageurs via WhatsApp
-            pour la préparation de mon dossier.</span>
+          <span>${escapeHtml(U.ppConsent)}</span>
         </label>
         <div id="bf-passport-fields" hidden>
           <div id="bf-passports-list"></div>
           <button class="btn btn--ghost btn--sm" id="bf-add-passport" type="button"
             style="width:fit-content;margin-top:var(--s1)">
-            ${icon('plus')} Ajouter un voyageur
+            ${icon('plus')} ${escapeHtml(U.ppAdd)}
           </button>
         </div>
       </div>
@@ -134,22 +327,21 @@ const FORM_HTML = `
       <div class="bform-block">
         <h3 class="bform-block__title">
           ${icon('upload')}
-          Copies des passeports
+          ${escapeHtml(U.uploadTitle)}
         </h3>
         <div class="upload-zone" id="bf-upload-zone">
           <div class="upload-zone__icon">
             ${icon('upload-cloud')}
           </div>
-          <p><strong>Glissez vos copies ici</strong></p>
-          <p>ou <label for="bf-files" class="upload-browse">sélectionnez les fichiers</label></p>
-          <p class="upload-formats">Images (JPG, PNG) · Scans · PDF</p>
+          <p><strong>${escapeHtml(U.uploadDrop)}</strong></p>
+          <p>${escapeHtml(U.uploadOr)} <label for="bf-files" class="upload-browse">${escapeHtml(U.uploadBrowse)}</label></p>
+          <p class="upload-formats">${escapeHtml(U.uploadFormats)}</p>
           <input type="file" id="bf-files" multiple accept="image/*,.pdf" hidden/>
         </div>
         <div id="bf-previews" class="upload-previews"></div>
         <p class="bform-note">
           ${icon('info')}
-          Les fichiers ne sont <strong>pas</strong> transmis automatiquement. Vous les enverrez
-          manuellement dans le chat WhatsApp juste après votre demande.
+          <strong>${escapeHtml(U.uploadNoteLead)}</strong> ${escapeHtml(U.uploadNoteRest)}
         </p>
       </div>
 
@@ -157,11 +349,11 @@ const FORM_HTML = `
       <div class="bform-block">
         <h3 class="bform-block__title">
           ${icon('chat')}
-          Message complémentaire (optionnel)
+          ${escapeHtml(U.notesTitle)}
         </h3>
         <div class="bform-field">
           <textarea id="bf-notes" rows="3"
-            placeholder="Questions, demandes spéciales, chambre non-fumeur, régime alimentaire..."></textarea>
+            placeholder="${escapeHtml(U.phNotes)}"></textarea>
         </div>
       </div>
 
@@ -172,32 +364,32 @@ const FORM_HTML = `
       <div class="bform-preview">
         <div class="bform-preview__header">
           ${icon('whatsapp')}
-          Aperçu du message WhatsApp
+          ${escapeHtml(U.previewTitle)}
         </div>
         <div class="bform-preview__content">
           <div class="bf-validation-banner" id="bf-validation-banner" role="alert" hidden>
-            ${icon('info')} Veuillez compléter les champs marqués en rouge avant d'envoyer.
+            ${icon('info')} ${escapeHtml(U.banner)}
           </div>
           <div id="bf-msg-preview" aria-live="polite" aria-atomic="false">
-            <p class="bform-preview__empty">Remplissez le formulaire pour voir l'aperçu de votre message…</p>
+            <p class="bform-preview__empty">${escapeHtml(U.previewEmpty)}</p>
           </div>
         </div>
         <div class="bform-preview__footer">
           <a class="btn btn--wa btn--full" id="bf-send-btn" href="#" target="_blank" rel="noopener"
              style="pointer-events:none;opacity:.45;text-align:center;justify-content:center">
             ${icon('whatsapp')}
-            Ouvrir WhatsApp &amp; Envoyer
+            ${escapeHtml(U.send)}
           </a>
           <div class="bform-preview__actions" style="display:flex;gap:8px;margin-top:8px">
             <a class="btn btn--ghost" id="bf-email-btn" href="#" style="flex:1;justify-content:center;pointer-events:none;opacity:.45">
-              ${icon('chat')} Envoyer par email
+              ${icon('chat')} ${escapeHtml(U.email)}
             </a>
             <button class="btn btn--ghost" id="bf-copy-btn" type="button" style="flex:1;justify-content:center">
-              ${icon('copy')} Copier le texte
+              ${icon('copy')} ${escapeHtml(U.copy)}
             </button>
           </div>
           <p class="bform-preview__foot-note">
-            WhatsApp est plus rapide. Email et copie disponibles si vous n'avez pas WhatsApp.
+            ${escapeHtml(U.footNote)}
           </p>
         </div>
       </div>
@@ -228,7 +420,7 @@ function icon(name) {
 }
 
 /* ─── Passport entry renderer ─────────────────────────────────── */
-function renderPassportEntry(idx, data = {}) {
+function renderPassportEntry(idx, data = {}, U = UI.fr) {
   // Use HTML id="pp-name-N" etc so labels can <label for="..."> properly.
   // Type=date for DOB and expiry brings up the OS date picker on mobile and
   // gives format-validated values (YYYY-MM-DD on submit). Visible label
@@ -236,33 +428,33 @@ function renderPassportEntry(idx, data = {}) {
   return `
   <div class="bf-passport-entry" data-idx="${idx}">
     <div class="bf-passport-entry__header">
-      <span class="bf-passport-entry__label">Voyageur ${idx + 1}</span>
-      ${idx > 0 ? `<button class="bf-passport-entry__remove" data-remove="${idx}" type="button" aria-label="Supprimer voyageur ${idx + 1}">${icon('x')}</button>` : ''}
+      <span class="bf-passport-entry__label">${escapeHtml(U.traveler(idx + 1))}</span>
+      ${idx > 0 ? `<button class="bf-passport-entry__remove" data-remove="${idx}" type="button" aria-label="${escapeHtml(U.removeTraveler(idx + 1))}">${icon('x')}</button>` : ''}
     </div>
     <div class="bf-passport-grid">
       <div class="bform-field">
-        <label for="pp-name-${idx}">Nom &amp; Prénom</label>
+        <label for="pp-name-${idx}">${escapeHtml(U.name)}</label>
         <input type="text" id="pp-name-${idx}" class="pp-name" data-idx="${idx}"
-          placeholder="Ahmed Benkhalifa" value="${escapeHtml(data.name)}"
+          placeholder="${escapeHtml(U.phName)}" value="${escapeHtml(data.name)}"
           autocomplete="off"/>
       </div>
       <div class="bform-field">
-        <label for="pp-num-${idx}">N° de passeport</label>
+        <label for="pp-num-${idx}">${escapeHtml(U.ppNum)}</label>
         <input type="text" id="pp-num-${idx}" class="pp-num" data-idx="${idx}"
-          placeholder="AB 123456" value="${escapeHtml(data.number)}"
+          placeholder="${escapeHtml(U.phPpNum)}" value="${escapeHtml(data.number)}"
           inputmode="text" pattern="[A-Z0-9 ]{4,12}"
           aria-describedby="pp-num-${idx}-hint"/>
-        <p class="bf-field-hint" id="pp-num-${idx}-hint">8 caractères alphanumériques.</p>
+        <p class="bf-field-hint" id="pp-num-${idx}-hint">${escapeHtml(U.ppNumHint)}</p>
       </div>
       <div class="bform-field">
-        <label for="pp-expiry-${idx}">Date d'expiration</label>
+        <label for="pp-expiry-${idx}">${escapeHtml(U.ppExpiry)}</label>
         <input type="date" id="pp-expiry-${idx}" class="pp-expiry" data-idx="${idx}"
           value="${escapeHtml(data.expiry)}"
           aria-describedby="pp-expiry-${idx}-hint"/>
-        <p class="bf-field-hint" id="pp-expiry-${idx}-hint">Doit être valide ≥ 6 mois après le retour.</p>
+        <p class="bf-field-hint" id="pp-expiry-${idx}-hint">${escapeHtml(U.ppExpiryHint)}</p>
       </div>
       <div class="bform-field">
-        <label for="pp-dob-${idx}">Date de naissance</label>
+        <label for="pp-dob-${idx}">${escapeHtml(U.ppDob)}</label>
         <input type="date" id="pp-dob-${idx}" class="pp-dob" data-idx="${idx}"
           value="${escapeHtml(data.dob)}"/>
       </div>
@@ -281,7 +473,7 @@ class BookingForm {
     this.EMAIL      = 'contact@alliance-travel.dz';
     this.AGENCY     = 'Alliance Travel';
 
-    this.mount.innerHTML = FORM_HTML;
+    this.mount.innerHTML = formHtml(this._labels().ui);
     this.el = {
       tripSummary:  this.mount.querySelector('#bf-trip-summary'),
       passportList: this.mount.querySelector('#bf-passports-list'),
@@ -375,7 +567,7 @@ class BookingForm {
   /* ── Passport list ───────────────────────────────────────── */
   _renderPassports() {
     this.el.passportList.innerHTML = this.passports
-      .map((p, i) => renderPassportEntry(i, p))
+      .map((p, i) => renderPassportEntry(i, p, this._labels().ui))
       .join('');
 
     // Bind remove buttons
@@ -415,6 +607,7 @@ class BookingForm {
 
   _handleFiles(files) {
     const errors = [];
+    const U = this._labels().ui;
     const accepted = [];
     let totalAfter = this.uploads.reduce((sum, f) => sum + (f.size || 0), 0);
 
@@ -427,17 +620,17 @@ class BookingForm {
       // 2. Per-file size check
       if (file.size > BookingForm.MAX_FILE_BYTES) {
         const mb = (file.size / 1024 / 1024).toFixed(1);
-        errors.push(`${file.name} — fichier trop lourd (${mb} MB, max 8 MB)`);
+        errors.push(U.tooHeavy(file.name, mb));
         return;
       }
       // 3. Total count check
       if (this.uploads.length + accepted.length >= BookingForm.MAX_FILE_COUNT) {
-        errors.push(`Limite atteinte (${BookingForm.MAX_FILE_COUNT} fichiers maximum)`);
+        errors.push(U.tooMany(BookingForm.MAX_FILE_COUNT));
         return;
       }
       // 4. Total size check
       if (totalAfter + file.size > BookingForm.MAX_TOTAL_BYTES) {
-        errors.push(`${file.name} — taille totale dépassée (max 40 MB)`);
+        errors.push(U.tooBig(file.name));
         return;
       }
       totalAfter += file.size;
@@ -461,13 +654,13 @@ class BookingForm {
         this._liveUpdate();
       };
       reader.onerror = () => {
-        window.AT_showToast?.(`Impossible de lire ${file.name}`, 'error');
+        window.AT_showToast?.(this._labels().ui.unreadable(file.name), 'error');
       };
       reader.readAsDataURL(file);
     });
 
     if (accepted.length && !errors.length) {
-      window.AT_showToast?.(`${accepted.length} fichier(s) ajouté(s)`);
+      window.AT_showToast?.(U.added(accepted.length));
     }
   }
 
@@ -481,7 +674,7 @@ class BookingForm {
           ? `<img src="${f.url}" alt="${safeName}"/>`
           : `<div class="upload-pdf-icon">${icon('pdf')}</div>`}
         <span class="upload-thumb__label">${safeName}</span>
-        <button class="upload-thumb__remove" data-remove="${i}" title="Supprimer">${icon('x')}</button>
+        <button class="upload-thumb__remove" data-remove="${i}" title="${escapeHtml(this._labels().ui.removeFile)}">${icon('x')}</button>
       </div>`;
     }).join('');
 
@@ -498,8 +691,18 @@ class BookingForm {
      Active UI language ('fr' | 'en' | 'ar'), read off <html lang>.
      Falls back to 'fr'. Mirrors calculator.js _lang()/_labels(). */
   _lang() {
-    const l = document.documentElement.getAttribute('lang') || 'fr';
-    return (l === 'en' || l === 'ar') ? l : 'fr';
+    // A server-rendered /ar/ or /en/ page is already stamped, and that wins.
+    const page = document.documentElement.getAttribute('lang') || 'fr';
+    if (page === 'en' || page === 'ar') return page;
+    // On a French URL, i18n.js applies the STORED preference in place — but
+    // it is the last deferred script on the page, so at mount time <html lang>
+    // still says "fr". Reading the same key it will read keeps the form in
+    // step instead of building French chrome for an Arabic visitor.
+    try {
+      const stored = localStorage.getItem('al-lang');
+      if (stored === 'en' || stored === 'ar') return stored;
+    } catch (_) { /* storage blocked — fall through to French */ }
+    return 'fr';
   }
 
   // Single source of truth for the per-language strings used by the WhatsApp
@@ -585,7 +788,8 @@ class BookingForm {
         thanks:     'شكراً! ✅',
       },
     };
-    return sets[lang] || sets.fr;
+    // `ui` is the visible form chrome (labels, hints, buttons) — see UI above.
+    return { ...(sets[lang] || sets.fr), ui: UI[lang] || UI.fr };
   }
 
   /* ── Message builder ─────────────────────────────────────── */
@@ -820,7 +1024,7 @@ class BookingForm {
         const firstBad = this.mount.querySelector('.is-invalid');
         firstBad?.focus();
         firstBad?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        window.AT_showToast?.('Veuillez compléter les champs marqués', 'error');
+        window.AT_showToast?.(this._labels().ui.completeFields, 'error');
       }
     };
     this.el.sendBtn?.addEventListener('click', sendGate);
@@ -875,7 +1079,7 @@ class BookingForm {
       const msg = this._buildMessage();
       const ok = await this._copy(msg);
       if (!ok) {
-        window.AT_showToast?.('Impossible de copier — sélectionnez le texte manuellement', 'error');
+        window.AT_showToast?.(this._labels().ui.copyFailed, 'error');
         return;
       }
       const btn = this.el.copyBtn;
@@ -884,14 +1088,14 @@ class BookingForm {
       // and restore *that*, so the button kept saying "Copié !" for good.
       if (btn._copyResetTimer) clearTimeout(btn._copyResetTimer);
       else btn._copyOrigHTML = btn.innerHTML;
-      btn.innerHTML = `${icon('check')} Copié&nbsp;!`;
+      btn.innerHTML = `${icon('check')} ${escapeHtml(this._labels().ui.copied)}`;
       btn.classList.add('copied');
       btn._copyResetTimer = setTimeout(() => {
         btn._copyResetTimer = null;
         btn.innerHTML = btn._copyOrigHTML;
         btn.classList.remove('copied');
       }, 2000);
-      window.AT_showToast?.('Texte du dossier copié — collez-le où vous voulez');
+      window.AT_showToast?.(this._labels().ui.copiedToast);
     });
 
     // Email button — toast confirms the mail client opened
@@ -899,7 +1103,7 @@ class BookingForm {
       // mailto: navigation handles itself; the toast is a safety net so
       // the user knows what happened (mail client may open in background)
       setTimeout(() => {
-        window.AT_showToast?.(`Email préparé pour ${this.EMAIL}`);
+        window.AT_showToast?.(this._labels().ui.emailReady(this.EMAIL));
       }, 200);
     });
 
@@ -919,7 +1123,7 @@ class BookingForm {
    no side effects — the guard against escapeHtml/renderPassportEntry
    silently losing their escaping lives here. */
 if (typeof window !== 'undefined') {
-  window.AT_bookingInternals = { escapeHtml, renderPassportEntry };
+  window.AT_bookingInternals = { escapeHtml, renderPassportEntry, formHtml, UI };
 }
 
 /* ─── Boot ────────────────────────────────────────────────────── */

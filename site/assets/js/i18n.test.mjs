@@ -55,7 +55,7 @@ function el(tag, attrs = {}) {
 // pageLang: what <html lang> says when the script parses (a server-rendered
 // variant is stamped by langpage.mjs). tripLangs: window.AL_TRIP_LANGS.
 function boot({ pageLang = "fr", dir = "ltr", stored = null, path = "/", tripLangs = null,
-                i18nNodes = [], nav = true } = {}) {
+                i18nNodes = [], nav = true, mainBindings = true } = {}) {
   const assigned = [];
   const head = el("head");
   const body = el("body");
@@ -80,6 +80,8 @@ function boot({ pageLang = "fr", dir = "ltr", stored = null, path = "/", tripLan
     createElement(tag) { const n = el(tag); created.push(n); return n; },
     querySelector(sel) {
       if (sel === ".site-nav") return nav ? navEl : null;
+      // init()'s guard: does <main> carry anything translatable at all?
+      if (sel === "main [data-i18n], main [data-i18n-html]") return mainBindings ? el("span") : null;
       return null;
     },
     querySelectorAll(sel) {
@@ -222,4 +224,28 @@ test("the language prefix is stripped once, whatever the depth", () => {
   });
   ctx.window.alSetLang("ar");
   assert.deepEqual(assigned, ["/ar/azerbaidjan/"]);
+});
+
+/* ── a page with nothing to translate is not flipped to RTL ────────────── */
+
+test("a French-only page keeps lang=fr dir=ltr under a stored Arabic preference", () => {
+  // The three legal pages ship French prose with no data-i18n inside <main>.
+  // Before the guard, a visitor whose preference was Arabic got the same
+  // French text, right-aligned, under an Arabic <html lang>.
+  const { documentElement, navEl } = boot({ pageLang: "fr", stored: "ar", path: "/cgv/", mainBindings: false });
+  assert.equal(documentElement.lang, "fr");
+  assert.equal(documentElement.dir, "ltr");
+  assert.ok(navEl.children.length > 0, "the switcher is still offered so the visitor can leave");
+});
+
+test("the guard does not fire on a page that does carry bindings", () => {
+  const node = el("p", { text: "nuits", dataset: { i18n: "trip_page.nights" } });
+  const { documentElement } = boot({ pageLang: "fr", stored: "ar", path: "/voyages/", i18nNodes: [node], mainBindings: true });
+  assert.equal(documentElement.lang, "ar");
+  assert.equal(documentElement.dir, "rtl");
+});
+
+test("the untranslated page does not overwrite the stored preference", () => {
+  const { store } = boot({ pageLang: "fr", stored: "ar", path: "/cgv/", mainBindings: false });
+  assert.equal(store.get("al-lang"), "ar", "reflectActive() is display-only; the next page still follows Arabic");
 });

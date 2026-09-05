@@ -104,11 +104,8 @@
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
-    :root {
-      --accent: #B2E89C;
-      --accent-dim: rgba(178,232,156,.13);
-      --accent-glow: rgba(178,232,156,.18);
-    }
+    /* Accent: the brand token from styles.css. The lime #B2E89C that used to be
+       forced here is Égypte's REGION colour and put two greens on one screen. */
 
     /* Homepage-specific */
     .home-hero {
@@ -122,7 +119,7 @@
     .home-hero__bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 90% 60% at 60% 40%, rgba(200, 133, 74, .12) 0%, transparent 70%),
+      background: radial-gradient(ellipse 90% 60% at 60% 40%, rgba(46, 139, 87, .12) 0%, transparent 70%),
         linear-gradient(145deg, #0a0805 0%, #0c0e12 60%, #080a10 100%);
     }
 
@@ -272,11 +269,9 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .trips-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    /* The inline .trips-grid breakpoint is gone: at 768 it beat the global
+       auto-fit and left the homepage at ONE 679x849px column while /voyages/
+       showed two, and at 640 it only restated styles.css:8552. */
   </style>
   <!-- AT:favicons-og START -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png"/>
@@ -437,7 +432,7 @@
           calculateur de prix live — obtenez votre devis en 30 secondes.</p>
       </div>
       <div class="dest-filter" role="toolbar" aria-label="Filtrer les destinations par région" id="destFilter">
-        <button class="dest-filter__pill" type="button" aria-pressed="true" data-filter="all" data-track-event="dest_filter" data-track-label="all"><span data-i18n="voyages_section.filter_all">Tous</span> <span class="dest-filter__count">5</span></button>
+        <button class="dest-filter__pill" type="button" aria-pressed="true" data-filter="all" data-track-event="dest_filter" data-track-label="all"><span data-i18n="voyages_section.filter_all">Tous</span> <span class="dest-filter__count">7</span></button>
         <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="egypt" data-track-event="dest_filter" data-track-label="egypt" data-i18n="voyages_section.filter_egypt">Égypte</button>
         <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="azerbaijan" data-track-event="dest_filter" data-track-label="azerbaijan" data-i18n="voyages_section.filter_caucasus">Caucase</button>
         <button class="dest-filter__pill" type="button" aria-pressed="false" data-filter="istanbul" data-track-event="dest_filter" data-track-label="istanbul" data-i18n="voyages_section.filter_turkey">Turquie</button>
@@ -461,6 +456,9 @@
             if (totalPill) totalPill.textContent = region === 'all' ? cards.length : Array.from(cards).filter(c => c.dataset.region === region).length;
           }
           pills.forEach(p => p.addEventListener('click', () => applyFilter(p.dataset.filter)));
+          // The "Tous N" count was hardcoded to 5 in the markup and only ever
+          // corrected on a pill click — sync it from the rendered cards on load.
+          applyFilter('all');
         }
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', init);
@@ -1200,7 +1198,6 @@
       <div class="footer-bottom">
         <div class="footer-legal">
           <p data-i18n="footer.copyright">© 2026 Alliance Travel · Bordj Bou Arreridj, Algérie</p>
-          <p class="footer-links"><a href="mentions-legales/" data-i18n="footer.legal_mentions">Mentions légales</a><span aria-hidden="true"> · </span><a href="confidentialite/" data-i18n="footer.legal_privacy">Confidentialité</a><span aria-hidden="true"> · </span><a href="cgv/" data-i18n="footer.legal_terms">CGV</a></p>
           <p class="footer-notice" data-i18n="footer.notice">Prix en Dinar Algérien (DA) · Indicatifs · Confirmation à la réservation</p>
         </div>
         <a class="footer-top" href="#top" data-i18n-aria-label="footer.back_to_top" aria-label="Haut de page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span data-i18n="footer.back_to_top">Haut de page</span></a>

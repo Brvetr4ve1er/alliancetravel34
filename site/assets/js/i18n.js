@@ -1216,6 +1216,12 @@
     return SUPPORTED.includes(l) ? l : DEFAULT_LANG;
   })();
   const IS_VARIANT = PAGE_LANG !== DEFAULT_LANG;
+  /* Set by init() when <main> carries no bindings at all (the three legal
+     pages, 404). It has to outlive init(): enhance.js injects the press strip
+     and the sticky bar afterwards and calls window.alTranslate(), which would
+     otherwise re-enter translate(getLang()) and paint the nav, footer and
+     press strip Arabic around French prose that stays LTR. */
+  let NO_TRANSLATE = false;
 
   function tripLangs() {
     const list = (typeof window !== 'undefined') && window.AL_TRIP_LANGS;
@@ -1458,6 +1464,15 @@
       window.location.assign(url);
       return;
     }
+    if (NO_TRANSLATE) {
+      // This page has no translation to switch to. Translating in place would
+      // only right-align French prose, and doing nothing would make the pill
+      // look broken — so honour the choice and take the visitor to the home
+      // page, which is translated.
+      persistLang(lang);
+      window.location.assign('/');
+      return;
+    }
     if (IS_VARIANT) {
       // On this language's own page: nothing to translate, and translating
       // would overwrite the server's copy with the shared dictionary's.
@@ -1484,7 +1499,10 @@
      just-inserted subtree gets localized into the active language. translate()
      re-scans the whole document each call, so late-injected nodes are covered.
      Falls back to the current language if none is passed. */
-  window.alTranslate = (lang) => translate(SUPPORTED.includes(lang) ? lang : getLang());
+  window.alTranslate = (lang) => {
+    if (NO_TRANSLATE) return;   // nothing on this page is translatable
+    translate(SUPPORTED.includes(lang) ? lang : getLang());
+  };
 
   function init() {
     if (IS_VARIANT) {
@@ -1498,6 +1516,18 @@
       if (PAGE_LANG === 'ar') ensureArabicFont();
       buildSwitcher();
       reflectActive(PAGE_LANG);
+      return;
+    }
+    // A page whose <main> carries no data-i18n at all (the three legal pages
+    // today) has nothing to translate: flipping it to dir="rtl" only right-
+    // aligns French prose. Keep it French, still offer the switcher so the
+    // visitor can leave, and show FR as the active pill because that is what
+    // they are looking at. reflectActive() does not persist, so the stored
+    // preference still applies on the next page.
+    if (!document.querySelector('main [data-i18n], main [data-i18n-html]')) {
+      NO_TRANSLATE = true;
+      buildSwitcher();
+      reflectActive(DEFAULT_LANG);
       return;
     }
     const lang = getLang();

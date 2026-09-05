@@ -64,7 +64,7 @@ function loadToast() {
   vm.createContext(ctx);
   vm.runInContext(SRC, ctx);
   assert.ok(typeof win.AT_showToast === "function", "enhance.js must export window.AT_showToast");
-  return { showToast: win.AT_showToast, created };
+  return { showToast: win.AT_showToast, created, formatCounter: win.AT_formatCounter };
 }
 
 /* ── showToast: the message is data, the icon is markup ────────────────── */
@@ -141,4 +141,23 @@ test("nav-drawer listeners are wired at most once across re-entries", () => {
     assert.ok(at > -1, `${bind} should still exist`);
     assert.ok(at > guard, `${bind} must be guarded by nav.dataset.drawerWired`);
   }
+});
+
+/* ── hero counters: a year is a number, not "2" ───────────────────────── */
+
+test("a four-digit counter with a plain format counts in whole numbers", () => {
+  const { formatCounter } = loadToast();
+  // data-counter="2019" data-counter-format="{n}" on the homepage hero. The
+  // old rule divided every target >= 1000 by 1000, so first-time visitors
+  // watched the founding year settle on "2".
+  assert.equal(formatCounter(2019, 2019, "{n}"), "2019");
+  assert.equal(formatCounter(1210.4, 2019, "{n}"), "1210");
+});
+
+test("the K abbreviation only fires when the format asks for it", () => {
+  const { formatCounter } = loadToast();
+  assert.equal(formatCounter(1200, 1200, "{n}K+"), "1.2K+");
+  assert.equal(formatCounter(1000, 1000, "{n}k"), "1k");
+  assert.equal(formatCounter(7, 7, "{n}+"), "7+");
+  assert.equal(formatCounter(4.94, 4.9, "{n}"), "4.9");
 });
