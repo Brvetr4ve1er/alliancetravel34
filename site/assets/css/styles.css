@@ -9006,12 +9006,6 @@ body { background: var(--bg); color: var(--txt-1); }
 :root[lang="ar"] .trip-card__from strong,
 :root[lang="ar"] .bf-trip-chip strong,
 :root[lang="ar"] .related-card__price strong,
-/* …and the whole line when it was never translated: /ar/istanbul/ still
-   renders "À partir de <strong>129.000 DA</strong>" in French (istanbul.json
-   carries 8 i18n keys, none of them the related cards). In an RTL block that
-   French run reorders to "129.000 DA À partir de". A translated line carries
-   data-i18n-html and must stay RTL, so the selector keys on exactly that. */
-:root[lang="ar"] .related-card__price:not([data-i18n-html]),
 :root[lang="ar"] .conseiller-num,
 :root[lang="ar"] .phone-group a,
 :root[lang="ar"] time,

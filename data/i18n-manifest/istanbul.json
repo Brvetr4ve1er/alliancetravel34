@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 33,
-    "trip": 8,
+    "total": 34,
+    "trip": 9,
     "shared": 25,
     "en": {
       "ok": 7,
-      "stale": 1,
+      "stale": 2,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 7,
-      "stale": 1,
+      "stale": 2,
       "global": 25,
       "missing": 0
     }
@@ -180,6 +180,15 @@
       "frHash": "0008kjek",
       "en": "Three branches, since 2019",
       "ar": "ثلاث وكالات، منذ 2019",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istRelFrom": {
+      "fr": "À partir de",
+      "frHash": "008fxzhe",
+      "en": "From",
+      "ar": "ابتداءً من",
       "scope": "trip",
       "enState": "stale",
       "arState": "stale"

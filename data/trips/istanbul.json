@@ -990,7 +990,7 @@
       "kTitle": "",
       "title": "Azerbaïdjan · Bakou & Gabala",
       "kPrice": "",
-      "priceHtml": "À partir de <strong>249.900 DA</strong>",
+      "priceHtml": "<span data-i18n=\"istRelFrom\">À partir de</span> <strong>249.900 DA</strong>",
       "kCtaOuter": "",
       "kCta": ""
     },
@@ -1003,7 +1003,7 @@
       "kTitle": "",
       "title": "Sharm El Sheikh · depuis Constantine",
       "kPrice": "",
-      "priceHtml": "À partir de <strong>169.000 DA</strong>",
+      "priceHtml": "<span data-i18n=\"istRelFrom\">À partir de</span> <strong>169.000 DA</strong>",
       "kCtaOuter": "",
       "kCta": ""
     }
@@ -1095,7 +1095,8 @@
         "cta_sub": "Message us on WhatsApp — same-day reply.",
         "cta_btn": "Chat on WhatsApp"
       },
-      "istTrustEyebrow": "Three branches, since 2019"
+      "istTrustEyebrow": "Three branches, since 2019",
+      "istRelFrom": "From"
     },
     "ar": {
       "istHeroEyebrow": "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
@@ -1110,7 +1111,8 @@
         "cta_sub": "راسلنا على واتساب، رد في نفس اليوم.",
         "cta_btn": "الدردشة على واتساب"
       },
-      "istTrustEyebrow": "ثلاث وكالات، منذ 2019"
+      "istTrustEyebrow": "ثلاث وكالات، منذ 2019",
+      "istRelFrom": "ابتداءً من"
     }
   },
   "keyPrefix": "ist",
