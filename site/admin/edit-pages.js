@@ -51,13 +51,29 @@ function fieldInput(label, path, type, val) {
   return `<div class="field"><label for="${id}">${escHtml(label)}</label>${input}</div>`;
 }
 
+// The six room keys every trip uses. Falls back to the raw key so a new room
+// type still renders instead of disappearing.
+const ROOM_KEYS = ["double", "triple", "single", "child1", "child2", "baby"];
+const roomLabel = (room) => t("pages.room." + room) || room;
+
 function hotelPriceInputs(content) {
   const hs = getPath(content, "tripData.hotels") || [];
   return hs.map((h, i) => {
-    const prices = Object.entries(h.prices || {}).map(([room, p]) =>
-      `<div class="field"><label>${escHtml(room)}</label><input data-path="tripData.hotels.${i}.prices.${escHtml(room)}" data-int="1" value="${escHtml(p)}" /></div>`
-    ).join("");
-    return `<fieldset class="adv"><legend>${escHtml(h.id || ("hôtel " + i))} — tarifs (DA)</legend><div class="row">${prices}</div></fieldset>`;
+    // Stable, readable column order rather than JSON key order, then anything
+    // unexpected appended so nothing is ever silently uneditable.
+    const keys = Object.keys(h.prices || {});
+    const ordered = [...ROOM_KEYS.filter((k) => keys.includes(k)),
+                     ...keys.filter((k) => !ROOM_KEYS.includes(k))];
+    const prices = ordered.map((room) => {
+      const path = `tripData.hotels.${i}.prices.${room}`;
+      const id = "f-" + path.replace(/[^a-zA-Z0-9]+/g, "-");
+      return `<div class="field"><label for="${id}">${escHtml(roomLabel(room))}</label>` +
+             `<input id="${id}" data-path="${escHtml(path)}" data-int="1" inputmode="numeric" ` +
+             `value="${escHtml(h.prices[room])}" /></div>`;
+    }).join("");
+    // The owner knows the hotel by name, not by the id the calculator uses.
+    const title = h.name || h.id || fmt("pages.hotel.n", { n: i + 1 });
+    return `<fieldset class="adv"><legend>${escHtml(title)} — ${escHtml(t("pages.rates"))}</legend><div class="row">${prices}</div></fieldset>`;
   }).join("");
 }
 
@@ -148,13 +164,31 @@ function renderEditor(container) {
 }
 
 function collectInto(content) {
-  // 1. structured fields
+  // Returns the inputs it refused, so save() can stop instead of publishing a
+  // half-applied edit. A cleared price used to be skipped silently here and the
+  // stale value from the raw-JSON base was published under a "Publié ✓".
+  const invalid = [];
   document.querySelectorAll("#area-pages [data-path]").forEach((inp) => {
+    inp.classList.remove("is-invalid");
+    inp.removeAttribute("aria-invalid");
     let v = inp.value;
-    if (inp.dataset.int) { v = parseInt(v, 10); if (!Number.isFinite(v)) return; }
+    if (inp.dataset.int) {
+      const raw = String(v).trim();
+      const n = Number(raw);
+      // A price must be a whole number >= 0: tools/validate-trip.mjs rejects
+      // anything else at build time, so accepting it here only moves the
+      // failure to a place the owner cannot see.
+      if (raw === "" || !Number.isInteger(n) || n < 0) {
+        inp.classList.add("is-invalid");
+        inp.setAttribute("aria-invalid", "true");
+        invalid.push(inp);
+        return;
+      }
+      v = n;
+    }
     setPath(content, inp.dataset.path, v);
   });
-  return content;
+  return invalid;
 }
 
 // Two fast clicks on two different trips race each other. Without a token,
@@ -214,7 +248,16 @@ async function save() {
   let content;
   try { content = JSON.parse(el("ep-json").value); }
   catch (e) { msg.className = "msg err"; msg.textContent = "JSON invalide: " + e.message; return; }
-  collectInto(content);
+  const invalid = collectInto(content);
+  if (invalid.length) {
+    // Refuse the whole publish. Publishing the valid subset would leave the
+    // owner believing the field they just cleared had been saved.
+    msg.className = "msg err";
+    msg.textContent = fmt("pages.badprice", { n: invalid.length });
+    invalid[0].focus();
+    invalid[0].scrollIntoView({ block: "center", behavior: "smooth" });
+    return;
+  }
   // keep the JSON panel in sync so the user sees exactly what will be saved
   el("ep-json").value = JSON.stringify(content, null, 2);
 

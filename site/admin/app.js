@@ -113,6 +113,11 @@ async function enterApp(session) {
   if (entered && enteredUser === uid) return;
 
   const tok = session.access_token;
+  // boot() enters from getSession() AND onAuthStateChange fires SIGNED_IN for
+  // that same stored session, so every load verified the same token twice. The
+  // guard below already stopped the double entry; this stops the second
+  // /api/me from being sent at all.
+  if (pendingToken === tok) return;
   pendingToken = tok;
   AT_ADMIN.session = session;
   AT_ADMIN.token = tok;
@@ -374,6 +379,19 @@ document.addEventListener("admin:area", async (e) => {
     b.addEventListener("click", () => showArea("reglages"));
     cfg.append(p, b);
   }
+});
+
+// Réglages writes its labels with t() into textContent and carries no
+// data-i18n attributes, so applyI18n() cannot reach them: after a language
+// switch the area head and every Configuration row stayed in the language it
+// was first drawn in. Releasing the init latch re-renders it — from the cached
+// AT_ADMIN.status, so this costs no extra API call.
+document.addEventListener("admin:lang", () => {
+  if (!reglagesInit) return;
+  reglagesInit = false;
+  const c = $("area-reglages");
+  if (c) c.innerHTML = "";
+  if (!$("area-reglages").hidden) showArea("reglages");
 });
 
 // ── First-run orientation ────────────────────────────────────────────

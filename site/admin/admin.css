@@ -296,6 +296,17 @@ details.adv[open] summary { margin-bottom: var(--s2); }
 .leads-browse { display: grid; gap: var(--s3); }
 .leads-panel { padding: var(--s4); }
 .leads-panel[hidden], .leads-browse[hidden] { display: none; }
+/* `.area` sets display:grid, which beats the UA's [hidden]{display:none} —
+   so showArea() hid nothing and every visited screen stayed stacked on the
+   page. Same trap, same fix as the two selectors above. */
+.area[hidden] { display: none; }
+
+/* A refused field has to be findable: save() focuses the first one, but the
+   owner needs to see the rest without hunting. */
+.field input.is-invalid, .field textarea.is-invalid {
+  border-color: var(--danger, #b3261e);
+  background: color-mix(in srgb, var(--danger, #b3261e) 6%, transparent);
+}
 @media (min-width: 900px) {
   .leads-split { grid-template-columns: minmax(300px, 380px) 1fr; align-items: start; }
   .leads-panel { position: sticky; top: var(--s3); max-height: calc(100vh - var(--s4)); overflow-y: auto; }
