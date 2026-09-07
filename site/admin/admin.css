@@ -477,3 +477,39 @@ fieldset.group legend svg { color: var(--brand); }
   .kpi::before, .funnel i, .badge { forced-color-adjust: none; }
   :where(a, button, input, textarea, summary):focus-visible { outline: 3px solid Highlight; }
 }
+
+/* ── Export menu (Demandes) ──────────────────────────────────────────────
+   A <details> rather than a hand-rolled popover: it is keyboard-accessible,
+   closes on Esc, and needs no click-outside handler. The default marker is
+   removed because the <summary> is styled as a button. */
+.exportbox { position: relative; flex: 0 0 auto; }
+.exportbox > summary { list-style: none; cursor: pointer; }
+.exportbox > summary::-webkit-details-marker { display: none; }
+.exportbox__panel {
+  position: absolute; inset-inline-end: 0; top: calc(100% + 8px); z-index: 20;
+  min-width: 290px; max-width: min(360px, calc(100vw - 32px));
+  display: grid; gap: var(--s2);
+  padding: var(--s3); border-radius: 14px;
+  background: var(--card, #131a22);
+  border: 1px solid var(--line, #263140);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+}
+.exportbox__q { margin: 0; font-size: .8125rem; color: var(--txt-2); }
+.exportfmt {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 10px 12px; margin-top: 6px; text-align: start;
+  border-radius: 10px; border: 1px solid var(--line, #263140);
+  background: transparent; color: inherit; cursor: pointer; font: inherit;
+}
+.exportfmt:hover, .exportfmt:focus-visible { border-color: var(--accent); background: rgba(127, 127, 127, .10); }
+.exportfmt.is-primary { border-color: var(--accent); }
+.exportfmt > span { display: grid; gap: 1px; min-width: 0; }
+.exportfmt strong { font-size: .875rem; font-weight: 600; }
+.exportfmt small { font-size: .75rem; color: var(--txt-2); line-height: 1.35; }
+/* On a phone an absolutely-positioned panel hangs off the edge; let it take the
+   full width under the toolbar instead of anchoring to a 40px button. */
+@media (max-width: 560px) {
+  .exportbox { flex: 1 1 100%; }
+  .exportbox > summary { width: 100%; justify-content: center; }
+  .exportbox__panel { position: static; min-width: 0; max-width: none; margin-top: 8px; }
+}

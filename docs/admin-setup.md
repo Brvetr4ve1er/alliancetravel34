@@ -183,7 +183,23 @@ Most edits use the simple fields above. The **Avancé** panel lets you edit ever
 - **⚠️ Editing French text here does not update English or Arabic.** Those translations are stored separately. If you change a price, a date or a departure month, the English and Arabic versions of that page keep showing the **old** value, with no warning. Ask for translation updates whenever you change a number or a date.
 
 ### Leads tab
-The **Leads** tab shows everyone who submitted the booking form: name, phone, city, chosen trip/hotel/dates, party size, estimated total, and how they contacted you (WhatsApp / email / copy). Use the search box to filter, and **Exporter CSV** to download them for Excel.
+The **Leads** tab shows everyone who submitted the booking form: name, phone, city,
+chosen trip/hotel/dates, party size, estimated total, and how they contacted you
+(WhatsApp / email / copy). Use the search box and the filters to narrow the list.
+
+**Exporter** offers a choice, because the right file depends on what you are doing:
+
+| | Use it for | Notes |
+|---|---|---|
+| **Excel (.xlsx)** | opening the list — this is the one to pick | Dates are real dates and totals are real numbers, so you can sort by month and select the Total column to see a sum. Header row is frozen and filters are on. |
+| **CSV** | importing into another program | Plain text, UTF-8. Note that double-clicking a `.csv` on a French Windows can put every column into column A — that is Excel using the French list separator, not a broken file. Use the Excel option instead, or import the CSV via *Data → From Text*. |
+| **JSON** | a technical backup | Raw values, re-importable. |
+
+You also choose **the current view** (whatever the filters are showing) or **all
+requests**. The file is named with today's date, e.g. `demandes-2026-09-07.xlsx`.
+
+Times in the export are the office's local time (Algeria), not UTC — a request that
+arrives at 00:30 is filed on the right day.
 
 ---
 

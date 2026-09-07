@@ -8,7 +8,7 @@ import { t, fmt, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { emptyState } from "./illus.js";
 import { areaHead, help } from "./ui.js";
-import { csvCell } from "./csv.js";
+import { buildExport } from "./export.js";
 
 const COLS = ["created_at", "status", "name", "phone", "city", "trip", "hotel", "date", "room", "adults", "kids", "total_da", "channel", "wa_destination", "page", "notes"];
 const STATUSES = ["nouveau", "contacté", "conclu"];
@@ -618,16 +618,99 @@ function applyPanelVisibility() {
 }
 mqDesktop.addEventListener("change", () => { if (loaded && ROWS.length) applyPanelVisibility(); });
 
-function exportCsv(rows) {
-  // csvCell() carries the OWASP formula guard as well as RFC-4180 quoting: a lead
-  // name or note beginning with = + - @ TAB or CR is code the OWNER executes when
-  // she opens demandes.csv, and every one of those values arrives through the
-  // PUBLIC insert path. Same rule, same module contract as the server backup in
-  // api/export-leads.mjs — site/admin/csv.test.mjs asserts the two never drift.
-  const csv = [COLS.join(","), ...rows.map((r) => COLS.map((c) => csvCell(r[c])).join(","))].join("\r\n");
-  const url = URL.createObjectURL(new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" }));
-  const a = document.createElement("a"); a.href = url; a.download = "demandes.csv"; a.click();
-  URL.revokeObjectURL(url);
+// ── Export ─────────────────────────────────────────────────────────────
+// Every byte is built by site/admin/export.js, which api/export-leads.mjs also
+// imports — so the browser download and the server backup can no longer be
+// different files. (They used to disagree about the column list: the browser
+// exported wa_destination and no id, the server the reverse.)
+//
+// The old button produced a comma-delimited .csv. Excel does not read a .csv
+// with a fixed delimiter: on double-click it uses the machine's locale list
+// separator, which on a French/Algerian Windows is a SEMICOLON — so the whole
+// export landed in column A for the one person it was written for. Hence .xlsx
+// as the recommended format: it carries its own structure and cannot be
+// misparsed by a locale.
+let exportScope = "view"; // "view" (what the filters show) | "all"
+
+function saveBlob({ bytes, filename, mime }) {
+  const url = URL.createObjectURL(new Blob([bytes], { type: mime }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  // Firefox only follows a link that is IN the document, and revoking the URL
+  // in the same tick can cancel the download before the browser has read it.
+  // Both are silent failures — the worst kind for a download button.
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+function exportRows() {
+  return exportScope === "all" ? sortRows(ROWS, sortMode) : sortRows(filteredRows(), sortMode);
+}
+
+function runExport(format) {
+  const rows = exportRows();
+  const out = area().querySelector("#export-msg");
+  const say = (cls, text) => { if (out) { out.className = "msg " + cls; out.textContent = text; } };
+  // Downloading an empty file is indistinguishable from a broken button.
+  if (!rows.length) return say("err", t("leads.export.empty"));
+  try {
+    const built = buildExport(rows, format);
+    saveBlob(built);
+    say("ok", fmt("leads.export.done", { n: built.count, f: built.filename }));
+  } catch (e) {
+    // A throw in the builder used to be impossible to notice: the click simply
+    // did nothing, with no way to tell that from "the file downloaded silently".
+    say("err", fmt("leads.export.fail", { e: e.message }));
+  }
+}
+
+// Label plus one line of plain French about who each format is for. The owner
+// is not choosing a file extension, they are choosing "the one that opens".
+const EXPORT_FORMATS = [
+  { id: "xlsx", key: "leads.export.xlsx", hint: "leads.export.xlsx.hint", icon: "chart", primary: true },
+  { id: "csv", key: "leads.export.csv", hint: "leads.export.csv.hint", icon: "file" },
+  { id: "json", key: "leads.export.json", hint: "leads.export.json.hint", icon: "database" },
+];
+
+function buildExportPanel(box) {
+  const scope = box.querySelector("#export-scope");
+  const total = ROWS.length;
+  const shown = filteredRows().length;
+  const paint = () => {
+    scope.replaceChildren();
+    for (const [id, key, n] of [["view", "leads.export.scope.view", shown],
+                                ["all", "leads.export.scope.all", total]]) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (exportScope === id ? " is-on" : "");
+      b.setAttribute("aria-pressed", String(exportScope === id));
+      b.textContent = fmt(key, { n });
+      b.addEventListener("click", () => { exportScope = id; paint(); });
+      scope.appendChild(b);
+    }
+  };
+  paint();
+
+  const list = box.querySelector("#export-formats");
+  list.replaceChildren();
+  for (const f of EXPORT_FORMATS) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "exportfmt" + (f.primary ? " is-primary" : "");
+    b.append(icon(f.icon, { size: 18 }));
+    const txt = document.createElement("span");
+    const strong = document.createElement("strong"); strong.textContent = t(f.key);
+    const hint = document.createElement("small"); hint.textContent = t(f.hint);
+    txt.append(strong, hint);
+    b.append(txt);
+    b.addEventListener("click", () => runExport(f.id));
+    list.appendChild(b);
+  }
+  const msg = box.querySelector("#export-msg");
+  if (msg) { msg.className = "msg"; msg.textContent = ""; }
 }
 
 // ── Shell ──────────────────────────────────────────────────────────────
@@ -639,7 +722,15 @@ function render() {
     <div class="card">
       <div class="row">
         <input id="leads-search" type="search" data-i18n-ph="leads.search" />
-        <button id="leads-csv" class="btn btn--ghost" style="flex:0"><span data-i18n="leads.export"></span></button>
+        <details id="leads-export" class="exportbox">
+          <summary class="btn btn--ghost"><span data-i18n="leads.export"></span></summary>
+          <div class="exportbox__panel">
+            <p class="exportbox__q" data-i18n="leads.export.what"></p>
+            <div class="chiprow" id="export-scope" role="group"></div>
+            <div id="export-formats"></div>
+            <p id="export-msg" class="msg" role="status" aria-live="polite"></p>
+          </div>
+        </details>
       </div>
       <div class="chiprow" id="leads-view" role="group" style="margin-top:var(--s3)"></div>
       <div class="row" style="margin-top:var(--s2)">
@@ -660,7 +751,12 @@ function render() {
   c.prepend(areaHead("inbox", "nav.leads", "demandes.intro"));
   applyI18n(c);
 
-  c.querySelector("#leads-csv").prepend(icon("download", { size: 17 }));
+  const expBox = c.querySelector("#leads-export");
+  expBox.querySelector("summary").prepend(icon("download", { size: 17 }));
+  expBox.querySelector("summary").setAttribute("aria-label", t("leads.export"));
+  // Rebuild on open so the counts ("la vue actuelle (12)") reflect the filters
+  // as they are NOW, not as they were when the screen was first drawn.
+  expBox.addEventListener("toggle", () => { if (expBox.open) buildExportPanel(expBox); });
   const search = c.querySelector("#leads-search");
   search.setAttribute("aria-label", t("leads.search"));
   search.value = q;
@@ -690,8 +786,6 @@ function render() {
   fillPeriodSelect(periodSel);
   periodSel.setAttribute("aria-label", t("leads.filter.period.label"));
   periodSel.addEventListener("change", () => { periodFilter = periodSel.value ? Number(periodSel.value) : null; paint(); });
-
-  c.querySelector("#leads-csv").addEventListener("click", () => exportCsv(sortRows(filteredRows(), sortMode)));
 
   renderPipeline();
   paint();

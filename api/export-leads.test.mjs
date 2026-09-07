@@ -2,16 +2,20 @@
 // The handler reaches the network only through global fetch() — once for verifyAdmin's
 // Supabase "/auth/v1/user" check (api/_lib/auth.mjs) and once for the "/rest/v1/leads"
 // read — so stubbing globalThis.fetch with node:test's `mock` (auto-restored per test)
-// intercepts both and lets each test assert whether leads were fetched at all. The pure
-// CSV helpers are exercised directly, no mocks.
+// intercepts both and lets each test assert whether leads were fetched at all.
+//
+// The FILE FORMATS themselves are not retested here: every byte now comes from
+// site/admin/export.js, whose own suite (site/admin/export.test.mjs) covers CSV
+// escaping, XLSX typing and the ZIP container. What is left for this file is the
+// endpoint's contract — the gate, the dormancy, the service-role read, and that the
+// right bytes leave with the right headers.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import handler, { csvCell, csvFormulaGuard, toCsv, leadColumns, LEAD_COLUMNS } from "./export-leads.mjs";
+import handler, { pickFormat, LEAD_FIELDS } from "./export-leads.mjs";
+import { FORMATS } from "../site/admin/export.js";
 
-// Minimal RFC-4180 reader, used only to prove that guarding a cell against
-// formula injection does not damage ordinary values: parse(toCsv(rows)) must
-// hand back exactly what went in. Handles quoted fields, doubled quotes and
-// CRLF record separators — the three things csvCell() emits.
+// Minimal RFC-4180 reader, used to prove that guarding a cell against formula
+// injection does not damage ordinary values.
 function parseCsv(text) {
   const rows = [];
   let row = [], field = "", quoted = false, i = 0;
@@ -64,10 +68,10 @@ function fakeRes() {
   };
 }
 
-function fakeReq({ method = "GET", auth = "Bearer tok" } = {}) {
+function fakeReq({ method = "GET", auth = "Bearer tok", query = {} } = {}) {
   const headers = {};
   if (auth !== null) headers.authorization = auth;
-  return { method, headers };
+  return { method, headers, query };
 }
 
 // Dispatches the two fetch() calls the handler's dependencies can make:
@@ -91,131 +95,27 @@ function makeFetch({ adminEmail = "owner@example.com", authOk = true, rows = SAM
   return { fn, calls };
 }
 
-// ---- CSV escaping helper (pure) ---------------------------------------------
-
-test("csvCell: leaves plain values untouched", () => {
-  assert.equal(csvCell("Oran"), "Oran");
-  assert.equal(csvCell(185000), "185000");
+// ── The format switch ──────────────────────────────────────────────────
+test("pickFormat: known formats pass, anything else falls back to CSV", () => {
+  // A backup URL is typed by a human. A working file beats a 400.
+  assert.equal(pickFormat({ format: "xlsx" }), "xlsx");
+  assert.equal(pickFormat({ format: "JSON" }), "json");
+  assert.equal(pickFormat({ format: ["csv", "xlsx"] }), "csv"); // repeated query param
+  assert.equal(pickFormat({ format: "pdf" }), "csv");
+  assert.equal(pickFormat({}), "csv");
+  assert.equal(pickFormat(undefined), "csv");
+  // A prototype key must not be mistaken for a format.
+  assert.equal(pickFormat({ format: "constructor" }), "csv");
 });
 
-test("csvCell: null/undefined → empty string", () => {
-  assert.equal(csvCell(null), "");
-  assert.equal(csvCell(undefined), "");
-});
-
-test("csvCell: quotes fields containing a comma", () => {
-  assert.equal(csvCell("Alger, Algérie"), '"Alger, Algérie"');
-});
-
-test("csvCell: quotes and doubles embedded double-quotes", () => {
-  assert.equal(csvCell('Sam "the man"'), '"Sam ""the man"""');
-});
-
-test("csvCell: quotes fields containing newlines (CR/LF)", () => {
-  assert.equal(csvCell("Ligne 1\nLigne 2"), '"Ligne 1\nLigne 2"');
-  assert.equal(csvCell("a\r\nb"), '"a\r\nb"');
-});
-
-test("csvCell: objects (jsonb) are JSON-stringified then escaped", () => {
-  assert.equal(csvCell({ a: 1, b: "x,y" }), '"{""a"":1,""b"":""x,y""}"');
-});
-
-// ---- CSV formula injection (OWASP) -------------------------------------------
-//
-// name / notes / city reach this table straight off the PUBLIC lead form
-// (site/assets/js/lead-capture.js → Supabase INSERT). A value whose first
-// character is =, +, -, @, TAB or CR is executed as a FORMULA by Excel,
-// LibreOffice and Google Sheets when the owner opens the backup — remote code
-// execution on the owner's machine, triggered by a web form. Every one of these
-// must come out inert.
-
-test("csvFormulaGuard: neutralises every dangerous leading character", () => {
-  assert.equal(csvFormulaGuard("=1+1"), "'=1+1");
-  assert.equal(csvFormulaGuard("+1+1"), "'+1+1");
-  assert.equal(csvFormulaGuard("-1+1"), "'-1+1");
-  assert.equal(csvFormulaGuard("@SUM(A1:A9)"), "'@SUM(A1:A9)");
-  assert.equal(csvFormulaGuard("\t=1+1"), "'\t=1+1"); // TAB is stripped by Excel first
-  assert.equal(csvFormulaGuard("\r=1+1"), "'\r=1+1"); // …so is CR
-});
-
-test("csvCell: the classic DDE payload in a lead name is defused", () => {
-  // The payload that shells out; it must be stored as literal text.
-  const payload = '=cmd|\' /C calc\'!A0';
-  const cell = csvCell(payload);
-  assert.ok(cell.startsWith("'="), `expected a leading quote, got ${cell}`);
-  assert.ok(!cell.startsWith("="));
-});
-
-test("csvCell: guard is applied INSIDE the RFC-4180 quotes, not outside", () => {
-  // A dangerous prefix AND a comma: the cell must be quoted for the CSV reader
-  // and prefixed for the spreadsheet — in that nesting order, or one of the two
-  // protections is lost.
-  assert.equal(csvCell("=HYPERLINK(1,2)"), `"'=HYPERLINK(1,2)"`);
-  assert.equal(csvCell('=A1&"x"'), `"'=A1&""x"""`);
-});
-
-test("csvCell: a legitimate negative number is NOT mangled", () => {
-  // A refund / credit in total_da is not a formula. Guarding it would corrupt
-  // the owner's arithmetic, so plain numeric literals are left exactly alone.
-  assert.equal(csvCell(-15000), "-15000");
-  assert.equal(csvCell("-15000"), "-15000");
-  assert.equal(csvCell("-1500.75"), "-1500.75");
-  assert.equal(csvCell("+42"), "+42");
-  assert.equal(csvCell("-1.5e3"), "-1.5e3");
-});
-
-test("csvCell: a + phone number that is not a bare numeral IS guarded", () => {
-  // "+213 555 12 34 56" is not a number; Excel would evaluate it and show
-  // #NAME?. Prefixing both defuses it and makes it display correctly.
-  assert.equal(csvCell("+213 555 12 34 56"), "'+213 555 12 34 56");
-  assert.equal(csvCell("+213555123456"), "+213555123456"); // bare numeral, untouched
-});
-
-test("csvCell: ordinary values keep their previous encoding exactly", () => {
-  assert.equal(csvCell("Yacine B."), "Yacine B.");
-  assert.equal(csvCell('O\'Brien, "Sam"'), '"O\'Brien, ""Sam"""');
-  assert.equal(csvCell("Ligne 1\nLigne 2, avec virgule"), '"Ligne 1\nLigne 2, avec virgule"');
-  assert.equal(csvCell("Alger, Algérie"), '"Alger, Algérie"');
-  assert.equal(csvCell({ a: 1, b: "x,y" }), '"{""a"":1,""b"":""x,y""}"');
-});
-
-test("round-trip: ordinary values survive toCsv → parse unchanged", () => {
-  const values = [
-    "Yacine B.", 'O\'Brien, "Sam"', "Alger, Algérie", "Ligne 1\nLigne 2, avec virgule",
-    "-15000", "185000", "0555 12 34 56", "12 août", "", "Grand Hôtel",
-  ];
-  const rows = values.map((v, i) => ({ id: i, name: v }));
-  const parsed = parseCsv(toCsv(rows, ["id", "name"]));
-  assert.deepEqual(parsed[0], ["id", "name"]);
-  values.forEach((v, i) => assert.equal(parsed[i + 1][1], v, `value ${i} did not round-trip`));
-});
-
-test("round-trip: a guarded value comes back as inert text, prefix and all", () => {
-  const parsed = parseCsv(toCsv([{ name: "=1+1" }], ["name"]));
-  assert.equal(parsed[1][0], "'=1+1"); // read back as text, never evaluated
-});
-
-test("toCsv: header row + CRLF-joined records, trailing CRLF", () => {
-  const csv = toCsv([{ id: 1, name: "A" }], ["id", "name"]);
-  assert.equal(csv, "id,name\r\n1,A\r\n");
-});
-
-test("leadColumns: canonical order, plus any extra data columns appended once", () => {
-  const cols = leadColumns([{ id: 1, name: "A", ip_hash: "z" }, { id: 2, extra: "y" }]);
-  assert.deepEqual(cols.slice(0, LEAD_COLUMNS.length), LEAD_COLUMNS);
-  assert.deepEqual(cols.slice(LEAD_COLUMNS.length), ["ip_hash", "extra"]);
-});
-
-// ---- Auth gate ---------------------------------------------------------------
-
+// ── The gate ───────────────────────────────────────────────────────────
 test("non-GET → 405 before any network call", async (t) => {
   const { fn, calls } = makeFetch();
-  const fetchMock = t.mock.method(globalThis, "fetch", fn);
+  t.mock.method(globalThis, "fetch", fn);
   const res = fakeRes();
   await handler(fakeReq({ method: "POST" }), res);
   assert.equal(res.statusCode, 405);
-  assert.equal(fetchMock.mock.calls.length, 0);
-  assert.deepEqual(calls, { auth: 0, leads: 0 });
+  assert.equal(calls.auth + calls.leads, 0);
 });
 
 test("non-admin (email not on ADMIN_EMAILS) → 403 and NO leads fetch", async (t) => {
@@ -224,8 +124,7 @@ test("non-admin (email not on ADMIN_EMAILS) → 403 and NO leads fetch", async (
   const res = fakeRes();
   await handler(fakeReq(), res);
   assert.equal(res.statusCode, 403);
-  assert.equal(calls.auth, 1);
-  assert.equal(calls.leads, 0); // PII never read for a non-admin
+  assert.equal(calls.leads, 0); // PII was never read
 });
 
 test("invalid session → 401 and NO leads fetch", async (t) => {
@@ -239,15 +138,12 @@ test("invalid session → 401 and NO leads fetch", async (t) => {
 
 test("missing bearer token → 401 and NO network call", async (t) => {
   const { fn, calls } = makeFetch();
-  const fetchMock = t.mock.method(globalThis, "fetch", fn);
+  t.mock.method(globalThis, "fetch", fn);
   const res = fakeRes();
   await handler(fakeReq({ auth: null }), res);
   assert.equal(res.statusCode, 401);
-  assert.equal(fetchMock.mock.calls.length, 0);
-  assert.deepEqual(calls, { auth: 0, leads: 0 });
+  assert.equal(calls.auth + calls.leads, 0);
 });
-
-// ---- Dormancy ----------------------------------------------------------------
 
 test("dormant (service key unset) → 503 for a proven admin, no leads fetch", async (t) => {
   const saved = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -259,16 +155,17 @@ test("dormant (service key unset) → 503 for a proven admin, no leads fetch", a
     await handler(fakeReq(), res);
     assert.equal(res.statusCode, 503);
     assert.match(res.body.error, /not configured/);
-    assert.equal(calls.auth, 1); // auth ran…
-    assert.equal(calls.leads, 0); // …but nothing was read
+    assert.equal(calls.leads, 0);
+    // The dormancy check runs AFTER the admin gate, so a stranger never learns
+    // anything about how the deploy is configured.
+    assert.equal(calls.auth, 1);
   } finally {
     process.env.SUPABASE_SERVICE_ROLE_KEY = saved;
   }
 });
 
-// ---- Happy path --------------------------------------------------------------
-
-test("admin happy path → CSV with header row, escaped fields, and download headers", async (t) => {
+// ── The payload ────────────────────────────────────────────────────────
+test("admin happy path → CSV with French headers and download headers", async (t) => {
   let leadsUrl, leadsOpts;
   const { fn } = makeFetch();
   t.mock.method(globalThis, "fetch", async (url, opts) => {
@@ -280,8 +177,9 @@ test("admin happy path → CSV with header row, escaped fields, and download hea
   await handler(fakeReq(), res);
 
   assert.equal(res.statusCode, 200);
-  assert.equal(res.headers["Content-Type"], "text/csv; charset=utf-8");
-  assert.match(res.headers["Content-Disposition"], /attachment; filename="leads-\d{4}-\d{2}-\d{2}\.csv"/);
+  assert.equal(res.headers["Content-Type"], FORMATS.csv.mime);
+  assert.match(res.headers["Content-Disposition"], /attachment; filename="demandes-\d{4}-\d{2}-\d{2}\.csv"/);
+  assert.equal(res.headers["Cache-Control"], "no-store");
 
   // The read used the service-role key, bypassing RLS.
   assert.ok(leadsUrl.includes("/rest/v1/leads"));
@@ -289,18 +187,59 @@ test("admin happy path → CSV with header row, escaped fields, and download hea
   assert.equal(leadsOpts.headers.apikey, "service-key");
   assert.match(leadsOpts.headers.Authorization, /^Bearer service-key$/);
 
-  const body = String(res.body);
-  const lines = body.replace(/^﻿/, "").split("\r\n");
-  // Header row is the canonical column order.
-  assert.equal(lines[0], LEAD_COLUMNS.join(","));
-  // Row 1: plain values.
+  const body = Buffer.from(res.body).toString("utf8");
+  assert.ok(body.startsWith("﻿"), "UTF-8 BOM for Excel");
+  const lines = body.slice(1).split("\r\n");
+  assert.equal(lines[0], LEAD_FIELDS.map((f) => f.label).join(","));
   assert.ok(body.includes("Yacine B."));
   assert.ok(body.includes("185000"));
-  // Row 2: comma-, quote-, and newline-bearing fields are quoted/escaped.
   assert.ok(body.includes('"O\'Brien, ""Sam"""'));
   assert.ok(body.includes('"Ligne 1\nLigne 2, avec virgule"'));
-  // BOM present for Excel UTF-8.
-  assert.ok(body.startsWith("﻿"));
+});
+
+test("?format=xlsx → a real workbook, not a renamed CSV", async (t) => {
+  const { fn } = makeFetch();
+  t.mock.method(globalThis, "fetch", fn);
+  const res = fakeRes();
+  await handler(fakeReq({ query: { format: "xlsx" } }), res);
+
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.headers["Content-Type"], FORMATS.xlsx.mime);
+  assert.match(res.headers["Content-Disposition"], /\.xlsx"$/);
+  const buf = Buffer.from(res.body);
+  assert.equal(buf.subarray(0, 2).toString("latin1"), "PK"); // ZIP magic
+  assert.ok(buf.includes(Buffer.from("xl/worksheets/sheet1.xml")));
+  assert.ok(buf.length > 1000);
+});
+
+test("?format=json → raw keys and raw values, for re-import", async (t) => {
+  const { fn } = makeFetch();
+  t.mock.method(globalThis, "fetch", fn);
+  const res = fakeRes();
+  await handler(fakeReq({ query: { format: "json" } }), res);
+
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.headers["Content-Type"], FORMATS.json.mime);
+  const parsed = JSON.parse(Buffer.from(res.body).toString("utf8"));
+  assert.equal(parsed.count, 2);
+  assert.equal(parsed.leads[0].total_da, 185000);              // number, not "185 000 DA"
+  assert.equal(parsed.leads[0].created_at, "2026-07-23T10:00:00Z"); // the ISO instant
+});
+
+test("the browser and the server export the same columns", async (t) => {
+  // These two used to drift — the browser emitted wa_destination and no id, the
+  // server the reverse, while a comment in each claimed they were identical.
+  // There is now one module, and this asserts the endpoint really uses it.
+  const { fn } = makeFetch({ rows: [{ ...SAMPLE[0], wa_destination: "msila" }] });
+  t.mock.method(globalThis, "fetch", fn);
+  const res = fakeRes();
+  await handler(fakeReq(), res);
+  const rows = parseCsv(Buffer.from(res.body).toString("utf8").slice(1));
+  assert.deepEqual(rows[0], LEAD_FIELDS.map((f) => f.label));
+  assert.ok(rows[0].includes("Agence WhatsApp"));
+  assert.ok(rows[0].includes("Référence interne"));
+  // …and the office slug is resolved to the branch name the owner knows.
+  assert.equal(rows[1][rows[0].indexOf("Agence WhatsApp")], "M'Sila");
 });
 
 test("end-to-end: a hostile lead name is inert in the downloaded CSV", async (t) => {
@@ -315,28 +254,29 @@ test("end-to-end: a hostile lead name is inert in the downloaded CSV", async (t)
   await handler(fakeReq(), res);
 
   assert.equal(res.statusCode, 200);
-  const body = String(res.body).replace(/^﻿/, "");
-  const parsed = parseCsv(body);
-  const cell = (name) => parsed[1][parsed[0].indexOf(name)];
+  const parsed = parseCsv(Buffer.from(res.body).toString("utf8").slice(1));
+  const cell = (label) => parsed[1][parsed[0].indexOf(label)];
 
-  assert.equal(cell("name"), "=cmd|' /C calc'!A0".replace(/^=/, "'="));
-  assert.ok(cell("notes").startsWith("'@"));
+  assert.equal(cell("Nom"), "'=cmd|' /C calc'!A0");
+  assert.ok(cell("Notes").startsWith("'@"));
   // …and the legitimate negative total is still a number, not text.
-  assert.equal(cell("total_da"), "-15000");
+  assert.equal(cell("Total (DA)"), "-15000");
   // Nothing in the file starts a field with a raw formula character.
   for (const row of parsed.slice(1)) {
-    for (const f of row) assert.ok(!/^[=+\-@\t\r]/.test(f) || /^[+-]?[\d.]/.test(f), `unguarded field: ${JSON.stringify(f)}`);
+    for (const f of row) {
+      assert.ok(!/^[=+\-@\t\r]/.test(f) || /^[+-]?[\d.]/.test(f), `unguarded field: ${JSON.stringify(f)}`);
+    }
   }
 });
 
-test("empty table → CSV with just the canonical header row", async (t) => {
+test("empty table → a file with just the header row, never a crash", async (t) => {
   const { fn } = makeFetch({ rows: [] });
   t.mock.method(globalThis, "fetch", fn);
   const res = fakeRes();
   await handler(fakeReq(), res);
   assert.equal(res.statusCode, 200);
-  const body = String(res.body).replace(/^﻿/, "");
-  assert.equal(body, LEAD_COLUMNS.join(",") + "\r\n");
+  const body = Buffer.from(res.body).toString("utf8").slice(1);
+  assert.equal(body, LEAD_FIELDS.map((f) => f.label).join(",") + "\r\n");
 });
 
 test("supabase error status → 502, not a crash", async (t) => {
