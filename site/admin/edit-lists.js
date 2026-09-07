@@ -224,7 +224,7 @@ export function inferShape(content, spec, prop) {
     if (!key) continue;
     const m = /^(.*?)(\d+)(.*)$/.exec(key);
     if (!m) continue; // a key with no index is not a per-item pattern
-    const id = `${m[1]} ${m[3]}`;
+    const id = `${m[1]}\u0000${m[3]}`;
     const hit = tally.get(id) || { head: m[1], tail: m[3], attr: attrOf(raw) || "data-i18n", n: 0 };
     hit.n += 1;
     tally.set(id, hit);

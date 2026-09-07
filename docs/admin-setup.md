@@ -108,8 +108,12 @@ Supabase → **Database** → **Webhooks** → **Create a new hook**:
 | Events | **Insert** only |
 | Type | HTTP Request |
 | Method | `POST` |
-| URL | `https://alliancetravel.app/api/notify-lead` |
+| URL | `https://alliancetravel.app/api/notify-lead/` |
 | HTTP Header | name `x-notify-secret`, value = the **same** string you used for `LEAD_NOTIFY_SECRET` |
+
+**Copy that URL exactly, final slash included.** Without the slash the site answers
+with a redirect instead of running, and Supabase does not necessarily follow one:
+the lead would be saved and no email would ever be sent, with no error anywhere.
 
 Create the hook **in the Supabase dashboard**, not through SQL — the header value is
 a secret, and a migration file would put it in the repository forever.
@@ -125,6 +129,7 @@ land a `[TEST]` message in your inbox within a minute. If it does not:
 | `… you can only send testing emails to your own email address` | you are on `onboarding@resend.dev`; `OWNER_NOTIFY_EMAIL` must be your Resend account's address |
 | `API key is invalid` | re-copy `RESEND_API_KEY` |
 | Nothing arrives but the button says sent | check the **spam** folder, then Resend → **Emails** for the delivery log |
+| The test button works, but real leads send nothing | the webhook URL is missing its final slash (step 4), or the hook is not on `public.leads` / not on **Insert** |
 
 **To switch it off later:** delete the Supabase webhook, or clear `RESEND_API_KEY`.
 The endpoint goes back to doing nothing; no code change is needed.

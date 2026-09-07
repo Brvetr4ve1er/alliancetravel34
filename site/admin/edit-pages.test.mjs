@@ -83,6 +83,7 @@ function load() {
     addEventListener() {},
   };
 
+  const wired = [];
   const ctx = {
     window: win, document: doc,
     // stand-ins for ./i18n.js, ./icons.js, ./ui.js
@@ -96,7 +97,9 @@ function load() {
     // suite (site/admin/edit-lists.test.mjs) that runs them against real trip
     // data. A stub that rendered markup would only test the fake DOM.
     listsHtml: () => "",
-    wireLists() {},
+    // Records where the handlers were bound. #area-pages is never
+    // rebuilt, so binding there leaks a listener per render.
+    wireLists(root) { wired.push(root ? root.id : null); },
     collectLists: () => [],
     JSON, Promise, console, setTimeout, encodeURIComponent,
   };
@@ -104,7 +107,8 @@ function load() {
   vm.runInContext(src, ctx);
 
   return {
-    calls,
+    calls, wired,
+    html: () => byId("area-pages").innerHTML,
     loadTrip: (slug) => ctx.loadTrip(slug),
     save: () => ctx.save(),
     json: () => byId("ep-json").value,          // what the raw-JSON panel shows
@@ -210,4 +214,16 @@ test("a failed re-sync keeps the publish confirmation on screen", async () => {
   env.calls[2].reject(new Error("offline"));
   await saving;
   assert.equal(env.msg(), "pages.published", "the publish succeeded; say so");
+});
+
+test("the list handlers are bound inside the markup, not to the screen", async () => {
+  // #area-pages is created once; renderEditor only replaces its innerHTML. A
+  // listener bound there survives every render, so opening a second trip used
+  // to leave two live handlers: one "+ Ajouter" click appended two rows, and
+  // the stale handler still minted keys from the previous trip's content.
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  await open(env, "egypte", { ...BALI, slug: "egypte" }, "sha-eg");
+  assert.deepEqual(env.wired, ["ep-lists", "ep-lists"]);
+  assert.ok(env.html().includes('<div id="ep-lists">'), "the wrapper must exist in the markup");
 });

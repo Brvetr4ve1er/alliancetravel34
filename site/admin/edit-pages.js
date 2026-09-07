@@ -204,7 +204,7 @@ function renderEditor(container) {
       ${grouped.map((g) => `<details class="group"${g.open ? " open" : ""}><summary>${escHtml(t(g.key))}</summary>${g.html}</details>`).join("")}
       ${rest}
       <details class="group"><summary>${escHtml(t("pages.group.prices"))}</summary>${hotelPriceInputs(c)}</details>
-      ${listsHtml(c)}
+      <div id="ep-lists">${listsHtml(c)}</div>
       <details class="adv"><summary data-i18n="pages.advanced"></summary>
         <p class="msg" data-i18n="pages.advanced.warn"></p>
         <textarea id="ep-json">${escHtml(JSON.stringify(c, null, 2))}</textarea>
@@ -228,9 +228,12 @@ function renderEditor(container) {
     const key = Object.keys(legendIcon).find((k) => t(k) === label);
     sm.prepend(icon(legendIcon[key] || "file", { size: 16 }));
   });
-  // Add/remove for every list. Bound once, on the container, so rows added
-  // later are covered without rebinding.
-  wireLists(container, c);
+  // Add/remove for every list. Delegated, so rows added later are covered
+  // without rebinding - but bound to #ep-lists, NOT to `container`.
+  // #area-pages outlives every render (only its innerHTML is replaced), so
+  // binding there stacked one live listener per trip opened, each still
+  // holding the previous trip's `c`. #ep-lists is rebuilt with the markup.
+  wireLists(container.querySelector("#ep-lists"), c);
   const st = window.AT_ADMIN.status;
   if (st && !st.github) {
     const btn = container.querySelector("#ep-save");
