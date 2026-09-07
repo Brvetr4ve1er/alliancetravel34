@@ -4,6 +4,7 @@
 // checkImages/siteDir gate the only filesystem-dependent checks.
 import { existsSync } from "node:fs";
 import { join, basename } from "node:path";
+import { requiredImages, shapeError, slotOf } from "./image-variants.mjs";
 
 const isStr = (v) => typeof v === "string" && v.length > 0;
 
@@ -238,10 +239,55 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
       if (path.startsWith("i18n.")) continue; // translations may cite examples
       // hero.fg (foreground cutout) is optional — the Aurora hero uses hero.bg full-bleed only.
       if (path === "hero.fg") continue;
+      // hero.bg / hotels[].image / meta.ogImage are checked below instead,
+      // where the derived variants are known. Skipping avoids two messages
+      // for one wrong path.
+      if (slotOf(path)) continue;
       const m = value.match(/^(?:\.\.\/)+(assets\/[^\s"']+\.(?:jpe?g|png|webp|avif|svg))$/i);
       if (!m) continue;
       if (!imgExists(m[1])) {
         const msg = `image introuvable: "${value}" (champ ${path})`;
+        enabled ? err(file, msg) : warn(file, msg);
+      }
+    }
+  }
+
+  // Every image the RENDERED page asks for, not just the one the JSON stores.
+  //
+  // Shape first. The templates build the other formats by string .replace() on
+  // this exact value, so a hero that does not end in "--bg.jpg" yields paths
+  // like "photo.jpg--bg.webp": files that exist nowhere. The stored image can
+  // be perfectly real and the page still break.
+  const imageFields = [["hero.bg", get(data, "hero.bg")], ["meta.ogImage", get(data, "meta.ogImage")]];
+  (get(data, "hotels") ?? []).forEach((h, i) => imageFields.push([`hotels[${i}].image`, h?.image]));
+  for (const [path, value] of imageFields) {
+    if (!isStr(value) || !value) continue; // absent/!string is req()'s job, above
+    const bad = shapeError(path, value);
+    if (bad) err(file, `${path}: ${bad} — la page fabrique les autres formats à partir de ce nom`);
+  }
+
+  // Then existence. Grouped by field on purpose: if the chosen photo itself is
+  // gone, listing its five absent siblings as well is noise the owner cannot
+  // act on. AVIF is skipped entirely — it is optional because a photo uploaded
+  // from the dashboard cannot have one, and the render omits that <source>.
+  if (imgExists) {
+    const byField = new Map();
+    for (const item of requiredImages(data)) {
+      if (item.optional) continue;
+      if (!byField.has(item.field)) byField.set(item.field, []);
+      byField.get(item.field).push(item);
+    }
+    for (const [field, items] of byField) {
+      const stored = items.find((x) => x.stored);
+      if (stored && !imgExists(stored.rel)) {
+        const msg = `image introuvable: "${stored.value}" (champ ${field})`;
+        enabled ? err(file, msg) : warn(file, msg);
+        continue; // its siblings are missing too; one message is the actionable one
+      }
+      for (const x of items) {
+        if (x.stored || imgExists(x.rel)) continue;
+        const msg = `image incomplète: il manque "${x.value}" (champ ${field}). `
+          + `La page réclame ce fichier en plus de la photo choisie — sans lui, l'image est cassée.`;
         enabled ? err(file, msg) : warn(file, msg);
       }
     }
