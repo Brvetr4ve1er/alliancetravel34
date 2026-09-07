@@ -166,16 +166,50 @@ Then sign in normally. (`gen_salt('bf')` is required — Supabase stores bcrypt,
 a hash in any other format saves fine but fails every login.)
 
 ### Editing a page
-1. On the **Pages** tab, choose a trip from the dropdown.
-2. Change any of the fields shown (title, hero text, dates, "from" price, hotel prices, etc.).
-3. Click **Publier**.
-4. You'll see **"Publié ✓ — la page sera à jour dans ~1 minute"** with a link to the saved change. Your live page updates within about a minute.
+1. On the **Pages** tab, choose a trip.
+2. The form is split into collapsible sections. Open the one you want and change what you need:
+
+| Section | What it controls |
+|---|---|
+| **Référencement (Google)** | The title and description Google shows, and what appears when the page is shared on WhatsApp or Facebook |
+| **En-tête de la page** | The big headline, the sur-title, the intro paragraph, the duration line, the small print |
+| **Titres des sections** | The headings above the itinerary, the hotels, the map, the calculator and the final call to action |
+| **Tarifs hôtels (DA)** | The price grid. Everything else that shows a price — the "from" price in the hero, the hotel cards, the calculator — is recalculated from this on save, so you only ever change it here |
+| **Dates de départ** | Add, edit, remove and preselect departures |
+| **Questions fréquentes** | The FAQ at the bottom of the page |
+| **Points forts** | The four cards under the header |
+| **Itinéraire jour par jour** | The day-by-day programme |
+| **Fiches hôtels** | Hotel names and star ratings |
+| **Ce qui est inclus / n'est pas inclus** | The two columns; the counters above them update themselves |
+| **Avis clients** | The testimonials |
+
+3. Click **Publier**. You'll see **"Publié ✓ — la page sera à jour dans ~1 minute"** with a link to the saved change.
+
+**Adding and removing items.** Every list has a **+ Ajouter…** button at the bottom
+and a **✕** on each row. A list cannot be emptied — the page needs at least one of
+each — and you'll be told so if you try.
+
+**Departure dates.** Each one has two boxes: the **full date**, copied word for word
+into the WhatsApp message (`03 – 11 Juillet 2026`), and the **short button text**
+shown on the page (`3–11 Juil 2026`). A date that has passed disappears from the site
+by itself, so there is no need to delete old ones — though tidying them up is fine.
 
 **What the messages mean:**
 - **Green "Publié ✓"** — saved. The page rebuilds and goes live in ~1 minute.
-- **Red "Refusé — l'édition casserait la page"** — your change would have broken the page (e.g. a required field left empty), so it was **not** saved and your live site is untouched. Read the reasons listed, fix them, and click Publier again.
+- **Orange "Publication annulée : … champ(s) vide(s) ou invalide(s)"** — caught before
+  anything was sent. The first offending box is highlighted and its section opened for
+  you. A field left empty would break the page, so it is refused rather than published.
+- **Red "Refusé — l'édition casserait la page"** — the server checked your change and
+  it would have broken the build, so it was **not** saved and your live site is
+  untouched. Read the reasons, fix them, click Publier again.
 
-> **What the safety net does and does not cover.** It checks that the page still *builds*: required fields present, valid structure, the page renders. It does **not** check that what you wrote is *true* or *consistent* — and it cannot see image files while saving (see the Avancé section below). Treat a green "Publié ✓" as "the page still works", not as "the change is correct".
+> **What the safety net does and does not cover.** Before anything is saved, the
+> server validates the structure, recomputes every price that is derived from the
+> price grid, renders the page to make sure it still builds, and checks that no text
+> a translation depends on has been left empty. An edit that would stop the site
+> rebuilding is refused with an explanation. What it does **not** check is whether
+> what you wrote is *true* — a wrong price or a wrong date publishes happily. Treat a
+> green "Publié ✓" as "the page still works", not as "the change is correct".
 
 ### The "Avancé — JSON brut" panel
 Most edits use the simple fields above. The **Avancé** panel lets you edit everything else in raw form. Edit it carefully — if the text isn't valid, saving is refused.
