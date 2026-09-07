@@ -218,9 +218,19 @@ function renderEditor(container) {
   // out: the Pages nav button no-ops once the area is initialised, which left a
   // page reload as the only exit.
   dirty = false;
-  container.querySelector("#ep-card").addEventListener("input", () => { dirty = true; });
+  const card = container.querySelector("#ep-card");
+  card.addEventListener("input", () => { dirty = true; });
+  // Add/delete are clicks, not inputs: without this, add-then-Retour and
+  // delete-then-Retour walked past the unsaved-work prompt.
+  card.addEventListener("click", (e) => {
+    if (e.target.closest("[data-add], [data-del]")) dirty = true;
+  });
   back.addEventListener("click", () => {
     if (dirty && !window.confirm(t("pages.back.dirty"))) return;
+    // Leaving invalidates anything still in flight for this screen. save()'s
+    // re-sync guards on this token and then writes to #ep-json, which does not
+    // exist on the list view - without the bump that is a TypeError.
+    loadSeq += 1;
     renderList(container);
   });
   container.querySelector("#ep-save").prepend(icon("send", { size: 17 }));
@@ -421,7 +431,8 @@ async function save() {
     //
     // Stamped with the SAME token as loadTrip(): this is the second
     // /api/get-trip that writes `current`, and #ep-back is never disabled, so
-    // the owner can go back and open another trip while it is in flight.
+    // the owner can leave - or open another trip - while it is in flight.
+    // Both bump loadSeq, which is what makes the guard below hold.
     const seq = ++loadSeq;
     let g = null;
     try { g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`); }
