@@ -179,7 +179,7 @@ a hash in any other format saves fine but fails every login.)
 
 ### The "Avancé — JSON brut" panel
 Most edits use the simple fields above. The **Avancé** panel lets you edit everything else in raw form. Edit it carefully — if the text isn't valid, saving is refused.
-- **⚠️ Do not change image paths here.** The safety check cannot see image files while saving. A wrong image path saves with a green "Publié ✓" — and then **blocks the rebuild of the entire site**, so *every* page stops updating until a developer fixes it. Ask for an image change instead of doing it here. (Normal field edits — prices, text, dates — are never affected by this.)
+- **Image paths are checked when you save.** A path pointing at a file that does not exist is refused with an explanation, not published. (This was not always true — the check was added later. If you are working from an older note that says image paths are unchecked, it is out of date.) Adding a *new* image is still a developer job: the file has to be uploaded to the repository first.
 - **⚠️ Editing French text here does not update English or Arabic.** Those translations are stored separately. If you change a price, a date or a departure month, the English and Arabic versions of that page keep showing the **old** value, with no warning. Ask for translation updates whenever you change a number or a date.
 
 ### Leads tab

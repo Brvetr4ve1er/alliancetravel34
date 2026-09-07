@@ -6,6 +6,22 @@ import { existsSync } from "node:fs";
 import { join, basename } from "node:path";
 
 const isStr = (v) => typeof v === "string" && v.length > 0;
+
+// Markup that EXECUTES, as opposed to markup that formats. Each entry is
+// [regex, French name] so the error can say which one was found. Kept as a
+// module constant (not rebuilt per call) and written without the `g` flag on
+// purpose: a global regex carries lastIndex between .test() calls and would
+// skip every other match.
+const UNSAFE_MARKUP = [
+  [/<\s*script\b/i, "<script>"],
+  [/<\s*iframe\b/i, "<iframe>"],
+  [/<\s*(?:object|embed|applet)\b/i, "<object>/<embed>"],
+  // onclick=, onerror=, onload= … the attribute form is what matters, so the
+  // `=` is required: the word "onload" in prose is not a handler.
+  [/\bon[a-z]+\s*=/i, "un gestionnaire d'événement (onclick, onerror…)"],
+  // Matches through entity/whitespace obfuscation of the colon.
+  [/javascript\s*(?:&#x?[0-9a-f]+;?|:)/i, "une URL javascript:"],
+];
 const isInt = (v) => Number.isInteger(v);
 
 function get(obj, path) {
@@ -190,6 +206,27 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
     if (faqLd[i]?.name !== plain)
       warn(file, `seo.faqJsonLd[${i}].name ≠ question FAQ correspondante ("${faqLd[i]?.name}" vs "${plain}")`);
   });
+
+  // ── Executable markup ─────────────────────────────────────────────────
+  // tools/templates/engine.mjs interpolates every string into the page without
+  // escaping, so a trip JSON is effectively page source. The dashboard's raw-JSON
+  // panel and (since 2026-09-07) its content editors write into that source, and
+  // the admin session holds a token that can commit to the repository — so a
+  // <script> smuggled into a trip field would run on the public site with the
+  // agency's own domain behind it.
+  //
+  // A denylist, not "no markup": <strong>, <em> and inline <svg> are legitimate
+  // and pervasive in this data (measured: 860 <strong>, 165 <svg>). These five
+  // patterns appear ZERO times across the 7 live trips, so nothing existing is
+  // rejected.
+  for (const [path, value] of strings(data)) {
+    for (const [re, what] of UNSAFE_MARKUP) {
+      if (re.test(value)) {
+        err(file, `${path}: ${what} interdit dans le contenu (le texte est inséré tel quel dans la page)`);
+        break; // one message per field is enough to act on
+      }
+    }
+  }
 
   // Referenced local images must exist. Paths are relative to site/<slug>/.
   // The build resolves them on disk; the save-trip function has no site/ in its

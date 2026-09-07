@@ -7,6 +7,7 @@ import { isValidSlug } from "./_lib/slug.mjs";
 import { validateTrip } from "../tools/validate-trip.mjs";
 import { renderTrip } from "../tools/templates/trip2.mjs";
 import { driftOf, syncDerivedPrices } from "../tools/value-graph.mjs";
+import { checkRenderedPage } from "../tools/check-rendered-page.mjs";
 
 // Hard ceiling on the request body. The whole body is buffered in memory before it
 // can be parsed, so without a cap one client can stream until the function dies.
@@ -71,8 +72,20 @@ export default async function handler(req, res) {
   const synced = syncDerivedPrices(content).trip;
 
   // 2b. Dry-run render the SYNCED content — renderTrip throws on any missing field.
-  try { renderTrip(synced); }
+  let html;
+  try { html = renderTrip(synced); }
   catch (e) { return res.status(422).json({ errors: [`rendu impossible: ${e.message}`] }); }
+
+  // 2b-bis. Run the build's i18n gates on that render.
+  //
+  // This closes a measured hole. Blanking faq[0].question passed validateTrip
+  // (0 errors), renderTrip and driftOf — so the edit was committed under a
+  // "Publié ✓" — and then killed the next Vercel build with
+  // `clé i18n "azFaqQ1": texte français vide`, freezing EVERY page until
+  // someone hand-edited the JSON. The owner had no way to know. Refusing here
+  // costs one pass over a string we already have.
+  const pageProblems = checkRenderedPage(html);
+  if (pageProblems.length) return res.status(422).json({ errors: pageProblems });
 
   // 2c. Price coherence backstop on the synced content (unresolvable cases still 422).
   const drift = driftOf(synced);
