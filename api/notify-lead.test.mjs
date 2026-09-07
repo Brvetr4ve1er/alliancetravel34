@@ -131,7 +131,7 @@ test("happy path: exactly one POST to Resend carrying the lead + wa.me reply lin
 
   const payload = JSON.parse(sentOpts.body);
   assert.equal(payload.to, "owner@example.com");
-  assert.equal(payload.from, "notifications@alliance-travel.dz"); // default sender
+  assert.equal(payload.from, "Alliance Travel <alertes@alliancetravel.app>"); // DEFAULT_FROM
   assert.ok(payload.subject.includes("Yacine B."));
 
   // wa.me link: leading 0 → 213, non-digits stripped (matches admin leads.js).
@@ -149,7 +149,7 @@ test("happy path: exactly one POST to Resend carrying the lead + wa.me reply lin
 });
 
 test("configurable sender: LEAD_NOTIFY_FROM overrides the default", async (t) => {
-  process.env.LEAD_NOTIFY_FROM = "leads@alliance-travel.dz";
+  process.env.LEAD_NOTIFY_FROM = "leads@alliancetravel.app";
   try {
     let sentOpts;
     t.mock.method(globalThis, "fetch", async (url, opts) => {
@@ -159,7 +159,7 @@ test("configurable sender: LEAD_NOTIFY_FROM overrides the default", async (t) =>
     const res = fakeRes();
     await handler(fakeReq(), res);
     assert.equal(res.statusCode, 200);
-    assert.equal(JSON.parse(sentOpts.body).from, "leads@alliance-travel.dz");
+    assert.equal(JSON.parse(sentOpts.body).from, "leads@alliancetravel.app");
   } finally {
     delete process.env.LEAD_NOTIFY_FROM;
   }

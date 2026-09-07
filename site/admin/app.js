@@ -369,6 +369,71 @@ document.addEventListener("admin:area", async (e) => {
     AT_ADMIN.status = st;
     line("settings.github", !!st.github, null, "send");
     if (st.branch) line("settings.branch", true, st.branch, "branch");
+
+    // ── Alertes email ───────────────────────────────────────────────
+    // A half-configured alert is indistinguishable from a working one from the
+    // outside: no email arrives either way. So each missing piece is named
+    // individually, and the button proves the WHOLE chain — env vars → provider
+    // account → verified domain → inbox — in one press. Before this, the only
+    // way to find out was to wait for a real customer and hope.
+    const n = st.notify;
+    if (n) {
+      line("settings.notify", n.ready, null, "mail");
+      // Only shown when broken: a working feature does not need to itemise itself.
+      if (!n.ready) {
+        if (!n.secret) line("settings.notify.secret", false, null, "key");
+        if (!n.provider) line("settings.notify.provider", false, null, "send");
+      }
+      line("settings.notify.to", !!n.to, n.to || t("settings.notify.none"), "inbox");
+
+      const card = cfg.parentElement;
+      const btn = document.createElement("button");
+      btn.className = "btn btn--ghost btn--block";
+      btn.type = "button";
+      btn.append(icon("send", { size: 17 }));
+      const bl = document.createElement("span"); bl.textContent = t("settings.notify.test");
+      btn.append(bl);
+      const out = document.createElement("p");
+      out.className = "msg";
+      out.setAttribute("role", "status");
+      out.setAttribute("aria-live", "polite");
+      card.append(btn, out);
+
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        out.className = "msg"; out.textContent = t("settings.notify.testing");
+        let r;
+        try {
+          r = await window.AT_ADMIN.callApi("/api/notify-test", { method: "POST" });
+        } catch {
+          out.className = "msg err"; out.textContent = t("settings.notify.network");
+          return;
+        } finally {
+          // In `finally`: a network throw used to be the one path that could
+          // leave a button dead for the rest of the session (see save() in
+          // edit-pages.js, same bug, same fix).
+          btn.disabled = false;
+        }
+        const d = (r && r.data) || {};
+        if (r.ok && d.ok) {
+          out.className = "msg ok";
+          out.textContent = fmt("settings.notify.sent", { to: d.to || n.to || "" });
+        } else if (r.ok && d.step === "config") {
+          out.className = "msg err";
+          out.textContent = fmt("settings.notify.missing", { what: (d.missing || []).join(", ") });
+        } else if (r.ok && d.step === "provider") {
+          out.className = "msg err";
+          // The email provider's own sentence, verbatim — it is what names the
+          // real problem ("the domain is not verified"), and a paraphrase would
+          // send the owner back to a developer. textContent, never markup:
+          // it is third-party text arriving in an authenticated session.
+          out.textContent = fmt("settings.notify.failed", { e: d.error || d.status });
+        } else {
+          out.className = "msg err";
+          out.textContent = `Erreur ${r.status}: ${d.error || "inconnue"}`;
+        }
+      });
+    }
   } else {
     // Say "we could not check", never "non configuré": that is a verdict we
     // have not earned. Releasing reglagesInit is what makes the retry work.

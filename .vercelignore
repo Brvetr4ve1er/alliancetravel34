@@ -7,10 +7,13 @@
 # The pattern matches at any depth (api/, tools/, site/admin/).
 *.test.mjs
 
-# lead-autoreply's notify endpoint — dormant until the owner provisions Resend +
-# the Supabase INSERT webhook (see docs/admin-setup.md). Its code + test stay in
-# the repo; remove this line when activating the feature.
-api/notify-lead.mjs
+# NOTE: api/notify-lead.mjs was excluded here while the feature was unprovisioned.
+# It is now DEPLOYED on purpose — the Supabase INSERT webhook needs a URL to POST
+# to, and a route that does not exist cannot be tested or configured. Dormancy is
+# still enforced, but by the handler's env checks (no secret → 401, no provider or
+# recipient → 200 no-op), which is where it belongs. Do not re-add the exclusion:
+# it would make the webhook 404 and Supabase would retry a dead URL forever.
+# Runbook: docs/admin-setup.md § Alertes email.
 
 # Dev-only trees the build never reads. buildCommand is `node tools/build.mjs`,
 # which touches only data/, tools/ and site/; excluding these keeps the upload

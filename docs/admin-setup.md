@@ -29,6 +29,10 @@ Vercel → your project → **Settings** → **Environment Variables**. Add thes
 | `GITHUB_REPO` | `Brvetr4ve1er/alliancetravel34` |
 | `GITHUB_BRANCH` | `integrate/unified-admin` |
 | `ADMIN_EMAILS` | your login email (comma-separated if more than one person) |
+| `LEAD_NOTIFY_SECRET` | *(email alerts only — see 4c)* any long random string you invent |
+| `RESEND_API_KEY` | *(email alerts only)* the API key from your Resend account |
+| `OWNER_NOTIFY_EMAIL` | *(email alerts only)* where alerts should land, e.g. `alliancetravel34@gmail.com` |
+| `LEAD_NOTIFY_FROM` | *(optional)* sender address. Defaults to `Alliance Travel <alertes@alliancetravel.app>` |
 
 > **Important:** `GITHUB_BRANCH` must be the **same branch Vercel builds for production**. Edits are committed to this branch; if it doesn't match, your changes will save but never appear on the live site.
 >
@@ -52,6 +56,78 @@ a few messages per hour project-wide, carries no delivery guarantee, and is shar
 by every email flow. Any real provider (Resend, Brevo, SendGrid, Gmail SMTP…) lifts
 that to a configurable limit. Not required to use the dashboard — only to make the
 email-based flows dependable.
+
+### 4c. Email alerts: know the moment a customer writes
+*Optional but recommended. Without this, a new enquiry is only visible if you open
+the dashboard and look. With it, you get an email — name, phone, trip, budget and a
+one-tap WhatsApp reply link — within seconds of the form being submitted.*
+
+Nothing needs to be programmed. The endpoint (`api/notify-lead.mjs`) is already
+deployed and stays inert until the four steps below are done. **Réglages →
+Configuration** shows you which pieces are still missing, and the **« Envoyer un
+email de test »** button proves the whole chain end to end — so you never have to
+find out by losing a real customer.
+
+**Step 1 — get a sending account.** Create a free account at
+[resend.com](https://resend.com) and copy an **API key** (`re_…`). The free tier is
+far above this site's volume.
+
+**Step 2 — decide where mail is sent *from*.** Two options; you can start with the
+first and move to the second later.
+
+- **Fastest, zero DNS (recommended to start).** Set `LEAD_NOTIFY_FROM` to
+  `onboarding@resend.dev`. Resend's shared test domain works with no setup at all,
+  but it will **only deliver to the email address that owns your Resend account** —
+  which is exactly the case here, since the only recipient is you. Make sure
+  `OWNER_NOTIFY_EMAIL` is that same address.
+- **Proper, uses your own domain.** In Resend, **Add Domain** → `alliancetravel.app`.
+  Resend then shows the exact DNS records to create — typically a **DKIM `TXT`** at
+  `resend._domainkey`, an **SPF `TXT`**, and an **`MX`** for bounce handling (for
+  domains added recently Resend may issue **`CNAME`** records instead, which cover
+  the same ground). Copy them *verbatim* into **Vercel → your project → Settings →
+  Domains → `alliancetravel.app` → DNS Records**, since the domain's DNS is managed
+  there. Verification usually completes in minutes. Optionally add a **DMARC `TXT`**
+  at `_dmarc`. Then leave `LEAD_NOTIFY_FROM` unset (the default sender is already
+  `alertes@alliancetravel.app`) — or set it to any address on the verified domain.
+
+> Until a domain is verified, Resend refuses the send outright. That refusal is
+> shown to you word for word by the test button, so you will never be guessing.
+
+**Step 3 — set the environment variables** listed in step 3 above:
+`RESEND_API_KEY`, `OWNER_NOTIFY_EMAIL`, and `LEAD_NOTIFY_SECRET` (invent a long
+random string — it is a password shared between Supabase and this site, nothing
+more). Redeploy so they take effect.
+
+**Step 4 — tell Supabase to call the site on every new lead.**
+Supabase → **Database** → **Webhooks** → **Create a new hook**:
+
+| Field | Value |
+|---|---|
+| Name | `notify-lead` |
+| Table | `public.leads` |
+| Events | **Insert** only |
+| Type | HTTP Request |
+| Method | `POST` |
+| URL | `https://alliancetravel.app/api/notify-lead` |
+| HTTP Header | name `x-notify-secret`, value = the **same** string you used for `LEAD_NOTIFY_SECRET` |
+
+Create the hook **in the Supabase dashboard**, not through SQL — the header value is
+a secret, and a migration file would put it in the repository forever.
+
+**Step 5 — prove it.** Open **Réglages** in the dashboard. Every line under
+Configuration should be green, and pressing **« Envoyer un email de test »** should
+land a `[TEST]` message in your inbox within a minute. If it does not:
+
+| What the button says | What to do |
+|---|---|
+| `Configuration incomplète. Il manque : …` | that env var is not set, or the site has not been redeployed since you set it |
+| `… domain is not verified` | finish the DNS records in step 2, or switch to `onboarding@resend.dev` |
+| `… you can only send testing emails to your own email address` | you are on `onboarding@resend.dev`; `OWNER_NOTIFY_EMAIL` must be your Resend account's address |
+| `API key is invalid` | re-copy `RESEND_API_KEY` |
+| Nothing arrives but the button says sent | check the **spam** folder, then Resend → **Emails** for the delivery log |
+
+**To switch it off later:** delete the Supabase webhook, or clear `RESEND_API_KEY`.
+The endpoint goes back to doing nothing; no code change is needed.
 
 ### 5. Deploy
 Redeploy the site so the new environment variables take effect. Then go to **Part B**.
@@ -116,3 +192,4 @@ The **Leads** tab shows everyone who submitted the booking form: name, phone, ci
 - **Login link does nothing** → the `/admin/` URL isn't in Supabase Redirect URLs (Part A step 4).
 - **Leads tab is empty but you have leads** → your email isn't in `lead_readers` (Part A step 2).
 - **Edits save but the live page never changes** → `GITHUB_BRANCH` doesn't match Vercel's production branch (Part A step 3).
+- **No email when a lead arrives** → press **« Envoyer un email de test »** in Réglages; it names the broken link. If the test succeeds but real leads are silent, the Supabase webhook (Part A step 4c) is missing or its `x-notify-secret` header does not match `LEAD_NOTIFY_SECRET`.
