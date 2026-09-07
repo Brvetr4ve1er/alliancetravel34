@@ -38,6 +38,7 @@
 //     seo.faqJsonLd, the inclusion counters. Machinery, derived on save. Asking
 //     the owner to maintain machinery is how machinery drifts.
 import { t, fmt } from "./i18n.js";
+import { imageControl } from "./images.js";
 
 const getPath = (o, p) => p.split(".").reduce((x, k) => (x == null ? x : x[k]), o);
 const setPath = (o, p, v) => {
@@ -150,6 +151,11 @@ const SPECS = [
     fields: [
       { name: "name", labelKey: "pages.f.hotel.name", type: "text" },
       { name: "stars", labelKey: "pages.f.hotel.stars", type: "int", min: 1, max: 5 },
+      { name: "image", labelKey: "pages.f.hotel.image", type: "image", slot: "hotel" },
+      // Shipped with the photo, not after it: changing the picture and leaving
+      // the old description is a regression only the people who cannot see the
+      // picture would notice.
+      { name: "alt", labelKey: "pages.f.hotel.alt", hintKey: "pages.f.hotel.alt.hint", type: "text" },
     ],
     // starsHtml is what the page prints and validate-trip requires; nothing
     // keeps it in step with `stars` on its own.
@@ -269,6 +275,13 @@ function fieldHtml(spec, i, f, value) {
   const id = fieldId(spec.id, i, f.name);
   const hint = f.hintKey ? `<small class="lister__hint">${esc(t(f.hintKey))}</small>` : "";
   const common = `id="${id}" data-lf="${esc(f.name)}"`;
+  if (f.type === "image") {
+    // Same control as the page fields, hooked to this collector instead: the
+    // owner cannot type an image path anywhere in the dashboard.
+    return `<div class="field"><label for="${id}">${esc(t(f.labelKey))}</label>`
+      + imageControl({ id, attr: `data-lf="${esc(f.name)}"`, slot: f.slot, value })
+      + `${hint}</div>`;
+  }
   const input = f.type === "textarea"
     ? `<textarea ${common} rows="3">${esc(value)}</textarea>`
     : f.type === "int"

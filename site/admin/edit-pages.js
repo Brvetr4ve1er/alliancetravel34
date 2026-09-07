@@ -15,6 +15,7 @@ import { t, fmt, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { areaHead } from "./ui.js";
 import { listsHtml, wireLists, collectLists } from "./edit-lists.js";
+import { imageControl, FIELD_SLOT, loadCatalogue, wireImagePickers } from "./images.js";
 
 const SLUGS = ["istanbul", "bali", "tunisie", "vietnam", "azerbaidjan", "kuala-lumpur", "egypte"];
 let current = null; // { slug, content, sha }
@@ -64,11 +65,13 @@ const FIELDS = [
   ["Titre SEO (<title>)", "meta.title", "text"],
   ["Meta description", "meta.description", "textarea"],
   ["Titre de partage (WhatsApp, Facebook)", "meta.ogTitle", "text"],
+  ["Image de partage (WhatsApp, Facebook)", "meta.ogImage", "image"],
   ["Description de partage", "meta.ogDescription", "textarea"],
   ["Nom du voyage (données Google)", "seo.tripName", "text"],
   ["Description du voyage (données Google)", "seo.tripDescription", "textarea"],
   ["Fil d'Ariane", "jsonLd.breadcrumbName", "text"],
   // ── Hero ──
+  ["Hero — photo de fond", "hero.bg", "image"],
   ["Hero — sur-titre", "hero.eyebrow", "text"],
   // The H1 is two slots: hero.tpl renders {{hero.h1Pre}}<em>{{hero.h1Em}}</em>.
   ["Hero — titre (1re partie)", "hero.h1Pre", "text"],
@@ -104,6 +107,12 @@ function fieldInput(label, path, type, val) {
   // the id is derived from the JSON path, which is unique per form.
   const id = "f-" + path.replace(/[^a-zA-Z0-9]+/g, "-");
   let input;
+  if (type === "image") {
+    // A <select> of vetted paths, not a text box: see site/admin/images.js.
+    return `<div class="field"><label for="${id}">${escHtml(label)}</label>`
+      + imageControl({ id, attr: `data-path="${path}"`, slot: FIELD_SLOT[path], value: val })
+      + "</div>";
+  }
   if (type === "wrapped") {
     const w = splitWrap(val);
     input = `<input id="${id}" data-path="${path}" data-wrap-open="${escHtml(w.open)}" ` +
@@ -253,6 +262,9 @@ function renderEditor(container) {
   // binding there stacked one live listener per trip opened, each still
   // holding the previous trip's `c`. #ep-lists is rebuilt with the markup.
   wireLists(container.querySelector("#ep-lists"), c);
+  // Bound to the card, which is rebuilt with every render, so the hotel rows
+  // inside #ep-lists are covered by the same listener as the page fields.
+  wireImagePickers(card);
   const st = window.AT_ADMIN.status;
   if (st && !st.github) {
     const btn = container.querySelector("#ep-save");
@@ -352,7 +364,14 @@ async function loadTrip(slug) {
 
   let r;
   try {
-    r = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(slug)}`);
+    // In parallel, not in sequence: the photo catalogue is needed before the
+    // form is built (a select rendered without it can only hold the current
+    // value), and it does not depend on which trip was opened. loadCatalogue()
+    // resolves to null rather than throwing, so it cannot fail the load.
+    [r] = await Promise.all([
+      window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(slug)}`),
+      loadCatalogue(),
+    ]);
   } catch {
     // An unguarded throw here used to leave "Chargement de …" on screen forever.
     if (seq !== loadSeq) return false;

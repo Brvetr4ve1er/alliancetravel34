@@ -590,3 +590,25 @@ details.group[open] > summary::after,
   .lister__row { grid-template-columns: 28px 1fr; }
   .lister__del { grid-column: 2; justify-self: end; min-height: 44px; min-width: 44px; }
 }
+
+/* ── Photo picker ────────────────────────────────────────────────────────
+   A thumbnail beside the <select>, because a filename like
+   "hero__cairo-sharm--bg.jpg" tells the owner nothing about which photo it is.
+   The preview is the control's real label; the select is how it is operated. */
+.imgpick { display: grid; grid-template-columns: 96px 1fr; gap: var(--s2); align-items: start; }
+.imgpick__thumb {
+  width: 96px; height: 64px; object-fit: cover;
+  border-radius: 8px; border: 1px solid var(--line, #263140);
+  background: var(--card-2, rgba(127, 127, 127, .12));
+  display: block;
+}
+/* A broken preview must not look like a styled empty box: the owner needs to
+   see that this photo is the problem. */
+.imgpick__thumb[src=""] { visibility: hidden; }
+.imgpick__ctl { display: grid; gap: 4px; min-width: 0; }
+.imgpick__ctl select { width: 100%; }
+@media (max-width: 560px) {
+  /* At 375px a 96px thumb leaves too little for the filenames in the select. */
+  .imgpick { grid-template-columns: 64px 1fr; }
+  .imgpick__thumb { width: 64px; height: 44px; }
+}

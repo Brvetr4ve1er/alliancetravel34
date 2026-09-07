@@ -97,6 +97,13 @@ function load() {
     // suite (site/admin/edit-lists.test.mjs) that runs them against real trip
     // data. A stub that rendered markup would only test the fake DOM.
     listsHtml: () => "",
+    // …and for ./images.js. The picker has its own suite; here it only has to
+    // not throw, and imageControl must still emit the data-path hook so
+    // collectInto() sees the field.
+    imageControl: ({ id, attr }) => `<select id="${id}" ${attr}></select>`,
+    FIELD_SLOT: { "hero.bg": "hero", "meta.ogImage": "og" },
+    loadCatalogue: async () => null,
+    wireImagePickers() {},
     // Records where the handlers were bound. #area-pages is never
     // rebuilt, so binding there leaks a listener per render.
     wireLists(root) { wired.push(root ? root.id : null); },
