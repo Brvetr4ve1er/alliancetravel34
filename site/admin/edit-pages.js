@@ -1,7 +1,20 @@
-// site/admin/edit-pages.js — pick a trip, edit high-value fields (+ raw JSON), save.
+// site/admin/edit-pages.js — pick a trip, edit its content, publish.
+//
+// Scope note (2026-09-07): this used to expose 7 text fields plus the hotel
+// price grid, which is why docs called the dashboard "a narrow trip editor, not
+// a CMS". It now covers the page: 32 text fields grouped by where they appear,
+// the price grid, and — in edit-lists.js — departures, FAQ, highlights,
+// itinerary, hotel cards, inclusions and reviews.
+//
+// The widening is only safe because the refusal moved with it. api/save-trip.mjs
+// validates the schema, re-derives every computed price, dry-renders the page and
+// (since 57c6fb0) runs the build's i18n gates on that render, so an edit that
+// would break the site is refused with a French explanation instead of being
+// committed under a green "Publié ✓" and killing the next build.
 import { t, fmt, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { areaHead } from "./ui.js";
+import { listsHtml, wireLists, collectLists } from "./edit-lists.js";
 
 const SLUGS = ["istanbul", "bali", "tunisie", "vietnam", "azerbaidjan", "kuala-lumpur", "egypte"];
 let current = null; // { slug, content, sha }
@@ -17,6 +30,19 @@ const setPath = (o, p, v) => { const k = p.split("."); let x = o; for (const s o
 // add a single-quoted attribute here, add `.replace(/'/g, "&#39;")` first.
 const escHtml = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+// Some fields store a translation binding and its text in ONE string.
+// finalCta.scarcityHtml is plain prose on istanbul and azerbaidjan, and
+// `<span data-i18n="tnFinalScarcity">prose</span>` on the other five. Editing
+// that raw would let an owner delete the wrapper and silently unbind the
+// translation — the reason this field was previously left out of the form
+// altogether. So the wrapper is split off for editing and put back on save:
+// the owner types prose, the binding survives.
+const WRAP_RE = /^(\s*<([a-zA-Z][\w-]*)\b[^>]*>)([\s\S]*)(<\/\2>\s*)$/;
+function splitWrap(v) {
+  const m = WRAP_RE.exec(String(v ?? ""));
+  return m ? { open: m[1], inner: m[3], close: m[4] } : { open: "", inner: String(v ?? ""), close: "" };
+}
+
 // [label, json-path, type]
 //
 // Every path here MUST be read by a template in tools/templates/sections/.
@@ -24,20 +50,52 @@ const escHtml = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt
 // undefined so the input renders blank, and setPath happily *creates* the key
 // on save — the owner edits, sees "Publié ✓", and nothing changes. Two fields
 // shipped that way ("hero.titlePre", "finalCta.scarcity").
-// tools/check-admin-fields.mjs enforces the rule at build time.
+// tools/check-admin-fields.mjs enforces the rule at build time; every path
+// below was checked against the template AST before being added.
+//
+// Deliberately absent, and each for a reason:
+//   • hero.priceFrom, seo.offerPrice, hotels[].priceFrom/priceMeta,
+//     calcUi.optionsHtml — owned by tools/value-graph.mjs, which recomputes them
+//     from the price grid on every save. An input here would be overwritten.
+//   • inclus.includedCount / excludedCount — generated from the list lengths.
+//   • hero.titlePre / titlePost / prompt — validated, rendered by nothing.
 const FIELDS = [
+  // ── Référencement et partage ──
   ["Titre SEO (<title>)", "meta.title", "text"],
   ["Meta description", "meta.description", "textarea"],
+  ["Titre de partage (WhatsApp, Facebook)", "meta.ogTitle", "text"],
+  ["Description de partage", "meta.ogDescription", "textarea"],
+  ["Nom du voyage (données Google)", "seo.tripName", "text"],
+  ["Description du voyage (données Google)", "seo.tripDescription", "textarea"],
+  ["Fil d'Ariane", "jsonLd.breadcrumbName", "text"],
+  // ── Hero ──
   ["Hero — sur-titre", "hero.eyebrow", "text"],
   // The H1 is two slots: hero.tpl renders {{hero.h1Pre}}<em>{{hero.h1Em}}</em>.
   ["Hero — titre (1re partie)", "hero.h1Pre", "text"],
   ["Hero — titre (partie colorée)", "hero.h1Em", "text"],
   ["Hero — dates/durée", "hero.date", "text"],
-  ["Hero — aria-label", "hero.aria", "text"],
-  // No CTA scarcity field: finalCta.scarcityHtml stores the sentence and its
-  // data-i18n binding in one string (plain text on istanbul, a bound <span> on
-  // the other six), so a plain input would let an edit silently unbind the
-  // translation. Re-add it once the i18n contract lands.
+  ["Hero — texte d'introduction", "hero.lede", "textarea"],
+  ["Hero — unité du prix", "hero.priceUnit", "text"],
+  ["Hero — mention en petits caractères", "hero.fineprint", "textarea"],
+  ["Hero — description pour lecteur d'écran", "hero.aria", "text"],
+  // ── Titres de sections ──
+  ["Itinéraire — étape", "itinerary.phaseLabel", "text"],
+  ["Itinéraire — sur-titre", "itinerary.eyebrow", "text"],
+  ["Itinéraire — titre", "itinerary.titleHtml", "text"],
+  ["Hôtels — étape", "hotelsSection.phaseLabel", "text"],
+  ["Hôtels — sur-titre", "hotelsSection.eyebrow", "text"],
+  ["Hôtels — titre", "hotelsSection.titleHtml", "text"],
+  ["Hôtels — sous-titre", "hotelsSection.sub", "textarea"],
+  ["Carte — sur-titre", "tripMap.eyebrow", "text"],
+  ["Carte — titre", "tripMap.titleHtml", "text"],
+  ["Carte — sous-titre", "tripMap.subHead", "textarea"],
+  ["Calculateur — étape", "calcUi.phaseLabel", "text"],
+  ["Calculateur — sur-titre", "calcUi.eyebrow", "text"],
+  ["Calculateur — titre", "calcUi.titleHtml", "text"],
+  ["Calculateur — libellé « date de départ »", "calcUi.dateLabel", "text"],
+  ["Appel final — titre", "finalCta.titleHtml", "text"],
+  ["Appel final — sous-titre", "finalCta.sub", "textarea"],
+  ["Appel final — mention de disponibilité", "finalCta.scarcityHtml", "wrapped"],
 ];
 
 function fieldInput(label, path, type, val) {
@@ -45,9 +103,16 @@ function fieldInput(label, path, type, val) {
   // announces the input as unlabelled, and tapping the label does nothing —
   // the id is derived from the JSON path, which is unique per form.
   const id = "f-" + path.replace(/[^a-zA-Z0-9]+/g, "-");
-  const input = type === "textarea"
-    ? `<textarea id="${id}" data-path="${path}" style="min-height:70px">${escHtml(val)}</textarea>`
-    : `<input id="${id}" data-path="${path}" value="${escHtml(val)}" />`;
+  let input;
+  if (type === "wrapped") {
+    const w = splitWrap(val);
+    input = `<input id="${id}" data-path="${path}" data-wrap-open="${escHtml(w.open)}" ` +
+            `data-wrap-close="${escHtml(w.close)}" value="${escHtml(w.inner)}" />`;
+  } else if (type === "textarea") {
+    input = `<textarea id="${id}" data-path="${path}" style="min-height:70px">${escHtml(val)}</textarea>`;
+  } else {
+    input = `<input id="${id}" data-path="${path}" value="${escHtml(val)}" />`;
+  }
   return `<div class="field"><label for="${id}">${escHtml(label)}</label>${input}</div>`;
 }
 
@@ -77,9 +142,13 @@ function hotelPriceInputs(content) {
   }).join("");
 }
 
+// Thirty-two fields in one column is a wall. Grouped by where they appear on
+// the page, and collapsed by default except the first — the owner opens the
+// part they came to change.
 const GROUPS = [
-  { key: "pages.group.seo", test: (p) => p.startsWith("meta.") },
-  { key: "pages.group.hero", test: (p) => p.startsWith("hero.") },
+  { key: "pages.group.seo", icon: "seo", open: true, test: (p) => /^(meta|seo|jsonLd)\./.test(p) },
+  { key: "pages.group.hero", icon: "sparkles", test: (p) => p.startsWith("hero.") },
+  { key: "pages.group.sections", icon: "file", test: (p) => /^(itinerary|hotelsSection|tripMap|calcUi|finalCta)\./.test(p) },
 ];
 
 function renderList(container) {
@@ -116,8 +185,12 @@ function renderList(container) {
 
 function renderEditor(container) {
   const c = current.content;
-  const grouped = GROUPS.map((g) => ({ ...g, html: FIELDS.filter(([, p]) => g.test(p)).map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join("") }));
-  const rest = FIELDS.filter(([, p]) => !GROUPS.some((g) => g.test(p))).map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join("");
+  const grouped = GROUPS.map((g) => ({
+    ...g,
+    html: FIELDS.filter(([, p]) => g.test(p)).map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join(""),
+  }));
+  const rest = FIELDS.filter(([, p]) => !GROUPS.some((g) => g.test(p)))
+    .map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join("");
   container.innerHTML = `
     <button id="ep-back" class="btn btn--ghost btn--sm" data-i18n="pages.back"></button>
     <div class="card">
@@ -128,9 +201,10 @@ function renderEditor(container) {
         <button id="ep-save" class="btn" data-i18n="pages.publish"></button>
       </div>
       <p id="ep-msg" class="msg" role="status" aria-live="polite"></p>
-      ${grouped.map((g) => `<fieldset class="group"><legend>${escHtml(t(g.key))}</legend>${g.html}</fieldset>`).join("")}
+      ${grouped.map((g) => `<details class="group"${g.open ? " open" : ""}><summary>${escHtml(t(g.key))}</summary>${g.html}</details>`).join("")}
       ${rest}
-      <fieldset class="group"><legend>${escHtml(t("pages.group.prices"))}</legend>${hotelPriceInputs(c)}</fieldset>
+      <details class="group"><summary>${escHtml(t("pages.group.prices"))}</summary>${hotelPriceInputs(c)}</details>
+      ${listsHtml(c)}
       <details class="adv"><summary data-i18n="pages.advanced"></summary>
         <p class="msg" data-i18n="pages.advanced.warn"></p>
         <textarea id="ep-json">${escHtml(JSON.stringify(c, null, 2))}</textarea>
@@ -142,11 +216,21 @@ function renderEditor(container) {
   back.prepend(icon("back", { size: 16 }));
   container.querySelector("#ep-save").prepend(icon("send", { size: 17 }));
   container.querySelector("#ep-revert").prepend(icon("back", { size: 16 }));
-  const legendIcon = { "pages.group.seo": "seo", "pages.group.hero": "sparkles", "pages.group.prices": "hotel" };
-  container.querySelectorAll("fieldset.group > legend").forEach((lg) => {
-    const key = Object.keys(legendIcon).find((k) => t(k) === lg.textContent.trim());
-    lg.prepend(icon(legendIcon[key] || "file", { size: 16 }));
+  const legendIcon = {
+    "pages.group.seo": "seo", "pages.group.hero": "sparkles", "pages.group.sections": "file",
+    "pages.group.prices": "hotel", "pages.list.dates": "calendar", "pages.list.faq": "help",
+    "pages.list.highlights": "sparkles", "pages.list.itinerary": "calendar",
+    "pages.list.hotels": "hotel", "pages.list.included": "check", "pages.list.excluded": "close",
+    "pages.list.testimonials": "chat",
+  };
+  container.querySelectorAll("details.group > summary").forEach((sm) => {
+    const label = sm.textContent.trim().replace(/\s+\d+$/, "");
+    const key = Object.keys(legendIcon).find((k) => t(k) === label);
+    sm.prepend(icon(legendIcon[key] || "file", { size: 16 }));
   });
+  // Add/remove for every list. Bound once, on the container, so rows added
+  // later are covered without rebinding.
+  wireLists(container, c);
   const st = window.AT_ADMIN.status;
   if (st && !st.github) {
     const btn = container.querySelector("#ep-save");
@@ -185,6 +269,21 @@ function collectInto(content) {
         return;
       }
       v = n;
+    } else {
+      // Every text field here carries a translation binding on the rendered
+      // page, and an empty binding fails the build with `texte français vide`
+      // — after the owner has been told the edit published. Refuse it at the
+      // keyboard instead. (Numbers are covered by the branch above.)
+      if (String(v).trim() === "") {
+        inp.classList.add("is-invalid");
+        inp.setAttribute("aria-invalid", "true");
+        invalid.push(inp);
+        return;
+      }
+      // Put back the translation wrapper this field was split out of.
+      if (inp.dataset.wrapOpen !== undefined) {
+        v = inp.dataset.wrapOpen + v + inp.dataset.wrapClose;
+      }
     }
     setPath(content, inp.dataset.path, v);
   });
@@ -248,13 +347,20 @@ async function save() {
   let content;
   try { content = JSON.parse(el("ep-json").value); }
   catch (e) { msg.className = "msg err"; msg.textContent = "JSON invalide: " + e.message; return; }
-  const invalid = collectInto(content);
+  // Lists first, then the flat fields: collectLists() rebuilds whole arrays
+  // from the DOM, and doing it after collectInto() would be harmless but reads
+  // backwards. Both return the inputs they refused, in document order.
+  const invalid = [...collectLists(document.getElementById("area-pages"), content), ...collectInto(content)];
   if (invalid.length) {
     // Refuse the whole publish. Publishing the valid subset would leave the
     // owner believing the field they just cleared had been saved.
     msg.className = "msg err";
-    msg.textContent = fmt("pages.badprice", { n: invalid.length });
+    msg.textContent = fmt("pages.badfield", { n: invalid.length });
     invalid[0].focus();
+    // A refused field inside a collapsed group is invisible; open its way out.
+    for (let n = invalid[0].parentElement; n; n = n.parentElement) {
+      if (n.tagName === "DETAILS") n.open = true;
+    }
     invalid[0].scrollIntoView({ block: "center", behavior: "smooth" });
     return;
   }
@@ -288,36 +394,31 @@ async function save() {
       a.href = r.data.commitUrl; a.textContent = t("pages.viewcommit"); a.target = "_blank"; a.rel = "noopener";
       msg.append(" ", a);
     }
-    // Re-sync BOTH the SHA and the content, without wiping the form + this
-    // confirmation (a full loadTrip() would re-render the panel and hide the
-    // "Publié ✓"). Refreshing only the SHA used to leave the previous document
-    // in memory and armed: the next save would re-POST that stale body, and the
-    // 409 retry re-PUTs it against a fresh SHA — silently reverting whatever
-    // anyone else published in between.
-    // The publish itself already succeeded; a failed re-sync must not throw
-    // away the confirmation the owner is reading.
+    // Re-sync BOTH the SHA and the content. A full loadTrip() would rebuild the
+    // form — losing the "Publié ✓" and every open group — so only `current`,
+    // the raw-JSON panel and the list rows' identity are refreshed. Refreshing
+    // the SHA alone used to leave the previous document in memory and armed:
+    // the next save re-POSTed that stale body, and the 409 retry re-PUT it
+    // against a fresh SHA, silently reverting whatever was published between.
     //
-    // Stamped with the SAME token as loadTrip(): this is the second /api/get-trip
-    // that writes `current`, and #ep-back is never disabled, so the owner can go
-    // back and open another trip while it is in flight. Unguarded, the stale
-    // answer pasted the PREVIOUS trip's sha + content onto a `current` whose slug
-    // is now the new one, and repainted the raw-JSON panel with it — the next
-    // Publier then POSTs a mismatched {slug, content} that save-trip.mjs rejects
-    // 400 ("content.slug must equal slug"), losing the edit and naming a field
-    // the owner never touched. Bump, don't just read: after a publish this
-    // response is the freshest view of `current`, so any older load in flight
-    // must lose to it.
+    // Stamped with the SAME token as loadTrip(): this is the second
+    // /api/get-trip that writes `current`, and #ep-back is never disabled, so
+    // the owner can go back and open another trip while it is in flight.
     const seq = ++loadSeq;
     let g = null;
     try { g = await window.AT_ADMIN.callApi(`/api/get-trip?slug=${encodeURIComponent(current.slug)}`); }
-    catch { /* keep the "Publié ✓" — next save re-reads the SHA anyway */ }
-    // Dropping it is safe precisely because a newer load now owns `current` (and
-    // this editor's #ep-json is gone, so writing to it would throw anyway).
+    catch { /* keep the "Publié ✓" — the next save re-reads the SHA anyway */ }
     if (seq !== loadSeq) return;
     if (g && g.ok) {
       current.sha = g.data.sha;
       current.content = g.data.content;
       el("ep-json").value = JSON.stringify(g.data.content, null, 2);
+      // Rows added in this session are no longer "new" — they are now items in
+      // the saved array. Re-stamping data-orig by position keeps a second save
+      // from minting a second set of translation keys for the same row.
+      document.querySelectorAll("#area-pages [data-list]").forEach((fs) => {
+        [...fs.querySelectorAll(".lister__row")].forEach((row, i) => { row.dataset.orig = String(i); });
+      });
     }
   } else if (r.status === 422) {
     msg.className = "msg err";

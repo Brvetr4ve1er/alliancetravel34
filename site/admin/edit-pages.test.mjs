@@ -91,6 +91,13 @@ function load() {
     applyI18n() {},
     icon: () => makeEl(""),
     areaHead: () => makeEl(""),
+    // …and for ./edit-lists.js. Inert here on purpose: this suite is about the
+    // /api/get-trip race on `current`, and the list editors have their own
+    // suite (site/admin/edit-lists.test.mjs) that runs them against real trip
+    // data. A stub that rendered markup would only test the fake DOM.
+    listsHtml: () => "",
+    wireLists() {},
+    collectLists: () => [],
     JSON, Promise, console, setTimeout, encodeURIComponent,
   };
   vm.createContext(ctx);

@@ -513,3 +513,80 @@ fieldset.group legend svg { color: var(--brand); }
   .exportbox > summary { width: 100%; justify-content: center; }
   .exportbox__panel { position: static; min-width: 0; max-width: none; margin-top: 8px; }
 }
+
+/* ── Content list editors (Pages) ────────────────────────────────────────
+   Eight repeatable sections — departures, FAQ, itinerary, … — each a
+   <details> so the editor opens as a short table of contents rather than a
+   wall of forty forms. Same element the field groups above use, so the whole
+   screen behaves one way. */
+details.group > summary,
+.lister > summary {
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer; list-style: none;
+  padding: var(--s2) 0;
+  font-weight: 600; font-size: .9375rem;
+}
+details.group > summary::-webkit-details-marker,
+.lister > summary::-webkit-details-marker { display: none; }
+/* A disclosure triangle drawn in CSS, so it can sit at the END of the row and
+   rotate — the native marker can do neither. */
+details.group > summary::after,
+.lister > summary::after {
+  content: ""; margin-inline-start: auto;
+  width: 8px; height: 8px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .18s ease;
+  opacity: .55;
+}
+details.group[open] > summary::after,
+.lister[open] > summary::after { transform: rotate(-135deg); }
+
+.lister__count {
+  font-size: .75rem; font-weight: 600; line-height: 1;
+  padding: 3px 7px; border-radius: 99px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--txt-1);
+}
+.lister__note { margin: 0 0 var(--s3); font-size: .8125rem; color: var(--txt-2); }
+
+.lister__row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: var(--s2);
+  align-items: start;
+  padding: var(--s3) 0;
+  border-top: 1px solid var(--line, #263140);
+}
+.lister__row:first-child { border-top: 0; }
+/* The row number is the only way to tell "day 3" from "day 4" once the titles
+   are being rewritten, so it stays visible rather than being decoration. */
+.lister__num {
+  display: grid; place-items: center;
+  width: 28px; height: 28px; border-radius: 99px;
+  font-size: .75rem; font-weight: 600;
+  background: var(--card-2, rgba(127, 127, 127, .12));
+  color: var(--txt-2);
+}
+.lister__body { display: grid; gap: var(--s2); min-width: 0; }
+.lister__hint { display: block; margin-top: 3px; font-size: .75rem; color: var(--txt-2); line-height: 1.35; }
+.lister__pick {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .8125rem; color: var(--txt-2); cursor: pointer;
+}
+.lister__pick input { width: auto; margin: 0; }
+.lister__del {
+  display: grid; place-items: center;
+  width: 32px; height: 32px; min-width: 32px;
+  border-radius: 8px; border: 1px solid var(--line, #263140);
+  background: transparent; color: var(--txt-2);
+  font-size: 15px; line-height: 1; cursor: pointer;
+}
+.lister__del:hover, .lister__del:focus-visible {
+  border-color: var(--danger, #b3261e); color: var(--danger, #b3261e);
+}
+@media (max-width: 560px) {
+  /* At 375px a 28px gutter plus a 32px button leaves the fields too narrow to
+     type in, so the row stacks and the delete button moves under its fields. */
+  .lister__row { grid-template-columns: 28px 1fr; }
+  .lister__del { grid-column: 2; justify-self: end; min-height: 44px; min-width: 44px; }
+}
