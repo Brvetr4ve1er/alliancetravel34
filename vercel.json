@@ -7,7 +7,7 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "functions": {
-    "api/save-trip.mjs": { "includeFiles": "{tools,site/admin}/**", "maxDuration": 30 },
+    "api/save-trip.mjs": { "includeFiles": "{tools/**,site/admin/**}", "maxDuration": 30 },
     "api/export-leads.mjs": { "includeFiles": "site/admin/**" }
   },
   "redirects": [
