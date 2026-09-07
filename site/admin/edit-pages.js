@@ -193,7 +193,7 @@ function renderEditor(container) {
     .map(([l, p, ty]) => fieldInput(l, p, ty, getPath(c, p))).join("");
   container.innerHTML = `
     <button id="ep-back" class="btn btn--ghost btn--sm" data-i18n="pages.back"></button>
-    <div class="card">
+    <div class="card" id="ep-card">
       <div class="row" style="align-items:center">
         <h2 style="margin:0">${escHtml(current.slug)}</h2>
         <span class="spacer"></span>
@@ -214,6 +214,15 @@ function renderEditor(container) {
   // Icons go in after innerHTML: icon() builds DOM nodes, not markup strings.
   const back = container.querySelector("#ep-back");
   back.prepend(icon("back", { size: 16 }));
+  // ec05f7d gave this button an icon but no handler, so the editor had no way
+  // out: the Pages nav button no-ops once the area is initialised, which left a
+  // page reload as the only exit.
+  dirty = false;
+  container.querySelector("#ep-card").addEventListener("input", () => { dirty = true; });
+  back.addEventListener("click", () => {
+    if (dirty && !window.confirm(t("pages.back.dirty"))) return;
+    renderList(container);
+  });
   container.querySelector("#ep-save").prepend(icon("send", { size: 17 }));
   container.querySelector("#ep-revert").prepend(icon("back", { size: 16 }));
   const legendIcon = {
@@ -300,6 +309,11 @@ function collectInto(content) {
 // flicker. Same guard as app.js's pendingToken around /api/me: stamp the
 // request, and let only the newest response touch `current` or the DOM.
 let loadSeq = 0;
+
+// Set by any keystroke in the form, cleared on a fresh render and on a
+// successful publish. Only #ep-back reads it: leaving the editor is the one
+// action that silently throws typing away.
+let dirty = false;
 
 // A dead end with no way out is its own bug: the Pages nav button no-ops once
 // the area is initialised, so without these two controls a failed load left the
@@ -390,6 +404,7 @@ async function save() {
     if (saveBtn) saveBtn.disabled = false;
   }
   if (r.ok) {
+    dirty = false;
     msg.className = "msg ok";
     msg.textContent = t("pages.published");
     if (r.data.commitUrl) {
