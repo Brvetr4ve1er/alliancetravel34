@@ -57,7 +57,7 @@
         trip_booking: 'Réserver'
       },
       hero: {
-        eyebrow: 'Agence de voyage agréée · Bordj Bou Arreridj · Algérie',
+        eyebrow: 'Agence de voyage · Bordj Bou Arreridj · Algérie',
         title_l1: 'Faites votre valise.',
         title_em: 'On s\'occupe du reste.',
         lede: "Depuis Bordj Bou Arreridj, on organise vos voyages clé en main : vol, visa, hôtel, transferts et accompagnateur arabophone sur place. Pas d'improvisation, pas de surprise — juste à venir profiter.",
@@ -204,7 +204,7 @@
           title: "Alliance Travel · Agence de voyage à Bordj Bou Arreridj",
           description: "Agence de voyage à Bordj Bou Arreridj. Voyages organisés vers l'Égypte, Istanbul, Bakou, Kuala Lumpur et Sharm El Sheikh. Vol + visa + hôtel inclus dans le prix. 1 200+ voyageurs satisfaits depuis 2019.",
           og_title: "Alliance Travel · Voyages organisés depuis Bordj Bou Arreridj",
-          og_description: "Vol + visa + hôtel + accompagnateur arabophone, tout est compris. 5 destinations 2026 au départ d'Alger ou Constantine. Agence agréée à Bordj Bou Arreridj. 1 200+ voyageurs satisfaits."
+          og_description: "Vol + visa + hôtel + accompagnateur arabophone, tout est compris. 5 destinations 2026 au départ d'Alger ou Constantine. Basés à Bordj Bou Arreridj. 1 200+ voyageurs satisfaits."
         },
         voyages: {
           title: "Voyages organisés 2026 · 5 destinations dès 123 000 DA — Alliance Travel",

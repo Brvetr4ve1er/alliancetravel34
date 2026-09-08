@@ -525,12 +525,17 @@
        relationship. Replace these labels with whatever the agency can
        actually defend (registration numbers, certifications, etc.).
        Owner-editable: keep this list short, true, and verifiable. */
+    // NOTE: the "Agence agréée" claim was removed pending display of the
+    // Tour Operator licence number (décret exécutif 21-197 art. 8). It
+    // will be re-added as "Agence agréée n° [xxx] — cat. [A/B/C]" once
+    // the client provides the licence number. See
+    // docs/legal/CLIENT-DATA-REQUIREMENTS.md § 3.
     strip.innerHTML = `
       <p class="press-strip__label">Nos engagements</p>
       <div class="press-strip__items">
-        <span class="press-strip__item">Agence agréée Bordj Bou Arreridj</span>
+        <span class="press-strip__item">Basée à Bordj Bou Arreridj</span>
         <span class="press-strip__item">Vol &amp; hôtel inclus</span>
-        <span class="press-strip__item">Visa accompagné</span>
+        <span class="press-strip__item">Accompagnement visa</span>
         <span class="press-strip__item">Petits groupes (12 max)</span>
         <span class="press-strip__item">Paiement à la confirmation</span>
       </div>

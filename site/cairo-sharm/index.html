@@ -61,9 +61,11 @@
     "url": "https://alliance-travel.dz/cairo-sharm/"
   },
   "offers": {
-    "@type": "Offer",
-    "price": "190000",
+    "@type": "AggregateOffer",
     "priceCurrency": "DZD",
+    "lowPrice": "190000",
+    "highPrice": "460000",
+    "offerCount": "7",
     "availability": "https://schema.org/InStock",
     "url": "https://alliance-travel.dz/cairo-sharm/"
   },
@@ -92,7 +94,7 @@
       "name": "Est-ce que le visa est inclus ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Alliance Travel fournit une lettre de garantie pour le visa . Le paiement de la taxe de visa ( 30 USD ) se fait directement à l'arrivée au Caire par le client. Cette démarche est 100% encadrée et expliquée par notre accompagnateur."
+        "text": "Alliance Travel fournit une attestation d'hébergement destinée aux autorités consulaires. L'octroi du visa reste à la seule appréciation de ces autorités. Le paiement de la taxe de visa (30 USD) se fait à l'arrivée au Caire par le client. La démarche est encadrée et expliquée par notre accompagnateur."
       }
     },
     {
@@ -426,6 +428,9 @@
         </div>
       </div>
     </div>
+    <p class="testi-disclaimer" style="margin-top:var(--s6);font-size:.75rem;color:var(--txt-3);text-align:center;font-style:italic">
+      Prénoms modifiés pour la confidentialité. Avis collectés en agence, originaux disponibles sur demande.
+    </p>
   </div>
 </section>
 <section class="inclus-section section" aria-label="Ce qui est inclus et non inclus">
@@ -478,7 +483,7 @@
         </div>
         <div class="inclus-item inclus-item--yes">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Lettre de garantie pour le visa</span>
+          <span>Attestation d'hébergement pour le visa</span>
         </div>
         <div class="inclus-item inclus-item--yes">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
@@ -544,7 +549,7 @@
           Est-ce que le visa est inclus ?
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a">Alliance Travel fournit une <strong>lettre de garantie pour le visa</strong>. Le paiement de la taxe de visa (<strong>30 USD</strong>) se fait directement à l'arrivée au Caire par le client. Cette démarche est 100% encadrée et expliquée par notre accompagnateur.</div>
+        <div class="faq-a">Alliance Travel fournit une <strong>attestation d'hébergement</strong> destinée aux autorités consulaires égyptiennes. L'octroi effectif du visa reste à leur seule appréciation. Le paiement de la taxe de visa (<strong>30 USD</strong>) se fait directement à l'arrivée au Caire par le client. La démarche est encadrée et expliquée par notre accompagnateur.</div>
       </div>
       <div class="faq-item" data-aos="fade-up" data-aos-delay="0" data-aos-duration="500">
         <button class="faq-q" aria-expanded="false">
@@ -1020,7 +1025,7 @@
               L'assurance voyage <strong>n'est pas incluse</strong> dans le forfait mais elle est <strong>fortement recommandée</strong> — surtout pour les voyages long-courrier.
             </p>
             <ul class="info-list">
-              <li><strong>Couverture conseillée</strong> · Frais médicaux d'urgence (≥ 100 000 €), rapatriement sanitaire, perte/vol de bagages, annulation voyage.</li>
+              <li><strong>Couverture conseillée</strong> · Frais médicaux d'urgence (à titre indicatif, plafond minimum ≥ 100 000 € recommandé), rapatriement sanitaire, perte/vol de bagages, annulation voyage. Les montants et conditions dépendent de votre assureur.</li>
               <li><strong>Coût indicatif</strong> · 1 500 à 4 000 DA par personne selon la durée et la destination.</li>
               <li><strong>Où souscrire</strong> · Assureurs algériens (CAAR, SAA, CAAT) ou compagnies internationales (Mondial Assistance, Europ Assistance).</li>
               <li><strong>Sur demande</strong>, Alliance Travel peut vous orienter vers un partenaire assureur qui propose des formules voyage.</li>
@@ -1143,6 +1148,13 @@
         <a href="../sharm-constantine/">Sharm El Sheikh · Constantine</a>
       </div>
       <div class="footer-col">
+        <h4>Informations légales</h4>
+        <a href="../mentions-legales/">Mentions légales</a>
+        <a href="../politique-confidentialite/">Politique de confidentialité</a>
+        <a href="../politique-cookies/">Politique des cookies</a>
+        <a href="../conditions-generales/">Conditions générales de vente</a>
+      </div>
+      <div class="footer-col">
         <h4 data-i18n="footer.col_contact">Contact</h4>
 
         <div class="phone-group">
@@ -1208,6 +1220,7 @@ window.TRIP_DATA = {
   }
 </style>
 <script src="../assets/js/booking-form.js" defer></script>
+<script src="../assets/js/consent-notice.js" defer></script>
 <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/enhance.js" defer></script>
 <script src="../assets/js/enhance-pro.js" defer></script>

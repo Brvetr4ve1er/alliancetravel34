@@ -252,7 +252,7 @@
         <source media="(max-width: 768px)" type="image/jpeg" srcset="assets/images/heroes/hero__cairo-sharm--mobile.jpg"/>
         <source type="image/avif" srcset="assets/images/heroes/hero__cairo-sharm.avif"/>
         <source type="image/webp" srcset="assets/images/heroes/hero__cairo-sharm.webp"/>
-        <img src="assets/images/heroes/hero__cairo-sharm.jpg" alt="" loading="eager" fetchpriority="high" decoding="async"/>
+        <img src="assets/images/heroes/hero__cairo-sharm.jpg" alt="Pyramides de Guizeh au coucher du soleil, Égypte" loading="eager" fetchpriority="high" decoding="async"/>
       </picture>
       <!-- Tiles 2-5: deferred. data-lazy-src holds AVIF source; hero-collage-lazy.js
            swaps it into a real srcset after the LCP paints + browser is idle. -->
@@ -296,7 +296,7 @@
           Alliance Travel organise des voyages guidés depuis Bordj Bou Arreridj vers les plus belles destinations. Vol, hôtel,
           excursions, transferts — tout est inclus. Vous n'avez qu'à profiter.
         </p>
-        <div class="u-mt-sp3 u-cluster" class="fade-up fade-up--d3">
+        <div class="u-mt-sp3 u-cluster fade-up fade-up--d3">
           <a href="#voyages" class="btn btn--primary fs-body" style="padding:var(--space-4) var(--s7)" data-i18n="hero.cta_voyages">Voir nos
             voyages</a>
           <a href="https://wa.me/213561616266" class="btn btn--ghost fs-body" target="_blank" rel="noopener"
@@ -304,8 +304,7 @@
         </div>
         <!-- Stats inline -->
         <div
-          class="u-mt-sp5" style="display:flex; flex-wrap:wrap; gap:var(--s7); padding-top:var(--space-5); border-top:1px solid var(--border)"
-          class="fade-up">
+          class="u-mt-sp5 fade-up" style="display:flex; flex-wrap:wrap; gap:var(--s7); padding-top:var(--space-5); border-top:1px solid var(--border)">
           <div>
             <p class="fs-h3 u-font-display u-fw-300 u-text-1"
               data-counter="1.2" data-counter-format="{n}K+">1.2K+</p>
@@ -333,6 +332,17 @@
       <div class="home-hero__globe">
         <div class="globe-stage" id="globe-stage" aria-label="Carte interactive de nos destinations 2026">
           <canvas id="alliance-globe" aria-hidden="true"></canvas>
+          <!-- Screen-reader alternative to the drag-only globe. Lists the
+               same destinations as the visual polaroids. Sighted users see
+               the globe; assistive tech reads this list. -->
+          <ul class="sr-only" aria-label="Liste des destinations depuis Bordj Bou Arreridj">
+            <li>Bordj Bou Arreridj — siège de l'agence</li>
+            <li><a href="cairo-sharm/">Le Caire &amp; Sharm El Sheikh, Égypte</a></li>
+            <li><a href="azerbaidjan/">Bakou &amp; Gabala, Azerbaïdjan</a></li>
+            <li><a href="istanbul/">Istanbul, Turquie</a></li>
+            <li><a href="kuala-lumpur/">Kuala Lumpur, Malaisie</a></li>
+            <li><a href="sharm-constantine/">Sharm El Sheikh depuis Constantine</a></li>
+          </ul>
           <!-- Polaroid markers (positioned by JS via CSS Anchor Positioning) -->
           <div class="globe-polaroid globe-polaroid--home" data-marker="bba" aria-hidden="true">
             <div class="globe-polaroid__chip">★ Bordj Bou Arreridj</div>
@@ -851,6 +861,14 @@
               <option value="kuala-lumpur">Kuala Lumpur (Malaisie) — dès 211 000 DA</option>
             </select>
           </div>
+          <div class="contact-form__field" style="display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start">
+            <input type="checkbox" id="cf-consent" required style="width:18px;height:18px;margin-top:2px;cursor:pointer;accent-color:var(--bronze,#B8865A)"/>
+            <label for="cf-consent" style="font-size:.8125rem;line-height:1.5;color:var(--txt-2);cursor:pointer;margin:0">
+              J'accepte la <a href="politique-confidentialite/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline">politique de confidentialité</a>
+              et je consens à être recontacté(e) sur le numéro fourni.
+              <span style="color:var(--danger,#B23A3A)">*</span>
+            </label>
+          </div>
           <div class="contact-form__submit-wrap">
             <p class="contact-form__hint" data-i18n="contact.form_hint">Aucun envoi automatique : votre message s'ouvre dans WhatsApp prêt à envoyer.</p>
             <button type="submit" class="btn btn--primary" data-track-event="contact_form_submit">
@@ -1035,7 +1053,6 @@
   </section>
 
   </main>
-</main>
 <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -1061,6 +1078,13 @@
           <a href="istanbul/" data-i18n="trips.istanbul">Istanbul · départ Constantine</a>
           <a href="kuala-lumpur/" data-i18n="trips.kuala_lumpur">Kuala Lumpur · Malaisie</a>
           <a href="sharm-constantine/" data-i18n="trips.sharm_constantine">Sharm El Sheikh · départ Constantine</a>
+        </div>
+        <div class="footer-col">
+          <h4>Informations légales</h4>
+          <a href="mentions-legales/">Mentions légales</a>
+          <a href="politique-confidentialite/">Politique de confidentialité</a>
+          <a href="politique-cookies/">Politique des cookies</a>
+          <a href="conditions-generales/">Conditions générales de vente</a>
         </div>
         <div class="footer-col">
           <h4 data-i18n="footer.col_contact">Contact</h4>
@@ -1105,6 +1129,7 @@
       obs.observe(el);
     });
   </script>
+  <script src="assets/js/consent-notice.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/enhance.js" defer></script>
   <script src="assets/js/enhance-pro.js" defer></script>

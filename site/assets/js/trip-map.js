@@ -61,6 +61,11 @@
   }
 
   /* ─── 4. Lazy-load MapLibre from CDN ──────────────────────── */
+  // See algeria-map.js for the SRI compute-command. Keep both files in
+  // sync — same MapLibre version, same hashes.
+  const MAPLIBRE_JS_SRI  = '';  // TODO: sha384-...
+  const MAPLIBRE_CSS_SRI = '';  // TODO: sha384-...
+
   function loadMapLibre() {
     if (window.maplibregl) return Promise.resolve(window.maplibregl);
     return new Promise((resolve, reject) => {
@@ -68,11 +73,15 @@
         const css = document.createElement('link');
         css.rel = 'stylesheet';
         css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
+        css.crossOrigin = 'anonymous';
+        if (MAPLIBRE_CSS_SRI) css.integrity = MAPLIBRE_CSS_SRI;
         document.head.appendChild(css);
       }
       const s = document.createElement('script');
       s.src = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';
       s.async = true;
+      s.crossOrigin = 'anonymous';
+      if (MAPLIBRE_JS_SRI) s.integrity = MAPLIBRE_JS_SRI;
       s.onload = () => resolve(window.maplibregl);
       s.onerror = () => reject(new Error('MapLibre GL failed to load'));
       document.head.appendChild(s);
