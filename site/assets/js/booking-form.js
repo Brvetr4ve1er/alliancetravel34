@@ -278,6 +278,32 @@ const FORM_HTML = `
         </div>
       </div>
 
+      <!-- Consent block · required before send buttons enable -->
+      <div class="bform-block bform-consent">
+        <div class="bform-field bform-field--checkbox">
+          <input type="checkbox" id="bf-consent-privacy" class="bf-check"/>
+          <label for="bf-consent-privacy">
+            J'ai lu et j'accepte la
+            <a href="/politique-confidentialite/" target="_blank" rel="noopener">politique de confidentialité</a>
+            ainsi que les
+            <a href="/conditions-generales/" target="_blank" rel="noopener">conditions générales de vente</a>.
+            <span class="req">*</span>
+          </label>
+        </div>
+        <div class="bform-field bform-field--checkbox">
+          <input type="checkbox" id="bf-consent-adult" class="bf-check"/>
+          <label for="bf-consent-adult">
+            Je certifie être majeur(e) et agir pour moi-même ou en tant que représentant
+            légal des voyageurs mineurs éventuellement inscrits dans ce dossier.
+            <span class="req">*</span>
+          </label>
+        </div>
+        <p class="bform-hint" style="margin-top:10px">
+          Vos informations restent sur votre appareil jusqu'à ce que vous cliquiez sur
+          « Ouvrir WhatsApp » ou « Envoyer par email ». Aucun envoi automatique.
+        </p>
+      </div>
+
     </div><!-- /bform-left -->
 
     <!-- ── RIGHT: Preview panel ─────────────────────────────── -->
@@ -608,6 +634,17 @@ class BookingForm {
       }
     });
 
+    // Consent gate — both checkboxes must be ticked. Both are silently
+    // required (no visible error before user tries to send) so that the
+    // buttons stay disabled until the user has consciously ticked them.
+    const consentPriv = this.mount.querySelector('#bf-consent-privacy');
+    const consentAdult = this.mount.querySelector('#bf-consent-adult');
+    const consentOk = !!(consentPriv?.checked && consentAdult?.checked);
+    if (!consentOk) {
+      ok = false;
+      errors['bf-consent'] = 'Veuillez accepter la politique de confidentialité et confirmer votre majorité.';
+    }
+
     return { ok, errors };
   }
 
@@ -731,6 +768,12 @@ class BookingForm {
         this._validate(); // full UI render
         this._liveUpdate();
       });
+    });
+
+    // Consent checkboxes — re-run gate on toggle
+    ['bf-consent-privacy','bf-consent-adult'].forEach(id => {
+      const cb = this.mount.querySelector(`#${id}`);
+      cb?.addEventListener('change', () => this._liveUpdate());
     });
 
     // Click gate on send buttons: if invalid, run validation with UI and stop

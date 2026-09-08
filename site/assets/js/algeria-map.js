@@ -77,6 +77,23 @@
   }
 
   /* ─── 4. Lazy-load MapLibre from CDN ──────────────────────── */
+  //
+  // Supply-chain hardening: crossOrigin='anonymous' is set so a
+  // Subresource Integrity check will actually run. The `integrity`
+  // hashes below are TODOs — the build/deploy environment must fill
+  // them in from a machine with outbound HTTPS access to unpkg.com.
+  //
+  // Compute the hashes with:
+  //   curl -sSL https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js  | openssl dgst -sha384 -binary | base64
+  //   curl -sSL https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css | openssl dgst -sha384 -binary | base64
+  // then set the two constants below to `sha384-<base64>`.
+  //
+  // While these remain empty, the script still loads (browsers only
+  // enforce SRI when the `integrity` attribute is non-empty), so the
+  // site keeps working — but a compromised CDN would go undetected.
+  const MAPLIBRE_JS_SRI  = '';  // TODO: sha384-...
+  const MAPLIBRE_CSS_SRI = '';  // TODO: sha384-...
+
   function loadMapLibre() {
     if (window.maplibregl) return Promise.resolve(window.maplibregl);
     return new Promise((resolve, reject) => {
@@ -85,11 +102,15 @@
         const css = document.createElement('link');
         css.rel = 'stylesheet';
         css.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
+        css.crossOrigin = 'anonymous';
+        if (MAPLIBRE_CSS_SRI) css.integrity = MAPLIBRE_CSS_SRI;
         document.head.appendChild(css);
       }
       const s = document.createElement('script');
       s.src = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js';
       s.async = true;
+      s.crossOrigin = 'anonymous';
+      if (MAPLIBRE_JS_SRI) s.integrity = MAPLIBRE_JS_SRI;
       s.onload = () => resolve(window.maplibregl);
       s.onerror = () => reject(new Error('MapLibre GL failed to load'));
       document.head.appendChild(s);

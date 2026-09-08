@@ -2329,6 +2329,107 @@ select {
   gap: var(--s5);
 }
 
+/* Consent block — legal gate before send buttons enable */
+.bform-consent {
+  background: color-mix(in srgb, var(--accent, #E0B26C) 6%, var(--bg-card));
+  border-color: color-mix(in srgb, var(--accent, #E0B26C) 25%, var(--border));
+}
+.bform-field--checkbox {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: var(--s3);
+  align-items: start;
+}
+.bform-field--checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--accent, #B8865A);
+}
+.bform-field--checkbox label {
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: var(--txt-2);
+  cursor: pointer;
+  margin: 0;
+}
+.bform-field--checkbox label a {
+  color: var(--accent, #B8865A);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.bform-field--checkbox label a:hover { color: var(--accent-dk, #8E6541); }
+.bform-field--checkbox .req { color: var(--danger, #B23A3A); font-weight: 600; margin-left: 2px; }
+
+/* ═════════════════════════════════════════════════════════════════
+   Privacy notice banner — non-blocking, dismissible, bottom-center
+   ═════════════════════════════════════════════════════════════════ */
+.at-privacy-notice {
+  position: fixed;
+  left: 16px; right: 16px; bottom: 16px;
+  z-index: 90;
+  max-width: 720px; margin-inline: auto;
+  background: rgba(11, 13, 18, .95);
+  color: #F5F2EA;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: at-notice-in .38s cubic-bezier(.2,.7,.2,1);
+}
+.at-privacy-notice__inner {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 18px;
+}
+.at-privacy-notice__body {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(245,242,234,.85);
+}
+.at-privacy-notice__body strong { color: white; font-weight: 600; }
+.at-privacy-notice__link {
+  color: var(--gold, #E0B26C);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.at-privacy-notice__link:hover { color: white; }
+.at-privacy-notice__ok {
+  flex-shrink: 0;
+  border: none;
+  background: white;
+  color: #08090C;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+.at-privacy-notice__ok:hover { transform: translateY(-1px); }
+.at-privacy-notice--out {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+@keyframes at-notice-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .at-privacy-notice__inner { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px; }
+  .at-privacy-notice__ok { align-self: flex-end; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .at-privacy-notice, .at-privacy-notice--out { animation: none; transition: none; }
+}
+
 .bform-block__title {
   font-size: .875rem;
   font-weight: 600;
@@ -8035,7 +8136,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 .bf-field-hint {
   margin: 4px 0 0;
   font-size: .75rem;
-  color: var(--txt-3, #8a99a8);
+  color: var(--txt-3, #5a6a7c);
   line-height: 1.45;
   font-style: italic;
 }
@@ -8084,7 +8185,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 /* ── Hero fineprint (à-partir-de disclaimer) ──────────────── */
 .hero-fineprint {
   font-size: .75rem;
-  color: var(--txt-3, #8a99a8);
+  color: var(--txt-3, #5a6a7c);
   text-align: center;
   margin: 0 auto var(--s4, 16px);
   max-width: 56ch;
@@ -8215,7 +8316,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 
 .info-card__chevron {
   flex-shrink: 0;
-  color: var(--txt-3, #8a99a8);
+  color: var(--txt-3, #5a6a7c);
   transition: transform var(--t-fast) var(--ease-snap);
 }
 
@@ -8419,7 +8520,7 @@ section.section.phase-block + section.section:not(.phase-block) {
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--txt-3, #8a99a8);
+  color: var(--txt-3, #5a6a7c);
 }
 .contact-form__field input,
 .contact-form__field select {
@@ -8449,7 +8550,7 @@ section.section.phase-block + section.section:not(.phase-block) {
 }
 .contact-form__hint {
   font-size: .75rem;
-  color: var(--txt-3, #8a99a8);
+  color: var(--txt-3, #5a6a7c);
   font-style: italic;
   flex: 1;
   min-width: 200px;

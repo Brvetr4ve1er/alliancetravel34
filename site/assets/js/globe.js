@@ -14,6 +14,17 @@
  */
 
 let createGlobe = null;
+// Supply-chain note: dynamic ES-module `import()` does not support the
+// `integrity` attribute (browsers only enforce SRI on <script> and <link>
+// elements). Best mitigations available today are:
+//   1. Pin an exact version — done (cobe@0.6.4, never `latest` / `next`).
+//   2. Restrict `script-src` in the site's Content-Security-Policy header
+//      to `'self' https://esm.sh` and add a `require-trusted-types-for
+//      'script'` directive if the host supports it. Configure this at the
+//      hosting layer (Netlify _headers / Vercel headers / Cloudflare).
+//   3. Long-term: self-host the ~50 KB cobe bundle under
+//      /assets/vendor/cobe-0.6.4.js and switch this import to a relative
+//      URL with a real SRI hash on a <link rel="modulepreload">.
 async function loadCobe() {
   if (createGlobe) return createGlobe;
   try {
