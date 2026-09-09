@@ -8592,7 +8592,17 @@ section.section {
 
 /* The arrow is painted in on-accent ink but sits OUTSIDE the pill, straight on
    the photo, so it vanished on dark images at 375 (visual audit B10). Pulled
-   inside the pill's edge and given the same glass backing. */
+   inside the pill's edge and given the same glass backing.
+
+   box-sizing is CONTENT-box here, against the sitewide border-box reset at
+   :13. The site's border-box default made width:14px include the 14px of
+   horizontal padding plus the 1px right border, leaving a content box of
+   14 - 14 - 1 = -1px — clamped to 0 by the browser, so the glass cap painted
+   but the chevron inside it had no room to draw. Measured live: the pill's
+   background/border render fine, the arrow itself is a hairline. content-box
+   makes width:14px mean 14 real pixels for the icon, with the padding adding
+   visual breathing room outside it, same as the icon presumably looked in
+   whatever mockup this padding value was copied from. */
 .trip-card__cta > svg {
   display: inline-block !important;
   width: 14px;
@@ -8602,7 +8612,7 @@ section.section {
   align-self: stretch;
   height: auto;
   padding: 0 10px 0 4px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   border-radius: 0 999px 999px 0;
   background: rgba(255, 255, 255, .12);
   border: 1.5px solid rgba(255, 255, 255, .28);
