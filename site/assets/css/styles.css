@@ -3409,7 +3409,15 @@ html.js [data-aos].visible {
 
 .trip-card__share {
   position: absolute;
-  top: var(--s3);
+  /* .trip-card__from (the always-visible price chip) occupies this same
+     top-right corner, top:14px + ~39px of content = bottom edge at 53px
+     (desktop), or top:12px + ~49px at <=640px = bottom edge at 61px. This
+     sat at top:16px/36px tall (bottom 52px) — nearly full overlap in BOTH
+     cases. Invisible on desktop except mid-hover, so unnoticed; permanently
+     visible at <=900px (opacity:1, 44px, "no hover on touch" below) where it
+     measurably covered half the price. Dropped below the chip with clearance
+     for its tallest (mobile) form. */
+  top: 72px;
   right: var(--s3);
   width: 36px;
   height: 36px;
@@ -4036,7 +4044,11 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 
 .site-nav.scrolled {
-  background: rgba(0, 44, 81, 0.78);
+  /* Measured live: at 0.78 the fixed pill still let scrolled-under card titles
+     read through clearly (not a blurred smudge, actual legible white text
+     under a translucent bar) — reads as broken, not as glass. Raised until the
+     backing itself is what you see. */
+  background: rgba(0, 44, 81, 0.96);
   border-color: rgba(156, 232, 178, 0.22);
 }
 
