@@ -20,7 +20,7 @@
    purged nothing but the 3-entry precache and visitors kept the old assets.
    Query-param cache busting (?v=) does NOT work for SW-cached resources;
    this constant is the only lever. */
-const VERSION    = 'v34-b004b4aecf25';
+const VERSION    = 'v34-565c45051217';
 const CACHE_NAME = `alliance-${VERSION}`;
 const RUNTIME    = `alliance-runtime-${VERSION}`;
 

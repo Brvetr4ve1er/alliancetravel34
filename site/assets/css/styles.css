@@ -4207,7 +4207,12 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
               inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 :root[data-theme="light"] .site-nav.scrolled {
-  background: rgba(255, 255, 255, 0.88);
+  /* Same measurement as the dark rule above, which was raised 0.78 → 0.96 in
+     f19e0c0. This is a different, higher-specificity selector, so that fix
+     never reached light theme and it sat at 0.88 — the same "legible text
+     reads through the glass" failure, just on the theme nobody re-checked.
+     Mobile was already covered by its own 0.98 !important override. */
+  background: rgba(255, 255, 255, 0.96);
   border-color: rgba(0, 44, 81, 0.18);
 }
 :root[data-theme="light"] .site-nav .nav-links a { color: var(--navy); opacity: 0.85; }
@@ -8585,15 +8590,18 @@ section.section {
   bottom: 20px;
   z-index: 4;
   display: inline-flex !important;
-  align-items: center;
-  gap: 8px;
+  /* The pill is the only child that should show a background, so the flex
+     line stretches and carries no gap. These two were previously restated in
+     a second .trip-card__cta block fourteen lines below, which quietly beat
+     the align-items:center/gap:8px that used to sit here. Merged, same
+     rendering, one place to read. */
+  align-items: stretch;
+  gap: 0;
   opacity: 1;
   transform: none;
   pointer-events: auto;
   color: var(--tc-fg) !important;
 }
-
-.trip-card__cta { gap: 0; align-items: stretch; }
 .trip-card__cta > span:not(.trip-card__cta-price) {
   display: inline-flex;
   align-items: center;
@@ -8692,6 +8700,7 @@ section.section {
   .trip-card__body { padding: 18px 18px 64px !important; }
   .trip-card__from { top: 12px; right: 12px; padding: 6px 10px !important; }
   .trip-card__monument { top: 12px; left: 12px; width: 38px; height: 38px; }
+  [dir="rtl"] .trip-card__monument { left: auto; right: 12px; }
   .trip-card__cta { left: 18px; bottom: 16px; }
   [dir="rtl"] .trip-card__cta { left: auto; right: 18px; }
   /* Touch devices have no hover — give them the "active" look at rest */
@@ -9177,6 +9186,12 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Mirror trip-card edge alignment for RTL */
 [dir="rtl"] .trip-card__from { align-items: flex-start; }
 [dir="rtl"] .trip-card__cta { left: auto; right: 22px; }
+/* The monument badge has to mirror with them. It sits at top/left 14px, and
+   the price chip lands on top/left 16px once the rule above moves it — same
+   corner, same 14px top, so on every /ar/ card the chip covered the badge.
+   This is the RTL twin of the share/price collision fixed in f19e0c0: the
+   left edge is the crowded one under RTL, and the right edge is now free. */
+[dir="rtl"] .trip-card__monument { left: auto; right: 14px; }
 /* Logo letter-spacing tweak for Arabic */
 [dir="rtl"] .nav-logo,
 [lang="ar"] .nav-logo { letter-spacing: 0; }
@@ -9685,6 +9700,13 @@ body { background: var(--bg); color: var(--txt-1); }
    "complete the fields" banner painted on first load, before any input. */
 .bf-field-err[hidden],
 .bf-validation-banner[hidden] {
+  display: none;
+}
+/* Third one, same trap: .bform-field is display:flex and #bf-office-field
+   ships `hidden`, revealed by booking-form.js only when the trip actually has
+   more than one office to choose between. Without this it painted an office
+   picker on every load, including the trips that have a single office. */
+.bform-field[hidden] {
   display: none;
 }
 .advisor__num {
