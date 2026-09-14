@@ -8584,88 +8584,79 @@ section.section {
    plus the v19-injected <span class="trip-card__cta-price"> — we hide
    the duplicate price (it's surfaced as the top-right chip now) and
    render the action span as a glass pill. */
+/* ONE pill, containing both the label and the arrow.
+   It used to be two: the <span> drew a left-rounded half and the <svg> a
+   right-rounded cap, pulled together with margin-left:-6px. That never
+   rendered as designed, because the span set border-radius twice in the same
+   block — "999px 0 0 999px" and then, seven lines later, a plain "999px" that
+   won. So the label closed into a complete pill and the arrow's cap hung off
+   its right edge on the photo, while border-right:0 left that edge open.
+   Putting the background on the container removes the seam, the negative
+   margin and the whole class of bug: the arrow is inside the pill because it
+   is inside the element that IS the pill. */
 .trip-card__cta {
   position: absolute !important;
   left: 22px;
   bottom: 20px;
   z-index: 4;
   display: inline-flex !important;
-  /* The pill is the only child that should show a background, so the flex
-     line stretches and carries no gap. These two were previously restated in
-     a second .trip-card__cta block fourteen lines below, which quietly beat
-     the align-items:center/gap:8px that used to sit here. Merged, same
-     rendering, one place to read. */
-  align-items: stretch;
-  gap: 0;
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-  color: var(--tc-fg) !important;
-}
-.trip-card__cta > span:not(.trip-card__cta-price) {
-  display: inline-flex;
   align-items: center;
   gap: 6px;
-  border-right: 0;
-  border-radius: 999px 0 0 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--tc-fg);
-  padding: 7px 14px 7px 14px;
+  padding: 7px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, .12);
   border: 1.5px solid rgba(255, 255, 255, .28);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  white-space: nowrap;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  color: var(--tc-fg) !important;
   transition: background var(--t-fast) ease, border-color var(--t-fast) ease, color var(--t-fast) ease;
 }
+/* The label is now just text inside the pill — the pill itself is the parent.
+   The explicit colour stays (rather than inherit) so the colour cascade around
+   this element is left exactly as it was: only the background moved. */
+.trip-card__cta > span:not(.trip-card__cta-price) {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--tc-fg);
+  white-space: nowrap;
+}
 
-/* The arrow is painted in on-accent ink but sits OUTSIDE the pill, straight on
-   the photo, so it vanished on dark images at 375 (visual audit B10). Pulled
-   inside the pill's edge and given the same glass backing.
-
-   box-sizing is CONTENT-box here, against the sitewide border-box reset at
-   :13. The site's border-box default made width:14px include the 14px of
-   horizontal padding plus the 1px right border, leaving a content box of
-   14 - 14 - 1 = -1px — clamped to 0 by the browser, so the glass cap painted
-   but the chevron inside it had no room to draw. Measured live: the pill's
-   background/border render fine, the arrow itself is a hairline. content-box
-   makes width:14px mean 14 real pixels for the icon, with the padding adding
-   visual breathing room outside it, same as the icon presumably looked in
-   whatever mockup this padding value was copied from. */
+/* Just the glyph now: no cap, no backing, no negative margin. The earlier
+   version carried its own padding/border and needed box-sizing:content-box to
+   survive the sitewide border-box reset, because width:14px minus 14px of
+   padding minus the border computed to a content box of -1px and the chevron
+   had no room to draw (1f4de63). With the padding gone that arithmetic cannot
+   recur, but content-box is kept so width/height mean the glyph itself. */
 .trip-card__cta > svg {
   display: inline-block !important;
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  margin-left: -6px;
-  align-self: stretch;
-  height: auto;
-  padding: 0 10px 0 4px;
   box-sizing: content-box;
-  border-radius: 0 999px 999px 0;
-  background: rgba(255, 255, 255, .12);
-  border: 1.5px solid rgba(255, 255, 255, .28);
-  border-left: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   color: var(--tc-fg);
   transition: transform var(--t-fast) ease, color var(--t-fast) ease;
 }
 
-.trip-card:hover .trip-card__cta > span:not(.trip-card__cta-price) {
+/* Hover paints the pill once, on the container. The two children keep their
+   own colour declarations, exactly as before — nothing about the colour
+   cascade here changed, only which element carries the background. */
+.trip-card:hover .trip-card__cta {
   background: var(--tc-accent);
-  color: var(--tc-ink);
   border-color: transparent;
+}
+.trip-card:hover .trip-card__cta > span:not(.trip-card__cta-price),
+.trip-card:hover .trip-card__cta > svg {
+  color: var(--tc-ink);
 }
 .trip-card:hover .trip-card__cta > svg {
   transform: translateX(3px);
-  background: var(--tc-accent);
-  border-color: transparent;
-  color: var(--tc-ink);
 }
 
 /* The duplicate price strip injected by _v19_inject_monuments.py is
@@ -8701,15 +8692,20 @@ section.section {
   .trip-card__from { top: 12px; right: 12px; padding: 6px 10px !important; }
   .trip-card__monument { top: 12px; left: 12px; width: 38px; height: 38px; }
   [dir="rtl"] .trip-card__monument { left: auto; right: 12px; }
-  .trip-card__cta { left: 18px; bottom: 16px; }
-  [dir="rtl"] .trip-card__cta { left: auto; right: 18px; }
-  /* Touch devices have no hover — give them the "active" look at rest */
-  .trip-card__cta > span:not(.trip-card__cta-price) {
+  /* Touch devices have no hover — give them the "active" look at rest.
+     The background is on the pill now; the children keep carrying their own
+     colour, same as the hover rule above. */
+  .trip-card__cta {
+    left: 18px;
+    bottom: 16px;
     background: var(--tc-accent);
-    color: var(--tc-ink);
     border-color: transparent;
   }
-  .trip-card__cta > svg { background: var(--tc-accent); border-color: transparent; color: var(--tc-ink); }
+  [dir="rtl"] .trip-card__cta { left: auto; right: 18px; }
+  .trip-card__cta > span:not(.trip-card__cta-price),
+  .trip-card__cta > svg {
+    color: var(--tc-ink);
+  }
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */
