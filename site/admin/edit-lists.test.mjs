@@ -18,6 +18,25 @@ import { checkRenderedPage } from "../../tools/check-rendered-page.mjs";
 const TRIPS_DIR = new URL("../../data/trips/", import.meta.url);
 const SLUGS = readdirSync(TRIPS_DIR).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5));
 const load = (slug) => JSON.parse(readFileSync(new URL(`${slug}.json`, TRIPS_DIR), "utf8"));
+
+/**
+ * A copy of `trip` whose items in `listPath` carry no per-item binding.
+ *
+ * The "nothing to infer from" cases below used to borrow whichever real trip
+ * happened to be untranslated at the time. That made them hostage to content:
+ * wiring istanbul's FAQ for EN/AR — an improvement — turned two green tests
+ * red without anything being wrong. The shape of the fixture is the thing
+ * under test, so the fixture is built here rather than found.
+ */
+function withoutItemBindings(trip, listPath) {
+  const clone = structuredClone(trip);
+  for (const item of get(clone, listPath) ?? []) {
+    for (const field of Object.keys(item)) {
+      if (field === "k" || /^k[A-Z]/.test(field)) item[field] = "";
+    }
+  }
+  return clone;
+}
 const get = (o, p) => p.split(".").reduce((x, k) => (x == null ? x : x[k]), o);
 
 // ── A DOM small enough to read, faithful enough to drive ───────────────
@@ -91,14 +110,19 @@ function saveTripChain(slug, trip) {
 // ── Key shape inference ────────────────────────────────────────────────
 test("the key shape is read off each trip, never assumed", () => {
   // The seven trips do not agree, which is the whole reason this is inferred:
-  // azerbaidjan's FAQ answers are azFaqA<n>, egypte's are egFaq<n>A, and
-  // istanbul carries no per-item binding at all.
+  // azerbaidjan's FAQ answers are azFaqA<n>, egypte's are egFaq<n>A.
   const faq = LIST_SPECS.find((s) => s.id === "faq");
   const az = inferShape(load("azerbaidjan"), faq, "kA");
   const eg = inferShape(load("egypte"), faq, "kA");
+  const ist = inferShape(load("istanbul"), faq, "kA");
   assert.deepEqual([az.head, az.tail], ["azFaqA", ""]);
   assert.deepEqual([eg.head, eg.tail], ["egFaq", "A"]);
-  assert.equal(inferShape(load("istanbul"), faq, "kA"), null);
+  assert.deepEqual([ist.head, ist.tail], ["istFaqA", ""]);
+  // A list whose items carry no binding at all yields nothing to infer from.
+  // Synthetic, deliberately: this used to point at istanbul, which was simply
+  // an untranslated page — so finishing its translations broke a test that was
+  // never about istanbul.
+  assert.equal(inferShape(withoutItemBindings(load("istanbul"), "faq"), faq, "kA"), null);
 });
 
 test("a list with two key families takes the dominant one", () => {
@@ -168,10 +192,10 @@ test("a new FAQ item gets max+1 keys in the trip's own shape", () => {
 });
 
 test("a trip with no per-item bindings gets no invented keys", () => {
-  // istanbul's FAQ carries none. Minting `istFaqQ1` would create a binding
+  // Minting `istFaqQ5` on a list that binds nothing would create a binding
   // whose translation nobody will ever write, and the item would render an
   // empty string in EN/AR instead of falling back to French.
-  const trip = load("istanbul");
+  const trip = withoutItemBindings(load("istanbul"), "faq");
   const dom = buildDom(trip);
   dom.addRow("faq", { question: "Une question ?", answerHtml: "Une réponse." });
   collectLists(dom, trip);
