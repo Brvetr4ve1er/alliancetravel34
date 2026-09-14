@@ -547,40 +547,42 @@ class TripCalculator {
    * method replaces the <p> text with the real number per hotel.
    */
   _updateKidPriceLabels(hotel) {
-    const ageBand = { child_b: '2–11.99 ans', child_a: '2–11.99 ans', baby: '0–2 ans' };
+    // Which stepper types price a child at all. Not a source of display text:
+    // each trip writes its own band, and they disagree (Istanbul sells
+    // "2-5 ans" and "6-12 ans", Azerbaidjan "-5 ans" and "-12 ans").
+    const KID_TYPES = new Set(["child_b", "child_a", "baby"]);
+    // A price the page already quotes, in any of the three languages: French
+    // and Arabic group with ".", English with ",", and the suffix is "DA" on
+    // FR/EN pages and "دج" on AR ones.
+    const QUOTED_PRICE = /\s*·?\s*[\d.,\s  ]{3,}(?:DA|دج)\s*$/i;
+
     document.querySelectorAll('.stepper-item').forEach(item => {
       const kidStepper = item.querySelector('.kid-stepper');
       if (!kidStepper) return;
       const type = kidStepper.dataset.kidType;
-      const age = ageBand[type];
-      if (!age) return;
-      const priceKey = this.kidPriceKey(type);
-      // Mirror calculate()'s own fallback (child2 → child1) so the advertised
+      if (!KID_TYPES.has(type)) return;
+      // Mirror calculate()'s own fallback (child2 -> child1) so the advertised
       // price is always the charged price. Returning early instead left the
       // PREVIOUS hotel's number on screen: Soviva prices no child2, so its
-      // "2ᵉ enfant" stepper kept Houria Palace's 28 000 DA above an 8 000 DA
-      // charge. When nothing resolves, show the age band alone rather than a
-      // number that was never true.
-      const price = hotel.prices[priceKey] ?? (type === 'baby' ? null : hotel.prices.child1);
+      // "2e enfant" stepper kept Houria Palace's 28 000 DA above an 8 000 DA
+      // charge.
+      const price = hotel.prices[this.kidPriceKey(type)] ?? (type === 'baby' ? null : hotel.prices.child1);
       const p = item.querySelector('.stepper-item__info p');
       if (!p) return;
-      // Keep the trip's own wording. ageBand is a generic default and is not
-      // every trip's band — Istanbul sells "2–5 ans" and "6–12 ans" while this
-      // map says "2–11.99 ans" — and the hint carries detail no default knows,
-      // like Istanbul's "Avec lit" / "Sans lit". Overwriting it wholesale made
-      // the stepper contradict the heading right above it.
+
+      // Keep whatever the page currently says and refresh only the number.
+      // Overwriting the whole line used to replace real information -- the
+      // trip's own band, and Istanbul's "Avec lit" / "Sans lit" -- with a
+      // generic band the heading directly above it contradicts.
       //
-      // The authored hint may already quote a price for the default hotel
-      // (azerbaidjan: "−12 ans · lit suppl. · 213.000 DA"). That one goes
-      // stale the moment another hotel is picked, so it is dropped and the
-      // live price re-appended. Captured once, so switching hotels repeatedly
-      // cannot compound.
-      if (p.dataset.baseHint == null) p.dataset.baseHint = p.textContent.trim();
-      const base = p.dataset.baseHint
-        .replace(/\s*·?\s*[\d.,\s  ]{3,}DA\s*$/i, '')
-        .trim();
-      const parts = [base || age, price == null ? null : fmt(price)];
-      p.textContent = parts.filter(Boolean).join(' · ');
+      // Read from the LIVE text every time rather than caching the first
+      // value: calculator.js runs before i18n.js on a trip page, so a cache
+      // would be filled with French and then written back over the Arabic
+      // that translate() had since put there. Strip-then-append is idempotent,
+      // so re-reading costs nothing.
+      const base = p.textContent.trim().replace(QUOTED_PRICE, '').trim();
+      const next = [base, price == null ? '' : fmt(price)].filter(Boolean).join(' · ');
+      if (next) p.textContent = next;
     });
   }
 
