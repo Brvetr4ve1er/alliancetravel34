@@ -686,13 +686,8 @@ window.resetFilters = () => {
 };
 
 // Nav scroll effect
-function initNav() {
-  const nav = document.querySelector('.site-nav');
-  if (!nav) return;
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-}
+// The nav's scrolled state moved to enhance.js, which every page loads — this
+// file is only on the eight trip pages, so the legal pages never got it.
 
 // FAQ accordion
 function initFAQ() {
@@ -746,7 +741,6 @@ function initStickyBarHeight() {
 
 // Boot
 document.addEventListener('DOMContentLoaded', () => {
-  initNav();
   initHotelPicker();
   initFAQ();
   initTimeline();

@@ -1084,9 +1084,23 @@
   }
 
   /* ─── Boot ───────────────────────────────────────────────── */
+  /* ─── Opaque nav on scroll (every page) ───
+     Lived in calculator.js until 2026-09-14, which only the eight trip pages
+     load — so on /mentions-legales/, /confidentialite/ and /cgv/ the nav never
+     got .scrolled and stayed translucent over a long column of legal prose,
+     which is exactly the bleed-through f19e0c0 raised the alpha to stop. */
+  function initNavScrollState() {
+    const nav = document.querySelector('.site-nav');
+    if (!nav) return;                       // 404 has no nav
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
   function boot() {
     // Foundation
     initThemeSwitcher();
+    initNavScrollState();
 
     // v22 reveal + UX layer
     initLegacyRevealObserver();
