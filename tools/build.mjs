@@ -344,12 +344,17 @@ if (!errors.length) {
         continue;
       }
       try {
+        // Same resolve order as a trip variant: page dictionary first, then the
+        // sitewide one for the nav/footer keys the page shares with every other
+        // page. (?? because the trip loop above only loads it when a trip needs
+        // a variant, and a build could reach here without that having happened.)
+        globalT ??= loadGlobalI18n();
         variantRenders.push({
           slug: dir,
           lang,
           outFile: join(SITE_DIR, lang, dir, "index.html"),
           html: toOutput(renderStaticVariant(frHtml, {
-            lang, slug: dir, langs, resolve: resolverFor(dict),
+            lang, slug: dir, langs, resolve: resolverFor(dict, globalT[lang]),
             sameLangDirs: dirsByLang.get(lang),
           })),
         });

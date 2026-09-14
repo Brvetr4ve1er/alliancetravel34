@@ -1,12 +1,12 @@
 {
   "slug": "azerbaidjan",
   "coverage": {
-    "en": 99,
-    "ar": 99
+    "en": 100,
+    "ar": 100
   },
   "coveragePage": {
-    "en": 99,
-    "ar": 99
+    "en": 100,
+    "ar": 100
   },
   "counts": {
     "total": 210,
@@ -14,15 +14,15 @@
     "shared": 25,
     "en": {
       "ok": 179,
-      "stale": 4,
+      "stale": 6,
       "global": 25,
-      "missing": 2
+      "missing": 0
     },
     "ar": {
       "ok": 179,
-      "stale": 4,
+      "stale": 6,
       "global": 25,
-      "missing": 2
+      "missing": 0
     }
   },
   "keys": {
@@ -145,9 +145,11 @@
     "azHeroCtaCalc": {
       "fr": "Calculer mon prix",
       "frHash": "01k75uan",
+      "en": "Calculate my price",
+      "ar": "احسب سعري",
       "scope": "trip",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azHeroLede": {
       "fr": "La Cité du Feu rencontre les montagnes du Caucase. 5 nuits dans la capitale moderne de Bakou, 2 nuits au cœur des sommets de Gabala. Visa électronique inclus.",
@@ -163,9 +165,11 @@
     "azHeroFineprint": {
       "fr": "Sur la base d'une chambre double, sous réserve de disponibilité — taux DZD/USD à la réservation.",
       "frHash": "00h8z0s3",
+      "en": "Based on a double room, subject to availability — DZD/USD rate set at booking.",
+      "ar": "على أساس غرفة مزدوجة، رهناً بالتوفّر — يُحدَّد سعر الصرف دينار/دولار عند الحجز.",
       "scope": "trip",
-      "enState": "missing",
-      "arState": "missing"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azHl1Label": {
       "fr": "Ville moderne",

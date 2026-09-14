@@ -168,3 +168,38 @@ test("missingKeys sees attribute directives too, not just text", () => {
   delete partial["omra.logo_alt"];
   assert.deepEqual(missingKeys(FR, partial), ["omra.logo_alt"]);
 });
+
+/* ── Shared nav/footer keys resolve from the sitewide dictionary ───────── */
+
+test("resolverFor falls back to the global dictionary for dotted nav/footer keys", () => {
+  // A static variant is server-rendered, and i18n.js treats it as already
+  // localized (IS_VARIANT) and never calls translate() — so whatever the build
+  // leaves in French stays French. The page dictionary only owns "omra.*"; the
+  // nav and footer bind "nav.trips" / "footer.tagline", which live in the
+  // sitewide dictionary. Resolving only the page dict shipped /en/omra/ and
+  // /ar/omra/ with a fully French nav and footer.
+  const page = { "omra.hero.lede": "Umrah, organised end to end." };
+  const global = {
+    nav: { trips: "Our trips", omra: "Umrah" },
+    footer: { tagline: "Guided trips out of Bordj Bou Arreridj." },
+    meta: { omra: { title: "…" } },          // a nested branch, not a string
+  };
+  const r = resolverFor(page, global);
+
+  assert.equal(r("omra.hero.lede"), "Umrah, organised end to end.");
+  assert.equal(r("nav.trips"), "Our trips");
+  assert.equal(r("footer.tagline"), "Guided trips out of Bordj Bou Arreridj.");
+  assert.equal(r("nav.unknown"), null, "an unknown key leaves the French baseline");
+  assert.equal(r("meta.omra"), null, "a nested branch is not text and must not be injected");
+});
+
+test("the page dictionary still wins over the global one", () => {
+  const r = resolverFor({ "nav.trips": "Page override" }, { nav: { trips: "Global" } });
+  assert.equal(r("nav.trips"), "Page override");
+});
+
+test("resolverFor without a global dictionary behaves exactly as before", () => {
+  const r = resolverFor({ "omra.x": "y" });
+  assert.equal(r("omra.x"), "y");
+  assert.equal(r("nav.trips"), null);
+});

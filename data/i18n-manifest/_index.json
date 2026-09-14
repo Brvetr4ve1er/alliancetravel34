@@ -3,24 +3,24 @@
   "trips": {
     "azerbaidjan": {
       "coverage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "coveragePage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "bindings": 185,
       "shared": 25
     },
     "bali": {
       "coverage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "coveragePage": {
-        "en": 99,
-        "ar": 99
+        "en": 100,
+        "ar": 100
       },
       "bindings": 183,
       "shared": 25

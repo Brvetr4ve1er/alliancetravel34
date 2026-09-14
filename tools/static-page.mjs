@@ -166,10 +166,25 @@ export function renderStaticVariant(frHtml, { lang, slug, langs, resolve, sameLa
  * Build a resolver over a flat page dictionary for one language, e.g.
  * { "omra.hero.lede": "…" }. Returns null for unknown keys so localizeHtml
  * leaves the French baseline in place rather than emptying the element.
+ *
+ * `globalDict` is one language of the sitewide dictionary in
+ * site/assets/js/i18n.js, consulted second for the dotted keys the shared nav
+ * and footer bind (nav.trips, footer.tagline…). Without it those two regions
+ * shipped in French on every static variant: the build left them for the
+ * client to translate, but i18n.js recognises a server-rendered variant as
+ * already localized (IS_VARIANT) and skips translate() entirely, so nobody
+ * ever did. The trip pipeline has always resolved in this order — see
+ * makeResolve() in templates/langpage.mjs.
  */
-export function resolverFor(dict) {
+export function resolverFor(dict, globalDict) {
   const d = dict || {};
-  return (key) => (key in d ? d[key] : null);
+  const g = globalDict || null;
+  return (key) => {
+    if (key in d) return d[key];
+    if (!g) return null;
+    const v = key.split(".").reduce((o, k) => (o && k in o ? o[k] : undefined), g);
+    return typeof v === "string" ? v : null;   // nested branches are not text
+  };
 }
 
 /**
