@@ -98,7 +98,11 @@
       },
       stats: {
         travelers: 'Voyageurs accompagnés',
-        branches: "Agences · BBA &amp; M'Sila",
+        // A real "&", not "&amp;": stats.branches is bound with data-i18n, and
+        // translate() writes it through textContent, which never decodes
+        // entities. The HTML fallback in index.html is markup and is correctly
+        // escaped there — this string is not markup.
+        branches: "Agences · BBA & M'Sila",
         since: 'Année de création',
         satisfaction: 'Clients satisfaits',
         destinations: 'Destinations 2026',
@@ -477,7 +481,7 @@
       },
       stats: {
         travelers: 'Travellers guided',
-        branches: "Branches · BBA &amp; M'Sila",
+        branches: "Branches · BBA & M'Sila",
         since: 'Founded',
         satisfaction: 'Satisfaction rate',
         destinations: 'Destinations in 2026',

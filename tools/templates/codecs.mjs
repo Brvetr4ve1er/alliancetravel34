@@ -15,6 +15,32 @@ export function evalObjectLiteral(src) {
   return new Function(`"use strict"; return (${src});`)();
 }
 
+/**
+ * Strip tags and decode HTML entities for a field that is NOT markup.
+ *
+ * The FAQ strings are authored once and used twice: the visible section renders
+ * them as HTML (where "&amp;" is the correct spelling of "&"), while the
+ * FAQPage JSON-LD goes inside <script type="application/ld+json">, which no
+ * parser entity-decodes — so the same "&amp;" reaches Google verbatim and a
+ * rich result reads "Bali &amp; Kuala Lumpur". Decoding here keeps one stored
+ * value correct for both sinks, and leaves validate-trip's stored-to-stored
+ * comparison untouched.
+ *
+ * "&amp;" is decoded LAST so that an escaped entity ("&amp;lt;") survives as
+ * text ("&lt;") instead of collapsing into a tag.
+ */
+export function plainText(s) {
+  return String(s ?? "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0*39;|&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .trim();
+}
+
 const QUOTE = (s) =>
   `'${String(s)
     .replace(/\\/g, "\\\\")
@@ -107,8 +133,8 @@ export const codecs = {
         "@type": "FAQPage",
         mainEntity: data.seo.faqJsonLd.map((f) => ({
           "@type": "Question",
-          name: f.name,
-          acceptedAnswer: { "@type": "Answer", text: f.text },
+          name: plainText(f.name),
+          acceptedAnswer: { "@type": "Answer", text: plainText(f.text) },
         })),
       };
       return "\n" + JSON.stringify(obj, null, 2) + "\n";

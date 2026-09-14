@@ -156,7 +156,7 @@
     "egHeroLede": {
       "fr": "Un seul pays, cinq formules au choix. Caire &amp; Hurghada, charters vol direct vers Hurghada ou Sharm, Caire &amp; Sharm en vol régulier, ou Sharm au départ de Constantine. All Inclusive en Mer Rouge, excursions guidées au Caire.",
       "frHash": "00l8hp4n",
-      "en": "One country, five packages to choose from. Cairo &amp; Hurghada, direct-charter to Hurghada or Sharm, Cairo &amp; Sharm on a scheduled flight, or Sharm departing from Constantine. All Inclusive on the Red Sea, guided excursions in Cairo.",
+      "en": "One country, five packages to choose from. Cairo & Hurghada, direct-charter to Hurghada or Sharm, Cairo & Sharm on a scheduled flight, or Sharm departing from Constantine. All Inclusive on the Red Sea, guided excursions in Cairo.",
       "ar": "بلد واحد، وخمس صيغ للاختيار. القاهرة والغردقة، رحلات عارضة مباشرة إلى الغردقة أو شرم الشيخ، القاهرة وشرم الشيخ برحلة منتظمة، أو شرم الشيخ انطلاقاً من قسنطينة. نظام شامل في البحر الأحمر، وجولات مُرافَقة في القاهرة.",
       "enHash": "00l8hp4n",
       "arHash": "00l8hp4n",
@@ -266,7 +266,7 @@
     "egHl3Body": {
       "fr": "Vol direct charter vers Hurghada ou Sharm, ou vol régulier via Le Caire selon le programme. Départs Alger &amp; Constantine.",
       "frHash": "00q8hh53",
-      "en": "Direct charter flight to Hurghada or Sharm, or a scheduled flight via Cairo depending on the programme. Departures from Algiers &amp; Constantine.",
+      "en": "Direct charter flight to Hurghada or Sharm, or a scheduled flight via Cairo depending on the programme. Departures from Algiers & Constantine.",
       "ar": "رحلة عارضة مباشرة إلى الغردقة أو شرم الشيخ، أو رحلة منتظمة عبر القاهرة حسب البرنامج. مغادرات من الجزائر وقسنطينة.",
       "enHash": "00q8hh53",
       "arHash": "00q8hh53",
@@ -321,7 +321,7 @@
     "egItinEyebrow": {
       "fr": "Pyramides &amp; Mer Rouge",
       "frHash": "00oxgpx0",
-      "en": "Pyramids &amp; Red Sea",
+      "en": "Pyramids & Red Sea",
       "ar": "الأهرامات والبحر الأحمر",
       "enHash": "00oxgpx0",
       "arHash": "00oxgpx0",
@@ -497,7 +497,7 @@
     "egStep3Label": {
       "fr": "Transferts &amp; vols",
       "frHash": "006shkfs",
-      "en": "Transfers &amp; flights",
+      "en": "Transfers & flights",
       "ar": "التنقّلات والرحلات",
       "enHash": "006shkfs",
       "arHash": "006shkfs",
@@ -1135,7 +1135,7 @@
     "egHotelsPhase": {
       "fr": "Comparer les programmes &amp; hôtels",
       "frHash": "00mu5jdu",
-      "en": "Compare the programmes &amp; hotels",
+      "en": "Compare the programmes & hotels",
       "ar": "قارن بين البرامج والفنادق",
       "enHash": "00mu5jdu",
       "arHash": "00mu5jdu",
@@ -1168,7 +1168,7 @@
     "egHotelsSub": {
       "fr": "Choisissez d'abord votre formule — Caire &amp; Hurghada, charters vol direct Hurghada ou Sharm, Caire &amp; Sharm en EgyptAir, ou Sharm au départ de Constantine — puis l'hôtel. Le calculateur affiche aussitôt le prix exact.",
       "frHash": "0075ag63",
-      "en": "First choose your package — Cairo &amp; Hurghada, direct-charter Hurghada or Sharm, Cairo &amp; Sharm on EgyptAir, or Sharm departing from Constantine — then the hotel. The calculator instantly shows the exact price.",
+      "en": "First choose your package — Cairo & Hurghada, direct-charter Hurghada or Sharm, Cairo & Sharm on EgyptAir, or Sharm departing from Constantine — then the hotel. The calculator instantly shows the exact price.",
       "ar": "اختر أولاً صيغتك — القاهرة والغردقة، رحلات عارضة مباشرة إلى الغردقة أو شرم الشيخ، القاهرة وشرم الشيخ مع مصر للطيران، أو شرم الشيخ انطلاقاً من قسنطينة — ثم الفندق. تعرض الحاسبة فوراً السعر الدقيق.",
       "enHash": "0075ag63",
       "arHash": "0075ag63",
