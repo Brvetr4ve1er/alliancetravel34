@@ -285,6 +285,12 @@
   }
 
   /* ─── Trip quick-switcher in nav ──────────────────────────── */
+  // The trip rows below spell prices "169.000 DA", but every other surface on
+  // the site shows "169 000 DA": hero.tpl does this same replace when it
+  // renders, and the calculator formats through Intl. Only the nav switcher
+  // still showed the period, so one price appeared two ways on one screen.
+  const groupDigits = (s) => String(s ?? '').replace(/\./g, ' ');
+
   const ALL_TRIPS = [
     { slug: 'egypte',       name: 'Égypte · Le Caire, Sharm & Hurghada', price: '169.000 DA', color: '#C9872E', sub: 'Égypte · 5 programmes 2026' },
     { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '249.900 DA', color: '#3AAFAF', sub: 'Juillet–Septembre 2026' },
@@ -332,7 +338,7 @@
               <span data-i18n="nav.trip.${t.slug}.name">${tr(`nav.trip.${t.slug}.name`, t.name)}</span>
               <span style="display:block;font-size:.6875rem;color:var(--txt-3);font-weight:400;letter-spacing:0;margin-top:1px" data-i18n="nav.trip.${t.slug}.sub">${tr(`nav.trip.${t.slug}.sub`, t.sub)}</span>
             </span>
-            <span class="trip-switcher__item-price"><span data-i18n="nav.from">${tr('nav.from', 'dès')}</span> ${escapeHtml(t.price)}</span>
+            <span class="trip-switcher__item-price"><span data-i18n="nav.from">${tr('nav.from', 'dès')}</span> ${escapeHtml(groupDigits(t.price))}</span>
           </a>`).join('')}
       </div>
     `;

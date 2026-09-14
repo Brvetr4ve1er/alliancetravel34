@@ -554,16 +554,33 @@ class TripCalculator {
       const type = kidStepper.dataset.kidType;
       const age = ageBand[type];
       if (!age) return;
-      const cfg = { age, priceKey: this.kidPriceKey(type) };
+      const priceKey = this.kidPriceKey(type);
       // Mirror calculate()'s own fallback (child2 → child1) so the advertised
       // price is always the charged price. Returning early instead left the
       // PREVIOUS hotel's number on screen: Soviva prices no child2, so its
       // "2ᵉ enfant" stepper kept Houria Palace's 28 000 DA above an 8 000 DA
       // charge. When nothing resolves, show the age band alone rather than a
       // number that was never true.
-      const price = hotel.prices[cfg.priceKey] ?? (type === 'baby' ? null : hotel.prices.child1);
+      const price = hotel.prices[priceKey] ?? (type === 'baby' ? null : hotel.prices.child1);
       const p = item.querySelector('.stepper-item__info p');
-      if (p) p.textContent = price == null ? cfg.age : `${cfg.age} · ${fmt(price)}`;
+      if (!p) return;
+      // Keep the trip's own wording. ageBand is a generic default and is not
+      // every trip's band — Istanbul sells "2–5 ans" and "6–12 ans" while this
+      // map says "2–11.99 ans" — and the hint carries detail no default knows,
+      // like Istanbul's "Avec lit" / "Sans lit". Overwriting it wholesale made
+      // the stepper contradict the heading right above it.
+      //
+      // The authored hint may already quote a price for the default hotel
+      // (azerbaidjan: "−12 ans · lit suppl. · 213.000 DA"). That one goes
+      // stale the moment another hotel is picked, so it is dropped and the
+      // live price re-appended. Captured once, so switching hotels repeatedly
+      // cannot compound.
+      if (p.dataset.baseHint == null) p.dataset.baseHint = p.textContent.trim();
+      const base = p.dataset.baseHint
+        .replace(/\s*·?\s*[\d.,\s  ]{3,}DA\s*$/i, '')
+        .trim();
+      const parts = [base || age, price == null ? null : fmt(price)];
+      p.textContent = parts.filter(Boolean).join(' · ');
     });
   }
 
