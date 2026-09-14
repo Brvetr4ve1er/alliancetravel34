@@ -8,32 +8,45 @@
 const fmt = (n) => new Intl.NumberFormat('fr-DZ').format(Number.isFinite(n) ? n : 0) + ' DA';
 
 // --- Past-due departure filtering -----------------------------------------
-// Parse the END date of a French departure label into a Date. Handles
+// Parse the START date of a French departure label into a Date. Handles
 // "13 – 20 Juin 2026", "27 Juin – 04 Juillet 2026" and single "3 Septembre 2026".
+//
+// The START is what decides bookability: a group that left on the 10th and
+// comes back on the 18th cannot be joined on the 14th. Filtering on the end
+// date (as this did until 2026-09-14) kept every in-progress departure on the
+// page as a selectable chip, and shipped that date verbatim in the WhatsApp
+// booking message.
 const _FR_MONTHS = { 'janvier':0,'février':1,'fevrier':1,'mars':2,'avril':3,'mai':4,'juin':5,'juillet':6,'août':7,'aout':7,'septembre':8,'octobre':9,'novembre':10,'décembre':11,'decembre':11 };
-function parseDepartureEnd(str) {
+function parseDepartureStart(str) {
   if (!str) return null;
   const s = String(str).toLowerCase();
   const years = s.match(/\d{4}/g);
   const parts = s.split(/[–—-]/);                 // en/em dash or hyphen range
-  const endPart = parts.length > 1 ? parts[parts.length - 1] : parts[0];
   const startPart = parts[0];
-  const dm = endPart.match(/(\d{1,2})/);
-  const day = dm ? +dm[1] : 1;
+  const endPart = parts.length > 1 ? parts[parts.length - 1] : parts[0];
   const monthFrom = (txt) => { for (const k in _FR_MONTHS) if (txt.includes(k)) return _FR_MONTHS[k]; return null; };
-  let month = monthFrom(endPart);
   const startMonth = monthFrom(startPart);
-  if (month == null) month = startMonth;
+  const endMonth = monthFrom(endPart);
+  // "10 – 18 Septembre 2026" spells the month only once, on the end half.
+  const month = startMonth != null ? startMonth : endMonth;
   if (month == null) return null;
-  // Use the LAST 4-digit run as the end year (cross-year ranges spell out both);
-  // if only one year is present and the end month wraps below the start, add 1.
-  let year = years && years.length ? +years[years.length - 1] : new Date().getFullYear();
-  if (years && years.length === 1 && startMonth != null && month < startMonth) year += 1;
-  return new Date(year, month, day);
+  // A year inside the start half wins ("28 Décembre 2026 – 05 Janvier 2027").
+  // Otherwise take the first one spelled anywhere, and step back a year when
+  // the range wraps past December ("28 Décembre – 05 Janvier 2027").
+  const startYears = startPart.match(/\d{4}/g);
+  let year;
+  if (startYears && startYears.length) year = +startYears[0];
+  else {
+    year = years && years.length ? +years[0] : new Date().getFullYear();
+    if (startMonth != null && endMonth != null && startMonth > endMonth) year -= 1;
+  }
+  // The day is the first 1–2 digit run that is not part of the year.
+  const dm = startPart.replace(/\d{4}/g, ' ').match(/(\d{1,2})/);
+  return new Date(year, month, dm ? +dm[1] : 1);
 }
-// Bookable if the departure's end date is today or later (client clock).
+// Bookable if the departure has not left yet (same-day departures still count).
 function isFutureDeparture(str) {
-  const d = parseDepartureEnd(str);
+  const d = parseDepartureStart(str);
   if (!d) return true;                            // unparseable → keep, don't hide
   const today = new Date(); today.setHours(0, 0, 0, 0);
   return d.getTime() >= today.getTime();
@@ -542,10 +555,15 @@ class TripCalculator {
       const age = ageBand[type];
       if (!age) return;
       const cfg = { age, priceKey: this.kidPriceKey(type) };
-      const price = hotel.prices[cfg.priceKey];
-      if (price == null) return;
+      // Mirror calculate()'s own fallback (child2 → child1) so the advertised
+      // price is always the charged price. Returning early instead left the
+      // PREVIOUS hotel's number on screen: Soviva prices no child2, so its
+      // "2ᵉ enfant" stepper kept Houria Palace's 28 000 DA above an 8 000 DA
+      // charge. When nothing resolves, show the age band alone rather than a
+      // number that was never true.
+      const price = hotel.prices[cfg.priceKey] ?? (type === 'baby' ? null : hotel.prices.child1);
       const p = item.querySelector('.stepper-item__info p');
-      if (p) p.textContent = `${cfg.age} · ${fmt(price)}`;
+      if (p) p.textContent = price == null ? cfg.age : `${cfg.age} · ${fmt(price)}`;
     });
   }
 

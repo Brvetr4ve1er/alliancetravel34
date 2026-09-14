@@ -2322,6 +2322,19 @@ summary.faq-q::-webkit-details-marker {
     display: flex;
   }
 
+  /* Exactly one pinned price per screen. This is the only breakpoint where
+     .sticky-total is shown, and .trip-sticky-bar (built by enhance.js on every
+     trip page) has no width guard of its own — so below 1024px a visitor who
+     had configured two adults saw "À partir de 169.000 DA" pinned to the top
+     and "Total estimé 338 000 DA" pinned to the bottom at the same time. The
+     live, configured total is the truer number, so it keeps the screen here;
+     above 1024px .sticky-total is display:none and the inquiry bar stands
+     alone, unchanged. Scoped with :has so /rendez-vous-visa/, which has an
+     inquiry bar and no calculator, is untouched. */
+  body:has(.sticky-total) .trip-sticky-bar {
+    display: none;
+  }
+
   /* v22 Phase 3 — only consume bottom padding on pages that ACTUALLY
      have a sticky-total bar (i.e. trip pages). Homepage previously paid
      for 68px of non-existent chrome. */
