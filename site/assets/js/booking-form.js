@@ -273,15 +273,15 @@ const formHtml = (U) => `
             <input type="text" id="bf-name" placeholder="${escapeHtml(U.phName)}"
               autocomplete="name" inputmode="text" required minlength="2"
               aria-required="true" aria-describedby="bf-name-err"/>
-            <p class="bf-field-err" id="bf-name-err" hidden>${escapeHtml(U.nameErr)}</p>
+            <p class="bf-field-err" id="bf-name-err" aria-live="polite" hidden>${escapeHtml(U.nameErr)}</p>
           </div>
           <div class="bform-field">
             <label for="bf-phone">${escapeHtml(U.phone)} <span class="req" aria-hidden="true">*</span></label>
             <input type="tel" id="bf-phone" placeholder="${escapeHtml(U.phPhone)}"
               autocomplete="tel" inputmode="tel" required
-              pattern="^(\\+213|0)[5-7][0-9 ]{8,}$"
+              pattern="^(?:\\+213[\\s.-]?|0)[5-7](?:[\\s.-]?\\d){8}$"
               aria-required="true" aria-describedby="bf-phone-err"/>
-            <p class="bf-field-err" id="bf-phone-err" hidden>${escapeHtml(U.phoneErr)}</p>
+            <p class="bf-field-err" id="bf-phone-err" aria-live="polite" hidden>${escapeHtml(U.phoneErr)}</p>
           </div>
         </div>
         <div class="bform-field">
@@ -289,7 +289,7 @@ const formHtml = (U) => `
           <input type="text" id="bf-city" placeholder="${escapeHtml(U.phCity)}"
             autocomplete="address-level2" required minlength="2"
             aria-required="true" aria-describedby="bf-city-err"/>
-          <p class="bf-field-err" id="bf-city-err" hidden>${escapeHtml(U.cityErr)}</p>
+          <p class="bf-field-err" id="bf-city-err" aria-live="polite" hidden>${escapeHtml(U.cityErr)}</p>
         </div>
         <!-- Office picker: which agency WhatsApp the dossier is sent to.
              Populated at runtime from window.AT_CONTACTS; hidden if unavailable. -->
@@ -878,11 +878,20 @@ class BookingForm {
       errors[id] = err;
       if (err) ok = false;
 
+      // Silent passes run on every keystroke, so they must never RAISE an error
+      // at someone still typing. Clearing one is different: the send button and
+      // the banner already re-enable themselves the moment the form is valid,
+      // so skipping the field entirely left a red border and "Veuillez indiquer
+      // votre nom complet." sitting above a button that said it was ready.
+      const errEl = this.mount.querySelector('#' + id + '-err');
       if (!silent) {
         inp.classList.toggle('is-invalid', !!err);
         inp.setAttribute('aria-invalid', err ? 'true' : 'false');
-        const errEl = this.mount.querySelector('#' + id + '-err');
         if (errEl) errEl.hidden = !err;
+      } else if (!err) {
+        inp.classList.remove('is-invalid');
+        inp.setAttribute('aria-invalid', 'false');
+        if (errEl) errEl.hidden = true;
       }
     });
 
