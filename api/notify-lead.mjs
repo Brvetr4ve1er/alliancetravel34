@@ -21,6 +21,7 @@
 // api/_lib/notify.mjs, shared with api/notify-test.mjs so the "send a test" button
 // exercises this exact path.
 import { notifyEnv, buildLeadEmail, sendEmail } from "./_lib/notify.mjs";
+import { limited, WEBHOOK } from "./_lib/ratelimit.mjs";
 
 // Hard ceiling on the request body, for the same reason as save-trip.mjs: the whole
 // thing is buffered before it can be parsed. A lead row is a few hundred bytes, so
@@ -46,6 +47,10 @@ async function readBody(req) {
 export default async function handler(req, res) {
   // 1. Method gate — same shape as save-trip.mjs.
   if (req.method !== "POST") return res.status(405).json({ error: "method not allowed" });
+
+  // Supabase retries a failed webhook, and a leaked secret would otherwise be an
+  // unmetered send button. 60/min is far above the real insert rate.
+  if (limited(req, res, WEBHOOK)) return;
 
   const env = notifyEnv();
 
