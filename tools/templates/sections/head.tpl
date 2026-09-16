@@ -32,10 +32,15 @@
 <link rel="canonical" href="https://alliancetravel.app/{{slug}}/"/>
 <!-- v22 i18n-SEO strategy (c): see docs/I18N-SEO.md -->
 <link rel="alternate" hreflang="x-default" href="https://alliancetravel.app/{{slug}}/"/>
-<!-- v21 prod-prep: preload the LCP hero bg image -->
-<link rel="preload" as="image" type="image/webp"
-      href="{{=d.hero.bg.replace('--bg.jpg','--bg.webp')}}"
-      imagesrcset="{{=d.hero.bg.replace('--bg.jpg','--bg--mobile.webp')}} 768w, {{=d.hero.bg.replace('--bg.jpg','--bg.webp')}} 1920w"
+<!-- v21 prod-prep: preload the LCP hero bg image.
+     AVIF, not WebP: the <picture> below lists type="image/avif" FIRST, so every
+     AVIF-capable browser picks the .avif and a WebP preload bought nothing --
+     it downloaded a second copy of the hero that was then never painted. The
+     type attribute makes a browser without AVIF skip this preload entirely and
+     fall through to <picture> normally, so the old path still works for them. -->
+<link rel="preload" as="image" type="image/avif"
+      href="{{=d.hero.bg.replace('--bg.jpg','--bg.avif')}}"
+      imagesrcset="{{=d.hero.bg.replace('--bg.jpg','--bg--mobile.avif')}} 768w, {{=d.hero.bg.replace('--bg.jpg','--bg.avif')}} 1920w"
       imagesizes="100vw"
       fetchpriority="high"/>
 <!-- v21 phase I.2: BreadcrumbList for SERP nav hierarchy -->

@@ -92,9 +92,9 @@
   <!-- v21 prod-prep: preload the LCP hero image so the browser starts
        fetching it in parallel with HTML parsing. Per-viewport srcset so
        mobile gets the 60-92 KB mobile crop, desktop gets the full 470 KB. -->
-  <link rel="preload" as="image" type="image/webp"
-        href="assets/images/heroes/hero__cairo-sharm.webp"
-        imagesrcset="assets/images/heroes/hero__cairo-sharm--mobile.webp 768w, assets/images/heroes/hero__cairo-sharm.webp 1920w"
+  <link rel="preload" as="image" type="image/avif"
+        href="assets/images/heroes/hero__cairo-sharm.avif"
+        imagesrcset="assets/images/heroes/hero__cairo-sharm--mobile.avif 768w, assets/images/heroes/hero__cairo-sharm.avif 1920w"
         imagesizes="100vw"
         fetchpriority="high" />
   <link
@@ -381,15 +381,27 @@
         <div class="aurora-orb" aria-hidden="true">
           <div class="aurora-orb__sky"></div>
           <figure class="aurora-orb__card aurora-orb__card--1">
-            <img src="assets/images/trips/card__home__cairo-sharm.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            <picture>
+              <source type="image/avif" srcset="assets/images/trips/card__home__cairo-sharm.avif"/>
+              <source type="image/webp" srcset="assets/images/trips/card__home__cairo-sharm.webp"/>
+              <img src="assets/images/trips/card__home__cairo-sharm.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            </picture>
             <figcaption>Le Caire · Sharm</figcaption>
           </figure>
           <figure class="aurora-orb__card aurora-orb__card--2">
-            <img src="assets/images/trips/card__home__istanbul.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            <picture>
+              <source type="image/avif" srcset="assets/images/trips/card__home__istanbul.avif"/>
+              <source type="image/webp" srcset="assets/images/trips/card__home__istanbul.webp"/>
+              <img src="assets/images/trips/card__home__istanbul.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            </picture>
             <figcaption>Istanbul</figcaption>
           </figure>
           <figure class="aurora-orb__card aurora-orb__card--3">
-            <img src="assets/images/trips/card__home__bali.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            <picture>
+              <source type="image/avif" srcset="assets/images/trips/card__home__bali.avif"/>
+              <source type="image/webp" srcset="assets/images/trips/card__home__bali.webp"/>
+              <img src="assets/images/trips/card__home__bali.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720"/>
+            </picture>
             <figcaption>Bali</figcaption>
           </figure>
         </div>

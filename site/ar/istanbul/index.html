@@ -34,10 +34,15 @@
 <link rel="alternate" hreflang="fr" href="https://alliancetravel.app/istanbul/"/>
 <link rel="alternate" hreflang="ar" href="https://alliancetravel.app/ar/istanbul/"/>
 <link rel="alternate" hreflang="x-default" href="https://alliancetravel.app/istanbul/"/>
-<!-- v21 prod-prep: preload the LCP hero bg image -->
-<link rel="preload" as="image" type="image/webp"
-      href="/assets/images/heroes-v2/hero__istanbul--bg.webp"
-      imagesrcset="/assets/images/heroes-v2/hero__istanbul--bg--mobile.webp 768w, /assets/images/heroes-v2/hero__istanbul--bg.webp 1920w"
+<!-- v21 prod-prep: preload the LCP hero bg image.
+     AVIF, not WebP: the <picture> below lists type="image/avif" FIRST, so every
+     AVIF-capable browser picks the .avif and a WebP preload bought nothing --
+     it downloaded a second copy of the hero that was then never painted. The
+     type attribute makes a browser without AVIF skip this preload entirely and
+     fall through to <picture> normally, so the old path still works for them. -->
+<link rel="preload" as="image" type="image/avif"
+      href="/assets/images/heroes-v2/hero__istanbul--bg.avif"
+      imagesrcset="/assets/images/heroes-v2/hero__istanbul--bg--mobile.avif 768w, /assets/images/heroes-v2/hero__istanbul--bg.avif 1920w"
       imagesizes="100vw"
       fetchpriority="high"/>
 <!-- v21 phase I.2: BreadcrumbList for SERP nav hierarchy -->

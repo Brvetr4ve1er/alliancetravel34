@@ -4619,11 +4619,17 @@ main, footer, section, .home-hero { position: relative; z-index: 1; }
   animation: photo-fade 12s ease-in-out infinite;
 }
 
-.home-hero__photos img:nth-child(1) { animation-delay: 0s; }
-.home-hero__photos img:nth-child(2) { animation-delay: -2.4s; }
-.home-hero__photos img:nth-child(3) { animation-delay: -4.8s; }
-.home-hero__photos img:nth-child(4) { animation-delay: -7.2s; }
-.home-hero__photos img:nth-child(5) { animation-delay: -9.6s; }
+/* Staggered so the five tiles cross-fade out of phase. Selected through
+   :nth-child on the PICTURE, not the img: every tile is wrapped in <picture>,
+   so each <img> is the last child of its own wrapper and never the 1st-5th
+   child of .home-hero__photos — these five rules had quietly stopped matching
+   anything and all five tiles faded in unison. The sibling rule above already
+   selects `picture:nth-child(n+3)`, which is the shape that still works. */
+.home-hero__photos picture:nth-child(1) img { animation-delay: 0s; }
+.home-hero__photos picture:nth-child(2) img { animation-delay: -2.4s; }
+.home-hero__photos picture:nth-child(3) img { animation-delay: -4.8s; }
+.home-hero__photos picture:nth-child(4) img { animation-delay: -7.2s; }
+.home-hero__photos picture:nth-child(5) img { animation-delay: -9.6s; }
 
 /* Lazy-tile placeholder fill (tiles 2-5). The 1x1 SVG src paints nothing,
    so without this dark background the parent collage bleeds through until
