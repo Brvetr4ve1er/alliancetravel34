@@ -403,6 +403,11 @@ select {
      backgrounds (4.61 and 5.28) while keeping the hue. */
   --danger:       #d46363;
   --danger-soft:  rgba(207, 82, 82, .12);
+  /* --danger is tuned as TEXT on the card/page grounds above. As a FILL it
+     runs the other way: white on #d46363 is 3.64:1 (and 4.21:1 on the
+     pre-2026-09 #cf5252, so the fill never passed). --danger-bg is the
+     variant for anything that paints light ink ON the red. */
+  --danger-bg:    #c94a4a;
   --warn:         #e0a04a;
   --warn-soft:    rgba(224, 160, 74, .14);
   /* 2026-09-05: stars follow the brand green. Owner rule: amber is a WARNING
@@ -520,6 +525,10 @@ select {
      banner and 3.17 on the CTA note. #a33333 clears 4.5 on all three. */
   --danger:       #a33333;
   --danger-soft:  rgba(163, 51, 51, .12);
+  /* Light's --danger is already dark enough to carry white ink (6.82:1),
+     so --danger-bg tracks it; it exists here only so the token resolves
+     in both themes. */
+  --danger-bg:    #a33333;
   /* --danger-light is the tint the error chips and invalid fields actually
      consume (:2060, :2662); without a light override they kept the dark
      theme's value under a light-theme red. */
@@ -2843,7 +2852,7 @@ summary.faq-q::-webkit-details-marker {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: var(--danger);
+  background: var(--danger-bg);
   color: #fff;
   display: grid;
   place-items: center;
