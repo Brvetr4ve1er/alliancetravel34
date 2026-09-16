@@ -36,7 +36,7 @@
       },
       {
         "name": "Tarifs enfants pour Istanbul ?",
-        "text": "Selon l'hôtel : enfant 6–12 ans avec lit entre 100.000 et 110.000 DA . Enfant 2–5 ans sans lit entre 79.000 et 85.000 DA . Bébé <2 ans : 25.000 DA . Utilisez le calculateur pour le total exact."
+        "text": "Selon l'hôtel : enfant 6–12 ans avec lit entre 105.000 et 115.000 DA . Enfant 2–5 ans sans lit entre 80.000 et 85.000 DA . Bébé <2 ans : 25.000 DA . Utilisez le calculateur pour le total exact."
       }
     ]
   },
@@ -655,7 +655,7 @@
       "kQ": " data-i18n=\"istFaqQ4\"",
       "question": "Tarifs enfants pour Istanbul ?",
       "kA": " data-i18n-html=\"istFaqA4\"",
-      "answerHtml": "Selon l'hôtel : enfant 6–12 ans avec lit entre <strong>100.000 et 110.000 DA</strong>. Enfant 2–5 ans sans lit entre <strong>79.000 et 85.000 DA</strong>. Bébé &lt;2 ans : <strong>25.000 DA</strong>. Utilisez le calculateur pour le total exact."
+      "answerHtml": "Selon l'hôtel : enfant 6–12 ans avec lit entre <strong>105.000 et 115.000 DA</strong>. Enfant 2–5 ans sans lit entre <strong>80.000 et 85.000 DA</strong>. Bébé &lt;2 ans : <strong>25.000 DA</strong>. Utilisez le calculateur pour le total exact."
     }
   ],
   "hotelsSection": {
@@ -757,7 +757,7 @@
       "kPrice": "",
       "priceFrom": "135.000 DA",
       "kMeta": " data-i18n=\"istCard2PriceMeta\"",
-      "priceMeta": "Double · pers · Single 175.000 DA",
+      "priceMeta": "Double · pers · Single 180.000 DA",
       "kCta": " data-i18n=\"istCardSelect\""
     },
     {
@@ -819,9 +819,9 @@
       "kPriceLabel": " data-i18n=\"istCardFrom\"",
       "priceLabel": "À partir de",
       "kPrice": "",
-      "priceFrom": "142.000 DA",
+      "priceFrom": "139.000 DA",
       "kMeta": " data-i18n=\"istCard4PriceMeta\"",
-      "priceMeta": "Double · pers · Single 189.000 DA",
+      "priceMeta": "Double · pers · Single 190.000 DA",
       "kCta": " data-i18n=\"istCardSelect\""
     }
   ],
@@ -834,43 +834,79 @@
     "dateChips": [
       {
         "active": true,
-        "value": "3 Septembre 2026",
+        "value": "01 – 08 Octobre 2026",
         "k": "",
-        "label": "3 Sep"
+        "label": "1–8 Oct"
       },
       {
         "active": false,
-        "value": "10 Septembre 2026",
+        "value": "08 – 15 Octobre 2026",
         "k": "",
-        "label": "10 Sep"
+        "label": "8–15 Oct"
       },
       {
         "active": false,
-        "value": "17 Septembre 2026",
+        "value": "15 – 22 Octobre 2026",
         "k": "",
-        "label": "17 Sep"
+        "label": "15–22 Oct"
       },
       {
         "active": false,
-        "value": "1 Octobre 2026",
+        "value": "22 – 29 Octobre 2026",
         "k": "",
-        "label": "1 Oct"
+        "label": "22–29 Oct"
       },
       {
         "active": false,
-        "value": "15 Octobre 2026",
+        "value": "29 Octobre – 05 Novembre 2026",
         "k": "",
-        "label": "15 Oct"
+        "label": "29 Oct–5 Nov"
       },
       {
         "active": false,
-        "value": "5 Novembre 2026",
+        "value": "05 – 12 Novembre 2026",
         "k": "",
-        "label": "5 Nov"
+        "label": "5–12 Nov"
+      },
+      {
+        "active": false,
+        "value": "12 – 19 Novembre 2026",
+        "k": "",
+        "label": "12–19 Nov"
+      },
+      {
+        "active": false,
+        "value": "19 – 26 Novembre 2026",
+        "k": "",
+        "label": "19–26 Nov"
+      },
+      {
+        "active": false,
+        "value": "26 Novembre – 03 Décembre 2026",
+        "k": "",
+        "label": "26 Nov–3 Déc"
+      },
+      {
+        "active": false,
+        "value": "03 – 10 Décembre 2026",
+        "k": "",
+        "label": "3–10 Déc"
+      },
+      {
+        "active": false,
+        "value": "10 – 17 Décembre 2026",
+        "k": "",
+        "label": "10–17 Déc"
+      },
+      {
+        "active": false,
+        "value": "17 – 24 Décembre 2026",
+        "k": "",
+        "label": "17–24 Déc"
       }
     ],
     "selectLabel": "Hôtel",
-    "optionsHtml": "            <option value=\"river\">Hotel River 3★ — dès 129.000 DA</option>\n            <option value=\"ozer\">Hotel Ozer Palace 4★ — dès 135.000 DA</option>\n            <option value=\"alpin\">Hotel Alpin Due 4★ — dès 137.000 DA</option>\n            <option value=\"tilia\">Hôtel Tilia 4★ — dès 142.000 DA</option>\n",
+    "optionsHtml": "            <option value=\"river\">Hotel River 3★ — dès 129.000 DA</option>\n            <option value=\"ozer\">Hotel Ozer Palace 4★ — dès 135.000 DA</option>\n            <option value=\"alpin\">Hotel Alpin Due 4★ — dès 137.000 DA</option>\n            <option value=\"tilia\">Hôtel Tilia 4★ — dès 139.000 DA</option>\n",
     "roomLabel": "Type de chambre",
     "roomOptions": [
       {
@@ -1018,12 +1054,18 @@
   "tripData": {
     "name": "Istanbul 2026 · Départ Constantine",
     "dates": [
-      "3 Septembre 2026",
-      "10 Septembre 2026",
-      "17 Septembre 2026",
-      "1 Octobre 2026",
-      "15 Octobre 2026",
-      "5 Novembre 2026"
+      "01 – 08 Octobre 2026",
+      "08 – 15 Octobre 2026",
+      "15 – 22 Octobre 2026",
+      "22 – 29 Octobre 2026",
+      "29 Octobre – 05 Novembre 2026",
+      "05 – 12 Novembre 2026",
+      "12 – 19 Novembre 2026",
+      "19 – 26 Novembre 2026",
+      "26 Novembre – 03 Décembre 2026",
+      "03 – 10 Décembre 2026",
+      "10 – 17 Décembre 2026",
+      "17 – 24 Décembre 2026"
     ],
     "hotels": [
       {
@@ -1045,8 +1087,8 @@
         "prices": {
           "double": 135000,
           "triple": 135000,
-          "single": 175000,
-          "child1": 110000,
+          "single": 180000,
+          "child1": 108000,
           "child2": 80000,
           "baby": 25000
         },
@@ -1069,9 +1111,9 @@
         "id": "tilia",
         "name": "Hôtel Tilia 4★",
         "prices": {
-          "double": 142000,
+          "double": 139000,
           "triple": 142000,
-          "single": 189000,
+          "single": 190000,
           "child1": 115000,
           "child2": 85000,
           "baby": 25000
@@ -1218,7 +1260,7 @@
       "istFaqQ3": "How do I register from home?",
       "istFaqA3": "Register by phone or WhatsApp. Payment is made by <strong>postal transfer (CCP)</strong> or in cash at the agency. A deposit is enough to secure your spot.",
       "istFaqQ4": "Children's rates for Istanbul?",
-      "istFaqA4": "Depending on the hotel: child 6–12 with a bed between <strong>100,000 and 110,000 DA</strong>. Child 2–5 without a bed between <strong>79,000 and 85,000 DA</strong>. Baby &lt;2: <strong>25,000 DA</strong>. Use the calculator for the exact total.",
+      "istFaqA4": "Depending on the hotel: child 6–12 with a bed between <strong>105,000 and 115,000 DA</strong>. Child 2–5 without a bed between <strong>80,000 and 85,000 DA</strong>. Baby &lt;2: <strong>25,000 DA</strong>. Use the calculator for the exact total.",
       "istTierAll": "All",
       "istTierEconomique": "3★ Economy",
       "istTierMedium": "4★ Comfort",
@@ -1232,9 +1274,9 @@
       "istCard4Amen1": "Bosphorus view",
       "istCard4Amen2": "Premium",
       "istCard1PriceMeta": "Double · per person · Single 170,000 DA",
-      "istCard2PriceMeta": "Double · per person · Single 175,000 DA",
+      "istCard2PriceMeta": "Double · per person · Single 180,000 DA",
       "istCard3PriceMeta": "Double · per person · Single 180,000 DA",
-      "istCard4PriceMeta": "Double · per person · Single 189,000 DA",
+      "istCard4PriceMeta": "Double · per person · Single 190,000 DA",
       "istRoomDouble": "Double",
       "istRoomSingle": "Single",
       "istStepAdultsTitle": "Adults",
@@ -1419,7 +1461,7 @@
       "istFaqQ3": "كيف يمكنني التسجيل من المنزل؟",
       "istFaqA3": "التسجيل يتم عبر الهاتف أو واتساب. يتم الدفع عبر <strong>الحوالة البريدية (CCP)</strong> أو نقداً في الوكالة. يكفي دفع عربون لحجز مكانكم.",
       "istFaqQ4": "ما هي أسعار الأطفال في إسطنبول؟",
-      "istFaqA4": "حسب الفندق: الطفل من 6 إلى 12 سنة مع سرير بين <strong>100.000 و110.000 دج</strong>. الطفل من 2 إلى 5 سنوات بدون سرير بين <strong>79.000 و85.000 دج</strong>. الرضيع أقل من سنتين: <strong>25.000 دج</strong>. استخدم الحاسبة للحصول على المجموع الدقيق.",
+      "istFaqA4": "حسب الفندق: الطفل من 6 إلى 12 سنة مع سرير بين <strong>105.000 و115.000 دج</strong>. الطفل من 2 إلى 5 سنوات بدون سرير بين <strong>80.000 و85.000 دج</strong>. الرضيع أقل من سنتين: <strong>25.000 دج</strong>. استخدم الحاسبة للحصول على المجموع الدقيق.",
       "istTierAll": "الكل",
       "istTierEconomique": "3★ اقتصادي",
       "istTierMedium": "4★ مريح",
@@ -1433,9 +1475,9 @@
       "istCard4Amen1": "إطلالة على البسفور",
       "istCard4Amen2": "مميزة",
       "istCard1PriceMeta": "مزدوجة · للشخص · فردية 170.000 دج",
-      "istCard2PriceMeta": "مزدوجة · للشخص · فردية 175.000 دج",
+      "istCard2PriceMeta": "مزدوجة · للشخص · فردية 180.000 دج",
       "istCard3PriceMeta": "مزدوجة · للشخص · فردية 180.000 دج",
-      "istCard4PriceMeta": "مزدوجة · للشخص · فردية 189.000 دج",
+      "istCard4PriceMeta": "مزدوجة · للشخص · فردية 190.000 دج",
       "istRoomDouble": "مزدوجة",
       "istRoomSingle": "فردية",
       "istStepAdultsTitle": "البالغون",

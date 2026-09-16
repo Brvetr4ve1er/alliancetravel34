@@ -13,14 +13,14 @@
     "trip": 194,
     "shared": 25,
     "en": {
-      "ok": 194,
-      "stale": 0,
+      "ok": 191,
+      "stale": 3,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 194,
-      "stale": 0,
+      "ok": 191,
+      "stale": 3,
       "global": 25,
       "missing": 0
     }
@@ -1232,15 +1232,15 @@
       "arState": "ok"
     },
     "istFaqA4": {
-      "fr": "Selon l'hôtel : enfant 6–12 ans avec lit entre <strong>100.000 et 110.000 DA</strong>. Enfant 2–5 ans sans lit entre <strong>79.000 et 85.000 DA</strong>. Bébé &lt;2 ans : <strong>25.000 DA</strong>. Utilisez le calculateur pour le total exact.",
-      "frHash": "017rubn7",
-      "en": "Depending on the hotel: child 6–12 with a bed between <strong>100,000 and 110,000 DA</strong>. Child 2–5 without a bed between <strong>79,000 and 85,000 DA</strong>. Baby &lt;2: <strong>25,000 DA</strong>. Use the calculator for the exact total.",
-      "ar": "حسب الفندق: الطفل من 6 إلى 12 سنة مع سرير بين <strong>100.000 و110.000 دج</strong>. الطفل من 2 إلى 5 سنوات بدون سرير بين <strong>79.000 و85.000 دج</strong>. الرضيع أقل من سنتين: <strong>25.000 دج</strong>. استخدم الحاسبة للحصول على المجموع الدقيق.",
+      "fr": "Selon l'hôtel : enfant 6–12 ans avec lit entre <strong>105.000 et 115.000 DA</strong>. Enfant 2–5 ans sans lit entre <strong>80.000 et 85.000 DA</strong>. Bébé &lt;2 ans : <strong>25.000 DA</strong>. Utilisez le calculateur pour le total exact.",
+      "frHash": "01i6c01x",
+      "en": "Depending on the hotel: child 6–12 with a bed between <strong>105,000 and 115,000 DA</strong>. Child 2–5 without a bed between <strong>80,000 and 85,000 DA</strong>. Baby &lt;2: <strong>25,000 DA</strong>. Use the calculator for the exact total.",
+      "ar": "حسب الفندق: الطفل من 6 إلى 12 سنة مع سرير بين <strong>105.000 و115.000 دج</strong>. الطفل من 2 إلى 5 سنوات بدون سرير بين <strong>80.000 و85.000 دج</strong>. الرضيع أقل من سنتين: <strong>25.000 دج</strong>. استخدم الحاسبة للحصول على المجموع الدقيق.",
       "enHash": "017rubn7",
       "arHash": "017rubn7",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "istPhase2": {
       "fr": "Comparer les hôtels",
@@ -1397,15 +1397,15 @@
       "arState": "ok"
     },
     "istCard2PriceMeta": {
-      "fr": "Double · pers · Single 175.000 DA",
-      "frHash": "015ufkc6",
-      "en": "Double · per person · Single 175,000 DA",
-      "ar": "مزدوجة · للشخص · فردية 175.000 دج",
+      "fr": "Double · pers · Single 180.000 DA",
+      "frHash": "002lob3e",
+      "en": "Double · per person · Single 180,000 DA",
+      "ar": "مزدوجة · للشخص · فردية 180.000 دج",
       "enHash": "015ufkc6",
       "arHash": "015ufkc6",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "istCard3Amen1": {
       "fr": "Beyoğlu",
@@ -1452,15 +1452,15 @@
       "arState": "ok"
     },
     "istCard4PriceMeta": {
-      "fr": "Double · pers · Single 189.000 DA",
-      "frHash": "01x2ji23",
-      "en": "Double · per person · Single 189,000 DA",
-      "ar": "مزدوجة · للشخص · فردية 189.000 دج",
+      "fr": "Double · pers · Single 190.000 DA",
+      "frHash": "00acjcth",
+      "en": "Double · per person · Single 190,000 DA",
+      "ar": "مزدوجة · للشخص · فردية 190.000 دج",
       "enHash": "01x2ji23",
       "arHash": "01x2ji23",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "istPhase3": {
       "fr": "Calculer mon prix",
