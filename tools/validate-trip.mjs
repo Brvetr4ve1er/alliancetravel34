@@ -22,6 +22,22 @@ const UNSAFE_MARKUP = [
   [/\bon[a-z]+\s*=/i, "un gestionnaire d'événement (onclick, onerror…)"],
   // Matches through entity/whitespace obfuscation of the colon.
   [/javascript\s*(?:&#x?[0-9a-f]+;?|:)/i, "une URL javascript:"],
+  // Tags that need no script to do damage, and so are not covered by the
+  // handler/scheme rules above. <base> rewrites every relative URL on the page
+  // (the CSP's base-uri 'self' also blocks it, but this layer does not depend
+  // on a header staying correct); <form> can post a visitor's details
+  // anywhere; <meta http-equiv="refresh"> redirects the page; <style> and
+  // <link rel=stylesheet> can deface it or leak what a visitor typed through
+  // attribute selectors. Measured: zero occurrences across all seven trips, so
+  // nothing already published is rejected.
+  [/<\s*base\b/i, "<base>"],
+  [/<\s*form\b/i, "<form>"],
+  [/<\s*meta\b[^>]*http-equiv/i, "<meta http-equiv>"],
+  [/<\s*style\b/i, "<style>"],
+  [/<\s*link\b/i, "<link>"],
+  // data:text/html executes in a navigation context. Other data: URIs (an
+  // inline SVG placeholder, say) stay allowed.
+  [/data\s*:\s*text\/html/i, "une URL data:text/html"],
 ];
 const isInt = (v) => Number.isInteger(v);
 

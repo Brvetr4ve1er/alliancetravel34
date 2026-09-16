@@ -44,6 +44,12 @@ export function plainText(s) {
 const QUOTE = (s) =>
   `'${String(s)
     .replace(/\\/g, "\\\\")
+    // "</script>" inside a JS string literal still closes the tag: the HTML
+    // parser reaches it before JavaScript does, so the <script> block ends and
+    // the rest of the field becomes markup. The escaped form parses as an
+    // identical string to JS and is invisible to the HTML parser. Must run AFTER
+    // the backslash escape above, or the backslash inserted here is doubled.
+    .replace(/<\//g, "<\\/")
     .replace(/'/g, "\\'")
     .replace(/\n/g, "\\n")
     .replace(/\r/g, "\\r")
