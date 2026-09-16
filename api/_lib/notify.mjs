@@ -12,6 +12,8 @@
 // inert: notifyConfig().ready is false and both callers no-op rather than throw.
 // Nothing in this file claims the feature is live when it is not.
 
+import { deadline, EMAIL_TIMEOUT_MS } from "./http.mjs";
+
 export const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
 // The default sender. It must be on a domain the owner controls AND has
@@ -174,6 +176,7 @@ export async function sendEmail({ apiKey, from, to, subject, text, html }) {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({ from, to, subject, text, html }),
+      signal: deadline(EMAIL_TIMEOUT_MS),
     });
   } catch {
     return { ok: false, status: 0, error: "fournisseur d'email injoignable" };

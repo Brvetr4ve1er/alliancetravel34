@@ -1,6 +1,7 @@
 // api/_lib/auth.mjs — identity + allowlist for privileged endpoints.
 // No service-role key: the caller's own Supabase token is verified against
 // the Auth server, then the returned email is checked against ADMIN_EMAILS.
+import { deadline, AUTH_TIMEOUT_MS } from "./http.mjs";
 
 export function parseBearer(req) {
   const h = (req.headers && (req.headers.authorization || req.headers.Authorization)) || "";
@@ -36,6 +37,7 @@ export async function verifyAdmin(req) {
   try {
     res = await fetch(`${base}/auth/v1/user`, {
       headers: { Authorization: `Bearer ${token}`, apikey: anonKey },
+      signal: deadline(AUTH_TIMEOUT_MS),
     });
   } catch (e) {
     return { ok: false, status: 502, error: "auth server unreachable" };

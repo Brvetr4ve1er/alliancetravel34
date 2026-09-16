@@ -27,6 +27,7 @@
 // escaping rules. vercel.json's includeFiles keeps site/admin/ in this function's
 // bundle (same mechanism save-trip.mjs uses for tools/).
 import { verifyAdmin, supabaseEnv } from "./_lib/auth.mjs";
+import { deadline, SUPABASE_QUERY_TIMEOUT_MS } from "./_lib/http.mjs";
 import { buildExport, FORMATS, LEAD_FIELDS } from "../site/admin/export.js";
 
 export { LEAD_FIELDS };
@@ -70,6 +71,7 @@ export default async function handler(req, res) {
   try {
     resp = await fetch(`${base}/rest/v1/leads?select=*&order=created_at.desc`, {
       headers: { apikey: key, Authorization: `Bearer ${key}`, Accept: "application/json" },
+      signal: deadline(SUPABASE_QUERY_TIMEOUT_MS),
     });
   } catch {
     return res.status(502).json({ error: "supabase unreachable" });

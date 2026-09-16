@@ -10,6 +10,7 @@
 // when it was first committed, so it is known-good by construction.
 import { verifyAdmin } from "./_lib/auth.mjs";
 import { getFile, putFile, listCommits } from "./_lib/github.mjs";
+import { deadline, GITHUB_TIMEOUT_MS } from "./_lib/http.mjs";
 import { isValidSlug } from "./_lib/slug.mjs";
 
 const API = "https://api.github.com";
@@ -53,6 +54,7 @@ async function getFileAtRef({ path, ref }) {
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "alliance-travel-admin",
       },
+      signal: deadline(GITHUB_TIMEOUT_MS),
     });
   } catch {
     throw Object.assign(new Error("github unreachable"), { status: 502 });

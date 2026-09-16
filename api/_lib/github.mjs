@@ -1,4 +1,6 @@
 // api/_lib/github.mjs — minimal GitHub contents-API client (fine-grained PAT).
+import { deadline, GITHUB_TIMEOUT_MS } from "./http.mjs";
+
 const API = "https://api.github.com";
 
 function repo() { return process.env.GITHUB_REPO; }        // "owner/name"
@@ -16,7 +18,7 @@ export async function getFile({ path }) {
   const url = `${API}/repos/${repo()}/contents/${path}?ref=${encodeURIComponent(branch())}`;
   let res;
   try {
-    res = await fetch(url, { headers: headers() });
+    res = await fetch(url, { headers: headers(), signal: deadline(GITHUB_TIMEOUT_MS) });
   } catch (e) {
     throw Object.assign(new Error("github unreachable"), { status: 502 });
   }
@@ -49,7 +51,7 @@ export async function listTree() {
   const url = `${API}/repos/${repo()}/git/trees/${encodeURIComponent(branch())}?recursive=1`;
   let res;
   try {
-    res = await fetch(url, { headers: headers() });
+    res = await fetch(url, { headers: headers(), signal: deadline(GITHUB_TIMEOUT_MS) });
   } catch (e) {
     throw Object.assign(new Error("github unreachable"), { status: 502 });
   }
@@ -75,7 +77,7 @@ export async function putFile({ path, content, sha, message }) {
   };
   let res;
   try {
-    res = await fetch(url, { method: "PUT", headers: headers(), body: JSON.stringify(body) });
+    res = await fetch(url, { method: "PUT", headers: headers(), body: JSON.stringify(body), signal: deadline(GITHUB_TIMEOUT_MS) });
   } catch (e) {
     throw Object.assign(new Error("github unreachable"), { status: 502 });
   }
@@ -95,7 +97,7 @@ export async function listCommits({ path, perPage = 1 }) {
   const url = `${API}/repos/${repo()}/commits?path=${encodeURIComponent(path)}&sha=${encodeURIComponent(branch())}&per_page=${perPage}`;
   let res;
   try {
-    res = await fetch(url, { headers: headers() });
+    res = await fetch(url, { headers: headers(), signal: deadline(GITHUB_TIMEOUT_MS) });
   } catch {
     throw Object.assign(new Error("github unreachable"), { status: 502 });
   }
