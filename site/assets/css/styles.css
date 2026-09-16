@@ -397,7 +397,11 @@ select {
   /* ── Status ────────────────────────────────────────────────────── */
   --sage:         #3B7A65;
   --sage-soft:    rgba(59, 122, 101, .18);
-  --danger:       #cf5252;
+  /* #cf5252 measured 3.98:1 on --bg-card (#161e28) — under AA for the
+     booking-form field errors and required-field asterisks that sit on
+     cards. Lightened the minimum that clears 4.5:1 on BOTH card and page
+     backgrounds (4.61 and 5.28) while keeping the hue. */
+  --danger:       #d46363;
   --danger-soft:  rgba(207, 82, 82, .12);
   --warn:         #e0a04a;
   --warn-soft:    rgba(224, 160, 74, .14);
@@ -3944,8 +3948,14 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 :root[data-theme="light"] .btn--primary,
 :root[data-theme="light"] .hotel-card__cta,
 :root[data-theme="light"] .trip-sticky-bar__cta,
-:root[data-theme="light"] .skip-link {
-  /* navy on the darkened light accent measured 2.67:1 on the three added here */
+:root[data-theme="light"] .skip-link,
+:root[data-theme="light"] .branch-flag,
+:root[data-theme="light"] .trip-card__share:hover {
+  /* navy on the darkened light accent measured 2.67:1 on the three added here.
+     Two more join them: .branch-flag is real text ("Siege"/"Agence") on the
+     homepage map, and .trip-card__share:hover is forced to navy-on-mint by an
+     !important rule further down — an icon, so it fails the 3:1 bar too. This
+     selector is (0,4,0) and outranks that (0,2,0) rule regardless of order. */
   color: #ffffff !important;
 }
 /* dead-css sweep 2026-08: light-theme .pkg-badge deleted — the packages
@@ -10284,7 +10294,10 @@ body[data-page="home"] #contact {
 .footer-col--contact .phone-group a {
   display: flex;
   align-items: center;
-  min-height: 40px;
+  /* 44px, not 40: the <=900px rule meant to raise these is .footer-col a
+     (0,2,1) and loses to this (0,3,1) selector, so the mobile touch-target
+     fix never actually applied here. */
+  min-height: 44px;
   padding: 6px 12px;
   margin-inline: -12px;              /* hover fill bleeds to the edge; text stays flush */
   border-radius: var(--r2, 10px);

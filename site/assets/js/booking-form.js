@@ -353,6 +353,7 @@ const formHtml = (U) => `
         </h3>
         <div class="bform-field">
           <textarea id="bf-notes" rows="3"
+            aria-label="${escapeHtml(U.notesTitle)}"
             placeholder="${escapeHtml(U.phNotes)}"></textarea>
         </div>
       </div>
