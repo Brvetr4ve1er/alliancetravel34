@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Istanbul — Alliance Travel · Saison 2026",
-    "description": "Voyage guidé à Istanbul depuis Constantine. 8 jours / 7 nuits, Turkish Airlines, départs hebdomadaires septembre–novembre 2026. Dès 129.000 DA.",
+    "description": "Voyage guidé à Istanbul depuis Constantine. 8 jours / 7 nuits, Turkish Airlines, départs hebdomadaires octobre–décembre 2026. Dès 129.000 DA.",
     "ogTitle": "Istanbul — Alliance Travel",
     "ogDescription": "8 jours / 7 nuits à Istanbul depuis l'aéroport de Constantine. Turkish Airlines, 4 jours d'excursions guidées, 4 hôtels au choix. Départs hebdomadaires.",
     "themeColor": "#5B9EC9",
@@ -126,7 +126,7 @@
     "aria": "Istanbul — Entre deux continents",
     "titlePre": "Istanbul",
     "titlePost": "Entre deux continents",
-    "eyebrow": "Départ Constantine · Turkish Airlines · Septembre–Novembre 2026",
+    "eyebrow": "Départ Constantine · Turkish Airlines · Octobre–Décembre 2026",
     "date": "8 jours · 7 nuits · Hôtel River 3★",
     "prompt": "Faites défiler pour découvrir",
     "skip": "Passer",
@@ -515,7 +515,7 @@
       },
       {
         "kNum": "",
-        "num": "6",
+        "num": "12",
         "k": " data-i18n=\"istStat3\"",
         "label": "Départs Istanbul en 2026"
       },
@@ -1125,7 +1125,7 @@
   },
   "i18n": {
     "en": {
-      "istHeroEyebrow": "From Constantine · Turkish Airlines · September–November 2026",
+      "istHeroEyebrow": "From Constantine · Turkish Airlines · October–December 2026",
       "istHeroH1": "Istanbul <em>Where two continents meet</em>",
       "istHeroDate": "8 days · 7 nights · Hotel River 3★",
       "istHeroPriceUnit": "per person · double room · Hotel River 3★",
@@ -1326,7 +1326,7 @@
       "istFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown"
     },
     "ar": {
-      "istHeroEyebrow": "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
+      "istHeroEyebrow": "انطلاق من قسنطينة · الخطوط التركية · أكتوبر–ديسمبر 2026",
       "istHeroH1": "إسطنبول <em>حيث تلتقي القارتان</em>",
       "istHeroDate": "8 أيام · 7 ليالٍ · فندق River 3★",
       "istHeroPriceUnit": "للشخص · غرفة مزدوجة · فندق River 3★",

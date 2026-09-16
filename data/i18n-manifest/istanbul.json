@@ -13,14 +13,14 @@
     "trip": 194,
     "shared": 25,
     "en": {
-      "ok": 191,
-      "stale": 3,
+      "ok": 190,
+      "stale": 4,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 191,
-      "stale": 3,
+      "ok": 190,
+      "stale": 4,
       "global": 25,
       "missing": 0
     }
@@ -90,15 +90,15 @@
       "arState": "global"
     },
     "istHeroEyebrow": {
-      "fr": "Départ Constantine · Turkish Airlines · Septembre–Novembre 2026",
-      "frHash": "00mx2rq2",
-      "en": "From Constantine · Turkish Airlines · September–November 2026",
-      "ar": "انطلاق من قسنطينة · الخطوط التركية · سبتمبر–نوفمبر 2026",
+      "fr": "Départ Constantine · Turkish Airlines · Octobre–Décembre 2026",
+      "frHash": "010yctra",
+      "en": "From Constantine · Turkish Airlines · October–December 2026",
+      "ar": "انطلاق من قسنطينة · الخطوط التركية · أكتوبر–ديسمبر 2026",
       "enHash": "00mx2rq2",
       "arHash": "00mx2rq2",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "istHeroH1": {
       "fr": "Istanbul <em>Entre deux continents</em>",

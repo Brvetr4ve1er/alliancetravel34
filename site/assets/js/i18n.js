@@ -69,8 +69,8 @@
         menu_close: "Fermer le menu",
         trip: {
           "egypte": { name: "Égypte · Le Caire, Sharm & Hurghada", sub: "Égypte · 5 programmes 2026" },
-          "azerbaidjan": { name: "Azerbaïdjan · Bakou & Gabala", sub: "Juillet–Septembre 2026" },
-          "istanbul": { name: "Istanbul", sub: "Septembre–Novembre 2026" },
+          "azerbaidjan": { name: "Azerbaïdjan · Bakou & Gabala", sub: "Octobre–Décembre 2026" },
+          "istanbul": { name: "Istanbul", sub: "Octobre–Décembre 2026" },
           "kuala-lumpur": { name: "Kuala Lumpur & Langkawi", sub: "Malaisie · Été 2026" },
           "tunisie": { name: "Tunisie · Sousse & sa région", sub: "Été 2026" },
           "bali": { name: "Bali · Indonésie", sub: "Août–Septembre 2026" },
@@ -307,7 +307,7 @@
         },
         cairo_sharm: {
           title: "Voyage Égypte 2026 · Caire + Sharm El Sheikh dès 190 000 DA",
-          description: "Le Caire (Pyramides de Guizeh) + Sharm El Sheikh (mer Rouge) en 8 jours. Vol EgyptAir, hôtels 4★/5★, visa et excursions compris. Départs juin 2026 depuis Alger."
+          description: "Le Caire (Pyramides de Guizeh) + Sharm El Sheikh (mer Rouge) en 8 jours. Vol EgyptAir, hôtels 4★/5★, visa et excursions compris. Départs depuis Alger."
         },
         azerbaidjan: {
           title: "Voyage Azerbaïdjan · Bakou & Gabala dès 230 000 DA — Alliance",
@@ -315,11 +315,11 @@
         },
         istanbul: {
           title: "Voyage Istanbul depuis Constantine dès 129 000 DA — Alliance",
-          description: "Istanbul en 8 jours, vols directs Turkish Airlines depuis Constantine. Hôtel 4★, transferts inclus, guide arabophone. Départs hebdomadaires septembre–novembre 2026."
+          description: "Istanbul en 8 jours, vols directs Turkish Airlines depuis Constantine. Hôtel 4★, transferts inclus, guide arabophone. Départs hebdomadaires octobre–décembre 2026."
         },
         kuala_lumpur: {
-          title: "Voyage Malaisie · Kuala Lumpur en vol direct dès 211 000 DA",
-          description: "Kuala Lumpur en 8 jours, vol DIRECT Air Algérie depuis Alger. Grand Mercure 5★, tours Petronas, Batu Caves, Genting Highlands. Restauration halal partout. À partir de 211 000 DA."
+          title: "Voyage Malaisie · Kuala Lumpur en vol direct dès 339 000 DA",
+          description: "Kuala Lumpur en 8 jours, vol DIRECT Air Algérie depuis Alger. Grand Mercure 5★, tours Petronas, Batu Caves, Genting Highlands. Restauration halal partout. À partir de 339 000 DA."
         },
         sharm_constantine: {
           title: "Voyage Sharm El Sheikh depuis Constantine dès 155 000 DA",
@@ -454,8 +454,8 @@
         menu_close: "Close menu",
         trip: {
           "egypte": { name: "Egypt · Cairo, Sharm & Hurghada", sub: "Egypt · 5 programmes 2026" },
-          "azerbaidjan": { name: "Azerbaijan · Baku & Gabala", sub: "July–September 2026" },
-          "istanbul": { name: "Istanbul", sub: "September–November 2026" },
+          "azerbaidjan": { name: "Azerbaijan · Baku & Gabala", sub: "October–December 2026" },
+          "istanbul": { name: "Istanbul", sub: "October–December 2026" },
           "kuala-lumpur": { name: "Kuala Lumpur & Langkawi", sub: "Malaysia · Summer 2026" },
           "tunisie": { name: "Tunisia · Sousse & around", sub: "Summer 2026" },
           "bali": { name: "Bali · Indonesia", sub: "August–September 2026" },
@@ -677,7 +677,7 @@
         },
         cairo_sharm: {
           title: "Egypt 2026 · Cairo + Sharm El Sheikh from DZD 190,000",
-          description: "Eight days across Cairo (Giza pyramids) and Sharm El Sheikh (Red Sea). EgyptAir flight, 4★/5★ hotels, Egyptian visa and excursions included. Departures from Algiers, June 2026."
+          description: "Eight days across Cairo (Giza pyramids) and Sharm El Sheikh (Red Sea). EgyptAir flight, 4★/5★ hotels, Egyptian visa and excursions included. Departures from Algiers."
         },
         azerbaidjan: {
           title: "Azerbaijan 2026 · Baku & Gabala from DZD 230,000 — Alliance",
@@ -685,11 +685,11 @@
         },
         istanbul: {
           title: "Istanbul from Constantine · from DZD 129,000 — Alliance Travel",
-          description: "Eight days in Istanbul, direct Turkish Airlines flights from Constantine. 4★ hotel, transfers, Arabic-speaking guide. Weekly departures, September–November 2026."
+          description: "Eight days in Istanbul, direct Turkish Airlines flights from Constantine. 4★ hotel, transfers, Arabic-speaking guide. Weekly departures, October–December 2026."
         },
         kuala_lumpur: {
-          title: "Malaysia 2026 · Kuala Lumpur direct from Algiers, from DZD 211,000",
-          description: "Eight days in Kuala Lumpur on the Air Algérie direct from Algiers. Grand Mercure 5★, Petronas Towers, Batu Caves and Genting Highlands tours. Halal end-to-end. From DZD 211,000."
+          title: "Malaysia 2026 · Kuala Lumpur direct from Algiers, from DZD 339,000",
+          description: "Eight days in Kuala Lumpur on the Air Algérie direct from Algiers. Grand Mercure 5★, Petronas Towers, Batu Caves and Genting Highlands tours. Halal end-to-end. From DZD 339,000."
         },
         sharm_constantine: {
           title: "Sharm El Sheikh from Constantine · from DZD 155,000 — Alliance Travel",
@@ -861,8 +861,8 @@
         menu_close: "إغلاق القائمة",
         trip: {
           "egypte": { name: "مصر · القاهرة وشرم الشيخ والغردقة", sub: "مصر · 5 برامج 2026" },
-          "azerbaidjan": { name: "أذربيجان · باكو وقبالة", sub: "جويلية–سبتمبر 2026" },
-          "istanbul": { name: "إسطنبول", sub: "سبتمبر–نوفمبر 2026" },
+          "azerbaidjan": { name: "أذربيجان · باكو وقبالة", sub: "أكتوبر–ديسمبر 2026" },
+          "istanbul": { name: "إسطنبول", sub: "أكتوبر–ديسمبر 2026" },
           "kuala-lumpur": { name: "كوالا لمبور ولنكاوي", sub: "ماليزيا · صيف 2026" },
           "tunisie": { name: "تونس · سوسة وضواحيها", sub: "صيف 2026" },
           "bali": { name: "بالي · إندونيسيا", sub: "أوت–سبتمبر 2026" },
@@ -1084,7 +1084,7 @@
         },
         cairo_sharm: {
           title: 'رحلة مصر 2026 · القاهرة وشرم الشيخ ابتداءً من 190.000 دينار جزائري',
-          description: 'القاهرة (أهرامات الجيزة) وشرم الشيخ (البحر الأحمر) في ثمانية أيام. طيران EgyptAir، فنادق 4★/5★، التأشيرة والجولات مشمولة. انطلاقات جوان 2026 من الجزائر.'
+          description: 'القاهرة (أهرامات الجيزة) وشرم الشيخ (البحر الأحمر) في ثمانية أيام. طيران EgyptAir، فنادق 4★/5★، التأشيرة والجولات مشمولة. انطلاقات من الجزائر.'
         },
         azerbaidjan: {
           title: 'رحلة أذربيجان · باكو وقَبَلَة ابتداءً من 230.000 دينار جزائري — أليانس',
@@ -1092,11 +1092,11 @@
         },
         istanbul: {
           title: 'رحلة إسطنبول من قسنطينة ابتداءً من 129.000 دينار جزائري — أليانس',
-          description: 'إسطنبول في ثمانية أيام، رحلات مباشرة بـTurkish Airlines من قسنطينة. فندق 4★، تنقّلات، مُرافِق ناطق بالعربية. انطلاقات أسبوعية بين سبتمبر ونوفمبر 2026.'
+          description: 'إسطنبول في ثمانية أيام، رحلات مباشرة بـTurkish Airlines من قسنطينة. فندق 4★، تنقّلات، مُرافِق ناطق بالعربية. انطلاقات أسبوعية بين أكتوبر وديسمبر 2026.'
         },
         kuala_lumpur: {
-          title: 'رحلة ماليزيا · كوالا لمبور برحلة مباشرة ابتداءً من 211.000 دينار جزائري',
-          description: 'كوالا لمبور في ثمانية أيام، رحلة مباشرة بـAir Algérie من الجزائر. فندق Grand Mercure 5★، جولات Petronas وBatu Caves وGenting. حلال في كل مكان. ابتداءً من 211.000 د.ج.'
+          title: 'رحلة ماليزيا · كوالا لمبور برحلة مباشرة ابتداءً من 339.000 دينار جزائري',
+          description: 'كوالا لمبور في ثمانية أيام، رحلة مباشرة بـAir Algérie من الجزائر. فندق Grand Mercure 5★، جولات Petronas وBatu Caves وGenting. حلال في كل مكان. ابتداءً من 339.000 د.ج.'
         },
         sharm_constantine: {
           title: 'رحلة شرم الشيخ من قسنطينة ابتداءً من 155.000 دينار جزائري',

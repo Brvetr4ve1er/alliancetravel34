@@ -13,14 +13,14 @@
     "trip": 178,
     "shared": 25,
     "en": {
-      "ok": 168,
-      "stale": 10,
+      "ok": 166,
+      "stale": 12,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 168,
-      "stale": 10,
+      "ok": 166,
+      "stale": 12,
       "global": 25,
       "missing": 0
     }
@@ -1947,15 +1947,15 @@
       "arState": "ok"
     },
     "tnRelIstanbulFlag": {
-      "fr": "Septembre–Novembre 2026 · Départ Constantine",
-      "frHash": "00hxtq2q",
-      "en": "September–November 2026 · From Constantine",
-      "ar": "سبتمبر–نوفمبر 2026 · انطلاق من قسنطينة",
+      "fr": "Octobre–Décembre 2026 · Départ Constantine",
+      "frHash": "01dz1e6i",
+      "en": "October–December 2026 · From Constantine",
+      "ar": "أكتوبر–ديسمبر 2026 · انطلاق من قسنطينة",
       "enHash": "00hxtq2q",
       "arHash": "00hxtq2q",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnRelFrom": {
       "fr": "À partir de",
@@ -1980,15 +1980,15 @@
       "arState": "ok"
     },
     "tnRelCairoFlag": {
-      "fr": "Égypte · Juin 2026",
-      "frHash": "01dj3myq",
-      "en": "Egypt · June 2026",
-      "ar": "مصر · جوان 2026",
+      "fr": "Égypte · 5 programmes 2026",
+      "frHash": "01yg5mee",
+      "en": "Egypt · 5 programmes 2026",
+      "ar": "مصر · 5 برامج 2026",
       "enHash": "01dj3myq",
       "arHash": "01dj3myq",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnFinalScarcity": {
       "fr": "Départs chaque semaine en été 2026 · Places limitées",

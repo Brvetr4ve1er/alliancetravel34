@@ -294,3 +294,74 @@ test("no dictionary string still advertises 1,200 travellers", () => {
     assert.ok(!re.test(flat), `dictionary still carries a volume claim matching ${re}`);
   }
 });
+
+test("every price in a live meta entry matches that trip's own hero price", () => {
+  // T[lang].meta[pageKey] overrides the <title> and <meta name="description">
+  // the trip page was built with. Nothing links the two: syncDerivedPrices()
+  // (tools/value-graph.mjs) propagates a hotel-grid change through the trip JSON
+  // — hero.priceFrom, seo.offerPrice, the "dès" tokens — but it has no reach into
+  // this file, so a repriced trip leaves its SERP snippet behind.
+  //
+  // Not hypothetical: Kuala Lumpur moved to 339.000 DA while all three languages
+  // here kept advertising 211,000, so the page's own JSON-LD offerPrice and its
+  // meta description contradicted each other by 128.000 DA.
+  //
+  // Only keys some page actually selects are checked — pageKey is
+  // document.body.dataset.page, and `cairo_sharm` / `sharm_constantine` are
+  // defined but unreachable, so their prices map to no trip to check against.
+  const { win } = boot({ pageLang: "fr", path: "/" });
+  const T = win.alTranslations;
+
+  const PAGE_TO_SLUG = {
+    azerbaidjan: "azerbaidjan",
+    istanbul: "istanbul",
+    kuala_lumpur: "kuala-lumpur",
+    egypte: "egypte",
+    tunisie: "tunisie",
+    bali: "bali",
+    vietnam: "vietnam",
+  };
+
+  // A money token is digits grouped in thousands AND sitting beside a currency
+  // marker — otherwise "1.200 voyageurs" would read as a price. The marker can be
+  // on EITHER side: French and Arabic trail it ("dès 339 000 DA", "339.000 د.ج")
+  // while English leads with it ("from DZD 339,000"). A trailing-only lookahead
+  // matches nothing in English, which is how the first draft of this test passed
+  // against a deliberately reintroduced bug.
+  const MONEY = /\d{2,3}[ .,\u00a0\u202f]\d{3}/g;
+  const CURRENCY = /DA\b|DZD\b|\u062f\.\u062c|\u062f\u064a\u0646\u0627\u0631/;
+  const digits = (s) => s.replace(/\D/g, "");
+  const beside = (text, at, len) =>
+    CURRENCY.test(text.slice(Math.max(0, at - 12), at)) ||
+    CURRENCY.test(text.slice(at + len, at + len + 12));
+
+  let checked = 0;
+  for (const [pageKey, slug] of Object.entries(PAGE_TO_SLUG)) {
+    const trip = JSON.parse(
+      readFileSync(new URL(`../../../data/trips/${slug}.json`, import.meta.url), "utf8"),
+    );
+    const want = digits(trip.hero.priceFrom || "");
+    assert.ok(want, `${slug}.json has no hero.priceFrom to check against`);
+
+    for (const lang of ["fr", "en", "ar"]) {
+      const entry = T[lang]?.meta?.[pageKey];
+      if (!entry) continue; // fr defines only a subset; the trip JSON supplies the rest
+      for (const field of ["title", "description", "og_title", "og_description"]) {
+        const str = String(entry[field] ?? "");
+        if (!str) continue;
+        for (const m of str.matchAll(MONEY)) {
+          if (!beside(str, m.index, m[0].length)) continue;
+          checked++;
+          assert.equal(
+            digits(m[0]),
+            want,
+            `${lang}.meta.${pageKey}.${field} advertises ${m[0].trim()} but ` +
+              `${slug}.json hero.priceFrom is ${trip.hero.priceFrom}`,
+          );
+        }
+      }
+    }
+  }
+  // Guard the guard: a regex that silently matches nothing would pass forever.
+  assert.ok(checked >= 12, `expected to price-check many strings, only saw ${checked}`);
+});

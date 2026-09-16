@@ -13,14 +13,14 @@
     "trip": 185,
     "shared": 25,
     "en": {
-      "ok": 174,
-      "stale": 11,
+      "ok": 172,
+      "stale": 13,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 174,
-      "stale": 11,
+      "ok": 172,
+      "stale": 13,
       "global": 25,
       "missing": 0
     }
@@ -1987,15 +1987,15 @@
       "arState": "ok"
     },
     "azRelated1Flag": {
-      "fr": "Septembre–Novembre 2026 · Départ Constantine",
-      "frHash": "00hxtq2q",
-      "en": "September–November 2026 · Departure from Constantine",
-      "ar": "سبتمبر–نوفمبر 2026 · انطلاق من قسنطينة",
+      "fr": "Octobre–Décembre 2026 · Départ Constantine",
+      "frHash": "01dz1e6i",
+      "en": "October–December 2026 · Departure from Constantine",
+      "ar": "أكتوبر–ديسمبر 2026 · انطلاق من قسنطينة",
       "enHash": "00hxtq2q",
       "arHash": "00hxtq2q",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azRelated1Price": {
       "fr": "À partir de <strong>129.000 DA</strong>",
@@ -2020,15 +2020,15 @@
       "arState": "ok"
     },
     "azRelated2Flag": {
-      "fr": "Égypte · Juin 2026",
-      "frHash": "01dj3myq",
-      "en": "Egypt · June 2026",
-      "ar": "مصر · يونيو 2026",
+      "fr": "Égypte · 5 programmes 2026",
+      "frHash": "01yg5mee",
+      "en": "Egypt · 5 programmes 2026",
+      "ar": "مصر · 5 برامج 2026",
       "enHash": "01dj3myq",
       "arHash": "01dj3myq",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azRelated2Title": {
       "fr": "Le Caire & Sharm El Sheikh",
