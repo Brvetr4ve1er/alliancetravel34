@@ -13,14 +13,14 @@
     "trip": 197,
     "shared": 25,
     "en": {
-      "ok": 192,
-      "stale": 5,
+      "ok": 191,
+      "stale": 6,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 192,
-      "stale": 5,
+      "ok": 191,
+      "stale": 6,
       "global": 25,
       "missing": 0
     }
@@ -2158,7 +2158,7 @@
     "egRel2Flag": {
       "fr": "Juin–Octobre 2026",
       "frHash": "00zzylqk",
-      "en": "June–October 2026",
+      "en": "October–December 2026",
       "ar": "جوان–أكتوبر 2026",
       "enHash": "00zzylqk",
       "arHash": "00zzylqk",
@@ -2178,15 +2178,15 @@
       "arState": "ok"
     },
     "egRel2Price": {
-      "fr": "À partir de <strong>249.900 DA</strong>",
-      "frHash": "00ixdj9m",
-      "en": "From <strong>249,900 DA</strong>",
-      "ar": "ابتداءً من <strong>249.900 دج</strong>",
+      "fr": "À partir de <strong>230.000 DA</strong>",
+      "frHash": "00v3llax",
+      "en": "From <strong>230,000 DA</strong>",
+      "ar": "ابتداءً من <strong>230.000 دج</strong>",
       "enHash": "00ixdj9m",
       "arHash": "00ixdj9m",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egFinalScarcity": {
       "fr": "Places limitées · Les départs de l'été se remplissent vite",

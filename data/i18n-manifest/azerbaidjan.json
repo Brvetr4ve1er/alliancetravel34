@@ -13,14 +13,14 @@
     "trip": 185,
     "shared": 25,
     "en": {
-      "ok": 179,
-      "stale": 6,
+      "ok": 174,
+      "stale": 11,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 179,
-      "stale": 6,
+      "ok": 174,
+      "stale": 11,
       "global": 25,
       "missing": 0
     }
@@ -1140,15 +1140,15 @@
       "arState": "ok"
     },
     "azFaqA4": {
-      "fr": "Enfant –5 ans partageant la chambre de 2 adultes : <strong>129.000 DA</strong>. Enfant –12 ans (lit supplémentaire inclus) : <strong>213.000 DA</strong>. Nouveau-né (0–2 ans) : <strong>35.000 DA</strong>.",
-      "frHash": "01k5hwcf",
-      "en": "Child under 5 sharing the room of 2 adults: <strong>129,000 DA</strong>. Child under 12 (extra bed included): <strong>213,000 DA</strong>. Newborn (0–2 years): <strong>35,000 DA</strong>.",
-      "ar": "طفل دون 5 سنوات يشارك غرفة شخصين بالغين: <strong>129.000 دج</strong>. طفل دون 12 سنة (سرير إضافي مشمول): <strong>213.000 دج</strong>. مولود جديد (0–2 سنة): <strong>35.000 دج</strong>.",
+      "fr": "Enfant –4 ans partageant la chambre de 2 adultes : <strong>126.000 DA</strong>. Enfant –12 ans (lit supplémentaire inclus) : <strong>190.000 DA</strong>. Nouveau-né (0–2 ans) : <strong>35.000 DA</strong>.",
+      "frHash": "01myhmq3",
+      "en": "Child under 4 sharing the room of 2 adults: <strong>126,000 DA</strong>. Child under 12 (extra bed included): <strong>190,000 DA</strong>. Newborn (0–2 years): <strong>35,000 DA</strong>.",
+      "ar": "طفل دون 4 سنوات يشارك غرفة شخصين بالغين: <strong>126.000 دج</strong>. طفل دون 12 سنة (سرير إضافي مشمول): <strong>190.000 دج</strong>. مولود جديد (0–2 سنة): <strong>35.000 دج</strong>.",
       "enHash": "01k5hwcf",
       "arHash": "01k5hwcf",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azPhase2": {
       "fr": "Comparer les hôtels",
@@ -1503,37 +1503,37 @@
       "arState": "ok"
     },
     "azStepChildHint": {
-      "fr": "−12 ans · lit suppl. · 213.000 DA",
-      "frHash": "00wsc55g",
-      "en": "Under 12 · extra bed · 213,000 DA",
-      "ar": "دون 12 سنة · سرير إضافي · 213.000 دج",
+      "fr": "−12 ans · lit suppl. · 190.000 DA",
+      "frHash": "017bs4os",
+      "en": "Under 12 · extra bed · 190,000 DA",
+      "ar": "دون 12 سنة · سرير إضافي · 190.000 دج",
       "enHash": "00wsc55g",
       "arHash": "00wsc55g",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azStepChild5Title": {
-      "fr": "Enfants –5 ans",
-      "frHash": "0027s2cq",
-      "en": "Children under 5",
-      "ar": "الأطفال دون 5 سنوات",
+      "fr": "Enfants –4 ans",
+      "frHash": "00lcg0i9",
+      "en": "Children under 4",
+      "ar": "الأطفال دون 4 سنوات",
       "enHash": "0027s2cq",
       "arHash": "0027s2cq",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azStepChild5Hint": {
-      "fr": "–5 ans avec 2 adultes · 129.000 DA",
-      "frHash": "0021zv3a",
-      "en": "Under 5 with 2 adults · 129,000 DA",
-      "ar": "دون 5 سنوات مع بالغين · 129.000 دج",
+      "fr": "–4 ans avec 2 adultes · 126.000 DA",
+      "frHash": "00u317dy",
+      "en": "Under 4 with 2 adults · 126,000 DA",
+      "ar": "دون 4 سنوات مع بالغين · 126.000 دج",
       "enHash": "0021zv3a",
       "arHash": "0021zv3a",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azStepBabyTitle": {
       "fr": "Nouveau-né",
@@ -2053,15 +2053,15 @@
       "arState": "ok"
     },
     "azFinalScarcity": {
-      "fr": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 départs en 2026 · Places limitées",
-      "frHash": "01p98hst",
-      "en": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 departures in 2026 · Limited spots",
-      "ar": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>11 رحلات في 2026 · أماكن محدودة",
+      "fr": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>4 départs en 2026 · Places limitées",
+      "frHash": "00iewvez",
+      "en": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>4 departures in 2026 · Limited spots",
+      "ar": "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>4 رحلات في 2026 · أماكن محدودة",
       "enHash": "01p98hst",
       "arHash": "01p98hst",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azFinalTitle": {
       "fr": "Découvrez la<br><em>Cité du Feu</em>",

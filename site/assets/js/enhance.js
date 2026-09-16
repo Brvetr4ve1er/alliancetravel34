@@ -293,7 +293,7 @@
 
   const ALL_TRIPS = [
     { slug: 'egypte',       name: 'Égypte · Le Caire, Sharm & Hurghada', price: '169.000 DA', color: '#C9872E', sub: 'Égypte · 5 programmes 2026' },
-    { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '249.900 DA', color: '#3AAFAF', sub: 'Juillet–Septembre 2026' },
+    { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '230.000 DA', color: '#3AAFAF', sub: 'Juillet–Septembre 2026' },
     { slug: 'istanbul',     name: 'Istanbul',                            price: '129.000 DA', color: '#5B9EC9', sub: 'Septembre–Novembre 2026' },
     { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '339.000 DA', color: '#4CAF82', sub: 'Malaisie · Été 2026' },
     { slug: 'tunisie',      name: 'Tunisie · Sousse & sa région', price: '41.900 DA',  color: '#19B5B0', sub: 'Été 2026' },
