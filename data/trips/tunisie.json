@@ -43,7 +43,7 @@
   "region": "tunisie",
   "dataPage": "tunisie",
   "k": {
-    "navAttrs": "",
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\" data-i18n-aria-label=\"nav.main_aria\"",
     "navListRole": "",
     "heroKeys": "\n         data-eyebrow-key=\"tnHeroEyebrow\"\n         data-title-pre-key=\"tnHeroTitlePre\"\n         data-title-post-key=\"tnHeroTitlePost\"\n         data-date-key=\"tnHeroDate\"",
     "heroH1": " data-i18n-html=\"tnHeroH1\"",

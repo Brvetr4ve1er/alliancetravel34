@@ -43,7 +43,7 @@
   "region": "vietnam",
   "dataPage": "vietnam",
   "k": {
-    "navAttrs": "",
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\" data-i18n-aria-label=\"nav.main_aria\"",
     "navListRole": "",
     "heroKeys": "\n         data-eyebrow-key=\"vnHeroEyebrow\"\n         data-title-pre-key=\"vnHeroTitlePre\"\n         data-title-post-key=\"vnHeroTitlePost\"\n         data-date-key=\"vnHeroDate\"",
     "heroH1": " data-i18n-html=\"vnHeroH1\"",

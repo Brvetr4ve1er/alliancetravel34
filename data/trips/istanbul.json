@@ -43,7 +43,7 @@
   "region": "istanbul",
   "dataPage": "istanbul",
   "k": {
-    "navAttrs": "",
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\" data-i18n-aria-label=\"nav.main_aria\"",
     "navListRole": "",
     "heroKeys": "",
     "heroH1": "",

@@ -43,7 +43,7 @@
   "region": "bali",
   "dataPage": "bali",
   "k": {
-    "navAttrs": "",
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\" data-i18n-aria-label=\"nav.main_aria\"",
     "navListRole": "",
     "heroKeys": "\n         data-eyebrow-key=\"baHeroEyebrow\"\n         data-title-pre-key=\"baHeroTitlePre\"\n         data-title-post-key=\"baHeroTitlePost\"\n         data-date-key=\"baHeroDate\"",
     "heroH1": " data-i18n-html=\"baHeroH1\"",

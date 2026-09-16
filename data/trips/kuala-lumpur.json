@@ -43,7 +43,7 @@
   "region": "malaysia",
   "dataPage": "kuala_lumpur",
   "k": {
-    "navAttrs": "",
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\" data-i18n-aria-label=\"nav.main_aria\"",
     "navListRole": "",
     "heroKeys": "\n         data-eyebrow-key=\"klHeroEyebrow\"\n         data-title-pre-key=\"klHeroTitlePre\"\n         data-title-post-key=\"klHeroTitlePost\"\n         data-date-key=\"klHeroDate\"",
     "heroH1": " data-i18n-html=\"klHeroH1\"",

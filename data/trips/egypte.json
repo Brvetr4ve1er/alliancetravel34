@@ -51,7 +51,7 @@
   "region": "egypt",
   "dataPage": "egypte",
   "k": {
-    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\"",
+    "navAttrs": " role=\"navigation\" aria-label=\"Navigation principale\" data-i18n-aria-label=\"nav.main_aria\"",
     "navListRole": " role=\"list\"",
     "heroKeys": "\n         data-eyebrow-key=\"egHeroEyebrow\"\n         data-title-pre-key=\"egHeroTitlePre\"\n         data-title-post-key=\"egHeroTitlePost\"\n         data-date-key=\"egHeroDate\"",
     "heroH1": " data-i18n-html=\"egHeroH1\"",

@@ -2620,6 +2620,19 @@ summary.faq-q::-webkit-details-marker {
   min-height: 44px;
 }
 
+/* Placeholders were left to the UA default, which is a grey chosen against a
+   white page and lands at roughly 2.5:1 on this dark --bg. Only one field on
+   the site (.wa-lead-prompt__input) had ever set it. --txt-3 is the muted text
+   token and measures 5.30:1 on --bg in dark and 5.54:1 in light, so the hint
+   is legible without competing with the value the visitor types. */
+.bform-field input::placeholder,
+.bform-field textarea::placeholder,
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--txt-3);
+  opacity: 1;            /* Firefox dims placeholders by default */
+}
+
 .bform-field input:focus,
 .bform-field select:focus,
 .bform-field textarea:focus {

@@ -53,6 +53,7 @@
       },
       nav: {
         skip: 'Aller au contenu principal',
+        main_aria: 'Navigation principale',
         trips: 'Nos voyages',
         visa_rdv: 'Rendez-vous Visa',
         omra: 'Omra',
@@ -437,6 +438,7 @@
       },
       nav: {
         skip: 'Skip to main content',
+        main_aria: 'Main navigation',
         trips: 'Our trips',
         visa_rdv: 'Visa Appointments',
         omra: 'Umrah',
@@ -843,6 +845,7 @@
       },
       nav: {
         skip: 'تخطَّ إلى المحتوى الرئيسي',
+        main_aria: 'التنقل الرئيسي',
         trips: 'رحلاتنا',
         visa_rdv: 'مواعيد التأشيرات',
         omra: 'العمرة',
