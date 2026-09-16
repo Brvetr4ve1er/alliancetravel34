@@ -4,7 +4,7 @@ window.AL_PAGE_I18N = {
     "omra": {
       "meta": {
         "title": "Umrah 2026 · Packages, hotels and prices · Alliance Travel",
-        "description": "Umrah from Algeria: flights, accommodation in Makkah and Madinah, transfers, visa, ziyarat, insurance and a religious guide. Hotels 600 m and 1,200 m from the Haram. Around 15 days."
+        "description": "Umrah from Algeria: flights, accommodation in Makkah and Madinah, transfers, visa, ziyarat, insurance and a religious guide. Around 15 days."
       },
       "hero": {
         "eyebrow": "Umrah · العمرة",
@@ -251,7 +251,7 @@ window.AL_PAGE_I18N = {
     "omra": {
       "meta": {
         "title": "العمرة 2026 · الباقات والفنادق والأسعار · Alliance Travel",
-        "description": "العمرة انطلاقًا من الجزائر: تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة، الزيارات، التأمين ومرشد ديني. فنادق على بعد 600 م و1200 م من الحرم. حوالي 15 يومًا."
+        "description": "العمرة انطلاقًا من الجزائر: تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة، الزيارات، التأمين ومرشد ديني. حوالي 15 يومًا."
       },
       "hero": {
         "eyebrow": "العمرة · Omra",

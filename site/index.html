@@ -69,7 +69,12 @@
     ]
   }
   </script>
-  <!-- v21 phase I.2: WebSite + SearchAction (enables Google sitelinks search box) -->
+  <!-- WebSite schema. The SearchAction that used to sit here advertised a
+       sitelinks search box at /?q={search_term_string}, but nothing on the site
+       reads a q parameter — no URLSearchParams, no location.search anywhere in
+       site/assets/js. Had Google honoured it, a searcher would have landed on
+       the plain homepage with their term silently dropped. Removed rather than
+       left as a promise the site cannot keep. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -77,12 +82,7 @@
     "url": "https://alliancetravel.app/",
     "name": "Alliance Travel",
     "inLanguage": "fr-DZ",
-    "publisher": { "@type": "Organization", "name": "Alliance Travel" },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://alliancetravel.app/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "publisher": { "@type": "Organization", "name": "Alliance Travel" }
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />

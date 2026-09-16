@@ -2,8 +2,7 @@
   "$comment": "Page dictionary for site/omra/. French is the live DOM baseline and is NOT stored here. The Arabic strings are the agency's own source text (omra.docx); the French page was translated FROM them, so AR is authoritative wherever the two disagree. Consumed twice: tools/build.mjs renders site/en/omra/ and site/ar/omra/ from it, and it is the coverage target for tools/static-page.mjs missingKeys().",
   "en": {
     "omra.meta.title": "Umrah 2026 · Packages, hotels and prices · Alliance Travel",
-    "omra.meta.description": "Umrah from Algeria: flights, accommodation in Makkah and Madinah, transfers, visa, ziyarat, insurance and a religious guide. Hotels 600 m and 1,200 m from the Haram. Around 15 days.",
-
+    "omra.meta.description": "Umrah from Algeria: flights, accommodation in Makkah and Madinah, transfers, visa, ziyarat, insurance and a religious guide. Around 15 days.",
     "omra.hero.eyebrow": "Umrah · العمرة",
     "omra.hero.title_l1": "Your Umrah, organised",
     "omra.hero.title_em": "from start to finish.",
@@ -15,7 +14,6 @@
     "omra.hero.cta_offers": "See the packages",
     "omra.hero.cta_wa": "Request a quote",
     "omra.hero.fineprint": "Prices vary with the season, the airline and the hotel you choose. Contact us for the price of the period you have in mind.",
-
     "omra.facts.title": "Key facts",
     "omra.facts.f1_label": "Duration",
     "omra.facts.f1_title": "Around 15 days",
@@ -29,7 +27,6 @@
     "omra.facts.f4_label": "Insurance",
     "omra.facts.f4_title": "Included in the package",
     "omra.facts.f4_body": "Travel insurance is part of the Umrah package — there is nothing separate to pay.",
-
     "omra.offers.phase": "Choose your package",
     "omra.offers.eyebrow": "Accommodation in Makkah",
     "omra.offers.title_l1": "It all comes down to the",
@@ -51,7 +48,6 @@
     "omra.offers.p2_pill2": "≈ 15 min on foot",
     "omra.offers.p2_body": "A little further from the Haram — and that is precisely what brings the cost of the stay down for otherwise equivalent services.",
     "omra.offers.note": "The hotel is chosen from the options available for your package. Before any confirmation we tell you the exact location, the distance to the Haram and the transport arrangements.",
-
     "omra.compare.eyebrow": "Side by side",
     "omra.compare.title_l1": "What changes,",
     "omra.compare.title_em": "and what does not.",
@@ -79,7 +75,6 @@
     "omra.compare.v_depends": "Depends on the package",
     "omra.compare.r_airport": "Airport → hotel transfer",
     "omra.compare.r_price": "Price",
-
     "omra.stay.phase": "How the trip runs",
     "omra.stay.eyebrow": "Thirteen nights on the ground",
     "omra.stay.title_l1": "Madinah and Makkah,",
@@ -91,7 +86,6 @@
     "omra.stay.s2_city": "nights in Makkah",
     "omra.stay.s2_body": "The heart of the trip, close to the Haram. This is where your choice of hotel weighs most on daily life.",
     "omra.stay.note": "Which stage comes first — Madinah or Makkah — depends on the programme and the flights booked. It is confirmed to you before departure.",
-
     "omra.incl.eyebrow": "The package",
     "omra.incl.title_l1": "What is included,",
     "omra.incl.title_em": "and what depends on the package.",
@@ -111,7 +105,6 @@
     "omra.incl.n2": "Airport → hotel transfer — provided in some packages",
     "omra.incl.n3": "Wheelchair — on request, subject to provider availability",
     "omra.incl.n4": "Personal spending on the ground",
-
     "omra.cond.eyebrow": "Worth knowing",
     "omra.cond.title_l1": "The conditions,",
     "omra.cond.title_em": "said plainly.",
@@ -134,7 +127,6 @@
     "omra.cond.c4_l1": "The service depends on availability and on the terms of the providers in Saudi Arabia.",
     "omra.cond.c4_l2": "Tell us when you book — that is what makes it possible to secure it.",
     "omra.cond.c4_l3": "If you are travelling with an elderly pilgrim, the hotel closest to the Haram genuinely changes daily life.",
-
     "omra.faq.eyebrow": "Frequently asked",
     "omra.faq.title_l1": "Twenty questions,",
     "omra.faq.title_em": "twenty answers.",
@@ -179,13 +171,11 @@
     "omra.faq.q19.a": "Umrah can be performed all year round, and the choice of timing depends on the weather, the season, the budget and how crowded it is. Prices also vary by season, so the Alliance Travel team can help you choose the right period.",
     "omra.faq.q20.q": "How many nights in Makkah, and how many in Madinah?",
     "omra.faq.q20.a": "The stay is 3 days in Madinah and 10 days in Makkah, and which of the two comes first may vary depending on the trip.",
-
     "omra.book.phase": "Get in touch",
     "omra.book.eyebrow": "Request a quote",
     "omra.book.title_l1": "Tell us your dates,",
     "omra.book.title_em": "we'll tell you the price.",
     "omra.book.sub": "Fill in the form: your request goes straight to the WhatsApp of the branch you choose, with all your details already formatted.",
-
     "omra.cta.scarcity": "Prices and availability change with the season",
     "omra.cta.title_l1": "A question before you decide?",
     "omra.cta.title_em": "Ask it.",
@@ -195,8 +185,7 @@
   },
   "ar": {
     "omra.meta.title": "العمرة 2026 · الباقات والفنادق والأسعار · Alliance Travel",
-    "omra.meta.description": "العمرة انطلاقًا من الجزائر: تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة، الزيارات، التأمين ومرشد ديني. فنادق على بعد 600 م و1200 م من الحرم. حوالي 15 يومًا.",
-
+    "omra.meta.description": "العمرة انطلاقًا من الجزائر: تذكرة الطيران، الإقامة في مكة والمدينة، التنقلات، التأشيرة، الزيارات، التأمين ومرشد ديني. حوالي 15 يومًا.",
     "omra.hero.eyebrow": "العمرة · Omra",
     "omra.hero.title_l1": "عمرتكم، منظّمة",
     "omra.hero.title_em": "من البداية إلى النهاية.",
@@ -208,7 +197,6 @@
     "omra.hero.cta_offers": "اطّلع على الباقات",
     "omra.hero.cta_wa": "اطلب عرض سعر",
     "omra.hero.fineprint": "تختلف الأسعار حسب الموسم وشركة الطيران والفندق المختار. تواصلوا معنا لمعرفة سعر الفترة التي تهمّكم.",
-
     "omra.facts.title": "معطيات الرحلة",
     "omra.facts.f1_label": "المدة",
     "omra.facts.f1_title": "حوالي 15 يومًا",
@@ -222,7 +210,6 @@
     "omra.facts.f4_label": "التأمين",
     "omra.facts.f4_title": "مشمول في الباقة",
     "omra.facts.f4_body": "تأمين السفر مشمول داخل باقة العمرة، دون مبلغ إضافي يُدفع على حدة.",
-
     "omra.offers.phase": "اختيار الباقة",
     "omra.offers.eyebrow": "الإقامة في مكة",
     "omra.offers.title_l1": "كل شيء يتوقّف على",
@@ -244,7 +231,6 @@
     "omra.offers.p2_pill2": "≈ 15 دقيقة مشيًا",
     "omra.offers.p2_body": "أبعد قليلًا عن الحرم، وهذا بالضبط ما يسمح بتخفيف ميزانية الإقامة مع خدمات مماثلة.",
     "omra.offers.note": "يتم اختيار الفندق من بين الخيارات المتاحة لباقتكم. قبل أي تأكيد، نوضّح لكم الموقع الدقيق والمسافة عن الحرم ووسيلة التنقل المتوفرة.",
-
     "omra.compare.eyebrow": "مقارنة",
     "omra.compare.title_l1": "ما الذي يتغيّر،",
     "omra.compare.title_em": "وما الذي يبقى ثابتًا.",
@@ -272,7 +258,6 @@
     "omra.compare.v_depends": "حسب الباقة",
     "omra.compare.r_airport": "النقل من المطار إلى الفندق",
     "omra.compare.r_price": "السعر",
-
     "omra.stay.phase": "سير الرحلة",
     "omra.stay.eyebrow": "ثلاث عشرة ليلة هناك",
     "omra.stay.title_l1": "المدينة ومكة،",
@@ -284,7 +269,6 @@
     "omra.stay.s2_city": "ليالٍ في مكة المكرمة",
     "omra.stay.s2_body": "قلب الرحلة، على مقربة من الحرم. هنا يكون لاختيار الفندق أكبر أثر على يومياتكم.",
     "omra.stay.note": "ترتيب المرحلتين — المدينة أولًا أو مكة أولًا — يتوقّف على البرنامج والرحلات المعتمدة، ويُؤكَّد لكم قبل السفر.",
-
     "omra.incl.eyebrow": "الباقة",
     "omra.incl.title_l1": "ما هو مشمول،",
     "omra.incl.title_em": "وما يتوقّف على الباقة.",
@@ -304,7 +288,6 @@
     "omra.incl.n2": "النقل من المطار إلى الفندق — متوفّر ضمن بعض الباقات",
     "omra.incl.n3": "الكرسي المتحرك — عند الطلب، حسب توفّر مزوّدي الخدمة",
     "omra.incl.n4": "المصاريف الشخصية هناك",
-
     "omra.cond.eyebrow": "معلومات مهمة",
     "omra.cond.title_l1": "الشروط،",
     "omra.cond.title_em": "بكل وضوح.",
@@ -327,7 +310,6 @@
     "omra.cond.c4_l1": "تتوقّف الخدمة على التوفّر وعلى شروط مزوّدي الخدمة في السعودية.",
     "omra.cond.c4_l2": "أعلمونا بذلك عند الحجز — هذا ما يسمح بضمانها.",
     "omra.cond.c4_l3": "إذا كنتم مسافرين مع شخص مسنّ، فإن الفندق الأقرب إلى الحرم يغيّر اليوميات فعلًا.",
-
     "omra.faq.eyebrow": "الأسئلة الشائعة",
     "omra.faq.title_l1": "عشرون سؤالًا،",
     "omra.faq.title_em": "وعشرون جوابًا.",
@@ -372,13 +354,11 @@
     "omra.faq.q19.a": "يمكن أداء العمرة على مدار السنة، ويختلف اختيار الوقت حسب الطقس، الموسم، الميزانية ومستوى الازدحام. تختلف الأسعار أيضًا حسب المواسم، لذلك يمكن لفريق Alliance Travel مساعدتكم في اختيار الفترة المناسبة.",
     "omra.faq.q20.q": "كم ليلة أقضي في مكة وكم ليلة في المدينة؟",
     "omra.faq.q20.a": "يتم المكوث في المدينة 3 أيام وفي مكة 10 أيام، وقد تختلف أيّهما الأسبق حسب الرحلة.",
-
     "omra.book.phase": "تواصلوا معنا",
     "omra.book.eyebrow": "طلب عرض سعر",
     "omra.book.title_l1": "أخبرونا بالفترة،",
     "omra.book.title_em": "ونخبركم بالسعر.",
     "omra.book.sub": "املأوا الاستمارة: يصل طلبكم مباشرة إلى واتساب الوكالة التي تختارونها، مع كل معلوماتكم منسّقة مسبقًا.",
-
     "omra.cta.scarcity": "الأسعار والتوفّر تتغيّر حسب الموسم",
     "omra.cta.title_l1": "سؤال قبل أن تقرّروا؟",
     "omra.cta.title_em": "اطرحوه.",

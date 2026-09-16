@@ -680,7 +680,7 @@
           description: "Eight days across Cairo (Giza pyramids) and Sharm El Sheikh (Red Sea). EgyptAir flight, 4★/5★ hotels, Egyptian visa and excursions included. Departures from Algiers, June 2026."
         },
         azerbaidjan: {
-          title: "Azerbaijan 2026 · Baku & Gabala from DZD 230,000 — Alliance Travel",
+          title: "Azerbaijan 2026 · Baku & Gabala from DZD 230,000 — Alliance",
           description: "Seven nights in Baku and Gabala. Turkish Airlines flight, e-visa, Arabic-speaking guide. October–December 2026 departures from Algiers. From DZD 230,000."
         },
         istanbul: {
