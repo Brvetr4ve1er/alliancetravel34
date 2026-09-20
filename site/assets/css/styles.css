@@ -18,7 +18,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h, 72px) + 12px);
-  font-size: 16px;
+  font-size: var(--fs-body);
   overflow-x: clip;
 }
 
@@ -617,7 +617,7 @@ select {
      invisible; navy is the fixed dark ink. Light theme overrides back to #fff
      (darker --mint) via the !important rule further down. */
   color: var(--navy);
-  border-radius: 999px;
+  border-radius: var(--r4);
   transition: background var(--t-fast), transform var(--t-fast);
 }
 
@@ -661,7 +661,7 @@ select {
     height: var(--touch-min);
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 999px;
+    border-radius: var(--r4);
     color: var(--txt-1);
     cursor: pointer;
     transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
@@ -775,7 +775,7 @@ select {
     padding: var(--space-3) var(--space-4);
     min-height: var(--touch-min);
     font-size: var(--fs-body);
-    border-radius: 999px;
+    border-radius: var(--r4);
     width: 100%;
     box-sizing: border-box;
   }
@@ -867,7 +867,7 @@ select {
   color: var(--accent);
   padding: var(--s1) var(--s3);
   border: 1px solid var(--accent-dim);
-  border-radius: 999px;
+  border-radius: var(--r4);
   width: fit-content;
 }
 
@@ -980,7 +980,7 @@ select {
 }
 
 .hl-card__title {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 500;
   color: var(--txt-1);
 }
@@ -1113,7 +1113,7 @@ select {
 }
 
 .hotel-card__name {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 500;
   color: var(--txt-1);
 }
@@ -1240,7 +1240,7 @@ select {
 
 .date-chip {
   padding: var(--s2) var(--s4);
-  border-radius: 999px;
+  border-radius: var(--r4);
   border: 1px solid var(--border);
   font-size: .8125rem;
   color: var(--txt-2);
@@ -1363,7 +1363,7 @@ select {
 }
 
 .stepper__val {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 500;
   color: var(--txt-1);
   min-width: 20px;
@@ -1569,7 +1569,7 @@ select {
   align-items: center;
   gap: var(--s2);
   padding: var(--s3) var(--s6);
-  border-radius: 999px;
+  border-radius: var(--r4);
   font-size: .9375rem;
   font-weight: 500;
   /* Explicit: without it <a> inherits the body 1.7 and <button> gets the UA
@@ -1750,7 +1750,7 @@ select {
 }
 
 .tl-title {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 500;
   color: var(--txt-1);
   margin-bottom: var(--s2);
@@ -2120,7 +2120,7 @@ summary.faq-q::-webkit-details-marker {
   background: var(--danger-light);
   border: 1px solid rgba(185, 64, 64, .25);
   padding: var(--s2) var(--s4);
-  border-radius: 999px;
+  border-radius: var(--r4);
   margin-bottom: var(--s6);
 }
 
@@ -2634,7 +2634,7 @@ summary.faq-q::-webkit-details-marker {
   line-height: 1.5;
   transition: border-color var(--t-fast), box-shadow var(--t-fast);
   width: 100%;
-  min-height: 44px;
+  min-height: var(--touch-min);
 }
 
 /* Placeholders were left to the UA default, which is a grey chosen against a
@@ -2677,7 +2677,7 @@ summary.faq-q::-webkit-details-marker {
   padding: var(--s2) var(--s4);
   background: var(--accent-dim);
   border: 1px solid rgba(255, 255, 255, .06);
-  border-radius: 999px;
+  border-radius: var(--r4);
   font-size: .8125rem;
   color: var(--txt-1);
 }
@@ -2739,7 +2739,7 @@ summary.faq-q::-webkit-details-marker {
   display: grid;
   place-items: center;
   color: var(--txt-3);
-  font-size: 1rem;
+  font-size: var(--fs-body);
   line-height: 1;
   transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
   cursor: pointer;
@@ -3325,7 +3325,7 @@ html.js [data-aos].visible {
 .related-card__price strong {
   color: var(--txt-1);
   font-variant-numeric: tabular-nums;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 600;
 }
 
@@ -3505,7 +3505,7 @@ html.js [data-aos].visible {
   background: rgba(20, 22, 28, .96);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-hi);
-  border-radius: 999px;
+  border-radius: var(--r4);
   padding: var(--s3) var(--s5);
   font-size: .8125rem;
   color: var(--txt-1);
@@ -3704,7 +3704,7 @@ html.js [data-aos].visible {
 :focus-visible {
   outline: 2px solid var(--mint);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: var(--r1);
 }
 :focus:not(:focus-visible) { outline: none; }
 
@@ -4094,7 +4094,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(156, 232, 178, 0.16);
-  border-radius: 999px;
+  border-radius: var(--r4);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32),
               inset 0 1px 0 rgba(255, 255, 255, 0.04);
   z-index: var(--z-nav);
@@ -4139,7 +4139,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 .site-nav .nav-links li { list-style: none; }
 .site-nav .nav-links a {
-  font-size: 0.875rem;
+  font-size: .875rem;
   white-space: nowrap;
   color: var(--txt-1);
   opacity: 0.85;
@@ -4160,7 +4160,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   inset-inline: 0;
   bottom: 0;
   height: 1.5px;
-  border-radius: 2px;
+  border-radius: var(--r1);
   background: var(--mint);
   transform: scaleX(0);
   transform-origin: center;
@@ -4196,7 +4196,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 .site-nav .nav-cta {
   height: 40px;
   padding: 0 var(--s4);
-  font-size: 0.875rem;
+  font-size: .875rem;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -4204,7 +4204,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 
 .site-nav .trip-switcher__trigger {
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   white-space: nowrap;
   padding: 6px 10px;
   height: 36px;
@@ -4240,7 +4240,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
   .site-nav > .nav-cta {
     height: 36px;
     padding: 0 var(--s3);
-    font-size: 0.8125rem;
+    font-size: .8125rem;
   }
   .site-nav > .theme-toggle { width: 32px; height: 32px; }
   .site-nav > .theme-toggle { margin-left: auto; }
@@ -4428,7 +4428,7 @@ body, .hero, .hero__bg, .site-nav, section, .breakdown,
 }
 .contact-card { min-width: 0; }
 .branch-flag {
-  font-size: 0.6875rem;
+  font-size: .6875rem;
   font-weight: 700;
   letter-spacing: .12em;
   padding: 3px 9px;
@@ -5200,7 +5200,7 @@ section + section.is-in::before { width: 60%; }
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.825rem;
+  font-size: .825rem;
   color: var(--txt-2, #c9cdd4);
   letter-spacing: 0.01em;
   margin-top: -1px;
@@ -5276,7 +5276,7 @@ section + section.is-in::before { width: 60%; }
 }
 .trip-sticky-bar__name {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: .95rem;
   color: var(--txt-1);
   line-height: 1.2;
   white-space: nowrap;
@@ -5284,7 +5284,7 @@ section + section.is-in::before { width: 60%; }
   text-overflow: ellipsis;
 }
 .trip-sticky-bar__meta {
-  font-size: 0.75rem;
+  font-size: .75rem;
   color: var(--txt-3);
   letter-spacing: 0.02em;
 }
@@ -5296,7 +5296,7 @@ section + section.is-in::before { width: 60%; }
   text-align: end;
 }
 .trip-sticky-bar__price-from {
-  font-size: 0.7rem;
+  font-size: .7rem;
   color: var(--txt-3);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -5315,8 +5315,8 @@ section + section.is-in::before { width: 60%; }
   background: var(--mint);
   color: var(--navy, var(--navy));
   font-weight: 600;
-  font-size: 0.875rem;
-  border-radius: 999px;
+  font-size: .875rem;
+  border-radius: var(--r4);
   text-decoration: none;
   white-space: nowrap;
   transition: transform var(--t-fast) var(--ease-spring), box-shadow var(--t-fast) ease;
@@ -5332,9 +5332,9 @@ section + section.is-in::before { width: 60%; }
 }
 @media (max-width: 640px) {
   .trip-sticky-bar { padding: 8px 12px; gap: 8px; }
-  .trip-sticky-bar__name { font-size: 0.8125rem; }
+  .trip-sticky-bar__name { font-size: .8125rem; }
   .trip-sticky-bar__price { display: none; }
-  .trip-sticky-bar__cta { padding: 8px 14px; font-size: 0.8125rem; }
+  .trip-sticky-bar__cta { padding: 8px 14px; font-size: .8125rem; }
   .trip-sticky-bar__meta { display: none; }
 }
 
@@ -5401,7 +5401,7 @@ section + section.is-in::before { width: 60%; }
   left: 50%;
   transform: translateX(-50%);
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.875rem;
+  font-size: .875rem;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
 }
@@ -5413,10 +5413,10 @@ section + section.is-in::before { width: 60%; }
   max-width: 80vw;
   text-align: center;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.875rem;
+  font-size: .875rem;
   background: rgba(0, 0, 0, 0.4);
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: var(--r4);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
@@ -5455,7 +5455,7 @@ img.lb-target:hover {
   padding: 18px 22px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   color: var(--txt-1);
   list-style: none;
   position: relative;
@@ -5493,14 +5493,14 @@ img.lb-target:hover {
   background: var(--mint-dim, rgba(156, 232, 178, 0.15));
   color: var(--mint, var(--mint));
   font-weight: 700;
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   flex-shrink: 0;
   letter-spacing: -0.02em;
 }
 [data-accordion] .acc-body {
   padding: 0 22px 22px 70px;
   color: var(--txt-2);
-  font-size: 0.9375rem;
+  font-size: .9375rem;
   line-height: 1.6;
   animation: acc-slide var(--t-base) var(--ease-spring);
 }
@@ -5509,9 +5509,9 @@ img.lb-target:hover {
   to   { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 640px) {
-  [data-accordion] summary { padding: 14px 16px; gap: 10px; font-size: 0.9375rem; }
-  [data-accordion] .acc-body { padding: 0 16px 18px 60px; font-size: 0.875rem; }
-  [data-accordion] .acc-day-num { width: 30px; height: 30px; font-size: 0.75rem; }
+  [data-accordion] summary { padding: 14px 16px; gap: 10px; font-size: .9375rem; }
+  [data-accordion] .acc-body { padding: 0 16px 18px 60px; font-size: .875rem; }
+  [data-accordion] .acc-day-num { width: 30px; height: 30px; font-size: .75rem; }
 }
 
 /* v21 phase J.2.2: .badge* family + .departures-table block deleted.
@@ -5557,7 +5557,7 @@ img.lb-target:hover {
   color: #fff;
   padding: 10px 14px;
   border-radius: 10px;
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   font-weight: 500;
   white-space: nowrap;
   box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.5);
@@ -5602,7 +5602,7 @@ img.lb-target:hover {
   background: var(--bg-2, rgba(255, 255, 255, 0.01));
 }
 .press-strip__label {
-  font-size: 0.7rem;
+  font-size: .7rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--txt-3);
@@ -5618,7 +5618,7 @@ img.lb-target:hover {
 }
 .press-strip__item {
   font-family: var(--font-display, "DM Sans", sans-serif);
-  font-size: 0.95rem;
+  font-size: .95rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--txt-3);
@@ -5728,12 +5728,12 @@ img.lb-target:hover {
 .value-prop__title {
   font-family: var(--font-display, "DM Sans", sans-serif);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   color: var(--txt-1);
   letter-spacing: -0.01em;
 }
 .value-prop__text {
-  font-size: 0.875rem;
+  font-size: .875rem;
   color: var(--txt-2);
   line-height: 1.55;
   max-width: 26ch;
@@ -5911,7 +5911,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   background: rgba(12, 14, 18, .55);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  border-radius: 999px;
+  border-radius: var(--r4);
 }
 :root[data-theme="light"] .amap-hq__label {
   color: #fff;
@@ -6013,7 +6013,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   text-transform: uppercase;
 }
 .amap-popup__name {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 700;
   margin: 0 0 4px;
   letter-spacing: -.01em;
@@ -6184,7 +6184,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   background: rgba(12, 14, 18, .55);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  border-radius: 999px;
+  border-radius: var(--r4);
 }
 /* Default: only featured/hover/focus labels visible.
    When the user zooms in past ~9 (JS adds .is-zoomed-in to #trip-map),
@@ -6296,7 +6296,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   background: rgba(12, 14, 18, .58);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  border-radius: 999px;
+  border-radius: var(--r4);
 }
 .tmap-hub__days {
   font-weight: 500;
@@ -6344,7 +6344,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   text-transform: uppercase;
 }
 .tmap-popup__name {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 700;
   margin: 0 0 4px;
   letter-spacing: -.01em;
@@ -6435,7 +6435,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   backdrop-filter: blur(10px);
   color: var(--mint, var(--mint));
   border: 1px solid rgba(156, 232, 178, .25);
-  border-radius: 999px;
+  border-radius: var(--r4);
   font-size: .75rem;
   font-weight: 600;
   letter-spacing: .01em;
@@ -6514,11 +6514,11 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   justify-content: center;
   background: var(--mint, var(--mint));
   color: var(--navy, var(--navy));
-  font-size: 0.625rem;
+  font-size: .625rem;
   font-weight: 800;
   letter-spacing: -.01em;
   line-height: 1;
-  border-radius: 999px;
+  border-radius: var(--r4);
   border: 2px solid #fff;
   box-shadow: 0 2px 6px -1px rgba(0, 0, 0, .35);
   pointer-events: none;
@@ -6630,7 +6630,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   background: var(--accent-dim);
   border: 1px solid var(--border);
   padding: 4px 10px 4px 4px;
-  border-radius: 999px;
+  border-radius: var(--r4);
   margin-bottom: var(--s4);
   font-variant-numeric: tabular-nums;
 }
@@ -6722,7 +6722,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
 }
 .tier-tab {
   border: 1px solid var(--border-hi);
-  border-radius: 999px;
+  border-radius: var(--r4);
   padding: 8px 16px;
   font-size: .8125rem;
   font-weight: 600;
@@ -7012,7 +7012,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
 .date-chip {
   padding: 8px 14px;
   border: 1px solid var(--border-hi);
-  border-radius: 999px;
+  border-radius: var(--r4);
   background: transparent;
   font-size: .8125rem;
   font-weight: 500;
@@ -7178,7 +7178,7 @@ section.section {
 }
 .section-head__sub {
   margin-top: var(--s3);
-  font-size: 1rem;
+  font-size: var(--fs-body);
   color: var(--txt-2);
   max-width: 56ch;
   line-height: 1.6;
@@ -7237,7 +7237,7 @@ section.section {
   font-size: .875rem;
 }
 .testi-text {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   line-height: 1.65;
   color: var(--txt-1);
   font-style: italic;
@@ -7313,7 +7313,7 @@ section.section {
   padding: var(--s4);
 }
 .related-card__title {
-  font-size: 1rem;
+  font-size: var(--fs-body);
 }
 .related-card__price {
   font-size: .8125rem;
@@ -7564,7 +7564,7 @@ section.section {
   list-style: none;
   user-select: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   color: var(--txt-1, #fbf8f1);
   transition: background var(--t-fast) ease;
 }
@@ -7656,7 +7656,7 @@ section.section {
 .info-list--tiered li {
   padding: 10px 14px 10px 32px;
   background: rgba(255, 255, 255, .02);
-  border-radius: 8px;
+  border-radius: var(--r2);
   border: 1px solid var(--border, var(--border));
 }
 .info-list--tiered li::before {
@@ -7740,7 +7740,7 @@ section.section {
   padding: 8px 16px;
   background: transparent;
   border: 1px solid var(--border-hi, rgba(255, 255, 255, .16));
-  border-radius: 999px;
+  border-radius: var(--r4);
   font-size: .8125rem;
   font-weight: 600;
   color: var(--txt-2, #c9cdd4);
@@ -7994,7 +7994,7 @@ section.section {
   top: 6px;
   right: 10px;
   color: var(--hc-bg);
-  font-size: 14px;
+  font-size: .875rem;
   font-weight: 800;
   z-index: 5;
   pointer-events: none;
@@ -8068,7 +8068,7 @@ section.section {
   z-index: 3;
   background: var(--hc-bg);
   color: var(--hc-text);
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -8102,14 +8102,14 @@ section.section {
 }
 
 .hotel-card__stars {
-  font-size: 14px;
+  font-size: .875rem;
   color: var(--star-gold);
   letter-spacing: 2px;
   line-height: 1;
 }
 
 .hotel-card__name {
-  font-size: 16px;           /* v27 density: was 17px */
+  font-size: var(--fs-body);           /* v27 density: was 17px */
   font-weight: 700;
   color: var(--hc-text);
   line-height: 1.25;
@@ -8126,14 +8126,14 @@ section.section {
   margin-bottom: 4px;
 }
 .hotel-card .amenity-pill {
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--hc-accent);
   background: var(--hc-accent-dim);
   border: 1.5px solid var(--hc-accent);
-  border-radius: 999px;
+  border-radius: var(--r4);
   padding: 3px 9px;
   line-height: 1.4;
 }
@@ -8168,14 +8168,14 @@ section.section {
   transform: translateX(-50%) rotate(90deg);
   background: var(--hc-bg);
   padding: 0 6px;
-  font-size: 13px;
+  font-size: .8125rem;
   color: var(--hc-text);
   opacity: .6;
   line-height: 1;
 }
 
 .hotel-card__price-label {
-  font-size: 10px;
+  font-size: .625rem;
   font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -8201,7 +8201,7 @@ section.section {
    reads as the focal point. */
 
 .hotel-card__price-meta {
-  font-size: 12px;
+  font-size: .75rem;
   color: var(--hc-text);
   opacity: .65;
   margin-top: 4px;
@@ -8215,11 +8215,11 @@ section.section {
   margin-top: 10px;          /* v27 density: was 14px */
   background: var(--hc-accent);
   color: var(--hc-shadow);
-  font-size: 13px;
+  font-size: .8125rem;
   font-weight: 800;
   padding: 10px 16px;        /* v27 density: was 12px 16px */
   border: 2.5px solid var(--hc-shadow);
-  border-radius: 8px;
+  border-radius: var(--r2);
   box-shadow: 4px 4px 0 var(--hc-shadow);
   cursor: pointer;
   transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, background var(--t-fast) ease;
@@ -8317,12 +8317,12 @@ section.section {
      Previous 11/14 padding × 12px font-size totalled ≈34px tap height. */
   .hotel-card__cta {
     padding: 13px 16px;
-    font-size: 13px;
+    font-size: .8125rem;
     min-height: var(--touch-min);
   }
 
   /* v22 Agent 3 — stars upsized so 5-star rendering doesn't look like noise. */
-  .hotel-card__stars { font-size: 16px; }
+  .hotel-card__stars { font-size: var(--fs-body); }
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */
@@ -8526,7 +8526,7 @@ section.section {
   padding: 7px 12px !important;
   background: rgba(0, 0, 0, .42) !important;
   border: 1.5px solid rgba(255, 255, 255, .25) !important;
-  border-radius: 999px !important;
+  border-radius: var(--r4) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   color: var(--tc-fg-muted) !important;
@@ -8540,7 +8540,7 @@ section.section {
 }
 .trip-card__from > strong {
   display: block;
-  font-size: 13px;
+  font-size: .8125rem;
   font-weight: 700;
   letter-spacing: 0;
   text-transform: none;
@@ -8620,7 +8620,7 @@ section.section {
 }
 
 .trip-card__subtitle {
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 1.55;
   color: var(--tc-fg-muted);
   margin: 0;
@@ -8656,7 +8656,7 @@ section.section {
   align-items: center;
   gap: 6px;
   padding: 7px 14px;
-  border-radius: 999px;
+  border-radius: var(--r4);
   background: rgba(255, 255, 255, .12);
   border: 1.5px solid rgba(255, 255, 255, .28);
   backdrop-filter: blur(10px);
@@ -8673,7 +8673,7 @@ section.section {
 .trip-card__cta > span:not(.trip-card__cta-price) {
   display: inline-flex;
   align-items: center;
-  font-size: 11px;
+  font-size: .6875rem;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -8881,7 +8881,7 @@ body { background: var(--bg); color: var(--txt-1); }
 ::-webkit-scrollbar-track { background: var(--bg-low); }
 ::-webkit-scrollbar-thumb {
   background: var(--bg-elev);
-  border-radius: 999px;
+  border-radius: var(--r4);
   border: 3px solid var(--bg-low);
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-hi); }
@@ -8924,7 +8924,7 @@ body { background: var(--bg); color: var(--txt-1); }
 .phone-card__num {
   font-family: var(--font-display, "DM Sans", system-ui, sans-serif);
   font-variant-numeric: tabular-nums;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 600;
   letter-spacing: .03em;
   color: var(--txt-1);
@@ -8949,7 +8949,7 @@ body { background: var(--bg); color: var(--txt-1); }
   font-weight: 600;
   letter-spacing: .01em;
   min-height: var(--touch-min, 44px);
-  border-radius: 999px;
+  border-radius: var(--r4);
   text-decoration: none;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -9068,7 +9068,7 @@ body { background: var(--bg); color: var(--txt-1); }
   padding: 3px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: var(--r4);
   height: 38px;
 }
 .lang-btn {
@@ -9081,7 +9081,7 @@ body { background: var(--bg); color: var(--txt-1); }
   padding: 0 10px;
   height: 30px;
   min-width: 32px;
-  border-radius: 999px;
+  border-radius: var(--r4);
   cursor: pointer;
   transition: background-color var(--t), color var(--t);
   display: inline-flex;
@@ -9103,7 +9103,7 @@ body { background: var(--bg); color: var(--txt-1); }
 }
 .lang-btn--ar {
   font-family: 'Cairo', 'DM Sans', system-ui, sans-serif;
-  font-size: 14px;
+  font-size: .875rem;
   font-weight: 600;
   letter-spacing: 0;
 }
@@ -9128,8 +9128,8 @@ body { background: var(--bg); color: var(--txt-1); }
    they are the primary controls of a trilingual site. */
 @media (max-width: 900px) {
   .lang-switcher { height: auto; padding: 2px; }
-  .lang-btn { min-height: 44px; min-width: 44px; padding: 0 10px; font-size: 13px; }
-  .lang-btn--ar { font-size: 13px; }
+  .lang-btn { min-height: var(--touch-min); min-width: var(--touch-min); padding: 0 10px; font-size: .8125rem; }
+  .lang-btn--ar { font-size: .8125rem; }
 }
 
 /* Note (corrected 2026-09-05): the drawer is live again — initNavDrawer() in
@@ -9801,7 +9801,7 @@ body { background: var(--bg); color: var(--txt-1); }
 .advisor-toggle {
   margin-top: 10px;
   padding: 8px 4px;
-  min-height: 44px;
+  min-height: var(--touch-min);
   width: 100%;
   background: none;
   border: 0;
@@ -9948,7 +9948,7 @@ body { background: var(--bg); color: var(--txt-1); }
 .footer-social a {
   width: 46px;
   height: 46px;
-  border-radius: 12px;
+  border-radius: var(--r3);
   border: 1px dotted var(--border-hi);
   background: transparent;
   display: grid;
@@ -10113,7 +10113,7 @@ body { background: var(--bg); color: var(--txt-1); }
   min-height: var(--touch-min);
   padding: 10px 18px;
   border: 1px solid var(--border-hi);
-  border-radius: 999px;
+  border-radius: var(--r4);
   color: var(--txt-2);
   font-size: .8125rem;
   font-weight: 600;
@@ -10265,10 +10265,10 @@ body[data-page="home"] #contact {
   border: 0;
   background: transparent;
   color: var(--txt-3);
-  font-size: 15px;
+  font-size: .9375rem;
   line-height: 1;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: var(--r2);
   transition: color var(--t-fast), background var(--t-fast);
 }
 .wa-lead-prompt__close:hover { color: var(--txt-1); background: var(--border); }
@@ -10276,13 +10276,13 @@ body[data-page="home"] #contact {
   margin: 0 0 2px;
   margin-inline-end: 26px;
   font-family: var(--font-display, inherit);
-  font-size: 16px;
+  font-size: var(--fs-body);
   font-weight: 600;
   color: var(--txt-1);
 }
 .wa-lead-prompt__sub {
   margin: 0 0 12px;
-  font-size: 13px;
+  font-size: .8125rem;
   line-height: 1.4;
   color: var(--txt-2);
 }
@@ -10295,7 +10295,7 @@ body[data-page="home"] #contact {
   border-radius: 10px;
   color: var(--txt-1);
   font: inherit;
-  font-size: 14px;
+  font-size: .875rem;
   transition: border-color var(--t-fast);
 }
 .wa-lead-prompt__input::placeholder { color: var(--txt-3); }
@@ -10304,7 +10304,7 @@ body[data-page="home"] #contact {
 .wa-lead-prompt__done {
   margin: 0;
   padding: 6px 0;
-  font-size: 14px;
+  font-size: .875rem;
   font-weight: 600;
   color: var(--accent);
   text-align: center;
@@ -10336,7 +10336,7 @@ body[data-page="home"] #contact {
   /* 44px, not 40: the <=900px rule meant to raise these is .footer-col a
      (0,2,1) and loses to this (0,3,1) selector, so the mobile touch-target
      fix never actually applied here. */
-  min-height: 44px;
+  min-height: var(--touch-min);
   padding: 6px 12px;
   margin-inline: -12px;              /* hover fill bleeds to the edge; text stays flush */
   border-radius: var(--r2, 8px);
@@ -10582,7 +10582,7 @@ html.js .inclus-col.reveal.visible .inclus-check {
   padding: 4px;
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: var(--r4);
 }
 .loc-switch__tab {
   flex: 1 1 0;
@@ -10592,7 +10592,7 @@ html.js .inclus-col.reveal.visible .inclus-check {
   min-height: 40px;
   padding: 8px 10px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--r4);
   background: transparent;
   color: var(--txt-2);
   font: inherit;
@@ -10624,7 +10624,7 @@ html:not(.js) .loc-detail { display: flex; flex-direction: column; gap: var(--sp
   align-items: center;
   gap: 8px;
   padding: 8px 14px 8px 10px;
-  border-radius: 999px;
+  border-radius: var(--r4);
   border: 1px solid var(--border-hi);
   background: var(--bg);
   color: var(--txt-1);
@@ -10761,7 +10761,7 @@ p, li, dd, blockquote, figcaption, .testi-text {
      leaked into the drawer and indented the menu 73px while the switcher, toggle and
      WhatsApp button hugged the left edge. */
   .nav-drawer .nav-links { margin-inline: 0; align-items: stretch; width: 100%; }
-  .nav-drawer .theme-toggle { min-width: 44px; min-height: 44px; }
+  .nav-drawer .theme-toggle { min-width: var(--touch-min); min-height: var(--touch-min); }
   /* `.site-nav > .trip-switcher{order:3}` sat to the RIGHT of the burger on every
      non-home page. The hamburger is always last. */
   .site-nav > .nav-hamburger { order: 5; }
@@ -10837,7 +10837,7 @@ p, li, dd, blockquote, figcaption, .testi-text {
      lived in a ≤640 block: footer links 24px, filter pills 35, share 36. */
   .dest-filter__pill,
   .trip-switcher__trigger {
-    min-height: 44px;
+    min-height: var(--touch-min);
     display: inline-flex;
     align-items: center;
   }
@@ -10847,7 +10847,7 @@ p, li, dd, blockquote, figcaption, .testi-text {
     opacity: 1;   /* no hover on touch — the affordance has to be there at rest */
   }
   .footer-col a {
-    min-height: 44px;
+    min-height: var(--touch-min);
     display: flex;
     align-items: center;
   }
