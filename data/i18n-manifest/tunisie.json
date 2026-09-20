@@ -13,14 +13,14 @@
     "trip": 178,
     "shared": 25,
     "en": {
-      "ok": 163,
-      "stale": 15,
+      "ok": 162,
+      "stale": 16,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 163,
-      "stale": 15,
+      "ok": 162,
+      "stale": 16,
       "global": 25,
       "missing": 0
     }
@@ -1386,15 +1386,15 @@
       "arState": "ok"
     },
     "tnCalcDateHint": {
-      "fr": "Départs chaque semaine de juin à septembre, depuis Alger et Oran.",
-      "frHash": "01cj6eop",
-      "en": "Departures every week from June to September, from Algiers and Oran.",
-      "ar": "انطلاقات كل أسبوع من جوان إلى سبتمبر، من الجزائر العاصمة ووهران.",
+      "fr": "Prochains départs à confirmer, depuis Alger et Oran.",
+      "frHash": "002c5f9c",
+      "en": "Next departures to be confirmed, from Algiers and Oran.",
+      "ar": "الانطلاقات القادمة قيد التأكيد، من الجزائر العاصمة ووهران.",
       "enHash": "01cj6eop",
       "arHash": "01cj6eop",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnCalcHotelLabel": {
       "fr": "Hôtel",

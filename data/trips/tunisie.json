@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Tunisie — Alliance Travel · 2026",
-    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran. Dès 41.900 DA.",
+    "description": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse. Sans visa pour les Algériens. Départs à confirmer, depuis Alger et Oran. Dès 41.900 DA.",
     "ogTitle": "Tunisie · Sousse & sa région — Alliance Travel",
-    "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
+    "ogDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs à confirmer, depuis Alger et Oran.",
     "themeColor": "#19B5B0",
     "ogImage": "og-tunisie.jpg"
   },
@@ -19,7 +19,7 @@
   },
   "seo": {
     "tripName": "Tunisie · Sousse & sa région — Alliance Travel",
-    "tripDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs chaque semaine depuis Alger et Oran.",
+    "tripDescription": "Tunisie balnéaire en bus. 6 nuits en demi-pension à Sousse et sa région. Sans visa pour les Algériens. Départs à confirmer, depuis Alger et Oran.",
     "offerPrice": "41900",
     "faqJsonLd": [
       {
@@ -672,7 +672,7 @@
         "label": "16–22 Sept 2026"
       }
     ],
-    "dateHint": "Départs chaque semaine de juin à septembre, depuis Alger et Oran.",
+    "dateHint": "Prochains départs à confirmer, depuis Alger et Oran.",
     "selectLabel": "Hôtel",
     "optionsHtml": "            <option value=\"soviva\">Hôtel Soviva — dès 41.900 DA</option>\n            <option value=\"houria-palace\">Houria Palace 4★ — Sousse — dès 55.000 DA</option>\n            <option value=\"mouradi-club-selima\">Mouradi Club Selima — dès 88.000 DA</option>\n            <option value=\"eden-club\">Hôtel Eden Club — dès 89.900 DA</option>\n",
     "roomLabel": "Type de chambre",
@@ -997,7 +997,7 @@
       "tnCalcEyebrow": "Step 1 · Configure your trip",
       "tnCalcTitle": "Choose <em>your package</em>",
       "tnCalcDateLabel": "Departure date",
-      "tnCalcDateHint": "Departures every week from June to September, from Algiers and Oran.",
+      "tnCalcDateHint": "Next departures to be confirmed, from Algiers and Oran.",
       "tnCalcHotelLabel": "Hotel",
       "tnCalcRoomLabel": "Room type",
       "tnRoomDouble": "Double",
@@ -1188,7 +1188,7 @@
       "tnCalcEyebrow": "الخطوة 1 · هيّئ رحلتك",
       "tnCalcTitle": "اختر <em>باقتك</em>",
       "tnCalcDateLabel": "تاريخ الانطلاق",
-      "tnCalcDateHint": "انطلاقات كل أسبوع من جوان إلى سبتمبر، من الجزائر العاصمة ووهران.",
+      "tnCalcDateHint": "الانطلاقات القادمة قيد التأكيد، من الجزائر العاصمة ووهران.",
       "tnCalcHotelLabel": "الفندق",
       "tnCalcRoomLabel": "نوع الغرفة",
       "tnRoomDouble": "مزدوجة",

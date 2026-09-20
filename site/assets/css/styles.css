@@ -678,6 +678,21 @@ select {
   .site-nav.nav-open .nav-hamburger .icon-menu  { display: none; }
   .site-nav.nav-open .nav-hamburger .icon-close { display: block; }
 
+  /* The drawer is a CHILD of .site-nav (enhance.js `nav.appendChild(drawer)`)
+     while the backdrop is appended to <body>. .site-nav is position:fixed with
+     z-index:var(--z-nav), so it opens a stacking context: the drawer's own
+     z-index orders it only against its nav siblings, and against the page the
+     drawer counts for whatever .site-nav counts for. The backdrop, being at
+     body level, is compared to .site-nav directly -- so --z-backdrop (350)
+     would paint over a nav sitting at --z-nav (300), hiding the drawer behind
+     its own scrim.
+
+     Lifting the nav while open carries the whole subtree over the backdrop,
+     the sticky bars (--z-sticky) and the page in one move. Needs !important
+     to beat the unconditional `.site-nav{z-index:var(--z-nav)!important}`
+     further down; the compound selector is more specific, so it wins. */
+  .site-nav.nav-open { z-index: calc(var(--z-drawer) + 10) !important; }
+
   .nav-drawer {
     display: flex;
     position: fixed;
