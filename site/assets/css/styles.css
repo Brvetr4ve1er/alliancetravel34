@@ -667,7 +667,8 @@ select {
     transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
     margin-inline-start: auto;
     flex-shrink: 0;
-    z-index: 120;
+    /* above the drawer it toggles, which itself sits above the nav pill */
+    z-index: calc(var(--z-drawer) + 10);
   }
   .nav-hamburger:hover, .nav-hamburger:focus-visible {
     border-color: var(--mint);
@@ -684,7 +685,7 @@ select {
     width: min(85vw, 360px);
     background: var(--bg-elev);
     border-inline-start: 1px solid var(--border);
-    z-index: 110;
+    z-index: var(--z-drawer);
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-3);
@@ -778,7 +779,7 @@ select {
     background: rgba(0,0,0,.55);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    z-index: 105;
+    z-index: var(--z-backdrop);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--t-base) var(--ease-out);
@@ -1077,21 +1078,10 @@ select {
    a gradient fill layer for hotel card photos that was replaced by
    real <img> elements via the hotel-card__photo class. */
 
-.hotel-card__ribbon {
-  position: absolute;
-  top: var(--s3);
-  left: var(--s3);
-  font-size: .625rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  padding: 3px var(--s2);
-  border-radius: var(--r1);
-  background: rgba(12, 14, 18, .8);
-  color: var(--txt-2);
-}
-/* Per-tier ribbon colours intentionally omitted: the ribbon is unified to white
-   via a `!important` rule below, so tier-specific colours never rendered. */
+/* The ribbon's own geometry lives with the sticker rule further down (it sets
+   every property this block used to, and wins on source order); its background
+   and colour come from the unified `!important` rule below. Per-tier colours
+   were dropped with it -- they never rendered. */
 
 .hotel-card__body {
   padding: var(--s5);
@@ -2344,14 +2334,16 @@ summary.faq-q::-webkit-details-marker {
      above 1024px .sticky-total is display:none and the inquiry bar stands
      alone, unchanged. Scoped with :has so /rendez-vous-visa/, which has an
      inquiry bar and no calculator, is untouched. */
-  body:has(.sticky-total) .trip-sticky-bar {
+  body:has(.sticky-total) .trip-sticky-bar,
+  body.has-sticky-total .trip-sticky-bar {
     display: none;
   }
 
   /* v22 Phase 3 — only consume bottom padding on pages that ACTUALLY
      have a sticky-total bar (i.e. trip pages). Homepage previously paid
      for 68px of non-existent chrome. */
-  body:has(.sticky-total) {
+  body:has(.sticky-total),
+  body.has-sticky-total {
     padding-bottom: var(--sticky-bar-h, 68px);
     /* Respect iOS safe-area so the bar sits above the home indicator */
     padding-bottom: calc(var(--sticky-bar-h, 68px) + env(safe-area-inset-bottom));
@@ -2361,7 +2353,8 @@ summary.faq-q::-webkit-details-marker {
      The 16px extra buffer covers cases where the sticky bar's actual
      content height exceeds the --sticky-bar-h token (which is a
      ladder reference, not a hard pin). */
-  body:has(.sticky-total) .fab-whatsapp {
+  body:has(.sticky-total) .fab-whatsapp,
+  body.has-sticky-total .fab-whatsapp {
     bottom: calc(var(--sticky-bar-h, 68px) + var(--space-4) + env(safe-area-inset-bottom, 0px));
   }
 
@@ -3249,7 +3242,7 @@ html.js [data-aos].visible {
 
 .related-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: var(--s5);
 }
 
@@ -3737,7 +3730,6 @@ html.js [data-aos].visible {
 /* ── Hotel cards ─────────────────────────────────────────── */
 .hotel-card { border-radius: var(--r3); border-color: var(--border); }
 .hotel-card.selected { border-color: var(--mint); box-shadow: 0 0 0 1px var(--mint), var(--elev-2); }
-.hotel-card__ribbon { border-radius: var(--r1); }
 .hotel-card__cta:hover { background: var(--mint-dim); border-color: var(--mint); color: var(--mint); }
 .hotel-card.selected .hotel-card__cta { background: var(--mint-dim); border-color: var(--mint); color: var(--mint); }
 
@@ -6106,7 +6098,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(156, 232, 178, .18) !important;
-  border-radius: var(--r2, 12px) !important;
+  border-radius: var(--r2, 8px) !important;
   box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .5) !important;
 }
 #trip-map .maplibregl-ctrl-group button {
@@ -6309,7 +6301,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
 #trip-map .maplibregl-popup-content {
   background: rgba(12, 14, 18, .96) !important;
   color: var(--txt-1, #efe8df) !important;
-  border-radius: var(--r2, 12px) !important;
+  border-radius: var(--r2, 8px) !important;
   border: 1px solid rgba(156, 232, 178, .22) !important;
   padding: 12px 14px !important;
   box-shadow: 0 14px 30px -8px rgba(0, 0, 0, .55) !important;
@@ -7523,7 +7515,7 @@ section.section {
 }
 .info-block-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: var(--s4, 16px);
   /* start, not stretch: an open card grew its row, stretching the CLOSED
      sibling to the same height → it showed a tall empty box ("others open
@@ -7779,7 +7771,7 @@ section.section {
   padding: var(--s5, 24px);
   background: var(--bg-card, rgba(255, 255, 255, .03));
   border: 1px solid var(--border-hi, rgba(255, 255, 255, .16));
-  border-radius: var(--r3, 14px);
+  border-radius: var(--r3, 12px);
 }
 /* Responsive fix: the trip <select>'s longest <option> was forcing the contact
    grid's 1fr column to its ~442px min-content, clipping the form on narrow
@@ -9586,7 +9578,9 @@ body { background: var(--bg); color: var(--txt-1); }
 .aurora-hero__title{ overflow-wrap:break-word; hyphens:auto; }
 .aurora-hero__inner{ padding-inline:var(--container-x); }
 /* Aurora hero CTAs: stack full-width on the smallest phones instead of a cramped 2-up. */
-@media (max-width: 380px){
+/* Stack the two hero CTAs well before 380px: they are flex:1 1 0 with no
+   ellipsis on .btn, and the FR/AR labels already crowd at ~440px. */
+@media (max-width: 440px){
   .aurora-hero__actions{ flex-wrap:wrap; }
   .aurora-hero__actions .btn{ flex:1 1 100%; }
 }
@@ -9680,7 +9674,7 @@ body { background: var(--bg); color: var(--txt-1); }
 .contact-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--r3, 14px);
+  border-radius: var(--r3, 12px);
   padding: var(--s5, 24px);
 }
 .contact-card__title {
@@ -10170,7 +10164,7 @@ body { background: var(--bg); color: var(--txt-1); }
 .value-prop {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--r3, 14px);
+  border-radius: var(--r3, 12px);
   padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 28px);
   gap: 14px;
   transition: border-color var(--t-fast, .18s) ease, transform var(--t-fast, .18s) ease;
@@ -10330,7 +10324,7 @@ body[data-page="home"] #contact {
   min-height: 44px;
   padding: 6px 12px;
   margin-inline: -12px;              /* hover fill bleeds to the edge; text stays flush */
-  border-radius: var(--r2, 10px);
+  border-radius: var(--r2, 8px);
   background: none;
   font-variant-numeric: tabular-nums;
   font-size: .9375rem;
@@ -10485,7 +10479,7 @@ html.js .inclus-col.reveal.visible .inclus-check {
   gap: 11px;
   padding: 7px 10px;
   margin-inline: -10px;
-  border-radius: var(--r2, 10px);
+  border-radius: var(--r2, 8px);
   background-image: none;            /* supersede the animated-underline treatment */
   color: var(--txt-2);
   transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
@@ -10547,7 +10541,7 @@ html.js .inclus-col.reveal.visible .inclus-check {
   min-width: 0;                 /* let grid tracks shrink; prevents overflow */
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--r3, 16px);
+  border-radius: var(--r3, 12px);
   overflow: hidden;
 }
 .bento-tile--map { padding: 0; }

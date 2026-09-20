@@ -121,7 +121,6 @@
   },
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__bali--bg.jpg",
-    "fg": "../assets/images/heroes-v2/hero__bali--fg.jpg",
     "aria": "Bali — L'île des dieux",
     "titlePre": "Bali",
     "titlePost": "L'île des dieux",

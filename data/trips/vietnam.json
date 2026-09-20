@@ -121,7 +121,6 @@
   },
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__vietnam--bg.jpg",
-    "fg": "../assets/images/heroes-v2/hero__vietnam--fg.jpg",
     "aria": "Vietnam — De Saïgon à la baie d'Ha Long",
     "titlePre": "Vietnam",
     "titlePost": "De Saïgon à la baie d'Ha Long",

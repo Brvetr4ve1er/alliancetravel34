@@ -121,7 +121,6 @@
   },
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__azerbaidjan--bg.jpg",
-    "fg": "../assets/images/heroes-v2/hero__azerbaidjan--fg.jpg",
     "aria": "Azerbaïdjan — Bakou & Gabala",
     "titlePre": "Bakou",
     "titlePost": "& Gabala",

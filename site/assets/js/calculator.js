@@ -746,7 +746,16 @@ function initTimeline() {
 // the wrap states; the bar's height never depends on the token, so no loop.
 function initStickyBarHeight() {
   const bar = document.getElementById('sticky-total-bar');
-  if (!bar || !('ResizeObserver' in window)) return;   // old browsers keep today's behaviour
+  if (!bar) return;
+  // Three rules key off `body:has(.sticky-total)` -- the bottom padding that
+  // clears the bar, the FAB lift above it, and hiding the inquiry bar behind
+  // it. :has() is unsupported in Firefox < 121 and older Safari, where all
+  // three silently no-op and the bar overlaps page content. The codebase
+  // already mirrors :has() with a body class for the scroll-driven bar
+  // (`has-sticky-bar`, enhance.js); this is the presence-driven twin, so one
+  // toggle at init is enough -- the element never leaves the DOM.
+  document.body.classList.toggle('has-sticky-total', !!document.querySelector('.sticky-total'));
+  if (!('ResizeObserver' in window)) return;   // old browsers keep today's behaviour
   const root = document.documentElement;
   new ResizeObserver(() => {
     const h = bar.getBoundingClientRect().height;

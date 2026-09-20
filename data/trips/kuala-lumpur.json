@@ -120,7 +120,6 @@
   },
   "hero": {
     "bg": "../assets/images/heroes-v2/hero__kuala-lumpur--bg.jpg",
-    "fg": "../assets/images/heroes-v2/hero__kuala-lumpur--fg.jpg",
     "aria": "Kuala Lumpur & Langkawi",
     "titlePre": "Kuala Lumpur",
     "titlePost": "& Langkawi",
