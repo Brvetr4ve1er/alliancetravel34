@@ -13,14 +13,14 @@
     "trip": 197,
     "shared": 25,
     "en": {
-      "ok": 191,
-      "stale": 6,
+      "ok": 188,
+      "stale": 9,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 191,
-      "stale": 6,
+      "ok": 188,
+      "stale": 9,
       "global": 25,
       "missing": 0
     }
@@ -112,15 +112,15 @@
       "arState": "ok"
     },
     "egHeroDate": {
-      "fr": "Charters & vols réguliers · Été 2026",
-      "frHash": "01k16szq",
-      "en": "Charters & scheduled flights · Summer 2026",
-      "ar": "رحلات عارضة ومنتظمة · صيف 2026",
+      "fr": "Charters & vols réguliers · dates à confirmer",
+      "frHash": "01yaxaky",
+      "en": "Charters & scheduled flights · dates to be confirmed",
+      "ar": "رحلات عارضة ومنتظمة · تواريخ قيد التأكيد",
       "enHash": "01k16szq",
       "arHash": "01k16szq",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "heroFrom": {
       "fr": "À partir de",
@@ -682,15 +682,15 @@
       "arState": "stale"
     },
     "egStat3": {
-      "fr": "Programmes Égypte été 2026",
-      "frHash": "01ybhqdu",
-      "en": "Egypt programmes summer 2026",
-      "ar": "برامج مصر صيف 2026",
+      "fr": "Programmes Égypte 2026",
+      "frHash": "01wzqefi",
+      "en": "Egypt programmes 2026",
+      "ar": "برامج مصر 2026",
       "enHash": "01ybhqdu",
       "arHash": "01ybhqdu",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egStat4": {
       "fr": "Hôtels triés au choix",
@@ -2112,15 +2112,15 @@
       "arState": "ok"
     },
     "egRel1Flag": {
-      "fr": "Été 2026",
-      "frHash": "01yc3zrb",
-      "en": "Summer 2026",
-      "ar": "صيف 2026",
+      "fr": "Dates à confirmer",
+      "frHash": "01jr0t3p",
+      "en": "Dates to be confirmed",
+      "ar": "تواريخ قيد التأكيد",
       "enHash": "01yc3zrb",
       "arHash": "01yc3zrb",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egRel1Title": {
       "fr": "Tunisie · Mer &amp; soleil",

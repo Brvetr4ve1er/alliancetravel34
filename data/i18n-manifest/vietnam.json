@@ -13,14 +13,14 @@
     "trip": 207,
     "shared": 25,
     "en": {
-      "ok": 203,
-      "stale": 4,
+      "ok": 200,
+      "stale": 7,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 203,
-      "stale": 4,
+      "ok": 200,
+      "stale": 7,
       "global": 25,
       "missing": 0
     }
@@ -90,15 +90,15 @@
       "arState": "global"
     },
     "vnHeroEyebrow": {
-      "fr": "Voyage organisé · Qatar Airways · Été 2026",
-      "frHash": "00vh80n1",
-      "en": "Organized tour · Qatar Airways · Summer 2026",
-      "ar": "رحلة منظمة · الخطوط الجوية القطرية · صيف 2026",
+      "fr": "Voyage organisé · Qatar Airways · Dates à confirmer",
+      "frHash": "00gy2n4n",
+      "en": "Organized tour · Qatar Airways · Dates to be confirmed",
+      "ar": "رحلة منظمة · الخطوط الجوية القطرية · تواريخ قيد التأكيد",
       "enHash": "00vh80n1",
       "arHash": "00vh80n1",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "vnHeroH1": {
       "fr": "Vietnam <em>De Saïgon à la baie d'Ha Long</em>",
@@ -2244,15 +2244,15 @@
       "arState": "ok"
     },
     "vnRel1Flag": {
-      "fr": "Tunisie · Été 2026",
-      "frHash": "00tgug07",
-      "en": "Tunisia · Summer 2026",
-      "ar": "تونس · صيف 2026",
+      "fr": "Tunisie · dates à confirmer",
+      "frHash": "0103yktx",
+      "en": "Tunisia · dates to be confirmed",
+      "ar": "تونس · تواريخ قيد التأكيد",
       "enHash": "00tgug07",
       "arHash": "00tgug07",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "vnRel1Price": {
       "fr": "À partir de <strong>41.900 DA</strong>",
@@ -2277,15 +2277,15 @@
       "arState": "ok"
     },
     "vnRel2Flag": {
-      "fr": "Indonésie · Été 2026",
-      "frHash": "003juwfe",
-      "en": "Indonesia · Summer 2026",
-      "ar": "إندونيسيا · صيف 2026",
+      "fr": "Indonésie · dates à confirmer",
+      "frHash": "0126myzi",
+      "en": "Indonesia · dates to be confirmed",
+      "ar": "إندونيسيا · تواريخ قيد التأكيد",
       "enHash": "003juwfe",
       "arHash": "003juwfe",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "vnRel2Price": {
       "fr": "À partir de <strong>419.000 DA</strong>",

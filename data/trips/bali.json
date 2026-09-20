@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Bali (Indonésie) — Alliance Travel · 2026",
-    "description": "Voyage organisé à Bali. 9 nuits en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates. Départs été 2026 depuis Alger. Dès 419.000 DA.",
+    "description": "Voyage organisé à Bali. 9 nuits en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates. Départs depuis Alger. Dès 419.000 DA.",
     "ogTitle": "Bali · L'île des dieux — Alliance Travel",
-    "ogDescription": "Rizières, temples et plages de Bali. 9 nuits tout en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates, petit-déjeuner. Départs été 2026.",
+    "ogDescription": "Rizières, temples et plages de Bali. 9 nuits tout en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates, petit-déjeuner. Départs à confirmer.",
     "themeColor": "#D98E48",
     "ogImage": "og-bali.jpg"
   },
@@ -19,7 +19,7 @@
   },
   "seo": {
     "tripName": "Bali · L'île des dieux — Alliance Travel",
-    "tripDescription": "Rizières, temples et plages de Bali. 9 nuits tout en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates, petit-déjeuner. Départs été 2026.",
+    "tripDescription": "Rizières, temples et plages de Bali. 9 nuits tout en hôtels 5★ (Kuta · Ubud · Nusa Dua), vol Qatar Airways / Emirates, petit-déjeuner. Départs à confirmer.",
     "offerPrice": "419000",
     "faqJsonLd": [
       {
@@ -125,7 +125,7 @@
     "aria": "Bali — L'île des dieux",
     "titlePre": "Bali",
     "titlePost": "L'île des dieux",
-    "eyebrow": "Voyage organisé · Qatar / Emirates · Été 2026",
+    "eyebrow": "Voyage organisé · Qatar / Emirates · Dates à confirmer",
     "date": "9 nuits · Hôtels 5★ · Kuta · Ubud · Nusa Dua",
     "prompt": "Faites défiler pour découvrir",
     "skip": "Passer",
@@ -993,7 +993,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#04100c\"/>\n<radialGradient id=\"vn-vietnam-g\" cx=\"50%\" cy=\"70%\" r=\"60%\"><stop offset=\"0\" stop-color=\"#0a3a2a\" stop-opacity=\".8\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#vn-vietnam-g)\"/>\n<path d=\"M0 78 Q25 60 50 72 T100 70 V100 H0 Z\" fill=\"#0c2a20\" fill-opacity=\".7\"/>\n<polygon points=\"30,30 38,55 22,55\" fill=\"#15A88E\" fill-opacity=\".4\"/>\n<polygon points=\"62,22 72,55 52,55\" fill=\"#15A88E\" fill-opacity=\".35\"/>\n<ellipse cx=\"50\" cy=\"80\" rx=\"44\" ry=\"2\" fill=\"#15A88E\" fill-opacity=\".18\"/>\n</svg>",
       "color": "#15A88E",
       "kFlag": " data-i18n=\"baRelVnFlag\"",
-      "flag": "Vietnam · Été 2026",
+      "flag": "Vietnam · dates à confirmer",
       "kTitle": "",
       "title": "Vietnam",
       "kPrice": " data-i18n-html=\"baRelVnPrice\"",
@@ -1006,7 +1006,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#05100f\"/>\n<radialGradient id=\"tn-tunisie-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#19B5B0\" stop-opacity=\".35\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#tn-tunisie-g)\"/>\n<rect x=\"0\" y=\"72\" width=\"100\" height=\"28\" fill=\"#0a2422\" fill-opacity=\".7\"/>\n<rect x=\"30\" y=\"40\" width=\"40\" height=\"34\" rx=\"2\" fill=\"#0e3330\" fill-opacity=\".8\"/>\n<circle cx=\"50\" cy=\"34\" r=\"8\" fill=\"#19B5B0\" fill-opacity=\".25\"/>\n<ellipse cx=\"50\" cy=\"80\" rx=\"44\" ry=\"2\" fill=\"#19B5B0\" fill-opacity=\".18\"/>\n</svg>",
       "color": "#19B5B0",
       "kFlag": " data-i18n=\"baRelTnFlag\"",
-      "flag": "Tunisie · Été 2026",
+      "flag": "Tunisie · dates à confirmer",
       "kTitle": "",
       "title": "Tunisie",
       "kPrice": " data-i18n-html=\"baRelTnPrice\"",
@@ -1064,7 +1064,7 @@
   "i18n": {
     "en": {
       "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
-      "baHeroEyebrow": "Organized tour · Qatar / Emirates · Summer 2026",
+      "baHeroEyebrow": "Organized tour · Qatar / Emirates · Dates to be confirmed",
       "baHeroTitlePre": "Bali",
       "baHeroTitlePost": "Island of the gods",
       "baHeroDate": "9 nights · 5★ hotels · Kuta · Ubud · Nusa Dua",
@@ -1238,9 +1238,9 @@
       "baInsuranceItem4": "<strong>On request</strong>, Alliance Travel can point you to a partner insurer offering travel plans.",
       "baRelatedEyebrow": "You might also like",
       "baRelatedTitle": "Continue your <em>discovery</em>",
-      "baRelVnFlag": "Vietnam · Summer 2026",
+      "baRelVnFlag": "Vietnam · dates to be confirmed",
       "baRelVnPrice": "From <strong>439,000 DA</strong>",
-      "baRelTnFlag": "Tunisia · Summer 2026",
+      "baRelTnFlag": "Tunisia · dates to be confirmed",
       "baRelTnPrice": "From <strong>41,900 DA</strong>",
       "baRelCta": "View this trip",
       "baFinalScarcity": "5 departures in 2026 · Limited places",
@@ -1252,7 +1252,7 @@
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
-      "baHeroEyebrow": "رحلة منظَّمة · القطرية / الإمارات · صيف 2026",
+      "baHeroEyebrow": "رحلة منظَّمة · القطرية / الإمارات · تواريخ قيد التأكيد",
       "baHeroTitlePre": "بالي",
       "baHeroTitlePost": "جزيرة الآلهة",
       "baHeroDate": "9 ليالٍ · فنادق 5 نجوم · كوتا · أوبود · نوسا دوا",
@@ -1426,9 +1426,9 @@
       "baInsuranceItem4": "<strong>عند الطلب</strong>، يمكن لأليانس ترافل توجيهك إلى شريك تأمين يقدّم باقات سفر.",
       "baRelatedEyebrow": "قد يعجبك أيضاً",
       "baRelatedTitle": "واصل <em>اكتشافك</em>",
-      "baRelVnFlag": "فيتنام · صيف 2026",
+      "baRelVnFlag": "فيتنام · تواريخ قيد التأكيد",
       "baRelVnPrice": "ابتداءً من <strong>439.000 دج</strong>",
-      "baRelTnFlag": "تونس · صيف 2026",
+      "baRelTnFlag": "تونس · تواريخ قيد التأكيد",
       "baRelTnPrice": "ابتداءً من <strong>41.900 دج</strong>",
       "baRelCta": "عرض هذه الرحلة",
       "baFinalScarcity": "5 رحلات في 2026 · أماكن محدودة",

@@ -13,14 +13,14 @@
     "trip": 178,
     "shared": 25,
     "en": {
-      "ok": 166,
-      "stale": 12,
+      "ok": 163,
+      "stale": 15,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 166,
-      "stale": 12,
+      "ok": 163,
+      "stale": 15,
       "global": 25,
       "missing": 0
     }
@@ -90,15 +90,15 @@
       "arState": "global"
     },
     "tnHeroEyebrow": {
-      "fr": "Voyage en bus · Demi-pension · Été 2026",
-      "frHash": "013p6yor",
-      "en": "Bus trip · Half-board · Summer 2026",
-      "ar": "رحلة بالحافلة · نصف إقامة · صيف 2026",
+      "fr": "Voyage en bus · Demi-pension · Dates à confirmer",
+      "frHash": "01026ynl",
+      "en": "Bus trip · Half-board · Dates to be confirmed",
+      "ar": "رحلة بالحافلة · نصف إقامة · تواريخ قيد التأكيد",
       "enHash": "013p6yor",
       "arHash": "013p6yor",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnHeroH1": {
       "fr": "Tunisie <em>Soleil & Méditerranée</em>",
@@ -847,15 +847,15 @@
       "arState": "ok"
     },
     "tnStat3": {
-      "fr": "Départs chaque semaine en été 2026",
-      "frHash": "00w7m5dw",
-      "en": "Departures every week in summer 2026",
-      "ar": "انطلاقات كل أسبوع في صيف 2026",
+      "fr": "Prochains départs à confirmer",
+      "frHash": "007gu4ke",
+      "en": "Next departures to be confirmed",
+      "ar": "الانطلاقات القادمة قيد التأكيد",
       "enHash": "00w7m5dw",
       "arHash": "00w7m5dw",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnStat4": {
       "fr": "Hôtels triés au choix",
@@ -1991,15 +1991,15 @@
       "arState": "stale"
     },
     "tnFinalScarcity": {
-      "fr": "Départs chaque semaine en été 2026 · Places limitées",
-      "frHash": "01gmb0aj",
-      "en": "Departures every week in summer 2026 · Limited seats",
-      "ar": "انطلاقات كل أسبوع في صيف 2026 · مقاعد محدودة",
+      "fr": "Prochains départs à confirmer · Places limitées",
+      "frHash": "00toscel",
+      "en": "Next departures to be confirmed · Limited seats",
+      "ar": "الانطلاقات القادمة قيد التأكيد · مقاعد محدودة",
       "enHash": "01gmb0aj",
       "arHash": "01gmb0aj",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnFinalTitle": {
       "fr": "Cap sur la<br><em>Tunisie balnéaire</em>",

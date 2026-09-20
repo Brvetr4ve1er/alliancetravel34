@@ -13,14 +13,14 @@
     "trip": 192,
     "shared": 25,
     "en": {
-      "ok": 189,
-      "stale": 3,
+      "ok": 186,
+      "stale": 6,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 189,
-      "stale": 3,
+      "ok": 186,
+      "stale": 6,
       "global": 25,
       "missing": 0
     }
@@ -90,15 +90,15 @@
       "arState": "global"
     },
     "klHeroEyebrow": {
-      "fr": "Voyage organisé · Qatar / Emirates · Été 2026",
-      "frHash": "00i22m2g",
-      "en": "Organized tour · Qatar / Emirates · Summer 2026",
-      "ar": "رحلة منظمة · القطرية / الإمارات · صيف 2026",
+      "fr": "Voyage organisé · Qatar / Emirates · Dates à confirmer",
+      "frHash": "00srmhiw",
+      "en": "Organized tour · Qatar / Emirates · Dates to be confirmed",
+      "ar": "رحلة منظمة · القطرية / الإمارات · تواريخ قيد التأكيد",
       "enHash": "00i22m2g",
       "arHash": "00i22m2g",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "klHeroH1": {
       "fr": "Kuala Lumpur <em>& Langkawi</em>",
@@ -2079,15 +2079,15 @@
       "arState": "ok"
     },
     "klRelBaliFlag": {
-      "fr": "Indonésie · Été 2026",
-      "frHash": "003juwfe",
-      "en": "Indonesia · Summer 2026",
-      "ar": "إندونيسيا · صيف 2026",
+      "fr": "Indonésie · dates à confirmer",
+      "frHash": "0126myzi",
+      "en": "Indonesia · dates to be confirmed",
+      "ar": "إندونيسيا · تواريخ قيد التأكيد",
       "enHash": "003juwfe",
       "arHash": "003juwfe",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "klRelBaliPrice": {
       "fr": "À partir de <strong>419.000 DA</strong>",
@@ -2112,15 +2112,15 @@
       "arState": "ok"
     },
     "klRelVietnamFlag": {
-      "fr": "Vietnam · Été 2026",
-      "frHash": "018msrpc",
-      "en": "Vietnam · Summer 2026",
-      "ar": "فيتنام · صيف 2026",
+      "fr": "Vietnam · dates à confirmer",
+      "frHash": "00epyucw",
+      "en": "Vietnam · dates to be confirmed",
+      "ar": "فيتنام · تواريخ قيد التأكيد",
       "enHash": "018msrpc",
       "arHash": "018msrpc",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "klRelVietnamPrice": {
       "fr": "À partir de <strong>439.000 DA</strong>",

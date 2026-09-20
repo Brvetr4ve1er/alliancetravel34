@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Égypte 2026 · 5 programmes — Alliance Travel",
-    "description": "Égypte 2026 : 5 programmes au choix entre Le Caire, Hurghada et Sharm El Sheikh. Charters & vols réguliers, All Inclusive en Mer Rouge. Départs été 2026 depuis Alger. Dès 169.000 DA.",
+    "description": "Égypte 2026 : 5 programmes au choix entre Le Caire, Hurghada et Sharm El Sheikh. Charters & vols réguliers, All Inclusive en Mer Rouge. Départs depuis Alger. Dès 169.000 DA.",
     "ogTitle": "Égypte 2026 · 5 programmes — Alliance Travel",
-    "ogDescription": "5 programmes au choix : Caire & Hurghada, charters Hurghada & Sharm, Caire & Sharm, ou Sharm depuis Constantine. All Inclusive en Mer Rouge & Pyramides. Été 2026.",
+    "ogDescription": "5 programmes au choix : Caire & Hurghada, charters Hurghada & Sharm, Caire & Sharm, ou Sharm depuis Constantine. All Inclusive en Mer Rouge & Pyramides.",
     "themeColor": "#C9872E",
     "ogImage": "og-cairo-sharm.jpg"
   },
@@ -19,7 +19,7 @@
   },
   "seo": {
     "tripName": "Égypte 2026 · 5 programmes — Alliance Travel",
-    "tripDescription": "5 programmes au choix entre Le Caire, Hurghada et Sharm El Sheikh. Charters & vols réguliers, All Inclusive en Mer Rouge & Pyramides. Départs été 2026 depuis Alger.",
+    "tripDescription": "5 programmes au choix entre Le Caire, Hurghada et Sharm El Sheikh. Charters & vols réguliers, All Inclusive en Mer Rouge & Pyramides. Départs depuis Alger.",
     "offerPrice": "169000",
     "faqJsonLd": [
       {
@@ -138,7 +138,7 @@
     "titlePre": "Égypte",
     "titlePost": "Mer Rouge & Pyramides · 5 programmes",
     "eyebrow": "Le Caire · Hurghada · Sharm El Sheikh · 2026",
-    "date": "Charters & vols réguliers · Été 2026",
+    "date": "Charters & vols réguliers · dates à confirmer",
     "prompt": "Faites défiler pour découvrir",
     "skip": "Passer",
     "h1Pre": "Égypte ",
@@ -461,7 +461,7 @@
         "kNum": "",
         "num": "5",
         "k": " data-i18n=\"egStat3\"",
-        "label": "Programmes Égypte été 2026"
+        "label": "Programmes Égypte 2026"
       },
       {
         "kNum": "",
@@ -1735,7 +1735,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#02110f\"/>\n<radialGradient id=\"tn-tunisie-g\" cx=\"50%\" cy=\"60%\" r=\"60%\"><stop offset=\"0\" stop-color=\"#19B5B0\" stop-opacity=\".32\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#tn-tunisie-g)\"/>\n<rect x=\"0\" y=\"62\" width=\"100\" height=\"38\" fill=\"#04161a\"/>\n<rect x=\"20\" y=\"34\" width=\"26\" height=\"28\" fill=\"#0a2730\" fill-opacity=\".85\"/>\n<rect x=\"54\" y=\"42\" width=\"20\" height=\"20\" fill=\"#0a2730\" fill-opacity=\".7\"/>\n<path d=\"M20 34 L33 22 L46 34 Z\" fill=\"#0a2730\" fill-opacity=\".85\"/>\n<ellipse cx=\"50\" cy=\"64\" rx=\"46\" ry=\"2\" fill=\"#19B5B0\" fill-opacity=\".18\"/>\n<circle cx=\"80\" cy=\"20\" r=\"7\" fill=\"#FFF8F0\" fill-opacity=\".1\"/>\n</svg>",
       "color": "#19B5B0",
       "kFlag": " data-i18n=\"egRel1Flag\"",
-      "flag": "Été 2026",
+      "flag": "Dates à confirmer",
       "kTitle": " data-i18n-html=\"egRel1Title\"",
       "title": "Tunisie · Mer &amp; soleil",
       "kPrice": " data-i18n-html=\"egRel1Price\"",
@@ -2110,7 +2110,7 @@
       "egHeroEyebrow": "Cairo · Hurghada · Sharm El Sheikh · 2026",
       "egHeroTitlePre": "Egypt",
       "egHeroTitlePost": "Red Sea & Pyramids · 5 programmes",
-      "egHeroDate": "Charters & scheduled flights · Summer 2026",
+      "egHeroDate": "Charters & scheduled flights · dates to be confirmed",
       "egHeroH1": "Egypt <em>Red Sea &amp; Pyramids · 5 programmes</em>",
       "egHeroLede": "One country, five packages to choose from. Cairo & Hurghada, direct-charter to Hurghada or Sharm, Cairo & Sharm on a scheduled flight, or Sharm departing from Constantine. All Inclusive on the Red Sea, guided excursions in Cairo.",
       "egHeroPriceUnit": "per person · by programme",
@@ -2162,7 +2162,7 @@
       "egTrustTitle": "They <em>trusted us</em>",
       "egStat1": "Founded",
       "egStat2": "Branches · BBA & M'Sila",
-      "egStat3": "Egypt programmes summer 2026",
+      "egStat3": "Egypt programmes 2026",
       "egStat4": "Hand-picked hotels to choose from",
       "egTesti1Text": "\"Everything was perfectly organised. The pyramids at sunrise, the Nile in the evening — I could never have done that on my own. Alliance Travel thought of everything.\"",
       "egTesti1Trip": "Bordj Bou Arreridj · Egypt trip 2024",
@@ -2292,7 +2292,7 @@
       "egInfo4Li4": "<strong>On request</strong>, Alliance Travel can point you to an insurance partner offering travel plans.",
       "egRelatedEyebrow": "You might also like",
       "egRelatedTitle": "Continue your <em>discovery</em>",
-      "egRel1Flag": "Summer 2026",
+      "egRel1Flag": "Dates to be confirmed",
       "egRel1Title": "Tunisia · Sea &amp; sun",
       "egRel1Price": "From <strong>41,900 DA</strong>",
       "egRel2Flag": "October–December 2026",
@@ -2312,7 +2312,7 @@
       "egHeroEyebrow": "القاهرة · الغردقة · شرم الشيخ · 2026",
       "egHeroTitlePre": "مصر",
       "egHeroTitlePost": "البحر الأحمر والأهرامات · 5 برامج",
-      "egHeroDate": "رحلات عارضة ومنتظمة · صيف 2026",
+      "egHeroDate": "رحلات عارضة ومنتظمة · تواريخ قيد التأكيد",
       "egHeroH1": "مصر <em>البحر الأحمر والأهرامات · 5 برامج</em>",
       "egHeroLede": "بلد واحد، وخمس صيغ للاختيار. القاهرة والغردقة، رحلات عارضة مباشرة إلى الغردقة أو شرم الشيخ، القاهرة وشرم الشيخ برحلة منتظمة، أو شرم الشيخ انطلاقاً من قسنطينة. نظام شامل في البحر الأحمر، وجولات مُرافَقة في القاهرة.",
       "egHeroPriceUnit": "للشخص · حسب البرنامج",
@@ -2364,7 +2364,7 @@
       "egTrustTitle": "لقد <em>وثقوا بنا</em>",
       "egStat1": "سنة التأسيس",
       "egStat2": "وكالات · برج بوعريريج والمسيلة",
-      "egStat3": "برامج مصر صيف 2026",
+      "egStat3": "برامج مصر 2026",
       "egStat4": "فنادق منتقاة للاختيار",
       "egTesti1Text": "«كان كل شيء منظَّماً بإتقان. الأهرامات عند الشروق، والنيل في المساء — ما كنت لأفعل ذلك بمفردي أبداً. أليانس ترافل فكّرت في كل شيء.»",
       "egTesti1Trip": "برج بوعريريج · رحلة مصر 2024",
@@ -2494,7 +2494,7 @@
       "egInfo4Li4": "<strong>عند الطلب</strong>، يمكن لأليانس ترافل أن تُرشدك إلى شريك تأمين يقدّم صيغ سفر.",
       "egRelatedEyebrow": "قد يعجبك أيضاً",
       "egRelatedTitle": "واصل <em>اكتشافك</em>",
-      "egRel1Flag": "صيف 2026",
+      "egRel1Flag": "تواريخ قيد التأكيد",
       "egRel1Title": "تونس · بحر وشمس",
       "egRel1Price": "ابتداءً من <strong>41.900 دج</strong>",
       "egRel2Flag": "جوان–أكتوبر 2026",

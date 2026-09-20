@@ -126,7 +126,7 @@
     "aria": "Tunisie — Soleil & Méditerranée",
     "titlePre": "Tunisie",
     "titlePost": "Soleil & Méditerranée",
-    "eyebrow": "Voyage en bus · Demi-pension · Été 2026",
+    "eyebrow": "Voyage en bus · Demi-pension · Dates à confirmer",
     "date": "6 nuits · Demi-pension · Sans visa",
     "prompt": "Faites défiler pour découvrir",
     "skip": "Passer",
@@ -465,7 +465,7 @@
         "kNum": " data-i18n=\"tnStat3Num\"",
         "num": "Hebdo.",
         "k": " data-i18n=\"tnStat3\"",
-        "label": "Départs chaque semaine en été 2026"
+        "label": "Prochains départs à confirmer"
       },
       {
         "kNum": "",
@@ -808,7 +808,7 @@
     }
   ],
   "finalCta": {
-    "scarcityHtml": "<span data-i18n=\"tnFinalScarcity\">Départs chaque semaine en été 2026 · Places limitées</span>",
+    "scarcityHtml": "<span data-i18n=\"tnFinalScarcity\">Prochains départs à confirmer · Places limitées</span>",
     "titleHtml": "Cap sur la<br><em>Tunisie balnéaire</em>",
     "sub": "Hammamet, Sousse ou Djerba — plages privées, piscines et soleil de la Méditerranée. 6 nuits en demi-pension, en bus depuis Alger et Oran, sans visa.",
     "actionsHtml": "\n      <a href=\"https://wa.me/213561616266?text=Bonjour%20Alliance%20Travel%2C%20je%20veux%20réserver%20le%20voyage%20Tunisie%202026.\" class=\"btn btn--wa\" data-track-event=\"final_cta_whatsapp\" target=\"_blank\" rel=\"noopener\" data-i18n=\"tnFinalWaCta\">Réserver via WhatsApp</a>\n      <a href=\"tel:+213561616266\" class=\"btn btn--ghost\" data-track-event=\"final_cta_phone\" target=\"_blank\" rel=\"noopener\">0561 616 266</a>",
@@ -873,7 +873,7 @@
   "i18n": {
     "en": {
       "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
-      "tnHeroEyebrow": "Bus trip · Half-board · Summer 2026",
+      "tnHeroEyebrow": "Bus trip · Half-board · Dates to be confirmed",
       "tnHeroTitlePre": "Tunisia",
       "tnHeroTitlePost": "Sun & Mediterranean",
       "tnHeroDate": "6 nights · Half-board · No visa",
@@ -943,7 +943,7 @@
       "tnStat1": "Founded",
       "tnStat2": "Branches · BBA & M'Sila",
       "tnStat3Num": "Weekly",
-      "tnStat3": "Departures every week in summer 2026",
+      "tnStat3": "Next departures to be confirmed",
       "tnStat4": "Hand-picked hotels to choose from",
       "tnTesti1": "\"Hammamet as a family was perfect. The comfortable bus, the private beach steps from the hotel, and the buffet dinner every evening. The kids didn't want to leave.\"",
       "tnTesti1Trip": "Bordj Bou Arreridj · Tunisia trip 2026",
@@ -1055,7 +1055,7 @@
       "tnRelCairoFlag": "Egypt · 5 programmes 2026",
       "tnRelFrom": "From",
       "tnRelSee": "See this trip",
-      "tnFinalScarcity": "Departures every week in summer 2026 · Limited seats",
+      "tnFinalScarcity": "Next departures to be confirmed · Limited seats",
       "tnFinalTitle": "Head for<br><em>coastal Tunisia</em>",
       "tnFinalSub": "Hammamet, Sousse or Djerba — private beaches, pools and Mediterranean sun. 6 nights half-board, by bus from Algiers and Oran, no visa.",
       "tnFinalWaCta": "Book via WhatsApp",
@@ -1064,7 +1064,7 @@
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
-      "tnHeroEyebrow": "رحلة بالحافلة · نصف إقامة · صيف 2026",
+      "tnHeroEyebrow": "رحلة بالحافلة · نصف إقامة · تواريخ قيد التأكيد",
       "tnHeroTitlePre": "تونس",
       "tnHeroTitlePost": "شمس والبحر الأبيض المتوسط",
       "tnHeroDate": "6 ليالٍ · نصف إقامة · بدون تأشيرة",
@@ -1134,7 +1134,7 @@
       "tnStat1": "سنة التأسيس",
       "tnStat2": "وكالات · برج بوعريريج والمسيلة",
       "tnStat3Num": "أسبوعياً",
-      "tnStat3": "انطلاقات كل أسبوع في صيف 2026",
+      "tnStat3": "الانطلاقات القادمة قيد التأكيد",
       "tnStat4": "فنادق منتقاة للاختيار",
       "tnTesti1": "«الحمامات مع العائلة كانت مثالية. الحافلة مريحة، الشاطئ الخاص على بُعد خطوات من الفندق، والعشاء بوفيه كل مساء. الأطفال لم يرغبوا في العودة.»",
       "tnTesti1Trip": "برج بوعريريج · رحلة تونس 2026",
@@ -1246,7 +1246,7 @@
       "tnRelCairoFlag": "مصر · 5 برامج 2026",
       "tnRelFrom": "ابتداءً من",
       "tnRelSee": "شاهد هذه الرحلة",
-      "tnFinalScarcity": "انطلاقات كل أسبوع في صيف 2026 · مقاعد محدودة",
+      "tnFinalScarcity": "الانطلاقات القادمة قيد التأكيد · مقاعد محدودة",
       "tnFinalTitle": "وجهتك<br><em>تونس الشاطئية</em>",
       "tnFinalSub": "الحمامات أو سوسة أو جربة — شواطئ خاصة ومسابح وشمس البحر الأبيض المتوسط. 6 ليالٍ بنظام نصف الإقامة، بالحافلة من الجزائر العاصمة ووهران، بدون تأشيرة.",
       "tnFinalWaCta": "احجز عبر واتساب",

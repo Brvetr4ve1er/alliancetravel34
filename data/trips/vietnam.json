@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Vietnam — Alliance Travel · 2026",
-    "description": "Circuit Vietnam Été 2026. 12 jours : Ho Chi Minh, Phu Quoc, Hanoï et croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Dès 439.000 DA.",
+    "description": "Circuit Vietnam. 12 jours : Ho Chi Minh, Phu Quoc, Hanoï et croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Dès 439.000 DA.",
     "ogTitle": "Vietnam · De Saïgon à la baie d'Ha Long — Alliance Travel",
-    "ogDescription": "Circuit Vietnam 12 jours : 2N Ho Chi Minh, 5N Phu Quoc, 2N Hanoï, croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Été 2026.",
+    "ogDescription": "Circuit Vietnam 12 jours : 2N Ho Chi Minh, 5N Phu Quoc, 2N Hanoï, croisière baie d'Ha Long. Vol Qatar Airways depuis Alger.",
     "themeColor": "#15A88E",
     "ogImage": "og-vietnam.jpg"
   },
@@ -19,7 +19,7 @@
   },
   "seo": {
     "tripName": "Vietnam · De Saïgon à la baie d'Ha Long — Alliance Travel",
-    "tripDescription": "Circuit Vietnam 12 jours : 2N Ho Chi Minh, 5N Phu Quoc, 2N Hanoï et croisière baie d'Ha Long. Vol Qatar Airways depuis Alger. Été 2026.",
+    "tripDescription": "Circuit Vietnam 12 jours : 2N Ho Chi Minh, 5N Phu Quoc, 2N Hanoï et croisière baie d'Ha Long. Vol Qatar Airways depuis Alger.",
     "offerPrice": "439000",
     "faqJsonLd": [
       {
@@ -125,7 +125,7 @@
     "aria": "Vietnam — De Saïgon à la baie d'Ha Long",
     "titlePre": "Vietnam",
     "titlePost": "De Saïgon à la baie d'Ha Long",
-    "eyebrow": "Voyage organisé · Qatar Airways · Été 2026",
+    "eyebrow": "Voyage organisé · Qatar Airways · Dates à confirmer",
     "date": "12 jours · 4 étapes · 2 départs",
     "prompt": "Faites défiler pour découvrir",
     "skip": "Passer",
@@ -1044,7 +1044,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#04100f\"/>\n<radialGradient id=\"tn-tunisie-g\" cx=\"50%\" cy=\"70%\" r=\"70%\"><stop offset=\"0\" stop-color=\"#19B5B0\" stop-opacity=\".35\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#tn-tunisie-g)\"/>\n<rect x=\"0\" y=\"62\" width=\"100\" height=\"38\" fill=\"#0a1f24\"/>\n<rect x=\"18\" y=\"34\" width=\"30\" height=\"28\" fill=\"#0e2a2c\"/>\n<polygon points=\"18,34 33,22 48,34\" fill=\"#0e2a2c\"/>\n<circle cx=\"68\" cy=\"30\" r=\"9\" fill=\"#19B5B0\" fill-opacity=\".25\"/>\n<ellipse cx=\"50\" cy=\"66\" rx=\"46\" ry=\"2\" fill=\"#19B5B0\" fill-opacity=\".18\"/>\n</svg>",
       "color": "#19B5B0",
       "kFlag": " data-i18n=\"vnRel1Flag\"",
-      "flag": "Tunisie · Été 2026",
+      "flag": "Tunisie · dates à confirmer",
       "kTitle": "",
       "title": "Tunisie",
       "kPrice": " data-i18n-html=\"vnRel1Price\"",
@@ -1057,7 +1057,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#100b05\"/>\n<radialGradient id=\"bl-bali-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#D98E48\" stop-opacity=\".4\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#bl-bali-g)\"/>\n<polygon points=\"50,20 72,72 28,72\" fill=\"#7A5526\" fill-opacity=\".55\"/>\n<rect x=\"0\" y=\"72\" width=\"100\" height=\"28\" fill=\"#23150a\"/>\n<circle cx=\"74\" cy=\"26\" r=\"7\" fill=\"#FFE6C2\" fill-opacity=\".18\"/>\n<ellipse cx=\"50\" cy=\"76\" rx=\"46\" ry=\"2\" fill=\"#D98E48\" fill-opacity=\".2\"/>\n</svg>",
       "color": "#D98E48",
       "kFlag": " data-i18n=\"vnRel2Flag\"",
-      "flag": "Indonésie · Été 2026",
+      "flag": "Indonésie · dates à confirmer",
       "kTitle": "",
       "title": "Bali",
       "kPrice": " data-i18n-html=\"vnRel2Price\"",
@@ -1116,7 +1116,7 @@
   "i18n": {
     "en": {
       "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
-      "vnHeroEyebrow": "Organized tour · Qatar Airways · Summer 2026",
+      "vnHeroEyebrow": "Organized tour · Qatar Airways · Dates to be confirmed",
       "vnHeroTitlePre": "Vietnam",
       "vnHeroTitlePost": "From Saigon to Ha Long Bay",
       "vnHeroDate": "12 days · 4 stops · 2 departures",
@@ -1313,9 +1313,9 @@
       "vnInfo4Li4": "<strong>On request</strong>, Alliance Travel can point you to an insurance partner offering travel plans.",
       "vnRelatedEyebrow": "You might also like",
       "vnRelatedTitle": "Continue your <em>discovery</em>",
-      "vnRel1Flag": "Tunisia · Summer 2026",
+      "vnRel1Flag": "Tunisia · dates to be confirmed",
       "vnRel1Price": "From <strong>41,900 DA</strong>",
-      "vnRel2Flag": "Indonesia · Summer 2026",
+      "vnRel2Flag": "Indonesia · dates to be confirmed",
       "vnRel2Price": "From <strong>419,000 DA</strong>",
       "vnRelCta": "See this trip",
       "vnFinalScarcity": "2 departures in 2026 · Limited seats",
@@ -1328,7 +1328,7 @@
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
-      "vnHeroEyebrow": "رحلة منظمة · الخطوط الجوية القطرية · صيف 2026",
+      "vnHeroEyebrow": "رحلة منظمة · الخطوط الجوية القطرية · تواريخ قيد التأكيد",
       "vnHeroTitlePre": "فيتنام",
       "vnHeroTitlePost": "من سايغون إلى خليج ها لونغ",
       "vnHeroDate": "12 يوماً · 4 محطات · رحلتان",
@@ -1525,9 +1525,9 @@
       "vnInfo4Li4": "<strong>عند الطلب</strong>، يمكن لأليانس ترافل أن تُرشدك إلى شريك تأمين يقدّم صيغ سفر.",
       "vnRelatedEyebrow": "قد يعجبك أيضاً",
       "vnRelatedTitle": "واصل <em>اكتشافك</em>",
-      "vnRel1Flag": "تونس · صيف 2026",
+      "vnRel1Flag": "تونس · تواريخ قيد التأكيد",
       "vnRel1Price": "ابتداءً من <strong>41.900 دج</strong>",
-      "vnRel2Flag": "إندونيسيا · صيف 2026",
+      "vnRel2Flag": "إندونيسيا · تواريخ قيد التأكيد",
       "vnRel2Price": "ابتداءً من <strong>419.000 دج</strong>",
       "vnRelCta": "شاهد هذه الرحلة",
       "vnFinalScarcity": "رحلتان في 2026 · المقاعد محدودة",

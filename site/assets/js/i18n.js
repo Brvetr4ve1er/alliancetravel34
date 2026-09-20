@@ -71,10 +71,10 @@
           "egypte": { name: "Égypte · Le Caire, Sharm & Hurghada", sub: "Égypte · 5 programmes 2026" },
           "azerbaidjan": { name: "Azerbaïdjan · Bakou & Gabala", sub: "Octobre–Décembre 2026" },
           "istanbul": { name: "Istanbul", sub: "Octobre–Décembre 2026" },
-          "kuala-lumpur": { name: "Kuala Lumpur & Langkawi", sub: "Malaisie · Été 2026" },
-          "tunisie": { name: "Tunisie · Sousse & sa région", sub: "Été 2026" },
-          "bali": { name: "Bali · Indonésie", sub: "Août–Septembre 2026" },
-          "vietnam": { name: "Vietnam · Circuit", sub: "Août–Septembre 2026" },
+          "kuala-lumpur": { name: "Kuala Lumpur & Langkawi", sub: "Malaisie · dates à confirmer" },
+          "tunisie": { name: "Tunisie · Sousse & sa région", sub: "Dates à confirmer" },
+          "bali": { name: "Bali · Indonésie", sub: "Dates à confirmer" },
+          "vietnam": { name: "Vietnam · Circuit", sub: "Dates à confirmer" },
         },
         logo_label: 'Alliance Travel — Retour à l\'accueil',
         theme_label: 'Changer de thème',
@@ -456,10 +456,10 @@
           "egypte": { name: "Egypt · Cairo, Sharm & Hurghada", sub: "Egypt · 5 programmes 2026" },
           "azerbaidjan": { name: "Azerbaijan · Baku & Gabala", sub: "October–December 2026" },
           "istanbul": { name: "Istanbul", sub: "October–December 2026" },
-          "kuala-lumpur": { name: "Kuala Lumpur & Langkawi", sub: "Malaysia · Summer 2026" },
-          "tunisie": { name: "Tunisia · Sousse & around", sub: "Summer 2026" },
-          "bali": { name: "Bali · Indonesia", sub: "August–September 2026" },
-          "vietnam": { name: "Vietnam · Tour", sub: "August–September 2026" },
+          "kuala-lumpur": { name: "Kuala Lumpur & Langkawi", sub: "Malaysia · dates to be confirmed" },
+          "tunisie": { name: "Tunisia · Sousse & around", sub: "Dates to be confirmed" },
+          "bali": { name: "Bali · Indonesia", sub: "Dates to be confirmed" },
+          "vietnam": { name: "Vietnam · Tour", sub: "Dates to be confirmed" },
         },
         logo_label: 'Alliance Travel — Home',
         theme_label: 'Toggle theme',
@@ -697,7 +697,7 @@
         },
         egypte: {
           title: "Egypt 2026 · 5 programmes — Alliance Travel",
-          description: "Egypt 2026: five programmes across Cairo, Hurghada and Sharm El Sheikh. Charter & scheduled flights, All-Inclusive on the Red Sea. Summer 2026 departures from Algiers. From DZD 169,000."
+          description: "Egypt 2026: five programmes across Cairo, Hurghada and Sharm El Sheikh. Charter & scheduled flights, All-Inclusive on the Red Sea. Departures from Algiers. From DZD 169,000."
         },
         tunisie: {
           title: "Tunisia by coach 2026 — Alliance Travel",
@@ -705,11 +705,11 @@
         },
         bali: {
           title: "Bali (Indonesia) 2026 — Alliance Travel",
-          description: "Guided Bali trip. Nine nights all in 5★ hotels (Kuta · Ubud · Nusa Dua), Qatar Airways / Emirates flights, breakfast. Summer 2026 departures from Algiers. From DZD 419,000."
+          description: "Guided Bali trip. Nine nights all in 5★ hotels (Kuta · Ubud · Nusa Dua), Qatar Airways / Emirates flights, breakfast. Departures from Algiers. From DZD 419,000."
         },
         vietnam: {
           title: "Vietnam 2026 — Alliance Travel",
-          description: "Vietnam tour, summer 2026. Twelve days: Ho Chi Minh, Phu Quoc, Hanoi and a Ha Long Bay cruise. Qatar Airways flights from Algiers. From DZD 439,000."
+          description: "Vietnam tour. Twelve days: Ho Chi Minh, Phu Quoc, Hanoi and a Ha Long Bay cruise. Qatar Airways flights from Algiers. From DZD 439,000."
         },
       visa: {
         title: 'Visa Appointments & Dossier Service — Alliance Travel · BBA',
@@ -863,10 +863,10 @@
           "egypte": { name: "مصر · القاهرة وشرم الشيخ والغردقة", sub: "مصر · 5 برامج 2026" },
           "azerbaidjan": { name: "أذربيجان · باكو وقبالة", sub: "أكتوبر–ديسمبر 2026" },
           "istanbul": { name: "إسطنبول", sub: "أكتوبر–ديسمبر 2026" },
-          "kuala-lumpur": { name: "كوالا لمبور ولنكاوي", sub: "ماليزيا · صيف 2026" },
-          "tunisie": { name: "تونس · سوسة وضواحيها", sub: "صيف 2026" },
-          "bali": { name: "بالي · إندونيسيا", sub: "أوت–سبتمبر 2026" },
-          "vietnam": { name: "فيتنام · جولة", sub: "أوت–سبتمبر 2026" },
+          "kuala-lumpur": { name: "كوالا لمبور ولنكاوي", sub: "ماليزيا · تواريخ قيد التأكيد" },
+          "tunisie": { name: "تونس · سوسة وضواحيها", sub: "تواريخ قيد التأكيد" },
+          "bali": { name: "بالي · إندونيسيا", sub: "تواريخ قيد التأكيد" },
+          "vietnam": { name: "فيتنام · جولة", sub: "تواريخ قيد التأكيد" },
         },
         logo_label: 'أليانس ترافل — الصفحة الرئيسية',
         theme_label: 'تبديل المظهر',
@@ -1104,7 +1104,7 @@
         },
         egypte: {
           title: 'مصر 2026 · 5 برامج — أليانس ترافل',
-          description: 'مصر 2026: خمسة برامج للاختيار بين القاهرة والغردقة وشرم الشيخ. رحلات مستأجرة ومجدولة، نظام All Inclusive على البحر الأحمر. مغادرات صيف 2026 من الجزائر. ابتداءً من 169.000 دج.'
+          description: 'مصر 2026: خمسة برامج للاختيار بين القاهرة والغردقة وشرم الشيخ. رحلات مستأجرة ومجدولة، نظام All Inclusive على البحر الأحمر. مغادرات من الجزائر. ابتداءً من 169.000 دج.'
         },
         tunisie: {
           title: 'تونس بالحافلة 2026 — أليانس ترافل',
@@ -1112,11 +1112,11 @@
         },
         bali: {
           title: 'بالي (إندونيسيا) 2026 — أليانس ترافل',
-          description: 'رحلة منظمة إلى بالي. تسع ليالٍ في فنادق 5★ (كوتا · أوبود · نوسا دوا)، طيران القطرية / الإمارات، مع الفطور. مغادرات صيف 2026 من الجزائر. ابتداءً من 419.000 دج.'
+          description: 'رحلة منظمة إلى بالي. تسع ليالٍ في فنادق 5★ (كوتا · أوبود · نوسا دوا)، طيران القطرية / الإمارات، مع الفطور. مغادرات من الجزائر. ابتداءً من 419.000 دج.'
         },
         vietnam: {
           title: 'فيتنام 2026 — أليانس ترافل',
-          description: 'جولة فيتنام صيف 2026. اثنا عشر يومًا: هوشي منه، فو كوك، هانوي ورحلة بحرية في خليج ها لونغ. طيران القطرية من الجزائر. ابتداءً من 439.000 دج.'
+          description: 'جولة فيتنام. اثنا عشر يومًا: هوشي منه، فو كوك، هانوي ورحلة بحرية في خليج ها لونغ. طيران القطرية من الجزائر. ابتداءً من 439.000 دج.'
         },
       visa: {
         title: 'خدمة موعد التأشيرة وتجهيز الملف — أليانس ترافل · برج بوعريريج',

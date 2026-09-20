@@ -295,10 +295,10 @@
     { slug: 'egypte',       name: 'Égypte · Le Caire, Sharm & Hurghada', price: '169.000 DA', color: '#C9872E', sub: 'Égypte · 5 programmes 2026' },
     { slug: 'azerbaidjan',  name: 'Azerbaïdjan · Bakou & Gabala',        price: '230.000 DA', color: '#3AAFAF', sub: 'Octobre–Décembre 2026' },
     { slug: 'istanbul',     name: 'Istanbul',                            price: '129.000 DA', color: '#5B9EC9', sub: 'Octobre–Décembre 2026' },
-    { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '339.000 DA', color: '#4CAF82', sub: 'Malaisie · Été 2026' },
-    { slug: 'tunisie',      name: 'Tunisie · Sousse & sa région', price: '41.900 DA',  color: '#19B5B0', sub: 'Été 2026' },
-    { slug: 'bali',         name: 'Bali · Indonésie',                    price: '419.000 DA', color: '#D98E48', sub: 'Août–Septembre 2026' },
-    { slug: 'vietnam',      name: 'Vietnam · Circuit',                   price: '439.000 DA', color: '#15A88E', sub: 'Août–Septembre 2026' },
+    { slug: 'kuala-lumpur', name: 'Kuala Lumpur & Langkawi',             price: '339.000 DA', color: '#4CAF82', sub: 'Malaisie · dates à confirmer' },
+    { slug: 'tunisie',      name: 'Tunisie · Sousse & sa région', price: '41.900 DA',  color: '#19B5B0', sub: 'Dates à confirmer' },
+    { slug: 'bali',         name: 'Bali · Indonésie',                    price: '419.000 DA', color: '#D98E48', sub: 'Dates à confirmer' },
+    { slug: 'vietnam',      name: 'Vietnam · Circuit',                   price: '439.000 DA', color: '#15A88E', sub: 'Dates à confirmer' },
   ];
 
   function initTripSwitcher() {

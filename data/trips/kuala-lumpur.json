@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Kuala Lumpur & Langkawi — Alliance Travel · 2026",
-    "description": "Voyage organisé Kuala Lumpur & Langkawi. 10 jours, vol Qatar Airways / Emirates + vol intérieur, hôtels 5★. Été 2026 depuis Alger. Dès 339.000 DA.",
+    "description": "Voyage organisé Kuala Lumpur & Langkawi. 10 jours, vol Qatar Airways / Emirates + vol intérieur, hôtels 5★. Départs depuis Alger. Dès 339.000 DA.",
     "ogTitle": "Kuala Lumpur & Langkawi — Alliance Travel",
-    "ogDescription": "Kuala Lumpur & Langkawi en un seul voyage. 10 jours, vol Qatar Airways / Emirates + vol intérieur, hôtels 5★ petit-déjeuner. Été 2026 depuis Alger.",
+    "ogDescription": "Kuala Lumpur & Langkawi en un seul voyage. 10 jours, vol Qatar Airways / Emirates + vol intérieur, hôtels 5★ petit-déjeuner. Départs depuis Alger.",
     "themeColor": "#4CAF82",
     "ogImage": "og-kuala-lumpur.jpg"
   },
@@ -19,7 +19,7 @@
   },
   "seo": {
     "tripName": "Kuala Lumpur & Langkawi — Alliance Travel",
-    "tripDescription": "Kuala Lumpur & Langkawi en un seul voyage. 10 jours, vol Qatar Airways / Emirates + vol intérieur KL–Langkawi, hôtels 5★ petit-déjeuner. Été 2026 depuis Alger.",
+    "tripDescription": "Kuala Lumpur & Langkawi en un seul voyage. 10 jours, vol Qatar Airways / Emirates + vol intérieur KL–Langkawi, hôtels 5★ petit-déjeuner. Départs depuis Alger.",
     "offerPrice": "339000",
     "faqJsonLd": [
       {
@@ -124,7 +124,7 @@
     "aria": "Kuala Lumpur & Langkawi",
     "titlePre": "Kuala Lumpur",
     "titlePost": "& Langkawi",
-    "eyebrow": "Voyage organisé · Qatar / Emirates · Été 2026",
+    "eyebrow": "Voyage organisé · Qatar / Emirates · Dates à confirmer",
     "date": "10 jours · KL + Langkawi · Hôtels 5★",
     "prompt": "Faites défiler pour découvrir",
     "skip": "Passer",
@@ -917,7 +917,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#0d0a05\"/>\n<radialGradient id=\"bali-related-g\" cx=\"50%\" cy=\"100%\" r=\"80%\"><stop offset=\"0\" stop-color=\"#D98E48\" stop-opacity=\".4\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#bali-related-g)\"/>\n<polygon points=\"20,80 40,45 60,80\" fill=\"#8B6520\" fill-opacity=\".5\"/>\n<polygon points=\"50,80 72,38 94,80\" fill=\"#7A5818\" fill-opacity=\".5\"/>\n<rect x=\"0\" y=\"78\" width=\"100\" height=\"22\" fill=\"#1e3a2a\" fill-opacity=\".45\"/>\n<circle cx=\"78\" cy=\"22\" r=\"6\" fill=\"#FFE8C2\" fill-opacity=\".18\"/>\n</svg>",
       "color": "#D98E48",
       "kFlag": " data-i18n=\"klRelBaliFlag\"",
-      "flag": "Indonésie · Été 2026",
+      "flag": "Indonésie · dates à confirmer",
       "kTitle": "",
       "title": "Bali",
       "kPrice": " data-i18n-html=\"klRelBaliPrice\"",
@@ -930,7 +930,7 @@
       "artSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\" class=\"u-size-full\">\n<rect width=\"100\" height=\"100\" fill=\"#05100c\"/>\n<radialGradient id=\"vietnam-related-g\" cx=\"50%\" cy=\"70%\" r=\"70%\"><stop offset=\"0\" stop-color=\"#15A88E\" stop-opacity=\".35\"/><stop offset=\"1\" stop-color=\"transparent\"/></radialGradient>\n<rect width=\"100\" height=\"100\" fill=\"url(#vietnam-related-g)\"/>\n<ellipse cx=\"30\" cy=\"62\" rx=\"14\" ry=\"20\" fill=\"#0f3a30\" fill-opacity=\".7\"/>\n<ellipse cx=\"62\" cy=\"58\" rx=\"18\" ry=\"24\" fill=\"#0c2e26\" fill-opacity=\".7\"/>\n<rect x=\"0\" y=\"74\" width=\"100\" height=\"26\" fill=\"#08221b\"/>\n<ellipse cx=\"50\" cy=\"78\" rx=\"44\" ry=\"2\" fill=\"#15A88E\" fill-opacity=\".18\"/>\n</svg>",
       "color": "#15A88E",
       "kFlag": " data-i18n=\"klRelVietnamFlag\"",
-      "flag": "Vietnam · Été 2026",
+      "flag": "Vietnam · dates à confirmer",
       "kTitle": "",
       "title": "Vietnam",
       "kPrice": " data-i18n-html=\"klRelVietnamPrice\"",
@@ -989,7 +989,7 @@
   "i18n": {
     "en": {
       "calcWhyGeneric": "Price per person for the selected room type — transport, accommodation and the listed transfers and excursions are included in your chosen package. See the inclusions section for the full list.",
-      "klHeroEyebrow": "Organized tour · Qatar / Emirates · Summer 2026",
+      "klHeroEyebrow": "Organized tour · Qatar / Emirates · Dates to be confirmed",
       "klHeroTitlePre": "Kuala Lumpur",
       "klHeroTitlePost": "& Langkawi",
       "klHeroDate": "10 days · KL + Langkawi · 5★ hotels",
@@ -1171,9 +1171,9 @@
       "klIns4": "<strong>On request</strong>, Alliance Travel can refer you to a partner insurer offering travel plans.",
       "klRelatedEyebrow": "You may also like",
       "klRelatedTitle": "Continue your <em>discovery</em>",
-      "klRelBaliFlag": "Indonesia · Summer 2026",
+      "klRelBaliFlag": "Indonesia · dates to be confirmed",
       "klRelBaliPrice": "From <strong>419,000 DA</strong>",
-      "klRelVietnamFlag": "Vietnam · Summer 2026",
+      "klRelVietnamFlag": "Vietnam · dates to be confirmed",
       "klRelVietnamPrice": "From <strong>439,000 DA</strong>",
       "klRelSee": "View this trip",
       "klFinalScarcity": "Several departures in 2026 · Limited places",
@@ -1186,7 +1186,7 @@
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
-      "klHeroEyebrow": "رحلة منظمة · القطرية / الإمارات · صيف 2026",
+      "klHeroEyebrow": "رحلة منظمة · القطرية / الإمارات · تواريخ قيد التأكيد",
       "klHeroTitlePre": "كوالالمبور",
       "klHeroTitlePost": "ولنكاوي",
       "klHeroDate": "10 أيام · كوالالمبور + لنكاوي · فنادق 5 نجوم",
@@ -1368,9 +1368,9 @@
       "klIns4": "<strong>عند الطلب</strong>، يمكن لـ Alliance Travel توجيهك إلى شريك تأمين يقدّم صيغ سفر.",
       "klRelatedEyebrow": "قد يعجبك أيضاً",
       "klRelatedTitle": "تابع <em>اكتشافك</em>",
-      "klRelBaliFlag": "إندونيسيا · صيف 2026",
+      "klRelBaliFlag": "إندونيسيا · تواريخ قيد التأكيد",
       "klRelBaliPrice": "ابتداءً من <strong>419.000 دج</strong>",
-      "klRelVietnamFlag": "فيتنام · صيف 2026",
+      "klRelVietnamFlag": "فيتنام · تواريخ قيد التأكيد",
       "klRelVietnamPrice": "ابتداءً من <strong>439.000 دج</strong>",
       "klRelSee": "اطّلع على هذه الرحلة",
       "klFinalScarcity": "عدة مغادرات في 2026 · أماكن محدودة",

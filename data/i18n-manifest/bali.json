@@ -13,14 +13,14 @@
     "trip": 183,
     "shared": 25,
     "en": {
-      "ok": 177,
-      "stale": 6,
+      "ok": 174,
+      "stale": 9,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 177,
-      "stale": 6,
+      "ok": 174,
+      "stale": 9,
       "global": 25,
       "missing": 0
     }
@@ -90,15 +90,15 @@
       "arState": "global"
     },
     "baHeroEyebrow": {
-      "fr": "Voyage organisé · Qatar / Emirates · Été 2026",
-      "frHash": "00i22m2g",
-      "en": "Organized tour · Qatar / Emirates · Summer 2026",
-      "ar": "رحلة منظَّمة · القطرية / الإمارات · صيف 2026",
+      "fr": "Voyage organisé · Qatar / Emirates · Dates à confirmer",
+      "frHash": "00srmhiw",
+      "en": "Organized tour · Qatar / Emirates · Dates to be confirmed",
+      "ar": "رحلة منظَّمة · القطرية / الإمارات · تواريخ قيد التأكيد",
       "enHash": "00i22m2g",
       "arHash": "00i22m2g",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "baHeroH1": {
       "fr": "Bali <em>L'île des dieux</em>",
@@ -1987,15 +1987,15 @@
       "arState": "ok"
     },
     "baRelVnFlag": {
-      "fr": "Vietnam · Été 2026",
-      "frHash": "018msrpc",
-      "en": "Vietnam · Summer 2026",
-      "ar": "فيتنام · صيف 2026",
+      "fr": "Vietnam · dates à confirmer",
+      "frHash": "00epyucw",
+      "en": "Vietnam · dates to be confirmed",
+      "ar": "فيتنام · تواريخ قيد التأكيد",
       "enHash": "018msrpc",
       "arHash": "018msrpc",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "baRelVnPrice": {
       "fr": "À partir de <strong>439.000 DA</strong>",
@@ -2020,15 +2020,15 @@
       "arState": "ok"
     },
     "baRelTnFlag": {
-      "fr": "Tunisie · Été 2026",
-      "frHash": "00tgug07",
-      "en": "Tunisia · Summer 2026",
-      "ar": "تونس · صيف 2026",
+      "fr": "Tunisie · dates à confirmer",
+      "frHash": "0103yktx",
+      "en": "Tunisia · dates to be confirmed",
+      "ar": "تونس · تواريخ قيد التأكيد",
       "enHash": "00tgug07",
       "arHash": "00tgug07",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "baRelTnPrice": {
       "fr": "À partir de <strong>41.900 DA</strong>",

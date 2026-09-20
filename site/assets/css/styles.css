@@ -3790,6 +3790,14 @@ html.js [data-aos].visible {
 /* ── Toast ────────────────────────────────────────────────── */
 .toast--success { border-color: var(--mint); }
 .toast--success svg { color: var(--mint); }
+/* booking-form.js raises 'error' toasts from four paths (field validation,
+   an unreadable upload, the incomplete-fields guard and a failed copy) via
+   showToast(msg, kind) -> `toast toast--${kind}`. Only the success variant
+   was ever written, so every one of those rendered with the neutral base
+   style and read as a confirmation. --danger, not --danger-bg: this tints a
+   border and an icon, it does not become a fill under light ink. */
+.toast--error { border-color: var(--danger); }
+.toast--error svg { color: var(--danger); }
 
 /* ── Hero bg — navy accent glow ──────────────────────────── */
 .hero__bg::after {
