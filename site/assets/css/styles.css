@@ -190,10 +190,6 @@ button {
     -webkit-backdrop-filter: blur(8px) !important;
   }
   /* Glass elevation wrapper utility */
-  [data-elev="glass"] {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
   section + section::before { display: none !important; }
   .home-hero__photos picture:nth-child(n+3) { display: none; }
 }
@@ -223,18 +219,12 @@ button {
 
 /* Atomic utilities — minimal set for inline-style migration (v22 Phase A) */
 .u-hidden        { display: none; }
-.u-inline-block  { display: inline-block; }
 .u-text-center   { text-align: center; }
 .u-mx-auto       { margin-inline: auto; }
 .u-m-0           { margin: 0; }
-.u-mt-2          { margin-top: 6px; }
-.u-mt-3          { margin-top: 8px; }
 .u-mt-sp3        { margin-top: var(--space-3); }
-.u-mt-sp5        { margin-top: var(--space-5); }
-.u-mb-1          { margin-bottom: 4px; }
 .u-mb-sp3        { margin-bottom: var(--space-3); }
 .u-mb-sp4        { margin-bottom: var(--space-4); }
-.u-mb-sp5        { margin-bottom: var(--space-5); }
 .u-size-full     { width: 100%; height: 100%; }
 .u-measure-md    { max-width: 600px; }
 .u-measure-lg    { max-width: 680px; }
@@ -245,15 +235,12 @@ button {
 .u-text-mint     { color: var(--mint); }
 .u-text-accent   { color: var(--accent); }
 .u-fw-400        { font-weight: 400; }
-.u-fw-500        { font-weight: 500; }
 .u-fw-600        { font-weight: 600; }
 .u-font-display  { font-family: var(--font-display); }
 .u-radius-clip   { border-radius: var(--r2); overflow: hidden; }
 .u-divider       { height: 1px; background: var(--border); }
 .u-bg-2          { background: var(--bg-2); }
 .u-no-decoration { text-decoration: none; }
-.u-uppercase     { text-transform: uppercase; }
-.u-letter-wide   { letter-spacing: .1em; }
 
 /* Noscript fallback styling (used in 5 region pages' booking-section <noscript>) */
 .u-noscript-card { margin: 48px auto; padding: 24px; background: var(--bg-card);
@@ -261,7 +248,6 @@ button {
 .u-noscript-msg  { margin: 0 0 16px; color: var(--txt-2); line-height: 1.6; }
 .u-noscript-title { margin: 0 0 12px; }
 .u-cluster       { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-.u-cluster--sm   { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
 /* ════════════════════════════════════════════════════════════════
    ⛰  /RESPONSIVE FOUNDATION
@@ -899,26 +885,6 @@ select {
   line-height: 1.65;
 }
 
-.hero__price {
-  font-size: .875rem;
-  color: var(--txt-2);
-  display: flex;
-  align-items: baseline;
-  gap: var(--s2);
-}
-
-.hero__price strong {
-  font-family: var(--font-body);
-  font-variant-numeric: tabular-nums;
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--txt-1);
-}
-
-.hero__price span {
-  font-size: .75rem;
-  color: var(--txt-3);
-}
 
 .hero__ctas {
   display: flex;
@@ -2204,29 +2170,10 @@ summary.faq-q::-webkit-details-marker {
   padding-block: var(--s9);
 }
 
-.footer-grid {
-  /* v22 Agent 3 — auto-fit collapse ladder.
-     - desktop: 2fr 1fr 1fr explicit (kept — brand col is 2× wider)
-     - tablet/phone (≤1024 / ≤768): controlled in the responsive blocks below
-       and ultimately auto-fit at ≤480px so the columns can re-flow. */
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--s9);
-}
 
 /* dup sweep 2026-08: `.footer-brand` deleted here — the v28 footer block near
    the end of the file re-declares all three properties identically. */
 
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: var(--txt-1);
-}
-
-.footer-logo span {
-  color: var(--mint);
-}
 
 .footer-tagline {
   font-size: .875rem;
@@ -2405,10 +2352,6 @@ summary.faq-q::-webkit-details-marker {
      min-width floor (220px) and the grid naturally reflows to 1 col
      at ≤480px without needing a 3rd explicit breakpoint. Replaces the
      previous fixed 1fr 1fr which broke awkwardly on phones. */
-  .footer-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--space-5);
-  }
 }
 
 @media (max-width: 768px) {
@@ -2454,9 +2397,6 @@ summary.faq-q::-webkit-details-marker {
   /* v22 Agent 3 — at ≤768px, drop the brand col bias so its 2fr can
      match the others; auto-fit still controls the column count.
      Final hard collapse to 1 col happens at ≤480px below. */
-  .footer-grid {
-    gap: var(--space-4);
-  }
 
   .nav-links {
     display: none;
@@ -2471,10 +2411,6 @@ summary.faq-q::-webkit-details-marker {
 /* v22 Agent 3 — narrowest tier: guarantee 1-column footer + tighter
    gap (auto-fit already collapses but we belt-and-brace it here). */
 @media (max-width: 480px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
   .footer-tagline {
     max-width: none;
   }
@@ -5643,22 +5579,9 @@ img.lb-target:hover {
 }
 
 /* ---- 7.9 — "À partir de" pricing emphasis ---- */
-.price-from {
-  display: inline-flex;
-  flex-direction: column;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-}
 /* v21 phase J.2.4: .price-from__label + .price-from__suffix deleted
    — never wired. .price-from__num kept; it's used by sticky inquiry
    bar's price display via document.querySelector. */
-.price-from__num {
-  font-family: var(--font-display, "DM Sans", sans-serif);
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--mint);
-  font-variant-numeric: tabular-nums;
-}
 
 /* ---- 7.10 — Destination cards: refined hover-zoom + gradient overlay ---- */
 /* dup sweep 2026-08: third `.trip-card { position: relative }` copy deleted —
@@ -6662,46 +6585,6 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
 }
 
 /* ── 2. Hero price — canonical, dominant block ────────────── */
-.hero__price {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: flex-start;
-  padding: var(--s4) var(--s5);
-  background: rgba(0, 0, 0, .35);
-  border: 1px solid var(--border-hi);
-  border-radius: var(--r3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  margin-top: var(--s4);
-  margin-bottom: var(--s2);
-}
-.hero__price::before {
-  content: "À partir de";
-  display: block;
-  font-size: .625rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--txt-3);
-}
-.hero__price strong {
-  font-size: clamp(2rem, 3.5vw, 2.875rem);
-  line-height: 1;
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: -.01em;
-}
-.hero__price span {
-  margin-top: 4px;
-  font-size: .8125rem;
-  color: var(--txt-2);
-  letter-spacing: 0;
-}
-:root[data-theme="light"] .hero__price {
-  background: rgba(255, 255, 255, .65);
-  border-color: rgba(0, 44, 81, .15);
-}
 
 /* ── 3. Hero CTAs — clear primary/secondary hierarchy ──────── */
 .hero__ctas {
@@ -8847,11 +8730,6 @@ body { background: var(--bg); color: var(--txt-1); }
 /* Section backgrounds — some sections used --bg-2 hard-coded inline. Map
    them to the new bg-2 implicitly through the cascade — also support
    `data-elev` attribute for explicit elevation on a wrapper. */
-[data-elev="card"]  { background: var(--bg-card); }
-[data-elev="low"]   { background: var(--bg-low); }
-[data-elev="2"]     { background: var(--bg-2); }
-[data-elev="elev"]  { background: var(--bg-elev); }
-[data-elev="glass"] { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 
 /* Focus rings — single unified token */
 *:focus-visible {
@@ -9542,12 +9420,6 @@ body { background: var(--bg); color: var(--txt-1); }
    re-declares the same min-height (and adds flex-shrink). */
 
 /* Rebalance the brand-heavier grid + bump the logo */
-.footer-grid {
-  grid-template-columns: 1.4fr 1fr 1fr;
-}
-.footer-logo {
-  font-size: 1.375rem;
-}
 
 /* Animated underline on footer column links */
 .footer-col a {
