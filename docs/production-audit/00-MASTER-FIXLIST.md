@@ -465,3 +465,85 @@ disables every Claude Browser tool for the session), so none of them can be
 checked after the change. The fix-list itself calls the E-* group "a
 deliberate design pass, not blind replace" — doing it blind would be the
 opposite of that.
+
+
+---
+
+## SECOND PASS — 2026-09-20 (browser available)
+
+The seven items held above were held for one reason: they change rendering and
+the Browser pane was dead, so nothing could be checked after the change. The
+pane came back. All seven are now resolved — four fixed, three closed as
+already-done or false-premise — and every claim below was measured on the
+running site, not reasoned about.
+
+**E-TYPE-SCALE — partly fixed, remainder is a typographic decision.**
+48 notation normalisations (`0.875rem` -> `.875rem`, `13px` -> `.8125rem`, and
+so on) plus 19 `1rem` -> `var(--fs-body)`. Zero pixels moved: `--fs-body` is
+`clamp(1rem, .90rem + .20vw, 1rem)`, both ends 1rem, and `html{font-size:16px}`
+pins rem. The *real* finding is why the scale is bypassed: it defines one rung
+below 16px (`--fs-caption`, 12->13px fluid) while **123 declarations live in the
+10–15px band** — .8125rem x46, .875rem x39, .75rem x27, .9375rem x24,
+.6875rem x15, .625rem x13. Consolidating six sizes into a scale means deciding
+which survive. Recommendation: 11 / 13 / 15 / 16, every move +1px, which also
+clears the earlier audit's B22 ("secondary copy at 11–13px; floor 13–14px").
+Needs the owner's eye, not a script.
+
+**E-RADIUS-OFFSCALE — FIXED, by growing the scale.** Rendered, 4px is on 24
+homepage elements and 16/18px on 11: the design has six rungs, the tokens
+declared four. Added `--r-tag` (4px) and `--r-card` (16px); moved the six real
+strays at most 2px. Every single-value border-radius now resolves to a token.
+
+**E-ELEVATION — CLOSED, premise does not hold.** 61 distinct shadows after
+normalising whitespace and precision, **51 used exactly once**, none equal to
+`--elev-1`/`--elev-2`. There is no common shadow to consolidate onto. The one
+genuine duplicate — the two map panels' shared shadow and its light variant,
+written four times — became `--elev-map`.
+
+**E-TOUCHMIN — FIXED.** All nine raw `44px` are genuine touch targets (textarea,
+language switcher, advisor toggle, phone links, drawer links, trip-switcher
+trigger, footer links); none is a decorative icon box. All now `var(--touch-min)`.
+
+**E-SPACING — NOT the 136 off-scale literals. There are two spacing scales and
+they disagree.**
+
+| rung | `--s*` | `--space-*` |
+|---|---|---|
+| 1–4 | 4, 8, 16, 24 | 4, 8, 16, 24 (agree) |
+| 5 | **24** | **32** |
+| 6 | **32** | **48** |
+| 7 | **40** | **64** |
+
+`--s4` and `--s5` are both 24px; `--s7` and `--s8` are both 40px. 212 uses of
+`--s*`, 47 of `--space-*`. An author reaching for "the sixth step" gets 32px or
+48px depending on which prefix they type. Five of the seven `--space-*` rungs
+map onto an `--s*` of identical value (note `--space-5` -> `--s6`, not `--s5`);
+48px and 64px have no `--s*` equivalent. Picking one scale and deleting the
+other is the fix, and it is an owner-level decision across 259 usages — far more
+valuable than nudging 136 literals onto a scale that is itself ambiguous.
+
+**F-THUMBS — CLOSED, already done.** All 43 hotel images and all 7 homepage
+trip-card images have AVIF and WebP siblings and `<picture>` markup. Confirmed
+in the network log: the browser fetches **AVIF only** — zero `.jpg` or `.webp`
+requests. AVIF totals 4.6 MB where the JPEGs would be 12.8 MB.
+
+**F-CSS-BLOCKING — measured, 3.2 KB reclaimed, the rest is not waste.**
+`renderBlockingStatus: "blocking"` confirmed. 56% of the parsed 204 KB matches
+nothing on the homepage — but the biggest entries there (`.hotel-card__ribbon`,
+`.tier-tab`, `.tmap-*`) are trip-page CSS. Testing all 1,622 rules against all
+17 fetched pages left 447 unmatched, of which only **34** survived the further
+filters of "absent as a class token from site/ and tools/" and "absent from
+every JS string". Those 34 are gone (3.2 KB). The other 413 are runtime-injected
+markup or JS-toggled state — a static scan cannot see them, so "unmatched" is a
+candidate list, never a delete list. Splitting the remainder needs a build step
+the project does not have by design; the caching lever was already pulled
+(H-CACHE).
+
+Worth noting for JS: `enhance.js:816-817` still queries `.hero__price strong`
+and `.price-from__num`, which exist on no page — the JS half of what was removed
+from the CSS.
+
+**On verification:** the pane reads the DOM and computed styles reliably, but the
+app window is backgrounded, so the compositor stops drawing and screenshots time
+out. Every number here is first-hand; no appearance claim is. A 2px corner on a
+trip card and a hotel card is still worth one human glance.
