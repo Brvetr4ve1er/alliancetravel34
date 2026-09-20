@@ -15,7 +15,7 @@
   <style>
     /* Accent: the brand token from styles.css (the lime override was Égypte's region colour). */
     /* Visa page-only styles ─────────────────────────────────── */
-    .hero__trust { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s4); font-size: .875rem; color: var(--txt-2); }
+    .hero__trust { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s4); font-size: var(--fs-body-sm); color: var(--txt-2); }
     .hero__trust li { position: relative; padding-left: 18px; }
     .hero__trust li::before { content: '✓'; position: absolute; left: 0; color: var(--mint); font-weight: 700; }
     /* ── Countries: premium cards ───────────────────────────── */
@@ -47,7 +47,7 @@
     .visa-country-card__name { font-weight: 650; flex: 1; min-width: 0; font-size: 1.03rem; letter-spacing: -.01em; }
     .visa-country-card__tiers { display: inline-flex; gap: 5px; flex-shrink: 0; }
     .visa-country-card__chip {
-      font-size: .6875rem; padding: 4px 9px; border-radius: 999px; letter-spacing: .02em;
+      font-size: var(--fs-2xs); padding: 4px 9px; border-radius: 999px; letter-spacing: .02em;
       background: var(--mint-dim); color: var(--mint); font-weight: 650;
       border: 1px solid var(--border-mint);
     }
@@ -57,20 +57,20 @@
     .visa-country-card[open] .visa-country-card__toggle { transform: rotate(180deg); color: var(--accent); }
     .visa-country-card__body { padding: 0 var(--s4) var(--s4); border-top: 1px solid var(--border); padding-top: var(--s4); display: flex; flex-direction: column; gap: var(--s3); animation: visaReveal .3s var(--ease, ease); }
     @keyframes visaReveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-    .visa-country-card__provider { font-size: .875rem; color: var(--txt-1); font-weight: 550; margin: 0; }
-    .visa-country-card__notes { font-size: .8125rem; color: var(--txt-2); line-height: 1.65; margin: 0; }
-    .visa-country-card__body .btn { align-self: flex-start; font-size: .875rem; padding: 8px 16px; }
+    .visa-country-card__provider { font-size: var(--fs-body-sm); color: var(--txt-1); font-weight: 550; margin: 0; }
+    .visa-country-card__notes { font-size: var(--fs-caption); color: var(--txt-2); line-height: 1.65; margin: 0; }
+    .visa-country-card__body .btn { align-self: flex-start; font-size: var(--fs-body-sm); padding: 8px 16px; }
     /* FAQ: the shared .faq-item spec in styles.css now handles <details> and
        the .open-class variant alike (visual audit D8, 2026-09-05). */
     #visa-map { height: clamp(380px, 60vh, 560px); border-radius: var(--r3); overflow: hidden; background: var(--bg-2); position: relative; }
     .visa-partners { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .visa-partners__disclaimer { color: var(--txt-3); font-size: .8125rem; max-width: 540px; line-height: 1.6; margin-block: var(--s3) var(--s5); }
+    .visa-partners__disclaimer { color: var(--txt-3); font-size: var(--fs-caption); max-width: 540px; line-height: 1.6; margin-block: var(--s3) var(--s5); }
     .visa-partners__list { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s5); list-style: none; padding: 0; margin: 0; }
-    .visa-partners__badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--txt-2); font-size: .8125rem; font-weight: 500; background: var(--bg); }
+    .visa-partners__badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--txt-2); font-size: var(--fs-caption); font-weight: 500; background: var(--bg); }
     .visa-partners__badge strong { color: var(--txt-1); font-weight: 600; }
     .visa-cta__addresses { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s3); }
-    .visa-cta__addresses li { display: flex; flex-direction: column; gap: 2px; font-size: .875rem; color: var(--txt-2); }
-    .visa-cta__addresses strong { color: var(--txt-1); font-size: .9375rem; }
+    .visa-cta__addresses li { display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-body-sm); color: var(--txt-2); }
+    .visa-cta__addresses strong { color: var(--txt-1); font-size: var(--fs-body-sm); }
     .phone-card-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s2); }
     .trip-sticky-bar--visa { display: none; }
     @media (max-width: 768px) {
@@ -80,7 +80,7 @@
         padding: 10px var(--s4) calc(10px + env(safe-area-inset-bottom));
         gap: var(--s2); box-shadow: 0 -8px 24px rgba(0,0,0,.3);
       }
-      .trip-sticky-bar--visa .btn { flex: 1; min-height: 44px; font-size: .8125rem; }
+      .trip-sticky-bar--visa .btn { flex: 1; min-height: 44px; font-size: var(--fs-caption); }
       body.has-visa-stickybar { padding-bottom: 80px; }
       /* The FAB keeps its base anchor (bottom:24px, 14px at <=640) because the
          sitewide lift is keyed to body:has(.sticky-total) — it parked on top of
@@ -578,12 +578,12 @@
       <p class="section-head__sub" data-i18n="visa.map.sub">Vue d'ensemble des ambassades et centres VFS, BLS, Capago et CVASC implantés en Algérie, ainsi que nos trois agences. Vous voyez d'un coup d'œil le trajet que votre dossier prend — et celui que vous n'avez pas à faire.</p>
     </div>
     <div id="visa-map" role="img" aria-label="Carte des centres de visa en Algérie" data-i18n-aria-label="visa.map.a11y_label" style="margin-top:var(--s8)">
-      <div class="tmap-fallback" style="display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:var(--s7);color:var(--txt-3);font-size:.875rem">
+      <div class="tmap-fallback" style="display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:var(--s7);color:var(--txt-3);font-size:var(--fs-body-sm)">
         <p data-i18n="visa.map.fallback_title">Chargement de la carte…</p>
         <p data-i18n-html="visa.map.fallback_sub_html">VFS · BLS · Capago · CVASC · <strong>3 agences Alliance Travel</strong></p>
       </div>
     </div>
-    <div class="trip-map-legend" role="list" aria-label="Légende de la carte" data-i18n-aria-label="visa.map.a11y_legend" style="margin-top:var(--s5);display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s5);font-size:.8125rem;color:var(--txt-2)">
+    <div class="trip-map-legend" role="list" aria-label="Légende de la carte" data-i18n-aria-label="visa.map.a11y_legend" style="margin-top:var(--s5);display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s5);font-size:var(--fs-caption);color:var(--txt-2)">
       <span class="trip-map-legend__item" role="listitem" style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:12px;height:12px;border-radius:50%;background:#9ce8b2;display:inline-block"></span><span data-i18n="visa.map.legend_agency">Agences Alliance Travel</span></span>
       <span class="trip-map-legend__item" role="listitem" style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:12px;height:12px;border-radius:50%;background:#5b9eC9;display:inline-block"></span><span data-i18n="visa.map.legend_embassy">Ambassades</span></span>
       <span class="trip-map-legend__item" role="listitem" style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:12px;height:12px;border-radius:50%;background:#E0A04A;display:inline-block"></span><span data-i18n="visa.map.legend_centre">VFS · BLS · Capago · CVASC</span></span>

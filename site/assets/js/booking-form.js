@@ -559,7 +559,7 @@ class BookingForm {
     el.innerHTML = `<div class="bf-trip-chips">
       ${chips.map(c => `
         <div class="bf-trip-chip">
-          <span style="color:var(--txt-3);font-size:.7rem">${c.label}</span>
+          <span style="color:var(--txt-3);font-size:var(--fs-2xs)">${c.label}</span>
           <strong class="${c.highlight ? 'is-hl' : ''}">${c.val}</strong>
         </div>`).join('')}
     </div>`;

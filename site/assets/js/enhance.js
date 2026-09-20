@@ -336,7 +336,7 @@
             <span class="trip-switcher__item-flag" style="background:${t.color}"></span>
             <span class="trip-switcher__item-name">
               <span data-i18n="nav.trip.${t.slug}.name">${tr(`nav.trip.${t.slug}.name`, t.name)}</span>
-              <span style="display:block;font-size:.6875rem;color:var(--txt-3);font-weight:400;letter-spacing:0;margin-top:1px" data-i18n="nav.trip.${t.slug}.sub">${tr(`nav.trip.${t.slug}.sub`, t.sub)}</span>
+              <span style="display:block;font-size:var(--fs-2xs);color:var(--txt-3);font-weight:400;letter-spacing:0;margin-top:1px" data-i18n="nav.trip.${t.slug}.sub">${tr(`nav.trip.${t.slug}.sub`, t.sub)}</span>
             </span>
             <span class="trip-switcher__item-price"><span data-i18n="nav.from">${tr('nav.from', 'dès')}</span> ${escapeHtml(groupDigits(t.price))}</span>
           </a>`).join('')}
@@ -985,7 +985,7 @@
           <span class="acc-day-num">${escapeHtml(node)}</span>
           <span class="acc-title">${escapeHtml(title)}</span>
         </summary>
-        ${activities || dayLabel ? `<div class="acc-body">${dayLabel ? `<p style="opacity:.7;font-size:.8125rem;margin-bottom:6px">${escapeHtml(dayLabel)}</p>` : ''}<p>${escapeHtml(activities)}</p></div>` : ''}
+        ${activities || dayLabel ? `<div class="acc-body">${dayLabel ? `<p style="opacity:.7;font-size:var(--fs-caption);margin-bottom:6px">${escapeHtml(dayLabel)}</p>` : ''}<p>${escapeHtml(activities)}</p></div>` : ''}
       `;
       day.replaceWith(details);
     });
