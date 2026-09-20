@@ -257,7 +257,7 @@ button {
 
 /* Noscript fallback styling (used in 5 region pages' booking-section <noscript>) */
 .u-noscript-card { margin: 48px auto; padding: 24px; background: var(--bg-card);
-                   border: 1px solid rgba(255,255,255,.1); border-radius: 14px; color: var(--txt-1); }
+                   border: 1px solid rgba(255,255,255,.1); border-radius: var(--r3); color: var(--txt-1); }
 .u-noscript-msg  { margin: 0 0 16px; color: var(--txt-2); line-height: 1.6; }
 .u-noscript-title { margin: 0 0 12px; }
 .u-cluster       { display: flex; flex-wrap: wrap; gap: var(--space-4); }
@@ -451,6 +451,14 @@ select {
   --r2: 8px;
   --r3: 12px;
   --r4: 999px;
+  /* Two rungs the original four never had, added 2026-09-20. The shipped
+     design leans on both — 4px across small tags, pills, the hotel ribbon and
+     the extras checkbox (24 elements on the homepage alone), and 16px on the
+     card family. Declaring them is what lets every border-radius in this file
+     resolve to a token; the alternative was snapping cards from 18px to 12px,
+     which is a redesign wearing a refactor's clothes. */
+  --r-tag:  4px;
+  --r-card: 16px;
 
   /* ── Elevation (navy-tinted v1; refined ladder in A.2) ────────── */
   --elev-1: 0 1px 0 rgba(0, 44, 81, .2),  0 4px 16px rgba(0, 0, 0, .4);
@@ -1132,7 +1140,7 @@ select {
   padding: 3px var(--s2);
   background: var(--accent-dim);
   color: var(--accent);
-  border-radius: 4px;
+  border-radius: var(--r-tag);
 }
 
 .hotel-card__price {
@@ -1400,7 +1408,7 @@ select {
 .extra-toggle__check {
   width: 20px;
   height: 20px;
-  border-radius: 4px;
+  border-radius: var(--r-tag);
   border: 1px solid var(--border);
   display: grid;
   place-items: center;
@@ -1775,7 +1783,7 @@ select {
   text-transform: uppercase;
   letter-spacing: .07em;
   padding: 2px var(--s2);
-  border-radius: 4px;
+  border-radius: var(--r-tag);
   background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--txt-3);
@@ -1846,7 +1854,7 @@ select {
   text-align: start;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--r3);
   padding: var(--space-5);
   padding-top: var(--space-5);
   transition:
@@ -5361,7 +5369,7 @@ section + section.is-in::before { width: 60%; }
   max-width: 92vw;
   max-height: 86vh;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: var(--r2);
   box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.7);
   transform: scale(0.96);
   transition: transform var(--t-base) var(--ease-spring);
@@ -5439,7 +5447,7 @@ img.lb-target:hover {
 /* ---- 7.4 — Itinerary accordion (auto-converts existing timeline) ---- */
 [data-accordion] {
   display: block;
-  border-radius: 14px;
+  border-radius: var(--r3);
   overflow: hidden;
   background: var(--bg-card, rgba(255, 255, 255, 0.02));
   border: 1px solid var(--border, rgba(255, 255, 255, 0.06));
@@ -5556,7 +5564,7 @@ img.lb-target:hover {
   background: rgba(12, 14, 18, 0.96);
   color: #fff;
   padding: 10px 14px;
-  border-radius: 10px;
+  border-radius: var(--r3);
   font-size: .8125rem;
   font-weight: 500;
   white-space: nowrap;
@@ -5713,7 +5721,7 @@ img.lb-target:hover {
   height: 56px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: var(--r-card);
   background: var(--mint-dim, rgba(156, 232, 178, 0.12));
   color: var(--mint);
   margin-bottom: 4px;
@@ -7066,7 +7074,7 @@ body.has-sticky-bar.nav-scroll-lock .site-nav {
   font-weight: 500;
   color: var(--txt-2);
   background: transparent;
-  border-radius: 6px;
+  border-radius: var(--r2);
   cursor: pointer;
   transition: color var(--t-fast), background var(--t-fast);
   border: none;
@@ -7578,7 +7586,7 @@ section.section {
 .info-card__icon {
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: var(--r3);
   background: var(--accent-dim, rgba(156, 232, 178, .12));
   color: var(--accent, var(--mint));
   display: grid;
@@ -7936,7 +7944,7 @@ section.section {
   background: var(--hc-bg);
   color: var(--hc-text);
   border: 3px solid var(--hc-border);
-  border-radius: 14px;
+  border-radius: var(--r3);
   box-shadow:
     8px 8px 0 var(--hc-shadow),
     inset 0 0 0 1px rgba(255, 255, 255, .03);
@@ -8074,7 +8082,7 @@ section.section {
   text-transform: uppercase;
   padding: 5px 10px;
   border: 2px solid var(--hc-border);
-  border-radius: 4px;
+  border-radius: var(--r-tag);
   box-shadow: 3px 3px 0 var(--hc-shadow);
   transform: rotate(-3deg);
   transition: transform var(--t-base) var(--ease-spring),
@@ -8389,7 +8397,7 @@ section.section {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   overflow: hidden;
   background: #050609;
   color: var(--tc-fg);
@@ -10237,7 +10245,7 @@ body[data-page="home"] #contact {
   padding: 16px 18px 18px;
   background: var(--bg-card);
   border: 1px solid var(--border-hi);
-  border-radius: 16px;
+  border-radius: var(--r-card);
   box-shadow: 0 14px 34px -10px rgba(0, 0, 0, .5), 0 4px 12px rgba(0, 0, 0, .28);
   color: var(--txt-1);
   text-align: start;
@@ -10292,7 +10300,7 @@ body[data-page="home"] #contact {
   padding: 10px 12px;
   background: var(--bg);
   border: 1px solid var(--border-hi);
-  border-radius: 10px;
+  border-radius: var(--r3);
   color: var(--txt-1);
   font: inherit;
   font-size: .875rem;
