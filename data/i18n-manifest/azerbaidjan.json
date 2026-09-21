@@ -13,14 +13,14 @@
     "trip": 185,
     "shared": 25,
     "en": {
-      "ok": 172,
-      "stale": 13,
+      "ok": 170,
+      "stale": 15,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 172,
-      "stale": 13,
+      "ok": 170,
+      "stale": 15,
       "global": 25,
       "missing": 0
     }
@@ -359,15 +359,15 @@
       "arState": "ok"
     },
     "azDay1Acts": {
-      "fr": "Vol ALG–IST–GYD. Accueil, transfert Hilton Garden Inn. Check-in et repos.",
-      "frHash": "00nhwvbd",
-      "en": "Flight ALG–IST–GYD. Welcome, transfer to Hilton Garden Inn. Check-in and rest.",
-      "ar": "رحلة ALG–IST–GYD. الاستقبال، النقل إلى فندق هيلتون غاردن إن. تسجيل الدخول والراحة.",
+      "fr": "Vol ALG–IST–GYD. Accueil, transfert Mercure Baku. Check-in et repos.",
+      "frHash": "007wpcp9",
+      "en": "Flight ALG–IST–GYD. Welcome, transfer to Mercure Baku. Check-in and rest.",
+      "ar": "رحلة ALG–IST–GYD. الاستقبال، النقل إلى فندق مركيور باكو. تسجيل الدخول والراحة.",
       "enHash": "00nhwvbd",
       "arHash": "00nhwvbd",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azDay2Label": {
       "fr": "Jour 2",
@@ -876,15 +876,15 @@
       "arState": "ok"
     },
     "azInclHotel1": {
-      "fr": "<strong>5 nuits</strong> Bakou — Hilton Garden Inn 4★ (petit-déjeuner)",
-      "frHash": "01vxxhlz",
-      "en": "<strong>5 nights</strong> Baku — Hilton Garden Inn 4★ (breakfast)",
-      "ar": "<strong>5 ليالٍ</strong> باكو — هيلتون غاردن إن 4★ (إفطار)",
+      "fr": "<strong>5 nuits</strong> Bakou — Mercure Baku 4★ (petit-déjeuner) · départ du 10 octobre : Iris Baku 4★",
+      "frHash": "01s9491d",
+      "en": "<strong>5 nights</strong> Baku — Mercure Baku 4★ (breakfast) · 10 October departure: Iris Baku 4★",
+      "ar": "<strong>5 ليالٍ</strong> باكو — مركيور باكو 4★ (إفطار) · انطلاق 10 أكتوبر: إيريس باكو 4★",
       "enHash": "01vxxhlz",
       "arHash": "01vxxhlz",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "azInclHotel2": {
       "fr": "<strong>2 nuits</strong> Gabala — Yengice Hotel 5★ (petit-déjeuner)",

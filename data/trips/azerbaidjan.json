@@ -187,7 +187,7 @@
         "kTitle": " data-i18n=\"azDay1Title\"",
         "title": "Arrivée à Bakou",
         "kAct": " data-i18n=\"azDay1Acts\"",
-        "activities": "Vol ALG–IST–GYD. Accueil, transfert Hilton Garden Inn. Check-in et repos."
+        "activities": "Vol ALG–IST–GYD. Accueil, transfert Mercure Baku. Check-in et repos."
       },
       {
         "active": false,
@@ -321,7 +321,7 @@
       "hotels": [
         {
           "id": "hilton",
-          "name": "Hilton Garden Inn Bakou",
+          "name": "Mercure Baku",
           "loc": [
             49.847,
             40.371
@@ -604,7 +604,7 @@
       },
       {
         "k": " data-i18n-html=\"azInclHotel1\"",
-        "t": "<strong>5 nuits</strong> Bakou — Hilton Garden Inn 4★ (petit-déjeuner)"
+        "t": "<strong>5 nuits</strong> Bakou — Mercure Baku 4★ (petit-déjeuner) · départ du 10 octobre : Iris Baku 4★"
       },
       {
         "k": " data-i18n-html=\"azInclHotel2\"",
@@ -734,13 +734,13 @@
       "tier": "medium",
       "kAria": "",
       "image": "../assets/images/hotels/hotel__hilton-garden-inn-baku.jpg",
-      "alt": "Hilton Garden Inn Bakou",
+      "alt": "Hôtel 4★ à Bakou",
       "ribbonClass": "medium",
       "kRibbon": " data-i18n=\"azCard1Ribbon\"",
       "ribbon": "4★ · Bakou",
       "stars": 4,
       "starsHtml": "★★★★",
-      "name": "Hilton Garden Inn",
+      "name": "Mercure Baku",
       "amenities": [
         {
           "k": " data-i18n=\"azCard1Amen1\"",
@@ -824,7 +824,7 @@
       }
     ],
     "selectLabel": "Hôtel",
-    "optionsHtml": "            <option value=\"hilton\">Hilton Garden Inn 4★ Bakou + Yengice Thermal 5★ Gabala — 230.000 DA</option>\n",
+    "optionsHtml": "            <option value=\"hilton\">Mercure Baku 4★ + Yengice Thermal 5★ Gabala — 230.000 DA</option>\n",
     "roomLabel": "Type de chambre",
     "roomOptions": [
       {
@@ -986,7 +986,7 @@
     "hotels": [
       {
         "id": "hilton",
-        "name": "Hilton Garden Inn 4★ Bakou + Yengice Thermal 5★ Gabala",
+        "name": "Mercure Baku 4★ + Yengice Thermal 5★ Gabala",
         "prices": {
           "double": 230000,
           "triple": 228000,
@@ -995,7 +995,7 @@
           "child2": 126000,
           "baby": 35000
         },
-        "why": "Prix par personne, vol Turkish Airlines via Istanbul inclus, visa électronique inclus, 7 nuits petit-déjeuner (5N Hilton Garden Inn Bakou + 2N Yengice Thermal Gabala), tous transferts en bus touristique, guide arabophone, excursions Bakou/Gobustan/Sheki/Shahdag (téléphérique inclus). Enfant −12 ans avec lit supplémentaire 190.000 ; enfant −4 ans partageant la chambre de 2 adultes 126.000."
+        "why": "Prix par personne, vol Turkish Airlines via Istanbul inclus, visa électronique inclus, 7 nuits petit-déjeuner (5N Mercure Baku + 2N Yengice Thermal Gabala), tous transferts en bus touristique, guide arabophone, excursions Bakou/Gobustan/Sheki/Shahdag (téléphérique inclus). Enfant −12 ans avec lit supplémentaire 190.000 ; enfant −4 ans partageant la chambre de 2 adultes 126.000."
       },
       {
         "id": "yengice",
@@ -1042,7 +1042,7 @@
       "azItinTitle": "Your <em>program</em>",
       "azDay1Label": "Day 1",
       "azDay1Title": "Arrival in Baku",
-      "azDay1Acts": "Flight ALG–IST–GYD. Welcome, transfer to Hilton Garden Inn. Check-in and rest.",
+      "azDay1Acts": "Flight ALG–IST–GYD. Welcome, transfer to Mercure Baku. Check-in and rest.",
       "azDay2Label": "Day 2",
       "azDay2Title": "Central Baku",
       "azDay2Acts": "Nizami Street, Fountain Square, Icherisheher (Old City), Maiden Tower, Palace of the Shirvanshahs, Baku Boulevard, Little Venice Baku.",
@@ -1089,7 +1089,7 @@
       "azInclItem1": "<strong>Turkish Airlines</strong> flight via Istanbul ALG–IST–GYD round trip",
       "azInclItem2": "<strong>Electronic visa</strong> fully included",
       "azInclItem3": "All transfers by air-conditioned tourist coach",
-      "azInclHotel1": "<strong>5 nights</strong> Baku — Hilton Garden Inn 4★ (breakfast)",
+      "azInclHotel1": "<strong>5 nights</strong> Baku — Mercure Baku 4★ (breakfast) · 10 October departure: Iris Baku 4★",
       "azInclHotel2": "<strong>2 nights</strong> Gabala — Yengice Hotel 5★ (breakfast)",
       "azInclItem6": "Baku excursions: Old City · Maiden Tower · Heydar Aliyev Center · Baku Boulevard",
       "azInclItem7": "Gobustan outing: National Park · Mud volcanoes · Yanar Dag",
@@ -1232,7 +1232,7 @@
       "azItinTitle": "<em>برنامجك</em>",
       "azDay1Label": "اليوم 1",
       "azDay1Title": "الوصول إلى باكو",
-      "azDay1Acts": "رحلة ALG–IST–GYD. الاستقبال، النقل إلى فندق هيلتون غاردن إن. تسجيل الدخول والراحة.",
+      "azDay1Acts": "رحلة ALG–IST–GYD. الاستقبال، النقل إلى فندق مركيور باكو. تسجيل الدخول والراحة.",
       "azDay2Label": "اليوم 2",
       "azDay2Title": "وسط باكو",
       "azDay2Acts": "شارع نظامي، ساحة النوافير، إيتشيري شهر (المدينة القديمة)، برج العذراء، قصر الشروانشاهيين، شارع باكو، البندقية الصغيرة في باكو.",
@@ -1279,7 +1279,7 @@
       "azInclItem1": "رحلة <strong>الخطوط الجوية التركية</strong> عبر إسطنبول ALG–IST–GYD ذهاباً وإياباً",
       "azInclItem2": "<strong>التأشيرة الإلكترونية</strong> مشمولة بالكامل",
       "azInclItem3": "جميع عمليات النقل بحافلة سياحية مكيّفة",
-      "azInclHotel1": "<strong>5 ليالٍ</strong> باكو — هيلتون غاردن إن 4★ (إفطار)",
+      "azInclHotel1": "<strong>5 ليالٍ</strong> باكو — مركيور باكو 4★ (إفطار) · انطلاق 10 أكتوبر: إيريس باكو 4★",
       "azInclHotel2": "<strong>ليلتان</strong> غابالا — فندق ينجيجة 5★ (إفطار)",
       "azInclItem6": "رحلات باكو: المدينة القديمة · برج العذراء · مركز حيدر علييف · شارع باكو",
       "azInclItem7": "جولة غوبستان: الحديقة الوطنية · براكين الطين · يانار داغ",
