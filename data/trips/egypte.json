@@ -1086,7 +1086,7 @@
       "kPriceLabel": " data-i18n=\"egFromLabel\"",
       "priceLabel": "À partir de",
       "kPrice": "",
-      "priceFrom": "235.000 DA",
+      "priceFrom": "214.000 DA",
       "kMeta": " data-i18n=\"egPriceMetaDouble\"",
       "priceMeta": "par pers. en double",
       "kCta": " data-i18n=\"egSelect\""
@@ -1122,151 +1122,7 @@
       "kPriceLabel": " data-i18n=\"egFromLabel\"",
       "priceLabel": "À partir de",
       "kPrice": "",
-      "priceFrom": "259.000 DA",
-      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
-      "priceMeta": "par pers. en double",
-      "kCta": " data-i18n=\"egSelect\""
-    },
-    {
-      "aosDelay": 300,
-      "kRole": " role=\"listitem\"",
-      "calcId": "cairesharm-rehanaroyal",
-      "tier": "caire-sharm",
-      "kAria": " aria-label=\"Hôtel Rehana Royal Beach 5★ — Caire &amp; Sharm\"",
-      "image": "../assets/images/hotels/hotel__rehana-royal.jpg",
-      "alt": "Rehana Royal Beach",
-      "ribbonClass": "luxe",
-      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
-      "ribbon": "Caire &amp; Sharm",
-      "stars": 5,
-      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
-      "name": "Rehana Royal Beach 5★",
-      "amenities": [
-        {
-          "k": " data-i18n=\"egPillCaire\"",
-          "t": "Le Caire"
-        },
-        {
-          "k": " data-i18n=\"egPillPlagePrivee\"",
-          "t": "Plage privée"
-        },
-        {
-          "k": " data-i18n=\"egPill5star\"",
-          "t": "5★"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"egFromLabel\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "295.000 DA",
-      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
-      "priceMeta": "par pers. en double",
-      "kCta": " data-i18n=\"egSelect\""
-    },
-    {
-      "aosDelay": 360,
-      "kRole": " role=\"listitem\"",
-      "calcId": "cairesharm-cleopatra",
-      "tier": "caire-sharm",
-      "kAria": " aria-label=\"Hôtel Cleopatra Luxury 5★ — Caire &amp; Sharm\"",
-      "image": "../assets/images/hotels/hotel__cleopatra.jpg",
-      "alt": "Cleopatra Luxury",
-      "ribbonClass": "luxe",
-      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
-      "ribbon": "Caire &amp; Sharm",
-      "stars": 5,
-      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
-      "name": "Cleopatra Luxury 5★",
-      "amenities": [
-        {
-          "k": " data-i18n=\"egPillCaire\"",
-          "t": "Le Caire"
-        },
-        {
-          "k": " data-i18n=\"egPillLuxury\"",
-          "t": "Luxury"
-        },
-        {
-          "k": " data-i18n=\"egPill5star\"",
-          "t": "5★"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"egFromLabel\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "320.000 DA",
-      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
-      "priceMeta": "par pers. en double",
-      "kCta": " data-i18n=\"egSelect\""
-    },
-    {
-      "aosDelay": 420,
-      "kRole": " role=\"listitem\"",
-      "calcId": "cairesharm-pickalbatros",
-      "tier": "caire-sharm",
-      "kAria": " aria-label=\"Hôtel Pickalbatros Palace 5★ — Caire &amp; Sharm\"",
-      "image": "../assets/images/hotels/hotel__pickalbatros.jpg",
-      "alt": "Pickalbatros Palace",
-      "ribbonClass": "luxe",
-      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
-      "ribbon": "Caire &amp; Sharm",
-      "stars": 5,
-      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
-      "name": "Pickalbatros Palace 5★",
-      "amenities": [
-        {
-          "k": " data-i18n=\"egPillCaire\"",
-          "t": "Le Caire"
-        },
-        {
-          "k": " data-i18n=\"egPillUltraLuxe\"",
-          "t": "Ultra Luxe"
-        },
-        {
-          "k": " data-i18n=\"egPill5star\"",
-          "t": "5★"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"egFromLabel\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "390.000 DA",
-      "kMeta": " data-i18n=\"egPriceMetaDouble\"",
-      "priceMeta": "par pers. en double",
-      "kCta": " data-i18n=\"egSelect\""
-    },
-    {
-      "aosDelay": 0,
-      "kRole": " role=\"listitem\"",
-      "calcId": "cairesharm-swissotel",
-      "tier": "caire-sharm",
-      "kAria": " aria-label=\"Hôtel Swissôtel Resort 5★ — Caire &amp; Sharm\"",
-      "image": "../assets/images/hotels/hotel__swissotel-sharm.jpg",
-      "alt": "Swissôtel Resort",
-      "ribbonClass": "luxe",
-      "kRibbon": " data-i18n-html=\"egTierCaireSharm\"",
-      "ribbon": "Caire &amp; Sharm",
-      "stars": 5,
-      "starsHtml": "\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>\n          ",
-      "name": "Swissôtel Resort 5★",
-      "amenities": [
-        {
-          "k": " data-i18n=\"egPillCaire\"",
-          "t": "Le Caire"
-        },
-        {
-          "k": " data-i18n=\"egPillResort\"",
-          "t": "Resort"
-        },
-        {
-          "k": " data-i18n=\"egPill5star\"",
-          "t": "5★"
-        }
-      ],
-      "kPriceLabel": " data-i18n=\"egFromLabel\"",
-      "priceLabel": "À partir de",
-      "kPrice": "",
-      "priceFrom": "460.000 DA",
+      "priceFrom": "225.000 DA",
       "kMeta": " data-i18n=\"egPriceMetaDouble\"",
       "priceMeta": "par pers. en double",
       "kCta": " data-i18n=\"egSelect\""
@@ -1569,50 +1425,38 @@
     "dateChips": [
       {
         "active": true,
-        "value": "16 – 23 Juillet 2026",
+        "value": "02 – 10 Octobre 2026",
         "k": "",
-        "label": "16 – 23 Juillet 2026"
+        "label": "02 – 10 Octobre 2026"
       },
       {
         "active": false,
-        "value": "24 Juillet – 02 Août 2026",
+        "value": "10 – 17 Octobre 2026",
         "k": "",
-        "label": "24 Juillet – 02 Août 2026"
+        "label": "10 – 17 Octobre 2026"
       },
       {
         "active": false,
-        "value": "02 – 11 Août 2026",
+        "value": "16 – 23 Octobre 2026",
         "k": "",
-        "label": "02 – 11 Août 2026"
+        "label": "16 – 23 Octobre 2026"
       },
       {
         "active": false,
-        "value": "09 – 18 Août 2026",
+        "value": "20 – 27 Octobre 2026",
         "k": "",
-        "label": "09 – 18 Août 2026"
+        "label": "20 – 27 Octobre 2026"
       },
       {
         "active": false,
-        "value": "16 – 25 Août 2026",
+        "value": "30 Octobre – 06 Novembre 2026",
         "k": "",
-        "label": "16 – 25 Août 2026"
-      },
-      {
-        "active": false,
-        "value": "22 – 31 Août 2026",
-        "k": "",
-        "label": "22 – 31 Août 2026"
-      },
-      {
-        "active": false,
-        "value": "29 Août – 06 Septembre 2026",
-        "k": "",
-        "label": "29 Août – 06 Septembre 2026"
+        "label": "30 Octobre – 06 Novembre 2026"
       }
     ],
     "dateHint": "Dates indicatives — confirmées selon le programme choisi.",
     "selectLabel": "Hôtel sélectionné",
-    "optionsHtml": "            <optgroup label=\"Caire &amp; Hurghada\">\n              <option value=\"caire-hurghada-blend\">Blend Club Aqua Resort 4★ — Hurghada — dès 220.000 DA</option>\n              <option value=\"caire-hurghada-pyra\">Pyramisa 5★ — Le Caire — dès 220.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Charter Hurghada\">\n              <option value=\"charterhrg-blend\">Blend Club Aqua Park 4★ — dès 245.000 DA</option>\n              <option value=\"charterhrg-amarina\">Amarina Soma Bay 5★ — dès 275.000 DA</option>\n              <option value=\"charterhrg-jaz\">Jaz Aqua Viva 5★ — dès 305.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Charter Sharm\">\n              <option value=\"chartersharm-verginia\">Verginia Aqua Park 4★ — dès 218.000 DA</option>\n              <option value=\"chartersharm-rehana\">Rehana Aqua Park 4★ — dès 246.000 DA</option>\n              <option value=\"chartersharm-rehanaroyal\">Rehana Royal Beach 5★ — dès 291.000 DA</option>\n              <option value=\"chartersharm-cleopatra\">Cleopatra Luxury 5★ — dès 305.000 DA</option>\n              <option value=\"chartersharm-pickalbatros\">Pickalbatros 5★ — dès 403.000 DA</option>\n              <option value=\"chartersharm-rixos\">Rixos Sharm El Sheikh 5★ — dès 593.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Caire &amp; Sharm\">\n              <option value=\"cairesharm-verginia\">Verginia Aqua Park 4★ — dès 235.000 DA</option>\n              <option value=\"cairesharm-rehana\">Rehana Aqua Park 4★ — dès 259.000 DA</option>\n              <option value=\"cairesharm-rehanaroyal\">Rehana Royal Beach 5★ — dès 295.000 DA</option>\n              <option value=\"cairesharm-cleopatra\">Cleopatra Luxury 5★ — dès 320.000 DA</option>\n              <option value=\"cairesharm-pickalbatros\">Pickalbatros Palace 5★ — dès 390.000 DA</option>\n              <option value=\"cairesharm-swissotel\">Swissôtel Resort 5★ — dès 460.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Sharm · Constantine\">\n              <option value=\"sharmcz-tivoli\">Tivoli &amp; Aqua Park 4★ — dès 169.000 DA</option>\n              <option value=\"sharmcz-bride\">Sharm Bride Aqua Park 4★ — dès 179.000 DA</option>\n              <option value=\"sharmcz-rehana\">Rehana Aqua Park 4★ — dès 220.000 DA</option>\n              <option value=\"sharmcz-rehanaroyal\">Rehana Royal Beach 5★ — dès 248.000 DA</option>\n              <option value=\"sharmcz-coralaqua\">Coral Sea Aqua Club 4★ — dès 265.000 DA</option>\n              <option value=\"sharmcz-cleopatra\">Cleopatra Luxury 5★ — dès 300.000 DA</option>\n              <option value=\"sharmcz-coralholiday\">Coral Sea Holiday 5★ — dès 315.000 DA</option>\n              <option value=\"sharmcz-coralwater\">Coral Sea Water World 5★ — dès 332.000 DA</option>\n            </optgroup>\n",
+    "optionsHtml": "            <optgroup label=\"Caire &amp; Hurghada\">\n              <option value=\"caire-hurghada-blend\">Blend Club Aqua Resort 4★ — Hurghada — dès 220.000 DA</option>\n              <option value=\"caire-hurghada-pyra\">Pyramisa 5★ — Le Caire — dès 220.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Charter Hurghada\">\n              <option value=\"charterhrg-blend\">Blend Club Aqua Park 4★ — dès 245.000 DA</option>\n              <option value=\"charterhrg-amarina\">Amarina Soma Bay 5★ — dès 275.000 DA</option>\n              <option value=\"charterhrg-jaz\">Jaz Aqua Viva 5★ — dès 305.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Charter Sharm\">\n              <option value=\"chartersharm-verginia\">Verginia Aqua Park 4★ — dès 218.000 DA</option>\n              <option value=\"chartersharm-rehana\">Rehana Aqua Park 4★ — dès 246.000 DA</option>\n              <option value=\"chartersharm-rehanaroyal\">Rehana Royal Beach 5★ — dès 291.000 DA</option>\n              <option value=\"chartersharm-cleopatra\">Cleopatra Luxury 5★ — dès 305.000 DA</option>\n              <option value=\"chartersharm-pickalbatros\">Pickalbatros 5★ — dès 403.000 DA</option>\n              <option value=\"chartersharm-rixos\">Rixos Sharm El Sheikh 5★ — dès 593.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Caire &amp; Sharm\">\n              <option value=\"cairesharm-verginia\">Verginia Aqua Park 4★ — dès 214.000 DA</option>\n              <option value=\"cairesharm-rehana\">Rehana Aqua Park 4★ — dès 225.000 DA</option>\n              <option value=\"cairesharm-seabeach\">Sea Beach by Rotana 5★ — dès 262.000 DA</option>\n            </optgroup>\n            <optgroup label=\"Sharm · Constantine\">\n              <option value=\"sharmcz-tivoli\">Tivoli &amp; Aqua Park 4★ — dès 169.000 DA</option>\n              <option value=\"sharmcz-bride\">Sharm Bride Aqua Park 4★ — dès 179.000 DA</option>\n              <option value=\"sharmcz-rehana\">Rehana Aqua Park 4★ — dès 220.000 DA</option>\n              <option value=\"sharmcz-rehanaroyal\">Rehana Royal Beach 5★ — dès 248.000 DA</option>\n              <option value=\"sharmcz-coralaqua\">Coral Sea Aqua Club 4★ — dès 265.000 DA</option>\n              <option value=\"sharmcz-cleopatra\">Cleopatra Luxury 5★ — dès 300.000 DA</option>\n              <option value=\"sharmcz-coralholiday\">Coral Sea Holiday 5★ — dès 315.000 DA</option>\n              <option value=\"sharmcz-coralwater\">Coral Sea Water World 5★ — dès 332.000 DA</option>\n            </optgroup>\n",
     "roomLabel": "Type de chambre",
     "roomOptions": [
       {
@@ -1766,13 +1610,11 @@
   "tripData": {
     "name": "Égypte 2026 · 5 programmes",
     "dates": [
-      "16 – 23 Juillet 2026",
-      "24 Juillet – 02 Août 2026",
-      "02 – 11 Août 2026",
-      "09 – 18 Août 2026",
-      "16 – 25 Août 2026",
-      "22 – 31 Août 2026",
-      "29 Août – 06 Septembre 2026"
+      "02 – 10 Octobre 2026",
+      "10 – 17 Octobre 2026",
+      "16 – 23 Octobre 2026",
+      "20 – 27 Octobre 2026",
+      "30 Octobre – 06 Novembre 2026"
     ],
     "hotels": [
       {
@@ -1922,79 +1764,40 @@
         "id": "cairesharm-verginia",
         "name": "Verginia Aqua Park 4★ — Caire & Sharm",
         "prices": {
-          "double": 235000,
-          "triple": 232000,
-          "single": 299000,
-          "child1": 153000,
-          "child2": 185000,
+          "double": 214000,
+          "triple": 212000,
+          "single": 254000,
+          "child1": 129000,
+          "child2": 182000,
           "baby": 30000
         },
-        "why": "Vol régulier EgyptAir inclus, étape au Caire (petit-déjeuner) puis Sharm El Sheikh en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+        "why": "Vol EgyptAir depuis Alger, programme 5+2 : 5 nuits à Sharm El Sheikh en All Inclusive Soft puis 2 nuits au Caire en petit-déjeuner (Marwa Palace 4★). Transferts, excursions guidées et lettre de garantie pour le visa inclus (36 $ à régler à l'arrivée au Caire)."
       },
       {
         "id": "cairesharm-rehana",
         "name": "Rehana Aqua Park 4★ — Caire & Sharm",
         "prices": {
-          "double": 259000,
-          "triple": 256000,
-          "single": 340000,
-          "child1": 153000,
-          "child2": 185000,
+          "double": 225000,
+          "triple": 223000,
+          "single": 270000,
+          "child1": 129000,
+          "child2": 188000,
           "baby": 30000
         },
-        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+        "why": "Vol EgyptAir depuis Alger, programme 5+2 : 5 nuits à Sharm El Sheikh en All Inclusive Soft puis 2 nuits au Caire en petit-déjeuner (Marwa Palace 4★). Transferts, excursions guidées et lettre de garantie pour le visa inclus (36 $ à régler à l'arrivée au Caire)."
       },
       {
-        "id": "cairesharm-rehanaroyal",
-        "name": "Rehana Royal Beach 5★ — Caire & Sharm",
+        "id": "cairesharm-seabeach",
+        "name": "Sea Beach by Rotana 5★ — Caire & Sharm",
         "prices": {
-          "double": 295000,
-          "triple": 292000,
-          "single": 435000,
-          "child1": 153000,
-          "child2": 185000,
+          "double": 262000,
+          "triple": 259000,
+          "single": 327000,
+          "child1": 129000,
+          "child2": 232000,
           "baby": 30000
         },
-        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh 5★ en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
-      },
-      {
-        "id": "cairesharm-cleopatra",
-        "name": "Cleopatra Luxury 5★ — Caire & Sharm",
-        "prices": {
-          "double": 320000,
-          "triple": 320000,
-          "single": 440000,
-          "child1": 153000,
-          "child2": 185000,
-          "baby": 30000
-        },
-        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh 5★ Luxury en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
-      },
-      {
-        "id": "cairesharm-pickalbatros",
-        "name": "Pickalbatros Palace 5★ — Caire & Sharm",
-        "prices": {
-          "double": 390000,
-          "triple": 388000,
-          "single": 565000,
-          "child1": 153000,
-          "child2": 185000,
-          "baby": 30000
-        },
-        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh 5★ haut de gamme en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
-      },
-      {
-        "id": "cairesharm-swissotel",
-        "name": "Swissôtel Resort 5★ — Caire & Sharm",
-        "prices": {
-          "double": 460000,
-          "triple": 448000,
-          "single": 630000,
-          "child1": 153000,
-          "child2": 185000,
-          "baby": 30000
-        },
-        "why": "Vol régulier EgyptAir inclus, combiné Le Caire (petit-déjeuner) et Sharm El Sheikh dans un resort 5★ en All Inclusive Soft, transferts et excursions guidées au Caire inclus."
+        "why": "Vol EgyptAir depuis Alger, programme 5+2 : 5 nuits à Sharm El Sheikh en All Inclusive Soft puis 2 nuits au Caire en petit-déjeuner (Marwa Palace 4★). Transferts, excursions guidées et lettre de garantie pour le visa inclus (36 $ à régler à l'arrivée au Caire)."
       },
       {
         "id": "sharmcz-tivoli",

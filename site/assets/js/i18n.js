@@ -697,7 +697,7 @@
         },
         egypte: {
           title: "Egypt 2026 · 5 programmes — Alliance Travel",
-          description: "Egypt 2026: five programmes across Cairo, Hurghada and Sharm El Sheikh. Charter & scheduled flights, All-Inclusive on the Red Sea. Departures from Algiers. From DZD 169,000."
+          description: "Egypt 2026: five programmes across Cairo, Hurghada and Sharm El Sheikh. Charter & scheduled flights, All-Inclusive on the Red Sea. October 2026 departures from Algiers. From DZD 169,000."
         },
         tunisie: {
           title: "Tunisia by coach 2026 — Alliance Travel",
@@ -1104,7 +1104,7 @@
         },
         egypte: {
           title: 'مصر 2026 · 5 برامج — أليانس ترافل',
-          description: 'مصر 2026: خمسة برامج للاختيار بين القاهرة والغردقة وشرم الشيخ. رحلات مستأجرة ومجدولة، نظام All Inclusive على البحر الأحمر. مغادرات من الجزائر. ابتداءً من 169.000 دج.'
+          description: 'مصر 2026: خمسة برامج للاختيار بين القاهرة والغردقة وشرم الشيخ. رحلات مستأجرة ومجدولة، نظام All Inclusive على البحر الأحمر. مغادرات أكتوبر 2026 من الجزائر. ابتداءً من 169.000 دج.'
         },
         tunisie: {
           title: 'تونس بالحافلة 2026 — أليانس ترافل',

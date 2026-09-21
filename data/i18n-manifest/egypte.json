@@ -1407,17 +1407,6 @@
       "enState": "ok",
       "arState": "ok"
     },
-    "egPillResort": {
-      "fr": "Resort",
-      "frHash": "00zk6wek",
-      "en": "Resort",
-      "ar": "منتجع",
-      "enHash": "00zk6wek",
-      "arHash": "00zk6wek",
-      "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
-    },
     "egPillConstantine": {
       "fr": "Constantine",
       "frHash": "01jguk69",
@@ -1425,6 +1414,17 @@
       "ar": "قسنطينة",
       "enHash": "01jguk69",
       "arHash": "01jguk69",
+      "scope": "trip",
+      "enState": "ok",
+      "arState": "ok"
+    },
+    "egPillResort": {
+      "fr": "Resort",
+      "frHash": "00zk6wek",
+      "en": "Resort",
+      "ar": "منتجع",
+      "enHash": "00zk6wek",
+      "arHash": "00zk6wek",
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
