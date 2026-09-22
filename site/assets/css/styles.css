@@ -2713,9 +2713,12 @@ summary.faq-q::-webkit-details-marker {
 }
 
 .bf-passport-grid .bform-field input {
-  font-size: var(--fs-body-sm);
+  /* No font-size here: this selector outranks the `max(16px, 1rem)` iOS guard
+     further down, and anything under 16px makes Safari zoom the viewport on
+     focus. No hardcoded height either — it outranks the coarse-pointer rule
+     too, which is why these four fields were 40px while their siblings were 52. */
   padding: var(--s2) var(--s3);
-  min-height: 40px;
+  min-height: var(--touch-min);
 }
 
 .bf-passport-grid .bform-field label {
@@ -9482,6 +9485,15 @@ body { background: var(--bg); color: var(--txt-1); }
 .bform-field input, .bform-field select, .bform-field textarea{ font-size:max(16px, 1rem); }
 /* Stepper +/- buttons: full 44px hit area on touch (the coarse rule set only min-height). */
 @media (pointer: coarse){ .stepper__btn{ min-width:var(--touch-min); min-height:var(--touch-min); } }
+/* Same trap, two more buttons. The coarse rule raises min-height on every
+   button but not min-width, so a round button narrower than 44px is served as
+   an ellipse on every phone. These two stay round at 28px — above the WCAG
+   2.5.8 AA floor of 24x24, and small enough not to swallow the 80px upload
+   thumbnail they sit on. */
+@media (pointer: coarse){
+  .upload-thumb__remove,
+  .bf-passport-entry__remove{ width:28px; height:28px; min-width:28px; min-height:28px; }
+}
 /* Aurora hero title: never clip/overflow on narrow phones; add a side gutter to the inner. */
 .aurora-hero__title{ overflow-wrap:break-word; hyphens:auto; }
 .aurora-hero__inner{ padding-inline:var(--container-x); }

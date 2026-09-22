@@ -13,14 +13,14 @@
     "trip": 197,
     "shared": 25,
     "en": {
-      "ok": 188,
-      "stale": 9,
+      "ok": 185,
+      "stale": 12,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 188,
-      "stale": 9,
+      "ok": 185,
+      "stale": 12,
       "global": 25,
       "missing": 0
     }
@@ -112,10 +112,10 @@
       "arState": "ok"
     },
     "egHeroDate": {
-      "fr": "Charters & vols réguliers · dates à confirmer",
-      "frHash": "01yaxaky",
-      "en": "Charters & scheduled flights · dates to be confirmed",
-      "ar": "رحلات عارضة ومنتظمة · تواريخ قيد التأكيد",
+      "fr": "Charters & vols réguliers · Octobre–Novembre 2026",
+      "frHash": "01nwng43",
+      "en": "Charters & scheduled flights · October–November 2026",
+      "ar": "رحلات عارضة ومنتظمة · أكتوبر–نوفمبر 2026",
       "enHash": "01k16szq",
       "arHash": "01k16szq",
       "scope": "trip",
@@ -286,15 +286,15 @@
       "arState": "ok"
     },
     "egHl4Title": {
-      "fr": "25 hôtels au choix",
-      "frHash": "01vmf2xt",
-      "en": "25 hotels to choose from",
-      "ar": "25 فندقاً للاختيار",
+      "fr": "22 hôtels au choix",
+      "frHash": "012voojs",
+      "en": "22 hotels to choose from",
+      "ar": "22 فندقاً للاختيار",
       "enHash": "01vmf2xt",
       "arHash": "01vmf2xt",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egHl4Body": {
       "fr": "De 4★ à 5★ Luxe, répartis sur les 5 programmes. Comparez et choisissez votre confort.",
@@ -2156,15 +2156,15 @@
       "arState": "ok"
     },
     "egRel2Flag": {
-      "fr": "Juin–Octobre 2026",
-      "frHash": "00zzylqk",
+      "fr": "Octobre–Décembre 2026",
+      "frHash": "0086krkf",
       "en": "October–December 2026",
-      "ar": "جوان–أكتوبر 2026",
+      "ar": "أكتوبر–ديسمبر 2026",
       "enHash": "00zzylqk",
       "arHash": "00zzylqk",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egRel2Title": {
       "fr": "Azerbaïdjan · Bakou & Gabala",
@@ -2189,15 +2189,15 @@
       "arState": "stale"
     },
     "egFinalScarcity": {
-      "fr": "Places limitées · Les départs de l'été se remplissent vite",
-      "frHash": "01oeu3st",
-      "en": "Limited seats · Summer departures fill up fast",
-      "ar": "المقاعد محدودة · مغادرات الصيف تمتلئ بسرعة",
+      "fr": "Places limitées · Les départs d'octobre se remplissent vite",
+      "frHash": "00bnd2ie",
+      "en": "Limited seats · October departures fill up fast",
+      "ar": "المقاعد محدودة · مغادرات أكتوبر تمتلئ بسرعة",
       "enHash": "01oeu3st",
       "arHash": "01oeu3st",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "egFinalTitle": {
       "fr": "Prêt à voir les<br><em>Pyramides</em> ?",

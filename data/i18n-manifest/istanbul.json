@@ -13,14 +13,14 @@
     "trip": 194,
     "shared": 25,
     "en": {
-      "ok": 190,
-      "stale": 4,
+      "ok": 188,
+      "stale": 6,
       "global": 25,
       "missing": 0
     },
     "ar": {
-      "ok": 190,
-      "stale": 4,
+      "ok": 188,
+      "stale": 6,
       "global": 25,
       "missing": 0
     }
@@ -2101,15 +2101,15 @@
       "arState": "ok"
     },
     "istRelated1Flag": {
-      "fr": "Juin–Octobre 2026",
-      "frHash": "00zzylqk",
+      "fr": "Octobre–Décembre 2026",
+      "frHash": "0086krkf",
       "en": "October–December 2026",
-      "ar": "يونيو–أكتوبر 2026",
+      "ar": "أكتوبر–ديسمبر 2026",
       "enHash": "00zzylqk",
       "arHash": "00zzylqk",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "istRelated1Title": {
       "fr": "Azerbaïdjan · Bakou & Gabala",
@@ -2145,15 +2145,15 @@
       "arState": "ok"
     },
     "istRelated2Flag": {
-      "fr": "Juin–Octobre 2026",
-      "frHash": "00zzylqk",
-      "en": "October–December 2026",
-      "ar": "يونيو–أكتوبر 2026",
+      "fr": "Octobre–Novembre 2026",
+      "frHash": "01wnt7e4",
+      "en": "October–November 2026",
+      "ar": "أكتوبر–نوفمبر 2026",
       "enHash": "00zzylqk",
       "arHash": "00zzylqk",
       "scope": "trip",
-      "enState": "ok",
-      "arState": "ok"
+      "enState": "stale",
+      "arState": "stale"
     },
     "istRelated2Title": {
       "fr": "Sharm El Sheikh · depuis Constantine",
