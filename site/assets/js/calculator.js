@@ -5,7 +5,23 @@
  */
 
 // Guard against NaN/undefined ever reaching the UI as "NaN DA".
-const fmt = (n) => new Intl.NumberFormat('fr-DZ').format(Number.isFinite(n) ? n : 0) + ' DA';
+// Grouping follows the active language. Arabic deliberately shares the French
+// locale: the site uses Western digits everywhere and the Arabic pages already
+// render "190 000 DA"; an ar-* locale would emit Arabic-Indic digits and
+// disagree with every static price around it.
+const NUM_LOCALE = { fr: 'fr-DZ', ar: 'fr-DZ', en: 'en-US' };
+const uiLang = () => {
+  const page = document.documentElement.getAttribute('lang') || 'fr';
+  if (page === 'en' || page === 'ar') return page;
+  try {
+    const stored = localStorage.getItem('al-lang');
+    if (stored === 'en' || stored === 'ar') return stored;
+  } catch (_) { /* storage blocked */ }
+  return 'fr';
+};
+const fmt = (n) =>
+  new Intl.NumberFormat(NUM_LOCALE[uiLang()] || 'fr-DZ')
+    .format(Number.isFinite(n) ? n : 0) + ' DA';
 
 // --- Past-due departure filtering -----------------------------------------
 // Parse the START date of a French departure label into a Date. Handles
@@ -332,8 +348,9 @@ class TripCalculator {
     // Adults
     const rateKey = room === 'triple' ? 'triple' : room === 'single' ? 'single' : 'double';
     const rate = hotel.prices[rateKey] ?? hotel.prices.double ?? 0;
+    const BL = this._labels();
     lines.push({
-      label: `${hotel.name} — ${this.roomLabel(room)} × ${this.state.adults} adulte${this.state.adults > 1 ? 's' : ''}`,
+      label: `${hotel.name} — ${this.roomLabelL(room)} × ${BL.adults(this.state.adults)}`,
       amount: rate * this.state.adults,
       currency: 'DA',
     });
@@ -344,12 +361,12 @@ class TripCalculator {
     // advertised child2. Keying off kid.type removes the contradiction.)
     this.state.kids.forEach(kid => {
       if (kid.type === 'baby' || kid.age < 2) {
-        lines.push({ label: 'Bébé (0–2 ans)', amount: hotel.prices.baby, currency: 'DA' });
+        lines.push({ label: BL.baby, amount: hotel.prices.baby, currency: 'DA' });
       } else {
         const priceKey = this.kidPriceKey(kid.type);
         const isFirst = kid.type === 'child_b';
         lines.push({
-          label: `${isFirst ? '1ᵉʳ' : '2ᵉ'} enfant (2–11.99 ans)`,
+          label: BL.child(isFirst),
           amount: hotel.prices[priceKey] ?? hotel.prices.child1,
           currency: 'DA',
         });
@@ -370,11 +387,12 @@ class TripCalculator {
   render() {
     const result = this.calculate();
     if (!result) {
-      if (this.el.breakdown) this.el.breakdown.innerHTML = '<p class="breakdown__empty">Sélectionnez un hôtel pour voir le prix.</p>';
+      if (this.el.breakdown) this.el.breakdown.innerHTML = `<p class="breakdown__empty">${this._labels().emptyHotel}</p>`;
       return;
     }
 
     const { lines, totalDA, totalUSD, hotel } = result;
+    const SL0 = this._labels();
 
     // Lines
     if (this.el.breakdown) {
@@ -382,7 +400,7 @@ class TripCalculator {
         <div class="breakdown__line">
           <span style="color:var(--txt-2)">${l.label}</span>
           <span>${l.currency === 'USD' ? l.amount + ' USD' : fmt(l.amount)}</span>
-        </div>`).join('<div class="breakdown__divider"></div>') || '<p class="breakdown__empty">Ajoutez des voyageurs.</p>';
+        </div>`).join('<div class="breakdown__divider"></div>') || `<p class="breakdown__empty">${SL0.emptyTravellers}</p>`;
     }
 
     // Total
@@ -390,14 +408,14 @@ class TripCalculator {
     if (this.el.usdEl) {
       if (totalUSD > 0) {
         this.el.usdEl.style.display = 'flex';
-        this.el.usdEl.textContent = `+ ${totalUSD} USD payable sur place`;
+        this.el.usdEl.textContent = SL0.usdOnSite(totalUSD);
       } else {
         this.el.usdEl.style.display = 'none';
       }
     }
 
     // Sticky — a prompt until the visitor has touched the calculator, then the total.
-    const SL = this._labels();
+    const SL = SL0;
     if (this.el.stickyTotal) this.el.stickyTotal.textContent = this._touched ? fmt(totalDA) : SL.configure;
     // Sticky CTA — value-bearing, localized label ("Réserver · {total}").
     if (this.el.stickyBtn) {
@@ -409,18 +427,25 @@ class TripCalculator {
     // generic localized line (window.AL_PAGE_I18N[lang].calcWhyGeneric) so non-French
     // users no longer see French here. Re-runs on 'langchange' (see bind()).
     if (this.el.whyDetails) {
-      const lang = document.documentElement.getAttribute('lang') || 'fr';
+      // Same resolution as _lang(): on a French URL a stored EN/AR preference
+      // still counts, because i18n.js applies it in place after this runs.
+      const lang = this._lang();
       const w = hotel.why;
       let why;
       if (w && typeof w === 'object') {
-        why = w[lang] || w.fr || '';
+        // Only fall back to French ON a French page. Serving w.fr to an Arabic
+        // reader is the defect, not a graceful degradation.
+        why = w[lang] || (lang === 'fr' ? w.fr : '') || '';
       } else if (lang === 'fr') {
         why = w || '';
       } else {
+        // `w` here is the legacy French string. Deliberately NOT in this chain:
+        // the localized generic line, and failing that the localized fallback
+        // on the next line, both beat correct-content-in-the-wrong-language.
         const page = window.AL_PAGE_I18N && window.AL_PAGE_I18N[lang];
-        why = (page && page.calcWhyGeneric) || w || '';
+        why = (page && page.calcWhyGeneric) || '';
       }
-      this.el.whyDetails.textContent = why || `Prix par personne en chambre ${this.roomLabel(this.state.room)}, vol inclus, transferts inclus, selon la grille tarifaire de ${hotel.name}.`;
+      this.el.whyDetails.textContent = why || SL0.whyFallback(this.roomLabelL(this.state.room), hotel.name);
     }
 
     // Surface child/baby prices next to each kid stepper. Reads the selected
@@ -505,6 +530,13 @@ class TripCalculator {
         nextDeparture: 'Prochain départ :',
         noDates: 'Prochaines dates sur demande.',
         otherDate: 'Une autre date ? Écrivez-nous',
+        baby:      'Bébé (0–2 ans)',
+        child:     (first) => `${first ? '1ᵉʳ' : '2ᵉ'} enfant (2–11.99 ans)`,
+        emptyHotel:      'Sélectionnez un hôtel pour voir le prix.',
+        emptyTravellers: 'Ajoutez des voyageurs.',
+        usdOnSite: (n) => `+ ${n} USD payable sur place`,
+        whyFallback: (room, hotel) =>
+          `Prix par personne en chambre ${room}, vol inclus, transferts inclus, selon la grille tarifaire de ${hotel}.`,
       },
       en: {
         greeting: (name) => `Hello Alliance Travel! I'd like to book the trip ${name}.`,
@@ -520,6 +552,13 @@ class TripCalculator {
         nextDeparture: 'Next departure:',
         noDates: 'Next dates on request.',
         otherDate: 'Another date? Message us',
+        baby:      'Infant (0–2 yrs)',
+        child:     (first) => `${first ? '1st' : '2nd'} child (2–11.99 yrs)`,
+        emptyHotel:      'Select a hotel to see the price.',
+        emptyTravellers: 'Add travellers.',
+        usdOnSite: (n) => `+ ${n} USD payable on arrival`,
+        whyFallback: (room, hotel) =>
+          `Price per person in a ${room} room, flight and transfers included, per the ${hotel} tariff grid.`,
       },
       ar: {
         greeting: (name) => `مرحباً Alliance Travel! أودّ حجز رحلة ${name}.`,
@@ -535,6 +574,13 @@ class TripCalculator {
         nextDeparture: 'الانطلاق القادم:',
         noDates: 'التواريخ القادمة عند الطلب.',
         otherDate: 'تاريخ آخر؟ راسلونا',
+        baby:      'رضيع (0–2 سنة)',
+        child:     (first) => `${first ? 'الطفل الأول' : 'الطفل الثاني'} (2–11.99 سنة)`,
+        emptyHotel:      'اختر فندقًا لعرض السعر.',
+        emptyTravellers: 'أضف مسافرين.',
+        usdOnSite: (n) => `+ ${n} USD تُدفع عند الوصول`,
+        whyFallback: (room, hotel) =>
+          `السعر للشخص في غرفة ${room}، شامل الطيران والتنقلات، وفق جدول أسعار ${hotel}.`,
       },
     };
     return sets[lang] || sets.fr;
