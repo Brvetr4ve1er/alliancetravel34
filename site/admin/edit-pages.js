@@ -333,7 +333,28 @@ async function loadTrip(slug) {
   if (seq !== loadSeq) return false;
   if (!r.ok) { loadFailed(c, slug, r.data.error || r.status); return false; }
   current = { slug, content: r.data.content, sha: r.data.sha };
+
+  // An edit stashed before a forced reconnect comes back here. The SHA stays
+  // the server's — the edit is republished on top of current state, exactly as
+  // it would have been — but the CONTENT is the owner's unpublished text.
+  let restored = null;
+  try { restored = takeStash(slug, localStorage); } catch { /* private mode */ }
+  if (restored) {
+    try {
+      const parsed = JSON.parse(restored.json);
+      if (parsed && parsed.slug === slug) current.content = parsed;
+      else restored = null;
+    } catch { restored = null; }
+  }
+
   renderEditor(c);
+  if (restored) {
+    // After renderEditor, which resets `dirty`: the restored text is still
+    // unpublished, so leaving must warn about it like any other unsaved edit.
+    dirty = true;
+    const m = el("ep-msg");
+    if (m) { m.className = "msg"; m.textContent = t("pages.restored"); }
+  }
   return true;
 }
 
@@ -420,6 +441,43 @@ function renderRefusal(msg, errors, content) {
   msg.append(head, ul);
 }
 
+// An expired session is the one refusal whose fix is "leave this page", and
+// leaving it used to cost the owner everything they had typed: `dirty` guards
+// only the in-app Back button (renderEditor, `pages.back.dirty`), there is no
+// beforeunload handler, so location.reload() discards the form without a word.
+// That would have made pages.err.401 a lie — it promises "votre texte est
+// toujours à l'écran" — on the exact failure the runtime logs show the client
+// hitting. So stash the edit before reloading, and hand it back on the way in.
+//
+// localStorage, not sessionStorage: a magic link is opened from an email client
+// and usually lands in a NEW tab, where a sessionStorage stash does not exist.
+// Stamped and capped so an edit abandoned days ago cannot resurface over a
+// newer one; cleared as soon as it is read.
+const STASH = "at_pending_edit";
+const STASH_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+
+function stashEdit() {
+  try {
+    localStorage.setItem(STASH, JSON.stringify({
+      slug: current.slug, json: el("ep-json").value, at: Date.now(),
+    }));
+  } catch { /* private mode: nothing to be done, and not worth blocking on */ }
+}
+
+/** The stashed edit for `slug`, or null. Reading always clears it. */
+function takeStash(slug, store, now = Date.now()) {
+  let raw = null;
+  try { raw = store.getItem(STASH); store.removeItem(STASH); }
+  catch { return null; }
+  if (!raw) return null;
+  try {
+    const s = JSON.parse(raw);
+    if (!s || s.slug !== slug || typeof s.json !== "string") return null;
+    if (!Number.isFinite(s.at) || now - s.at > STASH_MAX_AGE_MS) return null;
+    return s;
+  } catch { return null; /* unparseable: the server's version is the safe one */ }
+}
+
 /** Paint a transport/server failure: one sentence, plus a way out where one exists. */
 function renderFailure(msg, status, data) {
   const ex = explainStatus(status, data);
@@ -430,9 +488,10 @@ function renderFailure(msg, status, data) {
     b.className = "btn btn--ghost btn--sm";
     b.textContent = t("pages.err.reconnect");
     // Reload rather than re-run the login flow in place: app.js owns the whole
-    // session state machine, and the owner's text is already safe in GitHub or
-    // still in the form — never half-migrated between the two.
-    b.addEventListener("click", () => location.reload());
+    // session state machine, and re-entering it from here would mean keeping
+    // two copies of that logic in step. The unpublished text is stashed first,
+    // so the reload costs the session and nothing else.
+    b.addEventListener("click", () => { stashEdit(); location.reload(); });
     msg.append(" ", b);
   }
   if (ex.detail) {

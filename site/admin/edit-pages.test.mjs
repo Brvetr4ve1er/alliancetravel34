@@ -46,10 +46,36 @@ const tick = () => new Promise((r) => setImmediate(r));
 /** Text of anything appendable: a string, or a fake node. */
 const txt = (k) => (typeof k === "string" ? k : (k && k.textContent) || "");
 
-function load() {
+/** Depth-first search of what was appended into `node`. */
+function findKid(node, pred) {
+  for (const k of node._kids || []) {
+    if (typeof k === "string") continue;
+    if (pred(k)) return k;
+    const deep = findKid(k, pred);
+    if (deep) return deep;
+  }
+  return null;
+}
+
+/** A localStorage that behaves, including the throw a private window gives. */
+function fakeStore({ throws = false } = {}) {
+  const m = new Map();
+  return {
+    getItem: (k) => { if (throws) throw new Error("denied"); return m.has(k) ? m.get(k) : null; },
+    setItem: (k, v) => { if (throws) throw new Error("denied"); m.set(k, String(v)); },
+    removeItem: (k) => { if (throws) throw new Error("denied"); m.delete(k); },
+  };
+}
+
+function load({ storeThrows = false } = {}) {
   const src = readFileSync(new URL("./edit-pages.js", import.meta.url), "utf8")
-    // Only the three module imports start a line with `import` in this file.
-    .replace(/^import[^\n]*\n/gm, "");
+    // The module imports are supplied as globals in `ctx` below.
+    .replace(/^import[^\n]*\n/gm, "")
+    // …and `export` is stripped so a top-level declaration that grows one does
+    // not turn this entire suite into a SyntaxError with no obvious cause.
+    // runInContext evaluates a SCRIPT, not a module, so the keyword is simply
+    // illegal here — which cost a confusing round trip once already.
+    .replace(/^export (?=(?:async )?function |const |let |class )/gm, "");
 
   // ── fake DOM ────────────────────────────────────────────────────────
   // One element per id, created on demand and shared between
@@ -65,7 +91,11 @@ function load() {
       id, className: "", textContent: "", value: "", disabled: false,
       dataset: {}, style: {},
       classList: { add() {}, remove() {}, contains: () => false },
-      addEventListener() {}, removeEventListener() {},
+      // Handlers are KEPT, not dropped: the 401 path hangs the owner's only
+      // recovery on a click, and a no-op listener would let that button be
+      // tested as "present" while doing nothing.
+      addEventListener(type, fn) { (this._on || (this._on = {}))[type] = fn; },
+      removeEventListener() {},
       prepend() {}, after() {}, appendChild() {},
       remove() {},
       // append/replaceChildren used to be no-ops, which was fine while the only
@@ -73,8 +103,16 @@ function load() {
       // the refusal list are built from NODES now, so a no-op would let a test
       // pass against a message that renders empty in a browser. Text-only
       // fidelity is enough — nothing here inspects the tree.
-      append(...kids) { this.textContent += kids.map(txt).join(""); },
-      replaceChildren(...kids) { this.textContent = kids.map(txt).join(""); this._html = ""; },
+      // Children are kept as well as flattened to text — findKid() walks them.
+      append(...kids) {
+        this.textContent += kids.map(txt).join("");
+        (this._kids || (this._kids = [])).push(...kids);
+      },
+      replaceChildren(...kids) {
+        this.textContent = kids.map(txt).join("");
+        this._kids = [...kids];
+        this._html = "";
+      },
       matches: () => false,
       focus() {}, scrollIntoView() {}, setAttribute() {},
       set innerHTML(html) {
@@ -105,6 +143,8 @@ function load() {
   };
 
   const health = healthScript();
+  const store = fakeStore({ throws: storeThrows });
+  let reloads = 0;
 
   // ── fake /api plumbing: every call is a deferred the test resolves ──
   const calls = [];
@@ -156,13 +196,17 @@ function load() {
     setTimeout: (fn) => { setImmediate(fn); return 0; },
     fetchHealthFromBrowser: () => health.next(),
     navigator: { serviceWorker: { getRegistration: () => Promise.resolve(null) } },
-    JSON, Promise, console, encodeURIComponent,
+    localStorage: store,
+    location: { reload() { reloads++; } },
+    JSON, Promise, console, encodeURIComponent, Date, Number,
   };
   vm.createContext(ctx);
   vm.runInContext(src, ctx);
 
   return {
-    calls, wired, health,
+    calls, wired, health, store,
+    reloads: () => reloads,
+    findButton: (label) => findKid(byId("ep-msg"), (n) => n.textContent === label),
     html: () => byId("area-pages").innerHTML,
     loadTrip: (slug) => ctx.loadTrip(slug),
     save: () => ctx.save(),
@@ -379,4 +423,87 @@ test("the two 502s are told apart, because they send the owner to different plac
     await saving;
     assert.match(env.msg(), new RegExp(key.replace(/\./g, "\.")), `${error} → ${key}`);
   }
+});
+
+// ── The 401 must not destroy the text its own message calls safe ──────────
+//
+// pages.err.401 says "votre texte est toujours à l'écran". `dirty` guards only
+// the in-app Back button and there is no beforeunload handler, so the
+// "Se reconnecter" button's location.reload() discarded the form SILENTLY —
+// on the one failure the runtime logs show the client actually hitting.
+
+test("an expired session stashes the unpublished edit before it reloads", async () => {
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  const saving = env.save();
+  await env.settle();
+  env.calls[1].resolve({ ok: false, status: 401, data: { error: "invalid session" } });
+  await saving;
+
+  const btn = env.findButton("pages.err.reconnect");
+  assert.ok(btn, "the 401 offers a way back in");
+  assert.equal(env.store.getItem("at_pending_edit"), null, "nothing stashed until they click");
+
+  btn._on.click();
+  assert.equal(env.reloads(), 1, "…and it does reload");
+  const stash = JSON.parse(env.store.getItem("at_pending_edit"));
+  assert.equal(stash.slug, "bali");
+  assert.equal(JSON.parse(stash.json).slug, "bali", "the whole document, not a fragment");
+});
+
+test("the stashed edit comes back when the owner reopens that trip", async () => {
+  const env = load();
+  const edited = structuredClone(BALI);
+  edited.meta.title = "un titre que l'owner ne doit pas perdre";
+  env.store.setItem("at_pending_edit",
+    JSON.stringify({ slug: "bali", json: JSON.stringify(edited), at: Date.now() }));
+
+  await open(env, "bali", BALI, "sha-bali");
+  assert.match(env.json(), /ne doit pas perdre/, "the form shows their text, not the server's");
+  assert.equal(env.msg(), "pages.restored", "…and says where it came from");
+  assert.equal(env.store.getItem("at_pending_edit"), null, "the stash is spent, not replayed forever");
+});
+
+test("a restored edit republishes onto the CURRENT server state, not a stale sha", async () => {
+  // The stash carries content only. Resurrecting a sha alongside it would make
+  // the next Publier fight whatever was published in between — the same class
+  // of bug the post-publish re-sync exists to prevent.
+  const env = load();
+  const edited = structuredClone(BALI);
+  edited.meta.title = "titre récupéré";
+  env.store.setItem("at_pending_edit",
+    JSON.stringify({ slug: "bali", json: JSON.stringify(edited), at: Date.now() }));
+
+  await open(env, "bali", BALI, "sha-bali-NEWEST");
+  const saving = env.save();
+  await env.settle();
+  assert.equal(env.calls[1].body.sha, "sha-bali-NEWEST", "the sha the server just gave us");
+  assert.equal(env.calls[1].body.content.meta.title, "titre récupéré", "…carrying their text");
+  env.calls[1].resolve({ ok: true, data: {} });
+  await env.settle();
+  env.calls[2].resolve({ ok: true, data: { content: BALI, sha: "x" } });
+  await saving;
+});
+
+test("a stash for another trip, or a stale one, is ignored", async () => {
+  for (const [what, stash] of [
+    ["another trip", { slug: "istanbul", json: '{"slug":"istanbul"}', at: Date.now() }],
+    ["older than a day", { slug: "bali", json: '{"slug":"bali","x":1}', at: Date.now() - 25 * 3600 * 1000 }],
+    ["no timestamp", { slug: "bali", json: '{"slug":"bali","x":1}' }],
+    ["unparseable", { slug: "bali", json: "{not json", at: Date.now() }],
+  ]) {
+    const env = load();
+    env.store.setItem("at_pending_edit", JSON.stringify(stash));
+    await open(env, "bali", BALI, "sha-bali");
+    assert.notEqual(env.msg(), "pages.restored", `${what} must not be restored`);
+    assert.equal(JSON.parse(env.json()).slug, "bali", `${what}: the server's version stands`);
+  }
+});
+
+test("a browser that refuses storage still loads the trip", async () => {
+  // Private mode throws on every localStorage call. Losing the stash is a
+  // shame; failing to open the page at all would be a regression.
+  const env = load({ storeThrows: true });
+  await open(env, "bali", BALI, "sha-bali");
+  assert.equal(JSON.parse(env.json()).slug, "bali");
 });
