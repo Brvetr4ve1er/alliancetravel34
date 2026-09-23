@@ -106,14 +106,14 @@ export default async function handler(req, res) {
   const message = `revert(${slug}): roll back last publish by ${auth.email}`;
   try {
     const current = await getFile({ path });
-    const { commitUrl } = await putFile({ path, content: previous.content, sha: current.sha, message });
-    return res.status(200).json({ ok: true, commitUrl });
+    const { commitUrl, commitSha } = await putFile({ path, content: previous.content, sha: current.sha, message });
+    return res.status(200).json({ ok: true, commitUrl, commitSha });
   } catch (e) {
     if (e.status === 409) {
       try {
         const fresh = await getFile({ path });
-        const { commitUrl } = await putFile({ path, content: previous.content, sha: fresh.sha, message });
-        return res.status(200).json({ ok: true, commitUrl });
+        const { commitUrl, commitSha } = await putFile({ path, content: previous.content, sha: fresh.sha, message });
+        return res.status(200).json({ ok: true, commitUrl, commitSha });
       } catch (e2) { return res.status(e2.status || 500).json({ error: e2.message }); }
     }
     return res.status(e.status || 500).json({ error: e.message });

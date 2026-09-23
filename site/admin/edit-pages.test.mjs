@@ -20,8 +20,31 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
+import { FIELDS } from "./fields.js";
+import { LIST_SPECS } from "./edit-lists.js";
+import { explainLine, explainStatus, makeLabelFor, rowRe } from "./save-errors.js";
+import { watchPublish } from "./publish-watch.js";
+
+/**
+ * A scripted /api/health. Every poll takes the current answer, so a test can let
+ * the watch spin on the old build and then flip it mid-flight — which is the
+ * whole behaviour under test.
+ */
+function healthScript() {
+  let answer = { commit: "sha-of-the-previous-build", deployment: "dpl_old" };
+  return {
+    next: async () => answer,
+    /** From now on, the deployment answering IS this commit. */
+    serve(commit) { answer = { commit, deployment: "dpl_new" }; },
+    /** A runtime that does not report its build (local preview, env not exposed). */
+    blind() { answer = { commit: null, deployment: null }; },
+  };
+}
 
 const tick = () => new Promise((r) => setImmediate(r));
+
+/** Text of anything appendable: a string, or a fake node. */
+const txt = (k) => (typeof k === "string" ? k : (k && k.textContent) || "");
 
 function load() {
   const src = readFileSync(new URL("./edit-pages.js", import.meta.url), "utf8")
@@ -43,8 +66,17 @@ function load() {
       dataset: {}, style: {},
       classList: { add() {}, remove() {}, contains: () => false },
       addEventListener() {}, removeEventListener() {},
-      append() {}, prepend() {}, after() {}, appendChild() {},
-      remove() {}, replaceChildren() {},
+      prepend() {}, after() {}, appendChild() {},
+      remove() {},
+      // append/replaceChildren used to be no-ops, which was fine while the only
+      // thing written into #ep-msg was `.textContent`. The publish states and
+      // the refusal list are built from NODES now, so a no-op would let a test
+      // pass against a message that renders empty in a browser. Text-only
+      // fidelity is enough — nothing here inspects the tree.
+      append(...kids) { this.textContent += kids.map(txt).join(""); },
+      replaceChildren(...kids) { this.textContent = kids.map(txt).join(""); this._html = ""; },
+      matches: () => false,
+      focus() {}, scrollIntoView() {}, setAttribute() {},
       set innerHTML(html) {
         this._html = html;
         // A stand-in for the parser: the only thing this suite reads back out of
@@ -66,9 +98,13 @@ function load() {
     documentElement: { dataset: {} },
     getElementById: byId,
     createElement: () => makeEl(""),
+    createTextNode: (s) => ({ textContent: String(s) }),
+    querySelector: () => null,        // nothing to focus in this fake form
     querySelectorAll: () => [],       // no structured [data-path] inputs here
     addEventListener() {},
   };
+
+  const health = healthScript();
 
   // ── fake /api plumbing: every call is a deferred the test resolves ──
   const calls = [];
@@ -108,13 +144,25 @@ function load() {
     // rebuilt, so binding there leaks a listener per render.
     wireLists(root) { wired.push(root ? root.id : null); },
     collectLists: () => [],
-    JSON, Promise, console, setTimeout, encodeURIComponent,
+    // …and for ./fields.js, ./edit-lists.js (specs), ./save-errors.js and
+    // ./publish-watch.js — the REAL ones. All four are DOM-free by design, so
+    // stubbing them would only test the stubs; this way the wiring that turns a
+    // server refusal into a labelled sentence is under test end to end.
+    FIELDS, LIST_SPECS, explainLine, explainStatus, makeLabelFor, rowRe,
+    watchPublish,
+    // The poll is driven by the caller's `sleep`, and edit-pages.js builds that
+    // from setTimeout — so firing immediately collapses a five-minute schedule
+    // into a few ticks without the state machine knowing it is being hurried.
+    setTimeout: (fn) => { setImmediate(fn); return 0; },
+    fetchHealthFromBrowser: () => health.next(),
+    navigator: { serviceWorker: { getRegistration: () => Promise.resolve(null) } },
+    JSON, Promise, console, encodeURIComponent,
   };
   vm.createContext(ctx);
   vm.runInContext(src, ctx);
 
   return {
-    calls, wired,
+    calls, wired, health,
     html: () => byId("area-pages").innerHTML,
     loadTrip: (slug) => ctx.loadTrip(slug),
     save: () => ctx.save(),
@@ -233,4 +281,102 @@ test("the list handlers are bound inside the markup, not to the screen", async (
   await open(env, "egypte", { ...BALI, slug: "egypte" }, "sha-eg");
   assert.deepEqual(env.wired, ["ep-lists", "ep-lists"]);
   assert.ok(env.html().includes('<div id="ep-lists">'), "the wrapper must exist in the markup");
+});
+
+// ── Phase 2: the dashboard reports what actually reached the site ─────────
+//
+// Before this, a successful POST printed "la page sera à jour dans ~1 minute"
+// and stopped looking. That sentence is a guess, and when the rebuild took
+// longer the owner refreshed, saw the old page and concluded the dashboard had
+// done nothing — which is, near enough, the complaint that started this work.
+
+test("a publish that reports its commit waits for that build, then says it is live", async () => {
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  const saving = env.save();
+  await env.settle();
+  env.calls[1].resolve({
+    ok: true,
+    data: { commitUrl: "https://github.com/o/r/commit/abc", commitSha: "commit-new" },
+  });
+  await env.settle();
+  env.calls[2].resolve({ ok: true, data: { content: BALI, sha: "sha-bali-2" } });
+  await tick();
+  assert.match(env.msg(), /pages\.watch\.deploying/,
+    "while the build runs, say it is building — not that it is done");
+
+  // The deployment answering /api/health becomes ours.
+  env.health.serve("commit-new");
+  await saving;
+  assert.match(env.msg(), /pages\.watch\.live/,
+    "and only then claim it is live, because now we have checked");
+  assert.match(env.msg(), /pages\.viewpage/, "with a way to go and look at it");
+});
+
+test("a runtime that will not name its build stops instead of spinning for five minutes", async () => {
+  // Reachable on a local preview and on a Vercel project that does not expose
+  // system env vars. Polling to a "slow" verdict would be five minutes spent
+  // reaching a conclusion the FIRST answer already ruled out, and would end on
+  // wording that implies something is wrong when nothing is.
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  env.health.blind();
+  const saving = env.save();
+  await env.settle();
+  env.calls[1].resolve({ ok: true, data: { commitUrl: "u", commitSha: "commit-new" } });
+  await env.settle();
+  env.calls[2].resolve({ ok: true, data: { content: BALI, sha: "sha-bali-2" } });
+  await saving;
+  assert.match(env.msg(), /pages\.published/,
+    "fall back to the old honest-ish promise rather than inventing a verdict");
+});
+
+// ── Phase 3: a refusal names the control, not the JSON path ───────────────
+
+test("a 422 names the field the owner typed in, not the path the validator uses", async () => {
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  const saving = env.save();
+  await env.settle();
+  env.calls[1].resolve({
+    ok: false,
+    status: 422,
+    data: { errors: ["hero.lede: contenu trop court (12 caractère(s) utile(s), minimum 40) — introduction"] },
+  });
+  await saving;
+  const out = env.msg();
+  assert.match(out, /Hero — texte d'introduction/,
+    "the label above the box the owner actually typed in");
+  assert.doesNotMatch(out, /hero\.lede/,
+    "…and not the path, which appears nowhere in the dashboard");
+  assert.match(out, /contenu trop court/, "the reason survives the translation");
+});
+
+test("an expired session says so, and never shows the owner 'invalid session'", async () => {
+  // This is the exact string the client has been getting: the runtime logs for
+  // the week showed three 401s and nothing else, and save() rendered them as
+  // `Erreur 401: invalid session`.
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  const saving = env.save();
+  await env.settle();
+  env.calls[1].resolve({ ok: false, status: 401, data: { error: "invalid session" } });
+  await saving;
+  const out = env.msg();
+  assert.match(out, /pages\.err\.401/, "a sentence about the session, in French");
+  assert.match(out, /pages\.err\.reconnect/, "…with the way out attached");
+  assert.doesNotMatch(out, /invalid session/, "raw server English must not reach the owner");
+});
+
+test("the two 502s are told apart, because they send the owner to different places", async () => {
+  for (const [error, key] of [["github unreachable", "pages.err.502github"],
+                              ["auth server unreachable", "pages.err.502auth"]]) {
+    const env = load();
+    await open(env, "bali", BALI, "sha-bali");
+    const saving = env.save();
+    await env.settle();
+    env.calls[1].resolve({ ok: false, status: 502, data: { error } });
+    await saving;
+    assert.match(env.msg(), new RegExp(key.replace(/\./g, "\.")), `${error} → ${key}`);
+  }
 });

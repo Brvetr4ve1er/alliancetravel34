@@ -89,7 +89,14 @@ export async function putFile({ path, content, sha, message }) {
   } catch (e) {
     throw Object.assign(new Error("github bad response"), { status: 502 });
   }
-  return { commitUrl: json.commit && json.commit.html_url };
+  // The SHA travels with the URL because the dashboard needs an IDENTIFIER, not
+  // just a link. /api/health reports the commit Vercel is currently serving, so
+  // returning this lets the editor poll until the two match and say "en ligne"
+  // from evidence instead of guessing "~1 minute" from a timer.
+  return {
+    commitUrl: json.commit && json.commit.html_url,
+    commitSha: json.commit && json.commit.sha,
+  };
 }
 
 // Newest commits touching a path on the target branch (for /api/status).

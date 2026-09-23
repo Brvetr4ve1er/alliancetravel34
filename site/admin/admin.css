@@ -170,6 +170,26 @@ textarea.notes { min-height: 90px; font-family: "DM Sans", system-ui, sans-serif
 .msg.ok  { color: var(--brand-deep); background: var(--brand-dim); border: 1px solid var(--brand-tint); }
 .stack { display: block; }
 
+/* A refusal is a heading plus one line per field, and a failure can carry a
+   folded technical detail — both are column content, so they opt out of the
+   single-row flex above. Compound selector, not `:has()`: the class is set by
+   the code that builds the content, which already knows. */
+.msg.msg--stack { display: block; }
+.refusal { margin: var(--s2) 0 0; padding-inline-start: var(--s4); }
+.refusal li { margin-block: var(--s1); }
+.refusal li + li { margin-block-start: var(--s2); }
+/* The field name is the control's own label, and clicking it scrolls to that
+   control — so it has to look like something you can click. */
+.refusal__jump { cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.refusal__jump:hover { color: var(--danger); }
+.refusal__jump:focus-visible { outline: 2px solid var(--danger); outline-offset: 2px; border-radius: var(--r-xs); }
+.msg details { margin-block-start: var(--s1); font-weight: 400; }
+.msg summary { cursor: pointer; font-size: var(--fs-xs); opacity: .8; }
+.msg details pre {
+  white-space: pre-wrap; word-break: break-word;
+  font-size: var(--fs-xs); margin-block: var(--s1) 0;
+}
+
 /* ── Disclosure (advanced / no-password fallback) ───────────── */
 details.adv {
   margin-top: var(--s3); border: 1.5px dashed var(--line-ui);

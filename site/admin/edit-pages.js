@@ -14,8 +14,11 @@
 import { t, fmt, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { areaHead } from "./ui.js";
-import { listsHtml, wireLists, collectLists } from "./edit-lists.js";
+import { listsHtml, wireLists, collectLists, LIST_SPECS } from "./edit-lists.js";
 import { imageControl, FIELD_SLOT, loadCatalogue, wireImagePickers } from "./images.js";
+import { FIELDS } from "./fields.js";
+import { explainLine, explainStatus, makeLabelFor, rowRe } from "./save-errors.js";
+import { watchPublish, fetchHealthFromBrowser } from "./publish-watch.js";
 
 const SLUGS = ["istanbul", "bali", "tunisie", "vietnam", "azerbaidjan", "kuala-lumpur", "egypte"];
 let current = null; // { slug, content, sha }
@@ -44,62 +47,9 @@ function splitWrap(v) {
   return m ? { open: m[1], inner: m[3], close: m[4] } : { open: "", inner: String(v ?? ""), close: "" };
 }
 
-// [label, json-path, type]
-//
-// Every path here MUST be read by a template in tools/templates/sections/.
-// A path the templates ignore is invisible when wrong: getPath returns
-// undefined so the input renders blank, and setPath happily *creates* the key
-// on save — the owner edits, sees "Publié ✓", and nothing changes. Two fields
-// shipped that way ("hero.titlePre", "finalCta.scarcity").
-// tools/check-admin-fields.mjs enforces the rule at build time; every path
-// below was checked against the template AST before being added.
-//
-// Deliberately absent, and each for a reason:
-//   • hero.priceFrom, seo.offerPrice, hotels[].priceFrom/priceMeta,
-//     calcUi.optionsHtml — owned by tools/value-graph.mjs, which recomputes them
-//     from the price grid on every save. An input here would be overwritten.
-//   • inclus.includedCount / excludedCount — generated from the list lengths.
-//   • hero.titlePre / titlePost / prompt — validated, rendered by nothing.
-const FIELDS = [
-  // ── Référencement et partage ──
-  ["Titre SEO (<title>)", "meta.title", "text"],
-  ["Meta description", "meta.description", "textarea"],
-  ["Titre de partage (WhatsApp, Facebook)", "meta.ogTitle", "text"],
-  ["Image de partage (WhatsApp, Facebook)", "meta.ogImage", "image"],
-  ["Description de partage", "meta.ogDescription", "textarea"],
-  ["Nom du voyage (données Google)", "seo.tripName", "text"],
-  ["Description du voyage (données Google)", "seo.tripDescription", "textarea"],
-  ["Fil d'Ariane", "jsonLd.breadcrumbName", "text"],
-  // ── Hero ──
-  ["Hero — photo de fond", "hero.bg", "image"],
-  ["Hero — sur-titre", "hero.eyebrow", "text"],
-  // The H1 is two slots: hero.tpl renders {{hero.h1Pre}}<em>{{hero.h1Em}}</em>.
-  ["Hero — titre (1re partie)", "hero.h1Pre", "text"],
-  ["Hero — titre (partie colorée)", "hero.h1Em", "text"],
-  ["Hero — dates/durée", "hero.date", "text"],
-  ["Hero — texte d'introduction", "hero.lede", "textarea"],
-  ["Hero — unité du prix", "hero.priceUnit", "text"],
-  ["Hero — mention en petits caractères", "hero.fineprint", "textarea"],
-  ["Hero — description pour lecteur d'écran", "hero.aria", "text"],
-  // ── Titres de sections ──
-  ["Itinéraire — étape", "itinerary.phaseLabel", "text"],
-  ["Itinéraire — sur-titre", "itinerary.eyebrow", "text"],
-  ["Itinéraire — titre", "itinerary.titleHtml", "text"],
-  ["Hôtels — étape", "hotelsSection.phaseLabel", "text"],
-  ["Hôtels — sur-titre", "hotelsSection.eyebrow", "text"],
-  ["Hôtels — titre", "hotelsSection.titleHtml", "text"],
-  ["Hôtels — sous-titre", "hotelsSection.sub", "textarea"],
-  ["Carte — sur-titre", "tripMap.eyebrow", "text"],
-  ["Carte — titre", "tripMap.titleHtml", "text"],
-  ["Carte — sous-titre", "tripMap.subHead", "textarea"],
-  ["Calculateur — étape", "calcUi.phaseLabel", "text"],
-  ["Calculateur — sur-titre", "calcUi.eyebrow", "text"],
-  ["Calculateur — titre", "calcUi.titleHtml", "text"],
-  ["Calculateur — libellé « date de départ »", "calcUi.dateLabel", "text"],
-  ["Appel final — titre", "finalCta.titleHtml", "text"],
-  ["Appel final — sous-titre", "finalCta.sub", "textarea"],
-  ["Appel final — mention de disponibilité", "finalCta.scarcityHtml", "wrapped"],
-];
+// FIELDS (the flat [label, path, type] spec) moved to ./fields.js so it can be
+// imported without a DOM — by tools/check-admin-fields.mjs and by the tests that
+// check every refusal message resolves to one of these labels.
 
 function fieldInput(label, path, type, val) {
   // Associate the label with its control. Without for/id a screen reader
@@ -387,6 +337,154 @@ async function loadTrip(slug) {
   return true;
 }
 
+// ── Refusals, and watching a publish reach the site ─────────────────────
+
+// JSON path → the label printed above the control the owner actually used.
+// The resolver itself lives in save-errors.js so it can be tested against the
+// refusals the real gates emit; here it is just bound to this form's spec.
+const labelFor = makeLabelFor({ fields: FIELDS, lists: LIST_SPECS, t });
+
+/** Reveal and focus the control behind a JSON path — the same treatment save()
+    already gives a field IT refuses: open every collapsed ancestor, then scroll. */
+function focusPath(path) {
+  let node = document.querySelector(`#area-pages [data-path="${path}"]`);
+  if (!node) {
+    for (const spec of LIST_SPECS) {
+      const m = rowRe(spec.path).exec(path);
+      if (!m) continue;
+      const fs = document.querySelector(`#area-pages [data-list="${spec.id}"]`);
+      node = fs ? fs.querySelectorAll(".lister__row")[Number(m[1])] : null;
+      break;
+    }
+  }
+  if (!node) return;
+  for (let n = node.parentElement; n; n = n.parentElement) if (n.tagName === "DETAILS") n.open = true;
+  const target = node.matches("input, textarea, select") ? node : node.querySelector("input, textarea, select");
+  if (target) target.focus();
+  node.scrollIntoView({ block: "center", behavior: "smooth" });
+}
+
+/** One refusal line: "Hero — texte d'introduction — contenu trop court…". */
+function refusalItem(raw, content) {
+  const ex = explainLine(raw, { labelFor, content, fields: FIELDS });
+  const li = document.createElement("li");
+  if (ex.label) {
+    const name = document.createElement("strong");
+    name.textContent = ex.row ? fmt("pages.refused.at", { field: ex.label, n: ex.row }) : ex.label;
+    if (ex.path) {
+      // Clicking the name is the whole point: a named field the owner still has
+      // to hunt for in 34 inputs and 8 list editors is only half an answer.
+      name.className = "refusal__jump";
+      name.tabIndex = 0;
+      name.setAttribute("role", "button");
+      const go = () => focusPath(ex.path);
+      name.addEventListener("click", go);
+      name.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
+      });
+    }
+    li.append(name, " — ");
+  }
+  li.append(document.createTextNode(ex.text));
+  if (ex.detail) {
+    // Developer-facing text: present, but folded away so it informs the person
+    // who can use it without shouting at the person who cannot.
+    const d = document.createElement("details");
+    const s = document.createElement("summary");
+    s.textContent = t("pages.err.detail");
+    const pre = document.createElement("pre");
+    pre.textContent = ex.detail;
+    d.append(s, pre);
+    li.append(d);
+  }
+  return li;
+}
+
+/**
+ * Paint a 422 as a list of named fields.
+ *
+ * Built from nodes, never innerHTML. The previous version escaped and then
+ * concatenated into innerHTML, which was correct but only as long as every
+ * future author remembered the escape — and these strings interpolate the
+ * owner's own text, from a raw-JSON panel with no restrictions on it.
+ * textContent cannot be got wrong.
+ */
+function renderRefusal(msg, errors, content) {
+  msg.className = "msg err msg--stack";
+  msg.replaceChildren();
+  const head = document.createElement("p");
+  head.textContent = t("pages.refused.title");
+  const ul = document.createElement("ul");
+  ul.className = "refusal";
+  for (const raw of errors || []) ul.append(refusalItem(raw, content));
+  msg.append(head, ul);
+}
+
+/** Paint a transport/server failure: one sentence, plus a way out where one exists. */
+function renderFailure(msg, status, data) {
+  const ex = explainStatus(status, data);
+  msg.className = ex.detail ? "msg err msg--stack" : "msg err";
+  msg.replaceChildren(document.createTextNode(fmt(ex.key, ex.params)));
+  if (ex.action === "reconnect") {
+    const b = document.createElement("button");
+    b.className = "btn btn--ghost btn--sm";
+    b.textContent = t("pages.err.reconnect");
+    // Reload rather than re-run the login flow in place: app.js owns the whole
+    // session state machine, and the owner's text is already safe in GitHub or
+    // still in the form — never half-migrated between the two.
+    b.addEventListener("click", () => location.reload());
+    msg.append(" ", b);
+  }
+  if (ex.detail) {
+    const d = document.createElement("details");
+    const s = document.createElement("summary");
+    s.textContent = t("pages.err.detail");
+    const pre = document.createElement("pre");
+    pre.textContent = ex.detail;
+    d.append(s, pre);
+    msg.append(d);
+  }
+}
+
+/**
+ * The page HTML is network-first in sw.js, so a text edit is visible on the very
+ * next load regardless. The stylesheet and the GENERATED <slug>/page-i18n.js are
+ * stale-while-revalidate — so without this nudge an EN/AR translation edit lags
+ * one visit behind the French it shipped with.
+ */
+function refreshServiceWorker() {
+  try {
+    if (!navigator.serviceWorker) return;
+    navigator.serviceWorker.getRegistration()
+      .then((reg) => { if (reg) reg.update(); })
+      .catch(() => { /* storage disabled — nothing to refresh */ });
+  } catch { /* no SW support */ }
+}
+
+/** Paint one state of the deploy watch. States come from publish-watch.js. */
+function renderPublishState(state, info) {
+  const msg = el("ep-msg");
+  if (!msg) return;
+  const KEY = {
+    deploying: "pages.watch.deploying",
+    live: "pages.watch.live",
+    slow: "pages.watch.slow",
+    unconfirmable: "pages.published",
+  };
+  msg.className = state === "deploying" || state === "slow" ? "msg" : "msg ok";
+  msg.replaceChildren(document.createTextNode(t(KEY[state] || "pages.published")));
+  const a = document.createElement("a");
+  a.target = "_blank"; a.rel = "noopener";
+  if (state === "live" && info.slug) {
+    a.href = `/${info.slug}/`;
+    a.textContent = t("pages.viewpage");
+  } else if (info.commitUrl) {
+    a.href = info.commitUrl;
+    a.textContent = t("pages.viewcommit");
+  } else { return; }
+  msg.append(" ", a);
+}
+
 async function save() {
   const msg = el("ep-msg");
   // Base = the raw-JSON panel (authoritative for untouched structure), then overlay structured fields.
@@ -434,13 +532,8 @@ async function save() {
   }
   if (r.ok) {
     dirty = false;
-    msg.className = "msg ok";
-    msg.textContent = t("pages.published");
-    if (r.data.commitUrl) {
-      const a = document.createElement("a");
-      a.href = r.data.commitUrl; a.textContent = t("pages.viewcommit"); a.target = "_blank"; a.rel = "noopener";
-      msg.append(" ", a);
-    }
+    const info = { commitUrl: r.data.commitUrl, slug: current.slug };
+    renderPublishState(r.data.commitSha ? "deploying" : "unconfirmable", info);
     // Re-sync BOTH the SHA and the content. A full loadTrip() would rebuild the
     // form — losing the "Publié ✓" and every open group — so only `current`,
     // the raw-JSON panel and the list rows' identity are refreshed. Refreshing
@@ -468,15 +561,30 @@ async function save() {
         [...fs.querySelectorAll(".lister__row")].forEach((row, i) => { row.dataset.orig = String(i); });
       });
     }
+
+    // Now follow the commit until it is actually SERVING. Everything above only
+    // proves the edit reached GitHub; the owner's question is whether the site
+    // changed, and until now the dashboard answered it with a guess ("~1
+    // minute") that went unchecked. See publish-watch.js.
+    //
+    // Guarded by the same loadSeq token as the re-sync above: leaving the trip,
+    // opening another, or publishing again abandons the watch rather than
+    // writing a stale verdict into a form that has moved on.
+    const watchSeq = loadSeq;
+    await watchPublish({
+      commitSha: r.data.commitSha,
+      fetchHealth: fetchHealthFromBrowser,
+      sleep: (ms) => new Promise((res) => setTimeout(res, ms)),
+      shouldStop: () => loadSeq !== watchSeq || !el("ep-msg"),
+      onState: (state) => {
+        renderPublishState(state, info);
+        if (state === "live") refreshServiceWorker();
+      },
+    });
   } else if (r.status === 422) {
-    msg.className = "msg err";
-    // Escape server-provided text before it reaches innerHTML: validator
-    // messages interpolate field values verbatim, and the raw-JSON panel is
-    // unrestricted — unescaped, a crafted value executes in the admin session.
-    msg.innerHTML = "Refusé — l'édition casserait la page :<br>" + (r.data.errors || []).map((e) => "• " + escHtml(e)).join("<br>");
+    renderRefusal(msg, r.data.errors, content);
   } else {
-    msg.className = "msg err";
-    msg.textContent = `Erreur ${r.status}: ${r.data.error || "inconnue"}`;
+    renderFailure(msg, r.status, r.data);
   }
 }
 
@@ -526,12 +634,26 @@ async function revert() {
         m2.append(" ", a);
       }
     }
+    // A rollback has exactly the same gap as a publish: the old content is back
+    // in GitHub, and the owner — who is reverting precisely because something
+    // looked wrong — has no way to see when the site follows. loadTrip() above
+    // rebuilt the form and bumped loadSeq, so capture the token after it.
+    const watchSeq = loadSeq;
+    await watchPublish({
+      commitSha: r.data.commitSha,
+      fetchHealth: fetchHealthFromBrowser,
+      sleep: (ms) => new Promise((res) => setTimeout(res, ms)),
+      shouldStop: () => loadSeq !== watchSeq || !el("ep-msg"),
+      onState: (state) => {
+        if (state === "deploying") return; // "Rétabli ✓" is the better first word
+        renderPublishState(state, { commitUrl, slug });
+        if (state === "live") refreshServiceWorker();
+      },
+    });
   } else {
     if (saveBtn) saveBtn.disabled = false;
     if (revBtn) revBtn.disabled = false;
-    msg.className = "msg err";
-    // Server-provided text goes through textContent, never through markup.
-    msg.textContent = fmt("pages.revert.fail", { e: r.data.error || `erreur ${r.status}` });
+    renderFailure(msg, r.status, r.data);
   }
 }
 

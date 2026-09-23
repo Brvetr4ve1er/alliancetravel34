@@ -106,14 +106,14 @@ export default async function handler(req, res) {
   const message = `content(${slug}): edit via dashboard by ${auth.email}`;
   try {
     if (!sha) sha = (await getFile({ path })).sha;
-    const { commitUrl } = await putFile({ path, content: json, sha, message });
-    return res.status(200).json({ ok: true, commitUrl });
+    const { commitUrl, commitSha } = await putFile({ path, content: json, sha, message });
+    return res.status(200).json({ ok: true, commitUrl, commitSha });
   } catch (e) {
     if (e.status === 409) {
       try {
         const fresh = await getFile({ path });
-        const { commitUrl } = await putFile({ path, content: json, sha: fresh.sha, message });
-        return res.status(200).json({ ok: true, commitUrl });
+        const { commitUrl, commitSha } = await putFile({ path, content: json, sha: fresh.sha, message });
+        return res.status(200).json({ ok: true, commitUrl, commitSha });
       } catch (e2) { return res.status(e2.status || 500).json({ error: e2.message }); }
     }
     return res.status(e.status || 500).json({ error: e.message });

@@ -72,9 +72,11 @@ function collect(node, scope, out) {
   }
 }
 
-// FIELDS is a literal array of [label, path, type] triples. Parsing it beats
-// importing it: this is a browser script, and a build-time import would drag in
-// its DOM globals.
+// FIELDS is a literal array of [label, path, type] triples, and lives in its own
+// DOM-free module (site/admin/fields.js) precisely so it can be read from here.
+// Still parsed rather than imported: checkAdminFields() is synchronous and sits
+// inside build.mjs's gate loop, so reaching for it would mean making that path
+// async for no gain. The regex tolerates the `export` prefix.
 export function parseFields(src) {
   const block = src.match(/const FIELDS = \[([\s\S]*?)\n\];/);
   if (!block) return null;
@@ -95,12 +97,12 @@ export function templatePaths(root) {
 }
 
 export function checkAdminFields(root) {
-  const rel = "site/admin/edit-pages.js";
+  const rel = "site/admin/fields.js";
   const errors = [];
 
   let fields, known;
   try {
-    fields = parseFields(readFileSync(join(root, "site", "admin", "edit-pages.js"), "utf8"));
+    fields = parseFields(readFileSync(join(root, "site", "admin", "fields.js"), "utf8"));
     known = templatePaths(root);
   } catch (e) {
     // Unreadable form or unparseable template: fail loudly. Checking nothing
