@@ -763,37 +763,37 @@
       {
         "active": true,
         "value": "22 Juin – 03 Juillet 2026",
-        "k": "",
+        "k": " data-i18n=\"klChip1\"",
         "label": "22 Juin–3 Juil 2026"
       },
       {
         "active": false,
         "value": "21 – 31 Juillet 2026",
-        "k": "",
+        "k": " data-i18n=\"klChip2\"",
         "label": "21–31 Juil 2026"
       },
       {
         "active": false,
         "value": "27 Juillet – 06 Août 2026",
-        "k": "",
+        "k": " data-i18n=\"klChip3\"",
         "label": "27 Juil–6 Août 2026"
       },
       {
         "active": false,
         "value": "01 – 11 Août 2026",
-        "k": "",
+        "k": " data-i18n=\"klChip4\"",
         "label": "1–11 Août 2026"
       },
       {
         "active": false,
         "value": "04 – 15 Août 2026",
-        "k": "",
+        "k": " data-i18n=\"klChip5\"",
         "label": "4–15 Août 2026"
       },
       {
         "active": false,
         "value": "13 – 23 Août 2026",
-        "k": "",
+        "k": " data-i18n=\"klChip6\"",
         "label": "13–23 Août 2026"
       }
     ],
@@ -1181,7 +1181,13 @@
       "klFinalWa": "Book via WhatsApp",
       "klFinalAddress": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
       "klStickyLabel": "Estimated total",
-      "klStickyCta": "Book"
+      "klStickyCta": "Book",
+      "klChip1": "22 Jun – 3 Jul 2026",
+      "klChip2": "21–31 Jul 2026",
+      "klChip3": "27 Jul – 6 Aug 2026",
+      "klChip4": "1–11 Aug 2026",
+      "klChip5": "4–15 Aug 2026",
+      "klChip6": "13–23 Aug 2026"
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
@@ -1378,7 +1384,13 @@
       "klFinalWa": "احجز عبر واتساب",
       "klFinalAddress": "حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
       "klStickyLabel": "الإجمالي التقديري",
-      "klStickyCta": "احجز"
+      "klStickyCta": "احجز",
+      "klChip1": "22 جوان – 3 جويلية 2026",
+      "klChip2": "21–31 جويلية 2026",
+      "klChip3": "27 جويلية – 6 أوت 2026",
+      "klChip4": "1–11 أوت 2026",
+      "klChip5": "4–15 أوت 2026",
+      "klChip6": "13–23 أوت 2026"
     }
   },
   "keyPrefix": "kl",

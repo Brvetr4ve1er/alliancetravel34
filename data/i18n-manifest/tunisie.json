@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 203,
-    "trip": 178,
+    "total": 208,
+    "trip": 183,
     "shared": 25,
     "en": {
       "ok": 162,
-      "stale": 16,
+      "stale": 21,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 162,
-      "stale": 16,
+      "stale": 21,
       "global": 25,
       "missing": 0
     }
@@ -1384,6 +1384,51 @@
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
+    },
+    "tnChip1": {
+      "fr": "20–26 Août 2026",
+      "frHash": "00zuxfe3",
+      "en": "20–26 Aug 2026",
+      "ar": "20–26 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "tnChip2": {
+      "fr": "28 Août–3 Sept 2026",
+      "frHash": "00a9wnwm",
+      "en": "28 Aug – 3 Sep 2026",
+      "ar": "28 أوت – 3 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "tnChip3": {
+      "fr": "1–7 Sept 2026",
+      "frHash": "01lh9iq0",
+      "en": "1–7 Sep 2026",
+      "ar": "1–7 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "tnChip4": {
+      "fr": "9–15 Sept 2026",
+      "frHash": "01n0ra35",
+      "en": "9–15 Sep 2026",
+      "ar": "9–15 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "tnChip5": {
+      "fr": "16–22 Sept 2026",
+      "frHash": "01qp4vyt",
+      "en": "16–22 Sep 2026",
+      "ar": "16–22 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
     },
     "tnCalcDateHint": {
       "fr": "Prochains départs à confirmer, depuis Alger et Oran.",

@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 210,
-    "trip": 185,
+    "total": 214,
+    "trip": 189,
     "shared": 25,
     "en": {
       "ok": 170,
-      "stale": 15,
+      "stale": 19,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 170,
-      "stale": 15,
+      "stale": 19,
       "global": 25,
       "missing": 0
     }
@@ -1402,6 +1402,42 @@
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
+    },
+    "azChip1": {
+      "fr": "10–18 Oct",
+      "frHash": "01fhklee",
+      "en": "10–18 Oct 2026",
+      "ar": "10–18 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "azChip2": {
+      "fr": "23–31 Oct",
+      "frHash": "00kpppk5",
+      "en": "23–31 Oct 2026",
+      "ar": "23–31 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "azChip3": {
+      "fr": "13–21 Nov",
+      "frHash": "01fcimww",
+      "en": "13–21 Nov 2026",
+      "ar": "13–21 نوفمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "azChip4": {
+      "fr": "4–12 Déc",
+      "frHash": "01kdr0yj",
+      "en": "4–12 Dec 2026",
+      "ar": "4–12 ديسمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
     },
     "azCalcHotelLabel": {
       "fr": "Hôtel",

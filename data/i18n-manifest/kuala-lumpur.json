@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 217,
-    "trip": 192,
+    "total": 223,
+    "trip": 198,
     "shared": 25,
     "en": {
       "ok": 186,
-      "stale": 6,
+      "stale": 12,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 186,
-      "stale": 6,
+      "stale": 12,
       "global": 25,
       "missing": 0
     }
@@ -1483,6 +1483,60 @@
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
+    },
+    "klChip1": {
+      "fr": "22 Juin–3 Juil 2026",
+      "frHash": "00lw1pll",
+      "en": "22 Jun – 3 Jul 2026",
+      "ar": "22 جوان – 3 جويلية 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "klChip2": {
+      "fr": "21–31 Juil 2026",
+      "frHash": "00g1yp17",
+      "en": "21–31 Jul 2026",
+      "ar": "21–31 جويلية 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "klChip3": {
+      "fr": "27 Juil–6 Août 2026",
+      "frHash": "018p5nbs",
+      "en": "27 Jul – 6 Aug 2026",
+      "ar": "27 جويلية – 6 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "klChip4": {
+      "fr": "1–11 Août 2026",
+      "frHash": "00faszc8",
+      "en": "1–11 Aug 2026",
+      "ar": "1–11 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "klChip5": {
+      "fr": "4–15 Août 2026",
+      "frHash": "00ubn6xx",
+      "en": "4–15 Aug 2026",
+      "ar": "4–15 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "klChip6": {
+      "fr": "13–23 Août 2026",
+      "frHash": "0095o03i",
+      "en": "13–23 Aug 2026",
+      "ar": "13–23 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
     },
     "klCalcHotelLabel": {
       "fr": "Formule de départ",

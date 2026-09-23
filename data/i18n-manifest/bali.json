@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 208,
-    "trip": 183,
+    "total": 213,
+    "trip": 188,
     "shared": 25,
     "en": {
       "ok": 174,
-      "stale": 9,
+      "stale": 14,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 174,
-      "stale": 9,
+      "stale": 14,
       "global": 25,
       "missing": 0
     }
@@ -1391,6 +1391,51 @@
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
+    },
+    "baChip1": {
+      "fr": "28 Août–8 Sep 2026",
+      "frHash": "00fko2il",
+      "en": "28 Aug – 8 Sep 2026",
+      "ar": "28 أوت – 8 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "baChip2": {
+      "fr": "6–17 Sep 2026",
+      "frHash": "00u3mf14",
+      "en": "6–17 Sep 2026",
+      "ar": "6–17 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "baChip3": {
+      "fr": "29 Juil–11 Août 2026",
+      "frHash": "01v2kq50",
+      "en": "29 Jul – 11 Aug 2026",
+      "ar": "29 جويلية – 11 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "baChip4": {
+      "fr": "9–22 Août 2026",
+      "frHash": "011iqdii",
+      "en": "9–22 Aug 2026",
+      "ar": "9–22 أوت 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "baChip5": {
+      "fr": "21 Août–3 Sep 2026",
+      "frHash": "01o5nmv1",
+      "en": "21 Aug – 3 Sep 2026",
+      "ar": "21 أوت – 3 سبتمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
     },
     "baCalcHotel": {
       "fr": "Formule",

@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 222,
-    "trip": 197,
+    "total": 227,
+    "trip": 202,
     "shared": 25,
     "en": {
       "ok": 185,
-      "stale": 12,
+      "stale": 17,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 185,
-      "stale": 12,
+      "stale": 17,
       "global": 25,
       "missing": 0
     }
@@ -1494,6 +1494,51 @@
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
+    },
+    "egChip1": {
+      "fr": "02 – 10 Octobre 2026",
+      "frHash": "0083mbhx",
+      "en": "2–10 Oct 2026",
+      "ar": "2–10 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "egChip2": {
+      "fr": "10 – 17 Octobre 2026",
+      "frHash": "00rulnjp",
+      "en": "10–17 Oct 2026",
+      "ar": "10–17 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "egChip3": {
+      "fr": "16 – 23 Octobre 2026",
+      "frHash": "017an456",
+      "en": "16–23 Oct 2026",
+      "ar": "16–23 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "egChip4": {
+      "fr": "20 – 27 Octobre 2026",
+      "frHash": "016cbro3",
+      "en": "20–27 Oct 2026",
+      "ar": "20–27 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "egChip5": {
+      "fr": "30 Octobre – 06 Novembre 2026",
+      "frHash": "01q4g6c3",
+      "en": "30 Oct – 6 Nov 2026",
+      "ar": "30 أكتوبر – 6 نوفمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
     },
     "egCalcDatesNote": {
       "fr": "Dates indicatives — confirmées selon le programme choisi.",

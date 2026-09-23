@@ -453,6 +453,9 @@ class TripCalculator {
     // pricing transparent without the user having to increment a counter first.
     this._updateKidPriceLabels(hotel);
 
+    // Accessible names for the steppers and the date picker, in the active language.
+    this._localizeControls();
+
     // Expose state globally for the booking form
     window.__calcState = {
       tripName: this.trip.name,
@@ -531,6 +534,10 @@ class TripCalculator {
         noDates: 'Prochaines dates sur demande.',
         otherDate: 'Une autre date ? Écrivez-nous',
         baby:      'Bébé (0–2 ans)',
+        decrease:  'Diminuer',
+        increase:  'Augmenter',
+        chooseDate:'Choisissez votre date de départ',
+        fromPrice: 'dès',
         child:     (first) => `${first ? '1ᵉʳ' : '2ᵉ'} enfant (2–11.99 ans)`,
         emptyHotel:      'Sélectionnez un hôtel pour voir le prix.',
         emptyTravellers: 'Ajoutez des voyageurs.',
@@ -553,6 +560,10 @@ class TripCalculator {
         noDates: 'Next dates on request.',
         otherDate: 'Another date? Message us',
         baby:      'Infant (0–2 yrs)',
+        decrease:  'Decrease',
+        increase:  'Increase',
+        chooseDate:'Choose your departure date',
+        fromPrice: 'from',
         child:     (first) => `${first ? '1st' : '2nd'} child (2–11.99 yrs)`,
         emptyHotel:      'Select a hotel to see the price.',
         emptyTravellers: 'Add travellers.',
@@ -575,6 +586,10 @@ class TripCalculator {
         noDates: 'التواريخ القادمة عند الطلب.',
         otherDate: 'تاريخ آخر؟ راسلونا',
         baby:      'رضيع (0–2 سنة)',
+        decrease:  'إنقاص',
+        increase:  'زيادة',
+        chooseDate:'اختر تاريخ المغادرة',
+        fromPrice: 'ابتداءً من',
         child:     (first) => `${first ? 'الطفل الأول' : 'الطفل الثاني'} (2–11.99 سنة)`,
         emptyHotel:      'اختر فندقًا لعرض السعر.',
         emptyTravellers: 'أضف مسافرين.',
@@ -584,6 +599,45 @@ class TripCalculator {
       },
     };
     return sets[lang] || sets.fr;
+  }
+
+  /**
+   * Compose the stepper and date-picker accessible names in the active
+   * language. These were baked into calcUi.steppersHtml as French literals, so
+   * a screen reader on /ar/ or /en/ announced French for every control.
+   *
+   * The traveller name is read from the stepper's own <h3>, which data-i18n has
+   * already translated, rather than from a table here — so a trip that invents
+   * a new band ("enfant avec lit") is covered without touching this file. Runs
+   * from render(), which re-runs on 'langchange'.
+   */
+  _localizeControls() {
+    const L = this._labels();
+    document.querySelectorAll('.stepper-item').forEach((row) => {
+      const title = (row.querySelector('.stepper-item__info h3, .stepper-item__info h4') || {}).textContent;
+      const name = (title || '').trim();
+      if (!name) return;
+      const minus = row.querySelector('.stepper__btn[id$="-minus"], .kid-minus, .stepper__btn:first-of-type');
+      const plus  = row.querySelector('.stepper__btn[id$="-plus"], .kid-plus, .stepper__btn:last-of-type');
+      if (minus) minus.setAttribute('aria-label', `${L.decrease} \u2014 ${name}`);
+      if (plus)  plus.setAttribute('aria-label', `${L.increase} \u2014 ${name}`);
+    });
+    const group = document.querySelector('.date-chips[role="radiogroup"]');
+    if (group) group.setAttribute('aria-label', L.chooseDate);
+
+    // "Hotel Name - des 129.000 DA". The French preposition stays in the stored
+    // markup on purpose: syncDerivedPrices() (tools/value-graph.mjs) locates each
+    // option by that token when it propagates a price change, so rewriting the
+    // JSON would break the build-time sync. Swap the rendered text instead,
+    // against a cached original so repeat renders and 'langchange' both behave.
+    if (this.el.hotelSel) {
+      for (const opt of this.el.hotelSel.options) {
+        if (opt.dataset.frLabel === undefined) opt.dataset.frLabel = opt.textContent;
+        opt.textContent = L.fromPrice === 'd\u00e8s'
+          ? opt.dataset.frLabel
+          : opt.dataset.frLabel.replace(/\bd\u00e8s\b/g, L.fromPrice);
+      }
+    }
   }
 
   /**

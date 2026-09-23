@@ -834,73 +834,73 @@
       {
         "active": true,
         "value": "01 – 08 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip1\"",
         "label": "1–8 Oct"
       },
       {
         "active": false,
         "value": "08 – 15 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip2\"",
         "label": "8–15 Oct"
       },
       {
         "active": false,
         "value": "15 – 22 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip3\"",
         "label": "15–22 Oct"
       },
       {
         "active": false,
         "value": "22 – 29 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip4\"",
         "label": "22–29 Oct"
       },
       {
         "active": false,
         "value": "29 Octobre – 05 Novembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip5\"",
         "label": "29 Oct–5 Nov"
       },
       {
         "active": false,
         "value": "05 – 12 Novembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip6\"",
         "label": "5–12 Nov"
       },
       {
         "active": false,
         "value": "12 – 19 Novembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip7\"",
         "label": "12–19 Nov"
       },
       {
         "active": false,
         "value": "19 – 26 Novembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip8\"",
         "label": "19–26 Nov"
       },
       {
         "active": false,
         "value": "26 Novembre – 03 Décembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip9\"",
         "label": "26 Nov–3 Déc"
       },
       {
         "active": false,
         "value": "03 – 10 Décembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip10\"",
         "label": "3–10 Déc"
       },
       {
         "active": false,
         "value": "10 – 17 Décembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip11\"",
         "label": "10–17 Déc"
       },
       {
         "active": false,
         "value": "17 – 24 Décembre 2026",
-        "k": "",
+        "k": " data-i18n=\"istChip12\"",
         "label": "17–24 Déc"
       }
     ],
@@ -1322,7 +1322,19 @@
       "istRelated2Title": "Sharm El Sheikh · from Constantine",
       "istRelatedCta": "See this trip <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>",
       "istFinalWaCta": "Book via WhatsApp",
-      "istFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown"
+      "istFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
+      "istChip1": "1–8 Oct 2026",
+      "istChip2": "8–15 Oct 2026",
+      "istChip3": "15–22 Oct 2026",
+      "istChip4": "22–29 Oct 2026",
+      "istChip5": "29 Oct – 5 Nov 2026",
+      "istChip6": "5–12 Nov 2026",
+      "istChip7": "12–19 Nov 2026",
+      "istChip8": "19–26 Nov 2026",
+      "istChip9": "26 Nov – 3 Dec 2026",
+      "istChip10": "3–10 Dec 2026",
+      "istChip11": "10–17 Dec 2026",
+      "istChip12": "17–24 Dec 2026"
     },
     "ar": {
       "istHeroEyebrow": "انطلاق من قسنطينة · الخطوط التركية · أكتوبر–ديسمبر 2026",
@@ -1523,7 +1535,19 @@
       "istRelated2Title": "شرم الشيخ · انطلاقاً من قسنطينة",
       "istRelatedCta": "شاهد هذه الرحلة <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg>",
       "istFinalWaCta": "احجز عبر واتساب",
-      "istFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة"
+      "istFinalAddress": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z\"/></svg>حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
+      "istChip1": "1–8 أكتوبر 2026",
+      "istChip2": "8–15 أكتوبر 2026",
+      "istChip3": "15–22 أكتوبر 2026",
+      "istChip4": "22–29 أكتوبر 2026",
+      "istChip5": "29 أكتوبر – 5 نوفمبر 2026",
+      "istChip6": "5–12 نوفمبر 2026",
+      "istChip7": "12–19 نوفمبر 2026",
+      "istChip8": "19–26 نوفمبر 2026",
+      "istChip9": "26 نوفمبر – 3 ديسمبر 2026",
+      "istChip10": "3–10 ديسمبر 2026",
+      "istChip11": "10–17 ديسمبر 2026",
+      "istChip12": "17–24 ديسمبر 2026"
     }
   },
   "keyPrefix": "ist",

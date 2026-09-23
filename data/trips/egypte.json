@@ -1426,31 +1426,31 @@
       {
         "active": true,
         "value": "02 – 10 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"egChip1\"",
         "label": "02 – 10 Octobre 2026"
       },
       {
         "active": false,
         "value": "10 – 17 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"egChip2\"",
         "label": "10 – 17 Octobre 2026"
       },
       {
         "active": false,
         "value": "16 – 23 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"egChip3\"",
         "label": "16 – 23 Octobre 2026"
       },
       {
         "active": false,
         "value": "20 – 27 Octobre 2026",
-        "k": "",
+        "k": " data-i18n=\"egChip4\"",
         "label": "20 – 27 Octobre 2026"
       },
       {
         "active": false,
         "value": "30 Octobre – 06 Novembre 2026",
-        "k": "",
+        "k": " data-i18n=\"egChip5\"",
         "label": "30 Octobre – 06 Novembre 2026"
       }
     ],
@@ -2107,7 +2107,12 @@
       "egFinalWa": "Book via WhatsApp",
       "egFinalAddress": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
       "egStickyLabel": "Estimated total",
-      "egStickyCta": "Book"
+      "egStickyCta": "Book",
+      "egChip1": "2–10 Oct 2026",
+      "egChip2": "10–17 Oct 2026",
+      "egChip3": "16–23 Oct 2026",
+      "egChip4": "20–27 Oct 2026",
+      "egChip5": "30 Oct – 6 Nov 2026"
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل الطيران والإقامة والتنقّلات والزيارات المذكورة ضمن البرنامج المختار. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
@@ -2309,7 +2314,12 @@
       "egFinalWa": "احجز عبر واتساب",
       "egFinalAddress": "حيّ 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
       "egStickyLabel": "الإجمالي التقديري",
-      "egStickyCta": "احجز"
+      "egStickyCta": "احجز",
+      "egChip1": "2–10 أكتوبر 2026",
+      "egChip2": "10–17 أكتوبر 2026",
+      "egChip3": "16–23 أكتوبر 2026",
+      "egChip4": "20–27 أكتوبر 2026",
+      "egChip5": "30 أكتوبر – 6 نوفمبر 2026"
     }
   },
   "keyPrefix": "eg",

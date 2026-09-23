@@ -10,7 +10,7 @@
         "en": 100,
         "ar": 100
       },
-      "bindings": 185,
+      "bindings": 189,
       "shared": 25
     },
     "bali": {
@@ -22,7 +22,7 @@
         "en": 100,
         "ar": 100
       },
-      "bindings": 183,
+      "bindings": 188,
       "shared": 25
     },
     "egypte": {
@@ -34,7 +34,7 @@
         "en": 100,
         "ar": 100
       },
-      "bindings": 197,
+      "bindings": 202,
       "shared": 25
     },
     "istanbul": {
@@ -46,7 +46,7 @@
         "en": 100,
         "ar": 100
       },
-      "bindings": 194,
+      "bindings": 206,
       "shared": 25
     },
     "kuala-lumpur": {
@@ -58,7 +58,7 @@
         "en": 100,
         "ar": 100
       },
-      "bindings": 192,
+      "bindings": 198,
       "shared": 25
     },
     "tunisie": {
@@ -70,7 +70,7 @@
         "en": 100,
         "ar": 100
       },
-      "bindings": 178,
+      "bindings": 183,
       "shared": 25
     },
     "vietnam": {

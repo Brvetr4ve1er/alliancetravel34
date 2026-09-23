@@ -9,18 +9,18 @@
     "ar": 100
   },
   "counts": {
-    "total": 219,
-    "trip": 194,
+    "total": 231,
+    "trip": 206,
     "shared": 25,
     "en": {
       "ok": 188,
-      "stale": 6,
+      "stale": 18,
       "global": 25,
       "missing": 0
     },
     "ar": {
       "ok": 188,
-      "stale": 6,
+      "stale": 18,
       "global": 25,
       "missing": 0
     }
@@ -1516,6 +1516,114 @@
       "scope": "trip",
       "enState": "ok",
       "arState": "ok"
+    },
+    "istChip1": {
+      "fr": "1–8 Oct",
+      "frHash": "01xm1alt",
+      "en": "1–8 Oct 2026",
+      "ar": "1–8 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip2": {
+      "fr": "8–15 Oct",
+      "frHash": "00vyo3d4",
+      "en": "8–15 Oct 2026",
+      "ar": "8–15 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip3": {
+      "fr": "15–22 Oct",
+      "frHash": "00l0geqm",
+      "en": "15–22 Oct 2026",
+      "ar": "15–22 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip4": {
+      "fr": "22–29 Oct",
+      "frHash": "00pf9exp",
+      "en": "22–29 Oct 2026",
+      "ar": "22–29 أكتوبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip5": {
+      "fr": "29 Oct–5 Nov",
+      "frHash": "01lvqvxh",
+      "en": "29 Oct – 5 Nov 2026",
+      "ar": "29 أكتوبر – 5 نوفمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip6": {
+      "fr": "5–12 Nov",
+      "frHash": "0152ho3x",
+      "en": "5–12 Nov 2026",
+      "ar": "5–12 نوفمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip7": {
+      "fr": "12–19 Nov",
+      "frHash": "00zprtsm",
+      "en": "12–19 Nov 2026",
+      "ar": "12–19 نوفمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip8": {
+      "fr": "19–26 Nov",
+      "frHash": "01eags4f",
+      "en": "19–26 Nov 2026",
+      "ar": "19–26 نوفمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip9": {
+      "fr": "26 Nov–3 Déc",
+      "frHash": "00d49kck",
+      "en": "26 Nov – 3 Dec 2026",
+      "ar": "26 نوفمبر – 3 ديسمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip10": {
+      "fr": "3–10 Déc",
+      "frHash": "01s4h79m",
+      "en": "3–10 Dec 2026",
+      "ar": "3–10 ديسمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip11": {
+      "fr": "10–17 Déc",
+      "frHash": "0123osr9",
+      "en": "10–17 Dec 2026",
+      "ar": "10–17 ديسمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
+    },
+    "istChip12": {
+      "fr": "17–24 Déc",
+      "frHash": "00fnj4sc",
+      "en": "17–24 Dec 2026",
+      "ar": "17–24 ديسمبر 2026",
+      "scope": "trip",
+      "enState": "stale",
+      "arState": "stale"
     },
     "istCalcHotelLabel": {
       "fr": "Hôtel",

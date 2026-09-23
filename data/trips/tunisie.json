@@ -644,31 +644,31 @@
       {
         "active": true,
         "value": "20 – 26 Août 2026",
-        "k": "",
+        "k": " data-i18n=\"tnChip1\"",
         "label": "20–26 Août 2026"
       },
       {
         "active": false,
         "value": "28 Août – 03 Septembre 2026",
-        "k": "",
+        "k": " data-i18n=\"tnChip2\"",
         "label": "28 Août–3 Sept 2026"
       },
       {
         "active": false,
         "value": "01 – 07 Septembre 2026",
-        "k": "",
+        "k": " data-i18n=\"tnChip3\"",
         "label": "1–7 Sept 2026"
       },
       {
         "active": false,
         "value": "09 – 15 Septembre 2026",
-        "k": "",
+        "k": " data-i18n=\"tnChip4\"",
         "label": "9–15 Sept 2026"
       },
       {
         "active": false,
         "value": "16 – 22 Septembre 2026",
-        "k": "",
+        "k": " data-i18n=\"tnChip5\"",
         "label": "16–22 Sept 2026"
       }
     ],
@@ -1059,7 +1059,12 @@
       "tnFinalSub": "Hammamet, Sousse or Djerba — private beaches, pools and Mediterranean sun. 6 nights half-board, by bus from Algiers and Oran, no visa.",
       "tnFinalWaCta": "Book via WhatsApp",
       "tnFinalAddress": "Cité 5 Juillet, Bd. de l'ALN · Bordj Bou Arreridj · In the heart of downtown",
-      "tnReserver": "Book"
+      "tnReserver": "Book",
+      "tnChip1": "20–26 Aug 2026",
+      "tnChip2": "28 Aug – 3 Sep 2026",
+      "tnChip3": "1–7 Sep 2026",
+      "tnChip4": "9–15 Sep 2026",
+      "tnChip5": "16–22 Sep 2026"
     },
     "ar": {
       "calcWhyGeneric": "السعر لكل شخص حسب نوع الغرفة المختارة — يشمل النقل والإقامة والتنقّلات والزيارات المذكورة ضمن الباقة المختارة. راجع قسم ما يشمله العرض للتفاصيل الكاملة.",
@@ -1250,7 +1255,12 @@
       "tnFinalSub": "الحمامات أو سوسة أو جربة — شواطئ خاصة ومسابح وشمس البحر الأبيض المتوسط. 6 ليالٍ بنظام نصف الإقامة، بالحافلة من الجزائر العاصمة ووهران، بدون تأشيرة.",
       "tnFinalWaCta": "احجز عبر واتساب",
       "tnFinalAddress": "حي 5 جويلية، شارع جيش التحرير الوطني · برج بوعريريج · في قلب وسط المدينة",
-      "tnReserver": "احجز"
+      "tnReserver": "احجز",
+      "tnChip1": "20–26 أوت 2026",
+      "tnChip2": "28 أوت – 3 سبتمبر 2026",
+      "tnChip3": "1–7 سبتمبر 2026",
+      "tnChip4": "9–15 سبتمبر 2026",
+      "tnChip5": "16–22 سبتمبر 2026"
     }
   },
   "keyPrefix": "tn",
