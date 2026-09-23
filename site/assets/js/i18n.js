@@ -55,6 +55,10 @@
         skip: 'Aller au contenu principal',
         main_aria: 'Navigation principale',
         trips: 'Nos voyages',
+        // Breadcrumb JSON-LD only: the trail lived entirely inside the
+        // structured data, so these two labels never had keys.
+        crumb_home: 'Accueil',
+        crumb_trips: 'Voyages',
         visa_rdv: 'Rendez-vous Visa',
         omra: 'Omra',
         agency: "L'agence",
@@ -440,6 +444,8 @@
         skip: 'Skip to main content',
         main_aria: 'Main navigation',
         trips: 'Our trips',
+        crumb_home: 'Home',
+        crumb_trips: 'Trips',
         visa_rdv: 'Visa Appointments',
         omra: 'Umrah',
         agency: 'The agency',
@@ -847,6 +853,8 @@
         skip: 'تخطَّ إلى المحتوى الرئيسي',
         main_aria: 'التنقل الرئيسي',
         trips: 'رحلاتنا',
+        crumb_home: 'الرئيسية',
+        crumb_trips: 'الرحلات',
         visa_rdv: 'مواعيد التأشيرات',
         omra: 'العمرة',
         agency: 'الوكالة',
