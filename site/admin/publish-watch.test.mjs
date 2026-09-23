@@ -12,7 +12,7 @@
 //     owner has already navigated away from.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { deployState, watchPublish, POLL_DELAYS_MS, WATCH_WINDOW_MS } from "./publish-watch.js";
+import { deployState, watchPublish, POLL_DELAYS_MS, WATCH_WINDOW_MS, HEALTH_URL } from "./publish-watch.js";
 
 const SHA = "1f0c2b7a4e5d6c8b9a0f1e2d3c4b5a6978695847";
 
@@ -150,4 +150,12 @@ test("the polling window is about five minutes, spread over ~20 requests", () =>
   assert.ok(WATCH_WINDOW_MS <= 6 * 60_000, `window is ${WATCH_WINDOW_MS}ms — too long to sit watching`);
   assert.ok(POLL_DELAYS_MS.length <= 24, `${POLL_DELAYS_MS.length} requests is more than this needs`);
   assert.ok(POLL_DELAYS_MS.every((d) => d >= 5000), "no delay tight enough to look like a hammer");
+});
+
+test("the health URL keeps its trailing slash", () => {
+  // vercel.json sets trailingSlash:true, so "/api/health" answers 308. Without
+  // the slash every poll is two round trips — forty requests for twenty
+  // questions — and it would never show up as a bug, only as latency.
+  assert.equal(HEALTH_URL, "/api/health/");
+  assert.ok(HEALTH_URL.startsWith("/"), "same-origin, so no host to get wrong");
 });

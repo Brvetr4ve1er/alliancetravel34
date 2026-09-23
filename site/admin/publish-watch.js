@@ -112,9 +112,15 @@ export async function watchPublish({
  * build is live?" would report the PREVIOUS deployment for the whole window.
  * The service worker never touches /api/* (see sw.js `isExcluded`), so nothing
  * else can intervene.
+ *
+ * The TRAILING SLASH is load-bearing: vercel.json sets `trailingSlash: true`,
+ * so "/api/health" answers 308 to "/api/health/" and every poll would cost two
+ * round trips instead of one — forty requests to ask twenty questions.
  */
+export const HEALTH_URL = "/api/health/";
+
 export async function fetchHealthFromBrowser() {
-  const res = await fetch("/api/health", { cache: "no-store", headers: { Accept: "application/json" } });
+  const res = await fetch(HEALTH_URL, { cache: "no-store", headers: { Accept: "application/json" } });
   if (!res.ok) throw new Error(`health ${res.status}`);
   return res.json();
 }
