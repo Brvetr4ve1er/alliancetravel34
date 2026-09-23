@@ -242,7 +242,10 @@ function localizeHead(html, { lang, slug, langs, data, globalT }) {
   faqLd.forEach((entry, i) => {
     const item = faqItems[i];
     if (!item) return;
-    const qk = keyOf(item.kQ), ak = keyOf(item.kA);
+    // The question key lives on .kQ when the question is its own <span>, and on
+    // .kBtn when the <button> carries it directly (faq.tpl emits either shape).
+    // Azerbaijan uses the second, which is why a kQ-only lookup saw nothing.
+    const qk = keyOf(item.kQ) || keyOf(item.kBtn), ak = keyOf(item.kA);
     const q = qk && resolve(qk), a = ak && resolve(ak);
     if (q) html = replaceJsonField(html, "name", entry.name, plainText(q));
     if (a) html = replaceJsonField(html, "text", entry.text, plainText(a));

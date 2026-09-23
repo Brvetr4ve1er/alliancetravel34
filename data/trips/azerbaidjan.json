@@ -663,7 +663,7 @@
     {
       "open": true,
       "kBtn": " data-i18n=\"azFaqQ1\"",
-      "kQ": " data-i18n=\"azFaqQ1\"",
+      "kQ": "",
       "question": "Comment fonctionne le visa électronique ?",
       "kA": " data-i18n-html=\"azFaqA1\"",
       "answerHtml": "L'Azerbaïdjan délivre un visa électronique (e-Visa) très facilement. Alliance Travel prend en charge toute la procédure et le coût du visa est <strong>inclus</strong> dans votre package. Vous n'avez rien à faire."
@@ -672,7 +672,7 @@
       "open": false,
       "aosDelay": 0,
       "kBtn": " data-i18n=\"azFaqQ2\"",
-      "kQ": " data-i18n=\"azFaqQ2\"",
+      "kQ": "",
       "question": "Que comprend la formule petit-déjeuner ?",
       "kA": " data-i18n-html=\"azFaqA2\"",
       "answerHtml": "Le programme est en <strong>pension petit-déjeuner</strong> dans les deux hôtels. Les déjeuners et dîners sont libres — l'accompagnateur vous guide vers les meilleures adresses locales à des prix très abordables."
@@ -681,7 +681,7 @@
       "open": false,
       "aosDelay": 50,
       "kBtn": " data-i18n=\"azFaqQ3\"",
-      "kQ": " data-i18n=\"azFaqQ3\"",
+      "kQ": "",
       "question": "Comment se font les transferts entre villes ?",
       "kA": " data-i18n-html=\"azFaqA3\"",
       "answerHtml": "Tous les transferts (aéroport–hôtel, Bakou–Sheki–Gabala–Shahdag) se font en <strong>bus touristique climatisé</strong> avec guide. Aucun frais supplémentaire — tout est inclus dans le package."
@@ -690,7 +690,7 @@
       "open": false,
       "aosDelay": 100,
       "kBtn": " data-i18n=\"azFaqQ4\"",
-      "kQ": " data-i18n=\"azFaqQ4\"",
+      "kQ": "",
       "question": "Combien paient les enfants ?",
       "kA": " data-i18n-html=\"azFaqA4\"",
       "answerHtml": "Enfant –4 ans partageant la chambre de 2 adultes : <strong>126.000 DA</strong>. Enfant –12 ans (lit supplémentaire inclus) : <strong>190.000 DA</strong>. Nouveau-né (0–2 ans) : <strong>35.000 DA</strong>."
