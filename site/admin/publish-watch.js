@@ -57,11 +57,20 @@ export function deployState(health, commitSha) {
   if (!health.commit) return "unconfirmable";
   // Compare full SHAs case-insensitively. GitHub and Vercel both report the
   // 40-character form here, but an abbreviated SHA on either side would make
-  // equality silently never true, so accept a prefix match in that direction.
+  // equality silently never true, so a prefix match is accepted in that
+  // direction — with a 12-character floor, not git's display default of 7.
+  //
+  // The floor matters because the two failure directions are not symmetric.
+  // Failing to match costs a "slow" message on a publish that was fine; matching
+  // the WRONG commit tells the owner an edit is live when it is not, which is
+  // the one thing this module exists to prevent. So the bar sits well above
+  // where a collision is imaginable, and the safe failure is the cheap one.
   const live = String(health.commit).toLowerCase();
   const mine = String(commitSha).toLowerCase();
-  const match = live === mine || (live.length >= 7 && mine.startsWith(live)) ||
-                (mine.length >= 7 && live.startsWith(mine));
+  const MIN_PREFIX = 12;
+  const match = live === mine ||
+                (live.length >= MIN_PREFIX && mine.startsWith(live)) ||
+                (mine.length >= MIN_PREFIX && live.startsWith(mine));
   return match ? "live" : "waiting";
 }
 

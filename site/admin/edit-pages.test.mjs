@@ -198,6 +198,8 @@ function load({ storeThrows = false } = {}) {
     navigator: { serviceWorker: { getRegistration: () => Promise.resolve(null) } },
     localStorage: store,
     location: { reload() { reloads++; } },
+    // revert() asks before it rolls back; these tests always mean yes.
+    confirm: () => true,
     JSON, Promise, console, encodeURIComponent, Date, Number,
   };
   vm.createContext(ctx);
@@ -210,6 +212,7 @@ function load({ storeThrows = false } = {}) {
     html: () => byId("area-pages").innerHTML,
     loadTrip: (slug) => ctx.loadTrip(slug),
     save: () => ctx.save(),
+    revert: () => ctx.revert(),
     json: () => byId("ep-json").value,          // what the raw-JSON panel shows
     msg: () => byId("ep-msg").textContent,
     async settle(n = 4) { for (let i = 0; i < n; i++) await tick(); },
@@ -506,4 +509,106 @@ test("a browser that refuses storage still loads the trip", async () => {
   const env = load({ storeThrows: true });
   await open(env, "bali", BALI, "sha-bali");
   assert.equal(JSON.parse(env.json()).slug, "bali");
+});
+
+// ── A watch must not outlive the attempt that started it ──────────────────
+//
+// Found by an adversarial pass over the deployed code. loadSeq moves on a
+// SUCCESSFUL publish, on loadTrip, and on leaving the screen — but not on a
+// refusal. So a watch armed by publish #1 stayed armed through a REFUSED
+// publish #2 and, when the build landed, painted "En ligne ✓" over the
+// refusal: the dashboard reporting an edit as live that was never committed.
+
+test("a refused second publish cancels the first publish's watch", async () => {
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+
+  // Publish #1 succeeds and arms a watch that will not find its commit yet.
+  const first = env.save();
+  await env.settle();
+  env.calls[1].resolve({ ok: true, data: { commitUrl: "u1", commitSha: "commit-one" } });
+  await env.settle();
+  env.calls[2].resolve({ ok: true, data: { content: BALI, sha: "sha-bali-2" } });
+  await tick();
+  assert.match(env.msg(), /pages\.watch\.deploying/);
+
+  // Publish #2 is REFUSED while that watch is still polling.
+  const second = env.save();
+  await env.settle();
+  const post2 = env.calls[env.calls.length - 1];
+  assert.match(post2.url, /save-trip/);
+  post2.resolve({ ok: false, status: 422, data: { errors: ["hero.lede: contenu trop court — x"] } });
+  await second;
+
+  // Now let the build land. The first watch must already have stood down.
+  env.health.serve("commit-one");
+  await first;
+
+  assert.match(env.msg(), /Hero — texte d'introduction/,
+    "the refusal must still be on screen");
+  assert.doesNotMatch(env.msg(), /pages\.watch\.live/,
+    "an edit that was REFUSED must never be reported as live");
+});
+
+test("a revert cancels a publish's watch too", async () => {
+  const env = load();
+  await open(env, "bali", BALI, "sha-bali");
+  const first = env.save();
+  await env.settle();
+  env.calls[1].resolve({ ok: true, data: { commitUrl: "u1", commitSha: "commit-one" } });
+  await env.settle();
+  env.calls[2].resolve({ ok: true, data: { content: BALI, sha: "sha-bali-2" } });
+  await tick();
+
+  // revert() bumps publishSeq at its top; it is then left in flight (its
+  // /api/revert-trip is never resolved) so that the only thing that could still
+  // write into #ep-msg is the publish's watch. save() does not return the
+  // watch's verdict, so the observable is the message itself.
+  env.revert();
+  await env.settle();
+  env.health.serve("commit-one");
+  await first;
+  assert.doesNotMatch(env.msg(), /pages\.watch\.live/,
+    "the publish's watch belongs to the publish, not to the page");
+  assert.match(env.msg(), /pages\.reverting/, "the revert owns the message area now");
+});
+
+// ── The stash must survive being looked for by the wrong trip ─────────────
+
+test("opening a different trip does not destroy another trip's stashed edit", async () => {
+  // After reconnecting, the owner lands on Accueil — they may open any page.
+  // takeStash used to removeItem() before checking the slug, so the first
+  // unrelated trip they opened silently threw away the recovered edit.
+  const env = load();
+  const edited = structuredClone(BALI);
+  edited.meta.title = "texte qui doit survivre";
+  env.store.setItem("at_pending_edit",
+    JSON.stringify({ slug: "bali", json: JSON.stringify(edited), at: Date.now() }));
+
+  await open(env, "istanbul", ISTANBUL, "sha-istanbul");
+  assert.notEqual(env.msg(), "pages.restored", "istanbul has no stash of its own");
+  assert.ok(env.store.getItem("at_pending_edit"), "…and bali's is still there");
+
+  await open(env, "bali", BALI, "sha-bali");
+  assert.equal(env.msg(), "pages.restored", "bali gets its edit back");
+  assert.match(env.json(), /doit survivre/);
+  assert.equal(env.store.getItem("at_pending_edit"), null, "…and only now is it spent");
+});
+
+test("an expired or unparseable stash IS cleared, so it cannot linger", async () => {
+  // Both are unclaimable by ANY trip, which is what makes dropping them safe:
+  // the age check runs before the slug check, and a corrupt envelope has no
+  // slug to check. A valid envelope whose PAYLOAD is corrupt is deliberately
+  // NOT in this list — takeStash cannot see inside .json, so for a non-matching
+  // slug it must leave it for the trip that owns it.
+  for (const raw of [
+    JSON.stringify({ slug: "bali", json: '{"slug":"bali"}', at: Date.now() - 25 * 3600 * 1000 }),
+    "this is not json at all",
+  ]) {
+    const env = load();
+    env.store.setItem("at_pending_edit", raw);
+    await open(env, "istanbul", ISTANBUL, "sha-istanbul");
+    assert.equal(env.store.getItem("at_pending_edit"), null,
+      "nothing can ever claim it, so it should not sit there forever");
+  }
 });

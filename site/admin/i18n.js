@@ -91,10 +91,11 @@ export const STRINGS = {
     "pages.network": "problème de réseau — vérifiez votre connexion",
     "pages.save.network": "Problème de réseau — rien n'a été publié. Vérifiez votre connexion et réessayez.",
     "pages.publish": "Publier", "pages.publishing": "Publication…",
-    // Only used when the site cannot tell us which build is live (see
-    // publish-watch.js "unconfirmable"). Everywhere else the dashboard now
-    // waits and reports what actually happened instead of promising a minute.
-    "pages.published": "Publié ✓ — la page sera à jour dans ~1 minute.",
+    // Only used when the runtime will not name its build (see publish-watch.js
+    // "unconfirmable") - a local preview, essentially; production reports its
+    // commit. It used to reprint "~1 minute", which is the guess this whole
+    // feature exists to delete, so it now says plainly that it cannot tell.
+    "pages.published": "Publié ✓ — enregistré. Cet environnement ne peut pas confirmer la mise en ligne ; ouvrez le site en ligne pour vérifier.",
     "pages.watch.deploying": "Enregistré ✓ — mise en ligne du site en cours, cela prend une à deux minutes. Vous pouvez continuer à travailler.",
     "pages.watch.live": "En ligne ✓ — votre modification est visible sur le site.",
     "pages.watch.slow": "Enregistré ✓ — votre modification est en sécurité, mais le site n'est pas encore à jour après 5 minutes. Rechargez cette page dans un moment ; si rien ne change, prévenez votre développeur.",
@@ -303,7 +304,7 @@ export const STRINGS = {
     "pages.network": "مشكلة في الشبكة — تحقّق من اتصالك",
     "pages.save.network": "مشكلة في الشبكة — لم يُنشر أي شيء. تحقّق من اتصالك وأعد المحاولة.",
     "pages.publish": "نشر", "pages.publishing": "جارٍ النشر…",
-    "pages.published": "تم النشر ✓ — ستُحدَّث الصفحة خلال دقيقة تقريباً.",
+    "pages.published": "تم النشر ✓ — تم الحفظ. لا يمكن لهذه البيئة تأكيد النشر المباشر؛ افتح الموقع المنشور للتحقّق.",
     "pages.watch.deploying": "تم الحفظ ✓ — جارٍ تحديث الموقع، ويستغرق ذلك دقيقة إلى دقيقتين. يمكنك متابعة عملك.",
     "pages.watch.live": "منشور مباشرةً ✓ — تعديلك ظاهر الآن على الموقع.",
     "pages.watch.slow": "تم الحفظ ✓ — تعديلك في أمان، لكن الموقع لم يُحدَّث بعد خمس دقائق. أعد تحميل هذه الصفحة بعد قليل؛ وإن لم يتغيّر شيء فأبلغ المطوّر.",

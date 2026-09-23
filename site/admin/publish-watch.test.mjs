@@ -64,12 +64,20 @@ test("with no commit of our own there is nothing to compare against", () => {
   assert.equal(deployState(serving(SHA), undefined), "unconfirmable");
 });
 
-test("an abbreviated SHA on either side still matches", () => {
-  // Neither API abbreviates today. If one ever does, equality would silently
-  // never hold and every publish would time out looking healthy-but-unconfirmed.
-  assert.equal(deployState(serving(SHA.slice(0, 7)), SHA), "live");
-  assert.equal(deployState(serving(SHA), SHA.slice(0, 7)), "live");
-  // …but not so short that two unrelated commits collide.
+test("an abbreviated SHA matches only well above the length where it could collide", () => {
+  // Neither API abbreviates today. If one ever did, requiring exact equality
+  // would silently never hold and every publish would time out looking
+  // healthy-but-unconfirmed — so a prefix is accepted, but with a 12-character
+  // floor rather than git's DISPLAY default of 7.
+  //
+  // The two failure directions are not symmetric, which is what sets the floor:
+  // failing to match costs a "slow" message on a publish that was fine; matching
+  // the WRONG commit tells the owner an edit is live when it is not. The bar
+  // therefore sits where the safe failure is the cheap one.
+  assert.equal(deployState(serving(SHA.slice(0, 12)), SHA), "live");
+  assert.equal(deployState(serving(SHA), SHA.slice(0, 12)), "live");
+  assert.equal(deployState(serving(SHA.slice(0, 7)), SHA), "waiting",
+    "7 hex characters is a display convenience, not an identity");
   assert.equal(deployState(serving(SHA.slice(0, 4)), SHA), "waiting");
 });
 

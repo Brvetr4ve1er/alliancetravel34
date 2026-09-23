@@ -78,7 +78,14 @@ function fieldInput(label, path, type, val) {
 // The six room keys every trip uses. Falls back to the raw key so a new room
 // type still renders instead of disappearing.
 const ROOM_KEYS = ["double", "triple", "single", "child1", "child2", "baby"];
-const roomLabel = (room) => t("pages.room." + room) || room;
+// `t()` returns the KEY itself when a string is missing, never a falsy value,
+// so the old `|| room` fallback was unreachable and an unlisted room type
+// rendered as the literal "pages.room.suite". Compare against the key instead.
+const roomLabel = (room) => {
+  const key = "pages.room." + room;
+  const label = t(key);
+  return label === key ? room : label;
+};
 
 function hotelPriceInputs(content) {
   const hs = getPath(content, "tripData.hotels") || [];
@@ -282,6 +289,18 @@ function collectInto(content) {
 // request, and let only the newest response touch `current` or the DOM.
 let loadSeq = 0;
 
+// Bumped at the START of every publish and every revert, whatever its outcome.
+//
+// loadSeq alone could not express this. It moves on a SUCCESSFUL publish (the
+// post-publish re-sync), on loadTrip, and on leaving the screen — but NOT on a
+// refusal. So a deploy watch armed by publish #1 stayed armed through a publish
+// #2 that was REFUSED, and five minutes later it painted "En ligne ✓" over the
+// refusal message: the dashboard telling the owner an edit was live when it had
+// been rejected and never committed. That is precisely the lie this whole
+// feature exists to delete, so the watch's lifetime is tied to the attempt that
+// started it rather than to the trip being loaded.
+let publishSeq = 0;
+
 // Set by any keystroke in the form, cleared on a fresh render and on a
 // successful publish. Only #ep-back reads it: leaving the editor is the one
 // action that silently throws typing away.
@@ -464,18 +483,35 @@ function stashEdit() {
   } catch { /* private mode: nothing to be done, and not worth blocking on */ }
 }
 
-/** The stashed edit for `slug`, or null. Reading always clears it. */
+/**
+ * The stashed edit for `slug`, or null.
+ *
+ * Validates BEFORE removing, and that order is the whole point. The stash
+ * belongs to ONE trip, and after reconnecting the owner lands on Accueil — they
+ * may well open a different page first. Clearing on read meant the first
+ * unrelated trip they opened silently destroyed the edit we had just promised to
+ * keep. A stash for another slug is therefore left exactly where it is; only one
+ * that is claimed, unparseable, or expired is cleared.
+ */
 function takeStash(slug, store, now = Date.now()) {
   let raw = null;
-  try { raw = store.getItem(STASH); store.removeItem(STASH); }
-  catch { return null; }
+  try { raw = store.getItem(STASH); } catch { return null; /* private mode */ }
   if (!raw) return null;
-  try {
-    const s = JSON.parse(raw);
-    if (!s || s.slug !== slug || typeof s.json !== "string") return null;
-    if (!Number.isFinite(s.at) || now - s.at > STASH_MAX_AGE_MS) return null;
-    return s;
-  } catch { return null; /* unparseable: the server's version is the safe one */ }
+
+  const drop = () => { try { store.removeItem(STASH); } catch { /* private mode */ } };
+
+  let s = null;
+  try { s = JSON.parse(raw); } catch { s = null; }
+  // Garbage, or too old to trust over the server's copy: nothing can ever claim
+  // it, so it is safe — and tidier — to clear it now.
+  if (!s || typeof s.json !== "string" || !Number.isFinite(s.at) || now - s.at > STASH_MAX_AGE_MS) {
+    drop();
+    return null;
+  }
+  if (s.slug !== slug) return null; // someone else's trip — leave it for them
+
+  drop();
+  return s;
 }
 
 /** Paint a transport/server failure: one sentence, plus a way out where one exists. */
@@ -545,6 +581,9 @@ function renderPublishState(state, info) {
 }
 
 async function save() {
+  // Claim #ep-msg for THIS attempt before anything can fail: even the invalid-JSON
+  // early return below writes there, and an older watch must not overwrite it.
+  const myPublish = ++publishSeq;
   const msg = el("ep-msg");
   // Base = the raw-JSON panel (authoritative for untouched structure), then overlay structured fields.
   let content;
@@ -634,7 +673,7 @@ async function save() {
       commitSha: r.data.commitSha,
       fetchHealth: fetchHealthFromBrowser,
       sleep: (ms) => new Promise((res) => setTimeout(res, ms)),
-      shouldStop: () => loadSeq !== watchSeq || !el("ep-msg"),
+      shouldStop: () => publishSeq !== myPublish || loadSeq !== watchSeq || !el("ep-msg"),
       onState: (state) => {
         renderPublishState(state, info);
         if (state === "live") refreshServiceWorker();
@@ -651,6 +690,9 @@ async function save() {
 // committed version and commits it forward (no history rewrite); on success we
 // reload the trip so the form reflects the restored content, then confirm.
 async function revert() {
+  // A revert is also an attempt on this page, so it cancels any watch a previous
+  // publish left running — and gets cancelled in turn by the next publish.
+  const myPublish = ++publishSeq;
   const msg = el("ep-msg");
   if (!confirm(t("pages.revert.confirm"))) return;
 
@@ -702,7 +744,7 @@ async function revert() {
       commitSha: r.data.commitSha,
       fetchHealth: fetchHealthFromBrowser,
       sleep: (ms) => new Promise((res) => setTimeout(res, ms)),
-      shouldStop: () => loadSeq !== watchSeq || !el("ep-msg"),
+      shouldStop: () => publishSeq !== myPublish || loadSeq !== watchSeq || !el("ep-msg"),
       onState: (state) => {
         if (state === "deploying") return; // "Rétabli ✓" is the better first word
         renderPublishState(state, { commitUrl, slug });

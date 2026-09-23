@@ -22,7 +22,11 @@
 // weaker fallback: it changes on every deploy without identifying which commit,
 // which is enough to notice that *a* new build took over.
 export default async function handler(req, res) {
-  if (req.method !== "GET") return res.status(405).json({ error: "method not allowed" });
+  // HEAD as well as GET: this endpoint's stated audience is uptime monitors, and
+  // HEAD is a common probe mode for them — answering their default with a 405
+  // reads as an outage. The runtime drops the body for a HEAD itself.
+  if (req.method !== "GET" && req.method !== "HEAD")
+    return res.status(405).json({ error: "method not allowed" });
   // Without this a CDN or an intermediary may hand the poller a cached body, and
   // a cached answer to "which build is live?" is worse than no answer: it would
   // report the previous deployment as current for the whole polling window.

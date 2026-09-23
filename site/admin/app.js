@@ -2,6 +2,7 @@
 import { t, fmt, getLang, setLang, applyI18n } from "./i18n.js";
 import { icon } from "./icons.js";
 import { areaHead } from "./ui.js";
+import { apiUrl } from "./api-url.js";
 
 const CFG = window.AT_LEADS || {};
 const $ = (id) => document.getElementById(id);
@@ -54,8 +55,11 @@ let supabase = null; // assigned in boot(), once the library has loaded and veri
 const AT_ADMIN = { supabase: null, session: null, token: null, showArea, status: null };
 window.AT_ADMIN = AT_ADMIN;
 
+// Every admin request goes through here, so the trailing slash /api/* needs is
+// applied once, at the chokepoint, rather than at each of the nine call sites
+// where a tenth could quietly forget it. See ./api-url.js for the measurements.
 async function callApi(path, opts = {}) {
-  const res = await fetch(path, {
+  const res = await fetch(apiUrl(path), {
     ...opts,
     headers: { ...(opts.headers || {}), Authorization: `Bearer ${AT_ADMIN.token}` },
   });
