@@ -53,8 +53,11 @@ function makeInput(value) {
   };
 }
 
-function makeRow(spec, item, orig) {
+// `content` is only needed for extraFields (hotels' `why`, resolved off a
+// DIFFERENT array via getExtra) — every other spec ignores the parameter.
+function makeRow(spec, item, orig, content) {
   const fields = new Map(spec.fields.map((f) => [f.name, makeInput(item[f.name])]));
+  for (const f of spec.extraFields || []) fields.set(f.name, makeInput(f.getExtra(content, item)));
   const radio = spec.choose ? { checked: !!item[spec.choose], type: "radio" } : null;
   return {
     dataset: { orig: orig === null ? "" : String(orig) },
@@ -73,7 +76,7 @@ function buildDom(content) {
   for (const spec of LIST_SPECS) {
     const arr = get(content, spec.path);
     if (!Array.isArray(arr)) continue;
-    lists.set(spec.id, { rows: arr.map((item, i) => makeRow(spec, item, i)) });
+    lists.set(spec.id, { rows: arr.map((item, i) => makeRow(spec, item, i, content)) });
   }
   return {
     lists,
@@ -87,7 +90,7 @@ function buildDom(content) {
     // Test helpers, not part of the real DOM.
     addRow(specId, values) {
       const spec = LIST_SPECS.find((s) => s.id === specId);
-      const row = makeRow(spec, {}, null);
+      const row = makeRow(spec, {}, null, content);
       for (const [k, v] of Object.entries(values)) row.fields.get(k).value = String(v);
       lists.get(specId).rows.push(row);
       return row;
@@ -288,6 +291,36 @@ test("an emptied field is refused, and nothing is written", () => {
   assert.equal(invalid.length, 1);
   assert.equal(invalid[0].invalid, true, "the input must be marked for the owner to find");
   assert.equal(trip.faq[0].question, original, "a refused value must not be written");
+});
+
+test("hotels' extraField 'why' reads and writes tripData.hotels, not the display card", () => {
+  // why lives on a DIFFERENT array (tripData.hotels, the calculator's price
+  // grid) than the card being edited (hotels), matched by calcId — the case
+  // extraFields exists for.
+  const trip = load("istanbul");
+  const dom = buildDom(trip);
+  const card = trip.hotels[0];
+  const calc = trip.tripData.hotels.find((h) => h.id === card.calcId);
+  assert.ok(calc, "fixture assumption: the first card has a matching calc row");
+
+  const input = dom.rows("hotels")[0].fields.get("why");
+  assert.equal(input.value, calc.why, "the form must show the CURRENT tooltip text");
+
+  input.value = "Nouveau texte pour le calculateur.";
+  assert.deepEqual(collectLists(dom, trip), []);
+  assert.equal(calc.why, "Nouveau texte pour le calculateur.", "written to tripData.hotels");
+  assert.equal(card.why, undefined, "never written to the display card — it has no such field");
+});
+
+test("an emptied 'why' is refused, like every other required text field", () => {
+  const trip = load("istanbul");
+  const dom = buildDom(trip);
+  const calc = trip.tripData.hotels.find((h) => h.id === trip.hotels[0].calcId);
+  const before = calc.why;
+  dom.rows("hotels")[0].fields.get("why").value = "   ";
+  const invalid = collectLists(dom, trip);
+  assert.equal(invalid.length, 1);
+  assert.equal(calc.why, before, "a refused value must not be written");
 });
 
 test("a star rating outside 1-5 is refused", () => {

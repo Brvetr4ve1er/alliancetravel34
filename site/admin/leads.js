@@ -164,11 +164,25 @@ function statusTotals() {
 }
 
 // ── Status mutation (shared by the list chip and the panel toggle) ────
-async function applyStatus(r, next) {
+//
+// `feedbackEl` is optional: the browse-list card's status chip (cycleStatus,
+// below) has nowhere on screen to put a message, only the open detail panel
+// does (statusToggle passes its own `feedback` <p role="status">). Before this,
+// a failed RPC rolled the chip back to its old value with NO indication of
+// why — from the panel, indistinguishable from a slow click that just didn't
+// register, which is exactly what copyPhone() already refuses to do for the
+// same class of failure (its own feedbackEl.className='msg err' branch).
+async function applyStatus(r, next, feedbackEl) {
   const prev = r.status;
   r.status = next; syncStatusUI(r);
   const { error } = await window.AT_ADMIN.supabase.rpc("update_lead_status", { lead_id: r.id, new_status: next });
-  if (error) { r.status = prev; syncStatusUI(r); }
+  if (error) {
+    r.status = prev; syncStatusUI(r);
+    if (feedbackEl) {
+      feedbackEl.className = "msg err";
+      feedbackEl.textContent = t("common.error");
+    }
+  }
 }
 function cycleStatus(r) {
   const next = STATUSES[(STATUSES.indexOf(normStatus(r.status)) + 1) % STATUSES.length];
@@ -344,7 +358,7 @@ function backButton(onClick) {
   b.addEventListener("click", onClick);
   return b;
 }
-function statusToggle(r) {
+function statusToggle(r, feedbackEl) {
   const wrap = document.createElement("div"); wrap.className = "chiprow status-toggle";
   wrap.dataset.leadId = String(r.id);
   wrap.setAttribute("role", "group"); wrap.setAttribute("aria-label", t("leads.status.group"));
@@ -354,7 +368,7 @@ function statusToggle(r) {
     b.className = "chip chip--" + s + (on ? " is-on" : "");
     b.textContent = t("leads.status." + s);
     b.setAttribute("aria-pressed", String(on));
-    b.addEventListener("click", () => applyStatus(r, s));
+    b.addEventListener("click", () => applyStatus(r, s, feedbackEl));
     wrap.appendChild(b);
   }
   return wrap;
@@ -378,9 +392,12 @@ function leadDetailPanel(r, backTo) {
   head.append(name);
   wrap.appendChild(head);
 
-  wrap.appendChild(statusToggle(r));
-
+  // Created before statusToggle so both the status buttons AND the contact
+  // actions can report into the same on-screen message — created here, but
+  // appended below in its usual visual position (after the contact actions),
+  // so this reorder changes nothing the owner sees.
   const feedback = document.createElement("p"); feedback.className = "msg"; feedback.setAttribute("role", "status"); feedback.setAttribute("aria-live", "polite");
+  wrap.appendChild(statusToggle(r, feedback));
   wrap.appendChild(panelActions(r.phone, feedback));
   wrap.appendChild(feedback);
 
@@ -406,7 +423,9 @@ function leadDetailPanel(r, backTo) {
 
   const notesField = document.createElement("div"); notesField.className = "field";
   const label = document.createElement("label"); label.textContent = t("leads.notes");
-  const ta = document.createElement("textarea"); ta.className = "notes"; ta.maxLength = 2000;
+  const notesId = "lead-notes-" + r.id;
+  label.htmlFor = notesId;
+  const ta = document.createElement("textarea"); ta.id = notesId; ta.className = "notes"; ta.maxLength = 2000;
   ta.value = r.notes || ""; ta.placeholder = t("leads.notes.placeholder");
   const notesMsg = document.createElement("p"); notesMsg.className = "msg"; notesMsg.setAttribute("role", "status"); notesMsg.setAttribute("aria-live", "polite");
   const saveBtn = document.createElement("button"); saveBtn.type = "button"; saveBtn.className = "btn btn--sm";

@@ -20,6 +20,7 @@ export const STRINGS = {
     "funnel.legend.visits": "Visites", "funnel.legend.clicks": "Clics", "funnel.legend.leads": "Demandes",
     "app.title": "Espace Alliance",
     "nav.home": "Accueil", "nav.leads": "Demandes", "nav.pages": "Pages", "nav.settings": "Réglages",
+    "nav.lang_toggle": "Changer la langue de l'interface",
     "login.title": "Espace administrateur",
     "login.sub": "Connectez-vous pour gérer vos pages et vos demandes.",
     "login.email": "Email", "login.password": "Mot de passe", "login.submit": "Se connecter",
@@ -86,6 +87,7 @@ export const STRINGS = {
     "pages.group.seo": "Référencement (Google)", "pages.group.hero": "En-tête de la page", "pages.group.prices": "Tarifs hôtels (DA)",
     "pages.advanced": "Avancé — réservé au développeur",
     "pages.advanced.warn": "Modifier ce bloc peut casser la page. La sauvegarde est refusée si le contenu est invalide.",
+    "pages.advanced.json": "Contenu JSON complet de la page",
     "pages.loading": "Chargement de {slug}…",
     "pages.load.fail": "Impossible d'ouvrir cette page : {e}",
     "pages.network": "problème de réseau — vérifiez votre connexion",
@@ -176,6 +178,8 @@ export const STRINGS = {
     "pages.f.hotel.image": "Photo de l'hôtel",
     "pages.f.hotel.alt": "Description de la photo",
     "pages.f.hotel.alt.hint": "Lue à voix haute par les lecteurs d'écran, et affichée si la photo ne charge pas. Ex. : Piscine de l'hôtel Blend Club au coucher du soleil",
+    "pages.f.hotel.why": "Pourquoi ce prix (calculateur)",
+    "pages.f.hotel.why.hint": "Le texte affiché quand un client clique « Pourquoi ce prix ? » dans le calculateur, pour cet hôtel précisément.",
     "pages.img.unknown": "(photo actuelle)",
     "pages.img.offline": "Liste des photos indisponible pour le moment : la photo actuelle est conservée. Le reste de la page reste modifiable.",
     "pages.f.incl": "Prestation incluse",
@@ -233,6 +237,7 @@ export const STRINGS = {
     "funnel.legend.visits": "زيارات", "funnel.legend.clicks": "نقرات", "funnel.legend.leads": "طلبات",
     "app.title": "فضاء أليانس",
     "nav.home": "الرئيسية", "nav.leads": "الطلبات", "nav.pages": "الصفحات", "nav.settings": "الإعدادات",
+    "nav.lang_toggle": "تغيير لغة الواجهة",
     "login.title": "فضاء الإدارة",
     "login.sub": "سجّل الدخول لإدارة صفحاتك وطلباتك.",
     "login.email": "البريد الإلكتروني", "login.password": "كلمة المرور", "login.submit": "تسجيل الدخول",
@@ -299,6 +304,7 @@ export const STRINGS = {
     "pages.group.seo": "الظهور في غوغل", "pages.group.hero": "ترويسة الصفحة", "pages.group.prices": "أسعار الفنادق (دج)",
     "pages.advanced": "متقدم — مخصص للمطوّر",
     "pages.advanced.warn": "تعديل هذا الجزء قد يعطّل الصفحة. يُرفض الحفظ إذا كان المحتوى غير صالح.",
+    "pages.advanced.json": "محتوى JSON الكامل للصفحة",
     "pages.loading": "جارٍ تحميل {slug}…",
     "pages.load.fail": "تعذّر فتح هذه الصفحة: {e}",
     "pages.network": "مشكلة في الشبكة — تحقّق من اتصالك",
@@ -383,6 +389,8 @@ export const STRINGS = {
     "pages.f.hotel.image": "صورة الفندق",
     "pages.f.hotel.alt": "وصف الصورة",
     "pages.f.hotel.alt.hint": "يقرأه قارئ الشاشة، ويُعرض إذا لم تُحمَّل الصورة.",
+    "pages.f.hotel.why": "لماذا هذا السعر (حاسبة الأسعار)",
+    "pages.f.hotel.why.hint": "النص المعروض عند نقر العميل على «لماذا هذا السعر؟» في الحاسبة، لهذا الفندق تحديداً.",
     "pages.img.unknown": "(الصورة الحالية)",
     "pages.img.offline": "قائمة الصور غير متاحة حاليًا: تُحفظ الصورة الحالية. بقية الصفحة قابلة للتعديل.",
     "pages.f.incl": "خدمة مشمولة",
@@ -437,6 +445,14 @@ export function fmt(k, vars) {
 export function applyI18n(root) {
   (root || document).querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
   (root || document).querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
+  // Same idea as the two above, for a control whose VISIBLE text is something
+  // else entirely (#lang-toggle prints the OTHER language's name — "عربي" on
+  // a French screen — so its own aria-label cannot come from data-i18n without
+  // fighting that). Re-applied on every setLang(), so it never needs a
+  // separate call at each place the button's label is toggled.
+  (root || document).querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+    el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
+  });
 }
 export function setLang(l) {
   lang = l === "ar" ? "ar" : "fr";

@@ -169,6 +169,34 @@ const SPECS = [
       // picture would notice.
       { name: "alt", labelKey: "pages.f.hotel.alt", hintKey: "pages.f.hotel.alt.hint", type: "text" },
     ],
+    // `why` lives on the OTHER hotels array (tripData.hotels — the calculator's
+    // price grid, matched to this card by `calcId`), not on this one, and it is
+    // live content: calculator.js reads it verbatim for the "Pourquoi ce prix ?"
+    // tooltip on every trip's every hotel. It carries NO translation binding on
+    // any trip today (every value is a plain French string, the "legacy" branch
+    // calculator.js's own comment names — the {fr,en,ar} shape it also accepts
+    // is unused so far), so this is a plain textarea, not a `k`-tracked field.
+    // A separate `getExtra`/`setExtra` pair rather than a `path` on `fields`,
+    // because this field's data lives at a different array than the card being
+    // edited — the generic per-field collector assumes both are the same item.
+    extraFields: [
+      {
+        name: "why", labelKey: "pages.f.hotel.why", hintKey: "pages.f.hotel.why.hint", type: "textarea",
+        // The join key is named DIFFERENTLY on each side — hotels[].calcId
+        // matches tripData.hotels[].id, not .calcId (which tripData.hotels
+        // does not have at all). Confirmed against istanbul before writing
+        // this a second time: `hotels[0].calcId === "river"`,
+        // `tripData.hotels[0] === {id:"river", name, prices, why}`.
+        getExtra: (content, row) => {
+          const calc = (getPath(content, "tripData.hotels") || []).find((h) => h.id === row.calcId);
+          return (calc && calc.why) || "";
+        },
+        setExtra: (content, row, value) => {
+          const calc = (getPath(content, "tripData.hotels") || []).find((h) => h.id === row.calcId);
+          if (calc) calc.why = value;
+        },
+      },
+    ],
     // starsHtml is what the page prints and validate-trip requires; nothing
     // keeps it in step with `stars` on its own.
     after: (rows) => rows.forEach((r) => {
@@ -214,7 +242,6 @@ const SPECS = [
   },
 ];
 
-export const LIST_IDS = SPECS.map((s) => s.id);
 export { SPECS as LIST_SPECS };
 
 // ── Key shape, inferred ────────────────────────────────────────────────
@@ -332,7 +359,12 @@ function fieldHtml(spec, i, f, value) {
 // `orig` is the item's index in the ORIGINAL array, or "" for a row the owner
 // just added. collectLists() uses it to reuse the existing object (keeping the
 // properties this editor never shows) instead of rebuilding it.
-function rowHtml(spec, item, i, orig) {
+//
+// `content` is threaded through ONLY for `spec.extraFields` — a field whose
+// value lives on a DIFFERENT array than `item` (e.g. hotels' `why`, matched to
+// its card by calcId on tripData.hotels). `fields` never needs it: those
+// values always live on `item` itself.
+function rowHtml(spec, item, i, orig, content) {
   const pick = spec.choose
     ? `<label class="lister__pick"><input type="radio" name="pick-${spec.id}"${item[spec.choose] ? " checked" : ""} />` +
       `<span>${esc(t("pages.list.pick." + spec.id))}</span></label>`
@@ -340,9 +372,12 @@ function rowHtml(spec, item, i, orig) {
   const del = spec.addable
     ? `<button type="button" class="lister__del" data-del="${spec.id}" title="${esc(t("pages.list.remove"))}" aria-label="${esc(t("pages.list.remove"))}">✕</button>`
     : "";
+  const extra = (spec.extraFields || [])
+    .map((f) => fieldHtml(spec, i, f, f.getExtra(content, item)))
+    .join("");
   return `<div class="lister__row" data-orig="${orig}">` +
     `<div class="lister__num" aria-hidden="true">${i + 1}</div>` +
-    `<div class="lister__body">${spec.fields.map((f) => fieldHtml(spec, i, f, item[f.name])).join("")}${pick}</div>` +
+    `<div class="lister__body">${spec.fields.map((f) => fieldHtml(spec, i, f, item[f.name])).join("")}${extra}${pick}</div>` +
     del + `</div>`;
 }
 
@@ -353,7 +388,7 @@ export function listsHtml(content) {
     // A trip without this section simply does not show it, rather than
     // offering an editor that writes a key the template never reads.
     if (!Array.isArray(arr)) return "";
-    const rows = arr.map((item, i) => rowHtml(spec, item, i, i)).join("");
+    const rows = arr.map((item, i) => rowHtml(spec, item, i, i, content)).join("");
     const add = spec.addable
       ? `<button type="button" class="btn btn--ghost btn--sm" data-add="${spec.id}">+ ${esc(t("pages.list.add." + spec.id))}</button>`
       : "";
@@ -375,7 +410,7 @@ export function wireLists(root, content) {
       // rowHtml interpolates only declared field values (all through esc()) and
       // dictionary strings from i18n.js. A blank row carries no trip data at
       // all, so nothing unescaped reaches this string.
-      box.insertAdjacentHTML("beforeend", rowHtml(spec, blank, box.children.length, ""));
+      box.insertAdjacentHTML("beforeend", rowHtml(spec, blank, box.children.length, "", content));
       renumber(root, spec);
       const first = box.lastElementChild.querySelector("input, textarea");
       if (first) first.focus();
@@ -480,6 +515,24 @@ export function collectLists(root, content) {
           if (raw === "") { refuse(); continue; }
           item[f.name] = raw;
         }
+      }
+
+      // extraFields write through getExtra/setExtra instead of item[f.name]
+      // directly — their value lives on a different array, matched by some key
+      // on `item` (hotels' `why` by calcId), not on `item` itself.
+      for (const f of spec.extraFields || []) {
+        const inp = row.querySelector(`[data-lf="${f.name}"]`);
+        if (!inp) continue;
+        inp.classList.remove("is-invalid");
+        inp.removeAttribute("aria-invalid");
+        const raw = String(inp.value).trim();
+        if (raw === "") {
+          inp.classList.add("is-invalid");
+          inp.setAttribute("aria-invalid", "true");
+          invalid.push(inp);
+          continue;
+        }
+        f.setExtra(content, item, raw);
       }
 
       if (spec.choose) {

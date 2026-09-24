@@ -173,7 +173,8 @@ function renderEditor(container) {
       <div id="ep-lists">${listsHtml(c)}</div>
       <details class="adv"><summary data-i18n="pages.advanced"></summary>
         <p class="msg" data-i18n="pages.advanced.warn"></p>
-        <textarea id="ep-json">${escHtml(JSON.stringify(c, null, 2))}</textarea>
+        <div class="field"><label for="ep-json" data-i18n="pages.advanced.json"></label>
+        <textarea id="ep-json">${escHtml(JSON.stringify(c, null, 2))}</textarea></div>
       </details>
     </div>`;
   applyI18n(container);
