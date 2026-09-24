@@ -13,6 +13,32 @@ const isStr = (v) => typeof v === "string" && v.length > 0;
 // module constant (not rebuilt per call) and written without the `g` flag on
 // purpose: a global regex carries lastIndex between .test() calls and would
 // skip every other match.
+// A value bound for href="" or src="" is decoded by the BROWSER's own HTML
+// attribute-value parser before the scheme is read: character references
+// (&#106;, &#x6a;) resolve to their character, and ASCII tab/CR/LF are
+// stripped wherever they occur — the WHATWG URL spec's own "remove all ASCII
+// tab or newline" step. A literal regex on the raw JSON string cannot see
+// past either transform. Measured 2026-09-24, against the real save-trip
+// chain (validateTrip -> syncDerivedPrices -> renderTrip), not just this
+// function in isolation: `<a href="&#106;avascript:...">`  (the letter "j"
+// entity-encoded) and `<a href="jav\tascript:...">` (a raw tab inside the
+// word) both passed with zero errors, and the resulting page executes the
+// javascript: URI on click — on the same trip page as the booking form that
+// collects a visitor's passport details. Scoped to exactly the two patterns
+// below that check a URL *scheme*: the <script>/<iframe>/onX= family relies
+// on a literal, unescaped `<` actually forming a tag when spliced into HTML
+// text content, where an entity-encoded `&lt;script&gt;` renders as the
+// harmless TEXT "<script>", not a real tag — normalizing those would only
+// invite false positives on legitimate prose containing an entity by chance.
+export function decodeNumericEntities(s) {
+  return String(s)
+    .replace(/&#x([0-9a-f]+);?/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#([0-9]+);?/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)));
+}
+export function normalizeForSchemeCheck(s) {
+  return decodeNumericEntities(s).replace(/[\t\r\n]/g, "");
+}
+
 const UNSAFE_MARKUP = [
   [/<\s*script\b/i, "<script>"],
   [/<\s*iframe\b/i, "<iframe>"],
@@ -20,8 +46,10 @@ const UNSAFE_MARKUP = [
   // onclick=, onerror=, onload= … the attribute form is what matters, so the
   // `=` is required: the word "onload" in prose is not a handler.
   [/\bon[a-z]+\s*=/i, "un gestionnaire d'événement (onclick, onerror…)"],
-  // Matches through entity/whitespace obfuscation of the colon.
-  [/javascript\s*(?:&#x?[0-9a-f]+;?|:)/i, "une URL javascript:"],
+  // normalize: true — tested against the entity-decoded, tab/CR/LF-stripped
+  // form, matching what the browser itself will see once it parses the
+  // attribute. See decodeNumericEntities/normalizeForSchemeCheck above.
+  [/javascript\s*:/i, "une URL javascript:", true],
   // Tags that need no script to do damage, and so are not covered by the
   // handler/scheme rules above. <base> rewrites every relative URL on the page
   // (the CSP's base-uri 'self' also blocks it, but this layer does not depend
@@ -36,8 +64,9 @@ const UNSAFE_MARKUP = [
   [/<\s*style\b/i, "<style>"],
   [/<\s*link\b/i, "<link>"],
   // data:text/html executes in a navigation context. Other data: URIs (an
-  // inline SVG placeholder, say) stay allowed.
-  [/data\s*:\s*text\/html/i, "une URL data:text/html"],
+  // inline SVG placeholder, say) stay allowed. Same normalize=true reasoning
+  // as javascript: above — this is a URL scheme, not literal markup.
+  [/data\s*:\s*text\/html/i, "une URL data:text/html", true],
 ];
 const isInt = (v) => Number.isInteger(v);
 
@@ -237,8 +266,9 @@ export function validateTrip(file, data, { enabled = false, siteDir = null, chec
   // patterns appear ZERO times across the 7 live trips, so nothing existing is
   // rejected.
   for (const [path, value] of strings(data)) {
-    for (const [re, what] of UNSAFE_MARKUP) {
-      if (re.test(value)) {
+    const normalized = normalizeForSchemeCheck(value);
+    for (const [re, what, normalize] of UNSAFE_MARKUP) {
+      if (re.test(normalize ? normalized : value)) {
         err(file, `${path}: ${what} interdit dans le contenu (le texte est inséré tel quel dans la page)`);
         break; // one message per field is enough to act on
       }
