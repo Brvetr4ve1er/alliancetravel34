@@ -85,9 +85,9 @@ export function leadFields(rows) {
 // whatever number you write is displayed verbatim — so the instant must be
 // converted to the office's wall clock first, or a lead that arrived at 00:30
 // in Bordj Bou Arréridj is filed under the previous day.
-export const OFFICE_TZ = "Africa/Algiers";
+const OFFICE_TZ = "Africa/Algiers";
 
-export function wallClockParts(d, tz = OFFICE_TZ) {
+function wallClockParts(d, tz = OFFICE_TZ) {
   try {
     const f = new Intl.DateTimeFormat("en-CA", {
       timeZone: tz, hour12: false,

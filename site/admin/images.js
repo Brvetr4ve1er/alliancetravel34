@@ -43,9 +43,6 @@ export async function loadCatalogue() {
   return inflight;
 }
 
-export function getCatalogue() { return catalogue; }
-export function resetCatalogue() { catalogue = null; inflight = null; }   // tests
-
 /** Where the dashboard can load a preview of a stored value. */
 export function thumbFor(slot, value) {
   const v = String(value ?? "");

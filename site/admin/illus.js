@@ -32,22 +32,20 @@ function el(tag, attrs) {
 //   .illus .ink   → brand green    .illus .accent → gold
 //   .illus .soft  → tinted fill    .illus .dash   → dotted motion trail
 
-/** No visits yet — a dawn horizon with bars just starting to grow. */
-export function illusVisits() {
-  const s = svg(170, 120);
-  s.append(
-    el("circle", { cx: 85, cy: 62, r: 22, class: "soft" }),
-    el("path", { d: "M85 30v-9M85 103v-9M53 62h-9M126 62h-9M62 39l-6-6M114 85l-6-6M108 39l6-6M56 85l6-6", class: "accent", "stroke-width": 2, "stroke-linecap": "round" }),
-    el("circle", { cx: 85, cy: 62, r: 13, class: "accent", "stroke-width": 2 }),
-    el("path", { d: "M20 100h130", class: "ink", "stroke-width": 2.4, "stroke-linecap": "round" }),
-    el("path", { d: "M44 100V86M85 100V74M126 100V62", class: "ink", "stroke-width": 7, "stroke-linecap": "round", opacity: ".28" }),
-    el("path", { d: "M44 86 85 74l41-12", class: "dash", "stroke-width": 2, "stroke-linecap": "round", "stroke-dasharray": "4 5" }),
-  );
-  return s;
-}
-
-/** No leads yet — an open envelope and a paper plane leaving a dotted trail. */
-export function illusLeads() {
+/**
+ * No leads yet — an open envelope and a paper plane leaving a dotted trail.
+ *
+ * Only `emptyState()` below is imported anywhere in the repo (confirmed by a
+ * repo-wide grep, 2026-09-24), so the five variants it can select — visits,
+ * leads, welcome, soon, done — are the actual live surface, not these
+ * functions' own export status. Two are genuinely reachable (`emptyState()`
+ * is called with "leads" from accueil.js/leads.js and "welcome" from leads.js
+ * only); illusVisits/illusSoon/illusDone had no caller passing "visits"/
+ * "soon"/"done" anywhere and are removed rather than kept as unreachable
+ * art. The visits KPI's own empty state (kpiTile(..., "empty.visits"))
+ * renders as plain text through a different path, with no illustration.
+ */
+function illusLeads() {
   const s = svg(170, 120);
   s.append(
     el("path", { d: "M28 58h74v46H28z", class: "soft" }),
@@ -61,7 +59,7 @@ export function illusLeads() {
 }
 
 /** Welcome / orientation — a compass rose. */
-export function illusWelcome() {
+function illusWelcome() {
   const s = svg(170, 120);
   s.append(
     el("circle", { cx: 85, cy: 60, r: 42, class: "soft" }),
@@ -73,37 +71,14 @@ export function illusWelcome() {
   return s;
 }
 
-/** Under construction — a folded map with a pin and a dashed route. */
-export function illusSoon() {
-  const s = svg(170, 120);
-  s.append(
-    el("path", { d: "M25 36 66 24l38 12 41-12v60l-41 12-38-12-41 12z", class: "soft" }),
-    el("path", { d: "M25 36 66 24l38 12 41-12v60l-41 12-38-12-41 12z", class: "ink", "stroke-width": 2.4, "stroke-linejoin": "round" }),
-    el("path", { d: "M66 24v60M104 36v60", class: "ink", "stroke-width": 1.6, opacity: ".55" }),
-    el("path", { d: "M42 74c14-6 18-22 32-22s20 14 34 8", class: "dash", "stroke-width": 2, "stroke-linecap": "round", "stroke-dasharray": "3 6" }),
-    el("path", { d: "M108 42c6 0 10 4 10 10 0 7-10 16-10 16s-10-9-10-16c0-6 4-10 10-10z", class: "accent", "stroke-width": 2.4, "stroke-linejoin": "round" }),
-    el("circle", { cx: 108, cy: 52, r: 3.2, class: "accent", "stroke-width": 2 }),
-  );
-  return s;
-}
-
-/** Success / published — a check inside a stamped circle. */
-export function illusDone() {
-  const s = svg(170, 120);
-  s.append(
-    el("circle", { cx: 85, cy: 60, r: 36, class: "soft" }),
-    el("circle", { cx: 85, cy: 60, r: 36, class: "ink", "stroke-width": 2.4, "stroke-dasharray": "5 4" }),
-    el("path", { d: "m67 60 13 13 24-26", class: "accent", "stroke-width": 4, "stroke-linecap": "round", "stroke-linejoin": "round" }),
-  );
-  return s;
-}
-
-export const ILLUS = {
-  visits: illusVisits,
+// Not exported: emptyState() below is the only consumer, and nothing else in
+// the repo imports ILLUS directly (confirmed by grep). The two live kinds are
+// the two callers actually pass — "leads" and "welcome" — see the comment on
+// illusLeads for the three that were removed (illusSoon and illusDone with
+// it: both were exported and never called, same class of dead art).
+const ILLUS = {
   leads: illusLeads,
   welcome: illusWelcome,
-  soon: illusSoon,
-  done: illusDone,
 };
 
 /** Build an illustrated empty state: art + heading + explanation + optional hint. */

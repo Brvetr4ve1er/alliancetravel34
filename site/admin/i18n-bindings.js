@@ -46,12 +46,6 @@ export const BINDINGS = [
   }],
 ];
 
-/** Fields the owner can edit that carry no translation, with the reason shown. */
-export const UNTRANSLATED = {
-  "meta.title": "pages.i18n.head",
-  "meta.description": "pages.i18n.head",
-};
-
 const MAP = new Map(BINDINGS);
 
 /** The manifest key a field feeds on a given trip, or null. */
@@ -67,12 +61,6 @@ export function frenchFor(path, trip) {
   if (!b) return null;
   if (b.compose) return b.compose(trip);
   return path.split(".").reduce((x, k) => (x == null ? x : x[k]), trip);
-}
-
-/** Every field that contributes to the same key as `path` (itself included). */
-export function siblingFields(path) {
-  const b = MAP.get(path);
-  return (b && b.fields) || (b ? [path] : []);
 }
 
 /**
@@ -94,14 +82,4 @@ export function frHash(text) {
     hash = Math.imul(hash, 0x01000193);
   }
   return (hash >>> 0).toString(36).padStart(8, "0");
-}
-
-/**
- * The French a key currently holds, normalised the way the manifest stores it.
- * check-i18n-bindings.mjs asserts this equals the manifest's `fr` for every
- * declared field on every trip, so hashing this in the browser and hashing the
- * manifest's `fr` at build time cannot disagree without failing the build.
- */
-export function composedFr(path, trip) {
-  return String(frenchFor(path, trip) ?? "").trim();
 }

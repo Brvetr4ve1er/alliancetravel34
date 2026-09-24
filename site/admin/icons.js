@@ -88,17 +88,3 @@ export function icon(name, opts = {}) {
   return svg;
 }
 
-// Convenience: a button with an icon + a visible label, sized for thumbs.
-export function iconButton(name, label, { className = "btn", size = 18, onClick } = {}) {
-  const b = document.createElement("button");
-  b.type = "button";
-  b.className = className;
-  b.append(icon(name, { size }));
-  const span = document.createElement("span");
-  span.textContent = label;
-  b.appendChild(span);
-  if (onClick) b.addEventListener("click", onClick);
-  return b;
-}
-
-export const ICON_NAMES = Object.keys(ICONS);
