@@ -26,10 +26,16 @@
 #                                known public project URL below if the secret is
 #                                empty, so most owners only need the key above.
 #
-# Until BOTH secrets are set, this workflow is a deliberate no-op: it runs, warns
-# which secret is missing, and exits 0 (green) — it never fails a run just because
-# a secret is missing, and it NEVER uploads plaintext PII. Secrets are passed
-# through env only and are never echoed; GitHub also masks them in logs.
+# Until BOTH secrets are set, this workflow does NO backup and NEVER uploads
+# plaintext PII — but the RUN ITSELF now fails (red), not passes (green).
+# Measured 2026-09-24: it ran green 6 times in a row over 6+ weeks while
+# producing zero backup artifacts, because the original design deliberately
+# exited 0 on a missing secret to avoid alarming an owner who hadn't gotten to
+# configuring it yet. That reasoning backfired — a persistently green check is
+# read as "backups are working," which was false every single week. A missing
+# secret is still explained in plain language via ::warning:: (see below), the
+# run just no longer LIES about the outcome while explaining it. Secrets are
+# passed through env only and are never echoed; GitHub also masks them in logs.
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: Backup leads
@@ -54,15 +60,21 @@ jobs:
           BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
         run: |
           if [ -z "${SUPABASE_SERVICE_ROLE_KEY}" ]; then
-            echo "::warning::SUPABASE_SERVICE_ROLE_KEY is not set — skipping lead backup."
-            echo "This is expected until the owner adds the secret; the run is intentionally a no-op."
+            echo "::warning::SUPABASE_SERVICE_ROLE_KEY is not set — no backup ran this week."
+            echo "Add it in Settings → Secrets and variables → Actions to fix this run going red."
             echo "configured=false" >> "$GITHUB_OUTPUT"
+            # A missing secret means zero PII was backed up this week — that is a
+            # failure to report, not a reason to skip reporting one. See the file
+            # header for why this used to exit 0 and why that was the wrong call.
+            exit 1
           elif [ -z "${BACKUP_PASSPHRASE}" ]; then
             # PII gate: this repo is public and its artifacts are world-downloadable.
             # Without a passphrase to encrypt with, uploading the leads CSV would
             # publish every customer's name and phone — refuse rather than leak.
-            echo "::warning::BACKUP_PASSPHRASE is not set — skipping lead backup (a plaintext customer list must never be uploaded as an artifact of a public repo)."
+            echo "::warning::BACKUP_PASSPHRASE is not set — no backup ran this week (a plaintext customer list must never be uploaded as an artifact of a public repo)."
+            echo "Add it in Settings → Secrets and variables → Actions to fix this run going red."
             echo "configured=false" >> "$GITHUB_OUTPUT"
+            exit 1
           else
             echo "Both secrets present — proceeding with encrypted backup."
             echo "configured=true" >> "$GITHUB_OUTPUT"
