@@ -7,9 +7,16 @@
 // Same harness as the other api/*.test.mjs files: verifyAdmin reaches Supabase
 // only through global fetch(), so t.mock.method(globalThis, "fetch") sees
 // everything and can prove when nothing was sent at all.
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import handler from "./me.mjs";
+import { _reset as _resetRateLimit } from "./_lib/ratelimit.mjs";
+
+// This endpoint's own limited(req, res, AUTH_PROBE) call AND verifyAdmin's own
+// internal rate limit both key off clientKey(req), which every fake request
+// here shares (no x-forwarded-for) — reset before each test so this file's own
+// count can never trip either one. See save-trip.test.mjs for the incident.
+beforeEach(() => { _resetRateLimit(); });
 
 process.env.AT_SUPABASE_URL = "https://example.supabase.co";
 process.env.AT_SUPABASE_ANON_KEY = "anon-key";

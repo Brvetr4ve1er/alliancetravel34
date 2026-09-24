@@ -9,10 +9,21 @@
 // contents) reaches the network only through global fetch(), so stubbing
 // globalThis.fetch with node:test's built-in `mock` (t.mock.method, auto-restored
 // per test) intercepts every call without touching any ES module export binding.
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import handler, { MAX_BODY_BYTES } from "./save-trip.mjs";
+import { _reset as _resetRateLimit } from "./_lib/ratelimit.mjs";
+
+// verifyAdmin (api/_lib/auth.mjs) now rate-limits its own Supabase round trip
+// per caller, keyed by clientKey(req) — and every fake request in this file
+// carries no x-forwarded-for, so clientKey() falls back to the same "unknown"
+// for every single test. Without this reset, test ~31 onward in this file
+// started failing its bearer-token gate with 429 instead of the status it was
+// actually testing — the rate limiter doing exactly its job, just against a
+// test suite instead of a real flood. This has no bearing on production: a
+// real caller's IP always varies per-request via Vercel's own header.
+beforeEach(() => { _resetRateLimit(); });
 
 process.env.GITHUB_REPO = "owner/repo";
 process.env.GITHUB_TOKEN = "test-token";

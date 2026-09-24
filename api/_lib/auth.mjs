@@ -2,6 +2,7 @@
 // No service-role key: the caller's own Supabase token is verified against
 // the Auth server, then the returned email is checked against ADMIN_EMAILS.
 import { deadline, AUTH_TIMEOUT_MS } from "./http.mjs";
+import { rateLimit, clientKey, AUTH_PROBE } from "./ratelimit.mjs";
 
 export function parseBearer(req) {
   const h = (req.headers && (req.headers.authorization || req.headers.Authorization)) || "";
@@ -32,6 +33,20 @@ export function supabaseEnv() {
 export async function verifyAdmin(req) {
   const token = parseBearer(req);
   if (!token) return { ok: false, status: 401, error: "missing bearer token" };
+  // Found by a professional-practices audit, 2026-09-24: a MISSING token
+  // short-circuits above with no network call, but a WRONG one still costs a
+  // real round trip to Supabase's Auth server — and this function gates all
+  // eight admin endpoints (save-trip, get-trip, list-images, revert-trip,
+  // status, export-leads, notify-test, me), so any caller holding ANY non-
+  // empty bearer token, valid or not, could flood every one of them with
+  // Supabase round trips. /api/me already guards this exact cost with its own
+  // limited(req, res, AUTH_PROBE) call ahead of verifyAdmin — this extends the
+  // same budget to the other seven, which had nothing. Namespaced with a
+  // ':verifyAdmin' suffix so the two checks use separate buckets and a real
+  // admin session is never charged twice against the same counter for one
+  // request.
+  const probe = rateLimit(`${clientKey(req)}:verifyAdmin`, AUTH_PROBE);
+  if (!probe.ok) return { ok: false, status: 429, error: "too many requests", retryAfter: probe.retryAfter };
   const { url: base, anonKey } = supabaseEnv();
   let res;
   try {

@@ -3,9 +3,15 @@
 // after the auth gate EVERY outcome is a 200 carrying { ok, step, … }, because the
 // dashboard renders a sentence and a 502 would make a perfectly good diagnosis
 // ("your domain is not verified") look like a broken request.
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import handler from "./notify-test.mjs";
+import { _reset as _resetRateLimit } from "./_lib/ratelimit.mjs";
+
+// verifyAdmin rate-limits its own Supabase round trip per caller; every fake
+// request here shares one clientKey() fallback, so reset before each test —
+// see save-trip.test.mjs for the incident this fixed.
+beforeEach(() => { _resetRateLimit(); });
 
 const ENV_KEYS = ["LEAD_NOTIFY_SECRET", "RESEND_API_KEY", "OWNER_NOTIFY_EMAIL", "LEAD_NOTIFY_FROM",
                   "ADMIN_EMAILS", "AT_SUPABASE_URL", "AT_SUPABASE_ANON_KEY"];

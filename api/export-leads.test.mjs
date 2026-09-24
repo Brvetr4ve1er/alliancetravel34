@@ -9,10 +9,19 @@
 // escaping, XLSX typing and the ZIP container. What is left for this file is the
 // endpoint's contract — the gate, the dormancy, the service-role read, and that the
 // right bytes leave with the right headers.
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import handler, { pickFormat, LEAD_FIELDS } from "./export-leads.mjs";
 import { FORMATS } from "../site/admin/export.js";
+import { _reset as _resetRateLimit } from "./_lib/ratelimit.mjs";
+
+// verifyAdmin (api/_lib/auth.mjs) rate-limits its own Supabase round trip per
+// caller; every fake request here shares one clientKey() fallback ("unknown",
+// no x-forwarded-for), so a bare handler() call is enough calls in one file to
+// eventually trip it — reset before each test so this file's own count can
+// never collide with itself or another file's. See save-trip.test.mjs for the
+// incident this fixed.
+beforeEach(() => { _resetRateLimit(); });
 
 // Minimal RFC-4180 reader, used to prove that guarding a cell against formula
 // injection does not damage ordinary values.

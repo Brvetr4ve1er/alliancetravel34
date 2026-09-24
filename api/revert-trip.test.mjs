@@ -4,9 +4,15 @@
 // talks to the network only through global fetch(), so stubbing globalThis.fetch
 // with node:test's built-in `mock` (t.mock.method, auto-restored per test)
 // intercepts every call without touching any ES module export bindings.
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import handler, { MAX_BODY_BYTES } from "./revert-trip.mjs";
+import { _reset as _resetRateLimit } from "./_lib/ratelimit.mjs";
+
+// verifyAdmin rate-limits its own Supabase round trip per caller; every fake
+// request here shares one clientKey() fallback, so reset before each test —
+// see save-trip.test.mjs for the incident this fixed.
+beforeEach(() => { _resetRateLimit(); });
 
 process.env.GITHUB_REPO = "owner/repo";
 process.env.GITHUB_TOKEN = "test-token";

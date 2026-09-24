@@ -1,6 +1,14 @@
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { parseBearer, isAllowed, supabaseEnv, verifyAdmin } from "./auth.mjs";
+import { _reset as _resetRateLimit, AUTH_PROBE } from "./ratelimit.mjs";
+
+// verifyAdmin rate-limits its own Supabase round trip per caller (see the
+// comment above the check in auth.mjs). Every fake request below shares one
+// clientKey() fallback ("unknown", no x-forwarded-for), so reset the shared
+// module-level bucket before each test — otherwise this file's own volume of
+// verifyAdmin calls would trip the limiter against itself.
+beforeEach(() => { _resetRateLimit(); });
 
 test("parseBearer extracts the token", () => {
   assert.equal(parseBearer({ headers: { authorization: "Bearer abc.def" } }), "abc.def");
@@ -165,6 +173,69 @@ test("verifyAdmin: an unreadable body from Supabase → 502, never a pass", asyn
   });
 });
 
+// ---- Rate limiting (2026-09-24 professional-gaps audit) --------------------------
+//
+// A MISSING token short-circuits before any network call or rate-limit check —
+// so it must never itself be throttled, no matter how many times it is retried.
+// A WRONG-but-present token still costs a real Supabase round trip, and
+// verifyAdmin gates eight admin endpoints, so that cost needed its own budget.
+
+test("verifyAdmin: a missing token is never rate-limited — every retry stays a plain 401", async (t) => {
+  await withEnv(async () => {
+    configure();
+    const fetchMock = t.mock.method(globalThis, "fetch", async () => { throw new Error("must not be called"); });
+    for (let i = 0; i < AUTH_PROBE.limit + 5; i++) {
+      const out = await verifyAdmin(req(null));
+      assert.deepEqual(out, { ok: false, status: 401, error: "missing bearer token" });
+    }
+    assert.equal(fetchMock.mock.calls.length, 0);
+  });
+});
+
+test("verifyAdmin: a wrong-but-present token is throttled to 429 after AUTH_PROBE.limit attempts", async (t) => {
+  await withEnv(async () => {
+    configure();
+    let calls = 0;
+    t.mock.method(globalThis, "fetch", async () => {
+      calls++;
+      return { ok: false, status: 401, json: async () => ({}) };
+    });
+    for (let i = 0; i < AUTH_PROBE.limit; i++) {
+      const out = await verifyAdmin(req("Bearer wrong.jwt"));
+      assert.deepEqual(out, { ok: false, status: 401, error: "invalid session" }, `attempt ${i + 1}`);
+    }
+    assert.equal(calls, AUTH_PROBE.limit); // every attempt so far reached Supabase
+
+    // The next attempt is refused BEFORE it reaches Supabase — the whole point
+    // of the budget is to stop spending a round trip on a caller who keeps failing.
+    const throttled = await verifyAdmin(req("Bearer wrong.jwt"));
+    assert.equal(throttled.ok, false);
+    assert.equal(throttled.status, 429);
+    assert.equal(throttled.error, "too many requests");
+    assert.ok(Number.isFinite(throttled.retryAfter) && throttled.retryAfter > 0);
+    assert.equal(calls, AUTH_PROBE.limit); // still — the throttled call made no network request
+  });
+});
+
+test("verifyAdmin: the rate-limit bucket is namespaced separately from api/me's own AUTH_PROBE call", async (t) => {
+  // api/me.mjs already calls limited(req, res, AUTH_PROBE) with the bare
+  // clientKey(req) ahead of verifyAdmin. verifyAdmin keys its own check
+  // `${clientKey(req)}:verifyAdmin` specifically so the two never share a
+  // counter — otherwise a real admin session could be charged twice per
+  // request against the same budget. Simulate api/me's own bucket by rate-
+  // limiting the bare key directly and confirm verifyAdmin is unaffected.
+  const { rateLimit, clientKey } = await import("./ratelimit.mjs");
+  await withEnv(async () => {
+    configure();
+    const bareKey = clientKey(req("Bearer tok"));
+    for (let i = 0; i < AUTH_PROBE.limit; i++) rateLimit(bareKey, AUTH_PROBE);
+    assert.equal(rateLimit(bareKey, AUTH_PROBE).ok, false); // the bare-key bucket is now exhausted
+
+    t.mock.method(globalThis, "fetch", async () => ({ ok: true, status: 200, json: async () => ({ email: "owner@example.com" }) }));
+    const out = await verifyAdmin(req("Bearer tok"));
+    assert.deepEqual(out, { ok: true, email: "owner@example.com" }); // untouched by the bare key's exhaustion
+  });
+});
 test("verifyAdmin: unset Supabase env fails CLOSED and leaks the token to nobody", async (t) => {
   await withEnv(async () => {
     configure();
