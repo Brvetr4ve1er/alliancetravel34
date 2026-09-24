@@ -71,10 +71,15 @@ const SPECS = [
     path: "calcUi.dateChips",
     addable: true,
     min: 1,
-    // Departures carry NO bindings — every chip in all 7 trips has k:"" — so
-    // the editor the owner most needs is also the one with no i18n
-    // consequences whatsoever.
-    keys: [],
+    // Every chip in all 7 trips carries a real binding (istanbul: istChip1,
+    // istChip2, …) that calc.tpl splices onto the button, translating its
+    // visible label. This used to read `keys: []` under a comment claiming the
+    // opposite — checked against the actual JSON, not assumed, 2026-09-24 —
+    // which meant a newly added departure date silently shipped with no
+    // data-i18n attribute at all: correct on French, untranslated forever on
+    // /en/ and /ar/, and no gate anywhere catches an ABSENT attribute the way
+    // checkRenderedPage catches an EMPTY one.
+    keys: ["k"],
     choose: "active", // exactly one row is the preselected chip
     fields: [
       { name: "value", labelKey: "pages.f.date.value", hintKey: "pages.f.date.value.hint", type: "text" },
@@ -92,7 +97,14 @@ const SPECS = [
     path: "faq",
     addable: true,
     min: 1,
-    keys: ["kBtn", "kA"],
+    // kQ binds the QUESTION text on 6 of 7 trips (faq.tpl wraps {{.question}}
+    // in <span{{.kQ}}> whenever kQ is set); azerbaidjan alone uses kBtn for
+    // the same slot instead. Both must be listed, or a new FAQ item on the
+    // other six trips mints kBtn/kA and mints NOTHING for kQ — the question
+    // itself, the very thing being added, ships untranslated. Found because
+    // the one regression test for this path (below) exercised azerbaidjan
+    // only, the single trip where the gap happened to be invisible.
+    keys: ["kBtn", "kQ", "kA"],
     choose: "open",
     fields: [
       { name: "question", labelKey: "pages.f.faq.q", type: "text" },
@@ -237,7 +249,34 @@ export function inferShape(content, spec, prop) {
   }
   let best = null;
   for (const s of tally.values()) if (!best || s.n > best.n) best = s;
-  return best;
+  if (best) return best;
+
+  // No item's key had a digit for the regex above to find. That is CORRECT
+  // silence when the property carries no binding on this trip at all
+  // (istanbul's kBtn) — nothing should be minted where nothing was asked for.
+  // But two real trips carry a REAL binding with a fully semantic, non-numeric
+  // name: bali's highlights (baHlAccomLabel, baHlStepsLabel, …) and
+  // kuala-lumpur's FAQ (klFaqVisaQ, klFaqFlightQ, …) — a topic word a human
+  // chose at authoring time, not a counter. A brand-new row has no topic to
+  // reuse, so there is no way to extend that family; but shipping it with NO
+  // key at all is the exact silent failure this whole module exists to
+  // prevent (see checkRenderedPage's "texte français vide" gate, which this
+  // never reaches because the attribute is simply absent from the render).
+  //
+  // So: mint into a SEPARATE, always-numeric family that cannot collide with
+  // any hand-authored name, ever — the literal "New" segment appears in none
+  // of the trips' existing conventions, and maxKeyIndex tracks it exactly like
+  // any other shape once one exists.
+  const withBinding = arr.find((item) => attrOf(item && item[prop]));
+  if (!withBinding) return null;
+  const tag = spec.id.charAt(0).toUpperCase() + spec.id.slice(1);
+  return {
+    head: `${content.keyPrefix || ""}${tag}New`,
+    tail: prop.replace(/^k/, ""),
+    attr: attrOf(withBinding[prop]) || "data-i18n",
+    n: 0,
+    fallback: true, // distinguishes a minted-but-ugly key from a joined family, for tests
+  };
 }
 
 /**

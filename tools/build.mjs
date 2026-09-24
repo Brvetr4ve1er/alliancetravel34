@@ -19,6 +19,7 @@ import { resolve, dirname, join, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { validateTrip } from "./validate-trip.mjs";
 import { checkAdminFields } from "./check-admin-fields.mjs";
+import { checkAdminLists } from "./check-admin-lists.mjs";
 import { checkValueGraph } from "./check-value-graph.mjs";
 import { checkI18n, writeManifest } from "./check-i18n.mjs";
 import { checkI18nBindings } from "./check-i18n-bindings.mjs";
@@ -165,6 +166,16 @@ for (const slug of Object.keys(manifest.trips ?? {})) {
 // Admin form fields must address data the templates actually render, or the
 // owner edits them to no effect. Caught here because nothing at runtime can.
 for (const e of checkAdminFields(ROOT)) errors.push(e);
+
+// Same idea, for the list editors (departures, FAQ, highlights, …): every k*
+// property that carries a real translation binding on some trip must be one
+// the editor knows to mint or clean up, or a row added through the dashboard
+// ships with that binding simply ABSENT — invisible to checkI18n below, which
+// only catches a binding that is present but empty. Async because
+// edit-lists.js (unlike edit-pages.js) is safely importable and this reuses
+// its own inferShape() rather than a second implementation of key-shape
+// detection; nothing before this point in the file depends on the result.
+for (const e of await checkAdminLists(ROOT)) errors.push(e);
 
 // A price is stored in up to 7 places per trip. If the advertised copies stop
 // agreeing with the calculator they derive from, the page contradicts itself —

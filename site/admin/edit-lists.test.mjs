@@ -300,6 +300,158 @@ test("a star rating outside 1-5 is refused", () => {
   assert.equal(trip.hotels[0].starsHtml, "★★★★", "starsHtml must follow stars");
 });
 
+// ── The silent-i18n-gap bug, found 2026-09-24 ─────────────────────────────
+//
+// Every test above only proves collectLists() writes SOMETHING and that
+// api/save-trip.mjs's gates accept it. Neither catches this bug: the gates
+// check whether an EXISTING binding is empty or clashing, never whether a
+// binding exists at ALL. A row minted with no key is invisible to all of
+// them, renders with no data-i18n attribute, and is French-only forever on
+// /en/ and /ar/. These tests inspect the RENDERED HTML directly, the same way
+// tools/check-admin-lists.test.mjs proves the build gate, so a future
+// regression here fails on the actual defect rather than on a proxy for it.
+
+function renderedHtml(slug, trip) {
+  const synced = syncDerivedPrices(trip).trip;
+  return renderTrip(synced);
+}
+
+test("a new departure date is minted with a real binding, on every trip", () => {
+  for (const slug of SLUGS) {
+    const trip = load(slug);
+    const dom = buildDom(trip);
+    const before = maxKeyIndex(trip, LIST_SPECS.find((s) => s.id === "dates"));
+    dom.addRow("dates", { value: "01 - 09 Decembre 2027", label: "1-9 Dec 2027" });
+    const invalid = collectLists(dom, trip);
+    assert.deepEqual(invalid, [], slug);
+
+    const added = trip.calcUi.dateChips.at(-1);
+    assert.match(added.k, new RegExp("data-i18n=\"\\w+" + (before + 1) + "\""), slug + ": no key minted");
+
+    const key = /="([^"]+)"/.exec(added.k)[1];
+    const html = renderedHtml(slug, trip);
+    assert.match(html, new RegExp("data-i18n=\"" + key + "\""),
+      slug + ": the new chip rendered with no translation binding at all");
+    assert.equal(saveTripChain(slug, trip).ok, true, slug);
+  }
+});
+
+test("a new FAQ question is minted with a real binding, on all 6 kQ-based trips", () => {
+  const kQTrips = SLUGS.filter((s) => s !== "azerbaidjan"); // azerbaidjan alone uses kBtn
+  for (const slug of kQTrips) {
+    const trip = load(slug);
+    const dom = buildDom(trip);
+    dom.addRow("faq", { question: "Puis-je annuler apres reservation ?", answerHtml: "Oui, sous conditions." });
+    const invalid = collectLists(dom, trip);
+    assert.deepEqual(invalid, [], slug);
+
+    const added = trip.faq.at(-1);
+    assert.notEqual(added.kQ, "", slug + ": the question text has no binding - untranslatable on EN/AR");
+
+    const key = /="([^"]+)"/.exec(added.kQ)[1];
+    const html = renderedHtml(slug, trip);
+    assert.match(html, new RegExp("data-i18n=\"" + key + "\""),
+      slug + ": the new question rendered with no translation binding at all");
+    assert.equal(saveTripChain(slug, trip).ok, true, slug);
+  }
+});
+
+test("azerbaidjan's FAQ still mints kBtn, not kQ, after the fix", () => {
+  // The fix ADDS kQ to the spec; it must not disturb the one trip that
+  // legitimately uses the other slot for the same purpose.
+  const trip = load("azerbaidjan");
+  const dom = buildDom(trip);
+  dom.addRow("faq", { question: "Une nouvelle question ?", answerHtml: "Une reponse." });
+  collectLists(dom, trip);
+  const added = trip.faq.at(-1);
+  assert.notEqual(added.kBtn, "");
+  assert.equal(added.kQ, "", "azerbaidjan's items never carry kQ - inventing one would be wrong for this trip");
+  assert.equal(saveTripChain("azerbaidjan", trip).ok, true);
+});
+
+test("a semantic (non-numeric) key family still gets a real, unique binding - kuala-lumpur's FAQ", () => {
+  // klFaqVisaQ, klFaqFlightQ, and so on - topic words a human chose, no digit
+  // anywhere for the old inferShape to find a pattern in. Confirms the
+  // FALLBACK path, not just the declaration fix.
+  const trip = load("kuala-lumpur");
+  const dom = buildDom(trip);
+  dom.addRow("faq", { question: "Le petit-dejeuner est-il inclus ?", answerHtml: "Oui, tous les matins." });
+  const invalid = collectLists(dom, trip);
+  assert.deepEqual(invalid, []);
+
+  const added = trip.faq.at(-1);
+  assert.notEqual(added.kQ, "", "fallback must still mint SOMETHING, not leave it empty");
+  assert.notEqual(added.kA, "");
+  const qKey = /="([^"]+)"/.exec(added.kQ)[1];
+  const aKey = /="([^"]+)"/.exec(added.kA)[1];
+  assert.notEqual(qKey, aKey, "the question and answer must not collide on one key");
+
+  const html = renderedHtml("kuala-lumpur", trip);
+  assert.match(html, new RegExp("data-i18n=\"" + qKey + "\""));
+  assert.match(html, new RegExp("data-i18n-html=\"" + aKey + "\""));
+  assert.equal(saveTripChain("kuala-lumpur", trip).ok, true);
+});
+
+test("a semantic (non-numeric) key family still gets a real, unique binding - bali's highlights", () => {
+  // baHlAccomLabel, baHlStepsLabel, and so on - same shape of gap, different list.
+  const trip = load("bali");
+  const dom = buildDom(trip);
+  dom.addRow("highlights", { label: "Plongee", title: "Sortie snorkeling", body: "Une matinee sur un site de recif." });
+  const invalid = collectLists(dom, trip);
+  assert.deepEqual(invalid, []);
+
+  const added = trip.highlights.at(-1);
+  for (const prop of ["kLabel", "kTitle", "kBody"]) assert.notEqual(added[prop], "", prop);
+  const keys = ["kLabel", "kTitle", "kBody"].map((p) => /="([^"]+)"/.exec(added[p])[1]);
+  assert.equal(new Set(keys).size, 3, "each field needs its own key");
+
+  const html = renderedHtml("bali", trip);
+  for (const key of keys) assert.match(html, new RegExp("data-i18n(?:-html)?=\"" + key + "\""));
+  assert.equal(saveTripChain("bali", trip).ok, true);
+});
+
+test("two sequential fallback adds on the same trip never collide", () => {
+  // The fallback family is brand new per trip, so nothing guards its
+  // numbering except maxKeyIndex itself picking it up like any other shape.
+  const trip = load("bali");
+  const dom = buildDom(trip);
+  dom.addRow("highlights", { label: "A", title: "A", body: "A" });
+  collectLists(dom, trip);
+  dom.addRow("highlights", { label: "B", title: "B", body: "B" });
+  collectLists(dom, trip);
+
+  const last2 = trip.highlights.slice(-2);
+  const firstKey = /="([^"]+)"/.exec(last2[0].kLabel)[1];
+  const secondKey = /="([^"]+)"/.exec(last2[1].kLabel)[1];
+  assert.notEqual(firstKey, secondKey);
+  assert.equal(saveTripChain("bali", trip).ok, true);
+});
+
+test("every real per-item binding is one the editor can mint - the invariant tools/check-admin-lists.mjs enforces at build time", () => {
+  // The same exhaustive scan the build gate runs, kept here too so a
+  // regression in inferShape's fallback fails a normal `node --test` run and
+  // not only the (separately tested) gate's own logic.
+  const hasAttr = (v) => /(data-i18n(?:-html)?)\s*=/.test(String(v ?? ""));
+  for (const spec of LIST_SPECS) {
+    if (spec.addable === false) continue;
+    for (const slug of SLUGS) {
+      const trip = load(slug);
+      const arr = get(trip, spec.path);
+      if (!Array.isArray(arr)) continue;
+      const propsInUse = new Set();
+      for (const item of arr) {
+        for (const k of Object.keys(item || {})) {
+          if (/^k([A-Z]|$)/.test(k) && hasAttr(item[k])) propsInUse.add(k);
+        }
+      }
+      for (const prop of propsInUse) {
+        assert.ok(spec.keys.includes(prop), spec.id + ".keys omits \"" + prop + "\", used by " + slug);
+        assert.ok(inferShape(trip, spec, prop), spec.id + "/" + prop + "/" + slug + ": inferShape gives nothing");
+      }
+    }
+  }
+});
+
 // ── Generated fields ───────────────────────────────────────────────────
 test("counters and JSON-LD are regenerated, never left to the owner", () => {
   const trip = load("azerbaidjan");
