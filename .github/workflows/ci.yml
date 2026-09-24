@@ -34,7 +34,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # Must match Vercel's actual configured runtime (nodeVersion: "24.x",
+          # confirmed via the project API 2026-09-24), or CI is not "the same
+          # validation gate Vercel runs" the header comment claims — it is a
+          # DIFFERENT gate that happens to run similar commands.
+          node-version: 24
 
       # Zero dependencies — nothing to install.
 
