@@ -167,6 +167,13 @@
         form_trip_placeholder: '— Je ne sais pas encore —',
         form_submit: 'Recevoir mon devis sur WhatsApp',
         form_hint: "Rien n'est envoyé automatiquement : votre message s'ouvre dans WhatsApp, prêt à partir.",
+        // Unlike booking-form.js's passport fields (explicitly NOT stored,
+        // per its own ppHint text), THIS form's contact-form.js inserts name/
+        // phone/city into the leads table before WhatsApp opens — so the
+        // wording here must say the opposite of the passport hint's "not
+        // stored", not reuse it.
+        privacy_hint: 'Vos informations sont enregistrées pour assurer le suivi de votre demande. ',
+        privacy_link: 'Politique de confidentialité',
         staff_lead: 'Joindre un conseiller — ligne directe',
         conseiller_prefix: 'Votre conseiller',
         addresses_label: 'Nos adresses',
@@ -549,6 +556,8 @@
         form_trip_placeholder: '— Not sure yet —',
         form_submit: 'Send on WhatsApp',
         form_hint: 'Nothing sends automatically — your message opens in WhatsApp for you to review and hit send.',
+        privacy_hint: 'Your information is recorded so we can follow up on your request. ',
+        privacy_link: 'Privacy policy',
         staff_lead: 'Reach an advisor directly',
         conseiller_prefix: 'Advisor',
         addresses_label: 'Our branches',
@@ -958,6 +967,8 @@
         form_trip_placeholder: '— تُحدَّد لاحقًا —',
         form_submit: 'أرسل طلبي عبر واتساب',
         form_hint: 'لا إرسال آلي: تُفتح رسالتك في واتساب جاهزةً للإرسال.',
+        privacy_hint: 'تُسجَّل معلوماتك لمتابعة طلبك. ',
+        privacy_link: 'سياسة الخصوصية',
         staff_lead: 'تواصل مع مستشار — مباشرةً',
         conseiller_prefix: 'مستشار',
         addresses_label: 'العناوين',

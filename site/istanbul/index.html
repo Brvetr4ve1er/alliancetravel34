@@ -135,6 +135,12 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32x32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16x16.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png"/>
+<!-- iOS ignores site.webmanifest's display:"standalone" entirely; only these
+     three tags make "Add to Home Screen" open without Safari's own chrome.
+     short_name matches site.webmanifest exactly, so the two never disagree. -->
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Alliance"/>
 <link rel="icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico"/>
 <link rel="manifest" href="../site.webmanifest"/>
 <meta property="og:image" content="https://alliancetravel.app/assets/images/og/og-istanbul.jpg"/>
